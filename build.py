@@ -202,10 +202,10 @@ def build_target(target, config, util, hashes_new):
         lconf = load_target_conf(target, config)
         if os.path.exists(os.path.join(tmpdir, lconf['main'] + '.tex')):
             nonzero = False
-            # we need to run xelatex twice to get table of contents setup'ed correctly.
+            # we need to run lualatex twice to get table of contents setup'ed correctly.
             for i in range(1 if config['rush'] else 2):
                 try:
-                    proc = subprocess.Popen(['xelatex', '-interaction=nonstopmode', '-halt-on-error', lconf['main'] + '.tex'], stdout=subprocess.DEVNULL, cwd=tmpdir)
+                    proc = subprocess.Popen(['lualatex', '-interaction=nonstopmode', '-halt-on-error', lconf['main'] + '.tex'], stdout=subprocess.DEVNULL, cwd=tmpdir)
                     proc.wait()
                     if proc.returncode != 0:
                         nonzero = True
