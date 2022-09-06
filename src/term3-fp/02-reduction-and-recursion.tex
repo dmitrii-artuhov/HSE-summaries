@@ -1,0 +1,126 @@
+\Subsection{Теорма о неподвижной точке}
+Отношение \beta-эквивалентности, основанное на схеме \beta-преобразования: $(\lambda n. M)N =_{\beta} [n \mapsto N]M$ дает возможность решать простейшейшие уравнения на термы.
+
+\begin{example}
+    Найти F, такой что $\forall M, N, L: \Lambda \vdash FMNL =_{\beta} ML(NL)$.
+
+    $$ FMNL = ML(NL) $$
+    $$ FMNL = (\lambda l. M l (N l))L $$
+    $$ FMN = \lambda l. M l (N l) $$
+    $$ FM = \lambda n. \lambda l. M l (n l) $$
+    $$ F = \lambda m n l. m l (n l) $$
+\end{example}
+
+\begin{example}
+    Рассмотрим рекурсивное уравнение:
+
+    $$ FM = MF $$
+    $$ FM = (\lambda m . m F) M $$
+    $$ F = \lambda m. m F $$
+    $$ F = (\lambda f m. m f) F $$
+
+    терм $F$ -- неподвижная точка, научившись их искать, можно решать рекурсивные уравнения.
+\end{example}
+
+\begin{theorem}
+    $\forall \lambda$-терма $F \exists$ неподвижная точка: $\forall F \in \Lambda. \exists X \in \Lambda. \lambda \vdash FX =_{\beta} X$.
+\end{theorem}
+\begin{proof}
+    $W \equiv \lambda x, F(xx) \land X \equiv WW$. Тогда $X \equiv WW \equiv (\lambda x. F(xx))W =_{\beta} F(WW) \equiv FX$ -- $X$ - неподвижная точка.
+\end{proof}
+
+\begin{theorem}
+    (О комбинаторе неподвижной точки)
+    
+    $\exists Y: \forall F \in \Lambda, \lambda \vdash F(YF) =_{\beta} YF$.
+\end{theorem}
+\begin{proof}
+    $Y \equiv\lambda f.(\lambda x. f(xx))(\lambda x. f(xx))$.
+    Имеем $$YF =_{\beta} (\lambda x. F(xx))(\lambda x. F(xx)) =_{\beta} F((\lambda x. F(xx))(\lambda x. F(xx))) =_{\beta} F(YF)$$
+\end{proof}
+
+% todo - https://wiki.compscicenter.ru/images/7/7a/Fpc02HSE2022.pdf (slide 6)
+\begin{example}
+    Тут пример с рекурсивным вычислением факториала (todo)
+\end{example}
+
+\Subsection{Редексы и нормальная форма}
+\begin{definition}
+    Отношение редукции:
+    \begin{enumerate}
+        \item $KI \rightarrow_{\beta} K_*$ - редуцируется за один шаг.
+        \item $IIK_* \rightarrowtail_{\beta} K_*$ - редуцируется.
+        \item $KI =_{\beta} IIK_*$ - конвертируемо.
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    Бинарное отношение \beta-редукции за один шаг $\rightarrow_{\beta} \Lambda$.
+
+    $$ (\lambda x. M) N \rightarrow_{\beta} [x \rightarrow N] M $$
+    $$ M \rightarrow_{\beta} N \implies ZM \rightarrow_{\beta} ZN $$
+    $$ M \rightarrow_{\beta} N \implies MZ \rightarrow_{\beta} NZ $$
+    $$ M \rightarrow_{\beta} N \implies \lambda x. M \rightarrow_{\beta} \lambda x. N $$
+\end{definition}
+% todo
+\begin{example}
+    тут пример: todo
+\end{example}
+
+\begin{definition}
+    Бинарное отношение \beta-редукции $\rightarrowtail_{\beta}$ над $\Lambda$ (индуктивно):
+
+    $$ M \rightarrowtail_{\beta} M (refl) $$
+    $$ M \rightarrow_{\beta} N\implies M \rightarrowtail_{\beta} N (sym)$$
+    $$ M \rightarrowtail_{\beta} N N \rightarrowtail_{\beta} L \implies M \rightarrowtail_{\beta} L (trans) $$
+\end{definition}
+
+\begin{definition}
+    Бинарное отношение $=_{\beta}$ над $\Lambda$ (индуктивно, отношение конвертируемости):
+
+    $$ M \rightarrowtail_{\beta} N\implies M =_{\beta} N $$
+    $$ M =_{\beta} N \implies N =_{\beta} M $$
+    $$ M =_{\beta} N, N =_{\beta} L \implies M =_{\beta} L $$
+\end{definition}
+
+\begin{statement}
+    Новая \beta-конвертируемость и старая \beta-эквивалентность это одно и то же: $M =_{\beta} N \Leftrightarrow \lambda \vdash M =_{\beta} N$.
+\end{statement}
+
+\begin{definition}
+    \lambda-терм M находится в \beta-нормальной форме (\beta-NF), если нет подтермов, являющихся \beta-редексами.
+\end{definition}
+
+\begin{definition}
+    \lambda-терм M имеет \beta-нормальной форму, если $\exists N: M=_{\beta} N$ и $N \in $\beta-NF.
+\end{definition}
+
+\Subsection{Теорма Черча-Россела}
+\begin{theorem}
+    Если $M \rightarrowtail_{\beta} N, M \rightarrowtail_{\beta} K: \exists L: N \rightarrowtail_{\beta} L \land K \rightarrowtail_{\beta} L$ (свойство ромба/конфлюентность).
+\end{theorem}
+
+\begin{consequence}
+    Теорма о существовании общего редукта:
+
+    $M =_{\beta} N: \exists L: M \rightarrowtail_{\beta} L \land N \rightarrowtail_{\beta} L$
+\end{consequence}
+
+\begin{consequence}
+    Теорма о редуцируемости к NF:
+
+    Если M имеет N в качестве \beta-NF, то $M \rightarrowtail_{\beta} N$
+\end{consequence}
+
+\begin{consequence}
+    Теорма о единственности NF:
+
+    \lambda-терм имеет не более одной \beta-NF.
+\end{consequence}
+
+\begin{statement}
+    Все затевалось для того, чтобы доказывать неравенства: берем термы, сводим к нормальной форме, если не совпеали, то не равны, иначе равны (Если какие-то термы расходятся, то ничего сказать нельязы).     
+\end{statement}
+
+\Subsection{Стратегии редукции}
+Духотища, читайте презу \href{https://wiki.compscicenter.ru/images/7/7a/Fpc02HSE2022.pdf}{здесь}.
