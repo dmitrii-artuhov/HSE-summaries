@@ -128,3 +128,54 @@ todo
 \begin{definition}
     \alpha-редукция -- $\lambda x. x \rightarrow_{\alpha} \lambda y. y$
 \end{definition} 
+
+\Subsection{Отношение эквивалентности на термах}
+\begin{definition}
+    Подстановка -- $[x \mapsto N]M$. Правила подстановки:
+    \begin{enumerate}
+        \item $[x \mapsto N]x = N$
+        \item $[x \mapsto N]y = y$
+        \item $[x \mapsto N](PQ) = ([x \mapsto N]P)([x \mapsto N]Q)$
+        \item $[x \mapsto N](\lambda x. P) = \lambda x. P$
+        \item $[x \mapsto N](\lambda y. P) = \lambda y. [x \mapsto N]P: y \notin FV(N)$ -- $y$ - не свободная переменная.
+        \item $[x \mapsto N](\lambda y. P) = \lambda y'. [x \mapsto N]([y \mapsto y'] P): y \in FV(N)$ -- иначе.
+    \end{enumerate}
+\end{definition}
+
+\begin{lemma}
+    (О подстановке) Подстановки не коммутируют, однако верна $M, N, L \in \Lambda$. Предположим, что $x \not\equiv y$ и $x \notin FV(L)$. Тогда $[y \mapsto L]([x \mapsto N]M) \equiv [x \mapsto [y \mapsto L]N]([y \mapsto L]M)$
+\end{lemma}
+\begin{proof}
+    Нудная индукция по всем 6ти случаям, с разбором всех подслучаев.
+\end{proof}
+
+\begin{definition}
+    \beta-эквивалентность (хотим все свойства отношения эквивалентности). $\forall M, N \in \Lambda: (\lambda x. M) =_{\beta} [x \mapsto N]M$.
+\end{definition}
+
+
+Логические аксиомы этого правила:
+\begin{enumerate}
+    \item $M =_{\beta} M$ \\ 
+    \item $M =_{\beta} N \implies N =_{\beta} M$ \\ 
+    \item $M =_{\beta} N, N =_{\beta} L \implies M =_{\beta} L$ \\
+\end{enumerate}
+
+
+Правила совместимости:
+\begin{enumerate}
+    \item $M =_{\beta} M' \implies MZ =_{\beta} M'Z$ \\
+    \item $M =_{\beta} M' \implies ZM =_{\beta} ZM'$ \\
+    \item $M =_{\beta} M' \implies \lambda x. M =_{\beta} \lambda x. M'$ \\
+\end{enumerate}
+
+Если $M =_{\beta} N$ доказуемо в \lambda-исчислении, пишут $\lambda \vdash M =_{\beta} N$.
+
+\begin{definition}
+    \alpha-эквивалентность -- $\lambda x. M =_{\alpha} \lambda y. [x \mapsto y] M$, если $y \notin FV(M)$ (переименование переменных). (там еще была табличка с аксиомами, посмотрите в презентации)
+\end{definition}
+
+\begin{definition}
+    \eta-эквивалентность -- $\lambda x. M x =_{\eta} M$. Смысл в том, что апликативное поведение термов слева и справа от знака равенства одинаоково: для произвольного $N$ верно: $(\lambda x. M x)N =_{\beta} MN$.
+\end{definition}
+
