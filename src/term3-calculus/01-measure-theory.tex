@@ -15,34 +15,34 @@ $$X \setminus \bigcap_{\alpha \in I} A_{\alpha} = \bigcup X \setminus A_{\alpha}
 
 
 \begin{definition}
-    $\mathbb{А}$ -- система подмн-в $X$: $A \subset 2^{X}$
+    $\mathcal{А}$ -- система подмн-в $X$: $A \subset 2^{X}$
 
     \begin{enumerate}
         \item ($\delta_0$) если $\forall A, B \in A \implies A \cap B \in A$
         \item ($\sigma_0$) если $\forall A, B \in A \implies A \cup B \in A$
         \item {
-            $(\delta)$ если $A_n \in \mathbb{A} \forall n \implies \bigcap_{n=1}^{\infty} A_n \in \mathbb{A}$
+            $(\delta)$ если $A_n \in \mathcal{A} \forall n \implies \bigcap_{n=1}^{\infty} A_n \in \mathcal{A}$
         }
         \item {
-            $(\sigma)$ если $A_n \in \mathbb{A} \forall n \implies \bigcup_{n=1}^{\infty} A_n \in \mathbb{A}$
+            $(\sigma)$ если $A_n \in \mathcal{A} \forall n \implies \bigcup_{n=1}^{\infty} A_n \in \mathcal{A}$
         }
     \end{enumerate}
 \end{definition}
 
 \begin{definition}
-    $\mathbb{A}$ -- симметрическая система мн-в, если $\forall A \in \mathbb{A} \implies X \setminus A \in \mathbb{A}$ 
+    $\mathcal{A}$ -- симметрическая система мн-в, если $\forall A \in \mathcal{A} \implies X \setminus A \in \mathcal{A}$ 
 \end{definition}
 
 \begin{statement}
-    Если $\mathbb{A}$ -- симм., то $(\delta_{0}) \Leftrightarrow (\sigma_{0})$ и $(\delta) \Leftrightarrow (\sigma)$
+    Если $\mathcal{A}$ -- симм., то $(\delta_{0}) \Leftrightarrow (\sigma_{0})$ и $(\delta) \Leftrightarrow (\sigma)$
 \end{statement}
 
 \begin{proof}
-    $A_{\alpha \in }\mathbb{A} \Leftrightarrow X \setminus A_{\alpha} \in \mathbb{A} implies \bigcup_{\alpha \in I}A_{\alpha} = \bigcap_{\alpha \in I} X \setminus A_{\alpha} \in \mathbb{A}$
+    $A_{\alpha \in I}\mathcal{A} \Leftrightarrow X \setminus A_{\alpha} \in \mathcal{A} \implies \bigcup_{\alpha \in I}A_{\alpha} = \bigcap_{\alpha \in I} X \setminus A_{\alpha} \in \mathcal{A}$
 \end{proof}
 
 \begin{definition}
-    $\mathbb{A}$ -- алгебра мн-в, если $\mathbb{A}$ -- симметр., $\emptyset \notin \mathbb{A} \land (\delta_0) = (\sigma_0)$.
+    $\mathcal{A}$ -- алгебра мн-в, если $\mathcal{A}$ -- симметр., $\emptyset \notin \mathcal{A} \land (\delta_0) = (\sigma_0)$.
 \end{definition}
 
 \begin{properties}
@@ -50,15 +50,15 @@ $$X \setminus \bigcap_{\alpha \in I} A_{\alpha} = \bigcup X \setminus A_{\alpha}
 
     \begin{enumerate}
         \item {
-            $\emptyset, X \in \mathbb{A}$
+            $\emptyset, X \in \mathcal{A}$
         }
-        \item Если $A_1, \dots, A_n \in \mathbb{A}$, то $\bigcup_{k = 1}^n A_k \in \mathbb{A} \land \bigcap_{k = 1}^n A_k \in \mathbb{A}$
-        \item Если $A, B \in \mathbb{A}$, то $A \cap (X \setminus B) = A \setminus B \in \mathbb{A}$
+        \item Если $A_1, \dots, A_n \in \mathcal{A}$, то $\bigcup_{k = 1}^n A_k \in \mathcal{A} \land \bigcap_{k = 1}^n A_k \in \mathcal{A}$
+        \item Если $A, B \in \mathcal{A}$, то $A \cap (X \setminus B) = A \setminus B \in \mathcal{A}$
     \end{enumerate}
 \end{properties}
 
 \begin{definition}
-    $\mathbb{A}$ - \sigma-алгебра мн-в, если $\mathbb{A}$ -- симм., $\emptyset \notin \mathbb{A}$ и $(\sigma) = (\delta)$.
+    $\mathcal{A}$ - \sigma-алгебра мн-в, если $\mathcal{A}$ -- симм., $\emptyset \notin \mathcal{A}$ и $(\sigma) = (\delta)$.
 \end{definition}
 
 \begin{remark}
@@ -68,21 +68,21 @@ $$X \setminus \bigcap_{\alpha \in I} A_{\alpha} = \bigcup X \setminus A_{\alpha}
 \begin{example}
     \begin{enumerate}
         \item $2^X$ - \sigma-алгебра.
-        \item $X = \mathbb{R}^2$, $\mathbb{A}$ - всевозможные огр. подмн-ва. $\mathbb{R}^2$ и их дополнений. ($\mathbb{A}$ -- алгебра, но не\sigma-алгебра.
-        \item $mathbb{A}$ - алгебра (\sigma-алгебра) подмн-в $X$ и $Y \subset X$. $\mathbb{A}_{Y} := \{A \cap Y : A \in \mathbb{A}\}$ -- индуцированная алгебра (\sigma-алгебра).
-        \item Пусть $\mathbb{A}_{\alpha}$ -- алгебры (\sigma-алгебры), тогда $\bigcap_{\alpha \in I}\mathbb{A}_{\alpha}$ -- алгебра (\sigma-алгебра).
+        \item $X = \mathbb{R}^2$, $\mathcal{A}$ - всевозможные огр. подмн-ва. $\mathbb{R}^2$ и их дополнений. ($\mathcal{A}$ -- алгебра, но не\sigma-алгебра.
+        \item $\mathcal{A}$ - алгебра (\sigma-алгебра) подмн-в $X$ и $Y \subset X$. $\mathcal{A}_{Y} := \{A \cap Y : A \in \mathcal{A}\}$ -- индуцированная алгебра (\sigma-алгебра).
+        \item Пусть $\mathcal{A}_{\alpha}$ -- алгебры (\sigma-алгебры), тогда $\bigcap_{\alpha \in I}\mathcal{A}_{\alpha}$ -- алгебра (\sigma-алгебра).
         \item $A, B \subset X$ что есть в адгебра, содержащей $A, B$: \\ $\emptyset, X, A, B, A \cup B, A \cap B, A \setminus B, B \setminus A, X \setminus A, X \setminus B, X \setminus (A \cup B), X \setminus (A \cap B), A \vartriangle B, X \setminus (A \vartriangle B), X \setminus (A \setminus B), X \setminus (B \setminus A)$.
     \end{enumerate}
 \end{example}
 
 \begin{theorem}
-    Пусть $\epsilon$ -- семейство подмн-в в $X$, тогда существует наименьшая по включению \sigma-алгебра (алгебра) $\mathbb{A}$, такая что $\epsilon \subset \mathbb{A}$.
+    Пусть $\epsilon$ -- семейство подмн-в в $X$, тогда существует наименьшая по включению \sigma-алгебра (алгебра) $\mathcal{A}$, такая что $\epsilon \subset \mathcal{A}$.
 \end{theorem}
 
 \begin{proof}
-    $\mathbb{A}_{\alpha}$ -- всевозможные \sigma-алгебры $\supset \epsilon$. Такие есть, так как $2^X$ подходит.
+    $\mathcal{A}_{\alpha}$ -- всевозможные \sigma-алгебры $\supset \epsilon$. Такие есть, так как $2^X$ подходит.
 
-    $\mathbb{A} := \bigcap_{\alpha \in I} \mathbb{A}_{\alpha} \supset \epsilon$. Теперь проверим, что $\mathbb{A}$ -- наим. по вкл. $\mathbb{A} \subset A_{\alpha}$ $\forall \alpha \in I$.
+    $\mathcal{A} := \bigcap_{\alpha \in I} \mathcal{A}_{\alpha} \supset \epsilon$. Теперь проверим, что $\mathcal{A}$ -- наим. по вкл. $\mathcal{A} \subset A_{\alpha}$ $\forall \alpha \in I$.
 
     \begin{definition}
         \begin{enumerate}
@@ -369,5 +369,3 @@ $\mathcal{P}_{Q}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с раци�
 
     $\sum_{k: t_k \in A} w_k = \sum_{n=1}^{\infty} \sum_{k: t_k \in A_n} w_k$ (тут был какой-то кукарек про '$\leq$' и '$\geq$' и получаем равенство, нужно рассматривать слагаемые по отдельности)
 \end{proof}
-
-% todo: поправить везде mathcal, mathbb
