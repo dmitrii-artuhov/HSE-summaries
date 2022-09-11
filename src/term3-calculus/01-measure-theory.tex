@@ -123,8 +123,13 @@ $$X \setminus \bigcap_{\alpha \in I} A_{\alpha} = \bigcup X \setminus A_{\alpha}
 \begin{example}
     $X = \mathbb{R}, P = \{(a, b] : a, b \in X\}$ -- полукольцо.
 
-    Картинка.
-    % todo: picture
+    \hbox{
+        \includegraphics[scale=0.15]{./assets/01-measure-theory/semicircle-prop-2.jpg}
+    }
+    \hbox{
+        \includegraphics[scale=0.15]{./assets/01-measure-theory/semicircle-prop-3.jpg}
+    }
+
 \end{example}
 
 \begin{lemma}
@@ -197,10 +202,7 @@ $$X \setminus \bigcap_{\alpha \in I} A_{\alpha} = \bigcup X \setminus A_{\alpha}
 \end{theorem}
 
 \begin{proof}
-    Картинка.
 
-
-    % todo: picture
     $P_n := (a_1, b_1 + \frac{1}{n}) \times \dots \times (a_m, b_m + \frac{1}{n})$
 
     $P_n \supset P_{n+1}$ и $\bigcap_{n=1}^{\infty}P_n = (a, b]$
@@ -208,9 +210,14 @@ $$X \setminus \bigcap_{\alpha \in I} A_{\alpha} = \bigcup X \setminus A_{\alpha}
     $Q_n := [a_1 + \frac{1}{n}, b_1] \times \dots \times [a_m + \frac{1}{n}, b_m]$
 
     $Q_n \subset Q_{n+1}$ и $\bigcup_{n=1}^{\infty}Q_n = (a, b]$ 
+
+    \hbox{
+        \includegraphics[scale=0.15]{./assets/01-measure-theory/rects-1.jpg}
+    }
+
 \end{proof}
 
-Обозначения: $\mathcal{P}^m$ -- сем-во ячеек из $\mathbb{R}^m$.
+\textbf{Обозначения}: $\mathcal{P}^m$ -- сем-во ячеек из $\mathbb{R}^m$.
 
 $\mathcal{P}_{Q}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с рациональными координатами вершин.
 
@@ -227,10 +234,12 @@ $\mathcal{P}_{Q}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с раци�
     $G \neq \emptyset$ -- открытое множество в $\mathbb{R}^m$. Тогда его можно представить как не более чем счетное дизъюнктивное объелинение ячеек, замыкание каждой из которых содержится в $G$ (можно считать, что ячейки с рациональными координатными вершинами).
 \end{theorem}
 \begin{proof}
-    % todo: picture
-    Картинка.
 
     $R_x$ -- ячейка, $\underbrace{Cl  (R_x)}_{\text{замыкание ячейки}} \subset G$, $x \in R_x$, получаем, что $G = \bigcup_{x \in G} R_x$.
+
+    \hbox{
+        \includegraphics[scale=0.15]{./assets/01-measure-theory/opened-set-with-rect.jpg}
+    }
 
     Выкинем повторы: $G = \bigcup_{n=1}^{\infty} R_{x_n} = \bigsqcup_{n=1}^{\infty} \bigsqcup_{j=1}^{m_n} Q_{nj}$
 \end{proof}
