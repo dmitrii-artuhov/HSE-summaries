@@ -42,7 +42,7 @@ $$X \setminus \bigcap_{\alpha \in I} A_{\alpha} = \bigcup X \setminus A_{\alpha}
 \end{proof}
 
 \begin{definition}
-    $\mathcal{A}$ -- алгебра мн-в, если $\mathcal{A}$ -- симметр., $\emptyset \in \mathcal{A}$ и $\forall A, \ B \in \mathcal{A}: \ A \cup B \in \mathcal{A}$ (по утв. 1.1 $(\delta_0) \Leftrightarrow (\sigma_0)$; смотри \href{https://ru.wikipedia.org/wiki/\%D0\%90\%D0\%BB\%D0\%B3\%D0\%B5\%D0\%B1\%D1\%80\%D0\%B0_\%D0\%BC\%D0\%BD\%D0\%BE\%D0\%B6\%D0\%B5\%D1\%81\%D1\%82\%D0\%B2#\%D0\%9E\%D0\%BF\%D1\%80\%D0\%B5\%D0\%B4\%D0\%B5\%D0\%BB\%D0\%B5\%D0\%BD\%D0\%B8\%D0\%B5}{опр. алгебры}).
+    $\mathcal{A}$ -- алгебра мн-в, если $\mathcal{A}$ -- симметр., $\emptyset \in \mathcal{A}$ и $\forall A, \ B \in \mathcal{A}: \ A \cup B \in \mathcal{A}$ (по утв. 1.1 $(\delta_0) \Leftrightarrow (\sigma_0)$; смотри \href{https://ru.wikipedia.org/wiki/%D0%90%D0%BB%D0%B3%D0%B5%D0%B1%D1%80%D0%B0_%D0%BC%D0%BD%D0%BE%D0%B6%D0%B5%D1%81%D1%82%D0%B2#%D0%9E%D0%BF%D1%80%D0%B5%D0%B4%D0%B5%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5}{опр. алгебры}).
 \end{definition}
 
 \begin{properties}
@@ -69,7 +69,9 @@ $$X \setminus \bigcap_{\alpha \in I} A_{\alpha} = \bigcup X \setminus A_{\alpha}
     \begin{enumerate}
         \item $2^X$ - \sigma-алгебра.
         
-        \item $X = \mathbb{R}^2$, $\mathcal{A}$ - всевозможные href{https://ru.wikipedia.org/wiki/\%D0\%9E\%D0\%B3\%D1\%80\%D0\%B0\%D0\%BD\%D0\%B8\%D1\%87\%D0\%B5\%D0\%BD\%D0\%BD\%D0\%BE\%D1\%81\%D1\%82\%D1\%8C}{огр. подмн-ва.} $\mathbb{R}^2$ и их дополнений. ($\mathcal{A}$ -- алгебра, но не \sigma-алгебра). Rem: огр. множество - в метрич. пр-ве это множетсво ограниченного диаметра ($d(x, \ y) := \norm{x - y}$), т.е. $sup\{ d(x, \ y) \ | x, \ y \in X \}$ - ограничен.
+        \item $X = \mathbb{R}^2$, $\mathcal{A}$ - всевозможные \href{https://ru.wikipedia.org/wiki/%D0%9E%D0%B3%D1%80%D0%B0%D0%BD%D0%B8%D1%87%D0%B5%D0%BD%D0%BD%D0%BE%D1%81%D1%82%D1%8C}{огр. подмн-ва.} $\mathbb{R}^2$ и их дополнения. ($\mathcal{A}$ -- алгебра, но не \sigma-алгебра).
+        
+        \textbf{Rem}: огр. множество - в метрич. пр-ве это множетсво ограниченного диаметра ($d(x, \ y) := || x - y ||$), т.е. $sup\{ d(x, \ y) \ | x, \ y \in X \}$ - ограничен.
 
         \item $\mathcal{A}$ - алгебра (\sigma-алгебра) подмн-в $X$ и $Y \subset X$. $\mathcal{A}_{Y} := \{A \cap Y : A \in \mathcal{A}\}$ -- индуцированная алгебра (\sigma-алгебра).
         
@@ -91,12 +93,13 @@ $$X \setminus \bigcap_{\alpha \in I} A_{\alpha} = \bigcup X \setminus A_{\alpha}
     \begin{definition}
         \begin{enumerate}
             \item Такая \sigma-алгебра -- борелевская оболка $\epsilon$ -- $(\mathcal{B}(\epsilon))$.
-            \item $X = \mathbb{R}^n$ такая \sigma-алгебра, натянутая на все откр. мн-ва -- борелевская \sigma-алгебра $(\mathcal{B}^n)$.
+            
+            \item $X = \mathbb{R}^n$; такая \sigma-алгебра, натянутая на все открытые мн-ва -- борелевская \sigma-алгебра $(\mathcal{B}^n)$.
         \end{enumerate}
     \end{definition}
 
     \begin{remark}
-        континуальное -- $\mathcal{B}^n \neq 2^{\mathbb{R}^n}$ -- больше
+        континуальное -- $\mathcal{B}^n \neq 2^{\mathbb{R}^n}$ -- больше.
     \end{remark}
 \end{proof}
 
