@@ -6,7 +6,7 @@
 \end{definition}
 
 \begin{definition}
-    $E$ -- мн-во, если $E = \bigsqcup_{\alpha \in I} E_{\alpha}$ -- разбюиение мн-ва $E$.
+    $E$ -- мн-во; если $E = \bigsqcup_{\alpha \in I} E_{\alpha}$ -- разбиение мн-ва $E$.
 \end{definition}
 
 Напоминание:
@@ -18,23 +18,23 @@ $$X \setminus \bigcap_{\alpha \in I} A_{\alpha} = \bigcup X \setminus A_{\alpha}
     $\mathcal{А}$ -- система подмн-в $X$: $A \subset 2^{X}$
 
     \begin{enumerate}
-        \item ($\delta_0$) если $\forall A, B \in A \implies A \cap B \in A$
-        \item ($\sigma_0$) если $\forall A, B \in A \implies A \cup B \in A$
+        \item ($\delta_0$) если $\forall A, B \in \mathcal{A} \implies A \cap B \in \mathcal{A}$
+        \item ($\sigma_0$) если $\forall A, B \in \mathcal{A} \implies A \cup B \in \mathcal{A}$
         \item {
-            $(\delta)$ если $A_n \in \mathcal{A} \forall n \implies \bigcap_{n=1}^{\infty} A_n \in \mathcal{A}$
+            $(\delta)$ если $A_n \in \mathcal{A}, \ \forall n \implies \bigcap_{n=1}^{\infty} A_n \in \mathcal{A}$
         }
         \item {
-            $(\sigma)$ если $A_n \in \mathcal{A} \forall n \implies \bigcup_{n=1}^{\infty} A_n \in \mathcal{A}$
+            $(\sigma)$ если $A_n \in \mathcal{A}, \ \forall n \implies \bigcup_{n=1}^{\infty} A_n \in \mathcal{A}$
         }
     \end{enumerate}
 \end{definition}
 
 \begin{definition}
-    $\mathcal{A}$ -- симметрическая система мн-в, если $\forall A \in \mathcal{A} \implies X \setminus A \in \mathcal{A}$ 
+    $\mathcal{A}$ -- симметрическая система мн-в, если $\forall A \in \mathcal{A} \implies X \setminus A \in \mathcal{A}$.
 \end{definition}
 
 \begin{statement}
-    Если $\mathcal{A}$ -- симм., то $(\delta_{0}) \Leftrightarrow (\sigma_{0})$ и $(\delta) \Leftrightarrow (\sigma)$
+    Если $\mathcal{A}$ -- симм., то $(\delta_{0}) \Leftrightarrow (\sigma_{0})$ и $(\delta) \Leftrightarrow (\sigma)$.
 \end{statement}
 
 \begin{proof}
@@ -42,7 +42,7 @@ $$X \setminus \bigcap_{\alpha \in I} A_{\alpha} = \bigcup X \setminus A_{\alpha}
 \end{proof}
 
 \begin{definition}
-    $\mathcal{A}$ -- алгебра мн-в, если $\mathcal{A}$ -- симметр., $\emptyset \notin \mathcal{A} \land (\delta_0) = (\sigma_0)$.
+    $\mathcal{A}$ -- алгебра мн-в, если $\mathcal{A}$ -- симметр., $\emptyset \in \mathcal{A}$ и $\forall A, \ B \in \mathcal{A}: \ A \cup B \in \mathcal{A}$ (по утв. 1.1 $(\delta_0) \Leftrightarrow (\sigma_0)$; смотри \href{https://ru.wikipedia.org/wiki/%D0%90%D0%BB%D0%B3%D0%B5%D0%B1%D1%80%D0%B0_%D0%BC%D0%BD%D0%BE%D0%B6%D0%B5%D1%81%D1%82%D0%B2#%D0%9E%D0%BF%D1%80%D0%B5%D0%B4%D0%B5%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5}{опр. алгебры}).
 \end{definition}
 
 \begin{properties}
