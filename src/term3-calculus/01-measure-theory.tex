@@ -356,7 +356,7 @@ $\mathcal{P}_{Q}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с раци�
         \item {
             Если $\mathcal{P}$ -- кольцо и $A, B$ ($B \subset A$) $ \in \mathcal{P}$, то $A \setminus B \in \mathcal{P}$
 
-            $\mu (A \subset B) + \mu B = \mu A$
+            $\mu (A \setminus B) + \mu B = \mu A$
 
             Если $\mu B \neq +\infty$, то $\mu (A \setminus B) = \mu A - \mu B$
         }
@@ -376,12 +376,15 @@ $\mathcal{P}_{Q}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с раци�
     Классический объем на ячейках -- действительно объем.
 \end{consequence}
 \begin{proof}
-    Простой случай. $P = \bigsqcup_{k=1}^{n}P_k, Q = \bigsqcup_{j=1}^m Q_j$
+    Простой случай. $P = \bigsqcup_{k=1}^{n}P_k, Q = \bigsqcup_{j=1}^m Q_j$, тогда:
 
     $P \times Q = \bigsqcup_{k=1}^{n} \bigsqcup_{j=1}^{m} P_k \times Q_j$, докажем, что $\underbrace{\lambda (P \times Q)}_{\sum_{k=1}^n \mu P_k \cdot \sum_{j=1}^m \nu Q_j = \mu P \cdot \nu Q} = \sum_{k=1}^n \sum_{j=1}^m \underbrace{\lambda (P_k \times Q_j)}_{\mu P_k \cdot \nu Q_j}$
 
-    % todo: picture
-    Общий случай. Тут картинка, ага очень удобно
+    Общий случай.
+
+    \begin{center}
+        \includegraphics[scale=0.3]{./assets/01-measure-theory/PxQ.jpg}
+    \end{center}
 
     $P \times Q = \bigsqcup_{k=1}^{n} P_k \times Q_k$
     
@@ -394,12 +397,12 @@ $\mathcal{P}_{Q}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с раци�
     \begin{enumerate}
         \item Классический объем на ячейках $\lambda_m$ -- мера
         \item {
-            $g : \mathbb{R} \rightarrow \mathbb{R}$ нестрого монотонная возрастающая и нерперывна слева во всех точках.
+            $g : \mathbb{R} \rightarrow \mathbb{R}$ нестрого монотонная возрастающая и непрерывна слева во всех точках, тогда $\nu_g (a, b]:=g(b) - g(a)$ -- мера.
 
-            $\nu_g (a, b]:=g(b) - g(a)$ -- мера.
+            (\underline{Rem}: $lim_{x \rightarrow a-} f(x) = f(a)$ -- непрерывность слева).
         }
         \item Считающаяся мера: $\mu A := \#A$ -- кол-во элементов.
-        \item $T = \{t_1, t_2, \dots \}$ -- не более чем счетное множетсво, $w_1, w_2, \dots \geq 0$, $\mu A := \sum_{k: t_k \in A} w_k$ -- мера.
+        \item $T = \{t_1, t_2, \dots \}$ -- не более чем счетное множетсво, $w_1, w_2, \dots \geq 0$, $\mu A := \sum_{k: t_k \in A} w_k$ $\rightarrow$ $\mu$ -- мера.
     \end{enumerate}
 \end{example}
 
