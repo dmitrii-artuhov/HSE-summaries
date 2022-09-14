@@ -300,23 +300,37 @@ $\mathcal{P}_{Q}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с раци�
                     $0$, \ otherwise
                 \end{cases}                
             \end{equation}
+
+            $\mu$ - мера.
         }
-        \item $\mathcal{P}$ -- огр. мн-во и их дополнения $\mu A := a$ -- при $x_0 \in A$, иначе $0$ (это объем, но не мера)
+        \item {
+            $\mathcal{P}$ -- огр. мн-ва и их дополнения.
+            
+            \begin{equation}
+                \mu A := 
+                \begin{cases}
+                    $1$, \ if \  x_{0} \in A \\
+                    $0$, \ otherwise
+                \end{cases}                
+            \end{equation}
+
+            $\mu$ - объем, но не мера.
+        }
     \end{enumerate}
 \end{example}
 
 \begin{theorem}
-    $\mu$-объем на полукольце $\mathcal{P}$
+    $\mu$ - объем на полукольце $\mathcal{P}$
 
     \begin{enumerate}
-        \item монотонность: $\mathcal{P} \ni P \subset \tilde{P} \in \mathcal{P} \implies \mu P \leq \mu \tilde{P}$
+        \item Монотонность: $\mathcal{P} \ni P \subset \tilde{P} \in \mathcal{P} \implies \mu P \leq \mu \tilde{P}$
         \item {
             \begin{enumerate}
-                \item усиленная монотонность: $P_1, P_2, \dots P_n, P \in \mathcal{P}$. $\bigsqcup_{k=1}^n P_k \subset P \implies \sum_{k=1}^n \mu P_k \leq \mu P$
-                \item пункты (a), но $n = \infty$
+                \item Усиленная монотонность: $P_1, P_2, \dots P_n, P \in \mathcal{P}$. $\bigsqcup_{k=1}^n P_k \subset P \implies \sum_{k=1}^n \mu P_k \leq \mu P$
+                \item Пункт (a), но $n = \infty$
             \end{enumerate}
         }
-        \item полуаддитивность: $P, P_1, P_2, \dots P_n \in \mathcal{P}$ и $P \subset \bigcup_{k=1}^{n}P_k$, тогда $\mu P \leq \sum_{k=1}^{n} \mu P_k$ 
+        \item Полуаддитивность: $P, P_1, P_2, \dots P_n \in \mathcal{P}$ и $P \subset \bigcup_{k=1}^{n}P_k$, тогда $\mu P \leq \sum_{k=1}^{n} \mu P_k$ 
     \end{enumerate}
 \end{theorem}
 
@@ -328,7 +342,11 @@ $\mathcal{P}_{Q}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с раци�
             \item $P \setminus \bigsqcup_{k=1}^{n} \mu P_k =  \bigsqcup_{j=1}^{m} Q_j \implies P = \bigsqcup_{k=1}^{n} P_k \sqcup \bigsqcup_{j=1}^m Q_j \implies \mu P = \sum_{k=1}^{n} \mu P_k + \sum_{j=1}^{m} \mu Q_j \geq \sum_{k=1}^{n} \mu P_k $
             \item $\bigsqcup_{k=1}^{\infty} P_k \subset P \implies \bigsqcup_{k=1}^n P_k \subset P \implies \sum_{k=1}^{n} \mu P_k \rightarrow \sum_{k=1}^{\infty} \mu P_k \leq \mu P$
         \end{enumerate}
-        \item $P_k' "= P \cap P_k \in \mathcal{P}$, \;\; $P = \bigcup_{k=1}^{n} P_k' = \bigsqcup_{k=1}^{n} \underbrace{\bigsqcup_{j=1}^{m_k} Q_{kj}}_{P_k'} \implies \mu P = \sum_{k=1}^n \sum_{j=1}^{m_k} \mu Q_{kj} \leq \sum_{k=1}^n \mu P_k$
+        \item {
+            $P_k' := P \cap P_k \in \mathcal{P}$ ($\mathcal{P}$ - полукольцо), \;\; $P = \bigcup_{k=1}^{n} P_k' = \bigsqcup_{k=1}^{n} \underbrace{\bigsqcup_{j=1}^{m_k} Q_{kj}}_{\in P_k'} \implies$
+            
+            $\implies \mu P = \sum_{k=1}^n \underbrace{\sum_{j=1}^{m_k} \mu Q_{kj}}_{\leq \mu P'_k \leq \mu P_k \ (property \ 2(a). )} \leq \sum_{k=1}^n \mu P_k$
+        }
         }
     \end{enumerate}
 \end{proof}
