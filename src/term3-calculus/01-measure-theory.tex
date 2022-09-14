@@ -281,37 +281,56 @@ $\mathcal{P}_{Q}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с раци�
 
 \begin{example}
     \begin{enumerate}
-        \item $\mathcal{P}^1$,   \;\; $\mu (a, b] := b - a$ -- длина (упр. доказать, что объем).
+        \item $\mathcal{P}^1$,   \;\; $\mu (a, b] := b - a$ -- длина (упр. доказать, что объем и мера).
         \item {
             $g: \mathcal{R} \rightarrow \mathcal{R}$ -- нестрого монотонная
 
             \begin{enumerate}
-                \item $(a, b] := g(b) - g(a)$ (упр. доказать, что объем).
+                \item $\mu_{g}(a, b] := g(b) - g(a)$ (упр. доказать, что объем).
             \end{enumerate}
         }
-        \item $\mathcal{P}^m$, \;\; $\mu (a, b] := (b_1 - a_1)(b_2 - a_2) \dots (b_m - a_m)$ -- классический объем.
+        \item $\mathcal{P}^m$ (m-мерные ячейки), \;\; $\mu (a, b] := (b_1 - a_1)(b_2 - a_2) \dots (b_m - a_m), \ a := (a_1, \ ..., \ a_m), \ b := (b_1, \ ..., \ b_m)$ -- классический объем.
         \item {
             $\mathcal{P} = 2^X$, \;\; $x_0 \in X$, \;\; $a \geq 0$
-        
-            $\mu A := a$ -- при $x_0 \in A$, иначе $0$ (блин, как выглядит сранный тех символ)
-            % todo: fix
+            
+            \begin{equation}
+                \mu A := 
+                \begin{cases}
+                    $a$, \ if \  x_{0} \in A \\
+                    $0$, \ otherwise
+                \end{cases}                
+            \end{equation}
+
+            $\mu$ - мера.
         }
-        \item $\mathcal{P}$ -- огр. мн-во и их дополнения $\mu A := a$ -- при $x_0 \in A$, иначе $0$ (это объем, но не мера)
+        \item {
+            $\mathcal{P}$ -- огр. мн-ва и их дополнения.
+            
+            \begin{equation}
+                \mu A := 
+                \begin{cases}
+                    $1$, \ if \  x_{0} \in A \\
+                    $0$, \ otherwise
+                \end{cases}                
+            \end{equation}
+
+            $\mu$ - объем, но не мера.
+        }
     \end{enumerate}
 \end{example}
 
 \begin{theorem}
-    $\mu$-объем на полукольце $\mathcal{P}$
+    $\mu$ - объем на полукольце $\mathcal{P}$
 
     \begin{enumerate}
-        \item монотонность: $\mathcal{P} \ni P \subset \tilde{P} \in \mathcal{P} \implies \mu P \leq \mu \tilde{P}$
+        \item Монотонность: $\mathcal{P} \ni P \subset \tilde{P} \in \mathcal{P} \implies \mu P \leq \mu \tilde{P}$
         \item {
             \begin{enumerate}
-                \item усиленная монотонность: $P_1, P_2, \dots P_n, P \in \mathcal{P}$. $\bigsqcup_{k=1}^n P_k \subset P \implies \sum_{k=1}^n \mu P_k \leq \mu P$
-                \item пункты (a), но $n = \infty$
+                \item Усиленная монотонность: $P_1, P_2, \dots P_n, P \in \mathcal{P}$. $\bigsqcup_{k=1}^n P_k \subset P \implies \sum_{k=1}^n \mu P_k \leq \mu P$
+                \item Пункт (a), но $n = \infty$
             \end{enumerate}
         }
-        \item полуаддитивность: $P, P_1, P_2, \dots P_n \in \mathcal{P}$ и $P \subset \bigcup_{k=1}^{n}P_k$, тогда $\mu P \leq \sum_{k=1}^{n} \mu P_k$ 
+        \item Полуаддитивность: $P, P_1, P_2, \dots P_n \in \mathcal{P}$ и $P \subset \bigcup_{k=1}^{n}P_k$, тогда $\mu P \leq \sum_{k=1}^{n} \mu P_k$ 
     \end{enumerate}
 \end{theorem}
 
@@ -323,7 +342,11 @@ $\mathcal{P}_{Q}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с раци�
             \item $P \setminus \bigsqcup_{k=1}^{n} \mu P_k =  \bigsqcup_{j=1}^{m} Q_j \implies P = \bigsqcup_{k=1}^{n} P_k \sqcup \bigsqcup_{j=1}^m Q_j \implies \mu P = \sum_{k=1}^{n} \mu P_k + \sum_{j=1}^{m} \mu Q_j \geq \sum_{k=1}^{n} \mu P_k $
             \item $\bigsqcup_{k=1}^{\infty} P_k \subset P \implies \bigsqcup_{k=1}^n P_k \subset P \implies \sum_{k=1}^{n} \mu P_k \rightarrow \sum_{k=1}^{\infty} \mu P_k \leq \mu P$
         \end{enumerate}
-        \item $P_k' "= P \cap P_k \in \mathcal{P}$, \;\; $P = \bigcup_{k=1}^{n} P_k' = \bigsqcup_{k=1}^{n} \underbrace{\bigsqcup_{j=1}^{m_k} Q_{kj}}_{P_k'} \implies \mu P = \sum_{k=1}^n \sum_{j=1}^{m_k} \mu Q_{kj} \leq \sum_{k=1}^n \mu P_k$
+        \item {
+            $P_k' := P \cap P_k \in \mathcal{P}$ ($\mathcal{P}$ - полукольцо), \;\; $P = \bigcup_{k=1}^{n} P_k' = \bigsqcup_{k=1}^{n} \underbrace{\bigsqcup_{j=1}^{m_k} Q_{kj}}_{\in P_k'} \implies$
+            
+            $\implies \mu P = \sum_{k=1}^n \underbrace{\sum_{j=1}^{m_k} \mu Q_{kj}}_{\leq \mu P'_k \leq \mu P_k \ (property \ 2(a). )} \leq \sum_{k=1}^n \mu P_k$
+        }
         }
     \end{enumerate}
 \end{proof}
@@ -333,7 +356,7 @@ $\mathcal{P}_{Q}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с раци�
         \item {
             Если $\mathcal{P}$ -- кольцо и $A, B$ ($B \subset A$) $ \in \mathcal{P}$, то $A \setminus B \in \mathcal{P}$
 
-            $\mu (A \subset B) + \mu B = \mu A$
+            $\mu (A \setminus B) + \mu B = \mu A$
 
             Если $\mu B \neq +\infty$, то $\mu (A \setminus B) = \mu A - \mu B$
         }
@@ -353,12 +376,15 @@ $\mathcal{P}_{Q}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с раци�
     Классический объем на ячейках -- действительно объем.
 \end{consequence}
 \begin{proof}
-    Простой случай. $P = \bigsqcup_{k=1}^{n}P_k, Q = \bigsqcup_{j=1}^m Q_j$
+    Простой случай. $P = \bigsqcup_{k=1}^{n}P_k, Q = \bigsqcup_{j=1}^m Q_j$, тогда:
 
     $P \times Q = \bigsqcup_{k=1}^{n} \bigsqcup_{j=1}^{m} P_k \times Q_j$, докажем, что $\underbrace{\lambda (P \times Q)}_{\sum_{k=1}^n \mu P_k \cdot \sum_{j=1}^m \nu Q_j = \mu P \cdot \nu Q} = \sum_{k=1}^n \sum_{j=1}^m \underbrace{\lambda (P_k \times Q_j)}_{\mu P_k \cdot \nu Q_j}$
 
-    % todo: picture
-    Общий случай. Тут картинка, ага очень удобно
+    Общий случай.
+
+    \begin{center}
+        \includegraphics[scale=0.3]{./assets/01-measure-theory/PxQ.jpg}
+    \end{center}
 
     $P \times Q = \bigsqcup_{k=1}^{n} P_k \times Q_k$
     
@@ -371,17 +397,40 @@ $\mathcal{P}_{Q}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с раци�
     \begin{enumerate}
         \item Классический объем на ячейках $\lambda_m$ -- мера
         \item {
-            $g : \mathbb{R} \rightarrow \mathbb{R}$ нестрого монотонная возрастающая и нерперывна слева во всех точках.
+            $g : \mathbb{R} \rightarrow \mathbb{R}$ нестрого монотонная возрастающая и непрерывна слева во всех точках, тогда $\nu_g (a, b]:=g(b) - g(a)$ -- мера.
 
-            $\nu_g (a, b]:=g(b) - g(a)$ -- мера.
+            (\underline{Rem}: $lim_{x \rightarrow a-} f(x) = f(a)$ -- непрерывность слева).
         }
         \item Считающаяся мера: $\mu A := \#A$ -- кол-во элементов.
-        \item $T = \{t_1, t_2, \dots \}$ -- не более чем счетное множетсво, $w_1, w_2, \dots \geq 0$, $\mu A := \sum_{k: t_k \in A} w_k$ -- мера.
+        \item $T = \{t_1, t_2, \dots \}$ -- не более чем счетное множетсво, $w_1, w_2, \dots \geq 0$, $\mu A := \sum_{k: t_k \in A} w_k$ $\rightarrow$ $\mu$ -- мера.
     \end{enumerate}
 \end{example}
 
 \begin{proof}
     4. $A = \bigsqcup_{n=1}^{\infty} A_n \implies \mu A = \sum_{n=1}^{\infty} \mu A_n$
 
-    $\sum_{k: t_k \in A} w_k = \sum_{n=1}^{\infty} \sum_{k: t_k \in A_n} w_k$ (тут был какой-то кукарек про '$\leq$' и '$\geq$' и получаем равенство, нужно рассматривать слагаемые по отдельности)
+    Обозначения:
+
+    \begin{enumerate}
+        \item $\sum_{n=1}^{N} \sum_{k: \ t_k \in A_n} w_k \ (*)$.
+        \item $\sum_{k: \ t_k \in A} w_k \ (**)$.
+        \item $\sum_{n=1}^{\infty} \sum_{k: \ t_k \in A_n} w_k \ (***)$.
+    \end{enumerate}
+
+    \begin{enumerate}
+        \item {
+            $\mu A = \sum_{k: \ t_k \in A} w_k \ (**) \geq \sum_{n=1}^{N} \sum_{k: \ t_k \in A_n} w_k \ (*)$ -- т.к. $A_i \cap A_j = \emptyset \ (\forall i, \ j: \ i \neq j)$, то каждое слагаемое $w_k$ не более $1$ раза попадет в $(*)$ и $A = \bigsqcup_{n=1}^{\infty} A_n$.
+        }
+
+        \item {
+            $\sum_{n=1}^{\infty} \mu A_n = \sum_{n=1}^{\infty} \sum_{k: \ t_k \in A_n} w_k \ (***) \geq \sum_{k: \ t_k \in A}$ -- нер-во верно, так как мы можем к каждому $w_k$ из $(**)$ найти этот же $w_k$ в $(***)$. 
+        }
+
+        Итого имеем равенство:
+
+        $(**) = (***): \ \sum_{k: \ t_k \in A} w_k = \sum_{n=1}^{\infty} \sum_{k: \ t_k \in A_n} w_k \implies \mu A = \sum_{n=1}^{\infty} \mu A_n$, чтд.
+
+        (\underline{От автора}: если у кого-то лучше расписано данное док-во, сделайте, пожалуйста, PR).
+    \end{enumerate}
+
 \end{proof}
