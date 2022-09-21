@@ -1,5 +1,5 @@
 \Subsection{Система множеств}
-Полезные оьозначения: $A \sqcup B$ - объединение $A$ и $B$, такие что $A \cap B = \emptyset$
+Полезные обозначения: $A \sqcup B$ - объединение $A$ и $B$, такие что $A \cap B = \emptyset$
 
 \begin{definition}
     Набор мн-в дизъюнктный, если мн-ва попарно не пересекаются: $\bigsqcup_{\alpha \in I}A_{\alpha}$
@@ -15,16 +15,16 @@ $$X \setminus \bigcap_{\alpha \in I} A_{\alpha} = \bigcup X \setminus A_{\alpha}
 
 
 \begin{definition}
-    $\mathcal{А}$ -- система подмн-в $X$: $A \subset 2^{X}$
+    $\mathcal{A}$ -- система подмн-в $X$: $A \subset 2^{X}$
 
     \begin{enumerate}
-        \item ($\delta_0$) если $\forall A, B \in \mathcal{A} \implies A \cap B \in \mathcal{A}$
-        \item ($\sigma_0$) если $\forall A, B \in \mathcal{A} \implies A \cup B \in \mathcal{A}$
+        \item ($\delta_0$): если $\forall A, B \in \mathcal{A} \implies A \cap B \in \mathcal{A}$
+        \item ($\sigma_0$): если $\forall A, B \in \mathcal{A} \implies A \cup B \in \mathcal{A}$
         \item {
-            $(\delta)$ если $A_n \in \mathcal{A}, \ \forall n \implies \bigcap_{n=1}^{\infty} A_n \in \mathcal{A}$
+            $(\delta)$: если $A_n \in \mathcal{A}, \ \forall n \implies \bigcap_{n=1}^{\infty} A_n \in \mathcal{A}$
         }
         \item {
-            $(\sigma)$ если $A_n \in \mathcal{A}, \ \forall n \implies \bigcup_{n=1}^{\infty} A_n \in \mathcal{A}$
+            $(\sigma)$: если $A_n \in \mathcal{A}, \ \forall n \implies \bigcup_{n=1}^{\infty} A_n \in \mathcal{A}$
         }
     \end{enumerate}
 \end{definition}
@@ -77,7 +77,7 @@ $$X \setminus \bigcap_{\alpha \in I} A_{\alpha} = \bigcup X \setminus A_{\alpha}
         
         \item Пусть $\mathcal{A}_{\alpha}$ -- алгебры (\sigma-алгебры), тогда $\bigcap_{\alpha \in I}\mathcal{A}_{\alpha}$ -- алгебра (\sigma-алгебра).
         
-        \item $A, B \subset X$ что есть в адгебра, содержащей $A, B$: \\ $\emptyset, X, A, B, A \cup B, A \cap B, A \setminus B, B \setminus A, X \setminus A, X \setminus B, X \setminus (A \cup B), X \setminus (A \cap B), A \vartriangle B, X \setminus (A \vartriangle B), X \setminus (A \setminus B), X \setminus (B \setminus A)$.
+        \item $A, B \subset X$ ниже перечислено, что есть в алгебре, содержащей $A, B$: \\ $\emptyset, X, A, B, A \cup B, A \cap B, A \setminus B, B \setminus A, X \setminus A, X \setminus B, X \setminus (A \cup B), X \setminus (A \cap B), A \vartriangle B, X \setminus (A \vartriangle B), X \setminus (A \setminus B), X \setminus (B \setminus A)$.
     \end{enumerate}
 \end{example}
 
@@ -92,14 +92,14 @@ $$X \setminus \bigcap_{\alpha \in I} A_{\alpha} = \bigcup X \setminus A_{\alpha}
 
     \begin{definition}
         \begin{enumerate}
-            \item Такая \sigma-алгебра -- борелевская оболка $\epsilon$ -- $(\mathcal{B}(\epsilon))$.
+            \item Такая \sigma-алгебра -- борелевская оболочка $\epsilon$ -- $(\mathcal{B}(\epsilon))$.
             
             \item $X = \mathbb{R}^n$; такая \sigma-алгебра, натянутая на все открытые мн-ва -- борелевская \sigma-алгебра $(\mathcal{B}^n)$.
         \end{enumerate}
     \end{definition}
 
     \begin{remark}
-        континуальное -- $\mathcal{B}^n \neq 2^{\mathbb{R}^n}$ -- больше.
+        $\underbrace{\mathcal{B}^n}_{\text{континуальное}} \neq \underbrace{2^{\mathbb{R}^n}}_{\text{больше континуального}}$
     \end{remark}
 \end{proof}
 
@@ -133,7 +133,7 @@ $$X \setminus \bigcap_{\alpha \in I} A_{\alpha} = \bigcup X \setminus A_{\alpha}
 \end{example}
 
 \begin{lemma}
-    $\bigcup_{n=1}^{N} A_n = \bigsqcup_{n=1}^{N}A_n \setminus \underbrace{\left(\bigcup_{k=1}^{n-1}A_k\right)}_{B_n}$.
+    $\bigcup_{n=1}^{N} A_n = \bigsqcup_{n=1}^{N}\underbrace{A_n \setminus \left(\bigcup_{k=1}^{n-1}A_k\right)}_{B_n}$.
 \end{lemma}
 \begin{proof}
     $\supset$: Дизъюнктивность $B_n \subset A_n $ и при $m > n$ $B_m \cap A_n = \emptyset \implies B_n \cap B_m = \emptyset$.
@@ -152,7 +152,7 @@ $$X \setminus \bigcap_{\alpha \in I} A_{\alpha} = \bigcup X \setminus A_{\alpha}
 
 \begin{proof}
     \begin{enumerate}
-        \item индукция по n. База -- опр. полукольца. Переход ($n \rightarrow n+1$): $P \setminus \bigcup_{k=1}^{n+1}P_k = \left(P \setminus \bigcup_{k=1}^nP_k\right) \setminus P_{k+1} = \bigsqcup_{j=1}^{m} \left(\underbrace{Q_j \setminus P_{n+1}}_{\bigsqcup_{i=1}^{l_j}Q_{ji}}\right)$
+        \item индукция по n. База -- опр. полукольца. Переход ($n \rightarrow n+1$): \\ $P \setminus \bigcup_{k=1}^{n+1}P_k = \left(P \setminus \bigcup_{k=1}^nP_k\right) \setminus P_{k+1} = \bigsqcup_{j=1}^{m} \left(\underbrace{Q_j \setminus P_{n+1}}_{\bigsqcup_{i=1}^{l_j}Q_{ji}}\right)$
         \item $\bigcup_{k=1}^{n} P_k = \bigsqcup_{k=1}^{n} \left(\underbrace{P_k \setminus \bigcup_{j=1}^{k-1} P_j}_{\bigsqcup_{j=1}^{m_k} Q_{kj}}\right)$
     \end{enumerate}
 \end{proof}
