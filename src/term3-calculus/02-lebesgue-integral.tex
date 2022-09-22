@@ -1,0 +1,56 @@
+\Subsection{Измеримые функции}
+\begin{definition}
+    $f: E \rightarrow \bar{\mathbb{R}}$, лебеговы мн-ва функции f.
+
+    $E \{ f \leq a \} := \{ x \in E: \ f(x) \leq a \} = f^{-1}([-\infty, a])$
+
+    $E \{ f < a \} := \{ x \in E: \ f(x) < a \} = f^{-1}([-\infty, a))$
+
+    $E \{ f \geq a \} := \{ x \in E: \ f(x) \geq a \}$
+
+    $E \{ f > a \} := \{ x \in E: \ f(x) > a \}$
+\end{definition}
+
+\begin{theorem}
+    $E$ -- измеримое, $f: E \rightarrow \bar{\mathbb{R}}$, тогда равносильны:
+
+    \begin{enumerate}
+        \item {
+            $E \{ f \leq a \}$ измеримы $\forall a \in \mathbb{R}$
+        }
+        \item {
+            $E \{ f < a \}$ измеримы $\forall a \in \mathbb{R}$
+        }
+
+        \item {
+            $E \{ f \geq a \}$ измеримы $\forall a \in \mathbb{R}$
+        }
+        \item {
+            $E \{ f > a \}$ измеримы $\forall a \in \mathbb{R}$
+        }
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    \begin{enumerate}
+        \item {
+            $(1) \Leftrightarrow (4): $ $E\{ f > a \} = E \setminus E\{ f \leq a \}$
+        }
+        \item {
+            $(2) \Leftrightarrow (3): $ $ E\{ f < a \} = E \setminus E\{ f \geq a \} $
+        }
+        \item {
+            $(1) \Rightarrow (2):$ $E\{ f < a \} = \bigcup_{n=1}^{\infty} E \{ f \leq a - \frac{1}{n} \}$
+        }
+        \item {
+            $(3) \Rightarrow (4): $ $ E \{ f > a \} = \bigcup_{n=1}^{\infty} E \{ f \geq a + \frac{1}{n} \}$
+        }
+    \end{enumerate}
+\end{proof}
+
+\begin{definition}
+    $f: E \rightarrow \bar{\mathbb{R}}$ -- измеримая $\forall a \in \mathbb{R}$ все ее лебеговы мн-ва измер.
+\end{definition}
+
+\begin{remark}
+    $E$ -- должно быть измеримое и достаточно измеримости любого множества одного типа.    
+\end{remark}

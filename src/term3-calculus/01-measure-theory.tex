@@ -790,3 +790,363 @@ $\mathcal{P}_{Q}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с раци�
 
     % TODO: тут немного не успел, поправьте.
 \end{proof}
+
+\begin{definition}
+    Мера Лебега в $\mathbb{R}^n$ (обозначение $\lambda_m$) -- стандартное продолжение классического объема с $\mathcal{P}^m$.
+
+    $\sigma$-алгебра, на которую все продолжилось, лебегевская $\sigma$-алгебра $(\mathcal{X}^m)$. 
+\end{definition}
+\begin{remark}
+    $\lambda_m A = \inf \{ \sum_{k=1}^{\infty} \lambda_m P_k \ : \ P_k - \text{ ячейки и } \bigcup_{k=1}^{\infty} P_k \supset A \}$.
+
+    Можно вместо $P_k \in \mathcal{P}^m$ писать $P_k \in \mathcal{P}_Q^m$.
+\end{remark}
+
+\begin{properties}
+    Свойства меры Лебега:
+
+    \begin{enumerate}
+        \item {
+            Открытое мн-во измеримо и мера непустого открытого > 0.
+
+            \begin{proof}
+                Пусть $G$ - открытое, $x \in G$, $B$ -- шар, накрывающий $x$ и $B \subset G$, вписываем ячейку в шар.
+                %  todo: picture
+            \end{proof}
+        }
+        \item {
+            Замкнутое мн-во измеримо и мера одноточечного мн-ва = 0.
+
+            \begin{proof}
+                Берем точку и ячейку, которая ее накрывает (стороны по $\epsilon$), тогда $\lambda_m E_{\epsilon} = \epsilon^m \implies \inf = 0$.
+                % todo: small picture
+            \end{proof}
+        }
+        \item {
+            Мера ограниченного мн-ва конечна.
+
+            \begin{proof}
+                Есть множество, его можно положить в шар, а шар в кубик.
+
+                % todo: picture
+            \end{proof}
+        }
+        \item {
+            Всякое измеримое мн-во -- объединение мн-в конечной меры.
+
+            \begin{proof}
+                Берем все $\mathbb{R}^m$ и нарежем его на ячейки по целочисленной сетке, тогда $\mathbb{R}^m = \bigsqcup_{k=1}^{\infty} \underbrace{P_k}_{\text{ячейки по сетке $\mathbb{Z}$}}$, тогда $E = \bigsqcup_{k=1}^{\infty}\underbrace{(P_k \cap E)}_{\text{ограничено и измеримо}}$.
+            \end{proof}
+        }
+        \item {
+            Пусть $E \subset \mathbb{R}^m$, такое что $\forall \epsilon > 0: \ \exists A_{\epsilon}, B_{\epsilon} \in \mathcal{X}^m$.
+            
+            $A_{\epsilon} \subset E \subset B_{\epsilon}$ и $\lambda_m (B_{\epsilon} \setminus A_{\epsilon}) < \epsilon$, тогда $E \in \mathcal{X}^m$
+            
+            \begin{proof}
+                % todo: picture
+
+                $A := \bigcup_{n=1}^{\infty} A_{\frac{1}{n}} \in \mathcal{X}^m$ и $B := \bigcap_{n=1}^{\infty} B_{\frac{1}{n}} \in \mathcal{X}^m$.
+
+                $A \subset E \subset B$, $B \setminus A \subset B_{\frac{1}{n}} \setminus A_{\frac{1}{n}}$.
+
+                $\lambda_m (B \setminus A) \leq \lambda_m (B_{\frac{1}{n}} \setminus A_{\frac{1}{n}}) < \frac{1}{n} \implies \lambda_m (B \setminus A) = 0$.
+
+                $E \setminus A \subset B \setminus A \implies E \setminus A \in \mathcal{X}^m \implies E = E \setminus A \sqcup A \in \mathcal{X}^m$.
+            \end{proof}
+        }
+        \item {
+            Пусть $E \subset \mathbb{R}^m$, такое что $\forall \epsilon > 0: \ \exists B_{\epsilon} \in \mathcal{X}^m$, такое что $\lambda_m B_{\epsilon} < \epsilon$ и $E \subset B_{\epsilon}$.
+
+            Тогда  $E \in \mathcal{X}^m$ и $\lambda_m E = 0$.
+
+            \begin{proof}
+                $A_{\epsilon} := \emptyset \underbrace{\implies}_{\text{свойство (5)}}$ E -- измеримое.
+
+                $\lambda E \leq \lambda B_{\epsilon} < \epsilon \implies \lambda E = 0$.
+            \end{proof}
+        }
+        \item {
+            Счетное объединение мн-в нулевой меры -- мн-во нулевой меры.
+        }
+        \item {
+            Счетное мн-во имеет меру 0.
+        }
+        \item {
+            Мн-во нулевой меры не имеет внутренних точек.
+
+            \begin{proof}
+                Пусть $x \in Int E \implies \underbrace{B_r(x)}_{\text{непустое и открытое}} \subset E \implies 0 < \lambda B_r(x) \leq \lambda E$.
+            \end{proof}
+        }
+        \item {
+            Если $\lambda e = 0$, то существуют кубические ячейки $Q_j$, такие что $\bigcup_{j=1}^{\infty}A_j \supset e$ и $\sum_{j=1}^{\infty} \lambda Q_j < \epsilon$.
+
+            \begin{proof}
+                $0 = \lambda_m e = \inf \{ \sum_{j=1}^{\infty} \lambda P_j : \ P_j \in \mathcal{P}_{\mathbb{Q}^m} \ \land \ \bigcup_{j=1}^{\infty}P_j \supset e \}$, нарезаем $P_j$ на кубические ячейки.
+            \end{proof}
+        }
+        \item {
+            Если $m \geq 2$, то гиперплоскость $H_k(c) := \{ x \in \mathbb{R}^m : \ x_k = c \}$ имеет нулевую меру.
+
+            \begin{proof}
+                $E_n := H_k(c) \cap (-n, n]^m$, $H_k(c) = \bigcup_{n=1}^{\infty} E_n$. Достаточно доказать, что $\lambda E_n = 0$. $E_n \subset Y := (-n, n] \times \dots (-n, n] \times (c - \epsilon, c] \times (-n, n] \times \dots$.
+                
+                $\lambda E_n \leq \lambda Y = (2 n)^{m - 1} \cdot \epsilon$, так как $n$ фиксированное, а $\epsilon$ -- произвольное $\implies \lambda E_n = 0$.
+            \end{proof}
+
+            Любое мн-во, содержащееся в не более чем счетном объединение таких гиперплоскостей, имеет нулевую меру.
+        }
+        \item {
+            $\lambda (a, b] = \lambda [a, b] = \lambda (a, b)$ -- по предыдущему свойству.
+            % picture
+        }
+    \end{enumerate}
+\end{properties}
+
+\begin{remark}
+    Свойства (5) и (6) -- справедливы для любой полной меры.
+\end{remark}
+
+\begin{remark}
+    \begin{enumerate}
+        \item {
+            Существуют несчетные множества нулевой меры.
+            
+            Если $m \geq 2$, то пример это гиперплоскость $H_1 (c)$ подходит.
+
+            Если $m = 1$, то подходит \href{https://ru.wikipedia.org/wiki/%D0%9A%D0%B0%D0%BD%D1%82%D0%BE%D1%80%D0%BE%D0%B2%D0%BE_%D0%BC%D0%BD%D0%BE%D0%B6%D0%B5%D1%81%D1%82%D0%B2%D0%BE}{Канторого множество}.
+
+            $\lambda K = \underbrace{\lambda [0, 1] - \sum_{k=1}^{\infty} \lambda I_k}_{1 - \frac{1}{3} - 2 \cdot \frac{1}{9} - 4 \cdot \frac{1}{27} \dots = 1 - \sum_{k=1}^{\infty}\frac{2^{k-1}}{3^k} = 1 - \frac{1}{3} \cdot \frac{1}{1 - \frac{2}{3}} = 0 }$
+
+            $K$ -- несчетно, $K = \{ x \in [0, 1]: \text{ в троичной записи нет цифр 1} \}$, а у таких чисел есть биекция между $[0, 1]$, просто троичную переводим в двоичную, где просто все двойки заменяем на единички.
+        }
+        \item {
+            Существует неизмеримые мн-ва. Более того, любое мн-во положительной меры содержит неизмеримые подмножества.
+        }
+    \end{enumerate}
+\end{remark}
+
+\begin{theorem}
+    (регулярность меры Лебега). Если $E$ -- измеримое, то найдется $G$ -- открытое, такое что оно накрывает $E$ и мера зазора $< \epsilon$, то есть $E \subset G \ \land \ \lambda (G \setminus E < \epsilon)$.
+\end{theorem}
+\begin{proof}
+    $\lambda E = \inf \{ \sum_{j=1}^{\infty} \lambda P_j : \ P_j \text{ -- ячейка и } E \subset \bigcup_{j=1}^{\infty} P_j \}$.
+
+    (1): Пусть $\lambda E < + \infty$. Возьмем покртыие, для которого $\sum \lambda P_j < \lambda E + \epsilon$.
+
+    $(a_j, b_j] \subset (a_j, b_j')$, хотим $\lambda (a_j, b_j') < \lambda(a_j, b_j] + \frac{\epsilon}{2^j}$.
+
+    Тогда $G := \bigcup_{j=1}^{\infty} (a_j, b_j')$ -- открытое и $E \subset G$.
+
+    $\lambda G \leq \sum_{j=1}^{\infty} \lambda (a_j, b_j') < \sum_{j=1}^{\infty} \left( \lambda (a_j, b_j] + \frac{\epsilon}{2^j} \right) = \epsilon + \sum_{j=1}^{\infty} \lambda (a_j, b_j] < \lambda E + 2 \epsilon \implies \lambda (G \setminus E) < 2 \epsilon$
+
+
+    (2): Пусть $\lambda E = +\infty$. $E = \bigsqcup_{n=1}^{\infty} E_n$, такие что $\lambda E_n < +\infty$. 
+
+    Возьмем $G_n$ -- открытое $\supset E_n$, такое что $\lambda (G_n \setminus E_n) < \frac{\epsilon}{2^n}$.
+    
+    $G:=\bigcup_{n=1}^{\infty} G_n$ -- открытое $G \supset E$.
+
+    $G \setminus E \subset \bigcup_{n=1}^{\infty} G_n \setminus E_n \implies \lambda (G \setminus E) \leq \sum \lambda (G_n \setminus E_n) < \underbrace{\sum \frac{\epsilon}{2^n}}_{= \epsilon}$.
+\end{proof}
+
+\begin{consequence}
+    \begin{enumerate}
+        \item {
+            Если $E$ -- измеримо, то найдется $F \subset E$ -- замкнутое, такое что $\lambda (E \setminus F) < \epsilon$.
+
+            \begin{proof}
+                $G \supset \mathbb{R}^m \setminus E$, такое что $\lambda \underbrace{(G \setminus (\mathbb{R}^m \setminus E))}_{= E \setminus (\mathbb{R}^m \setminus G) = E \setminus F} < \epsilon$, где $F := \mathbb{R}^m \setminus G$ -- замкнутое и $F \subset E$.
+            \end{proof}
+        }
+        \item {
+            Если $E$ -- измеримо, то
+            
+            $\lambda E = \inf \{ \lambda G : \ G \text{ -- открытое и } G \supset E \}$.
+
+            $\lambda E = \sup \{ \lambda F : \ F \text{ -- замкнуто и } F \subset E \}$
+            
+            $\lambda E = \sup \{ \lambda K : \ K \text{ -- компакт и } K \subset E \}$
+            
+            \begin{proof}
+                
+                $\lambda (G \setminus E) < \epsilon \implies \lambda E \leq \lambda G < \lambda E + \epsilon$
+
+
+                $\lambda (E \setminus F) < \epsilon \implies \lambda E \geq \lambda F > \lambda E - \epsilon$
+
+                Возьмем $F$ -- замкнутое из второго вывода и $K_n := [-n, n]^m \cap F$ -- компакт. $\bigcup_{n=1}^{\infty} K_n = F$ и $K_n \subset K_{n+1} \implies \lambda F = \lim{\lambda K_n}$
+
+                Если $\lambda F = +\infty$, то есть $K_n$ со сколь угодно большой мерой.
+
+                Если $\lambda F < +\infty$, то есть $K_n$, такие что $\lambda F < \lambda K_n + \epsilon$
+            \end{proof}
+        }
+        \item {
+            Если $E$ -- измеримо, то сузествует последовательность компактов $K_n$, такая что компакты $K_n \subset K_{n+1}$ и $E = \bigcup_{n=1}^{\infty} K_n \cup e$, где $\lambda e = 0$.
+
+            \begin{proof}
+                (1) Пусть $\lambda E < +\infty$. Возьмем $\tilde{K_n} \subset E \ \land \ \lambda E < \lambda \tilde{K_n} + \frac{1}{n}$
+
+                $K_n := \bigcup_{j=1}^{n} \tilde{K_j} \subset E$, $\lambda E < \lambda \tilde{K_n} + \frac{1}{n} \leq \lambda K_n + \frac{1}{n}$.
+
+                $e := E \setminus \bigcup_{n=1}^{\infty} K_n$, $\lambda e = \lambda E - \lambda \left( \bigcup_{n=1}^{\infty} K_n \right) < \lambda E - \lambda K_n < \frac{1}{n} \implies \lambda e = 0$.
+
+                (2) Пусть $\lambda E = +\infty$. Берем $E = \bigsqcup_{j=1}^{\infty} E_j: \ \lambda E_j < +\infty$.
+
+                $E_j = \bigcup_{n=1}^{\infty} \underbrace{K_{jn}}_{\text{компакт}} \cup e_j$ ($\lambda e_j = 0$) $\implies E = \bigcup_{j=1}^{\infty} \bigcup_{n=1}^{\infty} K_{jn} \cup e$, где $e = \bigcup_{j=1}^{\infty} e_j \ \land \ \lambda e = 0$.
+
+                Нам не хватает вложенности, давайте просто пообъединяем их и получим новые компакты (вроде так, поправьте, если нет).
+            \end{proof}
+        }
+    \end{enumerate}
+\end{consequence}
+
+\begin{exerc}
+    $E$ -- измеримое. Д-ть, что $\exists G_n$ -- открытое $\supset E, \ G_n \supset G_{n+1}$, т.ч. $E = \bigcap_{n=1}^{\infty} G_n \setminus e$, где $\lambda e = 0$. 
+\end{exerc}
+
+\begin{theorem}
+    При сдвиге мн-ва на верктор $\vec{v}$ измеримость сохраняется и мера не изменяется.
+\end{theorem}
+\begin{proof}
+    $\mu E := \lambda (E + \vec{v})$, $\mu, \ \lambda$ заданы на ячейках и на них совпадают $\implies \mu = \lambda$ по елдинственности продолжения.
+\end{proof}
+
+\begin{theorem}
+    $\mu$-мера на $\mathcal{X}^m$, т.ч.
+
+    \begin{enumerate}
+        \item {
+            $\mu$ -- инвариантна относительно сдвигов.
+        }
+        \item {
+            $\mu$ конечна на ячейках = $\mu$ конечна на огр. измер. мн-вах.
+        }
+    \end{enumerate}
+
+    Тогда $\exists k \in [0; +\infty)$, т.ч. $\mu = k \cdot \lambda$ (т.е. $\mu E = k \lambda E \ \forall E \
+    \in \mathcal{X}^m$)
+\end{theorem}
+\begin{proof}
+    $Q := (0, 1]^m, \ k := \mu Q, \ k \in [0, +\infty)$
+
+    Рассмотрим случаи:
+
+    \begin{enumerate}
+        \item {
+            $k=1$. Надо доказать, что $\mu = \lambda$, достаточно доказать, что $\mu = \lambda$ на $\mathcal{P}^m_{\mathbb{Q}} \implies$ достаточно доказать на $(0, \frac{1}{n}]^m$.
+
+            $Q$ можно сложить из $n^m$ сдвигов $(0, \frac{1}{n}]^m$.
+            
+            $\mu (0, \frac{1}{n}]^m = \frac{1}{n^m} \mu Q = \frac{1}{n^m} \lambda Q = \lambda (0, \frac{1}{n}]^m$.
+        }
+        \item {
+            $k>0$. $\nu E := \frac{1}{k} \mu E$. Тогда $\nu Q = \lambda Q \implies \nu = \lambda$.
+        }
+        \item {
+            $k = 0$. Покажем, что $\mu \equiv 0$.
+
+            $\mu Q = 0, \ \mathbb{R}^m$ -- счетное объединение сдвигов $Q \implies \mu \mathbb{R}^m = 0$.
+        }
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}
+    $G \subset \mathbb{R}^m$ -- открытое, $\Phi: G \rightarrow \mathbb{R}^m$ непрерыно дифференцируема. Тогда
+
+    \begin{enumerate}
+        \item {
+            Если $e \subset G$, т.ч. $\lambda e = 0$, то $\Phi(e)$ -- мн-во нулевой меры.
+        }
+        \item {
+            Если  $E$ -- измеримое, то $\Phi(E)$ -- измеримое.
+
+            \begin{remark}
+                Для $\Phi$ -- непрер. или даже дифф. это неверно.
+            \end{remark}
+        }
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    Пункт (1):
+
+    Случаи:
+
+    \begin{enumerate}
+        \item {
+            $e \subset P \subset CL P \subset G$, $P$ -- ячейка $ \implies ||\Phi'||$ непрерывно на $G \supset Cl \ P$ -- компакт $\implies ||\Phi'|| \leq M$ на $Cl \ P$ (норма ограничена на замыкании $P$).
+
+            $|| \Phi(x) - \Phi(y) || \leq ||\Phi'(c)|| \cdot || x - y ||$, где $x, y \in P$; $c \in P$ $\implies || \Phi(x) - \Phi(y)|| \leq M || x - y ||$
+
+            Существуют кубические ячейки, такие что $Q_j$, т.ч. $e \subset \bigcup_{j=1}^{\infty}Q_j$ и $\sum_{j=1}^{\infty} \lambda Q_j < \epsilon$
+
+            Рассмотрим $\Phi(Q_j)$ 
+
+            Пусть $a_j$ -- стороная кубика $Q_j$. $ x, y \in Q_j \implies || x - y || < \sqrt{m} \cdot a_j$ (расстояние между точками меньше, чем главная диагональ, так как у нас ячейка) $ \implies || \Phi(x) - \Phi(y) || \leq M \sqrt{m} a_j$.
+
+            Зафиксируем $x$ и меняем $y$ $\implies \Phi(Q_j)$ содержится в шаре с центром в $\Phi(x)$ и радиусом $M \sqrt{m} a_j$ $\implies \Phi(Q_j)$ содержатся в ячейке $R_j$ со стороной $2 M \sqrt{m} a_j$.
+
+
+            $\Phi(Q_j) \subset R_j \implies \Phi(e) \subset \bigcup_{j=1}^{\infty} R_j$
+
+            $\sum_{j=1}^{\infty} \lambda R_j = \sum_{j=1}^{\infty} (2 M \sqrt{m})^m a_j^m = (2 M \sqrt{m})^m \sum_{j=1}^{\infty} \lambda Q_j < (2 M \sqrt{m})^m \cdot \epsilon \implies \Phi(e)$ измеримо и $\lambda(\Phi (e)) = 0$.
+        }
+        \item {
+            $e$ -- произвольное $\subset G, \ \lambda e = 0$. Представим $G$ как $\bigsqcup_{j=1}^{\infty} P_j$, где $P_j$ -- ячейка $Cl \ P_j \subset G$.
+
+            $e = \bigsqcup_{j=1}^{\infty} (e \cap P_j) \implies \Phi(e) = \bigcup_{j=1}^{\infty} \Phi(e \cap P_j)$ -- мн-ва нулевой меры $\implies \lambda(\Phi(e)) = 0$.
+        }
+    \end{enumerate}
+
+    Пункт (2):
+
+    $E$ -- измеримое $\implies E = \bigcup_{n=1}^{\infty} K_n \cup e, \ \lambda e = 0, \ K_n$ -- компакт $\implies \Phi(E) = \bigcup_{n=1}^{\infty} \Phi(K_n) \cup \Phi(e)$.
+
+    $\lambda(\Phi(e)) = 0$ и $\Phi(K_n)$ -- компакт $\implies$ измеримое.
+\end{proof}
+
+\begin{theorem}
+    $\lambda$ -- инвариантна относительно движения.
+\end{theorem}
+\begin{proof}
+    Движение -- это сдвиг и поворот.
+
+    Про сдвиг уже знаем, что $\lambda$ не меняется. Проверим поворот:
+
+    пусть $U: \mathbb{R}^m \rightarrow \mathbb{R}^m$ (считаем, что крутим относительно нуля, так как можно в ноль сдвинуть).
+
+    $\mu E := \lambda \underbrace{(UE)}_{\text{измеримое, так как $U$ -- линейное отображение}}$, $\mu, \lambda$ -- заданы на $\mathcal{X}^m$.
+
+    $\mu$ -- инварианта относительно сдвига. $\mu (E + \vec{v}) = \lambda (U(E + \vec{v})) = \lambda(UE + U \vec{v}) = \lambda (UE) = \mu E$. $\mu$ конечна на ограниченных измеримых мн-вах. Тогда $\mu = k \lambda$.
+
+    Хотим показать, что $k = 1$. Но на единичном шаре $B$, $\lambda B = \mu B \implies k = 1 \implies \mu = \lambda \implies \lambda E = \lambda (UE)$.
+\end{proof}
+
+\begin{theorem}
+    (об изменении меры Лебега при линейном отображении).
+
+    $T: \mathbb{R}^m \rightarrow \mathbb{R}^m$ -- линейное, $E$ -- измеримое. Тогда $\lambda (TE) = |det T| \cdot \lambda E$
+\end{theorem}
+\begin{proof}
+    $\mu E := \lambda \underbrace{(TE)}_{\text{измеримое, так как T -- лин. отображ.}}$, $\mu$ инвариантно относительно сдвига и конечно на огр. мн-вах. $\implies \mu k \cdot \lambda$, где $k = \lambda (T [0, 1]^m) = |det T|$
+
+    % todo: picture
+\end{proof}
+
+\begin{example}
+    неизмеримое мн-во в $\mathbb{R}$.
+
+    $x \sim y$ если $(x - y) \in \mathbb{Q}$ -- отношение эквивалентности.
+
+    Разобьем $\mathbb{R}$ на классы эквивалентности и в каждом классе выберем своего представителя, сдвинем их всех в ячейку $(0, 1]$.
+
+    $A$ --  получившееся мн-во. Докажем, что $A$ не может быть измеримым. 
+
+    От противного. Если $\lambda A = 0$, то $(0, 1] \subset \bigcup_{r \in \mathbb{Q}} (A + r) = \mathbb{R}$. Но тогда $\lambda A = 0 \implies \lambda (A + r) = 0 \implies \lambda \mathbb{R} = 0$ -- противоречие.
+
+    Если $\lambda A > 0$. $\bigsqcup_{r \in \mathbb{Q}, \ 0 \leq r \leq 1} \subset (0, 2] \implies \sum_{r \in \mathbb{Q}, \ 0 \leq r \leq 1} \lambda (A + r) \leq 2 \implies $ противоречие (так как сумма, на самом деле, должна быть бесконечна и никак не меньше 2).
+
+    То есть мы построили пример неизмеримого множества.
+\end{example}
