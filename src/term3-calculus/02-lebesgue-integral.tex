@@ -54,3 +54,462 @@
 \begin{remark}
     $E$ -- должно быть измеримое и достаточно измеримости любого множества одного типа.    
 \end{remark}
+
+\begin{example}
+    \begin{enumerate}
+        \item {
+            $f = const$, лебеговы множества: $\emptyset, \ X$.
+        }
+        \item {
+            $E \subset X$ -- измеримое, $f = \mathbb{1}_E(x) = 1$, если $x \in E$, иначе $0$.
+
+            Лебеговы множества: $\emptyset, X, E, X \setminus E$.
+        }
+        \item {
+            $\mathcal{X}^m$ -- лебеговская $\sigma$-алгебра на $\mathbb{R}^m$
+
+            $f \in C(\mathbb{R}^m)$ -- измеримая.
+
+            $f^{-1}(\underbrace{(-\infty, a)}_{\text{измеримое}})$ -- открытое $\implies$ измеримое.
+        }
+    \end{enumerate}
+\end{example}
+
+
+\begin{properties}
+    \begin{enumerate}
+        \item {
+            $f: E \rightarrow \bar{\mathbb{R}}$ -- измеримая $\implies E$ -- измеримое.
+        }
+        \item {
+            Если $f: E \rightarrow \bar{\mathbb{R}}$ измеримая и $E_0 \subset E \implies g := f |_{E_0}$ -- измеримое.
+
+            \begin{proof}
+                $E_0\{ g \leq c \} = E \{ \underbrace{f \leq c}_{\text{измеримое}} \} \cap \underbrace{E_0}_{\text{измеримое}}$.
+            \end{proof}
+        }
+        \item {
+            Если $f$ -- измеримая, то прообраз любого промежутка -- измеримое мн-во.
+
+            \begin{proof}
+                $E\{ a \leq f \leq b \} = E\{ \underbrace{a \leq f}_{\text{измеримое}} \} \cap E\{\underbrace{f \leq b}_{\text{измеримое}}\}$.
+            \end{proof}
+        }
+        \item {
+            Если $f$ -- измеримая, то прообраз любого открытого мн-ва -- измеримое.
+
+            \begin{proof}
+                $U \subset \mathbb{R}$ -- открытое мн-во $\implies U = \bigcup_{n=1}^{\infty} (a_n, b_n] \implies f^{-1}(U) = \bigcup_{n=1}^{\infty} f^{-1}\underbrace{(a_n, b_n]}_{\text{измеримое}}$.
+            \end{proof}
+        }
+        \item {
+            Если $f$ -- измеримая, то $|f|$ и $f$ -- измеримы.
+
+            \begin{proof}
+                $E \{ -f \leq c \} = E \{ f \geq -c \}, \ E \{ |f| \leq c \} = E \{ -c \leq f \leq c \}$.
+            \end{proof}
+        }
+        \item {
+            Если $f, g: E \rightarrow \bar{\mathbb{R}}$ измеримы, то $max\{ f, g \}$ и $min \{ f, g \}$ -- измеримы.
+
+            В частности, $f_+ = max\{ f, 0 \} $ и $f_- = max\{ -f, 0 \}$ -- измеримы.
+
+            \begin{proof}
+                $E \{ max \{ f, g \} \leq c \} = E \{ f \leq c \} \cap E \{ g \leq c \}$
+            \end{proof}
+        }
+        \item {
+            Если $E = \bigcup_{n=1}^{\infty}E_n, \ f|_{E_n}$ -- измерима $\forall n \implies f$ -- измеримая.
+
+            $f: E \rightarrow \bar{\mathbb{R}}$.
+
+            \begin{proof}
+                $E \{ f \leq c \} = \bigcup_{n=1}^{\infty} E_n \{ f \leq c \}$.
+            \end{proof}
+        }
+        \item {
+            Если $f: E \rightarrow \bar{\mathbb{R}}$ измерима, то найдется $g: X \rightarrow \bar{\mathbb{R}}$ -- измеримая, такая что $f = g|_E$
+
+            \begin{proof}
+                $g(x) := 0$, если $x \notin E, \ f(x)$, иначе.
+            \end{proof}
+        }
+    \end{enumerate}
+\end{properties}
+
+\begin{theorem}
+    Пусть $f_n: E \rightarrow \bar{\mathbb{R}}$ -- последовательность измеримых функций. Тогда:
+
+    \begin{enumerate}
+        \item $\sup{f_n}, \ \inf{f_n}$ -- измеримые.
+        \item $\liminf f_n $ и $\limsup f_n$ -- измеримые.
+        \item Если существуют $\lim f_n$, то он измеримый.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item $E \{ \sup{f_n} \leq c \} = \bigcap_{n=1}^{\infty} E \{ f_n \leq c \}$
+        \item $\liminf{f_n} = \sup_{n} \inf_{k \geq n} f_k $ и $\limsup = \inf_{n} \sup_{k \geq n} f_k$
+        \item Если существует $\lim f_n$, то $\lim f_n = \liminf f_n$.
+    \end{enumerate}    
+\end{proof}
+
+\begin{theorem}
+    Пусть $f_1, \dots, f_m: \ E \rightarrow H \subset \mathbb{R}$ -- измеримые,  $\phi \in C(H)$, тогда $g: E \rightarrow \mathbb{R}, \ g(x) := \phi(f_1(x), \dots, f_m(x))$ -- измеримая.
+\end{theorem}
+\begin{proof}
+    $E \{ g < c \} = g^{-1}(-\infty, c) = \vec{f}^{-1}(U) = \vec{f}^{-1} (G)$
+    
+    $U := \phi^{-1}(-\infty, c)$ -- открытое в $H \implies \exists G$ --  открытое в $\mathbb{R}^{m}$, т.ч. $U = H \cap G$
+
+    $\implies G = \bigcup_{n=1}^{\infty} \underbrace{(a_n, b_n]}_{\text{ ячейки в } \mathbb{R}^m}$
+
+    Достаточно понять для ячейки $(\alpha, \beta]$, что $\vec{f}^{-1} (\alpha, \beta]$ -- измерима, $\bigcup_{k=1}^{n} E \{ \alpha_k < f_k \leq \beta_k \}$
+
+    % todo: picture here
+\end{proof}
+
+\begin{consequence}
+    Если в теор. $\phi$ -- поточечный предел непрерывных, то $g$ -- измерима.
+\end{consequence}
+\begin{proof}
+    $\phi = \lim \phi_n, \ \phi_n \vec{f}$ -- измер. и поточечно стремится к $\phi_0 \vec{f}$
+\end{proof}
+
+
+
+Арифметические операции в $\mathbb{R}$:
+
+\begin{enumerate}
+    \item Если $x \in \mathbb{R}$, то $x + (+\infty) = +\infty$, $x + (-\infty) = -\infty$ и т.д.
+    \item $(+\infty) +(-\infty) = 0, \ (+\infty) - (+\infty) = 0, \ (-\infty) - (-\infty) = 0$
+    \item Если $0 \not = x \in \bar{\mathbb{R}}$, то $x \cdot (\pm \infty) = \pm \infty$, где знак $\pm : \pm = +, \ \pm : \mp = -$
+    \item $0 \cdot \pm \infty = 0$ и $\frac{x}{\pm \infty} = 0, \ \forall x \in \bar{\mathbb{R}}$, т.е. $\frac{\pm \infty}{ \pm \infty} = 0$.
+    \item Делить на 0 не умеем.
+\end{enumerate}
+
+\begin{theorem}
+    \begin{enumerate}
+        \item Произведение и сумма измерений ф-й -- измеримая.
+        \item Если  $f: E \rightarrow \mathbb{R}$ -- измеримая и $\phi \in C(\mathbb{R})$, то $\phi \degree f$ -- измеримая.
+        \item Если $f \geq 0$ -- измеримая, то $f_p \ (p>0)$ -- измеримая, $(+\infty)^p = +\infty$
+        \item Если $f: E \rightarrow \bar{\mathbb{R}}$ -- измеримая, $\tilde{E} := E \{f \not = 0\}$, то $\frac{1}{f}$ -- измерима на $\tilde{E}$.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    \begin{enumerate}
+        \item {
+            $f + g.$ Если $f, g: E \rightarrow \mathbb{R}$, то $\phi(x, y) = x+y \implies \phi(f, g) = f+g$ -- измерима.
+
+            $E \{ f \not = \pm \infty \}, \ E \{ f = + \infty \}, \ E \{ f = -\infty \}$
+
+            $E \{ g \not = \pm \infty \}, \ \underbrace{E \{ g = + \infty \}}_{= \bigcup_{n=1}^{\infty} E \{ g \geq n \}}, \ E \{ g = -\infty \}$
+
+
+            Для первый выражений на обеих строчках верно, что они берутся из предыдущих теор., а на остальных пересеч. константы.
+        }
+        \item {
+            Частный случай предыдущей теоремы.
+        }
+        \item {
+            $E \{f^p \leq c\} = E \{ f \leq c^{\frac{1}{p}} \}$
+        }
+        \item {
+            $f|_{\tilde{E}}$ -- измерима и $\not = 0$
+            
+
+            \begin{equation}
+                \tilde{E}\left\{ \frac{1}{f} \leq c \right\} = 
+                \begin{cases}
+                    \tilde{E} \{ f \geq \frac{1}{c} \} \cup \tilde{E} \{ f < 0 \} \text{, при $c > 0$} \\
+                    \tilde{E}\{ f < 0 \} \text{, при $c = 0$} \\
+                    \tilde{E} \{ f \geq \frac{1}{c} \} \cap \tilde{E} \{ f < c \} \text{, при $c < 0$}
+                \end{cases}                
+            \end{equation}
+        }
+    \end{enumerate}
+\end{proof}
+\begin{consequence}
+    \begin{enumerate}
+        \item {
+            Произведение конечного числа измер. -- измер.
+        }
+        \item {
+            Натуральная степень измер. ф-и -- измерим.
+        }
+        \item {
+            Линейная комбинация измер. ф-й -- измер.
+        }
+    \end{enumerate}
+\end{consequence}
+
+\begin{theorem}
+    $E \subset \mathbb{R}^{m}$ -- измеримое, $f \in C(E)$. Тогда $f$ -- измер. относительно меры Лебега.
+\end{theorem}
+
+\begin{proof}
+    $U := f^{-1}(-\infty, c)$ -- открытое мн-во в $E \implies \exists G \subset \mathbb{R}^m$ --  открытое, т.ч. $U = \underbrace{G}_{\text{измер.}} \cap \underbrace{E}_{\text{измер.}}$ 
+\end{proof}
+
+\begin{definition}
+    Измеримая ф-я -- простая, если она принимает лишь конечное число значений.
+
+    Допустимое разбиение $X$ -- разбиение $X$ на конечное число измер. мн-в, т.ч. на каждом мн-ве ф-я константа.
+\end{definition}
+
+\begin{consequence}
+    \begin{enumerate}
+        \item {
+            Если $X$ разбито на конечное число измер. мн-в и $f$ постоянна (то есть сужение на каждом кусочке $X$ это какая-та константа) на каждом из них, то $f$ -- простая.
+        }
+        \item {
+            Если $f$ и $g$ -- простые ф-и, то у них существует общее допустимое разбиение.
+
+            \begin{proof}
+                $X = \underbrace{\bigsqcup_{k=1}^{m} A_k}_{\text{допуст. для } f} = \underbrace{\bigsqcup_{j=1}^{n} B_j}_{\text{допуст. для } g} \implies X = \bigsqcup_{k=1}^{m} \bigsqcup_{j=1}^{n} (A_k \cap B_j)$ -- допустимое для $f$ и $g$. 
+            \end{proof}
+        }
+        \item {
+            Сумма и произведение простых ф-й -- простая ф-я.
+        }
+        \item {
+            Линейная комбинация простых ф-й -- простая ф-я.
+        }
+        \item {
+            $\max$ и $\min$ конечного числа простых ф-й -- простая ф-я.
+        }
+    \end{enumerate}
+\end{consequence}
+
+\begin{theorem}
+    (О приближении измеримых функций простыми)
+
+    $f: X \rightarrow \bar{\mathbb{R}}$ -- неотрицательная измеримая ф-я, тогда последовательность простых ф-й $\phi_1, \phi_2 \dots$, такие что $\phi_{i} \leq \phi{i + 1}: \ \forall i$ в каждой точке и $\lim{\phi_n} = f$. Более того, если $f$ -- ограничена сверху, то можно выбрать $\phi_n$ так, что $\phi_n \rightrightarrows f$ на $X$.
+\end{theorem}
+\begin{proof}
+    $\Delta_k^{(n)} := [\frac{k}{n}, \frac{k+1}{n})$ при $k = 0, \dots, (n^2 - 1)$ и $\Delta_{n^2}^{(n)} := [n, +\infty]$.
+
+    $[0, +\infty) = \bigsqcup_{k=0}^{n^2} \Delta_k, \ A_k^{(n)} := f^{-1}(\Delta_k^{(n)})$ -- измер. мн-во.
+
+    $\phi_n$ на $A_k$ равно $\frac{k}{n} \implies 0 \leq \phi_n(x) \leq f(x) \ \forall x$ и $f(x) \leq \phi_n(x) + \frac{1}{n}$ при $x \notin A_{n^2}$.
+
+    $\phi_n(x) \rightarrow f(x)$:
+
+    \begin{enumerate}
+        \item {
+            если $f(x) = +\infty$, то $x \in A_{n^2}^{(n)} \ \forall n \implies \phi_n(x) = n \rightarrow +\infty = f(x)$
+        }
+        \item {
+            если $f(x) \not = +\infty$, то $x \notin A_{n^2}^{(n)}$ при больших $n \implies f(x) - \frac{1}{n} \leq \phi_n(x) \leq f(x)$
+        }
+    \end{enumerate}
+
+    % todo: picture here
+    Для добавления монотонности берем не каждое $n$, а только степени двойки, тогда нам нужно взять $\psi_n = \max\{ \phi_1, \phi_2, \dots, \phi_n \}$ (тут должна быть картинка)
+\end{proof}
+
+
+
+\Subsection{Последовательности измеримых функций}
+
+Напоминание. $f_n, f : E \rightarrow \mathbb{R}$.
+
+Поточечная сходимость: $f_n$ к $f$, $\forall x \in E: f_n(x) \rightarrow f(x)$
+
+Равномерная сходимость: $f_n \rightrightarrows f$ на $E$, $\sup_{x \in E} |f_n(x) - f(x)| \rightarrow 0$
+
+\begin{definition}
+    $f_n, f: E \rightarrow \mathbb{R}$ -- измеримые.
+
+    $f_n$ сходится к $f$ почти везде, если $\exists e \subset E, \ \mu e = 0$, т.ч. $\forall x \in E \setminus e, \ f_n(x) \rightarrow f(x)$
+
+    \begin{remark}
+        Обозначение: $\mathcal{Z}(E) = \{ f: E \rightarrow \mathbb{R}, \text{ измеримых, } E\{ f = \pm \infty \text{  имеет меру 0} \} \}$
+    \end{remark}
+
+    Пусть $f_n, f \in \mathcal{Z}(E, \mu), \ f_n$ схожится к $f$ почти везде.
+
+    $\exists e \subset E, \ \mu e = 0, $ т.ч. $\forall x \in E \setminus x, \ f_n(x) \rightarrow f(x)$
+\end{definition}
+
+
+\begin{definition}
+    $f_n, f \in \mathcal{Z}(E, \mu), \ f_n$ сходится по мере $\mu$ к $f$, если $\forall \epsilon > 0, \\ \mu E \{ | f_n - f | > \epsilon \} \rightarrow_{n \rightarrow \infty} 0, \ f_n \rightarrow_{\mu} f$
+
+    Зависимость равномерная $\implies$ (поточечная $\implies$ почти везде) | (сходимсть по мере).
+\end{definition}
+
+\begin{statement}
+    \begin{enumerate}
+        \item {
+            Если $f_n$ сходится к $f$ п.в. (почти везде) и $f_n$ сходится к $g$ п.в., то $f = g$ (за исключением мн-ва нулевой меры)
+        }
+        \item {
+            Если $f_n \rightarrow_{\mu} f$ и $f_n \rightarrow_{\mu} g$, то $f = g$ за исключением мн-ва нулевой меры.
+        }
+    \end{enumerate}
+\end{statement}
+\begin{proof}
+    \begin{enumerate}
+        \item {
+            Берем $e \subset E, \ \mu e = 0$ и $\lim{f_n(x)} = f(x), \ \forall x \in E \setminus e$
+
+            $\tilde{e} \subset E, \mu \tilde{e} = 0$ и $\lim{f_n(x)} = g(x), \ \forall x \in E \setminus \tilde{e}$
+        
+            Из этого следует, что $f(x) = g(x)$ при $x \in E \setminus (e \cup \tilde{e})$
+        }
+        \item {
+            $\mu E \{ f \not = g \} \underbrace{=}_{?} 0, \ E\{ f \not = g \} = \bigcup_{k=1}^{\infty} E \{ |f - g| > \frac{1}{k} \}$.
+
+            Достаточно доказать, что $\mu E \{ |f - g| \geq \epsilon \} = 0$.
+
+            $E \{ |f - g| \geq \epsilon \} \subset E \{ |f_n - f| \geq \frac{\epsilon}{2} \} \cup E \{ |f_n - g| \geq \frac{\epsilon}{2} \}$
+
+
+            $E \{ |f - g| \geq \epsilon \} \subset \underbrace{\bigcap_{n=1}^{\infty} E \{ |f_n - f| \geq \frac{\epsilon}{2} \}}_{\mu = 0 \ ?} \cup \bigcap_{n=1}^{\infty} E \{ |f_n - g| \geq \frac{\epsilon}{2} \}$
+
+            Знаем, что $\mu E \{ |f_n - f| \geq \frac{\epsilon}{2} \} \rightarrow 0$
+
+            $\bigcap_{n=1}^{N} E \{ |f_n - f| \geq \frac{\epsilon}{2} \}$ вложены по убыванию
+
+            $\implies \bigcap_{n=1}^{\infty} \dots = \lim_{N} \left( { \mu \bigcap_{n=1}^{N} E \{ |f_n - f| \geq \frac{\epsilon}{2} \} } \right) \leq \lim_{N} \left( {\mu E \{ |f_N - f| \geq \frac{\epsilon}{2} \}}\right) = 0$
+        }
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}
+    Лебега.
+
+    Пусть $\mu E < +\infty$ и $f_n$ сходится к $f$ почти везде, $f_n, f: E \rightarrow \bar{\mathbb{R}}$.
+
+    Тогда $f_n$ сходится к $f$ по мере $\mu$.
+\end{theorem}
+\begin{proof}
+    Найдется $e \subset E, \ \mu e = 0$, т.ч. $\forall x \in \subset E \setminus e, \ f_n(x) \rightarrow f(x)$.
+
+    Выкинем $e$ и будем говорить про поточечную сходимость.
+
+    Надо доказать, что $A_n := E \{ |f_n - f| > \epsilon \}, \ \mu A_n \rightarrow 0$.
+
+    \begin{enumerate}
+        \item {
+            Частный случай ($f_n \searrow 0$): $A_n = E \{ f_n > \epsilon \} \supset A_{n+1}$.
+
+            $\lim{\mu A_n} = \mu \bigcap_{n=1}^{\infty} A_n = \mu \emptyset = 0$.
+            
+            Пусть $x \in \bigcap_{n=1}^{\infty} A_n \implies 0 \leftarrow f_n(x) > \epsilon \ \forall n \in \mathbb{N} \implies $ таких $x$ не существует.
+        }
+        \item {
+            Общий случай: $g_n(x) := \sum_{k \geq n} \{ |f_k(x) - f(x)| \}$
+
+            $\lim {g_n(x)} = \lim_{n} \sup_{k \geq n} \{ \dots \} = \overline{\lim_n {|f_n(x) - f(x)|}} = \lim {|f_n - f|} = 0$
+
+            $\implies \underbrace{\mu E \{ g_n > \epsilon \}}_{\rightarrow 0} \geq \mu E \{ |f_n - f| > \epsilon \}$
+
+            $E \{ g_n > \epsilon \} \supset E \{ |f_n - f| > \epsilon \}$
+        }
+    \end{enumerate}
+\end{proof}
+
+
+\begin{remark}
+    \begin{enumerate}
+        \item {
+            Условие $\mu E < +\infty$ существенно.
+
+            $E = \mathbb{R}, \ \mu = \lambda, \ f_n = \mathbb{1}_{[n, +\infty)} \underbrace{\rightarrow}_{\text{поточечно}} f \equiv 0$
+
+            $\lambda E \{ f_n > \epsilon \} = +\infty \not \rightarrow 0$.
+        }
+        \item {
+            Обратное неверно: $E = [0, 1), \ \mu = \lambda$
+
+            $\mathbb{1}_{[0, 1)} \ \mathbb{1}_{[0, \frac{1}{2})} \ \mathbb{1}_{[\frac{1}{2}, 1)} \ \mathbb{1}_{[0, \frac{1}{3})} \ \mathbb{1}_{[\frac{1}{3}, \frac{2}{3})} \ \mathbb{1}_{[\frac{2}{3}, 1)}$ -- ни для какого аргумента нет предела: $[0, \frac{1}{n}) \ [\frac{1}{n}, \frac{2}{n}) \dots [\frac{n - 1}{n}, 1)$
+        }
+    \end{enumerate}
+\end{remark}
+
+
+\begin{theorem}
+    Рисса.
+
+    Если $f_n \rightarrow_{\mu} f$, то существует подпоследовательность $f_{n_k}$, т.ч. $f_{n_k}$ сходится к $f$ почти везде.
+\end{theorem}
+\begin{proof}
+    $\mu E \{ |f_n - f| > \frac{1}{k} \} \underbrace{\rightarrow}_{n \rightarrow \infty} 0$
+
+    Выберем $n_k$ так, что $n_k > n_{k - 1},$ и $\mu \underbrace{E \{ |f_{n_k} - f| > \frac{1}{k} \}}_{=: A_k} < \frac{1}{2^k}$
+
+    $B_n := \bigcup_{k=n}^{\infty} A_k, \ \mu B_n \leq \sum_{k=n}^{\infty} \mu A_k < \sum_{k=n}^{\infty} \frac{1}{2^k} = \frac{1}{2^{n - 1}} \rightarrow 0$
+
+    $B_1 \supset B_2 \supset \dots \implies \underbrace{\mu B}_{\mu B_n \rightarrow 0} = 0$, проверим, что если $x \notin B$, то $f_{n_k}(x) \rightarrow f(x)$, где $B := \bigcap_{n=1}^{\infty} B_n$
+
+    $x \notin B \implies \exists m$, т.ч. $x \notin B_m = \bigcup_{k=m}^{\infty} A_k$
+
+    $\implies x \notin A_k \ \forall k \geq m \implies \forall k \geq m \ \underbrace{|f_{n_k}(x) - f(x)|}_{\rightarrow_{k \rightarrow 0} 0} \leq \frac{1}{k}$
+\end{proof}
+
+\begin{consequence}
+    Если $f_n \leq g$ и $f_n \underbrace{\rightarrow}_{\mu} f$, то $f \leq g$за исключением мн-ва нулевой меры.
+\end{consequence}
+\begin{proof}
+    Выберем $f_{n_k}$ сходится к $f$ почти везде. Пусть $e$ -- исключ. мн-во $\mu e = 0$.
+
+    $\lim \underbrace{f_{n_k}}_{\leq g(x)} = f(x): \ \forall x \in E \setminus e \implies f(x) \leq g(x)$ при $x \in E \setminus e$
+\end{proof}
+
+\begin{theorem}
+    Фреме.
+
+    Если $f: \mathbb{R}^{m} \rightarrow \mathbb{R}$ измерима относительно $\lambda_m$ (мера Лебега), то $\exists f_n \in C(\mathbb{R}^m)$, т.ч. $f_n$ сходится к $f$ почти везде.
+\end{theorem}
+
+
+\begin{theorem}
+    Егорова.
+
+    Пусть $\mu E < + \infty, \ f_n, f \in \mathscr{L}(E, \mu)$. Если $f_n$ сходится к $f$ почти везде, то найдется $e \subset E, \ \mu e < \epsilon$, т.ч. $f_n \rightrightarrows f$ на $E \setminus e$.
+\end{theorem}
+
+\begin{theorem}
+    Лузина.
+
+    $E \subset \mathbb{R}^m$ -- измеримо, $f: E \rightarrow \mathbb{R}$  -- измерима (относительно $\lambda_m$ -- мера Лебега). Тогда найдется $e \subset E, \ \mu e < \epsilon$, т.ч. $f|_{E|_e}$ -- непрерывна.
+
+
+    Фреше + Егоров $\implies$ Лузин:
+
+    $f: \mathbb{R}^m \rightarrow \mathbb{R}$ -- измеримое $\underbrace{\implies}_{\text{Фреше}} \exists f_n \in C(\mathbb{R}^m)$, $f_n$ сходится к $f$ почти везде $\underbrace{\implies}_{\text{Егоров}}$ $\exists e: \ \lambda_m e < \epsilon$, т.ч. $f_n \underbrace{\rightrightarrows}_{\mathbb{R}^m \setminus e} f$, равномерный предел непрерывной функции -- непрерывная функция.
+\end{theorem}
+
+% todo: change `\limsup` and `\liminf` to \overline{\lim} and \bottomline{\lim} if corresponding formulas exist
+
+% todo: change \mathcal{X} and \mathcal{Z} to \mathscr{L}, because I am not sure if X (and not Z) was supposed to be there
+
+
+\Subsection{Определение интеграла}
+
+\begin{lemma}
+    Пусть $f \geq 0$ простая функция $A_1, \dots, A_n$ и $B_1, \dots, B_m$ -- допустимые разбиения.
+
+    $a_1, \dots, a_n$ и $b_1, \dots, b_m$ значения $f$ на соответственных мн-вах.
+
+    Тогда $\sum_{k=1}^{n} a_k \mu (E \cap A_k) = \sum_{j=1}^{m} b_j \mu (E \cap B_j)$.
+\end{lemma}
+
+\begin{proof}
+    $\sum_{k=1}^{n} a_k \mu (E \cap A_k) = \sum_{k=1}^{n} \sum_{j=1}^{m} a_k \mu (E \cap A_k \cap B_j) = (1)$
+
+    $\sum_{j=1}^{m} b_j \mu (E \cap B_j) = \sum_{j=1}^{m} \sum_{k=1}^{n} b_j \mu (E \cap B_j \cap A_k) = (2)$
+
+    $(1) \underbrace{=}_{?} (2)$.
+
+    $a_k \mu (E \cap A_k \cap B_j) = b_j \mu (E \cap A_k \cap B_j)$
+
+    если $A_k \cap B_j \not = \emptyset$, то $a_k = b_j$, если $A_k \cap B_j = \emptyset$, то $\mu (\dots) = 0$.
+\end{proof}
+
+\begin{definition}
+    $f \geq 0$ простая $\int_{E} f d \mu := \sum_{k=1}^{n} a_k \mu (E \cap A_k)$, где $A_1, \dots , A_n$ -- допустимые разбиения, $a_1, \dots, a_n$ -- соответст. значения.
+\end{definition}
