@@ -7,7 +7,6 @@ Here will be lectures for study terms >=3. Conspects for term 1 and 2 can be fou
 Want to contribute and/or found a mistake? Follow the instructions below.
 
 ## Setup locally
-- Clone the project: `git clone https://github.com/dmitrii-artuhov/HSE-summaries.git`
 - [Install MiKTeX](https://miktex.org/download) (latex compiling toolchain).
 - On Windows you need to install perl, you can install [strawberry perl](https://strawberryperl.com/).
 - Install [VS Code](https://code.visualstudio.com/download) (I prefer it due to vast number of plugins) and plugin [Latex Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop).
@@ -30,6 +29,7 @@ Want to contribute and/or found a mistake? Follow the instructions below.
 - Also you need to have [python](https://www.python.org/downloads/) installed.
 
 ## How to contribute
+- Clone the project: `git clone https://github.com/dmitrii-artuhov/HSE-summaries.git`
 - Edit some latex code, keep the same folder structure, everything related to editing latex is self explanatory (see `/src` folder).
 - Create PR with the amendmends, set its target to `master` branch.
 - Before pushing, don't forget to run `python3 ./build.py` so the pdf files are generated and saved to `/pdf` folder.
