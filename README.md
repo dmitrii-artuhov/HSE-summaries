@@ -24,7 +24,7 @@ Want to contribute and/or found a mistake? Follow the instructions below.
                     "lualatexmk"
                 ]
             },
-            ...
+            // ...
         ]
     }
     ```
