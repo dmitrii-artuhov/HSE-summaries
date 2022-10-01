@@ -15,7 +15,7 @@ Want to contribute and/or found a mistake? Follow the instructions below.
 - Install [VS Code](https://code.visualstudio.com/download) (I prefer it due to vast number of plugins) and plugin [Latex Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop).
 - Follow the [link](https://youtu.be/4lyHIQl4VM8) to set up MiKTeX with the installed plugin.
 - To compile the project you need to use `lualatex` compiler. To set it as a default compiler (so it is used automatically when you save the project) edit `setting.json` for the extension:
-    ```json
+    ```js
     {
         "latex-workshop.latex.recipes": [
             {
@@ -24,7 +24,7 @@ Want to contribute and/or found a mistake? Follow the instructions below.
                     "lualatexmk"
                 ]
             },
-            // ...
+            ...
         ]
     }
     ```
