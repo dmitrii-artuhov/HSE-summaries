@@ -2,9 +2,7 @@
 
 
 ## What is this repo?
-Here will be lectures for study terms >=3.
-
-Conspects for term 1 and 2 can be found [here](https://github.com/khbminus/HSE-summaries).
+Here will be lectures for study terms >=3. Conspects for term 1 and 2 can be found [here](https://github.com/khbminus/HSE-summaries).
 
 Want to contribute and/or found a mistake? Follow the instructions below.
 
