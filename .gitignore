@@ -292,3 +292,4 @@ TSWLatexianTemp*
 tmp/
 .vscode/
 src/**/conspect.pdf
+.DS_Store
