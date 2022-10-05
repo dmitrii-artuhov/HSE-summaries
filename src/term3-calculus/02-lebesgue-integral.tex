@@ -1,6 +1,6 @@
 \Subsection{Измеримые функции}
 \begin{definition}
-    $f: E \rightarrow \bar{\mathbb{R}}$, лебеговы мн-ва функции f.
+    $f: E \rightarrow \bar{\mathbb{R}}$, лебеговы мн-ва функции f:
 
     $E \{ f \leq a \} := \{ x \in E: \ f(x) \leq a \} = f^{-1}([-\infty, a])$
 
@@ -66,7 +66,7 @@
             Лебеговы множества: $\emptyset, X, E, X \setminus E$.
         }
         \item {
-            $\mathcal{X}^m$ -- лебеговская $\sigma$-алгебра на $\mathbb{R}^m$
+            $\mathscr{L}^m$ -- лебеговская $\sigma$-алгебра на $\mathbb{R}^m$
 
             $f \in C(\mathbb{R}^m)$ -- измеримая.
 
@@ -142,7 +142,7 @@
 
     \begin{enumerate}
         \item $\sup{f_n}, \ \inf{f_n}$ -- измеримые.
-        \item $\liminf f_n $ и $\limsup f_n$ -- измеримые.
+        \item $\underline{\lim} f_n $ и $\overline{\lim} f_n$ -- измеримые.
         \item Если существуют $\lim f_n$, то он измеримый.
     \end{enumerate}
 \end{theorem}
@@ -150,8 +150,8 @@
 \begin{proof}
     \begin{enumerate}
         \item $E \{ \sup{f_n} \leq c \} = \bigcap_{n=1}^{\infty} E \{ f_n \leq c \}$
-        \item $\liminf{f_n} = \sup_{n} \inf_{k \geq n} f_k $ и $\limsup = \inf_{n} \sup_{k \geq n} f_k$
-        \item Если существует $\lim f_n$, то $\lim f_n = \liminf f_n$.
+        \item $\underline{\lim}{f_n} = \sup_{n} \inf_{k \geq n} f_k $ и $\overline{\lim}{f_n} = \inf_{n} \sup_{k \geq n} f_k$
+        \item Если существует $\lim f_n$, то $\lim f_n = \underline{\lim} f_n$.
     \end{enumerate}    
 \end{proof}
 
@@ -171,7 +171,7 @@
 \end{proof}
 
 \begin{consequence}
-    Если в теор. $\phi$ -- поточечный предел непрерывных, то $g$ -- измерима.
+    Если в теореме $\phi$ -- поточечный предел непрерывных, то $g$ -- измерима.
 \end{consequence}
 \begin{proof}
     $\phi = \lim \phi_n, \ \phi_n \vec{f}$ -- измер. и поточечно стремится к $\phi_0 \vec{f}$
@@ -191,8 +191,8 @@
 
 \begin{theorem}
     \begin{enumerate}
-        \item Произведение и сумма измерений ф-й -- измеримая.
-        \item Если  $f: E \rightarrow \mathbb{R}$ -- измеримая и $\phi \in C(\mathbb{R})$, то $\phi \degree f$ -- измеримая.
+        \item Произведение и сумма измереных ф-й -- измеримая.
+        \item Если  $f: E \rightarrow \mathbb{R}$ -- измеримая и $\phi \in C(\mathbb{R})$, то $\phi \circ f$ -- измеримая.
         \item Если $f \geq 0$ -- измеримая, то $f_p \ (p>0)$ -- измеримая, $(+\infty)^p = +\infty$
         \item Если $f: E \rightarrow \bar{\mathbb{R}}$ -- измеримая, $\tilde{E} := E \{f \not = 0\}$, то $\frac{1}{f}$ -- измерима на $\tilde{E}$.
     \end{enumerate}
@@ -236,7 +236,7 @@
             Произведение конечного числа измер. -- измер.
         }
         \item {
-            Натуральная степень измер. ф-и -- измерим.
+            Натуральная степень измер. ф-и -- измер.
         }
         \item {
             Линейная комбинация измер. ф-й -- измер.
@@ -322,13 +322,13 @@
 \begin{definition}
     $f_n, f: E \rightarrow \mathbb{R}$ -- измеримые.
 
-    $f_n$ сходится к $f$ почти везде, если $\exists e \subset E, \ \mu e = 0$, т.ч. $\forall x \in E \setminus e, \ f_n(x) \rightarrow f(x)$
+    $f_n$ сходится к $f$ \textbf{почти везде}, если $\exists e \subset E, \ \mu e = 0$, т.ч. $\forall x \in E \setminus e, \ f_n(x) \rightarrow f(x)$
 
     \begin{remark}
         Обозначение: $\mathcal{Z}(E) = \{ f: E \rightarrow \mathbb{R}, \text{ измеримых, } E\{ f = \pm \infty \text{  имеет меру 0} \} \}$
     \end{remark}
 
-    Пусть $f_n, f \in \mathcal{Z}(E, \mu), \ f_n$ схожится к $f$ почти везде.
+    Пусть $f_n, f \in \mathcal{Z}(E, \mu), \ f_n$ сходится к $f$ почти везде.
 
     $\exists e \subset E, \ \mu e = 0, $ т.ч. $\forall x \in E \setminus x, \ f_n(x) \rightarrow f(x)$
 \end{definition}
@@ -337,7 +337,7 @@
 \begin{definition}
     $f_n, f \in \mathcal{Z}(E, \mu), \ f_n$ сходится по мере $\mu$ к $f$, если $\forall \epsilon > 0, \\ \mu E \{ | f_n - f | > \epsilon \} \rightarrow_{n \rightarrow \infty} 0, \ f_n \rightarrow_{\mu} f$
 
-    Зависимость равномерная $\implies$ (поточечная $\implies$ почти везде) | (сходимсть по мере).
+    Зависимость равномерная $\implies$ (поточечная $\implies$ почти везде) | (сходимость по мере).
 \end{definition}
 
 \begin{statement}
@@ -379,7 +379,7 @@
 \end{proof}
 
 \begin{theorem}
-    Лебега.
+    \textbf{Лебега}.
 
     Пусть $\mu E < +\infty$ и $f_n$ сходится к $f$ почти везде, $f_n, f: E \rightarrow \bar{\mathbb{R}}$.
 
@@ -432,7 +432,7 @@
 
 
 \begin{theorem}
-    Рисса.
+    \textbf{Рисса}.
 
     Если $f_n \rightarrow_{\mu} f$, то существует подпоследовательность $f_{n_k}$, т.ч. $f_{n_k}$ сходится к $f$ почти везде.
 \end{theorem}
@@ -460,20 +460,20 @@
 \end{proof}
 
 \begin{theorem}
-    Фреме.
+    \textbf{Фреме}.
 
     Если $f: \mathbb{R}^{m} \rightarrow \mathbb{R}$ измерима относительно $\lambda_m$ (мера Лебега), то $\exists f_n \in C(\mathbb{R}^m)$, т.ч. $f_n$ сходится к $f$ почти везде.
 \end{theorem}
 
 
 \begin{theorem}
-    Егорова.
+    \textbf{Егорова}.
 
     Пусть $\mu E < + \infty, \ f_n, f \in \mathscr{L}(E, \mu)$. Если $f_n$ сходится к $f$ почти везде, то найдется $e \subset E, \ \mu e < \epsilon$, т.ч. $f_n \rightrightarrows f$ на $E \setminus e$.
 \end{theorem}
 
 \begin{theorem}
-    Лузина.
+    \textbf{Лузина}.
 
     $E \subset \mathbb{R}^m$ -- измеримо, $f: E \rightarrow \mathbb{R}$  -- измерима (относительно $\lambda_m$ -- мера Лебега). Тогда найдется $e \subset E, \ \mu e < \epsilon$, т.ч. $f|_{E|_e}$ -- непрерывна.
 
@@ -482,8 +482,6 @@
 
     $f: \mathbb{R}^m \rightarrow \mathbb{R}$ -- измеримое $\underbrace{\implies}_{\text{Фреше}} \exists f_n \in C(\mathbb{R}^m)$, $f_n$ сходится к $f$ почти везде $\underbrace{\implies}_{\text{Егоров}}$ $\exists e: \ \lambda_m e < \epsilon$, т.ч. $f_n \underbrace{\rightrightarrows}_{\mathbb{R}^m \setminus e} f$, равномерный предел непрерывной функции -- непрерывная функция.
 \end{theorem}
-
-% todo: change `\limsup` and `\liminf` to \overline{\lim} and \bottomline{\lim} if corresponding formulas exist
 
 % todo: change \mathcal{X} and \mathcal{Z} to \mathscr{L}, because I am not sure if X (and not Z) was supposed to be there
 

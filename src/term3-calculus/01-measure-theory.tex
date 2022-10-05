@@ -198,7 +198,7 @@ $$X \setminus \bigcap_{\alpha \in I} A_{\alpha} = \bigcup X \setminus A_{\alpha}
 \end{definition}
 
 \begin{theorem}
-    Непустая ячейка -- перечисление убыв. посл. открытых паралл. / объединение возраст. послед. замкн.
+    Непустая ячейка -- пересечение убыв. посл. открытых паралл. / объединение возраст. послед. замкн.
 \end{theorem}
 
 \begin{proof}
@@ -219,15 +219,15 @@ $$X \setminus \bigcap_{\alpha \in I} A_{\alpha} = \bigcup X \setminus A_{\alpha}
 
 \textbf{Обозначения}: $\mathcal{P}^m$ -- сем-во ячеек из $\mathbb{R}^m$.
 
-$\mathcal{P}_{Q}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с рациональными координатами вершин.
+$\mathcal{P}_{\mathbb{Q}}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с рациональными координатами вершин.
 
 \begin{theorem}
-    $\mathcal{P}^m, \mathcal{P}^m_Q$ -- полукольца.
+    $\mathcal{P}^m, \mathcal{P}^m_{\mathbb{Q}}$ -- полукольца.
 \end{theorem}
 \begin{proof}
     $\mathcal{P}^m = \mathcal{P}^{m-1} \times \mathcal{P}^1$
 
-    $\mathcal{P}_Q^m = \mathcal{P}_Q^{m-1} \times \mathcal{P}_Q^1$
+    $\mathcal{P}_{\mathbb{Q}}^m = \mathcal{P}_{\mathbb{Q}}^{m-1} \times \mathcal{P}_{\mathbb{Q}}^1$
 \end{proof}
 
 \begin{theorem}
@@ -283,7 +283,7 @@ $\mathcal{P}_{Q}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с раци�
     \begin{enumerate}
         \item $\mathcal{P}^1$,   \;\; $\mu (a, b] := b - a$ -- длина (упр. доказать, что объем и мера).
         \item {
-            $g: \mathcal{R} \rightarrow \mathcal{R}$ -- нестрого монотонная
+            $g: \mathbb{R} \rightarrow \mathbb{R}$ -- нестрого монотонная
 
             \begin{enumerate}
                 \item $\mu_{g}(a, b] := g(b) - g(a)$ (упр. доказать, что объем).
@@ -345,7 +345,7 @@ $\mathcal{P}_{Q}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с раци�
         \item {
             $P_k' := P \cap P_k \in \mathcal{P}$ ($\mathcal{P}$ - полукольцо), \;\; $P = \bigcup_{k=1}^{n} P_k' = \bigsqcup_{k=1}^{n} \underbrace{\bigsqcup_{j=1}^{m_k} Q_{kj}}_{\in P_k'} \implies$
             
-            $\implies \mu P = \sum_{k=1}^n \underbrace{\sum_{j=1}^{m_k} \mu Q_{kj}}_{\leq \mu P'_k \leq \mu P_k \ (property \ 2(a). )} \leq \sum_{k=1}^n \mu P_k$
+            $\implies \mu P = \sum_{k=1}^n \underbrace{\sum_{j=1}^{m_k} \mu Q_{kj}}_{\leq \mu P'_k \leq \mu P_k \ (\text{свойство } 2(a))} \leq \sum_{k=1}^n \mu P_k$
         }
         }
     \end{enumerate}
@@ -364,9 +364,9 @@ $\mathcal{P}_{Q}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с раци�
 \end{remark}
 
 \begin{theorem}
-    $\mathcal{P}$ -- полукольцо подмн-в $X$, \mu -- объем на $\mathcal{P}$
+    $\mathcal{P}$ -- полукольцо подмн-в $X$, $\mu$ -- объем на $\mathcal{P}$
 
-    $\mathcal{Q}$ -- полукольцо подмн-в $Y$, \nu -- объем на $\mathcal{Q}$
+    $\mathcal{Q}$ -- полукольцо подмн-в $Y$, $\nu$ -- объем на $\mathcal{Q}$
 
     $\lambda(P \times Q) := \mu P \cdot \nu Q$, где $0 \cdot +\infty = +\infty \cdot 0 = 0$
 
@@ -435,34 +435,36 @@ $\mathcal{P}_{Q}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с раци�
 \end{proof}
 
 \begin{theorem}
-    О счетной аддитивности меры $\mu$-объем на полукольце $\mathcal{P}$. Тогда $\mu$-мера $\Leftrightarrow$ если $P \subset \bigcup_{n=1}^{\infty}P_n \ P, P_n \in \mathcal{P}$, то $\mu \cdot P \leq \sum_{n=1}^{\infty}\mu \cdot P_n$ (счетная полуаддитивность). 
+    (О счетной аддитивности меры).
+    
+    $\mu$ -- объем на полукольце $\mathcal{P}$. Тогда $\mu$-мера $\Leftrightarrow$ если $P \subset \bigcup_{n=1}^{\infty}P_n \ P, P_n \in \mathcal{P}$, то $\mu \cdot P \leq \sum_{n=1}^{\infty}\mu \cdot P_n$ (счетная полуаддитивность). 
 \end{theorem}
 \begin{proof}
-    "$\leftarrow$": Пусть $P=\bigsqcup_{n=1}^{\infty} P_n$, тогда нажо д-ть, что $\mu P = \sum_{n=1}^{\infty} \mu P_n$: для "$\leq$" -- счетная полуаддитивность, для "$\geq$" -- усиленная монот. объема.
+    "$\Leftarrow$": Пусть $P=\bigsqcup_{n=1}^{\infty} P_n$, тогда нажо д-ть, что $\mu P = \sum_{n=1}^{\infty} \mu P_n$: для "$\leq$" -- счетная полуаддитивность, для "$\geq$" -- усиленная монот. объема.
 
-    "$\rightarrow$": $P_n' := P \cap P_n \implies P = \bigcup_{n=1}^{\infty}P_n' \implies P = \bigsqcup_{n=1}^{\infty} \bigsqcup_{k=1}^{\infty} Q_{nk}, $ где $Q_{nk} \subset P_n' \implies \mu P = \sum_{n=1}^{\infty} \underbrace{\sum_{k=1}^{m_k} \mu Q_{nk}}_{\leq \mu P_n}$ -- усиленная монот. объема. $\bigsqcup_{k=1}^{m_k} Q_{nk} \subset P_n' \subset P_n$.
+    "$\Rightarrow$": $P_n' := P \cap P_n \implies P = \bigcup_{n=1}^{\infty}P_n' \implies P = \bigsqcup_{n=1}^{\infty} \bigsqcup_{k=1}^{\infty} Q_{nk}, $ где $Q_{nk} \subset P_n' \implies \mu P = \sum_{n=1}^{\infty} \underbrace{\sum_{k=1}^{m_k} \mu Q_{nk}}_{\leq \mu P_n}$ -- усиленная монот. объема. $\bigsqcup_{k=1}^{m_k} Q_{nk} \subset P_n' \subset P_n$.
 \end{proof}
 
 \begin{consequence}
-    Если $\mu$-мера на \sigma-алгебре, то счетное объединение мн-в ненулевой меры -- мн-во нулевой меры.
+    Если $\mu$ -- мера на $\sigma$-алгебре, то счетное объединение мн-в ненулевой меры -- мн-во нулевой меры.
 \end{consequence}
 \begin{proof}
     $\mu A_n = 0 \implies \mu \left( \bigcup_{n=1}^{\infty} \right) \leq \sum_{n=1}^{\infty} \mu A_n = 0$.
 \end{proof}
 
 \begin{theorem}
-    о непрерывности меры снизу.
+    (О непрерывности меры снизу).
 
-    $\mu$-объем на \sigma-алгебре $\mathcal{A}$. Тогда \mu-мера $\Leftrightarrow$ если $\mathcal{A} \ni A_n \subset A_{n+1}$, то $\mu \left( \bigcup_{n=1}^{\infty} A_n \right) = \lim_{n \rightarrow \infty }{\mu A_n}$ -- непр. меры снизу. 
+    $\mu$ -- объем на $\sigma$-алгебре $\mathcal{A}$. Тогда $\mu$ -- мера $\Leftrightarrow$ если $\mathcal{A} \ni A_n \subset A_{n+1}$, то $\mu \left( \bigcup_{n=1}^{\infty} A_n \right) = \lim_{n \rightarrow \infty }{\mu A_n}$ -- непр. меры снизу. 
 \end{theorem}
 \begin{proof}
-    "$\rightarrow$": $\mathcal{A} \ni B_n := A_n \setminus A_{n-1}, \ A_0 = \emptyset$.
+    "$\Rightarrow$": $\mathcal{A} \ni B_n := A_n \setminus A_{n-1}, \ A_0 = \emptyset$.
 
     $B_n$ -- дизъюнктны: $\bigsqcup_{n=1}^{\infty} B_n = \bigcup_{n=1}^{\infty} A_n$.
 
     $\mu \left( \bigcup A_n \right) = \mu \bigsqcup B_n = \sum_{n=1}^{\infty}\mu B_n = \lim_{n \rightarrow \infty} \sum_{k=1}^{n} \mu B_k = \lim \mu A_n$.
 
-    "$\leftarrow$": Пусть $C = \bigsqcup_{n=1}^{\infty} C_n$, надо д-ть, что $\mu C = \sum_{n=1}^{\infty} \mu C_n$.
+    "$\Leftarrow$": Пусть $C = \bigsqcup_{n=1}^{\infty} C_n$, надо д-ть, что $\mu C = \sum_{n=1}^{\infty} \mu C_n$.
 
     $A_n := \bigsqcup_{k=1}^{n} C_k, \ A_n \subset A_{n+1}, \ \bigcup_{n=1}^{\infty} A_n = \bigsqcup_{n=1}^{\infty} C_n$
 
@@ -470,13 +472,13 @@ $\mathcal{P}_{Q}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с раци�
 \end{proof}
 
 \begin{theorem}
-    о непрерывности меры сверху.
+    (О непрерывности меры сверху).
 
-    \mu -- объем на \sigma-алгебре $\mathcal{A}$ и $\mu X < +\infty$.
+    $\mu$ -- объем на $\sigma$-алгебре $\mathcal{A}$ и $\mu X < +\infty$.
 
     Тогда равносильны: 
     \begin{enumerate}
-        \item \mu -- мера
+        \item $\mu$ -- мера
         \item если $A_n \supset A_{n+1}$, то $\mu \left(\bigcap_{n=1}^{\infty} A_n\right) = \lim \mu A_n$
         \item если $A_n \supset A_{n+1}$ и $\bigcap_{n=1}^{\infty} A_n = \emptyset$, то $\lim \mu A_n = 0$.
     \end{enumerate}
@@ -496,7 +498,7 @@ $\mathcal{P}_{Q}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с раци�
 \end{proof}
 
 \begin{consequence}
-    Если \mu-- мера, то $A_n \supset A_{n+1}$ и  для некоторого $m \ \mu A_m < +\infty$
+    Если $\mu$ -- мера, то $A_n \supset A_{n+1}$ и для некоторого $m: \ \mu A_m < +\infty$
 \end{consequence}
 \begin{proof}
     $X := A_n$
@@ -523,13 +525,12 @@ $\mathcal{P}_{Q}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с раци�
 \end{remark}
 
 \begin{definition}
-    \mu -- полная мера на \sigma-алгебре $\mathcal{A}$, если $A \subset B \in \mathcal{A}$ и $\mu B = 0 \implies A \in \mathcal{A}$.
+    $\mu$ -- полная мера на $\sigma$-алгебре $\mathcal{A}$, если $A \subset B \in \mathcal{A}$ и $\mu B = 0 \implies A \in \mathcal{A}$.
     
     \begin{remark}
         это означает, что $\mu A = 0$.
     \end{remark}
 \end{definition}
-% TODO: выше нужно пофиксить места, где вместо $\implies$ влево и вправо написаны $\rightarrow / \leftarrow$ в доказательсвах, разбитых на стрелки вправо/влево
 
 \begin{definition}
     $\nu$ -- субмера, назовем $E \subset X \ \nu$-измеримым, если $\forall A \subset X \ \nu A = \nu (A \cap E) + \nu (A \setminus E)$
@@ -542,7 +543,9 @@ $\mathcal{P}_{Q}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с раци�
 \end{definition}
 
 \begin{theorem}
-    \textbf{Каратеодори}. Пусть \nu -- субмера. Тогда $\nu$-измеримое мн-во образует \sigma-алгебру и сужение \nu на эту \sigma-алгебру -- полная мера.
+    \textbf{Каратеодори}.
+    
+    Пусть $\nu$ -- субмера. Тогда $\nu$-измеримое мн-во образует $\sigma$-алгебру и сужение $\nu$ на эту $\sigma$-алгебру -- полная мера.
 \end{theorem}
 
 \begin{proof}
@@ -582,7 +585,7 @@ $\mathcal{P}_{Q}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с раци�
             % TODO: picture
         }
         \item Если $E_n \in \mathcal{A}$ и $E = \bigcup_{n=1}^{\infty}$, то $E \in \mathcal{A}$.
-        \item $\mathcal{A}$ -- \sigma-алгебра.
+        \item $\mathcal{A}$ -- $\sigma$-алгебра.
         \item {
             \nu -- мера на $\mathcal{A}$.
 
@@ -594,7 +597,7 @@ $\mathcal{P}_{Q}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с раци�
 \end{proof}
 
 \begin{definition}
-    \mu -- мера на полукольце $\mathcal{P}$, $A \subset X$.
+    $\mu$ -- мера на полукольце $\mathcal{P}$, $A \subset X$.
 
     $\mu^* A := \inf{ \left\{\sum_{k=1}^{\infty} \mu P_k: \ P_k \in \mathcal{P} \ \land \ A \subset \bigcup_{k=1}^{\infty} P_k \right\}}$
 
@@ -610,12 +613,11 @@ $\mathcal{P}_{Q}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с раци�
             $A \subset \bigcup_{n=1}^{\infty} P_n = \bigsqcup_{n=1}^{\infty} \bigsqcup_{k=1}^{m_k} Q_{nk}, \ \sum_{n=1}^{\infty} \sum_{k=1}^{n=m_k} \mu Q_{nk} \leq \sum_{n=1}^{\infty} \mu P_n$
         }
         \item {
-            Если $\mu$ задана на \sigma-алгебре $\mathcal{A}$, то $\mu^* A = \inf \left\{\mu B \ : \ B \in \mathcal{A} \ \land \ A \subset B \right\}$
+            Если $\mu$ задана на $\sigma$-алгебре $\mathcal{A}$, то $\mu^* A = \inf \left\{\mu B \ : \ B \in \mathcal{A} \ \land \ A \subset B \right\}$
         }
     \end{enumerate}
 \end{remark}
 
-% TODO: добавить '$...$' вокруг греческих букв, записанных без доллара, так как возникает проблема, что пробелы после таких букв удаляются и буквы сливаются со словами воедино.
 
 \begin{theorem}
     Пусть $\mu$ -- мера на полукольце $\mathcal{P}$. Тогда $\mu^*$ -- субмера, совпадающая с мерой $\mu$ на полукольце $\mathcal{P}$.
@@ -643,7 +645,7 @@ $\mathcal{P}_{Q}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с раци�
 \end{proof}
 
 \begin{definition}
-    Стандартное продолэение меры $\mu_0$ с полукольца $\mathcal{P}$. $\mu^*_0$ -- внешняя мера, порождающая $\mu_0$ -- субмера, и сужаем ее на все $\mu^*_0$ -- измеримые мн-ва.
+    Стандартное продолжение меры $\mu_0$ с полукольца $\mathcal{P}$. $\mu^*_0$ -- внешняя мера, порождающая $\mu_0$ -- субмера, и сужаем ее на все $\mu^*_0$ -- измеримые мн-ва.
 
     Получилась полная мера $\mu$ на \sigma-алгебра $\mathcal{A} \supset \mathcal{P}$ и $\mu P = \mu_0 P$ для $P \in \mathcal{P}$.
 
@@ -696,14 +698,14 @@ $\mathcal{P}_{Q}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с раци�
             \end{exerc}
         }
         \item {
-            Можно ли распространить меру на более широкую \sigma-алгебру.
+            Можно ли распространить меру на более широкую $\sigma$-алгебру.
         }
         \item {
             \begin{definition}
-                $\nu$ -- \sigma-конечная мера на полукольце $\mathcal{P}$, если $X = \bigcup_{n=1}^{\infty}P_n, \ P_n \in \mathcal{P} \ \land \ \mu P_n < +\infty$.
+                $\nu$ -- $\sigma$-конечная мера на полукольце $\mathcal{P}$, если $X = \bigcup_{n=1}^{\infty}P_n, \ P_n \in \mathcal{P} \ \land \ \mu P_n < +\infty$.
             \end{definition}
             
-            Можно ли по-другому продолжить на \sigma-алгебру \mu-измерим. мн-в?
+            Можно ли по-другому продолжить на $\sigma$-алгебру $\mu$-измерим. мн-в?
 
             Если $\mu$ -- $\sigma$-конечная мера, то нельзя.
         }
@@ -743,7 +745,9 @@ $\mathcal{P}_{Q}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с раци�
 \end{proof}
 
 \begin{theorem}
-    Единственность продолжения $\mu$-стандартное продолжение с полукольца $\mathcal{P}$ на $\sigma$-алгебру $\mathcal{A}$.
+    (Единственность продолжения).
+    
+    $\mu$ -- стандартное продолжение с полукольца $\mathcal{P}$ на $\sigma$-алгебру $\mathcal{A}$.
 
     $\nu$ -- другая мера на $\mathcal{A}$, совпадающая с $\mu$ на $\mathcal{P}$. Если $\mu$ -- $\sigma$-конечная, то $\mu = \nu$.
 \end{theorem}
@@ -794,7 +798,7 @@ $\mathcal{P}_{Q}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с раци�
 \begin{definition}
     Мера Лебега в $\mathbb{R}^n$ (обозначение $\lambda_m$) -- стандартное продолжение классического объема с $\mathcal{P}^m$.
 
-    $\sigma$-алгебра, на которую все продолжилось, лебегевская $\sigma$-алгебра $(\mathcal{X}^m)$. 
+    $\sigma$-алгебра, на которую все продолжилось, лебегевская $\sigma$-алгебра $(\mathscr{L}^m)$. 
 \end{definition}
 \begin{remark}
     $\lambda_m A = \inf \{ \sum_{k=1}^{\infty} \lambda_m P_k \ : \ P_k - \text{ ячейки и } \bigcup_{k=1}^{\infty} P_k \supset A \}$.
@@ -839,26 +843,26 @@ $\mathcal{P}_{Q}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с раци�
             \end{proof}
         }
         \item {
-            Пусть $E \subset \mathbb{R}^m$, такое что $\forall \epsilon > 0: \ \exists A_{\epsilon}, B_{\epsilon} \in \mathcal{X}^m$.
+            Пусть $E \subset \mathbb{R}^m$, такое что $\forall \epsilon > 0: \ \exists A_{\epsilon}, B_{\epsilon} \in \mathscr{L}^m$.
             
-            $A_{\epsilon} \subset E \subset B_{\epsilon}$ и $\lambda_m (B_{\epsilon} \setminus A_{\epsilon}) < \epsilon$, тогда $E \in \mathcal{X}^m$
+            $A_{\epsilon} \subset E \subset B_{\epsilon}$ и $\lambda_m (B_{\epsilon} \setminus A_{\epsilon}) < \epsilon$, тогда $E \in \mathscr{L}^m$
             
             \begin{proof}
                 % todo: picture
 
-                $A := \bigcup_{n=1}^{\infty} A_{\frac{1}{n}} \in \mathcal{X}^m$ и $B := \bigcap_{n=1}^{\infty} B_{\frac{1}{n}} \in \mathcal{X}^m$.
+                $A := \bigcup_{n=1}^{\infty} A_{\frac{1}{n}} \in \mathscr{L}^m$ и $B := \bigcap_{n=1}^{\infty} B_{\frac{1}{n}} \in \mathscr{L}^m$.
 
                 $A \subset E \subset B$, $B \setminus A \subset B_{\frac{1}{n}} \setminus A_{\frac{1}{n}}$.
 
                 $\lambda_m (B \setminus A) \leq \lambda_m (B_{\frac{1}{n}} \setminus A_{\frac{1}{n}}) < \frac{1}{n} \implies \lambda_m (B \setminus A) = 0$.
 
-                $E \setminus A \subset B \setminus A \implies E \setminus A \in \mathcal{X}^m \implies E = E \setminus A \sqcup A \in \mathcal{X}^m$.
+                $E \setminus A \subset B \setminus A \implies E \setminus A \in \mathscr{L}^m \implies E = E \setminus A \sqcup A \in \mathscr{L}^m$.
             \end{proof}
         }
         \item {
-            Пусть $E \subset \mathbb{R}^m$, такое что $\forall \epsilon > 0: \ \exists B_{\epsilon} \in \mathcal{X}^m$, такое что $\lambda_m B_{\epsilon} < \epsilon$ и $E \subset B_{\epsilon}$.
+            Пусть $E \subset \mathbb{R}^m$, такое что $\forall \epsilon > 0: \ \exists B_{\epsilon} \in \mathscr{L}^m$, такое что $\lambda_m B_{\epsilon} < \epsilon$ и $E \subset B_{\epsilon}$.
 
-            Тогда  $E \in \mathcal{X}^m$ и $\lambda_m E = 0$.
+            Тогда  $E \in \mathscr{L}^m$ и $\lambda_m E = 0$.
 
             \begin{proof}
                 $A_{\epsilon} := \emptyset \underbrace{\implies}_{\text{свойство (5)}}$ E -- измеримое.
@@ -928,7 +932,9 @@ $\mathcal{P}_{Q}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с раци�
 \end{remark}
 
 \begin{theorem}
-    (регулярность меры Лебега). Если $E$ -- измеримое, то найдется $G$ -- открытое, такое что оно накрывает $E$ и мера зазора $< \epsilon$, то есть $E \subset G \ \land \ \lambda (G \setminus E < \epsilon)$.
+    (Регулярность меры Лебега).
+    
+    Если $E$ -- измеримое, то найдется $G$ -- открытое, такое что оно накрывает $E$ и мера зазора $< \epsilon$, то есть $E \subset G \ \land \ \lambda (G \setminus E < \epsilon)$.
 \end{theorem}
 \begin{proof}
     $\lambda E = \inf \{ \sum_{j=1}^{\infty} \lambda P_j : \ P_j \text{ -- ячейка и } E \subset \bigcup_{j=1}^{\infty} P_j \}$.
@@ -1015,7 +1021,7 @@ $\mathcal{P}_{Q}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с раци�
 \end{proof}
 
 \begin{theorem}
-    $\mu$-мера на $\mathcal{X}^m$, т.ч.
+    $\mu$-мера на $\mathscr{L}^m$, т.ч.
 
     \begin{enumerate}
         \item {
@@ -1027,7 +1033,7 @@ $\mathcal{P}_{Q}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с раци�
     \end{enumerate}
 
     Тогда $\exists k \in [0; +\infty)$, т.ч. $\mu = k \cdot \lambda$ (т.е. $\mu E = k \lambda E \ \forall E \
-    \in \mathcal{X}^m$)
+    \in \mathscr{L}^m$)
 \end{theorem}
 \begin{proof}
     $Q := (0, 1]^m, \ k := \mu Q, \ k \in [0, +\infty)$
@@ -1117,7 +1123,7 @@ $\mathcal{P}_{Q}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с раци�
 
     пусть $U: \mathbb{R}^m \rightarrow \mathbb{R}^m$ (считаем, что крутим относительно нуля, так как можно в ноль сдвинуть).
 
-    $\mu E := \lambda \underbrace{(UE)}_{\text{измеримое, так как $U$ -- линейное отображение}}$, $\mu, \lambda$ -- заданы на $\mathcal{X}^m$.
+    $\mu E := \lambda \underbrace{(UE)}_{\text{измеримое, так как $U$ -- линейное отображение}}$, $\mu, \lambda$ -- заданы на $\mathscr{L}^m$.
 
     $\mu$ -- инварианта относительно сдвига. $\mu (E + \vec{v}) = \lambda (U(E + \vec{v})) = \lambda(UE + U \vec{v}) = \lambda (UE) = \mu E$. $\mu$ конечна на ограниченных измеримых мн-вах. Тогда $\mu = k \lambda$.
 
@@ -1125,7 +1131,7 @@ $\mathcal{P}_{Q}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с раци�
 \end{proof}
 
 \begin{theorem}
-    (об изменении меры Лебега при линейном отображении).
+    (Об изменении меры Лебега при линейном отображении).
 
     $T: \mathbb{R}^m \rightarrow \mathbb{R}^m$ -- линейное, $E$ -- измеримое. Тогда $\lambda (TE) = |det T| \cdot \lambda E$
 \end{theorem}
