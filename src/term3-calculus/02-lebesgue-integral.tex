@@ -936,3 +936,386 @@
         }
     \end{enumerate}
 \end{proof}
+
+\begin{theorem}
+    (Абсолютная непрерывность интеграла).
+
+    $f$ -- суммируема на $E$, тогда $\forall \epsilon: \ \exists \delta > 0$, т.ч. $\forall e $ -- измер. $\mu e < \delta \implies | \int_e f d \mu | < \epsilon$
+\end{theorem}
+\begin{proof}
+    $\int_E |f| d \mu < +\infty \implies \exists \underbrace{\phi}_{\leq f}$ -- неотрицательная простая, т.ч. $\\ \int_E |f| d \mu < \int_E \phi d \mu + \epsilon$.
+
+    Пусть $C$ -- наибольшее значение $\phi$. Возьмем $\delta = \frac{\epsilon}{C}$.
+
+    Если $\mu e < \delta$, то $\int_e |f| d \mu < \underbrace{\int_e \phi d \mu + \epsilon}_{\leq \int_e C d \mu + \epsilon \leq \epsilon + \epsilon}$ -- это следует из того, что $|f| - \phi \geq 0, \\ \int_{e} (|f| - \phi) d \mu \leq \int_E (|f| - \phi) d \mu < \epsilon$.
+\end{proof}
+
+\begin{consequence}
+    Если $f$ суммируема на $E$ и $\mu A_n \rightarrow 0, \ A_n \subset E$, то $\int_{A_n} f d \mu \rightarrow 0$.
+\end{consequence}
+\begin{proof}
+    Берем $\epsilon > 0$ и $\delta > 0$ для него из теоремы, тогда если $\mu A_n < \delta$, то $\\ |\int_{A_n} f d \mu| < \epsilon$
+\end{proof}
+
+\begin{definition}
+    Пусть $\mu$ и $\nu$ меры на одной $\sigma$-алгебре $\mathcal{A}$. Если существует измеримая функция $w \geq 0$, т.ч. $\forall A \in \mathcal{A}, \ \nu A = \int_{A} w d \mu$.
+    
+    Тогда $w$ плотность меры $\nu$ относительно меры $\mu$.
+\end{definition}
+
+\begin{remark}
+    Если $w$ существует, то $\nu$ обладает свойством: если $\mu e = 0$, то $\nu e = 0$.
+\end{remark}
+
+\begin{definition}
+    $\nu$ абс. непрер. относительно $\mu$, если $\forall e$ -- измер., т.ч. $\mu e = 0 \implies \nu e = 0$.
+
+    Обозначение $\nu \prec \mu$ или $\nu \ll \mu$.
+\end{definition}
+\begin{theorem}
+    (\textbf{Радона-Никодима}).
+
+    Пусть меры $\mu$ и $\nu$ заданы на одной $\sigma$-алгебре. Тогда $\nu \prec \mu \Leftrightarrow $ существует плотность меры $\nu$ относительно $\mu$.
+\end{theorem}
+
+\begin{theorem}
+    Пусть $f, g$ -- суммируемые функции. Если $\forall A$ -- измерим. $\int_A f d \mu = \int_A g d \mu$,
+    то $f = g$ почти везде.
+\end{theorem}
+\begin{proof}
+    $h := f - g, \ E_+ := E \{ f \geq g \}, \ E_- := E \{ f < g \}$
+
+    $\int_E |h| d \mu = \underbrace{\int_{E_+} h d \mu}_{=0} - \underbrace{\int_{E_-} h d \mu}_{=0} = 0 \implies h = 0$ почти везде.
+\end{proof}
+
+\begin{theorem}
+    $w$ --  плотность $\nu$ относительно $\mu$. Тогда 
+
+    \begin{enumerate}
+        \item Если $f \geq 0$, то $\int_E f d \nu = \int_E f w d \mu \ : (*)$
+        \item $fw$ -- суммируема, относительно $\mu$ $\Leftrightarrow$ f -- суммируема относительно $\nu$, и в этом случае есть формула $(*)$
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    \begin{enumerate}
+        \item {
+            Пусть $f = \mathbb{1}_A$, тогда $\int_E f d \nu = \nu (A \cap E) = \int_{A \cap E} w d \mu = \int_E \mathbb{1}_A w d \mu$. По линейности $(*)$ верна для неотрицательный простых.
+
+            Пусть $f \geq 0$ -- измер. Тогда найдутся простые $0 \leq \phi_1 \leq \phi_2 \leq \dots$ ($0 \leq w \phi_1 \leq w \phi_2 \leq \dots$) и $\phi_n \rightarrow f$ поточечно. $\underbrace{\int_E \phi_n d \nu}_{\rightarrow \int_E f d \nu} = \underbrace{\int_E \phi_n w d \mu}_{\rightarrow \int_E f w d \mu}$ -- по т. Леви.
+        }
+        \item {
+            $\int_E |f| d \nu = \int_E |f| w d \mu \implies f$ -- суммируема относительно $\nu$ $\Leftrightarrow f w$ суммируема относительно $\mu$
+
+            $\int_E f_{\pm} d \nu = \int_E f_{\pm} w d \mu$ и вычитаем.
+        }
+    \end{enumerate}
+\end{proof}
+\begin{properties}
+    Неравенство Гельдера.
+
+    Пусть $p, q > 1$ и $\frac{1}{p} + \frac{1}{q} = 1$. Тогда $\int_E |fg|d \mu \leq \left(\int_E |f|^p d \mu\right)^{\frac{1}{p}} \cdot \left(\int_E |g|^q d \mu\right)^{\frac{1}{q}} = A \cdot B$
+\end{properties}
+\begin{proof}
+    Пусть $f, g \geq 0$ (просто чтобы не писать модули), $A^p := \int_E f^p d \mu, \ B^q := \int_E g^q d \mu$.
+
+    Случай $A = 0. \implies$ $f^p = 0$ почти везде $\implies f = 0$ почти везде $\implies f g  = 0$ почти везде $\implies \int_E f g d \mu = 0$.
+
+    Можно считать, что $A, B > 0$.
+
+    Случай $A = +\infty$. Очевидно.
+
+    Можно считать $0 < A , B < +\infty$.
+    
+    $u := \frac{f}{A}, \ v:= \frac{g}{B}$
+
+    $\int_E u^p d \mu = 1 = \int_E v^q d \mu, \ uv \leq \frac{u^p}{p} + \frac{v^q}{q}$ верно (Упражнение, ну конечно. Фиксируем одну из переменных как параметр и исследуем нер-во по второй переменной).
+
+    Интегрируем полученное нер-во: $\frac{1}{AB} \int_E f g d \mu = \int_E u v d \mu \leq \frac{1}{p} \underbrace{\int_E u^p d \mu}_{=1} + \frac{1}{q} \underbrace{\int_E v^q d \mu}_{=1} = \frac{1}{p} + \frac{1}{q} = 1$ 
+\end{proof}
+
+\begin{properties}
+    Неравенство Минковского.
+
+    $p \geq 1$, тогда $\left(\int_E |f + g|^p d \mu\right)^{\frac{1}{p}} \leq \left( |f|^p d \mu \right)^{\frac{1}{p}} + \left( |g|^p d \mu \right)^{\frac{1}{p}}$
+\end{properties}
+\begin{proof}
+    Можно считать, что $f, g \geq 0$, также можно считать, что $\int_E f^p d \mu$ и $\int_E g^p d \mu < +\infty$.
+
+    Проверим, что $\int_E (f + g)^p d \mu < +\infty$:
+    
+    $f + g \leq 2 \max \{ f, g \} \implies (f + g)^p \leq 2^p \max\{ f^p, g^p \} \leq 2^p (f^p + g^p)$
+
+    $\underbrace{\int_E (f + g)^p d \mu}_{=: C^p} \leq 2^p \left(\int_E f^p d \mu + \int_E g^p d \mu \right) < +\infty$ -- показали, что левая часть конечна.
+
+    Можем считать, что $0 < C < +\infty$:
+    
+    $C^p = \int_E (f+g)^p d \mu = \int_E (f + g) (f + g)^{p - 1} d \mu = \int_E f (f+g)^{p-1} d \mu + \int_E g (f + g)^{p - 1} d \mu$
+
+
+    Пусть $\frac{1}{p} + \frac{1}{q} = 1, \ q = \frac{p}{p-1}, \ (p - 1) q = p$, тогда:
+
+    $\int_E{f \cdot (f + g)^{p - 1} d \mu} \underbrace{\leq}_{\text{нер-во Гельдера}} \left(\int_E f^p d \mu\right)^{\frac{1}{p}} \cdot \left(\int_E ((f+g)^{p-1})^{q} d \mu\right)^{\frac{1}{q}} = \left(\int_E f^p d \mu\right)^{\frac{1}{p}} \cdot \underbrace{\left(C^p\right)^{\frac{1}{q}}}_{= C^{p - 1}} \leq \left( \int_E f^p d \mu \right)^{\frac{1}{p}} C^{p - 1} + \left(\int_E g^p d \mu\right)^{\frac{1}{p}} \cdot C^{p - 1}$ -- сокращаем на $C^{p - 1}$.
+\end{proof}
+
+\Subsection{Предельный переход под знаком интеграла}
+\begin{theorem}
+    \textbf{Леви}.
+
+    $0 \leq f_1 \leq f_2 \leq \dots$ и $f = \lim{f_n}$, тогда $\lim{\int_E{f_n d \mu}} = \int_E f d \mu$.
+\end{theorem}
+\begin{consequence}
+    Пусть $u_n \geq 0.$ Тогда $\int_E {\sum_{n=1}^{\infty} u_n d \mu} = \sum_{n=1}^{\infty} \int_E {u_n d \mu}$
+\end{consequence}
+\begin{proof}
+    $s_n := \sum_{k=1}^{n} u_k, \ 0 \leq s_1 \leq s_2 \leq \dots$ и $s_n \rightarrow s := \sum_{n=1}^{\infty} u_n$.
+
+    $\int_E{s d \mu} = \lim{\int_E{s_n d \mu}} = \lim{\int_E{\sum_{k=1}^{n} u_k d \mu}} = \lim{\sum_{k=1}^{n} \int_E{u_k d \mu}} = \sum_{k=1}^{\infty} \int_E{u_k d \mu}$
+\end{proof}
+
+\begin{consequence}
+    Если $\sum_{n=1}^{\infty} \int_E{|f_n| d \mu} < +\infty$, то $\sum_{n=1}^{\infty} f_n(x)$ сходится при почти всех $x \in E$.
+\end{consequence}
+\begin{proof}
+    $+\infty > \sum_{n=1}^{\infty} \int_E{|f_n| d \mu} = \int_E{\sum_{n=1}^{\infty} |f_n| d \mu} \implies \sum_{n=1}^{\infty} |f_n|$ -- суммир.
+
+    $\implies \sum_{n=1}^{\infty} |f_n|$ почти везде конечна $\implies \sum_{n=1}^{\infty} f_n(x)$ абс. сходится при почти всех $x \in E \implies$ сходится при почти всех $x \in E$.
+\end{proof}
+
+\begin{lemma}
+    \textbf{Фату}.
+
+    Если $f_n \geq 0$, то $\int_E{\underline{\lim}{f_n d \mu}} \leq \underline{\lim}{\int_E{f_n d \mu}}$.
+\end{lemma}
+\begin{proof}
+    $\underline{\lim}{f_n} = \lim{\underbrace{\inf\{ f_n, f_{n+1}, \dots \}}_{=: g_n}}$
+
+    $0 \leq g_1 \leq g_2 \leq \dots$ и $g_n \rightarrow \underline{\lim}{f_n}$
+
+    $\underbrace{\implies}_{\text{теорема Леви}} \underbrace{\lim_{\int_E{g_n d \mu}}}_{= \underline{\lim}{\int_E{g_n d \mu}} \leq \underline{\lim}{\int_E{f_n d \mu}}} = \int_E{\underline{\lim}{f_n d \mu}}$
+
+    $g_n \leq f_n \implies \int_E{g_n d \mu} \leq \int_E{f_n d \mu} \implies \underline{\lim}{\int_E{g_n d \mu}} \leq \underline{\lim}{\int_E{f_n d \mu}}$
+\end{proof}
+
+\begin{remark}
+    Равенства может и не быть:
+
+    $\mu = \lambda, \ E = \mathbb{R}, \ f_n = \mathbb{1}_{[n, +\infty)}$
+
+    $\int_E{f_n d \mu} = +\infty$, но $f_n \rightarrow 0$
+
+    Из этих двух условие следует, что $\int_E{\underline{\lim}{f_n d \mu}} = \int_E{0 d \mu} = 0$
+\end{remark}
+
+% todo: put all in-integrals expressions in {}, aka \int_E ... -> \int_E {...}
+
+
+\begin{consequence}
+    (Усиленный вариант теоремы Леви).
+
+    Пусть $0 \leq f_n \leq f$ и $f = \lim{f_n}$. Тогда $\lim{\int_E{f_n d \mu}} = \int_E{f d \mu}$
+\end{consequence}
+\begin{proof}
+    $f_n \leq f \implies \int_E{f_n d \mu} \leq \int_E{f d \mu} \implies \int_E{f d \mu} = \int_E{\underline{\lim}{f_n} d \mu} \leq \underline{\lim}{\int_E{f_n d \mu}} \leq \overline{\lim}{\int_E{f_n d \mu}} \leq \int_E{f d \mu}$
+
+    $\implies \underline{\lim} = \overline{\lim} = \int_E{f d \mu} \implies \lim{\int_E{f_n d \mu}} = \int_E{f d \mu}$
+\end{proof}
+
+\begin{theorem}
+    Лебега о предельном переходе (о мажорируемой сходимости).
+
+    Пусть $f = \lim{f_n}$ и $|f_n| \leq \underbrace{F}_{\text{суммируемая мажоранта}}$ -- суммируема на $E$.
+
+    Тогда $\lim{\int_E{f_n d \mu}} = \int_E{f d \mu}$, более того $\lim{\int_E{|f_n - f|d \mu}} = 0$
+\end{theorem}
+\begin{proof}
+    $g_n := 2F - |f_n - f| \leq 2F$ и $g_n \rightarrow 2F$.
+    
+    $g_n \geq 2F - |f_n| - |f| \geq 0$.
+
+    Тогда предел $\lim{\int_E{g_n d \mu}} = 2 \int_E{F d \mu}$
+
+    $\int_E{g_n d \mu} = \int_E{2 F d \mu} - \int_E{|f_n - f| d \mu}$
+
+    Из двух строчек выше делаем вывод, что $\underbrace{\int_E{|f_n - f| d \mu}}_{\geq \ \left| \int_E{(f_n - f) d \mu} \right| \ = \ \left| \int_E{f_n d \mu} - \int_E{f d \mu} \right|} \rightarrow 0$
+\end{proof}
+\begin{remark}
+    \begin{enumerate}
+        \item {
+            Без суммир. мажоранты неверно:
+
+            \begin{equation}
+                f_n = n \cdot \mathbb{1}_{[0, \frac{1}{n}]} \rightarrow f =
+                \begin{cases}
+                    +\infty, \text{  в точке 0} \\
+                    0, otherwise \\
+                \end{cases}
+            \end{equation}
+            
+
+            $\int_{[0, 1]}{f d \lambda} = 0, \ \int_{[0, 1]}{f_n d \lambda} = 1, \ F:=\sup{f_n}, \ F(x) = n \text{ при } \frac{1}{n+1} < x \leq \frac{1}{n}$
+        }
+        \item {
+            Поточечную сходимость можно заменить на сходимость почти везде, можно заменить и на сходимость по мере.
+        }
+    \end{enumerate}
+\end{remark}
+
+\begin{theorem}
+    Пусть $f \in C[a, b]$. Тогда $\int_a^b {f} = \int_{[a, b]}{f d \lambda}$.
+\end{theorem}
+\begin{proof}
+    % todo: picture
+    $a = x_0$
+
+    $b = x_n$
+
+    $S_* := \sum_{k=1}^{n} \min_{t \in [x_{k-1}, \ x_k]} {f(t) \cdot (x_k - x_{k-1})}$
+
+    $S^* := \sum_{k=1}^{n} \max_{t \in [x_{k-1}, \ x_k]} {f(t) \cdot (x_k - x_{k-1})}$
+
+    % todo: second picture
+
+    Если мелкость дробления $\rightarrow 0$, то $S_*, S^* \rightarrow \int_a^b {f}$.
+
+    $g_*(x) := \min_{t \in [x_{k - 1}, \ x_k]}{f(t)}$ при $x \in [x_{k - 1}, \ x_k]$
+
+    $g^*(x) := \max_{t \in [x_{k - 1}, \ x_k]}{f(t)}$ при $x \in [x_{k - 1}, \ x_k]$
+
+    $\int_{[a, b]}{g_* d \lambda} = S_*, \ \int_{[a, b]}{g^* d \lambda} = S^*$
+
+    $g_* \leq f \leq g^*$ почти везде.
+
+    $\underbrace{S_*}_{\rightarrow \ \int_a^b f} = \int_{[a, b]}{g_* d \lambda} \leq \int_{[a, b]}{f d \lambda} \leq \int_{[a, b]}{g^* d \lambda} = \underbrace{S^*}_{\rightarrow \ \int_a^b{f}} \implies \int_{[a, b]}{f d \lambda} = \int_a^b {f}$
+\end{proof}
+\begin{remark}
+    На самом деле это верно для любой функции, интегрир. по Риману на $[a, b]$.
+\end{remark}
+
+\begin{theorem}
+    (Критерий Лебега интегрированности по Риману).
+
+    $f: [a, b] \rightarrow \mathbb{R}$, тогда $f$ -- интегрируема по Риману $\Leftrightarrow$ множество точек разрыва $f$ имеет нулевую меру Лебега.
+\end{theorem}
+\begin{example}
+    Возьмем $f: [0, 1] \rightarrow \mathbb{R}, \ f = \mathbb{1}_{[0, 1] \cap \mathbb{Q}}$.
+
+    $f = 0$ почти везде $\implies \int_{[0, 1]}{f d \lambda} = 0$, но точки разрыва -- весь отрезок $[0, 1]$.
+\end{example}
+
+\Subsection{Произведение мер}
+\begin{definition}
+    $\left(X, \mathcal{A}, \mu\right)$ и $\left(Y, \mathcal{B}, \nu\right)$ -- простарнства с $\sigma$-конечными мерами.
+
+    $\mathcal{P} = \{ A \times B : \ A \in \mathcal{A}, \ B \in \mathcal{B}, \ \mu A < +\infty \  \land \ \nu B < +\infty \}$
+
+    $m_0 (A \times B) = \mu A \cdot \nu B < +\infty, \ A \times B$ -- измеримый прямоугольник.
+\end{definition}
+\begin{theorem}
+    $\mathcal{P}$ -- полукольцо, а $m_0$ -- $\sigma$-конечная мера на нем.
+\end{theorem}
+\begin{proof}
+    $\{ A \in \mathcal{A}: \ \mu A < +\infty \}$ и $\{ B \in \mathcal{B}: \ \nu B < +\infty \}$ -- полукольца (проверяем определение полукольца для обоих множеств).
+
+    $\mathcal{P}$ -- декартово произведение полуколец, то есть тоже полукольцо (эта по теореме, которая была выше).
+
+    Проверяем, что $m_0$ -- мера. Пусть $A \times B = \bigsqcup_{k=1}^{\infty} A_k \times B_k$.
+
+    $\mathbb{1}_A(x) \times \mathbb{1}_B(y) = \mathbb{1}_{A \times B} (x, y) = \sum_{k=1}^{\infty} \mathbb{1}_{A_k \times B_k} (x, y) = \sum_{k=1}^{\infty} \mathbb{1}_{A_k}(x) \times \mathbb{1}_{B_k}(y)$
+
+    $\int_Y {\mathbb{1}_A(x) \cdot \mathbb{1}_B(Y) d \nu (y)} = \sum_{k=1}^{\infty} \int_Y{\mathbb{1}_{A_k}(x) \cdot \mathbb{1}_{B_k}(y) d \nu (y)} = \sum_{k=1}^{\infty} \mathbb{1}_{A_k} (x) \cdot \nu B_k$
+
+    $\int_X {\mathbb{1}_A(x) \nu B d \mu(x)} = \sum_{k=1}^{\infty} \int_{X} {\mathbb{1}_{A_k}(x) \cdot \nu B_k d \mu (x)} = \sum_{k=1}^{\infty} \mu A_k \cdot \nu B_k = \sum_{k=1}^{\infty} m_0 (A_k \times B_k)$
+
+    $\sigma$-конечность $m_0$: $X = \bigsqcup_{j=1}^{\infty} X_j$, $Y = \bigsqcup_{j=1}^{\infty} Y_j$, $\mu X_j < +\infty, \ \nu Y_k < +\infty$
+
+    $X \times Y = \bigsqcup_{k, j = 1}^{\infty} X_j \times Y_k$
+
+    $m_0 (X_j \times Y_k) < +\infty$.
+\end{proof}
+
+\begin{definition}
+    $(X, \mathcal{A}, \mu)$ и $(Y, \mathcal{B}, \nu)$ -- пространства с $\sigma$-конечными мерами. Произведения мер $\mu$ и $\nu$ -- стандратное продолжение меры $m_0$.
+
+    Обозначение: $\mu \times \nu, \ \mathcal{A} \otimes \mathcal{B}$ -- $\sigma$-алгебра, на которую продолжили. $(X \times Y, \mathcal{A} \otimes \mathcal{B}, \mu \times \nu)$
+\end{definition}
+
+\begin{consequence}
+    \begin{enumerate}
+        \item Декартово произвдедение измер мн-в -- измеримо.
+        \item Если $\mu e = 0$, то $(\mu \times \nu)(e \times Y) = 0$.
+    \end{enumerate}
+\end{consequence}
+\begin{proof}
+    \begin{enumerate}
+        \item {
+            $A \in \mathcal{A} \implies A = \bigcup_{n=1}^{\infty} A_n, \ \mu A_n < +\infty$
+
+            $B \in \mathcal{B} \implies B = \bigcup_{n=1}^{\infty} B_n, \ \nu B_n < +\infty$
+
+            $A \times B = \bigcup_{k, n = 1}^{\infty} \underbrace{A_k \times B_k}_{\in \mathcal{P}}$ -- измер.
+        }
+        \item {
+            $Y = \bigsqcup_{k=1}^{\infty} Y_k, \ \nu Y_k < +\infty$
+
+            $e \times Y = \bigsqcup_{k=1}^{\infty} e \times Y_k, \ (\mu \times \nu) (e \times Y_k) = \mu e \cdot \nu Y_k = 0$
+        }
+    \end{enumerate}
+\end{proof}
+
+\begin{remark}
+    Обозначения: $C \subset X \times Y, \ x \in X$.
+
+    $C_x := \{ y \in Y: (x, y) \in C \}$ -- сечения мн-ва $C$.
+
+    $C^y := \{ x \in X: (x, y) \in C \}$
+
+    %todo: picture
+\end{remark} 
+\begin{consequence}
+    \begin{enumerate}
+        \item {
+            $\left(\bigcup_{\alpha \in I} C_{\alpha}\right)_x = \bigcup_{\alpha \in I} (C_{\alpha})_x$
+        }
+        \item {
+            $\left( \bigcap_{\alpha \in I} C_{\alpha} \right)_x = \bigcap_{\alpha \in I} (C_{\alpha})_x$
+        }
+    \end{enumerate}
+\end{consequence}
+
+\begin{definition}
+    Пусть функция $f$ задана на мн-ве $E$, за исключением некоторого мн-ва $e$, $\mu e  = 0$. Если $f$ измерима на $E \setminus e$, то $f$ измерима на $E$ в \textbf{широком смысле}.
+\end{definition}
+
+\begin{definition}
+    Система мнжеств  -- монотонный класс, если 
+
+    \begin{enumerate}
+        \item $E_1 \subset E_2 \subset E_3 \subset \dots, \ E_n \in \epsilon \implies \bigcup_{n=1}^{\infty} E_n \in \epsilon$
+        \item $E_1 \supset E_2 \supset E_3 \supset \dots, \ E_n \in \epsilon \implies \bigcap_{n=1}^{\infty} E_n \in \epsilon$
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem}
+    Если монотонный класс содержит алгебру $\mathcal{A}$, то он содержит и $\mathcal{B} (\mathcal{A})$.
+\end{theorem}
+\begin{proof}
+    Докажем, что минимальный монотонный класс $\mathcal{M}$, содержащий $\mathcal{A}$ -- $\sigma$-алгебра.
+
+    Рассмотрим $A \in \mathcal{A}, \ \mathcal{M}_{A} := \{ B \in \mathcal{M} : \ A \cap B \in \mathcal{M} \ \land \ A \cap (X \setminus B) \in \mathcal{M} \}$ -- монотонный класс, содержащий $\mathcal{A}$.
+
+    Если $B \in \mathcal{A}$, то $B \cap A \in \mathcal{A} \subset \mathcal{M}$ и $A \cap (X \setminus B) \in \mathcal{A} \subset \mathcal{M} \implies \mathcal{M}_A \supset \mathcal{A}$
+
+    $E_1 \subset E_2 \subset \dots, \ E_n \in \mathcal{M}_A \implies E_n \cap A \in \mathcal{M} \implies \bigcup_{E_n} \cap A = \bigcup(E_n \cap A) \in \mathcal{M}$
+
+    Следовательно $\mathcal{M}_{A} = \mathcal{M} \implies \forall B \in \mathcal{M}, \ A \cap B \in \mathcal{M} \ \land \ A \setminus B \in \mathcal{M}$
+
+    $\implies \mathcal{M}$ -- симметричная структура.
+    
+    Рассмотрим $B \in \mathcal{M}$: $\mathcal{N}_B := \{ C \in \mathcal{M}: \ B \cap C \in \mathcal{M} \}$ -- монотонный класс, содержащий $\mathcal{A}$ (проверка по аналогии с предыдщуим случаем).
+
+    $\implies \mathcal{N}_B = \mathcal{M} \implies \forall C \in \mathcal{M}, \ B \cap C \in \mathcal{M} \implies \mathcal{M}$ -- алгебра. 
+
+    $A = \bigcup_{n=1}^{\infty} A_n, \ E_n = \bigcup_{k=1}^{n} A_k \in \mathcal{M}, \ E_1 \subset E_2 \subset \dots$
+
+    $\implies \underbrace{\bigcup E_n}_{= A} \in \mathcal{M}$, так как $\mathcal{M}$ -- монотонный класс.
+\end{proof}
