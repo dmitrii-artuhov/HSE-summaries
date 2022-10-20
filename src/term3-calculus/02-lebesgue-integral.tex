@@ -1319,3 +1319,179 @@
 
     $\implies \underbrace{\bigcup E_n}_{= A} \in \mathcal{M}$, так как $\mathcal{M}$ -- монотонный класс.
 \end{proof}
+
+
+\textbf{Тут пропущена половина лекции за 20.10.2022 -- ее нужно дописать.}
+
+\begin{theorem}
+    \textbf{Тонелли}.
+
+    $(X, \mathcal{A}, \mu), \ (Y, \mathcal{B}, \nu)$ -- пространства с полными $\sigma$-конечными мерами.
+
+    $f: \ X \times Y \rightarrow \overline{\mathbb{R}} \geq 0$, измеримая, $m = \mu \times \nu$.
+
+    Тогда: 
+    \begin{enumerate}
+        \item {
+            $f_x(y) := f(x, y)$ -- измерима, относительно $\nu$ в широком смысле при почти всех $x \in X$.
+        }
+        \item {
+            $\phi(x) := \int_Y { f(x, y) d \nu(y) }$ -- измерима относительно $\nu$.
+        }
+        \item {
+            $\int_{X \times Y} {f d m} = \int_{X} {\phi d \mu} = \int_{X} {\left(\int_{Y} {f(x, y) d \nu(y)}\right) d \mu(x)}$
+        }
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    \begin{enumerate}
+        \item {
+            Пусть $f = \mathbb{1}_C$ (характеристическая функция мн-ва $C$), тогда $f_x(y) = \mathbb{1}_{C_x}(y)$.
+
+            $\int_Y {f_x(y)d \nu(y)} = \int_Y {\mathbb{1}_{C_x}(y) d \nu(y)} = \nu C_{x}$
+
+            $\int_{X \times Y} {f d m} = \int_{X \times Y} {\mathbb{1}_C d m} = m C = \int_X {\nu C_x d \mu(x)} = \int_X {\phi d \mu}$.
+        }
+        \item {
+            Пусть $f \geq 0$ -- простая, тогда $f = \sum_{k=1}^{n} a_k \mathbb{1}_{A_k}$
+        }
+        \item {
+            Пусть $f \geq 0$ -- измеримая, тогда берем последовательность простых функций $0 \leq f_1 \leq f_2 \leq \dots$, $\lim{f_n} = f$.
+
+            $(f_n)_x(y)$ -- измерим. при почти всех $x$.
+
+            $(f_n)_x \nearrow f_x$ -- измерим. при почти всех $x$.
+
+            $\phi_n(x) = \int_Y {f_n(x, y) d \nu (y)}$ -- измерим. и $0 \leq \phi_1 \leq \phi_2 \leq \dots$.
+
+            $\lim{\phi_n(x)} = \int_Y{\lim{f_n (x, y)} d \nu(y)} = \int_Y{f(x, y) d \nu(y)} = \phi(x)$ -- измерим.
+
+            $\int_{X \times Y}{f d m} \underbrace{\leftarrow}_{\text{т. Леви}} \int_{X \times Y} {f_n d m} = \int_X {\phi_n d \mu} \rightarrow \int_X{\phi d \mu}$.
+        }
+    \end{enumerate}
+\end{proof}
+
+
+\begin{theorem}
+    \textbf{Фубини}.
+
+    $(X, \mathcal{A}, \mu), \ (Y, \mathcal{B}, \nu)$ -- пространства с полными $\sigma$-конечными мерами.
+
+    $f: \ X \times Y \rightarrow \overline{\mathbb{R}} \geq 0$, суммируема, $m = \mu \times \nu$.
+
+    Тогда: 
+    \begin{enumerate}
+        \item {
+            $f_x(y) := f(x, y)$ -- суммируема, относительно $\nu$ в широком смысле при почти всех $x \in X$.
+        }
+        \item {
+            $\phi(x) := \int_Y { f(x, y) d \nu(y) }$ -- суммируема относительно $\nu$.
+        }
+        \item {
+            $\int_{X \times Y} {f d m} = \int_{X} {\phi d \mu} = \int_{X} {\left(\int_{Y} {f(x, y) d \nu(y)}\right) d \mu(x)}$
+        }
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    $(*): \int_{X \times Y} {|f| d m} < +\infty$ -- следует из суммируемости $f$.
+    
+    $(*) \underbrace{=}_{\text{т. Тонелли}} = \int_{X} {\underbrace{\int_Y {|f(x, y)| d \nu(y)}}_{:= \alpha(x)} d \mu(x)}$
+
+    $\implies \alpha(x) = \underbrace{\int_Y{|f(x, y)| d \nu(y)}}_{\implies f_x \text{ -- суммируема при почти всех } x \in X}$ -- конечна при почти всех $x \in X$.
+
+    $\int_X{|\phi| d \mu} = \int_X{\left|\int_Y{f(x, y)d \nu(y)}\right| d \mu (x)} \leq \int_X{\int_Y{\left|f(x, y)\right|d \nu(y)} d \mu (x)} = \int_{X \times Y} {|f| d m} < +\infty$
+
+    $\implies \phi$ -- суммируема.
+
+    $\int_{X \times Y} {f_{\pm} d m} = \int_X { \left(\int_Y{f_{\pm}(x, y) d \nu(y)}\right) d \mu(x)}$ и вычтем $f = f_+ - f_-$.
+\end{proof}
+
+\begin{consequence}
+    Если $f \geq 0$ и измеримая или  $f$ -- суммируемая, то 
+
+    $\textbf{(**)}$: $\int_X{\left( \int_Y{f(x, y) d \nu(y)} \right) d \mu(x)} = \int_Y{\left( \int_X{f(x, y) d \mu(x) }\right) d \nu(y)}$.
+\end{consequence}
+
+\begin{consequence}
+    $(X, \mathcal{A}, \mu), \ (Y, \mathcal{B}, \nu)$ -- пространства с полными $\sigma$-конечными мерами.
+
+    $f: X \rightarrow \overline{\mathbb{R}}$ -- суммируема по $\mu$, $g: Y \rightarrow \overline{\mathbb{R}}$ -- суммируема по $\nu$. 
+
+    Тогда $h(x, y) = f(x) \cdot g(y)$ суммируема по $m = \mu \times \nu$ и $\int_{X \times Y} {h d m} = \int_X {f d \mu} \cdot \int_Y {g d \nu}$.
+\end{consequence}
+\begin{proof}
+    $\int_{X \times Y}{|h| d m} \underbrace{=}_{\text{т. Тонелли}} = \int_X{\left( \int_Y{|f(x)| |g(y)| d \nu(x)} \right) d \mu(x)} =$
+    
+    $= \int_X{ |f(x)| \cdot \int_Y {|g(y)| d \nu(y)} d \mu(x)} = \int_Y {|g| d \nu} \cdot \int_X {|f| d \mu} < +\infty \implies h$ -- суммируема.
+
+    По Фубини пишем все без модулей.
+\end{proof}
+
+\begin{remark}
+    \begin{enumerate}
+        \item {
+            Суммируемости $f_x(y) = f(x, y), \ f^y(x) = f(x, y), \ \phi(x) = \int_X{f_x d \nu}, \ \psi(y) = \int_X{f^y d \mu}$ не хватает для суммируемости $f$ по мере $m$.
+        }
+        \item {
+            Без суммируемости $f$ по $m$ равенства $\textbf{(**)}$ может не быть.
+
+            \begin{example}
+                $\mathbb{R}^2, \ f(x, y) = \frac{x^2 - y^2}{(x^2 + y^2)^2}, \ g(x, y) = \frac{2xy}{(x^2 + y^2)^2}$
+
+                Первообразные:
+
+                1. $\int{f(x, y) d x} = -\frac{x}{x^2 + y^2}$
+
+                2. $\int{g(x, y) d x} = -\frac{y}{x^2 + y^2}$
+
+                Подставляем:
+
+                1. $\int_{[-1, 1]}{f(x, y) d x} = -\frac{x}{x^2 + y^2}|^{x=1}_{x=-1} = \frac{-2}{y^2 + 1}$
+
+                $\int_{[-1, 1]} {\int_{[-1, 1]} {f(x, y) dx}dy} = -2 \int_{[-1, 1]}{\frac{dy}{y^2 + 1}} = -2 \cdot \arctan(y) |^1_{-1} = -\pi$
+
+                $\int_{[-1, 1]} {\int_{[-1, 1]} {f(x, y) dy}dx} = \pi$ -- не совпали из-за отсутствия суммируемости.
+
+                2. $\int_{[-1, 1]}{g(x, y) d x} = -\frac{y}{x^2 + y^2}|^{x=1}_{x=-1} = 0$
+            \end{example}
+        }
+    \end{enumerate}
+\end{remark}
+
+\begin{theorem}
+    $(X, \mathcal{A}, \mu)$ -- пространство с $\sigma$-конечной мерой, $f: X \rightarrow \overline{\mathbb{R}}$ -- измерим.
+
+    $\int_X{|f| d \mu} = \int_{0}^{+\infty} {\mu X \{ |f| \geq t \}}dt$ (с кобках это функция распределения).
+\end{theorem}
+\begin{proof}
+    $m = \mu \times \lambda_{1}$.
+
+    $\int_X{|f| d \mu} = m \mathcal{P}_{|f|} = \int_{[0, +\infty]} {\left(\int_{X} {\underbrace{\mathbb{1}_{\mathcal{P}_{|f|}}(x, t)}_{=1 \Leftrightarrow |f(x)| \geq t} d \mu(x)}\right) d \lambda_1(t)} = \int_{[0, +\infty]}{\mu X \{ |f| \geq t \} d \lambda_1(t)}$.
+
+    % todo: picture
+\end{proof}
+
+\begin{consequence}
+    \begin{enumerate}
+        \item {
+            В условии теоремы $\int_X {|f| d \mu} = \int_{0}^{+\infty} {\mu X\{ |f| > t \}dt}$
+
+            \begin{proof}
+                $g(t) := \mu X \{ |f| \geq t \}$ -- монотонно возраст., не более чем счтеное число точек разрыва.
+
+                $\mu X\{ |f| > t \} = \lim{\mu X \{ |f| \geq t+\frac{1}{n} \}} = \lim_{n \rightarrow \infty}{g(t + \frac{1}{n})} = \lim_{s \rightarrow t+}{g(s)} = g(t)$ при почти всех $t$.
+
+                $X \{ |f| > t \} = \bigcup_{n=1}^{\infty} X \{ |f| \geq t + \frac{1}{n} \}$
+            \end{proof}
+        }
+        \item {
+            $\int_X {|f|^p d \mu} = \int_{0}^{+\infty} {p t^{p-1} \mu X\{ |f| \geq t \} dt}$ при $p > 0$.
+
+            \begin{proof}
+                $\int_X {|f|^p d \mu} = \int_{0}^{+\infty} {\mu X \{ |f|^p \geq t \}dt} = \int_0^{+\infty}{\mu X \{ |f| \geq t^{\frac{1}{p}} \} dt} = \int_{0}^{+\infty}{g (t^{\frac{1}{p}}) dt} = \int_{0}^{+\infty}{p s^{p-1} g(s) ds}$
+                
+                Где $t = s^p$, $s = t^{\frac{1}{p}}$, $dt = ps^{p-1}ds$.
+            \end{proof}
+        }
+    \end{enumerate}
+\end{consequence}
