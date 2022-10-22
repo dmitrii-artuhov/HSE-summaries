@@ -191,23 +191,25 @@
 
 \begin{theorem}
     \begin{enumerate}
-        \item Произведение и сумма измереных ф-й -- измеримая.
+        \item Произведение и сумма измеримых функций -- измеримая.
         \item Если  $f: E \rightarrow \mathbb{R}$ -- измеримая и $\phi \in C(\mathbb{R})$, то $\phi \circ f$ -- измеримая.
-        \item Если $f \geq 0$ -- измеримая, то $f_p \ (p>0)$ -- измеримая, $(+\infty)^p = +\infty$
+        \item Если $f \geq 0$ -- измеримая, то $f^p \ (p>0)$ -- измеримая, $(+\infty)^p = +\infty$
         \item Если $f: E \rightarrow \bar{\mathbb{R}}$ -- измеримая, $\tilde{E} := E \{f \not = 0\}$, то $\frac{1}{f}$ -- измерима на $\tilde{E}$.
     \end{enumerate}
 \end{theorem}
 \begin{proof}
     \begin{enumerate}
         \item {
-            $f + g.$ Если $f, g: E \rightarrow \mathbb{R}$, то $\phi(x, y) = x+y \implies \phi(f, g) = f+g$ -- измерима.
+            $f + g.$ Для каждой функции рассмотрим три множества:
 
             $E \{ f \not = \pm \infty \}, \ E \{ f = + \infty \}, \ E \{ f = -\infty \}$
 
             $E \{ g \not = \pm \infty \}, \ \underbrace{E \{ g = + \infty \}}_{= \bigcup_{n=1}^{\infty} E \{ g \geq n \}}, \ E \{ g = -\infty \}$
 
 
-            Для первый выражений на обеих строчках верно, что они берутся из предыдущих теор., а на остальных пересеч. константы.
+            Для конечного случая ($E\{f \neq \pm \infty\} \cap E\{g \neq \pm \infty\}$) можем сослаться на предыдущую теорему, взяв в качестве непрерывной $\phi(f, g) = f + g$.
+
+            На остальных случаях тоже рассматриваем $f + g$: измеримость будет, т.к. $f + g = const$.
         }
         \item {
             Частный случай предыдущей теоремы.
@@ -224,7 +226,7 @@
                 \begin{cases}
                     \tilde{E} \{ f \geq \frac{1}{c} \} \cup \tilde{E} \{ f < 0 \} \text{, при $c > 0$} \\
                     \tilde{E}\{ f < 0 \} \text{, при $c = 0$} \\
-                    \tilde{E} \{ f \geq \frac{1}{c} \} \cap \tilde{E} \{ f < c \} \text{, при $c < 0$}
+                    \tilde{E} \{ f \geq \frac{1}{c} \} \cap \tilde{E} \{ f < 0 \} \text{, при $c < 0$}
                 \end{cases}                
             \end{equation}
         }
@@ -236,10 +238,10 @@
             Произведение конечного числа измер. -- измер.
         }
         \item {
-            Натуральная степень измер. ф-и -- измер.
+            Натуральная степень измер. функции -- измер.
         }
         \item {
-            Линейная комбинация измер. ф-й -- измер.
+            Линейная комбинация измер. функций -- измер.
         }
     \end{enumerate}
 \end{consequence}
@@ -249,13 +251,13 @@
 \end{theorem}
 
 \begin{proof}
-    $U := f^{-1}(-\infty, c)$ -- открытое мн-во в $E \implies \exists G \subset \mathbb{R}^m$ --  открытое, т.ч. $U = \underbrace{G}_{\text{измер.}} \cap \underbrace{E}_{\text{измер.}}$ 
+    $U := f^{-1}(-\infty, c)$ -- открытое мн-во в $E \implies \exists G \subset \mathbb{R}^m$ --  открытое, т.ч. $U = \underbrace{G}_{\text{измер.}} \cap \underbrace{E}_{\text{измер.}}$  ($E$ измеримо по условию, а $G$ измеримо в \sigma-алгебре)
 \end{proof}
 
 \begin{definition}
-    Измеримая ф-я -- простая, если она принимает лишь конечное число значений.
+    Измеримая функция -- простая, если она принимает лишь конечное число значений.
 
-    Допустимое разбиение $X$ -- разбиение $X$ на конечное число измер. мн-в, т.ч. на каждом мн-ве ф-я константа.
+    Допустимое разбиение $X$ -- разбиение $X$ на конечное число измеримых множеств, таких что на каждом множестве простая функция константна.
 \end{definition}
 
 \begin{consequence}
@@ -264,20 +266,20 @@
             Если $X$ разбито на конечное число измер. мн-в и $f$ постоянна (то есть сужение на каждом кусочке $X$ это какая-та константа) на каждом из них, то $f$ -- простая.
         }
         \item {
-            Если $f$ и $g$ -- простые ф-и, то у них существует общее допустимое разбиение.
+            Если $f$ и $g$ -- простые функции, то у них существует общее допустимое разбиение.
 
             \begin{proof}
                 $X = \underbrace{\bigsqcup_{k=1}^{m} A_k}_{\text{допуст. для } f} = \underbrace{\bigsqcup_{j=1}^{n} B_j}_{\text{допуст. для } g} \implies X = \bigsqcup_{k=1}^{m} \bigsqcup_{j=1}^{n} (A_k \cap B_j)$ -- допустимое для $f$ и $g$. 
             \end{proof}
         }
         \item {
-            Сумма и произведение простых ф-й -- простая ф-я.
+            Сумма и произведение простых функций -- простая функция.
         }
         \item {
-            Линейная комбинация простых ф-й -- простая ф-я.
+            Линейная комбинация простых функций -- простая функция.
         }
         \item {
-            $\max$ и $\min$ конечного числа простых ф-й -- простая ф-я.
+            $\max$ и $\min$ конечного числа простых функций -- простая функция.
         }
     \end{enumerate}
 \end{consequence}
@@ -285,7 +287,7 @@
 \begin{theorem}
     (О приближении измеримых функций простыми)
 
-    $f: X \rightarrow \bar{\mathbb{R}}$ -- неотрицательная измеримая ф-я, тогда последовательность простых ф-й $\phi_1, \phi_2 \dots$, такие что $\phi_{i} \leq \phi{i + 1}: \ \forall i$ в каждой точке и $\lim{\phi_n} = f$. Более того, если $f$ -- ограничена сверху, то можно выбрать $\phi_n$ так, что $\phi_n \rightrightarrows f$ на $X$.
+    $f: X \rightarrow \bar{\mathbb{R}}$ -- неотрицательная измеримая функция, тогда $\exists$ последовательность простых функций $\phi_1, \phi_2 \dots$, такие что $\phi_{i} \leq \phi_{i + 1}: \ \forall i$ в каждой точке и $\lim{\phi_n} = f$. Более того, если $f$ -- ограничена сверху, то можно выбрать $\phi_n$ так, что $\phi_n \rightrightarrows f$ на $X$.
 \end{theorem}
 \begin{proof}
     $\Delta_k^{(n)} := [\frac{k}{n}, \frac{k+1}{n})$ при $k = 0, \dots, (n^2 - 1)$ и $\Delta_{n^2}^{(n)} := [n, +\infty]$.
@@ -307,6 +309,8 @@
 
     % todo: picture here
     Для добавления монотонности берем не каждое $n$, а только степени двойки, тогда нам нужно взять $\psi_n = \max\{ \phi_1, \phi_2, \dots, \phi_n \}$ (тут должна быть картинка)
+
+    Равномерность: если $f$ ограничена, начиная с некоторого момента $A_{n^2}$ пусто $\implies$ все $x \not \in A_{n^2} \implies \forall x \in E\ f(x) - \frac{1}{n} < \phi_n(x) \leqslant f(x) \implies |\phi_n(x) - f(x)| < \frac{1}{n} \implies$ есть равномерная сходимость.
 \end{proof}
 
 
@@ -315,7 +319,7 @@
 
 Напоминание. $f_n, f : E \rightarrow \mathbb{R}$.
 
-Поточечная сходимость: $f_n$ к $f$, $\forall x \in E: f_n(x) \rightarrow f(x)$
+Поточечная сходимость: $f_n \to f$, $\forall x \in E: f_n(x) \rightarrow f(x)$
 
 Равномерная сходимость: $f_n \rightrightarrows f$ на $E$, $\sup_{x \in E} |f_n(x) - f(x)| \rightarrow 0$
 
@@ -325,20 +329,28 @@
     $f_n$ сходится к $f$ \textbf{почти везде}, если $\exists e \subset E, \ \mu e = 0$, т.ч. $\forall x \in E \setminus e, \ f_n(x) \rightarrow f(x)$
 
     \begin{remark}
-        Обозначение: $\mathcal{Z}(E) = \{ f: E \rightarrow \mathbb{R}, \text{ измеримых, } E\{ f = \pm \infty \text{  имеет меру 0} \} \}$
+        Обозначение: $\mathcal{L}(E, \mu) = \{ f: E \rightarrow \overline{\mathbb{R}} - \text{ измеримые, } \mu E\{ f = \pm \infty\} = 0\}$
     \end{remark}
 
-    Пусть $f_n, f \in \mathcal{Z}(E, \mu), \ f_n$ сходится к $f$ почти везде.
+    Пусть $f_n, f \in \mathcal{L}(E, \mu), \ f_n$ сходится к $f$ почти везде.
 
     $\exists e \subset E, \ \mu e = 0, $ т.ч. $\forall x \in E \setminus x, \ f_n(x) \rightarrow f(x)$
 \end{definition}
 
 
 \begin{definition}
-    $f_n, f \in \mathcal{Z}(E, \mu), \ f_n$ сходится по мере $\mu$ к $f$, если $\forall \epsilon > 0, \\ \mu E \{ | f_n - f | > \epsilon \} \rightarrow_{n \rightarrow \infty} 0, \ f_n \rightarrow_{\mu} f$
-
-    Зависимость равномерная $\implies$ (поточечная $\implies$ почти везде) | (сходимость по мере).
+    $f_n, f \in \mathcal{L}(E, \mu), \ f_n$ сходится по мере $\mu$ к $f$, если $\forall \varepsilon > 0, \\ \mu E \{ | f_n - f | > \varepsilon \} \rightarrow_{n \rightarrow \infty} 0, \ f_n \rightarrow_{\mu} f$
 \end{definition}
+
+\begin{remark}
+    Зависимость: равномерная $\implies$ (поточечная $\implies$ почти везде) | (сходимость по мере).
+
+    Равномерная $\implies$ поточечная -- знаем.
+
+    Поточечная $\implies$ почти везде -- у нас уже есть сходимость во всех точках, поэтому для ``почти везде'' ничего не надо выкидывать.
+
+    Равномерная $\implies$ сходимость по мере -- начиная с некоторого момента $E\{|f_n - f| > \varepsilon \}$ будет пустым множеством по определению равномерной сходимости.
+\end{remark}
 
 \begin{statement}
     \begin{enumerate}
@@ -357,7 +369,7 @@
 
             $\tilde{e} \subset E, \mu \tilde{e} = 0$ и $\lim{f_n(x)} = g(x), \ \forall x \in E \setminus \tilde{e}$
         
-            Из этого следует, что $f(x) = g(x)$ при $x \in E \setminus (e \cup \tilde{e})$
+            Тогда на $E \setminus (e \cup \tilde{e}) \lim f_n(x) = g(x)$ и $\lim f_n(x) = f(x) \implies f(x) = g(x) \forall x \in E \setminus (e \cup \tilde{e})$ 
         }
         \item {
             $\mu E \{ f \not = g \} \underbrace{=}_{?} 0, \ E\{ f \not = g \} = \bigcup_{k=1}^{\infty} E \{ |f - g| > \frac{1}{k} \}$.
@@ -381,7 +393,9 @@
 \begin{theorem}
     \textbf{Лебега}.
 
-    Пусть $\mu E < +\infty$ и $f_n$ сходится к $f$ почти везде, $f_n, f: E \rightarrow \bar{\mathbb{R}}$.
+    $f_n, f \in \mathcal{L}(E, \mu)$
+
+    Пусть $\mu E < +\infty$ и $f_n$ сходится к $f$ почти везде.
 
     Тогда $f_n$ сходится к $f$ по мере $\mu$.
 \end{theorem}
@@ -401,7 +415,7 @@
             Пусть $x \in \bigcap_{n=1}^{\infty} A_n \implies 0 \leftarrow f_n(x) > \epsilon \ \forall n \in \mathbb{N} \implies $ таких $x$ не существует.
         }
         \item {
-            Общий случай: $g_n(x) := \sum_{k \geq n} \{ |f_k(x) - f(x)| \}$
+            Общий случай: $g_n(x) := \sup_{k \geq n} \{ |f_k(x) - f(x)| \}$. $g_n(x) \searrow$, т.к. множество уменьшается.
 
             $\lim {g_n(x)} = \lim_{n} \sup_{k \geq n} \{ \dots \} = \overline{\lim_n {|f_n(x) - f(x)|}} = \lim {|f_n - f|} = 0$
 
@@ -1319,7 +1333,6 @@
 
     $\implies \underbrace{\bigcup E_n}_{= A} \in \mathcal{M}$, так как $\mathcal{M}$ -- монотонный класс.
 \end{proof}
-
 
 \begin{theorem}
     \textbf{Принцип Кавальери}.
