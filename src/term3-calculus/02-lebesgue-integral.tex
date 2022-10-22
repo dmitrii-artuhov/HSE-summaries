@@ -1321,7 +1321,223 @@
 \end{proof}
 
 
-\textbf{Тут пропущена половина лекции за 20.10.2022 -- ее нужно дописать.}
+\begin{theorem}
+    \textbf{Принцип Кавальери}.
+
+    $(X, \mathcal{A}, \mu), (Y, \mathcal{B}, \nu)$ - пространства с полными $\sigma$-конечными мерами.
+
+    $C \in \mathcal{A} \otimes \mathcal{B}, \ m = \mu \times \nu$. Тогда
+    \begin{enumerate}
+        \item {
+            $C_x \in \mathcal{B}$ при почти всех $x \in X$.
+        }
+        \item {
+            $\phi(x) := \nu C_x$ измеримая в широком смысле.
+            % todo: picture
+        }
+        \item {
+            $m C = \int_X {\nu C_x d \mu(x)}$
+            % todo: picture
+        }
+
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    Меры конечны и $C \in \underbrace{\mathscr{B}}_{\text{борелевская оболочка (\textcolor{blue}{см. определение \ref{borel-shell}})}}(\mathcal{A} \times \mathcal{B})$.
+
+    $\mathcal{E}$ -- система мн-в, в $\mathscr{B}(\mathcal{A} \times \mathcal{B})$, такая что, если $E \in \mathcal{E}$, то $E_x \in \mathcal{B} \ \forall x \in X$ и $\phi(x) = \nu E_x$ -- измеримая функция.
+
+    \textbf{Шаг 1}. $\mathcal{E} = \mathscr{B}(\mathcal{A} \times \mathcal{B})$
+
+    \textbf{a}. $\mathcal{E}$ -- измеримая система.
+
+    $(X \times Y \setminus E)_x = Y \setminus E_x \in \mathcal{B}, \ \nu (Y \setminus E_x) = \nu Y - \phi(x)$ -- измеримая.
+
+    \textbf{б}. $E_1 \subset E_2 \subset E_3 \subset \dots$ из $\mathcal{E} \implies \bigcup E_n \in \mathcal{E}$.
+
+    $\left( \bigcup_{n=1}^{\infty} E_n \right)_x = \bigcup_{n=1}^{\infty}\underbrace{\left( E_n \right)_x}_{\in \mathcal{B}}$
+
+    $\nu \left( \bigcup_{n=1}^{\infty} (E_n)_x \right) = \lim{\nu (E_n)_x}$ -- измеримая функция.
+
+    \textbf{в}. $E_1 \supset E_2 \supset E_3 \supset \dots $ из $\mathcal{E} \implies \bigcap_{n=1}^{\infty} E_n \in \mathcal{E}$ (можно переходить к дополнениям).
+
+    \textbf{г}. (б) + (в) $\implies \mathcal{E}$ -- монотонный класс.
+
+    \textbf{д}. $\mathcal{E} \supset $ измеримый прямоугольник $E = \mathcal{A} \times \mathcal{B} \implies E_x = $
+    $\begin{cases}
+        B \text{, если } x \in \mathcal{A} \\ 
+        \emptyset \text{, иначе} 
+    \end{cases}$,
+
+    $\nu E_x = 
+    \begin{cases}
+        0 \\
+        \nu \mathcal{B}
+    \end{cases}$
+    -- измеримая функция.
+
+    \textbf{e}. Если $E$ и $\tilde{E} \in \mathcal{E}$, то $E \sqcup \tilde{E} \in \mathcal{E}$.
+
+    $(E \sqcup \tilde{E})_x = \underbrace{E_x}_{\in \mathcal{B}} \sqcup \underbrace{\tilde{E}_x}_{\in \mathcal{B}} \in \mathcal{B}$
+
+    $\nu \left( (E \sqcup \tilde{E})_x \right) = \nu E_x + \nu \tilde{E}_x$ -- сумма измеримых функций.
+
+    \textbf{ж}. $\mathcal{E}$ содержит дизъюнктивное объединение всевозможных изм. прямоугольников $\implies \mathcal{E}$ содержит кольцо $\implies \mathcal{E}$ содержит алгебру $\underbrace{\implies}_{\text{по т. о монотонном классе}} \mathcal{E} \supset \mathscr{B}(\mathcal{A} \times \mathcal{B})$.
+
+    \textit{Мы сейчас проверили, что если $C \in \mathscr{B}(\mathcal{A} \times \mathcal{B})$, то первые два пункта теоремы выполнены. Давайте для этой эе упрощенной ситуации проверять 3-ий пункт.}
+    
+    \textbf{Шаг 2}. Формула (3) для $C \in \mathscr{B}(\mathcal{A} \times \mathcal{B})$.
+
+    Рассмотрим $\int_X{\nu E_x d \mu(x) =: \tilde{m} E}$ -- хотим сказать, что это мера на $\mathscr{B}(\mathcal{A} \times \mathcal{B})$.
+
+    Пусть $E_n$ -- дизъюнктны $\implies \tilde{m} (\bigsqcup E_n) = \int_X{\nu \left( \bigsqcup (E_n)_x \right) d \mu(x)} = \int_X {\sum_{n=1}^{\infty} \nu (E_n)_x d \mu(x)} = \sum_{n=1}^{\infty} \int_X {\nu (E_n)_x d \mu(x)} = \sum_{n=1}^{\infty} \tilde{m} E_n$.
+
+    $m = \tilde{m}$ на измеримых прямоугольниках $\implies$ они совпадают.
+    Получили, что хотели.
+
+    \textbf{Шаг 3}. $m C = 0, \ C \in \mathcal{A} \otimes \mathcal{B} \implies$ найдется $\tilde{C} \in \mathscr{B} (\mathcal{A} \times \mathcal{B})$, т.ч. $C \subset \tilde{C}$ и $m \tilde{C} = 0$.
+
+    $0 = m \tilde{C} = \int_X {\nu \tilde{C}_x d \mu (x)} \implies \nu \tilde{C}_x = 0$ при почти всех $x \in X$.
+
+    $C_x \subset \tilde{C}_x \implies C_x \in \mathcal{B}$ при почти всех $x \in X$ и $\nu C_x = 0$ при потчи всех $x \in X$.
+
+    $m C = 0 = \int_X {\nu C_x d \mu(x)}$.
+
+    \textbf{Шаг 4}. $C \in \mathcal{A} \otimes \mathcal{B} \implies C = \tilde{C} \sqcup e, \ \tilde{C} \in \mathscr{B} (\mathcal{A} \times \mathcal{B}), \ me = 0$.
+
+    $C_x = \underbrace{\tilde{C}_x}_{\text{изм. } \forall x \in X} \sqcup \underbrace{e_x}_{\text{изм. при почти всех } x}$, $\nu C_x = \nu \tilde{C}_x + \nu e_x = \nu \tilde{C}_x$.
+
+    $m C = m \tilde{C} + m e = m \tilde{C} = \int_X {\nu \tilde{C}_x d \mu (x)} = \int_X {\nu C_x d \mu(x)}$.
+
+    \textbf{Шаг 5}. $X = \bigsqcup_{n=1}^{\infty} X_n$, $Y = \bigsqcup_{k=1}^{\infty} Y_k$, $\mu X_n < +\infty$.
+
+    $X \times Y = \bigsqcup_{n, k = 1}^{\infty} X_n \times Y_k$
+
+    $C \in \mathcal{A} \otimes \mathcal{B}$, $C_{nk} = C \cap X_n \times Y_k \implies C_{nk}$ удовлетворяет теореме.
+
+    $C_x = \bigsqcup_{n, k = 1}^{\infty} (C_{nk})_x$
+
+    % todo: picture
+
+    $m C = \sum_{n, k = 1}^{\infty} m C_{nk} = \sum_{n, k = 1}^{\infty} \int_{X} {\nu (C_{nk})_x d \mu (x)} = \int \sum \dots = \int_X {\nu C_x d \mu}$.
+\end{proof}
+
+\begin{remark}
+    \begin{enumerate}
+        \item Нужна лишь полнота $\nu$.
+        \item {
+            Измеримость всех $C_x$ не гарантирует измеримость $C$.
+
+            \begin{proof}
+                $\mathbb{R}^2, \ E \subset \mathbb{R}$ -- неизмеримое, $E \times [0, 1]$
+            \end{proof}
+        }
+        \item {
+            Среди $C_x$ могут попадаться неизмеримые.
+
+            \begin{proof}
+                $\mathbb{R}^2, \ E \subset \mathbb{R}$ -- неизмеримые, $\{0\} \times E$
+            \end{proof}
+        }
+        \item {
+            % todo: picture
+            Хочется интегрировать не по $X$, а по проекции, то есть $P := \{ x \in X: \ C_x \not = \emptyset \}$. Но $P$ может быть неизмеримо.
+
+            \begin{proof}
+                % todo: picture
+
+                $E \subset \mathbb{R}$ -- неизмеримое, решение проблемы, это взять $\tilde{P} := \{ x \in X: \ \nu C_x > 0 \}$ -- измеримое.
+            \end{proof}
+        }
+    \end{enumerate}
+\end{remark}
+
+\begin{definition}
+    $(X, \mathcal{A}, \mu)$ -- пр-во с $\sigma$-конечной мерой.
+
+    $f: X \rightarrow \overline{\mathbb{R}}, \ f \geq 0, \ E \in \mathcal{A}$, $m = \mu \times \underbrace{\lambda_1}_{\text{одномерная мера Лебега}}$.
+
+    График функции над мн-вом $E$:
+    
+    $\Gamma_f(E) := \{ (x, y) \in X \times \mathbb{R} : y = f(x) \}$
+    
+    $\mathcal{P}_f(x) := \{ (x, y) \in X \times \mathbb{R}: 0 \leq y \leq f(x) \}$
+\end{definition}
+
+\begin{lemma}
+    (Лемма 1).
+    
+    Если $f$ -- измеримая, то $m \Gamma_f = 0$.
+\end{lemma}
+\begin{proof}
+    Пусть $\mu X < +\infty$. Возьмем $\epsilon > 0$ и $A_n := X \{ \epsilon \cdot n \leq f < \epsilon \cdot (n + 1) \}$
+
+    $\Gamma_f \subset \bigsqcup_{n \in \mathbb{Z}} \left(A_n \times [\epsilon \cdot n, \epsilon \cdot (n + 1)]\right) =: A$.
+
+    % todo: picture
+
+    $m A = \sum_{n \in \mathbb{Z}} m \left( A_n \times [\epsilon \cdot n, \epsilon \cdot (n + 1)] \right) = \epsilon \cdot \sum_{n \in \mathbb{Z}} \mu A_n = \epsilon \cdot \mu X$ -- сколь угодно маленькое.
+
+    Пусть $\mu$ -- $\sigma$-конечна. $X = \bigsqcup_{n=1}^{\infty} X_n, \ \mu X_n < +\infty$,
+    
+    $\Gamma_f = \bigsqcup_{n=1}^{\infty} \Gamma_f (X_n)$ -- нулевой меры.
+\end{proof}
+
+\begin{lemma}
+    (Лемма 2).
+
+    $f \geq 0$ -- измерима в широком смысле $\implies \mathcal{P}_f$ -- измеримое мн-во.
+\end{lemma}
+\begin{proof}
+    \begin{enumerate}
+        \item {
+            Пусть $f$ -- простая $\implies f = \sum_{k = 1}^{n} a_k \mathbb{1}_{A_k} \implies \mathcal{P}_f = \bigsqcup_{k=1}^{n} A_k \times [0, a_k]$ -- измеримое.
+        }
+
+        \item {
+            Пусть $f$ -- измеримая $\implies 0 \leq \phi_1 \leq \phi_2 \leq \dots \leq \phi_n \rightarrow f$ -- простые $\phi_i$, $\mathcal{P}_{\phi_n} \subset \mathcal{P}_f$.
+
+            $\mathcal{P}_f \setminus \Gamma_f \subset \bigcup_{n=1}^{\infty} \mathcal{P}_{\phi_n} \subset \mathcal{P}_f$.
+
+            Берем $x \in X$.
+            
+            Если
+            \begin{enumerate}
+                \item {
+                    $f(x) = +\infty$, то $\phi_n(x) \rightarrow +\infty$, над точкой $x$, $[0, \phi_n(x)]$ их объединие будет луч.
+                }
+                \item {
+                    $f(x) < +\infty$, то $\phi_n(x) \rightarrow f(x)$, $\bigcup [0, \phi_n(x)] \supset [0, f(x)]$
+                }
+            \end{enumerate}
+        }
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}
+   (О мере подграфика).
+   
+   $(X, \mathcal{A}, \mu)$ -- пространство с $\sigma$-конечной мерой, $f \geq 0, \ f : X \rightarrow \overline{\mathbb{R}}, \ m = \mu \times \lambda_1$.
+
+   Тогда $f$ -- измеримая в широком смыслке $\Leftrightarrow \mathcal{P}_f$ -- измер. и в этом случае $\int_X {f d \mu} = m \mathcal{P}_f$.
+\end{theorem}
+\begin{proof}
+    "$\Rightarrow$": Лемма 2.
+
+    "$\Leftarrow$": принцип Кавальери для $\mathcal{P}_f$:
+
+    \begin{equation}
+        (\mathcal{P}_f)_x =
+        \begin{cases}
+            [0, +\infty) \text{, при } f(x) = +\infty \\
+            [0, f(x)) \text{, при } f(x) < +\infty
+        \end{cases}
+    \end{equation}
+
+    $\phi(x) := \lambda_1 (\mathcal{P}_f)_x = \underbrace{f(x)}_{\text{измеримая в широком смысле}}$
+
+    $m \mathcal{P}_f = \int_X {\underbrace{\lambda \left( (\mathcal{P}_f)_x \right)}_{= f(x)} d \mu (x)}$ -- получили, что хотели.
+\end{proof}
 
 \begin{theorem}
     \textbf{Тонелли}.

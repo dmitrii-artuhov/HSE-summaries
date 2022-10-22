@@ -67,34 +67,35 @@ $$X \setminus \bigcap_{\alpha \in I} A_{\alpha} = \bigcup X \setminus A_{\alpha}
 
 \begin{example}
     \begin{enumerate}
-        \item $2^X$ - \sigma-алгебра.
+        \item $2^X$ - $\sigma$-алгебра.
         
-        \item $X = \mathbb{R}^2$, $\mathcal{A}$ - всевозможные \href{https://ru.wikipedia.org/wiki/%D0%9E%D0%B3%D1%80%D0%B0%D0%BD%D0%B8%D1%87%D0%B5%D0%BD%D0%BD%D0%BE%D1%81%D1%82%D1%8C}{огр. подмн-ва.} $\mathbb{R}^2$ и их дополнения. ($\mathcal{A}$ -- алгебра, но не \sigma-алгебра).
+        \item $X = \mathbb{R}^2$, $\mathcal{A}$ - всевозможные \href{https://ru.wikipedia.org/wiki/%D0%9E%D0%B3%D1%80%D0%B0%D0%BD%D0%B8%D1%87%D0%B5%D0%BD%D0%BD%D0%BE%D1%81%D1%82%D1%8C}{огр. подмн-ва.} $\mathbb{R}^2$ и их дополнения. ($\mathcal{A}$ -- алгебра, но не $\sigma$-алгебра).
         
         \textbf{Rem}: огр. множество - в метрич. пр-ве это множетсво ограниченного диаметра ($d(x, \ y) := || x - y ||$), т.е. $sup\{ d(x, \ y) \ | x, \ y \in X \}$ - ограничен.
 
-        \item $\mathcal{A}$ - алгебра (\sigma-алгебра) подмн-в $X$ и $Y \subset X$. $\mathcal{A}_{Y} := \{A \cap Y : A \in \mathcal{A}\}$ -- индуцированная алгебра (\sigma-алгебра).
+        \item $\mathcal{A}$ - алгебра ($\sigma$-алгебра) подмн-в $X$ и $Y \subset X$. $\mathcal{A}_{Y} := \{A \cap Y : A \in \mathcal{A}\}$ -- индуцированная алгебра ($\sigma$-алгебра).
         
-        \item Пусть $\mathcal{A}_{\alpha}$ -- алгебры (\sigma-алгебры), тогда $\bigcap_{\alpha \in I}\mathcal{A}_{\alpha}$ -- алгебра (\sigma-алгебра).
+        \item Пусть $\mathcal{A}_{\alpha}$ -- алгебры ($\sigma$-алгебры), тогда $\bigcap_{\alpha \in I}\mathcal{A}_{\alpha}$ -- алгебра ($\sigma$-алгебра).
         
         \item $A, B \subset X$ ниже перечислено, что есть в алгебре, содержащей $A, B$: \\ $\emptyset, X, A, B, A \cup B, A \cap B, A \setminus B, B \setminus A, X \setminus A, X \setminus B, X \setminus (A \cup B), X \setminus (A \cap B), A \vartriangle B, X \setminus (A \vartriangle B), X \setminus (A \setminus B), X \setminus (B \setminus A)$.
     \end{enumerate}
 \end{example}
 
 \begin{theorem}
-    Пусть $\epsilon$ -- семейство подмн-в в $X$, тогда существует наименьшая по включению \sigma-алгебра (алгебра) $\mathcal{A}$, такая что $\epsilon \subset \mathcal{A}$.
+    Пусть $\epsilon$ -- семейство подмн-в в $X$, тогда существует наименьшая по включению $\sigma$-алгебра (алгебра) $\mathcal{A}$, такая что $\epsilon \subset \mathcal{A}$.
 \end{theorem}
 
 \begin{proof}
-    $\mathcal{A}_{\alpha}$ -- всевозможные \sigma-алгебры $\supset \epsilon$. Такие есть, так как $2^X$ подходит.
+    $\mathcal{A}_{\alpha}$ -- всевозможные $\sigma$-алгебры $\supset \epsilon$. Такие есть, так как $2^X$ подходит.
 
     $\mathcal{A} := \bigcap_{\alpha \in I} \mathcal{A}_{\alpha} \supset \epsilon$. Теперь проверим, что $\mathcal{A}$ -- наим. по вкл. $\mathcal{A} \subset A_{\alpha}$ $\forall \alpha \in I$.
 
     \begin{definition}
+        \label{borel-shell}
         \begin{enumerate}
-            \item Такая \sigma-алгебра -- борелевская оболочка $\epsilon$ -- $(\mathcal{B}(\epsilon))$.
+            \item Такая $\sigma$-алгебра -- борелевская оболочка $\epsilon$ -- $(\mathcal{B}(\epsilon))$.
             
-            \item $X = \mathbb{R}^n$; такая \sigma-алгебра, натянутая на все открытые мн-ва -- борелевская \sigma-алгебра $(\mathcal{B}^n)$.
+            \item $X = \mathbb{R}^n$; такая $\sigma$-алгебра, натянутая на все открытые мн-ва -- борелевская $\sigma$-алгебра $(\mathcal{B}^n)$.
         \end{enumerate}
     \end{definition}
 
