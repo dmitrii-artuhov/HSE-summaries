@@ -4,7 +4,7 @@
 ## What is this repo?
 Here will be lectures for study terms >=3. Conspects for term 1 and 2 can be found [here](https://github.com/khbminus/HSE-summaries).
 
-Want to contribute and/or found a mistake? Follow the instructions below.
+Want to contribute, fulfill `% todo ...` comment in latex code, and/or found a mistake? Follow the instructions below.
 
 ## Setup locally
 - [Install MiKTeX](https://miktex.org/download) (latex compiling toolchain).
