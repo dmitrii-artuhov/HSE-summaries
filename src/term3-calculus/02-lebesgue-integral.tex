@@ -61,7 +61,7 @@
             $f = const$, лебеговы множества: $\emptyset, \ X$.
         }
         \item {
-            $E \subset X$ -- измеримое, $f = \mathbbm{1}_E(x) = 1$, если $x \in E$, иначе $0$.
+            $E \subset X$ -- измеримое, $f = \mathds{1}_E(x) = 1$, если $x \in E$, иначе $0$.
 
             Лебеговы множества: $\emptyset, X, E, X \setminus E$.
         }
@@ -432,14 +432,14 @@
         \item {
             Условие $\mu E < +\infty$ существенно.
 
-            $E = \mathbb{R}, \ \mu = \lambda, \ f_n = \mathbbm{1}_{[n, +\infty)} \underbrace{\rightarrow}_{\text{поточечно}} f \equiv 0$
+            $E = \mathbb{R}, \ \mu = \lambda, \ f_n = \mathds{1}_{[n, +\infty)} \underbrace{\rightarrow}_{\text{поточечно}} f \equiv 0$
 
             $\lambda E \{ f_n > \epsilon \} = +\infty \not \rightarrow 0$.
         }
         \item {
             Обратное неверно. Более того, может быть сходимость по мере и расходимость во всех точках вообще: $E = [0, 1), \ \mu = \lambda$
 
-            $\mathbbm{1}_{[0, 1)} \ \mathbbm{1}_{[0, \frac{1}{2})} \ \mathbbm{1}_{[\frac{1}{2}, 1)} \ \mathbbm{1}_{[0, \frac{1}{3})} \ \mathbbm{1}_{[\frac{1}{3}, \frac{2}{3})} \ \mathbbm{1}_{[\frac{2}{3}, 1)}$ -- ни для какого аргумента нет предела: $[0, \frac{1}{n}) \ [\frac{1}{n}, \frac{2}{n}) \dots [\frac{n - 1}{n}, 1)$
+            $\mathds{1}_{[0, 1)} \ \mathds{1}_{[0, \frac{1}{2})} \ \mathds{1}_{[\frac{1}{2}, 1)} \ \mathds{1}_{[0, \frac{1}{3})} \ \mathds{1}_{[\frac{1}{3}, \frac{2}{3})} \ \mathds{1}_{[\frac{2}{3}, 1)}$ -- ни для какого аргумента нет предела: $[0, \frac{1}{n}) \ [\frac{1}{n}, \frac{2}{n}) \dots [\frac{n - 1}{n}, 1)$
         }
     \end{enumerate}
 \end{remark}
@@ -582,19 +582,19 @@
         \item Если $0 \leq f \leq g \implies \int_E f d \mu \leq \int_E g d \mu$
         \item Если $\mu E = 0 \implies \int_E f d \mu = 0$
         \item {
-            $f$ -- измеримая $\implies \int_E f d \mu = \int_X \mathbbm{1}_E f d \mu$ 
+            $f$ -- измеримая $\implies \int_E f d \mu = \int_X \mathds{1}_E f d \mu$ 
 
             \begin{proof}
                 Проверим для $f_{\pm}$:
                 
-                $\int_E f_+ d \mu = \sup \{  \int_E \phi d \mu: \ \phi \text{ -- простая } 0 \leq \phi \leq f_+ \} = \sup \{ \int_X \phi d \mu: \phi \text{ -- простая } 0 \leq \phi \leq \mathbbm{1}_E f_+ \} = \int_X \mathbbm{1}_E f_+ d \mu$ (в одном случае сужаем $\phi$ на множество $E$, в другом -- дополняем нулями на $X \setminus E$)
+                $\int_E f_+ d \mu = \sup \{  \int_E \phi d \mu: \ \phi \text{ -- простая } 0 \leq \phi \leq f_+ \} = \sup \{ \int_X \phi d \mu: \phi \text{ -- простая } 0 \leq \phi \leq \mathds{1}_E f_+ \} = \int_X \mathds{1}_E f_+ d \mu$ (в одном случае сужаем $\phi$ на множество $E$, в другом -- дополняем нулями на $X \setminus E$)
             \end{proof}
         }
         \item {
             Если $f \geq 0$ -- измеримая, $A \subset B$, то $\int_A f d \mu \leq \int_B f d \mu$.
 
             \begin{proof}
-                $\int_A f d \mu = \int_X \mathbbm{1}_A f d \mu \underbrace{\leq}_{\text{т.к. } \mathbbm{1}_A f \ \leq \ \mathbbm{1}_B f} \int_X \mathbbm{1}_B f d \mu = \int_B f d \mu$.
+                $\int_A f d \mu = \int_X \mathds{1}_A f d \mu \underbrace{\leq}_{\text{т.к. } \mathds{1}_A f \ \leq \ \mathds{1}_B f} \int_X \mathds{1}_B f d \mu = \int_B f d \mu$.
             \end{proof}
         }
     \end{enumerate}
@@ -604,7 +604,7 @@
     Доказать, что $\int_{[1; +\infty)}{\frac{\sin{x}}{x} d \lambda_1}$ не определен.
 \end{exerc}
 
-% todo: change \mathbb{1} to smth that looks more like 'fat one'? wtf
+% todo: change \mathds{1} to smth that looks more like 'fat one'? wtf
 
 \begin{theorem}
     \textbf{Беппо Леви}.
@@ -677,13 +677,13 @@
     $\underbrace{\int_{A\cup B}{f d \mu}}_{(*)} = \underbrace{\int_A{f d \mu}}_{(**)} + \underbrace{\int_B{f d \mu}}_{(***)}$
 
     \begin{proof}
-        $(*) = \int_X{\mathbbm{1}_{A \cup B} f d \mu}$
+        $(*) = \int_X{\mathds{1}_{A \cup B} f d \mu}$
 
-        $(**) = \int_X{\mathbbm{1}_{A} f d \mu}$
+        $(**) = \int_X{\mathds{1}_{A} f d \mu}$
 
-        $(*) = \int_X{\mathbbm{1}_{B} f d \mu}$
+        $(*) = \int_X{\mathds{1}_{B} f d \mu}$
 
-        $\mathbbm{1}_{A \cup B} f = \mathbbm{1}_A f + \mathbbm{1}_B f$
+        $\mathds{1}_{A \cup B} f = \mathds{1}_A f + \mathds{1}_B f$
     \end{proof}
 
     9. Если $\mu E > 0$ и $f > 0$ измери., то $\int_E{f d \mu} > 0$.
@@ -704,11 +704,11 @@
 
     $\int_E{f d \mu} = \sum_{k: \ t_k \in E}{w_k} = (*)$.
 
-    Пусть $f = \mathbbm{1}_A, $ тогда $\int_E{f d \mu} = \int_E{\mathbbm{1}_A d \mu} = \mu (E \cap A) = \sum_{k: \ t_k \in E \cap A} = \sum_{k: \ t_k \in E}{\mathbbm{1}(t_k) w_k} = (*)$. \newline
+    Пусть $f = \mathds{1}_A, $ тогда $\int_E{f d \mu} = \int_E{\mathds{1}_A d \mu} = \mu (E \cap A) = \sum_{k: \ t_k \in E \cap A} = \sum_{k: \ t_k \in E}{\mathds{1}(t_k) w_k} = (*)$. \newline
 
     $\implies$ равенство есть и на простых функциях
 
-    Пусть $f \geq 0$ измерим. $\phi_n = f \cdot \mathbbm{1}_{\{ t_1, t_2, \dots, \phi_n \}}$, $0 \leq \phi_1 \leq \dots \leq f$.
+    Пусть $f \geq 0$ измерим. $\phi_n = f \cdot \mathds{1}_{\{ t_1, t_2, \dots, \phi_n \}}$, $0 \leq \phi_1 \leq \dots \leq f$.
 
     $\underbrace{\lim{\int_E{\phi_n d \mu}}}_{= \lim \sum_{k<n: \ t_k \in E}{f(t_k) w_k} = \sum_{k: \ t_k \in E}{f(t_k) w_k}} = \int_E{\underbrace{\lim{\phi_n}}_{\leq f} d \mu} \leq \int_E {f d \mu}$
 
@@ -852,9 +852,9 @@
             Пусть $E = \bigcup_{k=1}^{n} E_k$. Тогда $f$ -- суммируема на $E \Leftrightarrow f$ -- суммируема на $E_k: \ \forall k = 1, \dots, n$. А если $f$ суммируема на $E = \bigsqcup_{k=1}^{n} E_k$, то $\int_E{f d \mu} = \sum_{k=1}^{n} \int_{E_k}{f d \mu}$
 
             \begin{proof}
-                $\mathbbm{1}_{E_k} |f| \leq \mathbbm{1}_E |f| \leq \sum_{k=1}^{n} \mathbbm{1}_{E_k} |f| \implies \int_{E_k}{|f| d \mu} \leq \sum_{k=1}^{n} \int_{E_k}{|f| d \mu}$.
+                $\mathds{1}_{E_k} |f| \leq \mathds{1}_E |f| \leq \sum_{k=1}^{n} \mathds{1}_{E_k} |f| \implies \int_{E_k}{|f| d \mu} \leq \sum_{k=1}^{n} \int_{E_k}{|f| d \mu}$.
                 
-                Если $E = \bigsqcup_{k=1}^{n} E_k$, то $\mathbbm{1}_E = \sum_{k=1}^{n} \mathbbm{1}_{E_k} \implies \mathbbm{1}_E f_{\pm} = \sum_{k=1}^{n} \mathbbm{1}_{E_k} f_{\pm} \implies \int_E{f_{\pm} d \mu} = \sum_{k=1}^{n} \int_{E_k}{f_{\pm} d \mu}$
+                Если $E = \bigsqcup_{k=1}^{n} E_k$, то $\mathds{1}_E = \sum_{k=1}^{n} \mathds{1}_{E_k} \implies \mathds{1}_E f_{\pm} = \sum_{k=1}^{n} \mathds{1}_{E_k} f_{\pm} \implies \int_E{f_{\pm} d \mu} = \sum_{k=1}^{n} \int_{E_k}{f_{\pm} d \mu}$
             \end{proof}
         }
         \item {
@@ -913,7 +913,7 @@
     Тогда $\int_E{f d \mu} = \sum_{n=1}^{\infty} \int_{E_n}{f d \mu}$
 \end{theorem}
 \begin{proof}
-    $\sum_{n=1}^{\infty} \int_{E_n}{f d \mu} = \lim{\sum_{k=1}^{n} \int_{E_k}{f d \mu}} = \lim{\int_{\bigsqcup_{k=1}^{n} E_k}{f d \mu}} = \lim{\int_E\left({\underbrace{\mathbbm{1}_{\bigsqcup_{k=1}^{n} E_k} f}_{:= g_n} d \mu}\right)} = \lim{\int_E{g_n d \mu}} \underbrace{=}_{\text{т. Леви}} \int_E{f d \mu}$
+    $\sum_{n=1}^{\infty} \int_{E_n}{f d \mu} = \lim{\sum_{k=1}^{n} \int_{E_k}{f d \mu}} = \lim{\int_{\bigsqcup_{k=1}^{n} E_k}{f d \mu}} = \lim{\int_E\left({\underbrace{\mathds{1}_{\bigsqcup_{k=1}^{n} E_k} f}_{:= g_n} d \mu}\right)} = \lim{\int_E{g_n d \mu}} \underbrace{=}_{\text{т. Леви}} \int_E{f d \mu}$
 
     $0 \leq g_1 \leq g_2 \leq \dots , \ \lim{g_n} = f, \ g_n(x) = f(x)$ если $x \in \bigsqcup_{k=1}^{n}E_k$.
 \end{proof}
@@ -1015,7 +1015,7 @@
 \begin{proof}
     \begin{enumerate}
         \item {
-            Пусть $f = \mathbbm{1}_A$, тогда $\int_E f d \nu = \nu (A \cap E) = \int_{A \cap E} w d \mu = \int_E \mathbbm{1}_A w d \mu$. По линейности $(*)$ верна для неотрицательный простых.
+            Пусть $f = \mathds{1}_A$, тогда $\int_E f d \nu = \nu (A \cap E) = \int_{A \cap E} w d \mu = \int_E \mathds{1}_A w d \mu$. По линейности $(*)$ верна для неотрицательный простых.
 
             Пусть $f \geq 0$ -- измер. Тогда найдутся простые $0 \leq \phi_1 \leq \phi_2 \leq \dots$ ($0 \leq w \phi_1 \leq w \phi_2 \leq \dots$) и $\phi_n \rightarrow f$ поточечно. $\underbrace{\int_E \phi_n d \nu}_{\rightarrow \int_E f d \nu} = \underbrace{\int_E \phi_n w d \mu}_{\rightarrow \int_E f w d \mu}$ -- по т. Леви.
         }
@@ -1115,7 +1115,7 @@
 \begin{remark}
     Равенства может и не быть:
 
-    $\mu = \lambda, \ E = \mathbb{R}, \ f_n = \mathbbm{1}_{[n, +\infty)}$
+    $\mu = \lambda, \ E = \mathbb{R}, \ f_n = \mathds{1}_{[n, +\infty)}$
 
     $\int_E{f_n d \mu} = +\infty$, но $f_n \rightarrow 0$
 
@@ -1160,7 +1160,7 @@
             Без суммир. мажоранты неверно:
 
             \begin{equation}
-                f_n = n \cdot \mathbbm{1}_{[0, \frac{1}{n}]} \rightarrow f =
+                f_n = n \cdot \mathds{1}_{[0, \frac{1}{n}]} \rightarrow f =
                 \begin{cases}
                     +\infty, \text{  в точке 0} \\
                     0, otherwise \\
@@ -1213,7 +1213,7 @@
     $f: [a, b] \rightarrow \mathbb{R}$, тогда $f$ -- интегрируема по Риману $\Leftrightarrow$ множество точек разрыва $f$ имеет нулевую меру Лебега.
 \end{theorem}
 \begin{example}
-    Возьмем $f: [0, 1] \rightarrow \mathbb{R}, \ f = \mathbbm{1}_{[0, 1] \cap \mathbb{Q}}$.
+    Возьмем $f: [0, 1] \rightarrow \mathbb{R}, \ f = \mathds{1}_{[0, 1] \cap \mathbb{Q}}$.
 
     $f = 0$ почти везде $\implies \int_{[0, 1]}{f d \lambda} = 0$, но точки разрыва -- весь отрезок $[0, 1]$.
 \end{example}
@@ -1236,11 +1236,11 @@
 
     Проверяем, что $m_0$ -- мера. Пусть $A \times B = \bigsqcup_{k=1}^{\infty} A_k \times B_k$.
 
-    $\mathbbm{1}_A(x) \times \mathbbm{1}_B(y) = \mathbbm{1}_{A \times B} (x, y) = \sum_{k=1}^{\infty} \mathbbm{1}_{A_k \times B_k} (x, y) = \sum_{k=1}^{\infty} \mathbbm{1}_{A_k}(x) \times \mathbbm{1}_{B_k}(y)$
+    $\mathds{1}_A(x) \times \mathds{1}_B(y) = \mathds{1}_{A \times B} (x, y) = \sum_{k=1}^{\infty} \mathds{1}_{A_k \times B_k} (x, y) = \sum_{k=1}^{\infty} \mathds{1}_{A_k}(x) \times \mathds{1}_{B_k}(y)$
 
-    $\int_Y {\mathbbm{1}_A(x) \cdot \mathbbm{1}_B(Y) d \nu (y)} = \sum_{k=1}^{\infty} \int_Y{\mathbbm{1}_{A_k}(x) \cdot \mathbbm{1}_{B_k}(y) d \nu (y)} = \sum_{k=1}^{\infty} \mathbbm{1}_{A_k} (x) \cdot \nu B_k$
+    $\int_Y {\mathds{1}_A(x) \cdot \mathds{1}_B(Y) d \nu (y)} = \sum_{k=1}^{\infty} \int_Y{\mathds{1}_{A_k}(x) \cdot \mathds{1}_{B_k}(y) d \nu (y)} = \sum_{k=1}^{\infty} \mathds{1}_{A_k} (x) \cdot \nu B_k$
 
-    $\int_X {\mathbbm{1}_A(x) \nu B d \mu(x)} = \sum_{k=1}^{\infty} \int_{X} {\mathbbm{1}_{A_k}(x) \cdot \nu B_k d \mu (x)} = \sum_{k=1}^{\infty} \mu A_k \cdot \nu B_k = \sum_{k=1}^{\infty} m_0 (A_k \times B_k)$
+    $\int_X {\mathds{1}_A(x) \nu B d \mu(x)} = \sum_{k=1}^{\infty} \int_{X} {\mathds{1}_{A_k}(x) \cdot \nu B_k d \mu (x)} = \sum_{k=1}^{\infty} \mu A_k \cdot \nu B_k = \sum_{k=1}^{\infty} m_0 (A_k \times B_k)$
 
     $\sigma$-конечность $m_0$: $X = \bigsqcup_{j=1}^{\infty} X_j$, $Y = \bigsqcup_{j=1}^{\infty} Y_j$, $\mu X_j < +\infty, \ \nu Y_k < +\infty$
 
@@ -1506,7 +1506,7 @@
 \begin{proof}
     \begin{enumerate}
         \item {
-            Пусть $f$ -- простая $\implies f = \sum_{k = 1}^{n} a_k \mathbbm{1}_{A_k} \implies \mathcal{P}_f = \bigsqcup_{k=1}^{n} A_k \times [0, a_k]$ -- измеримое.
+            Пусть $f$ -- простая $\implies f = \sum_{k = 1}^{n} a_k \mathds{1}_{A_k} \implies \mathcal{P}_f = \bigsqcup_{k=1}^{n} A_k \times [0, a_k]$ -- измеримое.
         }
 
         \item {
@@ -1577,14 +1577,14 @@
 \begin{proof}
     \begin{enumerate}
         \item {
-            Пусть $f = \mathbbm{1}_C$ (характеристическая функция мн-ва $C$), тогда $f_x(y) = \mathbbm{1}_{C_x}(y)$.
+            Пусть $f = \mathds{1}_C$ (характеристическая функция мн-ва $C$), тогда $f_x(y) = \mathds{1}_{C_x}(y)$.
 
-            $\int_Y {f_x(y)d \nu(y)} = \int_Y {\mathbbm{1}_{C_x}(y) d \nu(y)} = \nu C_{x}$
+            $\int_Y {f_x(y)d \nu(y)} = \int_Y {\mathds{1}_{C_x}(y) d \nu(y)} = \nu C_{x}$
 
-            $\int_{X \times Y} {f d m} = \int_{X \times Y} {\mathbbm{1}_C d m} = m C = \int_X {\nu C_x d \mu(x)} = \int_X {\phi d \mu}$.
+            $\int_{X \times Y} {f d m} = \int_{X \times Y} {\mathds{1}_C d m} = m C = \int_X {\nu C_x d \mu(x)} = \int_X {\phi d \mu}$.
         }
         \item {
-            Пусть $f \geq 0$ -- простая, тогда $f = \sum_{k=1}^{n} a_k \mathbbm{1}_{A_k}$
+            Пусть $f \geq 0$ -- простая, тогда $f = \sum_{k=1}^{n} a_k \mathds{1}_{A_k}$
         }
         \item {
             Пусть $f \geq 0$ -- измеримая, тогда берем последовательность простых функций $0 \leq f_1 \leq f_2 \leq \dots$, $\lim{f_n} = f$.
@@ -1697,7 +1697,7 @@
 \begin{proof}
     $m = \mu \times \lambda_{1}$.
 
-    $\int_X{|f| d \mu} = m \mathcal{P}_{|f|} = \int_{[0, +\infty]} {\left(\int_{X} {\underbrace{\mathbbm{1}_{\mathcal{P}_{|f|}}(x, t)}_{=1 \Leftrightarrow |f(x)| \geq t} d \mu(x)}\right) d \lambda_1(t)} = \int_{[0, +\infty]}{\mu X \{ |f| \geq t \} d \lambda_1(t)}$.
+    $\int_X{|f| d \mu} = m \mathcal{P}_{|f|} = \int_{[0, +\infty]} {\left(\int_{X} {\underbrace{\mathds{1}_{\mathcal{P}_{|f|}}(x, t)}_{=1 \Leftrightarrow |f(x)| \geq t} d \mu(x)}\right) d \lambda_1(t)} = \int_{[0, +\infty]}{\mu X \{ |f| \geq t \} d \lambda_1(t)}$.
 
     % todo: picture
 \end{proof}
