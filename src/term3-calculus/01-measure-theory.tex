@@ -546,7 +546,7 @@ $\mathcal{P}_{\mathbb{Q}}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с 
 \begin{theorem}
     \textbf{Каратеодори}.
     
-    Пусть $\nu$ -- субмера. Тогда $\nu$-измеримое мн-во образует $\sigma$-алгебру и сужение $\nu$ на эту $\sigma$-алгебру -- полная мера.
+    Пусть $\nu$ -- субмера. Тогда все $\nu$-измеримые мн-ва образуют $\sigma$-алгебру и сужение $\nu$ на эту $\sigma$-алгебру -- это полная мера.
 \end{theorem}
 
 \begin{proof}
@@ -585,14 +585,14 @@ $\mathcal{P}_{\mathbb{Q}}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с 
 
             % TODO: picture
         }
-        \item Если $E_n \in \mathcal{A}$ и $E = \bigcup_{n=1}^{\infty}$, то $E \in \mathcal{A}$.
+        \item Если $E_n \in \mathcal{A}$ и $E = \bigcup_{n=1}^{\infty} E_n$, то $E \in \mathcal{A}$.
         \item $\mathcal{A}$ -- $\sigma$-алгебра.
         \item {
-            \nu -- мера на $\mathcal{A}$.
+            $\nu$ -- мера на $\mathcal{A}$.
 
-            $E = \bigsqcup_{n=1}^{\infty} E_n \underbrace{\implies}_{?} \nu E = \sum_{n=1}^{\infty} \nu E_n$ ($leq$ уже есть).
+            $E = \bigsqcup_{n=1}^{\infty} E_n \underbrace{\implies}_{?} \nu E = \sum_{n=1}^{\infty} \nu E_n$.
 
-            Докажем, что $\nu E \geq \sum_{k=1}^{n} \nu E_k$. Знаем, что $\nu E \geq \nu (\bigsqcup_{k=1}^{n} E_k) = \sum_{k=1}^{n} \nu E_k$
+            Докажем, что $\nu E \geq \sum_{k=1}^{n} \nu E_k$ (т. к. $\leq$ уже есть из определения субмеры). Знаем, что $\nu E \geq \nu (\bigsqcup_{k=1}^{n} E_k) = \sum_{k=1}^{n} \nu E_k$
         }
     \end{enumerate}
 \end{proof}
