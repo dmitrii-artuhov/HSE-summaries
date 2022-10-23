@@ -646,11 +646,22 @@ $\mathcal{P}_{\mathbb{Q}}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с 
 \end{proof}
 
 \begin{definition}
-    Стандартное продолжение меры $\mu_0$ с полукольца $\mathcal{P}$. $\mu^*_0$ -- внешняя мера, порождающая $\mu_0$ -- субмера, и сужаем ее на все $\mu^*_0$ -- измеримые мн-ва.
+    Стандартное продолжение меры -- конструкция, полученная следующими действиями:
+    \begin{enumerate}
+        \item {
+            Берем меру $\mu_0$ на полукольце $\mathcal{P}$.
+        }
+        \item {
+            Берем $\mu^*_0$ -- внешняя мера.
+        }
+        \item {
+            Сужаем полученную внешнюю меру на множество всех $\mu^*_0$-измеримых множеств.
+        }
+    \end{enumerate}
 
-    Получилась полная мера $\mu$ на \sigma-алгебра $\mathcal{A} \supset \mathcal{P}$ и $\mu P = \mu_0 P$ для $P \in \mathcal{P}$.
+    Получилась полная мера $\mu$ на $\sigma$-алгебре $\mathcal{A} \supset \mathcal{P}$ и $\mu P = \mu_0 P$ для $P \in \mathcal{P}$.
 
-    Обозначение мн-ва из $\mathcal{A}$ назовем $\mu$-измеримыми.
+    Множества, содержащиеся в $\mathcal{A}$, назовем $\mu$-измеримыми.
 \end{definition}
 
 \begin{theorem}
@@ -687,7 +698,7 @@ $\mathcal{P}_{\mathbb{Q}}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с 
 \begin{remark}
     \begin{enumerate}
         \item {
-            Дальше мера и ее продолжение обозначаем как $\mu$.
+            Дальше меру и ее продолжение обозначаем как $\mu$.
 
             Если $A$ -- $\mu$-измеримое множество, то $\mu A = \inf \left\{ \sum_{k=1}^{\infty} \mu P_k \ : \ A \subset \bigcup_{k=1}^{\infty} P_k \ \land \ P_k \in \mathcal{P} \right\}$
         }
