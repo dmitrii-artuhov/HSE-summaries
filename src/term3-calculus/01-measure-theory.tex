@@ -788,27 +788,48 @@ $\mathcal{P}_{\mathbb{Q}}^{m}$ -- сем-во ячеек из $\mathbb{R}^m$ с 
 \end{theorem}
 
 \begin{proof}
-    $(a; b] = \bigsqcup_{k=1}^{\infty} (a_k; b_k] \underbrace{\implies}_{?} \lambda (a; b] \leq \sum_{k=1}^{\infty} \lambda (a_k; b_k]$.
+    Так как $\lambda_m$ -- объем, то нам необходимо проверить счетную полуаддитивность, то есть следующую стрелочку:
 
-    $(a; b] \supset [a'; b] \supset (a'; b]$, т.ч. $\lambda (a; b] < \lambda(a'; b] + \epsilon$.
+    $(a; b] = \bigsqcup_{n=1}^{\infty} (a^{(n)}; b^{(n)}] \underbrace{\implies}_{?} \lambda (a; b] \leq \sum_{n=1}^{\infty} \lambda (a^{(n)}; b^{(n)}]$.
 
-    $(a_k; b_k] \subset (a_k; b_k') \subset (a_k; b_k'], \ \lambda (a_k; b_k'] < \lambda (a_k; b_k] + \frac{\epsilon}{2^k}$
+    Берем $\epsilon > 0$.
 
-    компакт -- $[a'; b] \subset \bigcup_{k=1}^{\infty} (a_k; b_k')$, выбираем конечное подпокрытие.
-
-    % TODO: picture
-
-    $(a', b] \subset [a', b] \subset \sum_{k=1}^{n} (a_k; b_k') \subset \bigcup_{k=1}^{n} (a_k; b_k']$.
-
-    $\lambda$ -- объем $\implies$ конечная полуаддитивность
+    Затем возьмем:
     
-    $\lambda (a'; b] \leq \sum_{k=1}^{n} \lambda (a_k; b_k'] < \sum_{k=1}^{n} (\lambda (a_k; b_k] + \frac{\epsilon}{2^k}) < \sum_{k=1}^{\infty} (\lambda [a_k; b_k] + \frac{\epsilon}{2^k})$
+    \begin{enumerate}
+        \item {
+            $[a, b'] \subset [a, b)$ и  $\lambda_m [a, b) < \lambda_m [a, b') + \epsilon$.
+        }
+        \item {
+            $(\tilde{a}^{(n)}, b^{(n)}) \supset [a^{(n)}, b^{(n)})$ и $\lambda_m [\tilde{a}^{(n)}, b^{(n)}) < \lambda_m [a^{(n)}, b^{(n)}) + \frac{\epsilon}{2^n}$.
+        }
+    \end{enumerate}
 
-    % TODO: тут немного не успел, поправьте.
+    Тогда получаем, что $\underbrace{[a, b']}_{\text{компакт}} \subset \bigcup_{n=1}^{\infty} \underbrace{(\tilde{a}^{(n)}, b^{(n)})}_{\text{открытое мн-во}} \implies $ существует конечное подпокрытие, то есть $[a, b'] \subset \bigcup_{n=1}^{N} (\tilde{a}^{(n)}, b^{(n)})$.
+
+    % TODO: picture (объяснения про компакт)
+
+    Далее можно написать ячейки и вложенность сохранится:
+
+    $[a, b') \subset \bigcup_{n=1}^{N} [\tilde{a}^{(n)}, b^{(n)})$.
+
+    Теперь давайте запишем конечную полуаддитивность для объема:
+
+    $\lambda_m [a, b') \underbrace{\leq}_{\text{кон. полуаддитивность}} \sum_{n=1}^{N} \lambda_m [\tilde{a}^{(n)}, b^{(n)}) \leq \sum_{n=1}^{\infty} \lambda_m [\tilde{a}^{(n)}, b^{(n)}) < \sum_{n=1}^{\infty} \left(\lambda_m [a^{(n)}, b^{(n)}) + \frac{\epsilon}{2^n}\right) = \sum_{n=1}^{\infty} \lambda_m [a^{(n)}, b^{(n)}) + \epsilon$.
+
+    Теперь поймем, что у нас есть нер-во в другую сторону и мы можем зажать $\lambda_m [a, b')$ с двух сторон:
+
+    $\lambda_m [a, b) - \epsilon < \lambda_m [a, b') < \sum_{n=1}^{\infty} \lambda_m [a^{(n)}, b^{(n)}) + \epsilon$.
+
+    Переносим $\epsilon$ в другую сторону и устремляем к $0$:
+
+    $\lambda_m [a, b) < \sum_{n=1}^{\infty} \lambda_m [a^{(n)}, b^{(n)}) + 2 \epsilon$
+
+    $\lambda_m [a, b) \leq \sum_{n=1}^{\infty} \lambda_m [a^{(n)}, b^{(n)})$ -- получили, что хотели.
 \end{proof}
 
 \begin{definition}
-    Мера Лебега в $\mathbb{R}^n$ (обозначение $\lambda_m$) -- стандартное продолжение классического объема с $\mathcal{P}^m$.
+    Мера Лебега в $\mathbb{R}^m$ (обозначение $\lambda_m$) -- стандартное продолжение классического объема с $\mathcal{P}^m$.
 
     $\sigma$-алгебра, на которую все продолжилось, лебегевская $\sigma$-алгебра $(\mathscr{L}^m)$. 
 \end{definition}
