@@ -746,7 +746,7 @@
         \item Если $\int_{E}{|f| d \mu} < + \infty$, то $f$ почти везде конечна.
         \item Если $\int_E{|f| d \mu = 0}$, то $f = 0$ почти везде.
         \item Если $A \subset B$ и $\mu (B \setminus A) = 0$, то $\int_A{f d \mu}$ и $\int_B{f d \mu}$ либо определены, либо нет одновременно. И если определены, то равны.
-        \item Если $f = g$ почти везде на $E$, тогда $\int_E{f}$ и $\int_E{g}$ либо определены, либо не одновременно. И Если определены, то равны.
+        \item Если $f = g$ почти везде на $E$, тогда $\int_E{f}$ и $\int_E{g}$ либо определены, либо нет одновременно. И если определены, то равны.
     \end{enumerate}
 \end{properties}
 
@@ -898,7 +898,7 @@
     $\left|\int_E{f d \mu}\right| \leq \int_E{|f| d \mu}$
 \end{remark}
 \begin{proof}
-    $\left| \int_E{f d \mu} \right| = e^{i \alpha} \cdot \int_E{f d \mu} = \int_E{e^{i \alpha} f d \mu} = \int_E{Re(e^{i \alpha} f) d \mu} + i \cdot \underbrace{\int_E{Im(e^{i \alpha}f) d \mu}}_{= 0} = \int_E{Re(e^{i \alpha}f) d \mu} \leq \int_E{\left| Re(e^{i \alpha} f) d \mu \right|} \leq \int_E{\left| e^{i \alpha}\right|  d \mu } = \int_E{|f| d \mu}$.
+    $\left| \int_E{f d \mu} \right| = e^{i \alpha} \cdot \int_E{f d \mu} = \int_E{e^{i \alpha} f d \mu} = \\ = \int_E{Re(e^{i \alpha} f) d \mu} + i \cdot \underbrace{\int_E{Im(e^{i \alpha}f) d \mu}}_{= 0 \text{, т.к. слева от равенства вещ. число}} = \int_E{Re(e^{i \alpha}f) d \mu} \leq \int_E{\left| Re(e^{i \alpha} f) d \mu \right|} \leq \int_E{\left| e^{i \alpha}\right|  d \mu } = \int_E{|f| d \mu}$.
 
     $|Re(f)|, |Im(f)| \leq |f|$
     
