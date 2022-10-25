@@ -929,8 +929,7 @@
 
 \begin{proof}
     \begin{enumerate}
-        \item $\nu \emptyset = \int_{\emptyset}{f d \mu} = 0$ + счетная аддитивность из теоремы.
-        \item $\int_{E}{f_{\pm} d \mu} = \sum_{n=1}^{\infty} \int_{E_n}{f_{\pm} d \mu}$ все конечно, поэтому можно вычитать.
+        \item $\nu \emptyset = \int_{\emptyset}{f d \mu} = 0$ + счетная аддитивность из теоремы: $\int_{E}{f_{\pm} d \mu} = \sum_{n=1}^{\infty} \int_{E_n}{f_{\pm} d \mu}$ все конечно, поэтому можно вычитать.
         \item {
             $\nu A := \int_A{f d \mu}$ -- мера $\implies \nu A$ непрерывна снизу.
 
@@ -942,7 +941,7 @@
             $\implies \int_E{f_{\pm} d \mu} = \nu_{\pm}E = \lim \nu_{\pm} E_n = \lim{\int_{E_n}{f_{\pm} d \mu}}$
         }
         \item {
-            $E_n := E \{ |f| \leq frac{1}{n} \} \implies E_n \supset E_{n+1}$
+            $E_n := E \{ |f| \leq \frac{1}{n} \} \implies E_n \supset E_{n+1}$
 
             $\bigcap_{n=1}^{\infty}E_n = E\{ f = 0 \} \implies \lim{\int_{E_n}{|f| d \mu}} = \int_{E\{ f = 0 \}}{|f| d \mu} = 0 \implies \exists n: \ \epsilon > \int_{E_n}{|f| d \mu} \geq \left| \int_{E_n}{f d \mu} \right|$
 
