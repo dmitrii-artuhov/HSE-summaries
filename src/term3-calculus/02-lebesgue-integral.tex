@@ -1955,3 +1955,41 @@
         }
     \end{itemize}
 \end{theorem}
+
+\begin{example}
+    Полярная замена. $\mathbb{R}^2$.
+
+    $(r, \phi) \rightarrow (r \cos{(\phi)}, r \sin{(\phi)})$
+
+    $r \in (0, +\infty)$
+
+    $\phi \in (0, 2 \pi)$
+
+
+    $\int_{\mathbb{R}^2}{f d \lambda_2} = \int_{[0, 2 \pi] \times [0, +\infty)} {f(r \cos{(\phi)}, r \sin{(\phi)})} d r d \phi$.
+
+    $\Phi' = 
+    \begin{pmatrix}
+        \frac{dx}{dr} & \frac{dx}{d\phi} \\
+        \frac{dy}{dr} & \frac{dy}{d\phi}
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        \cos{(\phi)} & -r \sin{(\phi)} \\
+        \sin{(\phi)} & r \cos{(\phi)}
+    \end{pmatrix}
+    $
+
+    $det = r$
+
+    $\int_{\mathbb{R}} {e^{-x^2} d x}, \ f(x, y) = e^{-x^2 - y^2}$
+
+    $\int_{\mathbb{R}^2}{e^{-x^2 - y^2} dx dy} = \int_{\mathbb{R}} {e^{-x^2} dx} \cdot \int_{\mathbb{R}} {e^{-y^2} dy} = \left( \int_{\mathbb{R}} {e^{-x^2} dx} \right)^2$.
+
+    Полярная замена:
+
+    $\int_{0}^{+\infty} { \int_{0}^{2 \pi} { e^{-r^2} r d \phi d r } } = 2\pi \int_{0}^{+\infty} { e^{-r^2} r d r } = \pi \int_{0}^{+\infty} {e^{-t} d t} = \pi \cdot (-e^{-t})|_{0}^{+\infty} = \pi$.
+
+    $t = r^2, \ df = 2r d r$
+\end{example}
+

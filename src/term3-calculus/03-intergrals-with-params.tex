@@ -1,0 +1,171 @@
+\Subsection{Собственные интегралы с параметрами}
+
+\begin{statement}
+    $(X, \mathcal{A}, \mu)$ -- пр-во с мерой, $T$ -- метрическое пр-во, $f: X \times T \rightarrow \tilde{\mathbb{R}}, \ \forall t \in T, \ E_t \in \mathcal{A}, \ f(\cdot, t)$ -- измеримая.
+
+    $F(t) := \int_{E_t} {f(x, t) d \mu(x)}$.
+
+    \begin{enumerate}
+        \item {
+            $t_0$ -- предельная точка.
+
+            $\forall x \ f(x, t) \underbrace{\rightarrow}_{t \rightarrow t_0} \dots \underbrace{\implies}_{?} F(t) \underbrace{\rightarrow}_{t \rightarrow t_0}$
+        }
+        \item {
+            $f(x, t)$ непрер. в точке $t_0, \ \forall x \underbrace{\implies}_{?} F$ непрер. в $t_0$.
+        }
+        \item {
+            $f(x, t)$ дифф. по $t, \ \forall x \underbrace{\implies}_{?} F$ дифф., какая формула для производной?
+        }
+        \item {
+            Если $\nu$ -- мера на $T$. $\int_T {F(t) d \nu (t)} = \int_{T} { \int_{E_t} { f(x, t) d \mu(x) d \nu (t) } } = \int_T { \int_X { \mathds{1}_{E_t} (x) \cdot f(x, t) d \mu (x) d \nu (t) } }$
+        }
+    \end{enumerate}
+\end{statement}
+\begin{theorem}
+    $t_0$ -- предельная точка $T$. $f(\cdot, t)$ -- суммируема $\forall t \in T$, $g(x) := \lim_{t \rightarrow t_0} { f(x, t) }$.
+
+    \textbf{Локальное условия Лебега:}
+
+    Пусть найдется окр-ть $U_{t_0}$ и суммир. ф-я $\Phi: X \rightarrow \overline{\mathbb{R}}$, т.ч. $|f(x, t)| \leq \Phi(x) \ \forall t \in U_{t_0}$.
+
+    Тогда $\lim_{r \rightarrow t_0} { F(t) } = \int_{X} { g(x) d \mu(x) }$.
+\end{theorem}
+
+\begin{proof}
+    Проверяем по Гейне. Берем $t_n \rightarrow t_0, \ f_n(x) := f(x, t_n)$, $\Phi(x) \geq | f(x, t_n) | = |f_n(x)|$ при больших $n$.
+
+    $\underbrace{\implies}_{\text{т. Лебега}} \lim_{n \rightarrow \infty} { \int_{X} { f_n (x) d \mu (x) } } = \int_{X} { \underbrace{\lim_{n \rightarrow \infty} {f_n(x)}}_{= g(x)} d \mu (x)}$
+\end{proof}
+
+\begin{definition}
+    $f: X \times T \rightarrow \mathbb{R}, \ g: X \rightarrow \mathbb{R}$, $t_0$ -- предельная точка $T$, $f(x, t) \underbrace{\rightrightarrows}_{t \rightarrow t_0} g(x)$, если $\forall \epsilon > 0 \ \exists \delta > 0, \ \forall \rho_T (t, t_0) < \delta, \ \forall x \in X: \ | f(x, t) - g(x) | < \epsilon$.
+\end{definition}
+
+\begin{remark}
+    $f(x, t) \underbrace{\rightrightarrows}_{t \rightarrow t_0} g(x) \Leftrightarrow \sup_{x \in X} { | f(x, t) - g(x) | } \underbrace{\rightarrow}_{t \rightarrow t_0} 0$
+\end{remark}
+
+\begin{consequence}
+    Если $\mu X < +\infty, \ f(x, t) \underbrace{\rightrightarrows}_{t \rightarrow t_0} g(x)$, то $\int_X { f(x, t) d \mu(x) } \underbrace{\rightarrow}_{t \rightarrow t_0} \int_X { g d \mu }$ и $g$ -- суммируемая ф-я.
+\end{consequence}
+
+\begin{proof}
+    При $t$ близких к $t_0$: $|f(x, t) - g(x)| \leq 1 \implies$ берем $t_1$, для которого верно $|f(x, t_1) - g(x)| \leq 1 \implies |g(x)| \leq 1 + |f(x, t_1)|$ -- суммируема $\implies$ при $t$ близких к $t_0: $ $| f(x, t) \leq 1 + |g(x)| |$ -- суммир.
+\end{proof}
+
+\begin{remark}
+    Условие $\mu X < +\infty$ существенно.
+
+    $X = [0, +\infty), \ \mu = \lambda_1, \ f_n(x) = \frac{1}{n} \mathds{1}_{[0, n]} (x) \rightrightarrows 0$,
+
+    $\int_{[0, +\infty)} {f_n d \lambda_1} = 1$.
+\end{remark}
+
+\begin{consequence}
+    $f(x, t)$ непрер. в точке $t_0$, $\forall x \in X$ и существует суммир. $\Phi(x)$, т.ч. $| f(x, t) | \leq \Phi(x)$ при $t$ близких к $t_0, \ \forall x \in X$. 
+
+    Тогда $F(t) = \int_X{ f(x, t) d \mu (x) }$ непрер. в точке $t_0$.
+\end{consequence}
+\begin{proof}
+    $\lim_{t \rightarrow t_0} { f(x, t) } = f(x, t_0)$ и подставляем в теорему.
+\end{proof}
+
+\begin{lemma}
+    Декартово произведение компактов -- компакт.
+
+    $(X, \rho), \ (Y, d)$ -- метрические про-ва. $A \subset X, \ B \subset Y$ -- компакты.
+
+    Тогда $A \times B$ -- компакт в $(X \times Y, r)$, $r\left((x, y), (x', y')\right) = \rho(x, x') + d(y, y')$
+\end{lemma}
+\begin{proof}
+    Проверяем секвенциальную компактность.
+
+    $x_n \in A, \ y_n \in B, \ (x_n, y_n)$
+
+    хотим выбрать сх-ся подпосл. Выбираем $x_{n_k}$, т.ч. она сходится, а затем из $y_{n_k}$ подпосл $y_{n_{k_j}}$, которая сх-ся.
+
+    Тогда $(x_{n_{k_j}}, y_{n_{k_j}})$ сх-ся покоординатно $\implies$ сх-ся по метрике $r$.
+\end{proof}
+
+\begin{theorem}
+    $\mu X < +\infty$, $X$ и $T$ -- компакты, $f \in C(X \times T)$. Тогда $F \in C(T)$. 
+\end{theorem}
+\begin{proof}
+    $f$ -- непр-на нак омпакте $\implies$ ограничена $\implies$ $| f(x, t) | \leq M$ -- суммир. мажоранта.
+\end{proof}
+\begin{consequence}
+    Если $\mu X < +\infty$, $X$ -- компакт, $\Omega \subset \mathbb{R}^m$ открытое, $f \in C(X \times \Omega)$.
+
+    Тогда $F \in C(\Omega)$.
+\end{consequence}
+\begin{proof}
+    Берем $a \in \Omega$. Хотим проверить непрер. в точке $a$.
+
+    Возьмем $\overline{B}_r(a) \subset \Omega$ -- компакт $\implies f \in C(X \times \overline{B}_r(a))$
+
+    % todo: picture
+
+    $\implies F \in C(\overbrace{B}_r(a)) \implies F$ непрер. в точке $a$.
+\end{proof}
+
+\begin{theorem}
+    $T \subset \mathbb{R}$ промежуток, $f : X \times T \rightarrow \mathbb{R}, \ f'_t (x, t)$ существ. $\forall x \in X, \ \forall t \in T$ и $f'_t(x, t)$ удовлетворяет \textbf{локальным условиям Лебега} в точке $t_0$.
+
+    Тогда $F$ -- дифф. в точке $t_0$ и $F'(t_0) = \int_X { f'_t (x, t_0) d \mu (x) }$. 
+\end{theorem}
+\begin{proof}
+    $\frac{F(t_0 + h) - F(t_0)}{h} = \int_X {\underbrace{\frac{f(x, t_0 + h) - f(x, t_0)}{h}}_{=: g(x, h)}}d \mu (x)$.
+
+    Нужно локальное условие Лебега для $g(x, h)$.
+
+    $f(x, t_0 + h) - f(x, t_0) = h \cdot f'_t(x, t_0 + \theta_h \cdot h)$
+
+    $g(x, h) = f'_t(x, t_0 + \theta_h \cdot h)$
+
+    Знаем, что $\exists U_{t_0}$, т.ч. $| f'_t(x, t) | \leq \Phi(x)$ -- суммир. $\ \forall x, \forall t \in U_{t_0}$.
+
+    Рассмотрим $|| h || < \epsilon$, т.ч. $t_0 + h \in U_{t_0}$
+    
+    % todo: picture
+
+    $\implies t_0 + \theta_h \cdot h \in U_{t_0} \implies | f'_t(x, t_0 + \theta_h h) | = |g(x, h)| \leq \Phi(x)$
+\end{proof}
+
+\begin{consequence}
+    $T \subset \mathbb{R}$ -- отерзок, $X$ -- компакт, $\mu X < +\infty$, $f, f'_t \in C(X \times T)$.
+
+    Тогда $F \in C^1(T)$ и $F'(t) = \int_X{f'_t (x, t) d \mu (x)}$.
+\end{consequence}
+
+\begin{proof}
+    $f'_t$ -- непр. на компакте $\implies$ играничена $\implies | f'_t(x, t) | \leq M$ -- сумм. мажоранта.
+\end{proof}
+
+
+
+\begin{theorem}
+    \textbf{Формула Лейбница}.
+
+    $f: \underbrace{[a, b]}_{x} \times \underbrace{[c, d]}_{t} \rightarrow \mathbb{R}$, $f, f'_t \in C([a, b] \times [c, d]), \ \phi, \psi : [c, d] \rightarrow [a, b]$ непр. дифф.
+
+    $F(t) := \int_{\phi(t)}^{\psi(t)} { f(x, t) d x }$.
+
+    Тогда $F$ -- дифф. и $F'(t) = \int_{\phi(t)}^{\psi(t)} { f'_t (x, t) dx } + f (\psi(t), t) \cdot \psi'(t) - f(\phi(t), t) \cdot \phi'(t)$.
+\end{theorem}
+\begin{proof}
+    $\Phi(\alpha, \beta, t) = \int_{\alpha}^{\beta} {f(x, t) d x}$.
+
+    $\frac{d\Phi}{d \beta} = f(\beta, t)$ -- непр. по условию
+    
+    $\frac{d\Phi}{d \alpha} = -f(\alpha, t)$ -- непр.
+
+    $\frac{d \Phi}{d t} = \int_{\alpha}^{\beta} {f'_t (x, t) d x}$ -- непр.
+
+    Так как все частные производные непр., то $\Phi$ -- дифф.
+
+    $F(t) = \Phi(\phi(t), \psi(t), t) \implies F'(t) = \frac{d \Phi}{d \alpha} \phi'(t) + \frac{d \Phi}{d \beta} \psi'(t) + \frac{d\Phi}{dt}$.
+\end{proof}
+
+
+
