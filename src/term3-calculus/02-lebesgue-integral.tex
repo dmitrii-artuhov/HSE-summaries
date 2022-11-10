@@ -1742,3 +1742,216 @@
         }
     \end{enumerate}
 \end{consequence}
+
+
+% Module 2
+\Subsection{Замена переменной}
+\begin{definition}
+    $\Omega$ и $\tilde{\Omega} \subset \mathbb{R}^m$ -- открытые.
+
+    $\Phi: \Omega \rightarrow \tilde{\Omega}$.
+
+    $\Phi$ -- диффеоморфизм, если 
+
+    \begin{enumerate}
+        \item $\Phi$ -- биекция.
+        \item $\Phi$ -- непр. дифф.
+        \item $\Phi^{-1}$ -- непр. дифф.
+    \end{enumerate}
+\end{definition}
+
+\begin{remark}
+    $Id = \Phi^{-1} \circ \Phi \implies x = (\Phi(x)^{-1})' \cdot (\Phi(x)) \cdot \Phi'(x) \implies 1 = det(\Phi^{-1})' (\Phi(x)) \cdot det(\Phi'(x))$.
+\end{remark}
+
+\begin{remark}
+    Обозначение.
+
+    $J_{\Phi} := det \Phi'$
+
+    якобиан $=$ определитель матрицы Якоби.
+\end{remark}
+
+\begin{theorem}
+    $\Phi: \Omega \rightarrow \tilde{\Omega}$ диффеоморфизм. $\Omega, \tilde{\Omega} \subset \mathbb{R}^m$ откр., $f: \tilde{\Omega} \rightarrow \tilde{\mathbb{R}}, \ f \geq 0$ измеримая. Тогда
+    
+    $\int_{\tilde{\Omega}}{f d \lambda_m} = \int_{\Omega}{f(\Phi(x)) |J_{\Phi}(x)| d \lambda_m}$.
+
+    Такая же формула есть и для суммир. функций $f$.
+
+    Частные случаи:
+    \begin{enumerate}
+        \item {
+            Сдвиг: $\Phi(x) = x + a, \ a \in \mathbb{R}^m$.
+
+            $\int_{\mathbb{R}^m}{f d \lambda_m} = \int_{\mathbb{R}^m} {f(x + a) d \lambda_m(x)}$
+        }
+        \item {
+            $L: \mathbb{R}^m \rightarrow \mathbb{R}^m$ обратимое линейное отображение.
+
+            $\int_{\mathbb{R}^m} {f d \lambda_m} = \int_{\mathbb{R}^m} {f (L x) |det L| d \lambda_m(x)}$
+        }
+        \item {
+            Гомотетия: $Lx = c \cdot x, \ c \in \mathbb{R}, \ c > 0$.
+
+            $\int_{\mathbb{R}^m}{f d \lambda_m} = c^m \cdot \int_{\mathbb{R}^m} {f(c\cdot x) d \lambda_m(x)}$.
+        }
+    \end{enumerate}
+\end{theorem}
+
+\begin{lemma}
+    $\Phi: \Omega \rightarrow \tilde{\Omega}$ -- диффеоморфизм, $\Omega, \tilde{\Omega} \subset \mathbb{R}^m$ -- открытые, $a \in \Omega$, $1 \leq k \leq m - 1$.
+    
+    Тогда существует $U_a$ и $\Phi_2: U_a \rightarrow \mathbb{R}_m$, $\Phi_1: \Phi_2(U_a) \rightarrow \mathbb{R}^m$, т.ч. $\Phi = \Phi_1 \circ \Phi_2$.
+
+    $\Phi_1$ -- осталяет на месте $k$ координат, а $\Phi_2$ -- оставляет на месте $m - k$ координат.
+\end{lemma}
+\begin{proof}
+    $x, u \in \mathbb{R}^m, \ y, v \in \mathbb{R}^{m - k}, \ \Phi(x, y) = \left( \underbrace{\phi(x, y)}_{\in \mathbb{R}^{k}}, \ \underbrace{\psi(x, y)}_{\in \mathbb{R}^{m - k}} \right)$.
+
+    $\Phi_1(x, y) = (x, \ \underbrace{f(x, y)}_{\in \mathbb{R}^{m - k}})$
+    
+    $\Phi_2(x, y) = (\underbrace{g(x, y)}_{\in \mathbb{R}^{k}}, \ y)$
+
+    $\Phi_1(\Phi_2(x, y)) = (*)$
+    
+    $(*) = \Phi_1(g(x, y), y) = \left(g(x, y), f(g(x, y), y)\right)$
+
+    $(*) = \left( \phi(x, y), \psi(x, y) \right) \implies g(x, y) := \phi(x, y)$
+    
+    
+    $\implies f(u, v) = \psi(\Phi_2^{-1}(u, v))$
+    
+    $f(\phi_2(x, y)) = f(\phi(x, y), y) = \psi(x, y)$
+
+    Нужна локальная обратимость $\Phi_2$,  а для этого нужна обратимость $\Phi_2'(a)$, то есть $det(\Phi_2'(a)) \not = 0$.
+
+    $\Phi_2(x, y) = \left( \phi(x, y), y \right), \ \Phi_2'(x, y) = 
+    \begin{pmatrix}
+        \phi_x' & \phi_y' \\
+        0 & E
+    \end{pmatrix}
+    , \ det (\Phi_2') = det(\Phi_x)$.
+
+    $\Phi(x, y) = \left( \phi(x, y), \ \psi(x, y) \right)$
+
+    $\Phi' =
+    \begin{pmatrix}
+        \phi_x' & \phi_y' \\
+        \psi_x' & \psi_y'
+    \end{pmatrix}
+    $
+
+    блок $k \times k$, ненулевой минор найдется.
+\end{proof}
+
+\begin{consequence}
+    $\Phi: \Omega \rightarrow \tilde{\Omega}$ -- диффеоморфизм, $a \in \Omega, \ \Omega, \tilde{\Omega} \subset \mathbb{R}^m$ -- открытые.
+
+    Тогда существует $U_a$, т.ч. $\Phi|_{U_a} = \Phi_1 \circ \Phi_2 \circ \dots \Phi_m$, где $\Phi_j$ -- диффеоморфизм, оставляющие на месте все координаты, кроме одной (но их перенумерующие).
+\end{consequence}
+\begin{proof}
+    Индукция + предыдущая лемма.
+\end{proof}
+
+\begin{theorem}
+    \textbf{Линделефа}.
+
+    $A \subset \mathbb{R}^m, \ A$ -- покрыто открытыми мн-вами. 
+
+    Тогда из него можно выделить не более чем счетное подпокрытие.
+\end{theorem}
+\begin{proof}
+    $A \subset \bigcup_{\alpha \in I}{\left( \underbrace{G_{\alpha}}_{\text{открытое}} \right)}$.
+
+    Берем $a \in A$, рисуем картинку, которую кто-нибудь \textit{обязательно} добавит.
+    % todo: picture
+
+    Пусть $U_a$ -- шарик с рациональным центром и рациональным радиусом. $a \in U_a$ и $U_a$ содержатся в каком-то элементе покрытия. Очевидно, что $a \in U_a \subset G_{\alpha_i}$, тогда выкинем все лишние $G_{\alpha}$, а остальных останется не более чем счетное кол-во (так как $U_a$ с рацинальным центром и радиусом, а таких счетное кол-во), при этом они покрывают $A$.
+\end{proof}
+
+\begin{theorem}
+    $\Phi: \Omega \rightarrow \tilde{\Omega}$ -- диффеоморфизм, $\Omega, \tilde{\Omega} \subset \mathbb{R}^m$ -- открытые, $A \subset \Omega$ -- измеримое. 
+
+    Тогда $\lambda_m \Phi(A) = \int_{A}{|J_{\Phi}| d \lambda_m}$.
+\end{theorem}
+\begin{remark}
+    Если теорема верна для конкретного $\Phi$ и произвольного $A$, то для того же $\Phi$ верна формула замена переменной.
+    
+    Формула замены переменной:
+    
+    $\int_{\tilde{\Omega}} {f d \lambda_m} = \int_{\Omega} {f \circ \Phi |J_{\Phi}| d \lambda_m}$.
+\end{remark}
+\begin{proof}
+    $f = \mathds{1}_{\Phi(A)} A \subset \Omega$.
+
+    $\int_{\tilde{\Omega}} {f d \lambda_m} = \int_{\tilde{\Omega}} {\mathds{1}_{\Phi(A)} d \lambda_m} = \Phi(A) = \int_{A}{|J_{}\Phi| d \lambda_m} = \int_{\Omega}{\mathds{1}_{A} |J_{\Phi}| d \lambda_m}$.
+
+    % todo: picture (graph)
+
+    $\mathds{1}_{\Phi(A)}(\Phi(x)) = \mathds{1}_A$.
+
+    Нужно проверить для простых, а дальше для измеримых, в общем, все раскручивается (так говорил Храбров...).
+\end{proof}
+\begin{theorem}
+    Теоремы.
+
+    \begin{itemize}
+        \item [Шаг 1.] {
+            Пусть $\Omega \subset \bigcup_{\alpha \in I} {G_{\alpha}}$. Если т. верна для каждого $G_{\alpha}$, то она верна и для $\Omega$.
+
+            Выбираем нбчс подпокрытие $\Omega \subset \bigcup_{k = 1}^{\infty} {G_k}$.
+
+            $\lambda_m \Phi \left(A \cap G_k\right) = \int_{A \cap G_k}{|J_{\Phi}| d \lambda_m}$ и просуммируем $A \cap \left( G_k \setminus \bigcup_{j = 1}^{k - 1} \right)$.
+        }
+        \item [Шаг 2.] {
+            Если т. верна для диффеоморфизмов $\Phi$ и $\Psi$, то она верна и для $\Psi \circ \Phi$.
+
+            $\lambda_m \Psi(\Phi(A)) = \int_{\Phi(A)} {|J_{\Psi}| d \lambda_m} = \int_{\tilde{\Omega}} {\underbrace{\mathds{1}_{\Phi(A)} \cdot |J_{\Psi}|}_{=: \ f} d \lambda_m} =$
+            
+            $= \int_{\Omega} {\underbrace{\mathds{1}_{\Phi(A)} \circ \Phi}_{= \ \mathds{1}_A} \cdot  |J_{\Psi} \circ \Phi| \cdot |J_{\Phi}| d \lambda_m} =$
+            
+            $ = \int_A{|J_{\Psi} (\Phi(x))| |J_{\Phi}(x)| d \lambda_m(x)}$.
+
+            $det(\Psi'(\Phi(x))) \cdot det(\Phi'(x)) = det \left( \Psi'(\Phi(x)) \cdot \Phi'(x) \right) = det(\Psi \circ \Phi)' = J_{\Psi \circ \Phi}$.
+        }
+        \item [Шаг 3.] {
+            $m = 1$. $\Phi(x)$ -- строго монот. и непр. дифф.
+            
+            $\nu A := \lambda_1 (\phi(A))$ -- мера.
+            
+            $\mu A := \int_{A} {|\phi'| d \lambda_1}$ -- мера.
+
+            Хотим проверить, что $\nu = \mu$, тогда проверим, что они совпадают на ячейках $(a, b]$ (а по единственности продолжения получим, что нужно).
+
+            $\lambda(\phi(a, b]) = \int_{(a, b]}{|\phi'| d \lambda}$.
+
+            Эти значения стремят в тем, что выше, соответственно.
+            $\lambda(\phi[a + \frac{1}{n}, b]) = \int_{[a + \frac{1}{n}, b]} {|\phi'| d \lambda}$
+
+            Эти равны тем, что выше, соответственно.
+            $\phi(b) - \phi(a + \frac{1}{n}) = \int_{a + \frac{1}{n}}^{b} {\phi' d \lambda}$, если $\phi$ -- возрастает, $\phi[a + \frac{1}{n}, b] = [\phi(a + \frac{1}{n}), \phi(b)]$
+        }
+        \item [Шаг 4.] {
+            $\Phi$ оставляет на месте $m - 1$ коорд. $x = (\underbrace{y}_{\in \ \mathbb{R}^{m-1}}, \underbrace{t}_{\in \ \mathbb{R}})$.
+
+            $\Phi(y, t) = \left( y, \phi(y, t) \right)$.
+
+            $\lambda_m \Phi(A) = \int_{\mathbb{R}^{m - 1}} \left( \lambda_1 \Phi(A) \right)_y d \lambda_{m - 1}(y) = \int_{\mathbb{R}^{m - 1}} {\lambda_1 \left( \phi(y, A_y) \right) d \lambda_{m - 1}(y)} \underbrace{=}_{(*)} $.
+
+            $t \in \left( \Phi(A) \right)_y \Leftrightarrow (y, t) \in \Phi(A) \Leftrightarrow \exists (y', t') \in A$, т.ч. $(y, t) = \Phi(y', t') = (y', \phi(y', t')) \Leftrightarrow \exists t': \ \underbrace{(y, t') \in A}_{t' \in A_y}$ и $\underbrace{(y, t) = (y, \phi(y, t'))}_{t = \phi(y, t')} \Leftrightarrow t \in \phi(y, A_y)$. 
+
+            $\underbrace{=}_{(*)} \int_{\mathbb{R}^{m - 1}} {\left( \int_{A_y}{|\phi'(y, t)| d \lambda_1(t)} d \lambda_{m - 1}(y) \right)} = \int_A{| J_{\Phi} | \lambda_m}$.
+
+            $
+            \Phi' =
+            \begin{pmatrix}
+                E & 0 \\
+                \phi_y' & \phi_t'
+            \end{pmatrix}
+            $
+
+            Дальше были какие-то умные слова. Я не успел записать...
+        }
+    \end{itemize}
+\end{theorem}
