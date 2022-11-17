@@ -167,5 +167,461 @@
     $F(t) = \Phi(\phi(t), \psi(t), t) \implies F'(t) = \frac{d \Phi}{d \alpha} \phi'(t) + \frac{d \Phi}{d \beta} \psi'(t) + \frac{d\Phi}{dt}$.
 \end{proof}
 
+\begin{example}
+    $F(t) := \int_{0}^{+\infty} {e^{-x^2} \cdot \cos(tx) dx}$
+
+    Так как есть локальное условие Лебега (на самом деле $\int_{0}^{+\infty} { x e^{-x^2} d x } < +\infty$):
+
+    $F'(t) = -\int_{0}^{+\infty} { e^{-x^2} \sin(tx) \cdot x dx } = \frac{1}{2} \cdot \int_{0}^{+\infty} { \sin(tx) \cdot d (e^{-x^2}) } = \frac{1}{2} \cdot e^{-x^2} \sin(tx) |_{0}^{+\infty} - \frac{1}{2} \cdot \int_{0}^{+\infty} { t \cos{tx} e^{-x^2} dx }$.
+
+    $F'(t) = -\frac{1}{2} t F(t)$.
+    
+    $\underbrace{\frac{F'}{F}}_{= \ (\ln{F})'} = -\frac{t}{2} \implies \ln{F} = -\frac{t^2}{4} + C_0 \implies F(t) = C \cdot e^{\frac{-t^2}{4}}$.
+
+    $F(t) e^{frac{t^2}{4}} = C$.
+
+    Более строго:
+
+    $\left( F(t) e^{frac{t^2}{4}} \right)' = F' e^{frac{t^2}{4}} + F \cdot \frac{t}{2} e^{frac{t^2}{4}} = e^{frac{t^2}{4}} \cdot \underbrace{(F' + \frac{t}{2} \cdot F)}_{= 0} = 0$.
+
+    Хотим узнать константу:
+
+    $F(0) = \int_{0}^{+\infty} { e^{-x^2} dx } = \frac{\sqrt{\pi}}{2}$
+
+    $F(t) = \frac{\sqrt{\pi}}{2} \cdot e^{\frac{-t^2}{4}}$.
+\end{example}
 
 
+
+\Subsection{Несобственные интегралы с параметрами}
+
+$F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл сх-ся.
+
+\begin{definition}
+    $\int_{a}^{+\infty} { f(x, t) dx }$ -- равномерно сх-ся, если $\forall \epsilon > 0 \ \exists B \ \forall b > B \ \forall t \in T: \ | \int_{b}^{+\infty} { f(x, t) d x } | < \epsilon$
+\end{definition}
+
+\begin{remark}
+    $F_b(t) := \int_{a}^{b} { f(x, t) dx }$.
+
+    $\int_{a}^{+\infty} { \dots }$ -- равном сх-ся $\Leftrightarrow F_b \underbrace{\rightrightarrows}_{b \rightarrow +\infty} F$ равном. по $t \in T$.
+\end{remark}
+\begin{proof}
+    $\forall \epsilon > 0 \ \exists B \ \forall b > B \ \forall t \in T: \ \underbrace{| F_b(t) - F(t) |}_{= -\int_{b}^{+\infty} { f(x, t) d x }} < \epsilon$
+\end{proof}
+
+\begin{example}
+    $\int_{0}^{+\infty} { e^{-tx} dx }, \ t > 0$
+
+    $\int_{b}^{+\infty} { e^{-tx} dx } = -\frac{e^{-tx}}{t} |_{x=b}^{x=+\infty} = \frac{e^{-bt}}{t}$.
+
+    \begin{enumerate}
+        \item {
+            $t \geq t_0 > 0:$
+
+            $\frac{e^{-bt}}{t} \leq \frac{e^{-bt_0}}{t_0} < \epsilon$
+        }
+        \item {
+            $t > 0:$
+
+            $\frac{e^{-bt}}{t} \underbrace{\rightarrow}_{t \rightarrow 0+} +\infty \implies$ нет равномерной сх-ти.
+        }
+    \end{enumerate}
+\end{example}
+
+\begin{theorem}
+    \textbf{Критерий Коши}.
+
+    $\int_{a}^{+\infty} { f(x, t) dx }$ равн. сх-ся $\Leftrightarrow \forall \epsilon > 0 \ \exists B \ \forall b, c > B \ \forall t \in T: \ | \int_b^{c} { f(x, t) d x } | < \epsilon$.
+\end{theorem}
+\begin{proof}
+    $ \int_{a}^{+\infty} { f(x, t) dx } $ равн. сх-ся $\Leftrightarrow F_b \rightrightarrows F \Leftrightarrow \forall \epsilon > 0 \ \exists B \ \forall b, c > B \ \forall t \in T: \ \underbrace{| F_b(t) - F_c(t) |}_{\int_{b}^{c} { f(x, t) d x }} < \epsilon$.
+\end{proof}
+
+\begin{consequence}
+    $f: [a, +\infty) \times [c, d] \rightarrow \mathbb{R}$ непрерывная.
+
+    $ F(t) = \int_{a}^{+\infty} { f(x, t) d x } $ сх-ся $\forall t \in (c, d)$ и расх-ся при $t=c$ или $t=d$.
+
+    Тогда сходимость неравномерная.
+\end{consequence}
+\begin{proof}
+    Пусть $\int_{a}^{+\infty}$ сх-ся расномерно $\implies$:
+
+    по Критерию Коши и тому, что $f$ непр. на $[b, b'] \times [c, d]$:
+
+    $\forall \epsilon > 0 \ \exists B \ \forall b, b' > B \ \forall t \in (c, d): \ \underbrace{\left| \int_{b}^{b'} { f(x, t) d x } \right|}_{\rightarrow \int_{b}^{b'} { f(x, c) d x } \text{, при } t \rightarrow 0} < \epsilon \implies$
+
+    $\implies \forall \epsilon > 0 \ \exists B \ \forall b, b' > B \ \left| \int_{b}^{b'} { f(x, c) dx } \right| \leq \epsilon \implies \int_{a}^{+\infty} { f(x, c) dx }$ сх-ся. Противоречие.
+\end{proof}
+
+\begin{example}
+    $\int_{0}^{+\infty} { e^{-tx^2} dx }, \ t > 0$ сх-ся неравномерно, так как при $t = 0$ расходится.
+\end{example}
+
+\begin{theorem}
+    \textbf{Признак Вейерштрасса}.
+
+    $f, g: [a, +\infty) \times T \rightarrow \mathbb{R}$ и $|f(x, t)| \leq g(x, t): \ \forall x \geq a, \ \forall t \in T$.
+
+    Если $\int_{a}^{+\infty} { g(x, t) dx }$ равном. сх-ся, то $\int_{a}^{+\infty} { f(x, t) dx }$ равн. сх-ся.
+\end{theorem}
+\begin{proof}
+    Пишем критерий Коши для $\int_{a}^{+\infty} { g(x, t) dx }$:
+
+    $\forall \epsilon > 0 \ \exists B \ \forall b, c > B: \ \underbrace{\int_{b}^{c} { g(x, t) dx }}_{< \epsilon} \geq \int_{b}^{c} { |f(x, t)| dx } \geq \left| \int_{b}^{c} { f(x, t) d x } \right|$
+\end{proof}
+
+\begin{consequence}
+    Если $\left| f(x, t) \right| \leq g(x) \ \forall x \geq a, \ \forall t \in T$ и $\int_{a}^{+\infty} { g(x) dx }$ сх-ся, то $\int_{a}^{+\infty} { f(x, t) dx }$ сх-ся равномерно.
+\end{consequence}
+\begin{example}
+    $\int_{0}^{+\infty} { \frac{\cos(xt)}{x^2 + 1} dx }$ равн. сх-ся при $t \in \mathbb{R}$.
+
+    $\left| \frac{\cos(xt)}{x^2 + 1} \right| \leq \frac{1}{x^2 + 1}$ и $\int_0^{+\infty} { \frac{dx}{x^2+1} } < +\infty$.
+\end{example}
+
+\begin{theorem}
+    \textbf{Признак Дирихле}.
+
+    $\int_{a}^{+\infty} { f(x, t) g(x, t) d x }$.
+
+    Пусть
+
+    \begin{enumerate}
+        \item {
+            $\exists M: \ \forall b > a, \ \forall t \in T: \ \left| \int_{a}^{b} { f(x, t) dx } \right| \leq M$
+        }
+        \item {
+            $g$ монотонна по $x: \ \forall t \in T$.
+        }
+        \item {
+            $g \underbrace{\rightrightarrows}_{x \rightarrow +\infty} 0$
+        }
+    \end{enumerate}
+
+    Тогда $\int_{a}^{+\infty} { f(x, t) g(x, t) d x }$ равномерно сх-ся.
+\end{theorem}
+
+\begin{proof}
+    Для дифф. ф-й $g$:
+
+    $F(y, t) = \int_{a}^{y} { f(x, t) dx }$.
+
+    $(1) \Rightarrow |F(y, t)| \leq M: \ \forall y, \ \forall t$.
+
+    $\int_{a}^{y} { f(x, t) g(x, t) dx } = \underbrace{F(x, t) g(x, t)|_{x=a}^{x=y}}_{= F(y, t) g(y, t)} - \int_{a}^{y} { F(x, t) g'_x(x, t) d x }$
+
+    $\left| F(y, t) g(y, t) \right| \leq M | g(y, t) | \underbrace{\rightrightarrows}_{y \rightarrow +\infty} 0$
+
+    $ \int_{a}^{+\infty} { F(x, t) g'_x(x, t) d x } $ -- равном. сх-ся.
+
+    $|F(x, t) g'_x(x, t)| \leq M | g'_x(x, t) |$.
+
+    Надо доказать, что $\int_{a}^{+\infty} { | g'_x (x, t) | dx }$ равн. сх-ся.
+
+    $\int_{a}^{y} { | g'_x (x, t) | dx } = \left| \int_{a}^{y} { g'_x (x, t) dx } \right| = \left| g(x, t)|_{x=a}^{x=y} \right| = | \underbrace{g(y, t)}_{\rightrightarrows 0 \text{ по усл.}} - g(a, t) | \rightrightarrows |g(a, t)|$.
+
+    Тут какие-то слова, почему все получилось (у меня мозг поплыл).
+\end{proof}
+
+\begin{theorem}
+    \textbf{Признак Абеля}.
+
+    $\int_{a}^{+\infty} { f(x, t) g(x, t) dx }$. Пусть 
+    
+    \begin{enumerate}
+        \item {
+            $\int_{a}^{+\infty} { f(x, t) dx }$ равн. сх-ся.
+        }
+        \item {
+            $g$ монотонна по $x: \ \forall t \in T$. 
+        }
+        \item {
+            $| g(x, t) | \leq M, \ \forall x \geq a, \ \forall t \in T$
+        }
+    \end{enumerate}
+
+    Тогда $\int_{a}^{+\infty} { f(x, t) g(x, t) dx }$ равном. сх-ся.
+\end{theorem}
+\begin{proof}
+    Для дифф. ф-й $g$:
+
+    $F_b (y, t) = \int_{b}^{y} { f(x, t) dx }$
+
+    $\int_{b}^{c} { f(x, t) g(x, t) dx } = \underbrace{F_b (x, t) g(x, t) |_{x=b}^{x=c}}_{= F_b(c, t) g(c, t)} - \int_b^{c} { F_b(x, t) g'_x(x, t) dx }$
+
+    $\exists B : \ \forall y, b > B \ \forall t \in T: \ \left| F_b(y, t) < \epsilon \right|$, смотрим на $b > B \implies |F_b(x, t)| < \epsilon$.
+
+    $|F_b(c, t) g(c, t)| < \epsilon \cdot M$.
+
+    $\left| \int_{b}^{c} { F_b(x, t) g'_x(x, t) dx } \right| \leq \int_{b}^{c} { \underbrace{|F_b(x, t)|}_{< \epsilon} |g'_x(x, t)| dx} < \epsilon \cdot \int_{b}^{c} { g'_x(x, t) dx } = \epsilon \left| \int_{b}^{c} { g'_x(x, t) d x } \right| =$
+    
+    $ \epsilon \left| g(x, t)|_{x=b}^{x=c}  \right| \leq \epsilon \cdot 2 M$.
+\end{proof}
+\begin{example}
+    $\int_{1}^{+\infty} { \frac{\sin(x)}{x^t} dx }, \ t > 0$.
+
+    \begin{enumerate}
+        \item {
+            $t \geq t_0 > 0$. Дирихле: $f(x, t) = \sin(x), \ g(x, t) = \frac{1}{x^t}$ -- вторая монотонно убывает.
+
+            $\left| \int_{1}^{b} { \sin(x) dx } \right| \leq 2$.
+
+            $g(x, t) \rightrightarrows 0$, $|g(x, t)| \leq \frac{1}{x^{t_0}} \rightarrow 0$.
+
+            Есть равн. сх-ть.
+        }
+        \item {
+            $t > 0$. Нет равн. сх-ти, так как расх-ся при $t=0$.
+        }
+    \end{enumerate}
+\end{example}
+
+\begin{theorem}
+    $f: [a, +\infty) \times T \rightarrow \mathbb{R}, \ t_0$ -- предельная точка $T$.
+
+    Если
+    \begin{enumerate}
+        \item {
+            $\int_{a}^{+\infty} { f(x, t) dx }$ равномерно сх-ся (по $t \in T$).
+        }
+        \item {
+            $f(x, t) \underbrace{\rightrightarrows}_{t \rightarrow t_0} \phi(x)$ равномер. по $x$ на любом конечном отрезке.
+        }
+    \end{enumerate}
+
+    Тогда $\lim_{t \rightarrow t_0} { \int_{a}^{+infty} { f(x, t) dx } } = \int_{a}^{+\infty} { \phi(x) dx }$ и второй интеграл сх-ся. 
+\end{theorem}
+
+\begin{proof}
+    $(1) \underbrace{\Rightarrow}_{\text{кр. Коши для }f} \forall \epsilon > 0 \ \exists B \ \forall b, c > B \ \forall t \in T: \underbrace{| \int_{b}^{c} { f(x, t) dx } |}_{\rightarrow |\int_{b}^{c} { \phi(x) dx }| \text { при } t \rightarrow t_0}  < \epsilon$.
+
+    $| \int_{a}^{+\infty} { f(x, t) dx } - \int_{a}^{+\infty} | \leq \underbrace{| \int_{b}^{+\infty} { f(x, t) dx } |}_{< \epsilon} + \underbrace{| \int_{b}^{+\infty} { \phi(x) dx } |}_{< \epsilon} + |\int_{a}^{b} { \left( f(x, t) - \phi(x) \right) dx }|$.
+
+    $(1) \Rightarrow \exists B_1 \ \forall b > B_1$ и $\forall t \in T: | \int_{b}^{+\infty} { f(x, t) dx } | < \epsilon$.
+
+    $\int_{a}^{+\infty} { \phi(x) dx }$ -- сх-ся $\Rightarrow \exists B_2 \ \forall b > B_2: \ | \int_{b}^{+\infty} { \phi(x) dx } | < \epsilon$.
+
+    Фиксируем $b \geq \max \{ B_1, B_2 \}$.
+
+    $| \int_{a}^{b} {\left( f(x, t) - \phi(x) \right) dx} | \leq (b - a) \underbrace{\sup_{x \in [a, b]} \{ | f(x, t) - \phi(x) | \}}_{\rightarrow 0} < \epsilon$ при $t$ близких к $t_0$. 
+\end{proof}
+
+\begin{remark}
+    Равн. сх-ть интеграла существенна:
+
+    $f(x, t) = \frac{1}{t}$ при $0 \leq x \leq t$.
+
+    $f(x, t) \underbrace{\rightrightarrows}_{t \rightarrow + \infty} 0$
+
+    $\int_{0}^{+\infty} { f(x, t) dx} = \int_{0}^{t} { \frac{1}{t} dx } = 1 \not \rightarrow 0 $.
+\end{remark}
+
+\begin{theorem}
+    $f \in C([a, +\infty) \times [c, d]), \ F(t) := \int_{a}^{+\infty} { f(x, t) dx }$ равном. сх-ся.
+
+    Тогда $F \in C[c, d]$.
+\end{theorem}
+\begin{proof}
+    $F_b(t) := \int_{a}^{b} { f(x, t) dx } \underbrace{\rightrightarrows}_{b \rightarrow +\infty} F(t)$.
+
+    Достаточно понять, что $F_b \in C[c, d]$, а это знаем.
+\end{proof}
+
+\begin{remark}
+    Без равном. сх-ти неверно.
+
+    $f(x, t) = t e^{-t^2 x}, \ t \in \mathbb{R}$.
+
+    $F(t) := \int_{0}^{+\infty} { t e^{-t^2 x} dx }$ -- сх-ся.
+
+    $F(0) = 0$
+
+    $F(t) = \frac{1}{t}$ при $t \not = 0$ нет непрер.
+\end{remark}
+
+\begin{theorem}
+    (Интегральный аналог теоремы Абеля для степенных рядов).
+
+    Пусть $\int_{a}^{+\infty} { f(x) dx }$ сходится и $f \in C[a, +\infty)$. Тогда $F(t) := \int_{a}^{+\infty} { f(x) e^{-tx} dx } \in C[0, +\infty)$
+\end{theorem}
+
+\begin{proof}
+    Признак Абеля.
+
+    $g(x, t) = e^{-tx}$ монотонно убывает и огрничена 1.
+\end{proof}
+
+\begin{example}
+    $\int_{0}^{+\infty} { \frac{\sin(x)}{x} dx }$ -- сх-ся $\implies F(t) := \int_{0}^{+\infty} { e^{-tx} \frac{\sin(x)}{x} dx }$ непрер. при $t \geq 0$.
+\end{example}
+
+\begin{theorem}
+    $f'_t, f \in C([a, +\infty) \times [c, d])$
+
+    \begin{enumerate}
+        \item {
+            $\Phi(t) := \int_{a}^{+\infty} { f'_t (x, t) dx }$ равномерно сх-ся.
+        }
+        \item {
+            $F(t) := \int_{a}^{+\infty} { f(x, t) dx }$ сх-ся при $t = t_0$.
+        }
+    \end{enumerate}
+
+    Тогда $F$ равномерно сх-ся, $F \in C^1[c, d]$ и $F' = \Phi$.
+\end{theorem}
+
+\begin{proof}
+    $F_b(t) := \int_{a}^{b} { f(x, t) dx } \implies F_b'(t) = \int_{a}^{b} { f'_t (x, t) dx } \underbrace{\rightrightarrows}_{b \rightarrow +\infty} \Phi(t)$.
+
+    $F_b(t) = \left(\underbrace{\int_{t_0}^{t} { F_b'(u) du }}_{\rightrightarrows \int_{t_0}^{t} { \Phi(u) du }}\right) + \underbrace{F_b(t_0)}_{\rightarrow F(t_0)} \implies \underbrace{F_b(t)}_{\rightarrow F(t)} \rightrightarrows \int_{t_0}^{t} { \Phi(u) du } + F(t_0)$
+
+    $\implies$ равномерная сх-ть и $F(t) = F(t_0) + \int_{t_0}^{t} { \underbrace{\Phi(u)}_{\text{непр. ф-я}} du } \implies F \in C^1[c, d]$ и $F'(t) = \Phi(t)$.
+\end{proof}
+
+\begin{example}
+    $F(t) := \int_{0}^{+\infty} { e^{-tx} \cdot \frac{\sin(x)}{x} dx }$. Знаем, что $F \in C[0, +\infty)$/
+
+    $\Phi(t) := \int_{0}^{+\infty} { \frac{\sin(x)}{x} \cdot e^{-tx} \cdot (-x) dx } = \underbrace{- \int_{0}^{+\infty} { \sin(x) \cdot e^{-tx} dx }}_{= - \frac{1}{1+t^2} \text{ два раза инт. по частям}}$ -- равномерно сх-ся при $t \geq t_0 > 0$.
+
+    $\implies F'(t) = \Phi(t) \implies F(t) = C - \arctan(t)$.
+
+    $\lim_{t \rightarrow + \infty} { F(t) } = \lim_{t \rightarrow +\infty} { \int_{0}^{+\infty} { e^{-tx} \cdot \frac{\sin(x)}{x} dx} } \underbrace{=}_{?} \int_{0}^{+\infty} { \lim_{t \rightarrow +\infty} { e^{-tx} \cdot \frac{\sin(x)}{x} dx } } = 0$.
+
+    $\left| e^{-tx} \cdot \frac{\sin(x)}{x} \right| \leq e^{-x} \cdot \frac{|\sin(x)|}{x} \leq e^{-x}$ -- суммируемая мажоранта.
+
+    $\lim_{t \rightarrow +\infty}{ C - \arctan(t) } = \lim_{t \rightarrow +\infty} { F(t) } = 0 \implies C = \frac{\pi}{2} \implies C[0, +\infty) \ni F(t) = \frac{\pi}{2} - \arctan(t) \in C[0, +\infty)$ при $t > 0$
+
+    $\implies F(t) = \frac{\pi}{2} - \arctan(t)$ при $t \geq 0 \implies F(0) = \frac{\pi}{2}$, то есть $\int_{0}^{+\infty} { \frac{\sin(x)}{x} dx } = \frac{\pi}{2}$
+\end{example}
+
+\Subsection{B- и Г-функции Эйлера}
+
+\begin{definition}
+    $\Gamma(p) := \int_{0}^{+\infty} { x^{p-1} e^{-x} dx }, \ p > 0$ -- гамма-функция.
+
+    $B(p, q) := \int_{0}^{1} { x^{p-1} (1-x)^{q-1} dx }, \ p, q > 0$ -- бета-функция.
+\end{definition}
+
+\begin{properties}
+    $\Gamma$-фнкции.
+
+    \begin{enumerate}
+        \item {
+            Интеграл сходится в нуле эквивалентно тому, что $\frac{1}{x^{1-p}}$ сх-ся в $+\infty$
+            
+            \begin{proof}
+                $x^{p-1} \leq e^{\frac{x}{2}}$ при больших $x$, $x^{p-1} \cdot e^{-x} \leq e^{-\frac{x}{2}} \implies$ сх-ся.
+            \end{proof}
+        }
+        \item {
+            $\Gamma(p+1) = p \Gamma(p)$.
+
+            \begin{proof}
+                $\Gamma(p+1) = \int_{0}^{+\int} { x^p e^{-x} dx } = - \int_{0}^{+\infty} { x^p d (e^{-x}) } = -x^p e^{-x} |_{0}^{+\infty} + \int_{0}^{+\infty} { p x^{p-1} e^{-x} dx } = p \Gamma(p)$.
+            \end{proof}
+        }
+        \item {
+            $\Gamma(n+1) = n!$
+            
+            \begin{proof}
+                $\Gamma(1) = \int_{0}^{+\infty} { e^{-x} dx } = 1$
+
+                Далее индукция.
+            \end{proof}
+        }
+        \item {
+            $\Gamma(\frac{1}{2}) = \sqrt{\pi}$
+
+            \begin{proof}
+                $\Gamma(\frac{1}{2}) = \int_{0}^{+\infty} { \frac{1}{\sqrt{x}} \cdot e^{-x} dx } = \int_{0}^{+\infty} { e^{-y^2} \cdot \frac{1}{y} \cdot 2y d y } = 2 \cdot \int_{0}^{+\infty} { e^{-y^2} dy } = \sqrt{\pi}$, где $y^2 = x, \ dx = 2y dy$.
+            \end{proof}
+        }
+        \item {
+            $\Gamma(n + \frac{1}{2}) = \frac{(2n - 1)!!}{2^n} \sqrt{\pi}$.
+
+            \begin{proof}
+                $\Gamma(n + \frac{1}{2}) = (n - \frac{1}{2}) \Gamma (n - \frac{1}{2}) = \dots = (n - \frac{1}{2}) \cdot (n - \frac{3}{2}) \cdot \frac{1}{2} \Gamma(\frac{1}{2})$ -- получилось ровно то, что хотели.
+            \end{proof}
+        }
+        \item {
+            $\Gamma$ бесконечно дифф ф-я и $\Gamma^{(n)}(p) = \int_{0}^{+\infty} { x^{p-1} \left( \ln(x) \right)^n e^{-x} dx }$
+            
+            \begin{proof}
+                Надо обосновать дифф. под знаком интеграла.
+                
+                $0 < a \leq p \leq b$
+                
+                \begin{enumerate}
+                    \item {
+                        $0 \leq x \leq 1$:
+
+                        $x^{a-1} |\ln(x)|^{n} e^{-x}$
+                    }
+                    \item {
+                        $1 \leq x$:
+
+                        $x^{b-1} |\ln(x)|^{n} e^{-x} \leq x^{n + b} e^{-e}$
+                    }
+                \end{enumerate}
+            \end{proof}
+        }
+        \item {
+            $\Gamma$ -- строго выпуклая.
+
+            \begin{proof}
+                $\Gamma''(p) = \int_{0}^{+\infty} { x^{p-1} (\ln(x))^2 e^{-x} dx } > 0$
+            \end{proof}
+        }
+    \end{enumerate}
+\end{properties}
+
+\begin{properties}
+    $B$-функции.
+
+    \begin{enumerate}
+        \item {
+            Интеграл сх-ся 
+
+            \begin{enumerate}
+                \item В нуле $\Leftrightarrow \frac{1}{x^{1-p}}$ -- сх-ся.
+                \item В единице $\Leftrightarrow \frac{1}{(1-x)^{1-q}}$ -- сх-ся.
+            \end{enumerate}
+        }
+        \item {
+            $B(p, q) = B(q, p)$.
+
+            \begin{proof}
+                $B(p, q) = \int_{0}^{1} { x^{p-1} (1-x)^{q-1} dx } = - \int_{1}^{0} { (1-y)^{p-1} y^{q-1} dy } = B(q, p)$, где $y = 1 - x, \ dy = -dx$.
+            \end{proof}
+        }
+        \item {
+            $B(p, q) = \int_{0}^{+\infty} { \frac{x^{p-1}}{(1+x)^{p+q}} dx }$.
+
+            \begin{proof}
+                $B(p, q) = \int_{0}^{1} { y_{p-1} (1-y)^{q-1} dy } = \int_{0}^{+\infty} { \left( \frac{x}{1+x} \right)^{p-1} \cdot \left( \frac{x}{1+x} \right)^{q-1} \cdot \frac{1}{(1+x)^2} dx }$, где $y = \frac{x}{1+x}, \ y = 1 - \frac{1}{1+x}, \ dy = \frac{dx}{(1+x)^2}$.
+            \end{proof}
+        }
+    \end{enumerate}
+\end{properties}
+
+\begin{theorem}
+    $B(p, q) = \frac{\Gamma(p) \cdot \Gamma(q)}{\Gamma(p+q)}$.
+\end{theorem}
+\begin{proof}
+    $\Gamma(p) \cdot \Gamma(q) = \int_{0}^{+\infty} { x^{p-1} e^{-x} dx } \cdot \int_{0}^{+\infty} { y^{q-1} e^{-y} dy } = \int_0^{+\infty} { \int_{0}^{+\infty} { x^{p-1} y^{q-1} e^{-x-y} dx } dy } =$
+    
+    $= \int_{0}^{+\infty} { \int_{0}^{u} { x^{p-1} (u - x)^{q-1} e^{-u} dx } du } \underbrace{=}_{\text {замена } x = uv, \ dx = u \cdot dv} \int_{0}^{+\infty} { \int_{0}^{1} { (uv)^{p-1} (u - uv)^{q-1} e^{-u} u dv } du } =$
+    
+    $= \int_{0}^{+\infty} { u^{p+q-1} e^{-u} \cdot \underbrace{\int_{0}^{1} { v^{p-1} (1-v)^{q-1} dv }}_{= B(p, q)} du } = B(p, q) \Gamma(p + q)$.
+\end{proof}
+
+\begin{consequence}
+    (формула дополнения)
+
+    $\Gamma(p) \Gamma(1-p) = \frac{\pi}{\sin(\pi p)}, \ p \in (0, 1)$.
+\end{consequence}
+\begin{proof}
+    $\Gamma(p) \Gamma(1 - p) = \Gamma(1) B(p, 1 - p) = \int_{0}^{+\infty} { \frac{x^{p-1}}{1+x} dx }$.
+\end{proof}
