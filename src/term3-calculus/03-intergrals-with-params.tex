@@ -625,3 +625,321 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
 \begin{proof}
     $\Gamma(p) \Gamma(1 - p) = \Gamma(1) B(p, 1 - p) = \int_{0}^{+\infty} { \frac{x^{p-1}}{1+x} dx }$.
 \end{proof}
+
+
+* Здесь пропущены первые 15 минут*
+
+\begin{consequence} \textbf{2 (формула удвоения)}
+    $\Gamma(p)\Gamma(p + \frac{1}{2}) = \frac{\sqrt[]{\pi}}{2^{2p - 1}}\Gamma(2p)$
+\end{consequence}
+
+\begin{proof}
+    $B(p, p) = \frac{\Gamma(p)\Gamma(p)}{\Gamma(2p)} = \frac{1}{2^{2p-1}}\cdot\frac{\Gamma(p)\Gamma(\frac{1}{2})}{\Gamma(p + \frac{1}{2})} = B(p, \frac{1}{2})$
+
+    $B(p, p) = \int_{0}^{1}(1 - x)^{p -1}dx = 2 \int_{0}^{\frac{1}{2}}\underbrace{(x - x^2)}_{\frac{1}{4} - (\frac{1}{2}-x)^2}^{p-1}dx = 2 \int_{0}^{\frac{1}{2}}(\frac{1}{4} - y^2)^{p-1}dy = 2\int_{0}^{1}(\frac{1}{4}\cdot(1 - z))^{p-1} \cdot \frac{1}{4}\frac{dz}{\sqrt[]{z}} = \frac{1}{2^{2p-1}}\int_{0}^{1}(1 - z)^{p-1}z^{\frac{-1}{2}}dz$
+
+\end{proof}
+
+\begin{theorem}
+    $\Gamma(t + a) \sim t^a \Gamma(t)$ при $t \to +\infty$
+\end{theorem}
+
+\begin{proof}
+    $\frac{\Gamma(t)}{\Gamma(t + a)}$ при больших $t$
+
+    $\frac{\Gamma(t + 1)\Gamma(a)}{\Gamma(t + 1 + a)} = B(t + 1, a) = \int_{0}^{1}(1 - x)^tx^{a - 1}dx$
+
+    $t^a\int_{0}^{1}(1 - x)^tx^{a - 1}dx \underbrace{=}_{y = xt} \int_{0}^{t}y^{a - 1}\underbrace{(1 - \frac{y}{t})^t}_{\to e^{-y}} dy \to \int_{0}^{+\infty}y^{a-1}e^{-y}dy + \Gamma(a)$
+
+    На самом деле интегрируем $\mathbb{1}_{[0, t]}y^{a-1}(1 - \frac{y}{t})^t \leq y^{a-1}e^{-y}$ -- это суммируемая мажоранта, поэтому можем перейти к пределу по т. Лебега
+\end{proof}
+
+\begin{consequence}
+    При $a = \frac{1}{2}$ это формула Валлиса.
+\end{consequence}
+
+\begin{proof}
+    $\Gamma(n + \frac{1}{2}) \sim n^{\frac{1}{2}}\Gamma(n)$
+\end{proof}
+
+\begin{theorem}\textbf{формула Эйлера-Гаусса}
+    
+    $\Gamma(p) = \lim n^p \cdot \frac{n!}{p(p + 1)(p + 2)\dots (p + n)}$
+
+\end{theorem}
+
+\begin{proof}
+    $\frac{n^p \cdot n!}{\Gamma(p)p(p + 1)...(p + n)} = \frac{n^p n!}{\Gamma(n + 1 + p)} = \frac{n^p\Gamma(n + 1)}{\Gamma(n + 1 + p)} \to 1$
+\end{proof}
+
+\begin{example}
+    $1\cdot 6 \cdot 11 \cdot 16 \dots \cdot (5n + 1) = 5^n \cdot \frac{1}{5} \cdot (\frac{1}{5} + 1) \cdot (\frac{1}{5} + 2) \dots (\frac{1}{5} + n) \sim 5^{n+1}\frac{n^{\frac{1}{5}}n!}{\Gamma(\frac{1}{5})}$
+\end{example}
+
+\begin{example}
+    \begin{enumerate}
+        \item $p > 0, \int_{0}^{+\infty}{e^{-x^p}}dx = \frac{1}{p}\int_{0}^{+\infty}{e^{-y}y^{\frac{1}{p} - 1}}dy = \frac{1}{p}\Gamma(\frac{1}{p}) = \Gamma(\frac{1}{p} + 1)$, где $y = x^p, x = y^{\frac{1}{p}}, dx = \frac{1}{p}y^{\frac{1}{p} - 1}\ dy$
+        
+        \item $\int_{0}^{\frac{\pi}{2}}{ \cos^{p-1}t \cdot \sin^{q - 1}t dt } = \frac{1}{2}\int_{0}^{1}(1 -x)^{\frac{p-2}{2}}x^{\frac{q-2}{2}}dx = \frac{1}{2}B(\frac{p}{2}, \frac{q}{2})$, где $x = \sin^2 t, dx = 2\sin t \cos t dt, 1 - x = \cos^2 t$
+        
+        В частности, $\int_{0}^{\frac{\pi}{2}}{ \cos^{p - 1}t dt } = \int_{0}^{\frac{\pi}{2}}\sin^{p-1}dt = \frac{1}{2}B(\frac{p}{2}, \frac{q}{2}) = \frac{1}{2} \cdot \frac{\Gamma(\frac{p}{2}) \cdot \Gamma(\frac{1}{2})}{\Gamma(\frac{p + 1}{2})} = \frac{\Gamma(\frac{p}{2})}{\Gamma(\frac{p + 1}{2})} \cdot \frac{\sqrt[]{\pi}}{2}$
+
+        \item Объем $n$-мерного шара радиуса $r$: $V_n(r) = C_nr^n$, где $C_n$ -- объём шара радиуса 1 в $\mathbb{R}^2$
+
+        % todo: picture here
+        $C_n = V_n(1) = 2 \int_{0}^{1}V_{n - 1}(\sqrt[]{1 - x^2})dx = 2 \int_{0}^{1}(1 - x^2)^{\frac{n-1}{2}}C_{n - 1}dx \underbrace{=}_{y = x^2, x = \sqrt[]{y}, dx = \frac{dy}{2\sqrt[]{y}}} = 2C_{n-1}\int_{0}^{1}(1 - y)^{\frac{n-1}{2}} \cdot \frac{1}{2} \cdot y^{-\frac{1}{2}}dy = C_{n-1} \cdot B(\frac{1}{2}, \frac{n + 1}{2}) = C_{n - 1}\frac{\Gamma(\frac{1}{2})\Gamma(\frac{n + 1}{2})}{\Gamma(\frac{n}{2} + 1)} = C_{n - 1}\sqrt[]{\pi}\frac{\Gamma(\frac{n + 1}{2})}{\Gamma(\frac{n}{2} + 1)} = C_{n - 2} \cdot (\sqrt[]{\pi})^2 \cdot \frac{\Gamma(\frac{n + 1}{2})}{\Gamma(\frac{n}{2} + 1)} \cdot \frac{\Gamma(\frac{n}{2})}{\Gamma(\frac{n + 1}{2})} = \dots = C_1 (\sqrt[]{\pi})^{n-1}\frac{\Gamma(\frac{3}{2})}{\Gamma(\frac{n}{2} + 1)} = 2 \cdot (\sqrt[]{\pi})^{n - 1} \cdot \frac{\frac{1}{2}\sqrt[]{\pi}}{\Gamma(\frac{n}{2} + 1)} = \frac{\pi^{\frac{n}{2}}}{\Gamma(\frac{n}{2} + 1)}$
+
+        $\frac{\pi^{\frac{3}{2}}}{\Gamma(\frac{3}{2} + 1)} = \frac{\pi\sqrt[]{\pi}}{\frac{3}{2}\cdot\frac{1}{2}\sqrt[]{\pi}} = \frac{4}{3}\pi$
+    \end{enumerate}
+\end{example}
+
+\Subsection{Криволинейные интегралы}
+
+\begin{definition}
+    $\gamma: [a, b] \to \mathbb{R}^n$ -- гладкая кривая
+
+    $f$ -- функция, заданная на $\gamma[a, b] \to \mathbb{R}$
+
+    Криволинейный интеграл ($I$ рода (интеграл по длине дуги)): 
+
+    $\int_{\gamma}^{}fds := \int_{a}^{b}f(\gamma(f))\cdot ||\gamma'(t)||dt$, где $||\gamma'(t)|| = ||\begin{pmatrix}
+        \gamma_1'(t)\\
+        \gamma_2'(t)\\
+        \vdots\\
+        \gamma_n'(t)
+    \end{pmatrix}|| = \sqrt[]{\gamma_1'(t)^2 + \dots + (\gamma_n'(t))^2}$
+\end{definition}
+
+\begin{theorem}
+    \begin{enumerate}
+        \item Не зависит от параметризации кривой
+        \item Не зависит от направления
+        \item $\int_{\gamma}^{}ds = l(\gamma)$ -- длина кривой 
+        \item Линейность по функции
+        % todo: picture here
+        \item Аддитивность по кривой: если $\gamma = \gamma_1 \sqcup \gamma_2$, то $\int_{\gamma}^{}f ds = \int_{\gamma_1}^{}f ds + \int_{\gamma_2}^{}f ds$
+        \item Если $f \leq g$, то $\int_{\gamma}^{}f \leq \int_{\gamma}^{}g$
+        \item $|\int_{\gamma}^{}f ds| \leq \int_{\gamma}^{}|f|ds$
+        \item $\int_{\gamma}^{}fds \leq \max f \cdot l(\gamma)$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item[1-2] $\tilde{\gamma}$ -- другая параметризация. $\tilde{\gamma} = \gamma \circ \tau$, где $\tau: [c, d] \to [a, b]$ -- гладкая строго монотонная биекция
+
+        $\int_{\tilde{\gamma}}^{}f ds = \int_{c}^{d}f(\gamma(\tau(u)))||\tilde{\gamma'}(u)||du$
+
+        $\tilde{\gamma'}(u) = \begin{pmatrix}
+            \tilde{\gamma_1'}(u) \\
+            \vdots
+        \end{pmatrix}$
+
+        $\tilde{\gamma_1} = \gamma_1 \circ \tau, \tilde{\gamma_1}'(u) = \gamma_1'(\tau(u))\tau'(u)$
+
+        $||\tilde{\gamma}'(u)|| = |\tau'(u)| \cdot ||\gamma'(\tau(u))||$ -- если бы не было модуля, могли бы просто сделать замену переменной, но надо что-то умнее
+
+        Если $\tau \uparrow$, тогда $\int_{a}^{b}f(\gamma(t)) \cdot ||\gamma'(t)|| dt = \int_{\gamma}^{}f ds$, где $t = \tau(u)$
+
+        А если $\tau \downarrow$, то лишний минус появится, когда поменяем местами концы
+
+        В итоге не зависим от убывания/возрастания
+
+        \item[3] Формула для длины кривой
+        \item[4] $\int_{\gamma}^{}(\alpha f + \beta g)ds = \int_{a}^{b}(\alpha f(\gamma(t))) + \beta g(\gamma(t))||\gamma'(t)||dt = \alpha \int_{a}^{b}f(\gamma(t))||\gamma'(t)||dt + \dots = \alpha \int_{\gamma}^{}f ds + \beta\int_{\gamma}^{}gds$
+        \item[5] $\gamma: [a, b] \to \mathbb{R},\ c \in (a, b),\ \gamma_1 = \gamma|_{[a, c]}, \gamma_2 = \gamma|_{[c, b]}$ и по аналогии
+        \item[6] $\int_{\gamma}^{}f ds = \int_{a}^{b}f(\gamma(t))||\gamma'(t)||dt$ и если заменим на $g$, станем только больше
+        \item[7] $|\int_{\gamma}^{}f ds| = |\int_{a}^{b}f(\gamma(t))||\gamma'(t)||dt| = \int_{a}^{b}|f(\gamma(t))| \cdot ||\gamma'(t)||dt = \int_{\gamma}^{}|f|ds$
+        \item[8] $f \leq \max f \implies \int_{\gamma}^{}fds \leq \int_{\gamma}^{}\max f ds = l(\gamma) \cdot \max f$
+    \end{enumerate}
+\end{proof}
+
+\begin{remark}
+    Можно определить $\int_{\gamma}^{}f ds$ для кусочно-гладких $\gamma$. Содержательная тут только проверка на корректность, но она проверятся с помощью аддитивности по кривой 
+\end{remark}
+
+% todo: change to "uprazhnenie" whatever this is
+\begin{theorem}\textbf{Упражнение}
+
+    $\int_{\gamma}^{}f ds = \lim \sum_{k = 1}^{m}f(\gamma(\xi(k))) \cdot l(\gamma|_[t_{k - 1}, t_k])$, где $\gamma: [a, b] \to \mathbb{R}^n$, при мелкости дробления $\to 0$
+\end{theorem}
+
+\begin{definition}
+    Дифференциальная форма (1-го порядка) в $\mathbb{R}^n$
+
+    $\omega = f_1dx_1 + f_2dx_2 + \dots + f_ndx_n$
+\end{definition}
+
+\begin{definition}
+    Криволинейный интеграл $II$ рода (интеграл от дифференциальной формы)
+
+    $\gamma: [a, b] \to \mathbb{R}^n$ -- гладкая кривая
+
+    $\int_{\gamma}^{}\omega := \int_{a}^{b}(f_1(\gamma(t))\cdot\gamma_1'(t) + \dots + f_n(\gamma(t))\cdot\gamma_n'(t))dt$
+
+    Если коротко: $\overline{f} = \begin{pmatrix}
+        f_1\\
+        f_2\\
+        \vdots\\
+        f_n
+    \end{pmatrix}, \int_{\gamma}^{}\omega = \int_{a}^{b}\langle \overline{f}(\gamma(t)), \gamma'(t)\rangle dt$
+\end{definition}
+
+\begin{properties}
+    \begin{enumerate}
+        \item Не зависит от параметризации
+        \item Смена направления меняет знак интеграла
+        \item $\int_{\gamma}^{}\omega = \int_{\gamma}^{}\langle \overline{f}, \overline{\sigma} \rangle ds$, где $\overline{\sigma}$ -- единичный касательный вектор
+        \item Линейность по $\overline{f}$
+        \item Аддитивность по кривой
+        \item $|\int_{\gamma}^{}\omega| \leq \int_{\gamma}^{}||\overline{f}||ds \leq \max ||\overline{f}|| \cdot l(\gamma)$
+    \end{enumerate}
+\end{properties}
+
+\begin{proof}
+    \begin{enumerate}
+        \item $\tilde{\gamma} = \gamma \circ \tau, \tau : [c, d] \to [a, b]$ -- строго возрастает, гладкая, $\tau(c) = a, \tau(d) = b$.
+
+        $\int_{\tilde{\gamma}}^{}\omega = \int_{c}^{d}\sum_{k = 1}^{n}f_k(\tilde{\gamma}'(u))du = \int_{c}^{d}\sum_{k = 1}^{n}f_k(\gamma(\tau(u)))\gamma_k'(\tau(u))\tau'(u)du = (*)$
+
+        Делаем замену $t = \tau(u): (*) = \int_{a}^{b}\sum_{k = 1}^{n}f_k(\gamma(t))\gamma_k'(t)dt = \int_{\gamma}^{}\omega$
+
+        \item Доказали вместе с первым: если меняется направление, то $\tau(c) = b, \tau(d) = a, \int_{b}^{a} = -\int_{\gamma}^{}\omega$
+
+        \item $\overline{\sigma}(\gamma(t)) = \frac{\gamma'(t)}{||\gamma'(t)||}$. Тогда $\int_{\gamma}^{}\langle \overline{f}, \overline{\sigma} \rangle ds = \int_{a}^{b}\langle \overline{f}(\gamma(t)), \overline{\sigma}(\gamma(t)) \rangle ||\gamma'(t)|| dt = \int_{a}^{b} \langle \overline{f}(\gamma(t)), \frac{\gamma'(t)}{||\gamma'(t)||} \rangle||\gamma'(t)||dt = \int_{a}^{b} \langle \overline{f}(\gamma(t)), \gamma'(t) \rangle dt$
+        \item[4, 5] следуют из 3
+        \item[6] $|\int_{\gamma}^{}\omega| = |\int_{\gamma}^{} \langle \overline{f}, \overline{\sigma} \rangle ds| \leq \int_{\gamma}^{}|\langle \overline{f}, \overline{\sigma} \rangle| ds \leq \int_{\gamma}^{}||\overline{f}|| \cdot \overline{\sigma} || ds$
+    \end{enumerate}
+\end{proof}
+
+%%todo: change to "uprazhnenie" whatever this is
+
+\begin{theorem}\textbf{Упражнение}
+    Доказать формулу: $\int_{\gamma}^{}\omega = \lim \sum_{j = 1}^{m} \sum_{k = 1}{n} f_k (\gamma(\xi_j))(\gamma_k(t_j) - \gamma_k(t_{j - 1}))$, если мелкость дробления $\to 0$
+
+    $\gamma: [a, b] \to \mathbb{R}^n$
+    
+    %todo: picture here
+\end{theorem}
+
+\begin{definition}
+    $\omega$ -- дифференциальная форма, заданная в $\Omega \subset \mathbb{R}^n$ -- открытом множестве
+
+    $F: \Omega \to \mathbb{R}$ - первообразная для $\omega$, если $dF = \omega$
+
+    $dF = \frac{\delta F}{\delta x_1}dx_1 + \dots + \frac{\delta F}{\delta x_n}dx_n$, т.е нужно, чтобы $\frac{\delta F}{\delta x_k} = f_k$ при $k = 1, 2, \dots, n$
+\end{definition}
+
+\begin{theorem}
+    Пусть $F$ -- первообразная, $\omega$, $\gamma$ -- кривая, соединяющая точки $A, B$
+
+    Тогда $\int_{\gamma}^{}\omega = F(B) - F(A)$
+\end{theorem}
+
+\begin{proof}
+    $\gamma: [a, b] \to \mathbb{R}^n, f_k = \frac{\delta F}{\delta x_k}$
+
+    $\int_{\gamma}^{}\omega = \int_{a}^{b}\sum_{k = 1}^{n}f_k(\gamma(t))\gamma_k'(t) dt = \int_{a}^{b}\underbrace{\sum_{k = 1}^{n} \frac{\delta F}{\delta x_k}(\gamma(t)) \cdot \gamma_k'(t)}_{(F \circ \gamma)'(t)} dt = \int_{a}^{b}(@F \circ \gamma)'(t) dt = F \circ \gamma(b) - F \circ \gamma(a) = F(\gamma(b)) - F(\gamma(a))$
+\end{proof}
+
+\begin{definition}
+    $\Omega$ -- область, если $\Omega$ -- открытое линейно связанное множество
+
+    Линейная связность -- любая пара точек может быть соединена какой-либо кривой $\in \Omega$
+\end{definition}
+
+\begin{consequence}
+    \begin{enumerate}
+        \item Если у $\omega$ есть первообразная, то $\int_{\gamma}^{}\omega$ зависит только от концов кривой, но не зависит от самой кривой
+        \item Если $\Omega$ -- область, то все первообразные отличаются друг от друга на $\texttt{const}$
+    \end{enumerate}
+\end{consequence}
+
+\begin{proof}
+    2. \item $F$ и $G$ -- первообразные $\omega$, возьмем точки $A, B$ из $\Omega$ и соединим кривой $\gamma \implies G(B) - G(A) = \int_{\gamma}^{}\omega = F(B) - F(A) \implies G(B) = F(B) + G(A) _ F(A)$ (фиксируем $A$ и меняем $B$)
+\end{proof}
+
+\begin{lemma}
+    $\Omega$ -- область $\implies$ между любыми двумя её точками можно провести ломанную, все звенья которой параллельны осям координат
+
+    %todo: picture here
+\end{lemma}
+
+\begin{proof}
+    $A, B \in \Omega \implies \exists \gamma: [a, b] \to \Omega$ такая что $\gamma(a) = A, \gamma(b) = B$. Для $t \in [a, b]$ рассмотрим шар $B_{r(t)}(\delta(t)) \in \Omega$
+    
+    %todo: picture here
+
+    $\gamma[a, b]$ -- компакт $\implies$ выберем конечное подпокрытие. Тогда можем перемещаться между центрами шариков по звеньям, параллельным осям координат
+
+    %todo: picture here
+\end{proof}
+
+\begin{theorem}
+    Пусть $\Omega$ -- область, $\omega = f_1dx_1 + \dots + f_ndx_n$ -- дифференциальная форма в $\Omega$ и $f_1, f_2, \dots, f_n: \Omega \to \mathbb{R}$ -- непрерывные функции. Тогда следующие условия равносильны
+
+    \begin{enumerate}
+        \item $\omega$ имеет первообразную $F: \Omega \to \mathbb{R}$
+        \item $\int_{\gamma}^{}\omega = 0$ для любой замкнутой кривой $\gamma$
+        \item $\int_{\gamma}^{}\omega = 0$ для любой замкнутой ломаной $\gamma$ со звеньями, параллельными осям координат
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    $1) \implies 2) \implies 3)$ очевидны
+
+    $3) \implies 1)$: 
+
+    %todo: picture here
+    Соединим $c$ и $x \in \Omega$ ломаной со звеньями, параллельными осям координат. 
+    
+    $F(x) := \int_{\gamma}^{}\omega$. Поймем, что результат не зависит от выбора ломаной $\gamma$
+
+    $0 = \int_{\gamma \cup \tilde{\gamma}^{-1}}^{}\omega = \int_{\gamma}^{}\omega + \int_{\tilde{\gamma}^{-1}}^{}\omega = \int_{\gamma}^{}\omega - \int_{\tilde{\gamma}}^{}\omega$, где $\tilde{\gamma}^{-1}$ -- инвертированная по направлению вторая ломаная
+
+    Осталось проверить, что $\frac{\delta F}{\delta x_k} = f_k$
+
+    % todo: picture here
+    $\frac{\delta F}{\delta x_1}(x) = \lim_{h \to 0} \frac{F(x_1 + h, x_2, \dots, x_n) - F(x_1, \dots, x_n)}{h} = \lim_{h \to 0} \frac{-\int_{\gamma}^{}\omega + \int_{\gamma \sqcup [x, x + h]}^{}\omega}{h} = \lim_{h \to 0} \frac{1}{n}\int_{[x, x + h]}^{}\omega = \underbrace{=}_{[0, h] = [x, x + h] (\text{сдвиг на x})} \lim_{h \to 0} \frac{1}{n}\int_{0}^{h}\underbrace{f_1(\gamma(t))}_{x + e_1t}\underbrace{\gamma_1'(t)}_{= 1}dt = \lim \frac{1}{n}\underbrace{\int_{0}^{1}f_1(x + e_1t)dt}_{= h \cdot f_1(x + e_1h\cdot\theta, \theta \in (0, 1))} = f_1(x)$, т.к. $\gamma(t) = x + e_1 \cdot t, \gamma_1'(t) = 1, \gamma_2'(t) = \dots = \gamma_n'(t) = 0$
+\end{proof}
+
+\begin{remark}
+    Для $\mathbb{R}^2$ 3) можно заменить на 3'): $\int_{\gamma}^{}\omega = 0$ для любого прямоугольного $\gamma$ со сторонами, параллельными осям координат
+\end{remark}
+
+\begin{proof}
+    % todo: picture here
+    Картинка.
+\end{proof}
+
+\begin{remark}
+    $\omega$ в $\Omega \in \mathbb{R}^n$. В каждой точке $\Omega$ своё линейное отображение $\mathbb{R}^n \to \mathbb{R}$
+
+    $\omega = f_1dx_1 + f_2dx_2 + \dots + f_ndx_n$
+
+    $dx_1$ - функция $g_1(x) = x_1$
+
+    $dg_1$
+
+    $g_1(x + h) = g_1(x) + dg_1(g) = o(h)$, поэтому $dx_i$ в определении $\omega$ -- проекции на соотв. координаты
+\end{remark}
+
+\begin{definition}
+    Живём в $\mathbb{R}^2$. Назовём элементарной область в $\mathbb{R}^2$, если 
+
+    $\Omega = \{ (x, y) : a < x < b \texttt{and} \phi(x) < y < \psi(x) \} = \{ (x, y): c < y < d \texttt{and} \alpha(y) < x < \beta(y) \}$
+
+    % todo: picture here
+    Может показаться, что такого не бывает, но вот пример: *картинка*
+\end{definition}
+
+\begin{theorem}\textbf{Формула Грина}
+    $\Omega \subset \mathbb{R}^2$ ограниченная область, граница которой состоит из конечного числа кусочно гладких простоых замкнутых кривых, ориентированных положительно
+
+    $P, Q: Cl \Omega \to \mathbb{R}$ непрерывны, $\frac{\delta P}{\delta x}$ и $\frac{\delta Q}{\delta y}$ непрерывны 
+
+    Тогда $\int_{\delta \Omega}^{}Pdx + Qdy = \int_{\Omega}^{}(\frac{\delta Q}{\delta y} - \frac{\delta P}{\delta x}dx) d\lambda_2$
+
+    % todo: picture here
+    Ориентация устроена так: *картинка*
+\end{theorem}
