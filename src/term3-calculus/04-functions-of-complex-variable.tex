@@ -1,0 +1,61 @@
+\Subsection{Голоморфные функции}
+
+Если доказательство не указано, то оно повторяет то, что было в $\mathbb{R}$ (смотреть 1 семестр).
+
+\begin{definition}
+    $\Omega$ -- обсласть в $\mathbb{C}, \ f: \Omega \rightarrow \mathbb{C}, \ z_0 \in \Omega$.
+
+    $f$ -- голоморфна в точке $z_0$, если существует $\lim_{z \rightarrow z_0} { \frac{f(z) - f(z_0)}{z - z_0} } =: f'(z_0)$.
+\end{definition}
+\begin{definition}
+    $f$ комплексно дифф. в точке $z_0$, если $\exists k \in \mathbb{C}$:
+
+    $f(z) = f(z_0) + k (z - z_0) + o(z - z_0)$ при $z \rightarrow z_0$.
+\end{definition}
+
+\begin{statement}
+    $f$ -- голоморфна в точке $z_0 \Leftrightarrow f$ комплексно дифф. в точке $z_0$ и $k = f'(z_0)$.
+\end{statement}
+
+\begin{consequence}
+    $f$ и $g$ голоморфны в точке $z_0$. Тогда 
+
+    \begin{enumerate}
+        \item {
+            $f \pm g$ голом. в точке $z_0$
+        }
+        \item {
+            $f \cdot g$ голом. в точке $z_0$
+        }
+        \item {
+            Если $g(z_0 \not = 0)$, то $\frac{f}{g}$ голом. в точке $z_0$.
+        }
+        \item {
+            Если $h$ голом. в точке $f(z_0)$, то $h \circ f$ голом. в точке $z_0$.
+        }
+    \end{enumerate}
+\end{consequence}
+
+\begin{remark}
+    $f: \Omega \rightarrow \mathbb{C}$
+
+    $z = x + iy, \ f(z) = f(x + iy) = g(x + i y) + i h(x + iy): \ g, h : \Omega \rightarrow \mathbb{R}$.
+
+    $\frac{\delta f}{\delta x} (z_0) = \lim_{h \rightarrow 0, \ h \in \mathbb{R}} {\frac{f(z_0 + h) - f(z_0)}{h}} = f'(z_0)$.
+
+    
+    $\frac{\delta f}{\delta y} (z_0) = \lim_{h \rightarrow 0, \ h \in \mathbb{R}} {\frac{f(z_0 + i h) - f(z_0)}{h}} = \frac{f'(z_0)}{i} = -i \cdot f'(z_0)$.
+\end{remark}
+
+\begin{remark}
+    $\binom{g(x + iy)}{h(x + iy)} = \binom{g(x_0 + i y_0)}{h(x_0 + iy_0)} + \binom{a \ b}{c \ d} \binom{a - x_0}{y - y_0} + o(|| (x - x_0, y - y_0) ||)$.
+
+    $k = \alpha + i \beta$
+
+    $k \cdot (z - z_0) = (\alpha + i \beta) ( (x - x_0) + i (y - y_0)) = \alpha(x - x_0) - \beta(y - y_0) + i (\beta (x - x_0) + \alpha (y - y_0))$
+
+    Вещественная линейность + $\binom{\alpha \ -\beta}{\beta \ \alpha} \Leftrightarrow$ комплескная линейность.
+\end{remark}
+
+
+
