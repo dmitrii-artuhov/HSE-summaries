@@ -934,12 +934,172 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
 \end{definition}
 
 \begin{theorem}\textbf{Формула Грина}
-    $\Omega \subset \mathbb{R}^2$ ограниченная область, граница которой состоит из конечного числа кусочно гладких простоых замкнутых кривых, ориентированных положительно
+    $\Omega \subset \mathbb{R}^2$ область, граница которой состоит из конечного числа кусочно гладких простых замкнутых кривых, ориентированных положительно
 
     $P, Q: Cl \Omega \to \mathbb{R}$ непрерывны, $\frac{\delta P}{\delta x}$ и $\frac{\delta Q}{\delta y}$ непрерывны 
 
     Тогда $\int_{\delta \Omega}^{}Pdx + Qdy = \int_{\Omega}^{}(\frac{\delta Q}{\delta y} - \frac{\delta P}{\delta x}dx) d\lambda_2$
 
+    направление на кусочках границ такое, что область слева.
+
     % todo: picture here
     Ориентация устроена так: *картинка*
 \end{theorem}
+\begin{proof}
+    $\int_{\Omega} { \frac{\delta Q}{\delta x} d \lambda_2 } = \int_{\delta \Omega} {Q dy}$ и $-\int_{\Omega} {\frac{\delta P}{\delta y} d \lambda_2} = \int_{\delta \Omega} {P dx}$
+
+    \begin{enumerate}
+        \item {
+            % TODO: picture
+            $\Omega$ -- элементарная область.
+
+            $\int_{\Omega} {\frac{\delta P}{\delta y}} = \int_{a}^{b} { \int_{\phi(x)}^{\psi(x)} {\frac{\delta P}{\delta y} (x, y) dy} dx} = \int_{a}^{b} { P(x, \psi(x)) - P(x, \phi(x)) dx } = \int_{a}^{b} { P(x, \psi(x)) dx } - \int_{a}^{b} { P(x, \phi(x)) dx }$
+
+            % TODO: make romanian numbers here instead of `(i)`
+            $\int_{\delta \Omega} { P dx } = (1) + (2) + (3) + (4)$
+
+            $x\rightarrow (x, \phi(x)): \ (1) = \int_{a}^{b} { P(x, \phi(x)) dx}$
+
+            $y \rightarrow (b, y): \ (2) = \int_{\phi(b)}^{\psi(b)} { P(b, y) b' dy } = 0$
+
+            $x \rightarrow (x, \psi(x)): \ (3) = -\int_{a}^{b} { P(x, \psi(x)) dx}$
+
+            $y \rightarrow (a, y): \ (4) = - \int_{\phi(a)}^{\psi(x)} { P(a, y) a' dy } = 0$
+        }
+        \item {
+            % TODO: picture
+            Пусть для $\Omega_1$ и $\Omega_2$ ф-ла доказана, тогда $\int_{\Omega_i} { \left( \frac{\delta  Q}{ \delta x} - \frac{\delta P}{\delta y} \right) d\lambda_2 } = \int_{\delta \Omega_i} { P d x + Q dy } \implies \int_{\Omega_1} { \left( \frac{\delta  Q}{ \delta x} - \frac{\delta P}{\delta y} \right) d\lambda_2 } + \int_{\Omega_2} { \dots } = \int_{\delta \Omega_1} { Pdx + Qdy } + \int_{\delta \Omega_2} { \dots } = \int_{\delta \Omega} { P d x + Q d y } = \int_{\Omega} { \left( \frac{\delta  Q}{ \delta x} - \frac{\delta P}{\delta y} \right) }$.
+        }
+        \item {
+            Формула верна для конечного объединения элем. областей.
+        }
+        \item {
+            Скипнули? Что?
+        }
+    \end{enumerate}
+\end{proof}
+\begin{consequence}
+    $\lambda_2 \Omega = \int_{\delta \Omega} { xdy } = - \int_{\delta \Omega}{y d x} = \frac{1}{2} \int_{\delta \Omega} { xdy - ydx }$
+\end{consequence}
+
+
+\Subsection{Точные и замкнутые формы}
+\begin{definition}
+    $\Omega$ -- область, $\omega$ -- дифф. форма в $\Omega$. $\omega$ -- точная форма, если у нее существует первообразная.
+\end{definition}
+\begin{definition}
+    $\omega$ -- локально точная форма, если $\forall a \in \Omega$ найдется $U_a$, такая что в $U_a$ есть первообразная $\omega$.
+\end{definition}
+\begin{definition}
+    $\omega = f_1 d x_1 + f_2 d x_2 + \dots + f_n d x_n$ -- замкнутная, если $\forall i, j: \ \frac{\delta f_i}{\delta x_j} = \frac{\delta f_j}{\delta x_i}$.
+\end{definition}
+
+\begin{remark}
+    Точность $\implies$ локальная точность (но не наоборот).
+
+    $\mathbb{R}^2 \setminus \{( 0, 0 )\}$.
+
+    $\omega = \frac{x dy - y dx}{x^2 + y^2}$ не точная.
+
+    $\int_{\text{един. окр.}} { \omega } = \int_{0}^{2\pi} { \frac{\cos(t) (\sin(t))' - \sin(t) (\cos(t))'}{\cos^2(x) + \sin^2(x)} dt} = \int_{0}^{2\pi} { dt } = 2\pi \not = 0$.
+
+    $x = \cos(t), \ y = \sin(t)$.
+
+    В верхней полуплоскости $F(x, y) = -\arctan\left(\frac{x}{y}\right)$ -- первообразная.
+
+    $\frac{\delta F}{\delta x} = - \frac{\frac{1}{y}}{1 + (\frac{x}{y})^2} = \frac{y}{x^2 + y^2}$
+
+    $\frac{\delta F}{\delta y} = - \frac{-\frac{x}{y^2}}{1 + (\frac{x}{y})^2} = \frac{x}{x^2 + y^2}$
+\end{remark}
+
+\begin{theorem}
+    Если коэфф. из $C^1$, тогда локальная точность $\implies$ замкнутость.
+\end{theorem}
+\begin{proof}
+    Берем $a \in \Omega$ и $U_a$, где есть первообразная $F \implies f_i = \frac{\delta F}{\delta x_i}$.
+
+    $\frac{\delta f_i}{\delta x_j} = \frac{\delta}{\delta x_j} (\frac{\delta F}{\delta x_i}) = \frac{\delta^2 F}{\delta x_j \delta x_i} \underbrace{=}_{\text{т.к. непрер. слева и справа от равенства}} \frac{\delta^2 F}{\delta x_i \delta x_j} = \frac{\delta}{\delta x_i} \left( \frac{\delta F}{\delta x_j} \right) = \frac{\delta f_j}{\delta x_i}$.
+\end{proof}
+
+\begin{lemma}
+    \textbf{Пуанкаре}.
+
+    Если $\Omega$ -- выпуклая область и коэфф. формы из $C^1$, то замкнутость $\implies$ точность.
+\end{lemma}
+\begin{proof}
+    Только для $\mathbb{R}^2$.
+
+    Для существования первообр. достаточно чтобы интеграл по любому прямоугольнику со сторонами параллельными осям координат был равен 0.
+    
+    $\omega = P dx + Q dy: \ \int_{\text{обход контура}} { \omega } = \int_{\text{заполенные прямоуг.}} { (\frac{\delta Q}{\delta x} - \frac{\delta P}{\delta y}) d \lambda_2} = 0$.
+\end{proof}
+
+\begin{consequence}
+    \begin{enumerate}
+        \item {
+            Замкнутая форма с коэфф. из $C^1$ в любом открытом шаре из $\Omega$ имеет первообразную.
+        }
+        \item {
+            Замкнутая форма с коэфф. из $C^1$ лок. точная.
+        }
+    \end{enumerate}
+\end{consequence}
+\begin{definition}
+    $\omega$ -- лок. точная форма в $\Omega$.
+
+    $\gamma: \ [a, b] \rightarrow \Omega$ путь.
+
+    $f: \ [a, b] \rightarrow \mathbb{R}$ первообразная $\omega$ вдоль пути $\gamma$, если $\forall t \in [a, b]$ у $\gamma(t)$ найдется окр. $U_{\gamma(t)}$, а в ней первообразная $F$ формы $\omega$, т.ч. $f(\tau) = F(\gamma(\tau))$ при $\tau$ близких к $t$.
+    % TODO: picture
+\end{definition}
+
+\begin{theorem}
+    Первообразная вдоль пути существует и единственная с точностью до константы.
+\end{theorem}
+\begin{lemma}
+    Локально постоянная функция (в каждой точке есть окрестность, что функция на ней постоянная) -- константа.
+\end{lemma}
+\begin{proof}
+    Док-во теоремы.
+
+    \textbf{Единственность}: $f_1, \ f_2$ -- первообр. вдоль пути $\gamma$.
+
+    $f_1 - f_2$ -- лок. постоянная, покажем это:
+
+    Берем $t \in [a, b]$, есть $U_{\gamma(t)}$ и в ней первообр. $F_1$ и $F_2$, т.ч. $f_1(\tau) = F_1(\gamma(\tau))$ и $f_2(\tau) = F_2(\gamma(\tau))$ при $\tau$ близких к $t$, но $F_1 - F_2 = const \implies f_1 - f_2 = const$ при $\tau$ близких к $t$.
+
+
+    \textbf{Существование}: берем $t \in [a, b]$, у $\gamma(t)$ есть окр-ть $U_{\gamma(t)}$, в которой существ. первообр.
+    
+    % TODO: picture
+
+    $\bigcup_{t \in [a, b]} { U_{\gamma(t)} }$ -- покрытие $\gamma [a, b]$ -- компакт.
+
+    Выберем конечные подпокрытия $U_1, \dots, U_m$ и $F_1, \dots, F_m$ -- первообр. в соотвествующем $U_j$.
+
+    Из леммы Лебега $\exists r > 0: \ \forall t \in [a, b]: \ B_r(\gamma(t))$ целиком содержится в какаом-то эл-те покрытия.
+
+    Нарежем $[a, b]$ на кусочки длины $< \delta$, где $\delta > 0$ выбрано по $\epsilon = r$ из равномерной непрерывности $\gamma$.
+
+    %  TODO: picture
+
+    $a =: t_0, t_1, \dots, t_n := b$ -- нарезка.
+
+    Тогда образы маленьких отрезков целиком содержатся в своих элементах покрытия.
+
+    $\delta [t_{i-1}, t_i] \subset U_i$, так занумеруем $F_i$ --- первообр. в $U_i$.
+
+    $f|_{[t_0, t_1]} = F_1 \circ \gamma$, $f|_{[t_1, t_2]} = F_2 \circ \gamma$.
+
+    В $\underbrace{U_1}_{\ni \gamma(t_1)} \cap U_2 \not = \emptyset \implies$ $F_1, F_2$ -- первообр. $\implies$ они отличаются на $const \implies F_2 = F_1 + c$, подменяем $c$ так, что в $U_1 \cap U_2$ они совпали. И так далее для всех остальных кусочков.
+\end{proof}
+
+\begin{consequence}
+    $f$ -- первообраз. $\omega$ вдоль пути $\gamma: [a, b] \rightarrow \Omega$. Тогда $\int_{\gamma} {\omega} = f(b) - f(a)$
+\end{consequence}
+\begin{proof}
+    % TODO: picture
+    Смотрим на нарезку из предыдущей теоремы. Тогда $\int_{\gamma} {\omega} = \sum_{i=1}^{n} { \int_{\gamma|_{[t_{i - 1}, t_i]}} {\omega}} = \sum_{i=1}^{n} { \left( F_i(\gamma(t_i)) - F_{i}(\gamma(t_{i - 1})) \right) } = F_n(\gamma(b)) - F_1(\gamma(a)) = f(b) - f(a)$.
+
+    $F_i(\gamma(t_i)) = F_{i + 1} (\gamma(t_i))$ так согласованы $F_j$.
+\end{proof}
