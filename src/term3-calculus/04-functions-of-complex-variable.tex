@@ -57,6 +57,9 @@
     Вещественная линейность + $\binom{\alpha \ -\beta}{\beta \ \alpha} \Leftrightarrow$ комплескная линейность.
 \end{remark}
 
+
+% TODO: где-то есть места, где я пишу `\pi` и при этом забыто `\cdot i`, то есть надо `\pi \cdot i`. Это критическая ошибка, ее надо исправить !!!
+
 \begin{remark}
     Комплескная дифференцируемость $\Leftrightarrow$ вещественная дифференцируемость + матрица Якоби $\binom{\alpha \ \beta}{-\beta \ \alpha}$
 
@@ -259,3 +262,239 @@
 
     $\gamma(t) = r(t) e^{i \phi(t)}$, $\phi$ -- непрерывна (полярная замена).
 \end{definition}
+
+\begin{theorem}
+    Пусть $\gamma$ -- замкнутая кривая, не проходящая через 0. Тогда
+    
+    $\int_{\gamma} { \frac{\partial z}{z} } = 2\pi Ind(\gamma, 0)$.
+\end{theorem}
+\begin{proof}
+    Берем параметризацию $r, \phi: [a, b] \rightarrow \mathbb{R}$
+
+    $z(t) = r(t) e^{i \phi(t)}, \ dz = \left( r' e^{i\phi} + ri \phi' e^{i\phi} \right) dt$
+
+    $\frac{dz}{z} = \frac{r'}{r} + i \phi'$
+
+    $\int_{\gamma} { \frac{dz}{z} } = \int_{a}^{b} { \left( \frac{r'(t)}{r(t)} + i \phi'(t) \right) dt } = \left( ln (r(t)) + i \phi(t) \right)|_{t = a}^{t = b} = i (\phi(b) - \phi(a)) = 2 \pi Ind(\gamma, 0)$
+\end{proof}
+
+\begin{consequence}
+    Пусть $\gamma$ -- замкнутая кривая, не проходящая через точку $a$. Тогда
+
+    $\int_{\gamma} { \frac{dz}{z - a} = 2 \pi Ind (\gamma, a) }$.
+\end{consequence}
+
+\begin{theorem}
+    (интегральная формула Коши).
+
+    $f \in H(\Omega)$
+
+    $\gamma$ -- стягиваемая в $\Omega$ кривая, не проходящая через $a \in \Omega$.
+
+    Тогда $\int_{\gamma} { \frac{f(z) dz}{z - a} } = 2 \pi f(a) Ind(\gamma, a)$
+\end{theorem}
+\begin{proof}
+    $g(z) = \begin{cases}
+        \frac{f(z) - f(a)}{z - a}, \ \text{при } z \not = a, \\
+        f'(a), \ \text{иначе}
+    \end{cases}$
+
+    $g \in C(\Omega)$
+
+    $g \in H(\Omega \setminus \{ a \})$
+
+    $\implies g(z) dz$ -- локально точкая форма $\implies \int_{\gamma} {g(z) dz} = 0$, так как $\gamma$ -- стягиваемая
+
+    $\implies 0 = \int_{\gamma} { \frac{f(z) dz}{z - a} } - \int_{\gamma} { \frac{f(a) dz}{z - a} } \implies \int_{\gamma} { \frac{f(z) dz}{z - a} } = f(a) \cdot \int_{\gamma} { \frac{dz}{z - a} } = f(a) \cdot 2 \pi \cdot Ind(\gamma, a)$
+\end{proof}
+\begin{example}
+    % todo: picture !!!
+    Берем круг. $f$ -- голоморфна в окр-ти этого круга.
+
+    $\int_{\text{окр.}} { \frac{f(z)}{z - a} dz } = \begin{cases}
+        0, \ \text{ если $a$ вне круга} \\
+        f(a) \cdot 2 \pi, \ \text{ если $a$ внутри круга }
+    \end{cases}$
+\end{example}
+
+\begin{remark}
+    Обозначение.
+
+    $\mathbb{D} = \{ |z| < 1 \}$ -- единичный круг.
+
+    $\mathbb{T} = \{ |z| < 1 \}$ -- единичная окружность, обход против часовой стрелки.
+
+    $r\mathbb{T} + a = \{ |z - a| = r \}$
+\end{remark}
+
+\begin{theorem}
+    $f \in H(r \mathbb{D}) \implies f$ аналитична ($=$ функция раскладывается в ряд) в этом круге.
+\end{theorem}
+
+\begin{proof}
+    % todo: picture
+    В наше круге радиуса $r$ берем еще два круга с тем же центром, но меньшими радиусами ($r > r_1 > r_2 > 0$). Берем $z: \ |z| < r_2$ -- точка внутри наименьшего круга. Хотим интегрировать по средней окружности.
+
+    $f(z) = \frac{1}{2 \pi} \int_{r_1 \mathbb{T}} { \frac{f(\zeta) d \zeta }{\zeta - z} }$
+
+    $\frac{1}{\zeta - z} = \frac{1}{1 - \frac{z}{\zeta}} \cdot \frac{1}{\zeta} = \sum_{n=0}^{\infty} \frac{z^n}{\zeta^{n+1}} = (*)$ равномерно сх-ся, так как $\left| \frac{z}{\zeta} \right| \leq \frac{r_2}{r_1}$
+
+    $(*) = \frac{1}{2\pi} \int_{r_1 \mathbb{T}} { \sum_{n=0}^{\infty} \frac{f(\zeta)}{\zeta^{n+1}} z^n d\zeta } = \frac{1}{2\pi} \sum_{n=0}^{\infty} z^n \underbrace{\int_{r_1 \mathbb{T}} {\frac{f(\zeta)}{\zeta^{n+1}} d\zeta}}_{=: a_n \cdot 2\pi} = \sum_{n=0}^{\infty} {a_n z^n}$
+\end{proof}
+
+
+
+\begin{consequence}
+    \begin{enumerate}
+        \item {
+            Если $f \in H(r \mathbb{D})$ и $0 < r_1 < r$, то
+    
+            $\frac{n!}{2 \pi} \cdot \int_{r_1 \mathbb{T}} { \frac{f(z)}{z^{n+1}} dz } = f^{(n)} (0)$
+        }
+        \item {
+            $f \in H(r \mathbb{D} + a), \ 0 < r_1 < r \implies \frac{n!}{2 \pi} \int_{r_1 \mathbb{T} + a} { \frac{f(z)}{(z - a)^{n + 1}} dz } = f^{(n)} (a)$
+
+            $z = w + a$
+
+            $g(w) = f(w + a)$
+
+            $g^{(n)} (0) = \frac{n!}{2 \pi} \cdot \int_{r_1 \mathbb{T}} { \frac{g(w)}{w^{n + 1}} dw }$
+        }
+        \item {
+            $f: \Omega \rightarrow \mathbb{C}$
+
+            Тогда $f$ -- голоморфна в $\Omega \Leftrightarrow f$ -- аналитична в $\Omega$.
+
+            % todo: picture
+        }
+        \item {
+            $f \in H(\Omega) \implies f$ -- бесконечно диффиренцируема.
+        }
+        \item {
+            $f \in H(\Omega) \implies f' \in H(\Omega)$
+        }
+        \item {
+            \begin{definition}
+                $g: \mathbb{R}^n \rightarrow \mathbb{R}$ -- гармоническая, если $\frac{\partial^2 g}{\partial x_1^2} + \frac{\partial^2 g}{\partial x_2^2} + \dots + \frac{\partial g}{\partial x_n^2} = 0$.
+            \end{definition}
+            
+            Продолжаем свойство:
+
+            $f \in H(\Omega) \implies Re (f)$ и $Im(f)$ -- гармонические функции.
+            
+            \begin{proof}
+                $\frac{\partial^2 Re(f)}{\partial x^2} = \frac{\partial}{\partial x} \left( \frac{\partial Re (f)}{\partial x} \right) = \frac{\partial}{\partial x} \left( \frac{\partial Im(f)}{\partial y} \right) = \frac{\partial}{\partial y} \left( \frac{\partial Im(f)}{\partial x} \right) = \frac{\partial}{\partial y} \left( - \frac{\partial Re(f)}{\partial y} \right) = - \frac{\partial^2 Re(f)}{\partial y^2}$
+
+                про $Im(f)$ аналогично доказывается.
+            \end{proof}
+        }
+    \end{enumerate}
+\end{consequence}
+
+\begin{remark}
+    Если $g: \Omega \rightarrow \mathbb{R}$ гармоническая ф-я, то существует единств. (с точностью до прибавления $const \in \mathbb{R}$) гармоническая ф-я $h: \Omega \rightarrow \mathbb{R}$, т.ч. $g + i h \in H(\Omega)$
+\end{remark}
+
+\begin{theorem}
+    \textbf{Мореры}.
+
+    $f \in C(\Omega)$. Если $f(z) dz$ локально точная, то $f \in H(\Omega)$.
+\end{theorem}
+\begin{proof}
+    Возьмем $a \in \Omega$. Существует окр-ть $a$, что для $f$ в ней есть первообразная $F$ (т.е. $F' = f$ в $U$). 
+    
+    Тогда $F \in H(U) \implies F' = f \in H(U)$ -- это локальное свойство, поэтому на всей $\Omega$ тоже будет гомоморфность.
+\end{proof}
+
+\begin{consequence}
+    $f \in C(\Omega), \ \Delta$ -- прямая, параллельная оси координат.
+
+    $f \in H(\Omega \setminus \Delta)$. Тогда $f \in H(\Omega)$.
+\end{consequence}
+\begin{proof}
+    $f \in C(\Omega)$ и $f \in H(\Omega \setminus \Delta) \implies f(z) dz$ локально точная в $\Omega \underbrace{\implies}_{\text{т. Мореры}} f \in H(\Omega)$.
+\end{proof}
+
+\begin{theorem}
+    (интегральная формула Коши).
+
+    $f \in H(\Omega)$
+
+    $K \subset \Omega$ -- компакт, граница которого -- конечное число кусочно-гладких замкнутых кривых. Тогда 
+
+    \begin{enumerate}
+        \item {
+            $\int_{\partial K} { f(z) dz } = 0$
+        }
+        \item {
+            Если $a \in Int (K)$, то $\int_{\partial K} { \frac{f(z)}{z - a} dz } = 2 \pi f(a)$.
+        }
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    \begin{enumerate}
+        \item {
+            Пишем \textbf{формулу Грина}.
+
+            $\int_{\partial K} { f(z) dz } = \int_{\partial K} { f(z) dx + i \cdot f(z) dy } \underbrace{=}_{\text{Грин}} \int_{K} { \left( i \cdot \frac{\partial f}{\partial x}  - \frac{\partial f}{\partial y} \right) dx dy } = $
+            
+            $ = i \cdot \int_{K} {\left( \frac{\partial f}{\partial x} + i \frac{\partial f}{\partial y} \right) dx dy} = 2 i \int_{K} { \frac{\partial f}{\partial \overline{z}} d \lambda_2 } = 0$.
+        }
+        \item {
+            % todo: picture !!!
+            Берем круг, содержащий $a$, не вылезающий за границу формы $B_r(a)$.
+            
+            $\tilde{K} = K \setminus B_r(a)$ -- компакт.
+
+            $\frac{f(z)}{z - a} \in H(\Omega \setminus \{ a \}), \ \tilde{K} \subset \Omega \setminus \{ a \}$.
+
+            $0 = \int_{\partial \tilde{K}} { \frac{z}{z - a} dz } = \int_{\partial K} { \frac{f(z)}{z - a} dz } - \underbrace{\int_{r \mathbb{T} + a} { \frac{f(z)}{z - a} dz }}_{= 2\pi i f(a)}$.
+        }
+    \end{enumerate}
+\end{proof}
+\begin{exerc}
+    $f \in H(r \mathbb{D})$ и $f \in C(Cl (r \mathbb{D}))$
+
+    $a \in \mathbb{D}$.
+    
+    Доказать, что $\int_{r \mathbb{T}} { \frac{f(z)}{z - a} dz } = 2 \pi i f(a)$
+\end{exerc}
+
+\begin{theorem}
+    $f \in C(\Omega)$. Следующие условия равносильны (равносильность всех утверждений, так или иначе, уже доказывалась ранее):
+
+    \begin{enumerate}
+        \item {
+            $f \in H(\Omega)$
+        }
+        \item {
+            $f(z) dz$ -- локально точная в $\Omega$
+        }
+        \item {
+            В окр-ти каждой точки у $f$ есть первообразная
+        }
+        \item {
+            $f$ аналитична в $\Omega$
+        }
+        \item {
+            $\int{f(z) dz} = 0$ по любому достаточно малому прямоугольнику со сторонами параллельными осям
+        }
+        \item {
+            $f(z) dz$ -- замкнутая и частн. производные по $x$ и $y$ непрерывны.
+        }
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+    \textbf{Неравенство Коши}.
+
+    $f \in H(R \mathbb{D}), \ 0 < r < R$.
+
+    $f(z) = \sum_{n=0}^{\infty} {a_n z^n}$. Тогда $|a_n| \leq \frac{M(r)}{r^n}$, где $M(r) := \max_{|z| = r} |f(z)|$.
+\end{theorem}
+\begin{theorem}
+    $a_n = \frac{1}{2 \pi i} \int_{|z| = r} { \frac{f(z)}{z^{n + 1}} dz }$
+
+    $|a_n| = \frac{1}{2 \pi} \left| \int_{|z| = r} { \frac{f(z)}{z^{n+1}} dz } \right| \leq \frac{1}{2 \pi} \cdot \max_{|t| = r} \left|\frac{f(z)}{z^{n+1}}\right| \cdot 2 \pi r = \frac{M(r)}{r^{n + 1}} \cdot r = \frac{M(r)}{r^n}$
+\end{theorem}
+
