@@ -41,10 +41,10 @@
 
     $z = x + iy, \ f(z) = f(x + iy) = g(x + i y) + i h(x + iy): \ g, h : \Omega \rightarrow \mathbb{R}$.
 
-    $\frac{\delta f}{\delta x} (z_0) = \lim_{h \rightarrow 0, \ h \in \mathbb{R}} {\frac{f(z_0 + h) - f(z_0)}{h}} = f'(z_0)$.
+    $\frac{\partial f}{\partial x} (z_0) = \lim_{h \rightarrow 0, \ h \in \mathbb{R}} {\frac{f(z_0 + h) - f(z_0)}{h}} = f'(z_0)$.
 
     
-    $\frac{\delta f}{\delta y} (z_0) = \lim_{h \rightarrow 0, \ h \in \mathbb{R}} {\frac{f(z_0 + i h) - f(z_0)}{h}} = \frac{f'(z_0)}{i} = -i \cdot f'(z_0)$.
+    $\frac{\partial f}{\partial y} (z_0) = \lim_{h \rightarrow 0, \ h \in \mathbb{R}} {\frac{f(z_0 + i h) - f(z_0)}{h}} = \frac{f'(z_0)}{i} = -i \cdot f'(z_0)$.
 \end{remark}
 
 \begin{remark}
@@ -57,5 +57,205 @@
     Вещественная линейность + $\binom{\alpha \ -\beta}{\beta \ \alpha} \Leftrightarrow$ комплескная линейность.
 \end{remark}
 
+\begin{remark}
+    Комплескная дифференцируемость $\Leftrightarrow$ вещественная дифференцируемость + матрица Якоби $\binom{\alpha \ \beta}{-\beta \ \alpha}$
+
+    
+    Комплескная дифференцируемость $\Leftrightarrow$ вещественная дифференцируемость + условия Коши-Римана $
+    \begin{cases}
+        \frac{\partial Re(f)}{\partial x} = \frac{\partial Im (f)}{\partial y} \\ 
+        \frac{\partial Re(f)}{\partial y} = \frac{\partial Im (f)}{\partial x} \\ 
+    \end{cases}
+    $
+\end{remark}
+\begin{remark}
+    $f(z) = f(z_0) + \underbrace{k}_{\in \mathbb{C}} (z - z_0) + o(z - z_0)$
+
+    $k (z - z_0) = k w = |k| \cdot e^{i \phi} \cdot w, \ \phi = arg(k)$
+\end{remark}
 
 
+\begin{remark}
+    Обозначения.
+
+    $\frac{\partial}{\partial z} = \frac{1}{2} \cdot \left( \frac{\partial}{\partial x} - i \frac{\partial}{\partial y} \right)$
+    
+    $\frac{\partial}{\partial \overline{z}} = \frac{1}{2} \cdot \left( \frac{\partial}{\partial x} - i \frac{\partial}{\partial y} \right)$
+
+    $dz = dx + i dy$
+
+    $d \overline{z} = dx - i dy$
+
+    $df = \frac{\partial f}{\partial x} \cdot dx + \frac{\partial f}{\partial y} dy = \frac{\partial f}{\partial z} dz + \frac{\partial f}{\partial \overline{z}} d \overline{z}$
+\end{remark}
+
+\begin{theorem}
+    \textbf{Условия Коши-Римана}.
+
+    $f: \Omega \rightarrow \mathbb{C}, \ a \in \Omega$
+
+    $f$ -- дифф. в точке $a$ как функция из $\mathbb{R}^2$ в $\mathbb{R}^2$. Следующие условия равносильны:
+
+    \begin{enumerate}
+        \item {
+            $f$ -- голоморфна в точке $a$.
+        }
+        \item {
+            $d_a f$ -- комплексно линеен
+        }
+        \item {
+            условия Коши-Римана
+        }
+        \item {
+            $\frac{\partial f}{\partial \overline{z}} (a) = 0$
+        }
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Мы выяснили все, кроме $(3) \Leftrightarrow (4)$:
+
+    $\frac{\partial f}{\partial \overline{z}} = 0 \Leftrightarrow \frac{\partial f}{\partial x} + i \frac{\partial f}{\partial y} = 0 \Leftrightarrow \frac{\partial (Re(f) + i Im(f))}{\partial x} + i \cdot \frac{\partial (Re (f) + i Im (f))}{\partial y} = 0 \Leftrightarrow \begin{cases}
+        \frac{\partial Re(f)}{\partial x} - \frac{\partial Im (f)}{\partial y} = 0 \\ 
+        \frac{\partial Im(f)}{\partial x} + \frac{\partial Re(f)}{\partial y} = 0
+    \end{cases}$ -- а это и есть условия Коши-Римана.
+\end{proof}
+
+\begin{remark}
+    Обозначения.
+
+    $f \in H(\Omega) \Leftrightarrow f : \Omega \rightarrow \mathbb{C}$ и голоморфна во всех точках из $\Omega$.
+\end{remark}
+\begin{consequence}
+    $\Omega$ -- область, $f \in H(\Omega)$ и $Im(f) = const \implies f = const$
+\end{consequence}
+\begin{proof}
+    $\frac{\partial Im (f)}{\partial y} = 0 \implies \frac{\partial Re(f)}{\partial x} = 0$
+
+    $\frac{\partial Im (f)}{\partial x} = 0 \implies \frac{\partial Re(f)}{\partial y} = 0$
+
+    $\implies Re(f) = const$
+\end{proof}
+\begin{theorem}
+    \textbf{Коши} (ah, shit, here we go again...)
+
+    $f \in H(\Omega) \implies f(z) dz$ локально точная.
+\end{theorem}
+\begin{proof}
+    Будет два разных док-ва.
+
+    \begin{enumerate}
+        \item {
+            Для случая непрерывно-дифф. $\frac{\partial Re(f)}{\partial x}, \dots$ (имеются в виду все частные производные).
+
+            Тогда замкнутость $\implies$ локальная точность.
+
+            $f(z) dz = f(z) (dx + i dy) = (Re(f) + i \cdot Im(f)) \cdot (dx + i dy) = Re(f) dx - Im(f) dy + i (Im (f) dx + Re(f) dy)$.
+
+            $P dx + Q dy$ -- замкн. $\Leftrightarrow \frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x}$
+
+            $Re(f) dx - Im(f) dy$ -- замкн. $\Leftrightarrow \frac{\partial Re(f)}{\partial y} = - \frac{\partial Im(f)}{\partial x}$
+
+            $Im(f) dx + Re(f) dy$ -- замкн. $\Leftrightarrow \frac{\partial Im(f)}{\partial y} = \frac{\partial Re(f)}{\partial x}$
+        }
+        \item {
+            Общий случай.
+
+            % todo: picture
+            Надо доказать, что интеграл по любому прямоугольнику (со сторонами параллельными осям) из круга (круг берем вокруг точки из $\Omega$. Добавьте картинку, плиз) равен 0.
+
+            От противного: пусть нашелся прямоугольник $P$, т.ч. $\alpha (P) := \int_P {f(z) dz } \not = 0$.
+
+            % todo: picture
+            Режем прямоугольник на 4 части, индексируем как $P^{1}, P^{2}, P^{3}, P^{4}$, строим объоды каждого (против часовой стрелки). Тогда $\alpha(P) = \alpha(P^{1}) + \alpha(P^{2}) + \alpha(P^{3}) + \alpha(P^{4})$, $|\alpha(P)| \leq |\alpha(P^{1})| + |\alpha(P^{2})| + |\alpha(P^{3})| + \alpha(P^{4})$.
+
+            Хотя бы одно из слагаемых $\geq \frac{1}{4} |\alpha(P)|$, назовем такое $P_1$ (индекс уже снизу!). Разрежем его на 4 равные части. Пусть $P_2$ такой, что $|\alpha(P_2)| \geq \frac{1}{4} |\alpha (P_1)|$ и т.д.
+
+            $|\alpha(P_n)| \geq \frac{1}{4^n} |\alpha (P)|$.
+
+            % todo: picture
+            Берем $a$ из $P_n$:
+
+            $f(z) = f(a) + f'(a) (z - a) + o(z - a)$
+
+            $\alpha (P_n) = \int_{P_n} { f(z) dz } = \underbrace{\int_{P_n} { f(a) dz }}_{= 0} + \underbrace{\int_{P_n} { f'(a) (z - a) dz }}_{= 0} + \int_{P_n} { o(z - a) dz }$
+
+            $o(z - a) = (z - a) \cdot \beta (z - a)$, где $\beta(z - a) \underbrace{\rightarrow}_{z \rightarrow a} 0$
+
+            $\left| \int_{P_n} {(z - a) \beta (z - a) dz} \right| \leq max_{z \in P_n} { |z - a| \cdot |\beta (z - a)| } \cdot \underbrace{l(P_n)}_{\text{периметр}} \leq max_{z \in P_n} { |\beta (z - a)| } \cdot \frac{l(P)}{2^n} \cdot \frac{c}{2^n} \implies$
+
+            $\implies \frac{|\alpha (P)|}{4^n} \leq |\alpha(P_n)| \leq \frac{l(P) \cdot c}{4^n} \cdot max_{z \in P_n} |\beta (z - a)| \implies max_{z \in P_n} |\beta (z - a)| \geq \frac{|\alpha (P)|}{l(P) \cdot c} > 0$ -- противоречие.
+        }
+    \end{enumerate}
+\end{proof}
+\begin{consequence}
+    \begin{enumerate}
+        \item {
+            Если $f \in H(\Omega)$, то у каждой точки $a \in \Omega$ есть окрестность, в которой существует ф-я $F$, т.ч. $F' = f$ в этой окрестности.
+
+            \begin{proof}
+                Пусть $F$ первообразная формы $f(z) dz$. Поймем, что $F' = f$.
+
+                $\frac{\partial F}{\partial x} = f(z), \ \frac{\partial F}{\partial y} = i \cdot f(z) \implies \frac{\partial F}{\partial x} + i \frac{\partial F}{\partial y} = 0 \implies \frac{\partial F}{\partial \overline{z}} = 0$
+            \end{proof}
+        }
+        \item {
+            $f \in H(\Omega)$, $\gamma$ стягиваемый в $\Omega$ путь $\implies \int_{\gamma} { f(z) dz } = 0$
+        }
+    \end{enumerate}
+\end{consequence}
+\begin{theorem}
+    $f \in C(\Omega), \ \Delta$ -- прямая параллельная оси координат.
+
+    $f \in H(\Omega \setminus \Delta)$
+
+    Тогда $f(z) dz$ локально точная.
+\end{theorem}
+\begin{proof}
+    Надо проверять, что интеграл по довольно маленькому прямоугольнику (со стороронами паралл. осям) это 0.
+
+    % todo: picture!!!
+    Очевидно, что если прямоугольник не пересекает $\Delta$, то там все очевидно. Хотим рассматривать только те, что задевают. Те, что пересекают $\Delta$, можно разбить на две части (верхнюю и нижнюю). По каждой из частей будет 0, тогда и в сумме тоже будет 0. То есть нас вообще интересуют только те прямоугольники, у которых $\Delta$ это одна из сторон. Рассмотрим их:
+    
+    % todo: picture
+
+    Тут мастхэв картинка, на которой мы откусывает подпрямугольник размера $\epsilon$.
+
+    $\int_{P_{\epsilon}} { f(z) d z } = 0 \rightarrow_{\epsilon \rightarrow 0} \int_{P} { f(z) dz }$
+
+    $\left|\int_{P} {f(z) dz} - \int_{P_{\epsilon}} { f(z) dz } \right| \leq |\int_{1} + \int_{3}| + |\int_{2}| + |\int_{4}|$
+
+    $\left| \int_{2} {f(z) dz} \right| \leq M \cdot (\text{длина } 2) = M \epsilon$
+
+    $\left| \int_{1} + \int_{3} \right| = \left| \int_{a}^{b} { \left(f (x + i y_0) - f(x + i(y_0 + \epsilon)) \right) dx } \right| \leq \int_{a}^{b} { |\dots| dx } = (*)$
+
+    $f$ непрер. на компакте $\implies$ равномерно непрер.
+
+    $\forall \gamma > 0: \ \exists \epsilon > 0$ если $\rho (\text{аргумент}) < \epsilon \implies |f(\dots) - f(\dots)| < \gamma$, тогда 
+
+    $(*) \leq (b - a) \cdot \gamma$
+\end{proof}
+
+\begin{consequence}
+    $f: \Omega \rightarrow \mathbb{C}$
+
+    $f \in C(\Omega)$ и $f$ голоморфна в $\Omega$ за исключением мн-ва изолированных точек, тогда форма $f(z) dz$ все равно лок. точная.
+\end{consequence}
+\begin{proof}
+    Рассмотрим окр-ть, в которой ровно одна плохая точка.
+
+    % todo: picture
+    Давайте проведем прямую через это точку, тогда работает теорема.
+\end{proof}
+
+\begin{definition}
+    Индекс кривой отн-но точки $Ind(\gamma, z_0)$.
+
+    $\gamma$ -- замкнутая кривая, не проходящая через точку $z_0$.
+
+    $Ind(\gamma, 0) = \frac{\phi(b) - \phi(a)}{2\pi} \in \mathbb{Z}$ -- кол-во оборотов $\gamma$ вокруг 0.
+
+    $\gamma: [a, b] \rightarrow \mathbb{C}$
+
+    $\gamma(t) = r(t) e^{i \phi(t)}$, $\phi$ -- непрерывна (полярная замена).
+\end{definition}
