@@ -498,3 +498,197 @@
     $|a_n| = \frac{1}{2 \pi} \left| \int_{|z| = r} { \frac{f(z)}{z^{n+1}} dz } \right| \leq \frac{1}{2 \pi} \cdot \max_{|t| = r} \left|\frac{f(z)}{z^{n+1}}\right| \cdot 2 \pi r = \frac{M(r)}{r^{n + 1}} \cdot r = \frac{M(r)}{r^n}$
 \end{theorem}
 
+\begin{theorem}
+    \textbf{Луивилля}.
+
+    Если $f \in H(\mathbb{C})$ и $f$ -- ограничена, то $f = const$.
+\end{theorem}
+\begin{proof}
+    $f$ -- ограничена $\implies |f| \leq M$.
+    
+    $f \in H(\mathbb{C}) \implies f(z) = \sum_{n=0}^{\infty} { a_n z^{n} }$ и ряд сходится $\forall z \in \mathbb{C} \underbrace{\implies}_{\text{нер-во Коши}} |a_n| \leq \frac{M_r}{r^n} \leq \frac{M}{r^n} \underbrace{\rightarrow}_{r \rightarrow +\infty} 0 \implies a_n = 0: \ \forall n \geq 1$
+\end{proof}
+
+\begin{remark}
+    $\sin$ и $\cos$ неограничены в $\mathbb{C}$.
+\end{remark}
+
+\begin{definition}
+    Целая функция -- функция, голоморфная в $\mathbb{C}$.
+\end{definition}
+
+\begin{theorem}
+    \textbf{Основная теорема алгебры}.
+
+    $P$ -- многочлен степени $\geq 1$. Тогда у $P$ есть хотя бы один корень.
+\end{theorem}
+\begin{consequence}
+    Если $deg P = n$, то $P(z) = c(z - z_1)(z - z_2) \dots (z - z_n)$ для некоторых $z_1, z_2, \dots z_n \in \mathbb{C}$.
+\end{consequence}
+\begin{proof}
+    Если $z_1$ -- корень $P$, то $P(z) = (z - z_1) \cdot Q(z)$, где $deg Q = n - 1$.
+\end{proof}
+\begin{proof}
+    Основной теоремы алгебры.
+
+    От противного:
+
+    пусть $P(z) \not = 0 \ \forall z \in \mathbb{C}$. Тогда $f(z) = \frac{1}{P(z)} \in H(\mathbb{C})$.
+
+    Докажем, что $f$ -- ограниченная функция.
+
+    $P(z) = z^n + a_{n-1} z^{n-1} + \dots + a_1 z + a_0$
+
+    $R := 1 + |a_{n-1}| + |a_{n-2}| + \dots + |a_1| + |a_0|$. Пусть $|z| \geq R, \ |P(z)| \geq |z|^n - |a_{n-1}| |z|^{n-1} - \dots - |a_1| |z| - |a_0| \geq |z|^n - |z|^{n-1} (|a_{n-1}| + |a_{n-2}| + \dots + |a_0|) = \underbrace{|z|^{n-1}}_{\geq 1} \underbrace{(|z| - |a_0| - |a_1| - \dots - |a_{n-1}|)}_{\geq 1} \implies |P(z)| \geq 1$ при $|z| \geq R \implies |f(z)| \leq 1$ при $|z| \geq R$.
+
+    Докажем, что при $|z| \leq R, \ |f(z)|$ -- ограничена.
+
+    $f \in H(\mathbb{C}) \implies f$ непрер. в $\mathbb{C} \implies f$ непрер. в $\{ |z| \leq R \}$ -- компакт $\implies |f|$ огр. в $\{ |z| \leq R \}$.
+\end{proof}
+
+
+\Subsection{Теоремы единственности}
+\begin{theorem}
+    $f \in H(\Omega)$, $\Omega$ -- область, $z_0 \in \Omega$. След. условия равносильны:
+
+    \begin{enumerate}
+        \item {
+            $f^{(n)} (z_0) = 0 \ \forall n = 0, 1, 2, \dots$
+        }
+        \item {
+            $f = 0$ в некоторой окр-ти точки $z_0$.
+        }
+        \item {
+            $f \equiv 0$ в $\Omega$
+        }
+    \end{enumerate}
+\end{theorem}
+
+
+\begin{lemma}
+    $\Omega$ -- область в метрическом пространстве, $E \subset \Omega$, т.ч. $E \not = \emptyset, \ E$ -- открыто в $\Omega$, $E$ -- замкнуто в $\Omega$. Тогда $E = \Omega$.
+\end{lemma}
+\begin{proof}
+    Пусть $\Omega \setminus E \not = \emptyset$, берем $a \in E$ и $b \in \Omega \setminus E$. Возьмем путь $\gamma$, соединяющий эти точки.
+
+    $\gamma: [\alpha, \beta] \rightarrow \Omega$, т.ч. $\gamma(\alpha) = a, \ \gamma(\beta) = b$. $\gamma$ -- непрер. $\implies \gamma^{-1} (E)$ -- открыто, $\gamma^{-1}(\Omega \setminus E)$ -- открыто $\implies \gamma^{-1}(E)$ -- открыт. и замкнут. подмн-во $[\alpha, \beta], \ \alpha \in \gamma^{-1}(E), \ \beta \not \in \gamma^{-1}(E)$.
+
+    $s := \sup{\gamma^{-1} (E)}$ из замкн. $s \in \gamma^{-1} (E) \implies s < \beta$.
+
+    % todo: picture
+
+    Возьмем окр-ть $s$, т.ч. $(s - \delta, s + \delta) \subset \gamma^{-1}(E) \cap (\alpha, \beta) \implies $ в $\gamma^{-1}(E)$ есть точки $> s \implies s $ не $\sup$. Противоречие. 
+\end{proof}
+
+\begin{proof}
+    Теоремы.
+
+    $(3) \implies (2) \implies (1)$ -- очевидно.
+
+    $(1) \implies (2)$ -- почти очевидно:
+
+    % todo: picture
+    Берем $z_0 \in \Omega$ и $B_r(z_0) \subset \Omega$, тогда в круге $|z - z_0| < r: $ $f$ раскл. в свой ряд Тейлора $\implies$ в нем $f \equiv 0$.
+
+    $(2) \implies (3)$:
+
+    $E := \{ z \in \Omega: \ \text{в некоторой окр-ти точки } z, \ f = 0 \}$
+
+    $z_0 \in E$ по условию $\implies E \not = \emptyset$.
+
+    $E$ -- открыто. Если $w \in E$, то в круге $|z - w| < r, \ f = 0$.
+    % todo: picture
+
+    $\forall z$ из этого круга есть круг меньшего радиуса, содерж. $\{ |z - w| < r \}$, в нем $f = 0$.
+
+    $E$ -- замкнуто. Пусть $z_*$ -- предельная точка $E$, то есть $z_n \in E$ и $\lim{z_n} = z_*$. $f^{(m)} (z_n) = 0 \ \forall m, \ \forall n$ (так как есть $(2) \implies (1)$). По непрерывности $f^{(m)} \ f^{(m)} (z_*) = \lim{f^{(m)} (z_n)} = 0 \underbrace{\implies}_{(1) \implies (2)} z_* \in E$.
+
+    Тогда по лемме $E = \Omega$.
+\end{proof}
+
+
+\begin{consequence}
+    $f, g \in H(\mathbb{C})$, т.ч. $f(z) = g(z)$ в окр-ти точки $z_0 \in \Omega \implies f \equiv g$.
+\end{consequence}
+
+
+
+\begin{theorem}
+    \textbf{О среднем}.
+
+    $f \in H(\Omega)$ и $a \in \Omega$, причем $\{ |z - a| \leq r \} \subset \Omega$, тогда $f(a) = \frac{1}{2\pi} \cdot \int_{0}^{2\pi} { f(a + r e^{i \phi}) d \phi }$
+\end{theorem}
+\begin{proof}
+    $f(a) = \frac{1}{2 \pi i}\int_{|z - a| = r}{ \frac{f(z)}{z - a} dz } = \frac{1}{2 \pi i} \int_{0}^{2\pi} { \frac{f(a + r e^{i \phi})}{r e^{i \phi}} r e^{i \phi} i d \phi }$, где $z = a+re^{i\phi}, \ dz = r e^{i \phi} i d \phi$.
+\end{proof}
+
+\begin{consequence}
+    $f \in H(\Omega), \ a \in \Omega, \ \{ |z - a| \leq r \} \subset \Omega$. Тогда $f(a) = \frac{1}{\pi r^2} \int_{|z-a|\leq r} { f(z) d \lambda_2 }$.
+\end{consequence}
+\begin{proof}
+    $\int_{|z-a| \leq r} { f(z) d \lambda_2 } = \int_{0}^{r} { \int_{0}^{2\pi} {f(a + \rho e^{e\phi}) \rho d \phi } d \rho } = \int_{0}^{r} { 2 \pi f(a) \rho \ d \rho } = 2 \pi f(a) \frac{r^2}{a} = \pi r^2 f(a)$.
+\end{proof}
+
+\begin{theorem}
+    \textbf{Принцип максимума}.
+
+    $f \in H(\mathbb{C}), \ a \in \Omega$. Если $|f(a)| \geq |f(z)| \ \forall z$ из окр-ти точки $a$, то $f \equiv const$.
+\end{theorem}
+\begin{proof}
+    Пусть $|f(a)| =: M$. Домножим $f$ на $e^{i \alpha}$ так, что $f(a) = M > 0$.
+
+    $|f(a)| = M = \frac{1}{2\pi} \left|\int_{0}^{2\pi} { f(a + r e^{i \phi}) d \phi }\right| \leq \frac{1}{2 \pi} \int_{0}^{2\pi} { |f(a + r e^{i \phi})| d \phi} \leq \frac{1}{2\pi} \int_{0}^{2\pi} { M \ d \phi } = M$.
+
+    Все нер-ва обращаются в равенства $\implies |f(a + r e^{i \phi})| = M \ \forall \phi \ \forall$ маленьких $r$.
+
+    $Re (f(a)) = M = \frac{1}{2\pi} \int_{0}^{2\pi} { Re(f(a + r e^{i \phi})) d \phi } \leq \frac{1}{2 \pi} \int_{0}^{2\pi} { |f(a + r e^{i \phi})| d \phi } \leq M$. Это все равенства $\implies Re (f(a + r e^{i \phi})) = |f(a + r e^{i \phi})| = M \implies f(z) = f(a)$ в окр-ти точки $a \underbrace{\implies}_{\text{т. о единственности}} f(z) \equiv f(a)$.
+\end{proof}
+
+
+\begin{consequence}
+    $f \in H(\Omega), \ \Omega$ -- огранич. область, $f \in C(Cl (\Omega))$. Тогда $|f|$ достигает своего $\max$ на границе $\Omega$.
+\end{consequence}
+
+\begin{proof}
+    $Cl (\Omega)$ -- компакт $|f|$ непрер. на компакте $\implies$ в какой-то точке $a \in Cl (\Omega)$ достигает $\max$.
+
+    Если $a \in \Omega$, то по принципу максимума $f \equiv const$, значит на границе то же самое значение.
+
+    Если $a \not \in \Omega$, то это точка на границе.
+\end{proof}
+
+
+
+\begin{definition}
+    $f \in H(\Omega), \ a \in \Omega, \ a$ -- ноль функции $f$, если $f(a) = 0$.
+\end{definition}
+
+\begin{theorem}
+    $f \not \equiv 0, \ f \in H(\Omega), \ a \in \Omega, \ f(a) = 0$. Тогда существует $m \in \mathbb{N}$ и $g \in H(\Omega)$, т.ч. $g(a) \not = 0$ и $f(z) = (z - a)^{m} \cdot g(z)$.
+\end{theorem}
+\begin{proof}
+    Разложим $f$ в ряд Тейлора в окр-ти точки $a$.
+
+    $f(z) = \sum_{n=0}^{\infty} { \frac{f^{(n)} (a)}{n!} \cdot (z - a)^{n} }$, $m := \min \{ n : \ f^{(n)} (a) \not = 0 \}$.
+
+    $g(z) = \begin{cases}
+        \frac{f(z)}{(z - a)^{m}}, \ z \not = a \\
+        \frac{f^{(m)} (a)}{m!}, \ z = a
+    \end{cases}$
+
+    $g \in H(\Omega \setminus \{a\})$, $g$ -- непрерывная в точке $a$,  $\implies g \in H(\Omega)$.
+
+    $g(z) = \sum_{n=m}^{\infty} { \frac{f^{(n)} (a)}{n!} (z - a)^{n - m} } \underbrace{\rightarrow}_{z \rightarrow a} \frac{f^{(m)} (a)}{m!}$
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
