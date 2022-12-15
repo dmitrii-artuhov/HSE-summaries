@@ -682,6 +682,197 @@
 \end{proof}
 
 
+\begin{consequence}
+    \begin{enumerate}
+        \item {
+            Если $f \in H(\Omega)$ и $a \in \Omega$ -- ноль функции $f$, то $\exists U_a$ -- кор-ть точки $a$, т.ч. $f(z) \not = 0 \ \forall z \in U^{\circ}_a$ (проколотая окр-ть).
+
+            \begin{proof}
+                $f(z) = (z - a)^m g(z), \ g(a) \not = 0$ из теоремы.
+
+                $g$ -- непрер. в точке $a \implies g(z) \not = 0$ в окр-ти точки $a \implies f(z) = (z - a)^m g(z) \not = 0$ в прокол. окр-ти точки $a$.
+            \end{proof}
+        }
+        \item {
+            Если $f, g \in H(\Omega)$ и $f g \equiv 0$, то либо $f \equiv 0$, либо $g \equiv 0$.
+
+            \begin{proof}
+                Пусть $f \not \equiv 0$. Если $f(z) \not = 0 \ \forall z$, то $g \equiv 0$. Иначе найдется $a \in \Omega$, т.ч. $f(a) = 0 \implies f(z) \not = 0, \ \forall z \in U^{\circ}_a \implies g(z) = 0 \ \forall z \in U^{\circ}_a \implies g \equiv 0$.
+            \end{proof}
+        }
+    \end{enumerate}
+\end{consequence}
+
+
+\begin{theorem}
+    \textbf{Единственности}.
+
+    $f, g \in H(\Omega)$ и $z_n \in \Omega$, $z_n$ -- различные, т.ч. $f(z_n) = g(z_n)$. Если $\lim {z_n} \in \Omega$, то $f \equiv g$.
+\end{theorem}
+
+\begin{consequence}
+    $f, g \in H(\Omega), \ A := \{ z \in \Omega: \ f(z) = g(z) \}$. Если какая-то предельная точка мн-ва $A$ лежит в $\Omega$, то $f \equiv g$.
+\end{consequence}
+
+\begin{proof}
+    Теоремы.
+
+    $h(z) = f(z) - g(z)$. По условию $h \in H(\Omega)$ и $h(z_n) = 0$. $a := \lim{z_n}$, по непрерывности $h(a) = 0 \underbrace{\implies}_{\text{по следствию 1}} \exists U_a$, т.ч. $h(z) \not = 0 \ \forall z \in U^{\circ}_a$, но $z_n$ начиная с некоторого места лежат в $U_a$. 
+\end{proof}
+
+
+
+\begin{consequence}
+    $\sin^2{z} + \cos^2{z} = 1, \ \forall z \in \mathbb{C}$.
+\end{consequence}
+
+
+
+\Subsection{Аналитическое продолжение}
+
+\begin{definition}
+    % todo: picture
+
+    $f_1 \in H(\Omega_1), \ f_2 \in H(\Omega_2)$.
+
+    $\Delta$ -- компонента связности $\Omega_1 \cap \Omega_2 \not = \emptyset$.
+
+    $f_2$ непосредственное аналитическое продолжение $f_1$ через $\Delta$, если $f_1(z) = f_2(z) \ \forall z \in \Delta$.
+\end{definition}
+\begin{remark}
+    \begin{enumerate}
+        \item {
+            При фиксации $\Omega_1, \ \Omega_2, \Delta, f_1$, функция $f_2$ определена однозначно.
+
+            \begin{proof}
+                $g$ -- непоср. аналитическое продолжение $f_1$:
+            
+                $g(z) = f_1(z) = f_2(z) \ \forall z \in \Delta$
+            
+                $g, f_2 \in H(\Omega_2) \implies f_2 \equiv g$.
+            \end{proof}            
+        }
+        \item {
+            Для другой компоненты продолжение может быть другим (тут понятнее на картинке, добавьте, плиз).
+        }
+    \end{enumerate}
+\end{remark}
+
+\begin{definition}
+    $f \in H(\Omega), \ \tilde{f} \in H(\tilde{\Omega})$.
+
+    $\tilde{f}$ -- аналитическое продолжение $f$ на цепочке областей, если $\exists \Omega_1, \dots \Omega_n$ и $f_1 \in H(\Omega_1), \dots , f_n \in H(\Omega_n)$, т.ч. $f_1$ -- непосредственное аналитическое продолжение $f$, $f_2$ -- непосредственное аналитическое продолжение $f_1, \dots, \tilde{f}$ -- непосредственное аналитическое продолжение $f_n$.
+    % todo: picture
+\end{definition}
+
+
+
+\begin{remark}
+    Рассмотрим всевозможные пары $(f, \Omega)$, т.ч. $f \in H(\Omega)$, тогда существование аналитического продолжения по цепочке областей -- отношение эквивалентности. 
+\end{remark}
+
+
+\begin{definition}
+    Полная аналитическая функция -- класс эквивалентности. 
+
+    $F$ -- полная аналитическая ф-я. $M := \bigcup_{(f, \Omega) \in F} {\Omega}$ -- область определения (существования) $F$.
+\end{definition}
+
+\begin{statement}
+    $M$ -- область.
+\end{statement}
+\begin{proof}
+    Открытость: объединения открытых -- открытое.
+
+    Линейная связность: $a, b \in M \implies a \in \Omega, b \in \tilde{\Omega}$. $(f, \Omega), \ (\tilde{f}, \tilde{\Omega})$ связана аналитическим продолжением по цепочке, будем переходить по соотвествующим областям и дойдем из $a$ в $b$.
+\end{proof}
+
+
+\begin{definition}
+    $F$ -- полная аналитическая функция, $M$ -- область определения $F$, $z \in M$.
+
+    $F(z) := \{ f(z): \ (f, \Omega) \in F \ \land \ z \in \Omega \}$.
+\end{definition}
+
+\begin{theorem}
+    \textbf{Пуанкаре-Вольтерры}.
+
+    $F(z)$ -- не более чем счетное мн-во.
+\end{theorem}
+
+\begin{example}
+    $\underbrace{f(z)}_{\frac{1}{1-z}} = \sum_{n=0}^{\infty} {z^n}$ -- ряд сх-ся при $|z| < 1$
+
+    % todo: picture.
+
+    $\frac{1}{1 - z} = \frac{1}{(1-a) - (z - a)} = \frac{1}{1-a} \cdot \frac{1}{1 - \frac{z-a}{1-a}} = \frac{1}{1-a} \cdot \sum_{n=0}^{\infty} { \frac{(z-a)^n}{(1-a)^n} } = \sum_{n=0}^{\infty} { \frac{(z-a)^n}{(1-a)^{n+1}} }$
+
+    $\left| \frac{z-a}{1-a} \right| < 1$ -- круг сходимости ряда.
+
+    $|z-a| < |1-a|$
+
+    % todo: picture
+\end{example}
+
+
+\begin{definition}
+    $\sum_{n=0}^{\infty} { c_n \cdot (z - z_0)^n }$, $R$ -- радиус сх-ти ряда.
+
+    % todo: picture
+
+    Берем точку $w$ на границе круга ($|w - z_0| = R$). $w$ -- правильная точка, если найдется $U_w$ -- окр-ть точки $w$ и $g \in H(U_w)$ являющаяся непосредственным продолжением $f$. 
+\end{definition}
+
+\begin{definition}
+    Особая точка -- точка, не являющаяся правильной. 
+\end{definition}
+
+\begin{theorem}
+    На границе круга сх-ти лежит хотя бы одна особая точка.
+\end{theorem}
+\begin{proof}
+    От противного. 
+
+    Пусть все точки правильные $|z| = R$ -- правильные.
+
+    $f(z) = \sum_{n=0}^{\infty} { c_n z^n }, \ R$ -- радиус сх-ти.
+
+    $\forall w: \ |w| = R$ найдется $B_{r_w} (w)$ и $g \in H(B_{r_w} (w))$, т.ч. $f = g$ на пересечении $\{ |z| < R \} \cap \{ |z - w| < r_w \}$.
+
+    То есть круги $B_{r_w}(w)$ покрывают окр-ть $|w| = R$. Это компакт, выберем конечное подпокрытие. 
+
+    % todo: picture
+
+    По лемме Лебега $\exists \epsilon > 0: \ B_{\epsilon} (w)$ целиком содержится в элементе подпокрытия.
+
+    $\{ |z| < R + \epsilon \} \subset \{ |z| < R \} \cup$ конечное подпокрытие. 
+
+    $h(z) := \begin{cases}
+        f(z), \ |z| < R \\ 
+        g_{w_j} (z), \ |z - w_j| < r_{w_j}
+    \end{cases} \in H(\{ |z| < R + \epsilon \})$.
+
+    % todo: picture
+    $g(z) = \sum_{n=0}^{\infty} { c_n z^n }$ -- ряд Тейлора для $g$, он сх-ся в круге $|z| < R + \epsilon$.
+
+    Противоречие тому, что радиус сходимости был $R$.
+\end{proof}
+
+\begin{example}
+    \begin{enumerate}
+        \item {
+            $f(z) = \sum_{n=1}^{\infty} { \frac{z^n}{n^2} }$ сх-ся при $|z| \leq 1$.
+
+            $f'(z) = \sum_{n=1}^{\infty} { \frac{z^{n-1}}{n} }$
+
+            $(zf'(z))' = \sum_{n=0}^{\infty} { z^{n-1} } = \frac{1}{1-z}$
+        }
+        \item {
+            $\sum_{n=0}^{\infty} { z^{2^n} }$ -- сх-ся при $|z| < 1$, все точки $|z| = 1$ -- особые. 
+            % todo: picture
+        }
+    \end{enumerate}
+\end{example}
 
 
 
