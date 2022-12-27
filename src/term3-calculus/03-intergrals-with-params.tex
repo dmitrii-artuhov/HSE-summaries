@@ -25,11 +25,11 @@
 \begin{theorem}
     $t_0$ -- предельная точка $T$. $f(\cdot, t)$ -- суммируема $\forall t \in T$, $g(x) := \lim_{t \rightarrow t_0} { f(x, t) }$.
 
-    \textbf{Локальное условия Лебега:}
+    \textbf{Локальное условие Лебега:}
 
     Пусть найдется окр-ть $U_{t_0}$ и суммир. ф-я $\Phi: X \rightarrow \overline{\mathbb{R}}$, т.ч. $|f(x, t)| \leq \Phi(x) \ \forall t \in U_{t_0}$.
 
-    Тогда $\lim_{r \rightarrow t_0} { F(t) } = \int_{X} { g(x) d \mu(x) }$.
+    Тогда $\lim_{t \rightarrow t_0} { \left(\int_{X}{f(x, t) d \mu(x)}\right) } = \int_{X} { g(x) d \mu(x) }$.
 \end{theorem}
 
 \begin{proof}
@@ -39,7 +39,7 @@
 \end{proof}
 
 \begin{definition}
-    $f: X \times T \rightarrow \mathbb{R}, \ g: X \rightarrow \mathbb{R}$, $t_0$ -- предельная точка $T$, $f(x, t) \underbrace{\rightrightarrows}_{t \rightarrow t_0} g(x)$, если $\forall \epsilon > 0 \ \exists \delta > 0, \ \forall \rho_T (t, t_0) < \delta, \ \forall x \in X: \ | f(x, t) - g(x) | < \epsilon$.
+    $f: X \times T \rightarrow \mathbb{R}, \ g: X \rightarrow \mathbb{R}$, $t_0$ -- предельная точка $T$, $f(x, t) \underbrace{\rightrightarrows}_{t \rightarrow t_0} g(x)$, если $\forall \epsilon > 0 \ \exists \delta > 0, \ \forall t \in T: \ \rho_T (t, t_0) < \delta, \ \forall x \in X: \ | f(x, t) - g(x) | < \epsilon$.
 \end{definition}
 
 \begin{remark}
@@ -51,7 +51,7 @@
 \end{consequence}
 
 \begin{proof}
-    При $t$ близких к $t_0$: $|f(x, t) - g(x)| \leq 1 \implies$ берем $t_1$, для которого верно $|f(x, t_1) - g(x)| \leq 1 \implies |g(x)| \leq 1 + |f(x, t_1)|$ -- суммируема $\implies$ при $t$ близких к $t_0: $ $| f(x, t) \leq 1 + |g(x)| |$ -- суммир.
+    При $t$ близких к $t_0$: $|f(x, t) - g(x)| \leq 1 \implies$ берем $t_1$, для которого верно $|f(x, t_1) - g(x)| \leq 1 \implies |g(x)| \leq 1 + |f(x, t_1)|$ -- суммируема $\implies$ при $t$ близких к $t_0: $ $|f(x, t)| \leq 1 + |g(x)|$ -- суммир.
 \end{proof}
 
 \begin{remark}
@@ -89,10 +89,10 @@
 \end{proof}
 
 \begin{theorem}
-    $\mu X < +\infty$, $X$ и $T$ -- компакты, $f \in C(X \times T)$. Тогда $F \in C(T)$. 
+    $\mu X < +\infty$, $X$ и $T$ -- компакты, $f \in C(X \times T)$. Тогда $F(t) = \int_{X} {f(x, t)d \mu(x)} \in C(T)$. 
 \end{theorem}
 \begin{proof}
-    $f$ -- непр-на нак омпакте $\implies$ ограничена $\implies$ $| f(x, t) | \leq M$ -- суммир. мажоранта.
+    $f$ -- непр-на на компакте $\implies$ ограничена $\implies$ $| f(x, t) | \leq M$ -- суммир. мажоранта.
 \end{proof}
 \begin{consequence}
     Если $\mu X < +\infty$, $X$ -- компакт, $\Omega \subset \mathbb{R}^m$ открытое, $f \in C(X \times \Omega)$.
