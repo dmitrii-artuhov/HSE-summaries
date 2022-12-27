@@ -1873,7 +1873,7 @@
 \end{proof}
 
 \begin{theorem} (об изменении меры множества при диффеоморфизме).
-    
+
     $\Phi: \Omega \rightarrow \tilde{\Omega}$ -- диффеоморфизм, $\Omega, \tilde{\Omega} \subset \mathbb{R}^m$ -- открытые, $A \subset \Omega$ -- измеримое. 
 
     Тогда $\lambda_m \Phi(A) = \int_{A}{|J_{\Phi}| d \lambda_m}$.
@@ -1887,9 +1887,9 @@
 \end{remark}
 \begin{proof} Замечания.
 
-    $f = \mathds{1}_{\Phi(A)} A \subset \Omega$.
+    $f = \mathds{1}_{\Phi(A)}, \  A \subset \Omega$.
 
-    $\int_{\tilde{\Omega}} {f d \lambda_m} = \int_{\tilde{\Omega}} {\mathds{1}_{\Phi(A)} d \lambda_m} = \Phi(A) = \int_{A}{|J_{}\Phi| d \lambda_m} = \int_{\Omega}{\mathds{1}_{A} |J_{\Phi}| d \lambda_m}$.
+    $\int_{\tilde{\Omega}} {f d \lambda_m} = \int_{\tilde{\Omega}} {\mathds{1}_{\Phi(A)} d \lambda_m} = \Phi(A) = \int_{A}{|J_{\Phi}| d \lambda_m} = \int_{\Omega}{\mathds{1}_{A} |J_{\Phi}| d \lambda_m}$.
 
     % todo: picture (graph)
 
@@ -1906,7 +1906,7 @@
 
             Выбираем нбчс подпокрытие $\Omega \subset \bigcup_{k = 1}^{\infty} {G_k}$.
 
-            $\lambda_m \Phi \left(A \cap G_k\right) = \int_{A \cap G_k}{|J_{\Phi}| d \lambda_m}$ и просуммируем $A \cap \left( G_k \setminus \bigcup_{j = 1}^{k - 1} \right)$.
+            $\lambda_m \Phi \left(\Omega \cap G_k\right) = \int_{\Omega \cap G_k}{|J_{\Phi}| d \lambda_m}$ и просуммируем $\Omega \cap \left( G_k \setminus \bigcup_{j = 1}^{k - 1} G_j \right)$.
         }
         \item [Шаг 2.] {
             Если т. верна для диффеоморфизмов $\Phi$ и $\Psi$, то она верна и для $\Psi \circ \Phi$.
