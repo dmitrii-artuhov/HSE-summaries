@@ -675,9 +675,9 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
 
     $\frac{\Gamma(t + 1)\Gamma(a)}{\Gamma(t + 1 + a)} = B(t + 1, a) = \int_{0}^{1}(1 - x)^tx^{a - 1}dx$
 
-    $t^a\int_{0}^{1}(1 - x)^tx^{a - 1}dx \underbrace{=}_{y = xt} \int_{0}^{t}y^{a - 1}\underbrace{(1 - \frac{y}{t})^t}_{\to e^{-y}} dy \to \int_{0}^{+\infty}y^{a-1}e^{-y}dy + \Gamma(a)$
+    $t^a\int_{0}^{1}(1 - x)^tx^{a - 1}dx \underbrace{=}_{y = xt} t^a \int_{0}^{t} {\left(\frac{y}{t}\right)^{a - 1} \underbrace{\left(1 - \frac{y}{t}\right)^t}_{\to e^{-y}} \frac{1}{t} dy} \to \int_{0}^{+\infty}y^{a-1}e^{-y}dy = \Gamma(a)$
 
-    На самом деле интегрируем $\mathbb{1}_{[0, t]}y^{a-1}(1 - \frac{y}{t})^t \leq y^{a-1}e^{-y}$ -- это суммируемая мажоранта, поэтому можем перейти к пределу по т. Лебега
+    На самом деле интегрируем $\mathds{1}_{[0, t]}y^{a-1}(1 - \frac{y}{t})^t \leq y^{a-1}e^{-y}$ -- это суммируемая мажоранта, поэтому можем перейти к пределу по т. Лебега.
 \end{proof}
 
 \begin{consequence}
