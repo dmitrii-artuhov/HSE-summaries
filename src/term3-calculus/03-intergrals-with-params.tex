@@ -235,7 +235,11 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
     $\int_{a}^{+\infty} { f(x, t) dx }$ равн. сх-ся $\Leftrightarrow \forall \epsilon > 0 \ \exists B \ \forall b, c > B \ \forall t \in T: \ | \int_b^{c} { f(x, t) d x } | < \epsilon$.
 \end{theorem}
 \begin{proof}
-    $ \int_{a}^{+\infty} { f(x, t) dx } $ равн. сх-ся $\Leftrightarrow F_b \rightrightarrows F \Leftrightarrow \forall \epsilon > 0 \ \exists B \ \forall b, c > B \ \forall t \in T: \ \underbrace{| F_b(t) - F_c(t) |}_{\int_{b}^{c} { f(x, t) d x }} < \epsilon$.
+    $ \int_{a}^{+\infty} { f(x, t) dx } $ равн. сх-ся $\Leftrightarrow$
+    
+    $\Leftrightarrow F_b \rightrightarrows F \ (\text{где } F_b(t) = \int_{a}^{b} {f(x, t) dx}, \ F(t) = \int_{a}^{+\infty} {f(x, t) dx}) \Leftrightarrow$ 
+    
+    $\Leftrightarrow \forall \epsilon > 0 \ \exists B \ \forall b, c > B \ \forall t \in T: \ \underbrace{| F_b(t) - F_c(t) |}_{\int_{b}^{c} { f(x, t) d x }} < \epsilon$.
 \end{proof}
 
 \begin{consequence}
@@ -246,11 +250,12 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
     Тогда сходимость неравномерная.
 \end{consequence}
 \begin{proof}
-    Пусть $\int_{a}^{+\infty}$ сх-ся расномерно $\implies$:
+    Пусть $\int_{a}^{+\infty}$ сх-ся равномерно $\implies$:
 
     по Критерию Коши и тому, что $f$ непр. на $[b, b'] \times [c, d]$:
 
-    $\forall \epsilon > 0 \ \exists B \ \forall b, b' > B \ \forall t \in (c, d): \ \underbrace{\left| \int_{b}^{b'} { f(x, t) d x } \right|}_{\rightarrow \int_{b}^{b'} { f(x, c) d x } \text{, при } t \rightarrow 0} < \epsilon \implies$
+    
+    $\forall \epsilon > 0 \ \exists B > a \ \forall b, b' > B \ \forall t \in (c, d): \ \underbrace{\left| \int_{b}^{b'} { f(x, t) d x } \right|}_{\rightarrow \int_{b}^{b'} { f(x, c) d x } \text{, при } t \rightarrow 0} < \epsilon \implies$
 
     $\implies \forall \epsilon > 0 \ \exists B \ \forall b, b' > B \ \left| \int_{b}^{b'} { f(x, c) dx } \right| \leq \epsilon \implies \int_{a}^{+\infty} { f(x, c) dx }$ сх-ся. Противоречие.
 \end{proof}
