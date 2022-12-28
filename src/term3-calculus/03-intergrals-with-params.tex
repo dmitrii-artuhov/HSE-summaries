@@ -97,7 +97,7 @@
 \begin{consequence}
     Если $\mu X < +\infty$, $X$ -- компакт, $\Omega \subset \mathbb{R}^m$ открытое, $f \in C(X \times \Omega)$.
 
-    Тогда $F \in C(\Omega)$.
+    Тогда $F(t) = \int_{X} {f(x, t) d \mu(x)} \in C(\Omega)$.
 \end{consequence}
 \begin{proof}
     Берем $a \in \Omega$. Хотим проверить непрер. в точке $a$.
@@ -106,7 +106,7 @@
 
     % todo: picture
 
-    $\implies F \in C(\overbrace{B}_r(a)) \implies F$ непрер. в точке $a$.
+    $\implies F \in C(\overline{B}_r(a)) \implies F$ непрер. в точке $a$.
 \end{proof}
 
 \begin{theorem}
@@ -129,7 +129,7 @@
     
     % todo: picture
 
-    $\implies t_0 + \theta_h \cdot h \in U_{t_0} \implies | f'_t(x, t_0 + \theta_h h) | = |g(x, h)| \leq \Phi(x)$
+    $\implies t_0 + \theta_h \cdot h \in U_{t_0} \implies | f'_t(x, t_0 + \theta_h h) | = |g(x, h)| \leq \Phi(x) \implies $ можно переходить к пределу под знаком интеграла, а предел $\lim_{h \rightarrow 0} {g(x, h)} = f'_t(x, t_0)$.
 \end{proof}
 
 \begin{consequence}
@@ -178,11 +178,11 @@
     
     $\underbrace{\frac{F'}{F}}_{= \ (\ln{F})'} = -\frac{t}{2} \implies \ln{F} = -\frac{t^2}{4} + C_0 \implies F(t) = C \cdot e^{\frac{-t^2}{4}}$.
 
-    $F(t) e^{frac{t^2}{4}} = C$.
+    $F(t) e^{\frac{t^2}{4}} = C$.
 
     Более строго:
 
-    $\left( F(t) e^{frac{t^2}{4}} \right)' = F' e^{frac{t^2}{4}} + F \cdot \frac{t}{2} e^{frac{t^2}{4}} = e^{frac{t^2}{4}} \cdot \underbrace{(F' + \frac{t}{2} \cdot F)}_{= 0} = 0$.
+    $\left( F(t) e^{\frac{t^2}{4}} \right)' = F' e^{\frac{t^2}{4}} + F \cdot \frac{t}{2} e^{\frac{t^2}{4}} = e^{\frac{t^2}{4}} \cdot \underbrace{(F' + \frac{t}{2} \cdot F)}_{= 0} = 0$.
 
     Хотим узнать константу:
 
