@@ -650,9 +650,19 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
 \end{consequence}
 
 \begin{proof}
-    $B(p, p) = \frac{\Gamma(p)\Gamma(p)}{\Gamma(2p)} = \frac{1}{2^{2p-1}}\cdot\frac{\Gamma(p)\Gamma(\frac{1}{2})}{\Gamma(p + \frac{1}{2})} = B(p, \frac{1}{2})$
+    % $B(p, p) = \frac{\Gamma(p)\Gamma(p)}{\Gamma(2p)} = \frac{1}{2^{2p-1}}\cdot\frac{\Gamma(p)\Gamma(\frac{1}{2})}{\Gamma(p + \frac{1}{2})} = B(p, \frac{1}{2})$
 
-    $B(p, p) = \int_{0}^{1}(1 - x)^{p -1}dx = 2 \int_{0}^{\frac{1}{2}}\underbrace{(x - x^2)}_{\frac{1}{4} - (\frac{1}{2}-x)^2}^{p-1}dx = 2 \int_{0}^{\frac{1}{2}}(\frac{1}{4} - y^2)^{p-1}dy = 2\int_{0}^{1}(\frac{1}{4}\cdot(1 - z))^{p-1} \cdot \frac{1}{4}\frac{dz}{\sqrt[]{z}} = \frac{1}{2^{2p-1}}\int_{0}^{1}(1 - z)^{p-1}z^{\frac{-1}{2}}dz$
+    % $B(p, p) = \int_{0}^{1}(1 - x)^{p -1}dx = 2 \int_{0}^{\frac{1}{2}}\underbrace{(x - x^2)}_{\frac{1}{4} - (\frac{1}{2}-x)^2}^{p-1}dx = 2 \int_{0}^{\frac{1}{2}}(\frac{1}{4} - y^2)^{p-1}dy = 2\int_{0}^{1}(\frac{1}{4}\cdot(1 - z))^{p-1} \cdot \frac{1}{4}\frac{dz}{\sqrt[]{z}} = \frac{1}{2^{2p-1}}\int_{0}^{1}(1 - z)^{p-1}z^{\frac{-1}{2}}dz$
+
+    $\frac{\Gamma(p) \Gamma(p)}{\Gamma(2p)} = B(p, p) = \int_{0}^{1} {x^{p - 1} (1 - x)^{p - 1} dx} =$
+    
+    $= 2 \cdot \int_{0}^{\frac{1}{2}} { x^{p - 1} (1 - x)^{p - 1} dx } \underbrace{=}_{x = \frac{1}{2} - t} 2 \cdot \int_{\frac{1}{2}}^{0} { \left( \frac{1}{4} - t^2 \right)^{p - 1} d(-t) } =$
+    
+    $= 2 \cdot \int_{0}^{\frac{1}{2}} { \left( \frac{1}{4} - t^2 \right)^{p - 1} dt } \underbrace{=}_{t = \frac{\sqrt{u}}{2}} 2 \cdot \int_{0}^{1} {\left( \frac{1}{4} - \frac{u}{4} \right)^{p-1} \cdot \frac{1}{4} \cdot u^{-\frac{1}{2}} du} =$
+    
+    $= \frac{1}{2^{2p - 1}} \cdot \int_{0}^{1} { (1 - u)^{p - 1} u^{\frac{1}{2} - 1} du } = \frac{B(p, \frac{1}{2})}{2^{2p - 1}} = \frac{\Gamma(p) \Gamma(\frac{1}{2})}{\Gamma(p + \frac{1}{2})} \cdot \frac{1}{2^{2p - 1}} =$
+    
+    $= \frac{\Gamma(p) \sqrt{\pi}}{\Gamma(p + \frac{1}{2}) \cdot 2^{2p - 1}}$
 
 \end{proof}
 
