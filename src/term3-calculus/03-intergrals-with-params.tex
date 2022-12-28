@@ -725,14 +725,6 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
             $= \frac{1}{2} \cdot \int_{0}^{1} {t^{\frac{p}{2} - 1} (1 - t)^{\frac{q}{2} - 1} dt } = \frac{1}{2} B\left(\frac{p}{2}, \frac{q}{2}\right)$.  \newpage
         }
         \item {
-            % Объем $n$-мерного шара радиуса $r$: $V_n(r) = C_nr^n$, где $C_n$ -- объём шара радиуса 1 в $\mathbb{R}^2$
-
-            % % todo: picture here
-            % $C_n = V_n(1) = 2 \int_{0}^{1}V_{n - 1}(\sqrt[]{1 - x^2})dx = 2 \int_{0}^{1}(1 - x^2)^{\frac{n-1}{2}}C_{n - 1}dx \underbrace{=}_{y = x^2, x = \sqrt[]{y}, dx = \frac{dy}{2\sqrt[]{y}}} = 2C_{n-1}\int_{0}^{1}(1 - y)^{\frac{n-1}{2}} \cdot \frac{1}{2} \cdot y^{-\frac{1}{2}}dy = C_{n-1} \cdot B(\frac{1}{2}, \frac{n + 1}{2}) = C_{n - 1}\frac{\Gamma(\frac{1}{2})\Gamma(\frac{n + 1}{2})}{\Gamma(\frac{n}{2} + 1)} = C_{n - 1}\sqrt[]{\pi}\frac{\Gamma(\frac{n + 1}{2})}{\Gamma(\frac{n}{2} + 1)} = C_{n - 2} \cdot (\sqrt[]{\pi})^2 \cdot \frac{\Gamma(\frac{n + 1}{2})}{\Gamma(\frac{n}{2} + 1)} \cdot \frac{\Gamma(\frac{n}{2})}{\Gamma(\frac{n + 1}{2})} = \dots = C_1 (\sqrt[]{\pi})^{n-1}\frac{\Gamma(\frac{3}{2})}{\Gamma(\frac{n}{2} + 1)} = 2 \cdot (\sqrt[]{\pi})^{n - 1} \cdot \frac{\frac{1}{2}\sqrt[]{\pi}}{\Gamma(\frac{n}{2} + 1)} = \frac{\pi^{\frac{n}{2}}}{\Gamma(\frac{n}{2} + 1)}$
-
-            % $\frac{\pi^{\frac{3}{2}}}{\Gamma(\frac{3}{2} + 1)} = \frac{\pi\sqrt[]{\pi}}{\frac{3}{2}\cdot\frac{1}{2}\sqrt[]{\pi}} = \frac{4}{3}\pi$
-
-
             Объем $n$-мерного шара $V_n(r) = C_n \cdot r^n$, где $C_n = V_n(1)$ -- объем $n$-мерного шара, радиуса $1$.
 
             \begin{center}
@@ -766,7 +758,7 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
         \gamma_2'(t)\\
         \vdots\\
         \gamma_n'(t)
-    \end{pmatrix}|| = \sqrt[]{\gamma_1'(t)^2 + \dots + (\gamma_n'(t))^2}$
+    \end{pmatrix}|| = \sqrt[]{(\gamma_1'(t))^2 + \dots + (\gamma_n'(t))^2}$
 \end{definition}
 
 \begin{theorem}
