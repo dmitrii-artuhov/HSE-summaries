@@ -254,10 +254,10 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
 
     по Критерию Коши и тому, что $f$ непр. на $[b, b'] \times [c, d]$:
 
-    
-    $\forall \epsilon > 0 \ \exists B > a \ \forall b, b' > B \ \forall t \in (c, d): \ \underbrace{\left| \int_{b}^{b'} { f(x, t) d x } \right|}_{\rightarrow \int_{b}^{b'} { f(x, c) d x } \text{, при } t \rightarrow 0} < \epsilon \implies$
 
-    $\implies \forall \epsilon > 0 \ \exists B \ \forall b, b' > B \ \left| \int_{b}^{b'} { f(x, c) dx } \right| \leq \epsilon \implies \int_{a}^{+\infty} { f(x, c) dx }$ сх-ся. Противоречие.
+    $\forall \epsilon > 0 \ \exists B > a \ \forall b, b' > B \ \forall t \in (c, d): \ \underbrace{\left| \int_{b}^{b'} { f(x, t) d x } \right|}_{\rightarrow \int_{b}^{b'} { f(x, c) d x } \text{, при } t \rightarrow c} < \epsilon \implies$
+
+    $\implies \forall \epsilon > 0 \ \exists B > a \ \forall b, b' > B \ \left| \int_{b}^{b'} { f(x, c) dx } \right| \leq \epsilon \underbrace{\implies}_{\text{критерий Коши}} \int_{a}^{+\infty} { f(x, c) dx }$ сх-ся $\implies$ противоречие.
 \end{proof}
 
 \begin{example}
@@ -327,7 +327,7 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
 
     $\int_{a}^{y} { | g'_x (x, t) | dx } = \left| \int_{a}^{y} { g'_x (x, t) dx } \right| = \left| g(x, t)|_{x=a}^{x=y} \right| = | \underbrace{g(y, t)}_{\rightrightarrows 0 \text{ по усл.}} - g(a, t) | \rightrightarrows |g(a, t)|$.
 
-    Тут какие-то слова, почему все получилось (у меня мозг поплыл).
+    % Тут какие-то слова, почему все получилось (у меня мозг поплыл).
 \end{proof}
 
 \begin{theorem}
@@ -356,13 +356,17 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
 
     $\int_{b}^{c} { f(x, t) g(x, t) dx } = \underbrace{F_b (x, t) g(x, t) |_{x=b}^{x=c}}_{= F_b(c, t) g(c, t)} - \int_b^{c} { F_b(x, t) g'_x(x, t) dx }$
 
-    $\exists B : \ \forall y, b > B \ \forall t \in T: \ \left| F_b(y, t) < \epsilon \right|$, смотрим на $b > B \implies |F_b(x, t)| < \epsilon$.
+    Применим крит. Коши для $\int_{a}^{+\infty} {f(x, t) dx}$:
+    
+    $\exists B : \ \forall y, b > B \ \forall t \in T: \ \left| F_b(y, t)  \right| < \epsilon$, смотрим на $b > B \implies |F_b(x, t)| < \epsilon$.
 
     $|F_b(c, t) g(c, t)| < \epsilon \cdot M$.
 
     $\left| \int_{b}^{c} { F_b(x, t) g'_x(x, t) dx } \right| \leq \int_{b}^{c} { \underbrace{|F_b(x, t)|}_{< \epsilon} |g'_x(x, t)| dx} < \epsilon \cdot \int_{b}^{c} { g'_x(x, t) dx } = \epsilon \left| \int_{b}^{c} { g'_x(x, t) d x } \right| =$
     
-    $ \epsilon \left| g(x, t)|_{x=b}^{x=c}  \right| \leq \epsilon \cdot 2 M$.
+    $= \epsilon \left| g(x, t)|_{x=b}^{x=c}  \right| \leq \epsilon \cdot 2 M$.
+
+    Получается, что оценили $\int_{b}^{c} { f(x, t) g(x, t) dx } < 3 \epsilon M$, то есть проверили критерий Коши для исходного интеграла.
 \end{proof}
 \begin{example}
     $\int_{1}^{+\infty} { \frac{\sin(x)}{x^t} dx }, \ t > 0$.
@@ -373,7 +377,7 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
 
             $\left| \int_{1}^{b} { \sin(x) dx } \right| \leq 2$.
 
-            $g(x, t) \rightrightarrows 0$, $|g(x, t)| \leq \frac{1}{x^{t_0}} \rightarrow 0$.
+            $g(x, t) \rightrightarrows 0$: $|g(x, t)| = \frac{1}{x^t} \leq \frac{1}{x^{t_0}} \underbrace{\rightarrow}_{x \rightarrow +\infty} 0$.
 
             Есть равн. сх-ть.
         }
