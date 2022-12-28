@@ -690,12 +690,16 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
 
 \begin{theorem}\textbf{формула Эйлера-Гаусса}
     
-    $\Gamma(p) = \lim n^p \cdot \frac{n!}{p(p + 1)(p + 2)\dots (p + n)}$
+    $\Gamma(p) = \lim_{n \rightarrow +\infty} n^p \cdot \frac{n!}{p(p + 1)(p + 2)\dots (p + n)}$
 
 \end{theorem}
 
 \begin{proof}
-    $\frac{n^p \cdot n!}{\Gamma(p)p(p + 1)...(p + n)} = \frac{n^p n!}{\Gamma(n + 1 + p)} = \frac{n^p\Gamma(n + 1)}{\Gamma(n + 1 + p)} \to 1$
+    % $\frac{n^p \cdot n!}{\Gamma(p)p(p + 1)...(p + n)} = \frac{n^p n!}{\Gamma(n + 1 + p)} = \frac{n^p\Gamma(n + 1)}{\Gamma(n + 1 + p)} \to 1$
+
+    $\Gamma(n + p) = (p + n - 1) \cdot (p + n - 2) \cdot \dots \cdot (p+1) \cdot p \cdot \Gamma(p)$
+
+    $n^p \cdot \frac{n!}{p (p + 1) \dots (p + n)} = \frac{n^p}{p + n} \cdot \frac{n! \cdot \Gamma(p)}{\Gamma(n + p)} = \underbrace{\frac{n}{p + n}}_{\rightarrow 1, \text{ при } n \rightarrow +\infty} \cdot \underbrace{\left(n^p \cdot \frac{\Gamma(n)}{\Gamma(n + p)}\right)}_{\rightarrow 1, \text{ при } n \rightarrow +\infty} \cdot \Gamma(p)$
 \end{proof}
 
 \begin{example}
@@ -704,18 +708,43 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
 
 \begin{example}
     \begin{enumerate}
-        \item $p > 0, \int_{0}^{+\infty}{e^{-x^p}}dx = \frac{1}{p}\int_{0}^{+\infty}{e^{-y}y^{\frac{1}{p} - 1}}dy = \frac{1}{p}\Gamma(\frac{1}{p}) = \Gamma(\frac{1}{p} + 1)$, где $y = x^p, x = y^{\frac{1}{p}}, dx = \frac{1}{p}y^{\frac{1}{p} - 1}\ dy$
-        
-        \item $\int_{0}^{\frac{\pi}{2}}{ \cos^{p-1}t \cdot \sin^{q - 1}t dt } = \frac{1}{2}\int_{0}^{1}(1 -x)^{\frac{p-2}{2}}x^{\frac{q-2}{2}}dx = \frac{1}{2}B(\frac{p}{2}, \frac{q}{2})$, где $x = \sin^2 t, dx = 2\sin t \cos t dt, 1 - x = \cos^2 t$
-        
-        В частности, $\int_{0}^{\frac{\pi}{2}}{ \cos^{p - 1}t dt } = \int_{0}^{\frac{\pi}{2}}\sin^{p-1}dt = \frac{1}{2}B(\frac{p}{2}, \frac{q}{2}) = \frac{1}{2} \cdot \frac{\Gamma(\frac{p}{2}) \cdot \Gamma(\frac{1}{2})}{\Gamma(\frac{p + 1}{2})} = \frac{\Gamma(\frac{p}{2})}{\Gamma(\frac{p + 1}{2})} \cdot \frac{\sqrt[]{\pi}}{2}$
+        \item {
 
-        \item Объем $n$-мерного шара радиуса $r$: $V_n(r) = C_nr^n$, где $C_n$ -- объём шара радиуса 1 в $\mathbb{R}^2$
+            $\int_{0}^{+\infty} {e^{-t^p} dt} = \Gamma\left(\frac{1}{p} + 1\right)$ при $p > 0$.
 
-        % todo: picture here
-        $C_n = V_n(1) = 2 \int_{0}^{1}V_{n - 1}(\sqrt[]{1 - x^2})dx = 2 \int_{0}^{1}(1 - x^2)^{\frac{n-1}{2}}C_{n - 1}dx \underbrace{=}_{y = x^2, x = \sqrt[]{y}, dx = \frac{dy}{2\sqrt[]{y}}} = 2C_{n-1}\int_{0}^{1}(1 - y)^{\frac{n-1}{2}} \cdot \frac{1}{2} \cdot y^{-\frac{1}{2}}dy = C_{n-1} \cdot B(\frac{1}{2}, \frac{n + 1}{2}) = C_{n - 1}\frac{\Gamma(\frac{1}{2})\Gamma(\frac{n + 1}{2})}{\Gamma(\frac{n}{2} + 1)} = C_{n - 1}\sqrt[]{\pi}\frac{\Gamma(\frac{n + 1}{2})}{\Gamma(\frac{n}{2} + 1)} = C_{n - 2} \cdot (\sqrt[]{\pi})^2 \cdot \frac{\Gamma(\frac{n + 1}{2})}{\Gamma(\frac{n}{2} + 1)} \cdot \frac{\Gamma(\frac{n}{2})}{\Gamma(\frac{n + 1}{2})} = \dots = C_1 (\sqrt[]{\pi})^{n-1}\frac{\Gamma(\frac{3}{2})}{\Gamma(\frac{n}{2} + 1)} = 2 \cdot (\sqrt[]{\pi})^{n - 1} \cdot \frac{\frac{1}{2}\sqrt[]{\pi}}{\Gamma(\frac{n}{2} + 1)} = \frac{\pi^{\frac{n}{2}}}{\Gamma(\frac{n}{2} + 1)}$
+            \textbf{Док-во:} $\int_{0}^{+\infty} {e^{-t^p} dt} \underbrace{=}_{x = t^p} \int_{0}^{+\infty} { e^{-x} \cdot \frac{1}{p} \cdot x^{\frac{1}{p} - 1} dx } = \frac{1}{p} \cdot \int_{0}^{+\infty} { x^{\frac{1}{p} - 1} e^{-x} dx } = \frac{1}{p} \cdot \Gamma\left(\frac{1}{p}\right) = \Gamma\left(\frac{1}{p} + 1\right)$.
+        }
+        \item {
 
-        $\frac{\pi^{\frac{3}{2}}}{\Gamma(\frac{3}{2} + 1)} = \frac{\pi\sqrt[]{\pi}}{\frac{3}{2}\cdot\frac{1}{2}\sqrt[]{\pi}} = \frac{4}{3}\pi$
+            $\int_{0}^{\frac{\pi}{2}} { \sin^{p - 1}(\phi) \cdot \cos^{p - 1}(\phi) d \phi } = \frac{1}{2} \cdot B\left(\frac{p}{2}, \frac{q}{2}\right)$.
+
+            В частности, $\int_{0}^{\frac{\pi}{2}} { \sin^{p - 1}(\phi) d \phi } = \int_{0}^{\frac{\pi}{2}} { \cos^{p - 1}(\phi) d \phi } = \frac{1}{2} \cdot B\left(\frac{p}{2}, \frac{1}{2}\right) = \frac{\sqrt{\pi}}{2} \cdot \frac{\Gamma\left(\frac{p}{2}\right)}{\Gamma\left(\frac{p + 1}{2}\right)}$.
+
+            \textbf{Док-во:} $\int_{0}^{\frac{\pi}{2}} { \sin^{p - 1}(\phi) \cdot \cos^{p - 1}(\phi) d \phi } = \frac{1}{2} \cdot \int_{0}^{\frac{\pi}{2}} { \left(\sin^{2}(\phi)\right)^{\frac{p-2}{2}} \cdot \left(\cos^{2}(\phi)\right)^{\frac{p-2}{2}} \cdot 2 \sin(\phi) \cos(\phi) d \phi } \underbrace{=}_{t = \sin^2(\phi)}$
+            
+            $= \frac{1}{2} \cdot \int_{0}^{1} {t^{\frac{p}{2} - 1} (1 - t)^{\frac{q}{2} - 1} dt } = \frac{1}{2} B\left(\frac{p}{2}, \frac{q}{2}\right)$.
+        }
+        \item {
+            % Объем $n$-мерного шара радиуса $r$: $V_n(r) = C_nr^n$, где $C_n$ -- объём шара радиуса 1 в $\mathbb{R}^2$
+
+            % % todo: picture here
+            % $C_n = V_n(1) = 2 \int_{0}^{1}V_{n - 1}(\sqrt[]{1 - x^2})dx = 2 \int_{0}^{1}(1 - x^2)^{\frac{n-1}{2}}C_{n - 1}dx \underbrace{=}_{y = x^2, x = \sqrt[]{y}, dx = \frac{dy}{2\sqrt[]{y}}} = 2C_{n-1}\int_{0}^{1}(1 - y)^{\frac{n-1}{2}} \cdot \frac{1}{2} \cdot y^{-\frac{1}{2}}dy = C_{n-1} \cdot B(\frac{1}{2}, \frac{n + 1}{2}) = C_{n - 1}\frac{\Gamma(\frac{1}{2})\Gamma(\frac{n + 1}{2})}{\Gamma(\frac{n}{2} + 1)} = C_{n - 1}\sqrt[]{\pi}\frac{\Gamma(\frac{n + 1}{2})}{\Gamma(\frac{n}{2} + 1)} = C_{n - 2} \cdot (\sqrt[]{\pi})^2 \cdot \frac{\Gamma(\frac{n + 1}{2})}{\Gamma(\frac{n}{2} + 1)} \cdot \frac{\Gamma(\frac{n}{2})}{\Gamma(\frac{n + 1}{2})} = \dots = C_1 (\sqrt[]{\pi})^{n-1}\frac{\Gamma(\frac{3}{2})}{\Gamma(\frac{n}{2} + 1)} = 2 \cdot (\sqrt[]{\pi})^{n - 1} \cdot \frac{\frac{1}{2}\sqrt[]{\pi}}{\Gamma(\frac{n}{2} + 1)} = \frac{\pi^{\frac{n}{2}}}{\Gamma(\frac{n}{2} + 1)}$
+
+            % $\frac{\pi^{\frac{3}{2}}}{\Gamma(\frac{3}{2} + 1)} = \frac{\pi\sqrt[]{\pi}}{\frac{3}{2}\cdot\frac{1}{2}\sqrt[]{\pi}} = \frac{4}{3}\pi$
+
+
+            Объем $n$-мерного шара $V_n(r) = C_n \cdot r^n$, где $C_n = V_n(1)$ -- объем $n$-мерного шара, радиуса $1$.
+
+            $V_n(1) = \int_{-1}^{1} {V_{n - 1} \left( \sqrt{1 - x^2} \right) dx} = 2 \cdot \int_{0}^{1} { V_{n - 1} \left(\sqrt{1 - x^2}\right) dx } = 2 \cdot \int_{0}^{1} { \left(1 - x^2\right)^{\frac{n-1}{2}} \cdot C_{n-1} dx } \underbrace{=}_{x = \sin(\phi)}$
+            
+            $= 2 \cdot C_{n - 1} \cdot \int_{0}^{\frac{\pi}{2}} { \left(\cos^2(\phi)\right)^{\frac{n - 1}{2}} \cdot \cos(\phi) d \phi } = 2 C_{n - 1} \int_{0}^{\frac{\pi}{2}} { \cos^n(\phi) d\phi } = 2 C_{n - 1} \cdot \frac{1}{2} \cdot \frac{\Gamma\left(\frac{n+1}{2}\right)}{\Gamma\left(\frac{n+2}{2}\right)} \cdot \sqrt{\pi}$.
+
+            Получили, что $C_n = C_{n - 1} \cdot \frac{\Gamma\left(\frac{n+1}{2}\right)}{\Gamma\left(\frac{n+2}{2}\right)} \cdot \sqrt{\pi}$.
+
+            $C_n = \frac{\Gamma\left(\frac{n+1}{2}\right)}{\Gamma\left(\frac{n+2}{2}\right)} \cdot \sqrt{\pi} \cdot C_{n - 1} = \frac{\sqrt{\pi} \cdot \Gamma\left(\frac{n+1}{2}\right)}{\Gamma\left(\frac{n+2}{2}\right)} \cdot \frac{\sqrt{\pi} \cdot \Gamma\left(\frac{n}{2}\right)}{\Gamma\left(\frac{n+1}{2}\right)} \dots \frac{\sqrt{\pi} \cdot \Gamma\left(\frac{3}{2}\right)}{\Gamma\left(\frac{4}{2}\right)} C_1 = $
+
+            $= 2 \cdot \frac{(\sqrt{\pi})^{n - 1} \cdot \Gamma\left(\frac{3}{2}\right)}{\Gamma\left(\frac{n}{2} + 1\right)} = \frac{\pi^{\frac{n-1}{2}} \Gamma\left(\frac{1}{2}\right)}{\Gamma\left( \frac{n}{2} + 1 \right)} = \frac{\pi^{\frac{n}{2}}}{\Gamma\left( \frac{n}{2} + 1 \right)}$.
+        }
     \end{enumerate}
 \end{example}
 
