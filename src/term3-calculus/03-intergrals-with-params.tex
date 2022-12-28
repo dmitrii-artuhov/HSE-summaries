@@ -400,13 +400,13 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
         }
     \end{enumerate}
 
-    Тогда $\lim_{t \rightarrow t_0} { \int_{a}^{+infty} { f(x, t) dx } } = \int_{a}^{+\infty} { \phi(x) dx }$ и второй интеграл сх-ся. 
+    Тогда $\lim_{t \rightarrow t_0} { \int_{a}^{+\infty} { f(x, t) dx } } = \int_{a}^{+\infty} { \phi(x) dx }$ и второй интеграл сх-ся. 
 \end{theorem}
 
 \begin{proof}
     $(1) \underbrace{\Rightarrow}_{\text{кр. Коши для }f} \forall \epsilon > 0 \ \exists B \ \forall b, c > B \ \forall t \in T: \underbrace{| \int_{b}^{c} { f(x, t) dx } |}_{\rightarrow |\int_{b}^{c} { \phi(x) dx }| \text { при } t \rightarrow t_0}  < \epsilon$.
 
-    $| \int_{a}^{+\infty} { f(x, t) dx } - \int_{a}^{+\infty} | \leq \underbrace{| \int_{b}^{+\infty} { f(x, t) dx } |}_{< \epsilon} + \underbrace{| \int_{b}^{+\infty} { \phi(x) dx } |}_{< \epsilon} + |\int_{a}^{b} { \left( f(x, t) - \phi(x) \right) dx }|$.
+    $| \int_{a}^{+\infty} { f(x, t) dx } - \int_{a}^{+\infty} {\phi(x) dx} | \leq \underbrace{| \int_{b}^{+\infty} { f(x, t) dx } |}_{< \epsilon} + \underbrace{| \int_{b}^{+\infty} { \phi(x) dx } |}_{< \epsilon} + |\int_{a}^{b} { \left( f(x, t) - \phi(x) \right) dx }|$.
 
     $(1) \Rightarrow \exists B_1 \ \forall b > B_1$ и $\forall t \in T: | \int_{b}^{+\infty} { f(x, t) dx } | < \epsilon$.
 
@@ -420,7 +420,10 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
 \begin{remark}
     Равн. сх-ть интеграла существенна:
 
-    $f(x, t) = \frac{1}{t}$ при $0 \leq x \leq t$.
+    $f(x, t) = \begin{cases}
+        \frac{1}{t}, \text{ при } 0 \leq x \leq t \\
+        0 \text{, иначе}
+    \end{cases}$
 
     $f(x, t) \underbrace{\rightrightarrows}_{t \rightarrow + \infty} 0$
 
@@ -459,7 +462,9 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
 \begin{proof}
     Признак Абеля.
 
-    $g(x, t) = e^{-tx}$ монотонно убывает и огрничена 1.
+    $g(x, t) = e^{-tx}$: монотонно убывает при фиксированном $t$.
+    
+    $|g(x, t)| \leq 1$: равномерно ограничена.
 \end{proof}
 
 \begin{example}
@@ -490,13 +495,13 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
 \end{proof}
 
 \begin{example}
-    $F(t) := \int_{0}^{+\infty} { e^{-tx} \cdot \frac{\sin(x)}{x} dx }$. Знаем, что $F \in C[0, +\infty)$/
+    $F(t) := \int_{0}^{+\infty} { e^{-tx} \cdot \frac{\sin(x)}{x} dx }$. Знаем, что $F \in C[0, +\infty)$
 
     $\Phi(t) := \int_{0}^{+\infty} { \frac{\sin(x)}{x} \cdot e^{-tx} \cdot (-x) dx } = \underbrace{- \int_{0}^{+\infty} { \sin(x) \cdot e^{-tx} dx }}_{= - \frac{1}{1+t^2} \text{ два раза инт. по частям}}$ -- равномерно сх-ся при $t \geq t_0 > 0$.
 
     $\implies F'(t) = \Phi(t) \implies F(t) = C - \arctan(t)$.
 
-    $\lim_{t \rightarrow + \infty} { F(t) } = \lim_{t \rightarrow +\infty} { \int_{0}^{+\infty} { e^{-tx} \cdot \frac{\sin(x)}{x} dx} } \underbrace{=}_{?} \int_{0}^{+\infty} { \lim_{t \rightarrow +\infty} { e^{-tx} \cdot \frac{\sin(x)}{x} dx } } = 0$.
+    $\lim_{t \rightarrow + \infty} { F(t) } = \lim_{t \rightarrow +\infty} { \int_{0}^{+\infty} { e^{-tx} \cdot \frac{\sin(x)}{x} dx} } \underbrace{=}_{\text{по предыдущим теоремам...}} \int_{0}^{+\infty} { \lim_{t \rightarrow +\infty} { e^{-tx} \cdot \frac{\sin(x)}{x} dx } } = 0$.
 
     $\left| e^{-tx} \cdot \frac{\sin(x)}{x} \right| \leq e^{-x} \cdot \frac{|\sin(x)|}{x} \leq e^{-x}$ -- суммируемая мажоранта.
 
@@ -528,7 +533,9 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
             $\Gamma(p+1) = p \Gamma(p)$.
 
             \begin{proof}
-                $\Gamma(p+1) = \int_{0}^{+\int} { x^p e^{-x} dx } = - \int_{0}^{+\infty} { x^p d (e^{-x}) } = -x^p e^{-x} |_{0}^{+\infty} + \int_{0}^{+\infty} { p x^{p-1} e^{-x} dx } = p \Gamma(p)$.
+                $\Gamma(p+1) = \int_{0}^{+\infty} { x^p e^{-x} dx } = - \int_{0}^{+\infty} { x^p d (e^{-x}) } =$
+                
+                $= -x^p e^{-x} |_{0}^{+\infty} + \int_{0}^{+\infty} { p x^{p-1} e^{-x} dx } = p \Gamma(p)$.
             \end{proof}
         }
         \item {
@@ -555,12 +562,12 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
             \end{proof}
         }
         \item {
-            $\Gamma$ бесконечно дифф ф-я и $\Gamma^{(n)}(p) = \int_{0}^{+\infty} { x^{p-1} \left( \ln(x) \right)^n e^{-x} dx }$
+            $\Gamma$ бесконечно дифф. ф-я и $\Gamma^{(n)}(p) = \int_{0}^{+\infty} { x^{p-1} \left( \ln(x) \right)^n e^{-x} dx }$
             
             \begin{proof}
-                Надо обосновать дифф. под знаком интеграла.
+                Надо обосновать дифф. под знаком интеграла. Для этого надо потребовать равномерную сх-ть полученного интеграла.
                 
-                $0 < a \leq p \leq b$
+                $0 < a \leq p \leq b < +\infty$
                 
                 \begin{enumerate}
                     \item {
@@ -571,7 +578,7 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
                     \item {
                         $1 \leq x$:
 
-                        $x^{b-1} |\ln(x)|^{n} e^{-x} \leq x^{n + b} e^{-e}$
+                        $x^{b-1} |\ln(x)|^{n} e^{-x} \leq x^{n + b} e^{-x}$
                     }
                 \end{enumerate}
             \end{proof}
@@ -626,19 +633,19 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
     $= \int_{0}^{+\infty} { u^{p+q-1} e^{-u} \cdot \underbrace{\int_{0}^{1} { v^{p-1} (1-v)^{q-1} dv }}_{= B(p, q)} du } = B(p, q) \Gamma(p + q)$.
 \end{proof}
 
-\begin{consequence}
-    (формула дополнения)
+\begin{consequence} \textbf{(формула дополнения)}
 
     $\Gamma(p) \Gamma(1-p) = \frac{\pi}{\sin(\pi p)}, \ p \in (0, 1)$.
 \end{consequence}
 \begin{proof}
-    $\Gamma(p) \Gamma(1 - p) = \Gamma(1) B(p, 1 - p) = \int_{0}^{+\infty} { \frac{x^{p-1}}{1+x} dx }$.
+    $\Gamma(p) \Gamma(1 - p) = \Gamma(1) B(p, 1 - p) = \int_{0}^{+\infty} { \frac{x^{p-1}}{1+x} dx } \underbrace{=}_{\text{просто верим в это}} \frac{\pi}{\sin(\pi p)}$.
 \end{proof}
 
 
-* Здесь пропущены первые 15 минут*
+% * Здесь пропущены первые 15 минут *
 
-\begin{consequence} \textbf{2 (формула удвоения)}
+\begin{consequence} \textbf{(формула удвоения)}
+
     $\Gamma(p)\Gamma(p + \frac{1}{2}) = \frac{\sqrt[]{\pi}}{2^{2p - 1}}\Gamma(2p)$
 \end{consequence}
 
