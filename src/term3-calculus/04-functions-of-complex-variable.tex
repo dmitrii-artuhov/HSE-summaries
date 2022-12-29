@@ -165,12 +165,16 @@
             Общий случай.
 
             % todo: picture
-            Надо доказать, что интеграл по любому прямоугольнику (со сторонами параллельными осям) из круга (круг берем вокруг точки из $\Omega$. Добавьте картинку, плиз) равен 0.
+            Надо доказать, что интеграл по любому прямоугольнику со сторонами параллельными осям координат из шарика $U \subset \Omega$, содержащего произвольную точку, равен 0.
 
             От противного: пусть нашелся прямоугольник $P$, т.ч. $\alpha (P) := \int_P {f(z) dz } \not = 0$.
 
-            % todo: picture
-            Режем прямоугольник на 4 части, индексируем как $P^{1}, P^{2}, P^{3}, P^{4}$, строим объоды каждого (против часовой стрелки). Тогда $\alpha(P) = \alpha(P^{1}) + \alpha(P^{2}) + \alpha(P^{3}) + \alpha(P^{4})$, $|\alpha(P)| \leq |\alpha(P^{1})| + |\alpha(P^{2})| + |\alpha(P^{3})| + \alpha(P^{4})$.
+            \begin{center}
+                \includegraphics*[width=0.5\textwidth]{assets/04-functions-of-complex-variables/Cauchy-theorem-rectangle-partition.png}
+            \end{center}
+
+            
+            Режем прямоугольник на 4 части, индексируем как $P^{1}, P^{2}, P^{3}, P^{4}$, строим обходы каждого (против часовой стрелки). Тогда $\alpha(P) = \alpha(P^{1}) + \alpha(P^{2}) + \alpha(P^{3}) + \alpha(P^{4})$, $|\alpha(P)| \leq |\alpha(P^{1})| + |\alpha(P^{2})| + |\alpha(P^{3})| + \alpha(P^{4})$.
 
             Хотя бы одно из слагаемых $\geq \frac{1}{4} |\alpha(P)|$, назовем такое $P_1$ (индекс уже снизу!). Разрежем его на 4 равные части. Пусть $P_2$ такой, что $|\alpha(P_2)| \geq \frac{1}{4} |\alpha (P_1)|$ и т.д.
 
@@ -217,12 +221,15 @@
 \begin{proof}
     Надо проверять, что интеграл по довольно маленькому прямоугольнику (со стороронами паралл. осям) это 0.
 
-    % todo: picture!!!
+    \begin{center}
+        \includegraphics*[width=0.5\textwidth]{assets/04-functions-of-complex-variables/interesting-rectangles-locally-exact-form-without-line.png}
+    \end{center}
+
     Очевидно, что если прямоугольник не пересекает $\Delta$, то там все очевидно. Хотим рассматривать только те, что задевают. Те, что пересекают $\Delta$, можно разбить на две части (верхнюю и нижнюю). По каждой из частей будет 0, тогда и в сумме тоже будет 0. То есть нас вообще интересуют только те прямоугольники, у которых $\Delta$ это одна из сторон. Рассмотрим их:
     
-    % todo: picture
-
-    Тут мастхэв картинка, на которой мы откусывает подпрямугольник размера $\epsilon$.
+    \begin{center}
+        \includegraphics*[width=0.5\textwidth]{assets/04-functions-of-complex-variables/smaller-rectangle-locally-exact-form-without-line.png}
+    \end{center}
 
     $\int_{P_{\epsilon}} { f(z) d z } = 0 \rightarrow_{\epsilon \rightarrow 0} \int_{P} { f(z) dz }$
 
@@ -266,7 +273,7 @@
 \begin{theorem}
     Пусть $\gamma$ -- замкнутая кривая, не проходящая через 0. Тогда
     
-    $\int_{\gamma} { \frac{\partial z}{z} } = 2\pi Ind(\gamma, 0)$.
+    $\int_{\gamma} { \frac{\partial z}{z} } = 2\pi i Ind(\gamma, 0)$.
 \end{theorem}
 \begin{proof}
     Берем параметризацию $r, \phi: [a, b] \rightarrow \mathbb{R}$
@@ -349,7 +356,7 @@
         \item {
             Если $f \in H(r \mathbb{D})$ и $0 < r_1 < r$, то
     
-            $\frac{n!}{2 \pi} \cdot \int_{r_1 \mathbb{T}} { \frac{f(z)}{z^{n+1}} dz } = f^{(n)} (0)$
+            $\frac{n!}{2 \pi i} \cdot \int_{r_1 \mathbb{T}} { \frac{f(z)}{z^{n+1}} dz } = f^{(n)} (0)$
         }
         \item {
             $f \in H(r \mathbb{D} + a), \ 0 < r_1 < r \implies \frac{n!}{2 \pi} \int_{r_1 \mathbb{T} + a} { \frac{f(z)}{(z - a)^{n + 1}} dz } = f^{(n)} (a)$
@@ -427,7 +434,7 @@
             $\int_{\partial K} { f(z) dz } = 0$
         }
         \item {
-            Если $a \in Int (K)$, то $\int_{\partial K} { \frac{f(z)}{z - a} dz } = 2 \pi f(a)$.
+            Если $a \in Int (K)$, то $\int_{\partial K} { \frac{f(z)}{z - a} dz } = 2 \pi i f(a)$.
         }
     \end{enumerate}
 \end{theorem}

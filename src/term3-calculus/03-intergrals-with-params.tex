@@ -1092,19 +1092,20 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
 \begin{remark}
     Точность $\implies$ локальная точность (но не наоборот).
 
-    $\mathbb{R}^2 \setminus \{( 0, 0 )\}$.
+    Возьмем $\omega = \frac{x dy - y dx}{x^2 + y^2}$ на $\mathbb{R}^2 \setminus \{( 0, 0 )\}$ и покажем, что она замкнутая, локально точная, но не точная.
 
-    $\omega = \frac{x dy - y dx}{x^2 + y^2}$ не точная.
-
-    $\int_{\text{един. окр.}} { \omega } = \int_{0}^{2\pi} { \frac{\cos(t) (\sin(t))' - \sin(t) (\cos(t))'}{\cos^2(x) + \sin^2(x)} dt} = \int_{0}^{2\pi} { dt } = 2\pi \not = 0$.
-
-    $x = \cos(t), \ y = \sin(t)$.
-
-    В верхней полуплоскости $F(x, y) = -\arctan\left(\frac{x}{y}\right)$ -- первообразная.
+    Проверим на замкнутость, то есть на равенство частных производных:
 
     $\frac{\partial F}{\partial x} = - \frac{\frac{1}{y}}{1 + (\frac{x}{y})^2} = \frac{y}{x^2 + y^2}$
 
     $\frac{\partial F}{\partial y} = - \frac{-\frac{x}{y^2}}{1 + (\frac{x}{y})^2} = \frac{x}{x^2 + y^2}$
+
+    Проверим на локальную точность: везде, кроме оси $Ox$, есть первообразная $F(x, y) = -\arctan\left(\frac{x}{y}\right)$ (можно честно продифференцировать и проверить)
+
+    А теперь покажем, что точности нет: для этого нужно, чтобы интеграл любой замкнутой кривой был равен нулю. Возьмем тогда интеграл по единичной окружности с параметризацией $(x, y) \to (\cos t, \sin t)$:
+
+    $\int_{\text{един. окр.}} { \omega } = \int_{0}^{2\pi} { \frac{\cos(t) (\sin(t))' - \sin(t) (\cos(t))'}{\cos^2(x) + \sin^2(x)} dt} = \int_{0}^{2\pi} { dt } = 2\pi \not = 0$.
+
 \end{remark}
 
 \begin{theorem}
