@@ -1086,7 +1086,7 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
     $\omega$ -- локально точная форма, если $\forall a \in \Omega$ найдется $U_a$, такая что в $U_a$ есть первообразная $\omega$.
 \end{definition}
 \begin{definition}
-    $\omega = f_1 d x_1 + f_2 d x_2 + \dots + f_n d x_n$ -- замкнутная, если $\forall i, j: \ \frac{\delta f_i}{\delta x_j} = \frac{\delta f_j}{\delta x_i}$.
+    $\omega = f_1 d x_1 + f_2 d x_2 + \dots + f_n d x_n$ -- замкнутная, если $\forall i, j: \ \frac{\partial f_i}{\partial x_j} = \frac{\partial f_j}{\partial x_i}$.
 \end{definition}
 
 \begin{remark}
@@ -1102,18 +1102,18 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
 
     В верхней полуплоскости $F(x, y) = -\arctan\left(\frac{x}{y}\right)$ -- первообразная.
 
-    $\frac{\delta F}{\delta x} = - \frac{\frac{1}{y}}{1 + (\frac{x}{y})^2} = \frac{y}{x^2 + y^2}$
+    $\frac{\partial F}{\partial x} = - \frac{\frac{1}{y}}{1 + (\frac{x}{y})^2} = \frac{y}{x^2 + y^2}$
 
-    $\frac{\delta F}{\delta y} = - \frac{-\frac{x}{y^2}}{1 + (\frac{x}{y})^2} = \frac{x}{x^2 + y^2}$
+    $\frac{\partial F}{\partial y} = - \frac{-\frac{x}{y^2}}{1 + (\frac{x}{y})^2} = \frac{x}{x^2 + y^2}$
 \end{remark}
 
 \begin{theorem}
-    Если коэфф. из $C^1$, тогда локальная точность $\implies$ замкнутость.
+    Если коэфф. формы $f_i$ из $C^1$, тогда локальная точность $\implies$ замкнутость.
 \end{theorem}
 \begin{proof}
-    Берем $a \in \Omega$ и $U_a$, где есть первообразная $F \implies f_i = \frac{\delta F}{\delta x_i}$.
+    Берем $a \in \Omega$ и $U_a$, где есть первообразная $F \implies f_i = \frac{\partial F}{\partial x_i}$.
 
-    $\frac{\delta f_i}{\delta x_j} = \frac{\delta}{\delta x_j} (\frac{\delta F}{\delta x_i}) = \frac{\delta^2 F}{\delta x_j \delta x_i} \underbrace{=}_{\text{т.к. непрер. слева и справа от равенства}} \frac{\delta^2 F}{\delta x_i \delta x_j} = \frac{\delta}{\delta x_i} \left( \frac{\delta F}{\delta x_j} \right) = \frac{\delta f_j}{\delta x_i}$.
+    $\frac{\partial f_i}{\partial x_j} = \frac{\partial}{\partial x_j} (\frac{\partial F}{\partial x_i}) = \frac{\partial^2 F}{\partial x_j \partial x_i} \underbrace{=}_{\text{т.к. непрер. слева и справа от равенства}} \frac{\partial^2 F}{\partial x_i \partial x_j} = \frac{\partial}{\partial x_i} \left( \frac{\partial F}{\partial x_j} \right) = \frac{\partial f_j}{\partial x_i} \implies$ замкнутость $w$.
 \end{proof}
 
 \begin{lemma}
@@ -1126,7 +1126,9 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
 
     Для существования первообр. достаточно чтобы интеграл по любому прямоугольнику со сторонами параллельными осям координат был равен 0.
     
-    $\omega = P dx + Q dy: \ \int_{\text{обход контура}} { \omega } = \int_{\text{заполенные прямоуг.}} { (\frac{\delta Q}{\delta x} - \frac{\delta P}{\delta y}) d \lambda_2} = 0$.
+    $\omega = P dx + Q dy: \ \int_{\text{обход контура}} { \omega } = \int_{\text{заполенные прямоуг.}} { \underbrace{(\frac{\partial Q}{\partial y} - \frac{\partial P}{\partial x})}_{\text{этот интеграл = 0 из-за замкнутости}} d \lambda_2} = 0$.
+
+    Выпукласть $\Omega$ важна, чтобы внутри заполненого прямоугольника не было дырок.
 \end{proof}
 
 \begin{consequence}
@@ -1145,7 +1147,10 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
     $\gamma: \ [a, b] \rightarrow \Omega$ путь.
 
     $f: \ [a, b] \rightarrow \mathbb{R}$ первообразная $\omega$ вдоль пути $\gamma$, если $\forall t \in [a, b]$ у $\gamma(t)$ найдется окр. $U_{\gamma(t)}$, а в ней первообразная $F$ формы $\omega$, т.ч. $f(\tau) = F(\gamma(\tau))$ при $\tau$ близких к $t$.
-    % TODO: picture
+
+    \begin{center}
+        \includegraphics[width=15cm]{assets/03-intergrals-with-params/difinition-picture.png}
+    \end{center}
 \end{definition}
 
 \begin{theorem}
@@ -1172,7 +1177,7 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
 
     Выберем конечные подпокрытия $U_1, \dots, U_m$ и $F_1, \dots, F_m$ -- первообр. в соотвествующем $U_j$.
 
-    Из леммы Лебега $\exists r > 0: \ \forall t \in [a, b]: \ B_r(\gamma(t))$ целиком содержится в какаом-то эл-те покрытия.
+    Из леммы Лебега $\exists r > 0: \ \forall t \in [a, b]: \ B_r(\gamma(t))$ целиком содержится в каком-то эл-те покрытия.
 
     Нарежем $[a, b]$ на кусочки длины $< \delta$, где $\delta > 0$ выбрано по $\epsilon = r$ из равномерной непрерывности $\gamma$.
 
@@ -1182,7 +1187,7 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
 
     Тогда образы маленьких отрезков целиком содержатся в своих элементах покрытия.
 
-    $\delta [t_{i-1}, t_i] \subset U_i$, так занумеруем $F_i$ --- первообр. в $U_i$.
+    $\gamma [t_{i-1}, t_i] \subset U_i$, так занумеруем $F_i$ --- первообр. в $U_i$.
 
     $f|_{[t_0, t_1]} = F_1 \circ \gamma$, $f|_{[t_1, t_2]} = F_2 \circ \gamma$.
 
@@ -1213,6 +1218,9 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
             $\gamma_u (t) := \gamma(t, u)$ путь, соединяющий точки $\gamma_0(a)$ и $\gamma_0(b)$.
 
             % TODO: picture and another picture
+            \begin{center}
+                \includegraphics[width=10cm]{assets/03-intergrals-with-params/difinition-picture-2.png}
+            \end{center}
         }
         \item {
             $\gamma_0(a) = \gamma_0(b), \ \gamma_1(a) = \gamma_1(b)$.
@@ -1220,6 +1228,9 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
             $\gamma_0, \gamma_1$ -- гомотопно замкнутые пути, если $\exists \gamma: [a, b] \times [0, 1] \rightarrow \Omega$ непрерывное, т.ч. $\forall t : \ \gamma(t, 0) = \gamma_0(t), \ \gamma(t, 1) = \gamma_1(t)$ и $\forall u: \ \gamma(a, u) = \gamma(b, u)$.
 
             % TODO: picture
+            \begin{center}
+                \includegraphics[width=10cm]{assets/03-intergrals-with-params/difinition-picture-3.png}
+            \end{center}
         }
     \end{enumerate}
 \end{definition}
@@ -1236,8 +1247,14 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
             % TODO: picture
         }
         \item {
-            Звездная область односвязна (одна точка фиксированна и верно, что отрезок соединяющий ее и любую другую лежит в области).
-            % TODO: picture
+            Звездная область односвязна (одна точка фиксированна и верно, что отрезок, соединяющий ее и любую другую, лежит в области)
+            
+            PS. Напомним, что для обычной выпуклости нужно было, чтобы отрезок для двух произвольных точек из области целиком содержался в ней.
+
+            \begin{center}
+                \includegraphics[width=4cm]{assets/03-intergrals-with-params/example-picture.png}
+            \end{center}
+
             \begin{proof}
                 $\Omega$ -- звездная, $O$ -- фикс. точка.
 
@@ -1267,23 +1284,34 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
     
     $\omega$ -- лок. точная форма в $\Omega$.
 
-    $\forall (t, u) \in [a, b] \times [c, d]$ существует окр-ть $U_{\gamma(t, u)}$ и первообр $F$ в этой окр-ти, т.ч. $f(\tau, \nu) = F(\gamma(\tau, \nu))$.
+    $f: [a, b] \times [c, d] \rightarrow \mathbb{R}$ -- первообразная $w$ относительно отображения $\gamma$, если $\forall (t, u) \in [a, b] \times [c, d]$ существует окр-ть $U_{\gamma(t, u)}$ и первообр $F$ в этой окр-ти, т.ч. $f(\tau, \nu) = F(\gamma(\tau, \nu))$ для $(\tau, \nu)$ близких к $(t, u)$.
 \end{definition}
 
 \begin{theorem}
     Первообразная отн-но отображения существует и единственна с точностью до константы.
 \end{theorem}
 \begin{proof}
-    
-    \textbf{Единственность}: $f, g$ -- первообразные отн-но отображения $\gamma$, то $f - g$ -- локально постоянная функция двух переменных $\implies f - g = const$.
 
+    \textbf{Единственность}: $f, g$ -- первообразные отн-но отображения $\gamma$, то $(f - g)$ -- локально постоянная функция двух переменных $\implies (f - g) = const$.
+
+    То что $(f - g)$ -- локально постоянная следует отсюда:
+
+    Берем $(t, u) \in [a, b] \times [c, d]$, в окр-ти $U_{\gamma(t, u)}: \ \exists F_1, F_2$ -- первообразные, т.ч. $f(\tau, \nu) = F_1(\gamma(\tau, \nu))$ и $g(\tau, \nu) = F_2(\gamma(\tau, \nu))$ при $(\tau, \nu)$ близких к $(t, u)$.
+
+    Знаем, что $F_1 = F_2 + const \implies f(\tau, \nu) - g(\tau, \nu) = F_1(\gamma(\tau, \nu)) - F_2(\gamma(\tau, \nu)) = const$.
+
+    \newpage
     \textbf{Существование}: берем $(t, u) \in [a, b] \times [c, d]$, у $\gamma(t, u)$ есть окр-ть $U_{\gamma(t, u)}$ в которой существует первообразная $\implies [a, b] \times [c, d] \subset \bigcup_{(t, u) \in [a, b] \times [c, d]} {U_{\gamma(t, u)}}$.
     
     Выбираем конечное подпокрытие, по нему $r > 0$ из леммы Лебега $\implies B_r(\gamma(t, u))$ целиком содержится в эл-те подпокрытия.
     
     $\gamma \in C\left( [a, b] \times [c, d] \right) \implies $ равном. непрер. Берем по $\epsilon = r$ такое $\delta > 0$ из равн. непрерывности $\implies$ если $(t, u)$ и $(t', u')$ на расстоянии $< \delta$, то $\gamma(t, u)$ и $\gamma(t', u')$ на расстоянии $< r$.
 
-    % TODO: picture
+    \begin{center}
+        \includegraphics[width=5cm]{assets/03-intergrals-with-params/existance-proof-pic-1.png}
+    \end{center}
+
+
     $\gamma([t_{i - 1}, t_i] \times [u_{j - 1}, u_j]) \subset U_{ij}$ и $F_{ij}$ первообразная в $U_{ij}$.
 
     $f|_{[t_0, t_1] \times [u_0, u_1]} = F_{11} \circ \gamma$
@@ -1304,7 +1332,9 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
 
     Подправим $f_2$ так, что $f_1(\cdot, u_1) = f_2(\cdot, u_1)$.
 
-    % TODO: picture
+    \begin{center}
+        \includegraphics[width=5cm]{assets/03-intergrals-with-params/existance-proof-pic-2.png}
+    \end{center}
 \end{proof}
 
 \begin{theorem}
@@ -1313,7 +1343,7 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
 \begin{proof}
     $\gamma: [a, b] \times [0, 1] \rightarrow \Omega$ гомотопия между $\gamma_0, \gamma_1$.
     
-    $f$ -- первообразная $\omega$ относительно отображения $\gamma$, $f(\cdot, 0)$ -- первообразная вдоль пути $\gamma_0$.
+    $f$ -- первообразная $\omega$ относительно отображения $\gamma$, $f(\cdot, 0), f(\cdot, 1)$ -- первообразные вдоль путей $\gamma_0, \gamma_1$, соответственно.
 
     $\int_{\gamma_0} {\omega} = f(b, 0) - f(a, 0)$.
 
@@ -1321,11 +1351,11 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
     
     Докажем, что $f(a, \cdot)$ -- лок. постоянная. Рассмотрим $(a, u)$: у $\gamma(a, u)$ есть окр-ть $U$ и в ней первообразная $F$, т.ч. $f(\tau, \nu) = F(\gamma(\tau, \nu))$ при $(\tau, \nu)$ близких к $(a, u)$.
 
-    $f(a, \nu) = F(\gamma(a, \nu)) = F(\gamma_0(a))$ не зависит от $\nu$ (по аналогии делаем с другим концом и мы решили задачу. Но почему?! я хз).
+    $f(a, \nu) = F(\gamma(a, \nu)) = F(\gamma_0(a))$ не зависит от $\nu$ (по аналогии делаем с другим концом, то есть доказываем, что $f(b, \cdot)$ -- локальная постоянная, тогда получили, что $\int_{\gamma_0} {\omega} = \int_{\gamma_1} {\omega}$).
 \end{proof}
 
 \begin{theorem}
-    $\gamma_0, \ \gamma_1$ -- замкнутые гомотопные пути в $\Omega$. $\omega$ -- локю точная форма в $\Omega$. Тогда $\int_{\gamma_0} { \omega } = \int_{\gamma_1} { \omega }$.
+    $\gamma_0, \ \gamma_1$ -- замкнутые гомотопные пути в $\Omega$. $\omega$ -- лок. точная форма в $\Omega$. Тогда $\int_{\gamma_0} { \omega } = \int_{\gamma_1} { \omega }$.
 \end{theorem}
 \begin{proof}
     $\gamma: [a, b] \times [0, 1] \rightarrow \Omega$ -- гомотопия, $f$ -- первообразная $\omega$ относительно $\gamma$.
@@ -1334,7 +1364,7 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
     
     $\int_{\gamma_1} { \omega } = f(b, 1) - f(a, 1)$
 
-    Докажем, что $f(b, \cdot) = f(a, \cdot)$ лок. постоянна.
+    Докажем, что $\left(f(b, \cdot) - f(a, \cdot)\right)$ лок. постоянна.
     
     Рассмотрим $(a, u)$, у $\gamma(a, u)$ есть окр-ть $U$ и в ней первообраз. $F$, т.ч. $f(\tau, \nu) = F(\gamma(\tau, \nu))$ при $(\tau, \nu)$ близких к $(a, u)$.
 
@@ -1348,7 +1378,7 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
 \end{proof}
 
 \begin{consequence}
-    Если $\gamma_1$ -- стягивемый путь в $\Omega$, $\omega$ -- лок. точная форма в $\Omega$. Тогда $\int_{\gamma_1} {\omega} = 0$ю
+    Если $\gamma_1$ -- стягивемый путь в $\Omega$, $\omega$ -- лок. точная форма в $\Omega$. Тогда $\int_{\gamma_1} {\omega} = 0$.
 \end{consequence}
 
 \begin{theorem}
