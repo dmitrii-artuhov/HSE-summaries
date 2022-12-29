@@ -283,7 +283,7 @@
 \begin{theorem}
     Пусть $\gamma$ -- замкнутая кривая, не проходящая через 0. Тогда
     
-    $\int_{\gamma} { \frac{\partial z}{z} } = 2\pi i Ind(\gamma, 0)$.
+    $\int_{\gamma} { \frac{d z}{z} } = 2\pi i Ind(\gamma, 0)$.
 \end{theorem}
 \begin{proof}
     Берем параметризацию $r, \phi: [a, b] \rightarrow \mathbb{R}$
@@ -292,13 +292,13 @@
 
     $\frac{dz}{z} = \frac{r'}{r} + i \phi'$
 
-    $\int_{\gamma} { \frac{dz}{z} } = \int_{a}^{b} { \left( \frac{r'(t)}{r(t)} + i \phi'(t) \right) dt } = \left( ln (r(t)) + i \phi(t) \right)|_{t = a}^{t = b} = i (\phi(b) - \phi(a)) = 2 \pi Ind(\gamma, 0)$
+    $\int_{\gamma} { \frac{dz}{z} } = \int_{a}^{b} { \left( \frac{r'(t)}{r(t)} + i \phi'(t) \right) dt } = \left( ln (r(t)) + i \phi(t) \right)|_{t = a}^{t = b} = i (\phi(b) - \phi(a)) = 2 \pi i Ind(\gamma, 0)$
 \end{proof}
 
 \begin{consequence}
     Пусть $\gamma$ -- замкнутая кривая, не проходящая через точку $a$. Тогда
 
-    $\int_{\gamma} { \frac{dz}{z - a} = 2 \pi Ind (\gamma, a) }$.
+    $\int_{\gamma} { \frac{dz}{z - a} = 2 \pi i Ind (\gamma, a) }$.
 \end{consequence}
 
 \begin{theorem}
@@ -308,7 +308,7 @@
 
     $\gamma$ -- стягиваемая в $\Omega$ кривая, не проходящая через $a \in \Omega$.
 
-    Тогда $\int_{\gamma} { \frac{f(z) dz}{z - a} } = 2 \pi f(a) Ind(\gamma, a)$
+    Тогда $\int_{\gamma} { \frac{f(z) dz}{z - a} } = 2 \pi i f(a) Ind(\gamma, a)$
 \end{theorem}
 \begin{proof}
     $g(z) = \begin{cases}
@@ -322,7 +322,7 @@
 
     $\implies g(z) dz$ -- локально точкая форма $\implies \int_{\gamma} {g(z) dz} = 0$, так как $\gamma$ -- стягиваемая
 
-    $\implies 0 = \int_{\gamma} { \frac{f(z) dz}{z - a} } - \int_{\gamma} { \frac{f(a) dz}{z - a} } \implies \int_{\gamma} { \frac{f(z) dz}{z - a} } = f(a) \cdot \int_{\gamma} { \frac{dz}{z - a} } = f(a) \cdot 2 \pi \cdot Ind(\gamma, a)$
+    $\implies 0 = \int_{\gamma} { \frac{f(z) dz}{z - a} } - \int_{\gamma} { \frac{f(a) dz}{z - a} } \implies \int_{\gamma} { \frac{f(z) dz}{z - a} } = f(a) \cdot \int_{\gamma} { \frac{dz}{z - a} } = f(a) \cdot 2 \pi i \cdot Ind(\gamma, a)$
 \end{proof}
 \begin{example}
     % todo: picture !!!
@@ -330,16 +330,16 @@
 
     $\int_{\text{окр.}} { \frac{f(z)}{z - a} dz } = \begin{cases}
         0, \ \text{ если $a$ вне круга} \\
-        f(a) \cdot 2 \pi, \ \text{ если $a$ внутри круга }
+        f(a) \cdot 2 \pi i, \ \text{ если $a$ внутри круга }
     \end{cases}$
 \end{example}
 
 \begin{remark}
     Обозначение.
 
-    $\mathbb{D} = \{ |z| < 1 \}$ -- единичный круг.
+    $\mathbb{D} = \{ |z| \leq 1 \}$ -- единичный круг.
 
-    $\mathbb{T} = \{ |z| < 1 \}$ -- единичная окружность, обход против часовой стрелки.
+    $\mathbb{T} = \{ |z| = 1 \}$ -- единичная окружность, обход против часовой стрелки.
 
     $r\mathbb{T} + a = \{ |z - a| = r \}$
 \end{remark}
@@ -350,13 +350,13 @@
 
 \begin{proof}
     % todo: picture
-    В наше круге радиуса $r$ берем еще два круга с тем же центром, но меньшими радиусами ($r > r_1 > r_2 > 0$). Берем $z: \ |z| < r_2$ -- точка внутри наименьшего круга. Хотим интегрировать по средней окружности.
+    В нашем круге радиуса $r$ берем еще два круга с тем же центром, но меньшими радиусами ($r > r_1 > r_2 > 0$). Берем $z: \ |z| < r_2$ -- точка внутри наименьшего круга. Хотим интегрировать по средней окружности.
 
-    $f(z) = \frac{1}{2 \pi} \int_{r_1 \mathbb{T}} { \frac{f(\zeta) d \zeta }{\zeta - z} }$
+    $f(z) = \frac{1}{2 \pi i} \int_{r_1 \mathbb{T}} { \frac{f(\zeta) d \zeta }{\zeta - z} }$
 
-    $\frac{1}{\zeta - z} = \frac{1}{1 - \frac{z}{\zeta}} \cdot \frac{1}{\zeta} = \sum_{n=0}^{\infty} \frac{z^n}{\zeta^{n+1}} = (*)$ равномерно сх-ся, так как $\left| \frac{z}{\zeta} \right| \leq \frac{r_2}{r_1}$
+    $\frac{1}{\zeta - z} = \frac{1}{1 - \frac{z}{\zeta}} \cdot \frac{1}{\zeta} = \sum_{n=0}^{\infty} \frac{z^n}{\zeta^{n+1}} = (*)$ равномерно сх-ся, так как $\left| \frac{z}{\zeta} \right| \leq \frac{r_2}{r_1} < 1$
 
-    $(*) = \frac{1}{2\pi} \int_{r_1 \mathbb{T}} { \sum_{n=0}^{\infty} \frac{f(\zeta)}{\zeta^{n+1}} z^n d\zeta } = \frac{1}{2\pi} \sum_{n=0}^{\infty} z^n \underbrace{\int_{r_1 \mathbb{T}} {\frac{f(\zeta)}{\zeta^{n+1}} d\zeta}}_{=: a_n \cdot 2\pi} = \sum_{n=0}^{\infty} {a_n z^n}$
+    $(*) = \frac{1}{2\pi i} \int_{r_1 \mathbb{T}} { \sum_{n=0}^{\infty} \frac{f(\zeta)}{\zeta^{n+1}} z^n d\zeta } = \frac{1}{2\pi i} \sum_{n=0}^{\infty} z^n \underbrace{\int_{r_1 \mathbb{T}} {\frac{f(\zeta)}{\zeta^{n+1}} d\zeta}}_{=: a_n \cdot 2\pi i} = \sum_{n=0}^{\infty} {a_n z^n}$
 \end{proof}
 
 
@@ -369,13 +369,13 @@
             $\frac{n!}{2 \pi i} \cdot \int_{r_1 \mathbb{T}} { \frac{f(z)}{z^{n+1}} dz } = f^{(n)} (0)$
         }
         \item {
-            $f \in H(r \mathbb{D} + a), \ 0 < r_1 < r \implies \frac{n!}{2 \pi} \int_{r_1 \mathbb{T} + a} { \frac{f(z)}{(z - a)^{n + 1}} dz } = f^{(n)} (a)$
+            $f \in H(r \mathbb{D} + a), \ 0 < r_1 < r \implies \frac{n!}{2 \pi i} \int_{r_1 \mathbb{T} + a} { \frac{f(z)}{(z - a)^{n + 1}} dz } = f^{(n)} (a)$
 
             $z = w + a$
 
             $g(w) = f(w + a)$
 
-            $g^{(n)} (0) = \frac{n!}{2 \pi} \cdot \int_{r_1 \mathbb{T}} { \frac{g(w)}{w^{n + 1}} dw }$
+            $g^{(n)} (0) = \frac{n!}{2 \pi i} \cdot \int_{r_1 \mathbb{T}} { \frac{g(w)}{w^{n + 1}} dw }$
         }
         \item {
             $f: \Omega \rightarrow \mathbb{C}$
@@ -465,7 +465,7 @@
 
             $\frac{f(z)}{z - a} \in H(\Omega \setminus \{ a \}), \ \tilde{K} \subset \Omega \setminus \{ a \}$.
 
-            $0 = \int_{\partial \tilde{K}} { \frac{z}{z - a} dz } = \int_{\partial K} { \frac{f(z)}{z - a} dz } - \underbrace{\int_{r \mathbb{T} + a} { \frac{f(z)}{z - a} dz }}_{= 2\pi i f(a)}$.
+            $0 = \int_{\partial \tilde{K}} { \frac{f(z)}{z - a} dz } = \int_{\partial K} { \frac{f(z)}{z - a} dz } - \underbrace{\int_{r \mathbb{T} + a} { \frac{f(z)}{z - a} dz }}_{= 2\pi i f(a)}$.
         }
     \end{enumerate}
 \end{proof}
