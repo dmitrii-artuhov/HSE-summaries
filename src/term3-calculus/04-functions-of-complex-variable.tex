@@ -44,11 +44,11 @@
     $\frac{\partial f}{\partial x} (z_0) = \lim_{h \rightarrow 0, \ h \in \mathbb{R}} {\frac{f(z_0 + h) - f(z_0)}{h}} = f'(z_0)$.
 
     
-    $\frac{\partial f}{\partial y} (z_0) = \lim_{h \rightarrow 0, \ h \in \mathbb{R}} {\frac{f(z_0 + i h) - f(z_0)}{h}} = \frac{f'(z_0)}{i} = -i \cdot f'(z_0)$.
+    $\frac{\partial f}{\partial y} (z_0) = \lim_{h \rightarrow 0, \ h \in \mathbb{R}} {\frac{f(z_0 + i h) - f(z_0)}{h}} = \frac{f'(z_0)}{i} = i \cdot f'(z_0)$.
 \end{remark}
 
 \begin{remark}
-    $\binom{g(x + iy)}{h(x + iy)} = \binom{g(x_0 + i y_0)}{h(x_0 + iy_0)} + \binom{a \ b}{c \ d} \binom{a - x_0}{y - y_0} + o(|| (x - x_0, y - y_0) ||)$.
+    $\binom{g(x + iy)}{h(x + iy)} = \binom{g(x_0 + i y_0)}{h(x_0 + iy_0)} + \binom{a \ b}{c \ d} \binom{x - x_0}{y - y_0} + o(|| (x - x_0, y - y_0) ||)$.
 
     $k = \alpha + i \beta$
 
@@ -67,7 +67,7 @@
     Комплескная дифференцируемость $\Leftrightarrow$ вещественная дифференцируемость + условия Коши-Римана $
     \begin{cases}
         \frac{\partial Re(f)}{\partial x} = \frac{\partial Im (f)}{\partial y} \\ 
-        \frac{\partial Re(f)}{\partial y} = \frac{\partial Im (f)}{\partial x} \\ 
+        \frac{\partial Re(f)}{\partial y} = -\frac{\partial Im (f)}{\partial x} \\ 
     \end{cases}
     $
 \end{remark}
@@ -83,7 +83,7 @@
 
     $\frac{\partial}{\partial z} = \frac{1}{2} \cdot \left( \frac{\partial}{\partial x} - i \frac{\partial}{\partial y} \right)$
     
-    $\frac{\partial}{\partial \overline{z}} = \frac{1}{2} \cdot \left( \frac{\partial}{\partial x} - i \frac{\partial}{\partial y} \right)$
+    $\frac{\partial}{\partial \overline{z}} = \frac{1}{2} \cdot \left( \frac{\partial}{\partial x} + i \frac{\partial}{\partial y} \right)$
 
     $dz = dx + i dy$
 
@@ -142,7 +142,7 @@
 \begin{theorem}
     \textbf{Коши} (ah, shit, here we go again...)
 
-    $f \in H(\Omega) \implies f(z) dz$ локально точная.
+    $f \in H(\Omega) \implies $ форма $f(z) dz$ локально точная.
 \end{theorem}
 \begin{proof}
     Будет два разных док-ва.
@@ -164,13 +164,12 @@
         \item {
             Общий случай.
 
-            % todo: picture
             Надо доказать, что интеграл по любому прямоугольнику со сторонами параллельными осям координат из шарика $U \subset \Omega$, содержащего произвольную точку, равен 0.
 
             От противного: пусть нашелся прямоугольник $P$, т.ч. $\alpha (P) := \int_P {f(z) dz } \not = 0$.
 
             \begin{center}
-                \includegraphics*[width=0.5\textwidth]{assets/04-functions-of-complex-variables/Cauchy-theorem-rectangle-partition.png}
+                \includegraphics[width=7cm]{assets/04-functions-of-complex-variables/Cauchy-theorem-rectangle-partition.png}
             \end{center}
 
             
@@ -181,17 +180,27 @@
             $|\alpha(P_n)| \geq \frac{1}{4^n} |\alpha (P)|$.
 
             % todo: picture
+            \begin{center}
+                \includegraphics[width=7cm]{assets/04-functions-of-complex-variables/Cauchy-theorem-rectangle-partition-2.png}
+            \end{center}
+
             Берем $a$ из $P_n$:
 
             $f(z) = f(a) + f'(a) (z - a) + o(z - a)$
 
-            $\alpha (P_n) = \int_{P_n} { f(z) dz } = \underbrace{\int_{P_n} { f(a) dz }}_{= 0} + \underbrace{\int_{P_n} { f'(a) (z - a) dz }}_{= 0} + \int_{P_n} { o(z - a) dz }$
+            $\alpha (P_n) = \int_{P_n} { f(z) dz } = \underbrace{\int_{P_n} { f(a) dz }}_{= 0 \text{, по 1-ому док-ву}} + \underbrace{\int_{P_n} { f'(a) (z - a) dz }}_{= 0 \text{, по 1-ому док-ву}} + \int_{P_n} { o(z - a) dz }$
+
+
+            \begin{center}
+                \includegraphics[width=7cm]{assets/04-functions-of-complex-variables/Cauchy-theorem-rectangle-partition-3.png}
+            \end{center} 
+
 
             $o(z - a) = (z - a) \cdot \beta (z - a)$, где $\beta(z - a) \underbrace{\rightarrow}_{z \rightarrow a} 0$
 
-            $\left| \int_{P_n} {(z - a) \beta (z - a) dz} \right| \leq max_{z \in P_n} { |z - a| \cdot |\beta (z - a)| } \cdot \underbrace{l(P_n)}_{\text{периметр}} \leq max_{z \in P_n} { |\beta (z - a)| } \cdot \frac{l(P)}{2^n} \cdot \frac{c}{2^n} \implies$
+            $\left| \int_{P_n} {(z - a) \beta (z - a) dz} \right| \leq max_{z \in P_n} { |z - a| \cdot |\beta (z - a)| } \cdot \underbrace{l(P_n)}_{\text{периметр}} \leq max_{z \in P_n} { |\beta (z - a)| } \cdot \frac{l(P)}{2^n} \cdot \frac{l(P)}{2^n} \implies$
 
-            $\implies \frac{|\alpha (P)|}{4^n} \leq |\alpha(P_n)| \leq \frac{l(P) \cdot c}{4^n} \cdot max_{z \in P_n} |\beta (z - a)| \implies max_{z \in P_n} |\beta (z - a)| \geq \frac{|\alpha (P)|}{l(P) \cdot c} > 0$ -- противоречие.
+            $\implies \frac{|\alpha (P)|}{4^n} \leq |\alpha(P_n)| \leq \frac{l(P) \cdot l(P)}{4^n} \cdot max_{z \in P_n} |\beta (z - a)| \implies max_{z \in P_n} |\beta (z - a)| \geq \frac{|\alpha (P)|}{l(P) \cdot l(P)} > 0$ -- противоречие, т.к. $\beta(z) \rightarrow 0$ при $z \rightarrow a$.
         }
     \end{enumerate}
 \end{proof}
@@ -218,11 +227,12 @@
 
     Тогда $f(z) dz$ локально точная.
 \end{theorem}
+
 \begin{proof}
     Надо проверять, что интеграл по довольно маленькому прямоугольнику (со стороронами паралл. осям) это 0.
 
     \begin{center}
-        \includegraphics*[width=0.5\textwidth]{assets/04-functions-of-complex-variables/interesting-rectangles-locally-exact-form-without-line.png}
+        \includegraphics*[width=0.3\textwidth]{assets/04-functions-of-complex-variables/interesting-rectangles-locally-exact-form-without-line.png}
     \end{center}
 
     Очевидно, что если прямоугольник не пересекает $\Delta$, то там все очевидно. Хотим рассматривать только те, что задевают. Те, что пересекают $\Delta$, можно разбить на две части (верхнюю и нижнюю). По каждой из частей будет 0, тогда и в сумме тоже будет 0. То есть нас вообще интересуют только те прямоугольники, у которых $\Delta$ это одна из сторон. Рассмотрим их:
