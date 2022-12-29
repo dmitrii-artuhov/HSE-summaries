@@ -851,7 +851,7 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
     \begin{enumerate}
         \item Не зависит от параметризации
         \item Смена направления меняет знак интеграла
-        \item $\int_{\gamma}^{}\omega = \int_{\gamma}^{}\langle \overline{f}, \overline{\sigma} \rangle ds$, где $\overline{\sigma}$ -- единичный касательный вектор к кривой
+        \item (\textbf{Связь с интегралом по длине дуги}). $\int_{\gamma}^{}\omega = \int_{\gamma}^{}\langle \overline{f}, \overline{\sigma} \rangle ds$, где $\overline{\sigma}$ -- единичный касательный вектор к кривой
         \item Линейность по $\overline{f}$
         \item Аддитивность по кривой
         \item $|\int_{\gamma}^{}\omega| \leq \int_{\gamma}^{}||\overline{f}||ds \leq \max ||\overline{f}|| \cdot l(\gamma)$
@@ -1008,59 +1008,74 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
     \end{center}
 \end{definition}
 
+\newpage
+
 \begin{theorem}\textbf{Формула Грина}
 
-    $\Omega \subset \mathbb{R}^2$ область, граница которой состоит из конечного числа кусочно гладких простых замкнутых кривых, ориентированных положительно
+    $\Omega \subset \mathbb{R}^2$ область, граница которой состоит из конечного числа кусочно гладких простых замкнутых кривых, ориентированных положительно.
 
-    $P, Q: Cl \Omega \to \mathbb{R}$ непрерывны, $\frac{\delta P}{\delta x}$ и $\frac{\delta Q}{\delta y}$ непрерывны 
+    $P, Q: Cl (\Omega) \to \mathbb{R}$ непрерывны, $\frac{\partial P}{\partial y}$ и $\frac{\partial Q}{\partial x}$ непрерывны.
 
-    Тогда $\int_{\delta \Omega}^{}Pdx + Qdy = \int_{\Omega}^{}(\frac{\delta Q}{\delta y} - \frac{\delta P}{\delta x}dx) d\lambda_2$
+    Тогда $\int_{\gamma}^{}Pdx + Qdy = \int_{\Omega}^{}(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}) d\lambda_2$, где $\gamma$ -- граница $\Omega$.
 
-    направление на кусочках границ такое, что область слева.
+    Заметим, что направление на кусочках границ такое, что область слева. То есть ориентация устроена так:
 
-    % todo: picture here
-    Ориентация устроена так: *картинка*
+    \begin{center}
+        \includegraphics[width=7cm]{assets/03-intergrals-with-params/green-formula.png}
+    \end{center}
 \end{theorem}
 \begin{proof}
-    $\int_{\Omega} { \frac{\delta Q}{\delta x} d \lambda_2 } = \int_{\delta \Omega} {Q dy}$ и $-\int_{\Omega} {\frac{\delta P}{\delta y} d \lambda_2} = \int_{\delta \Omega} {P dx}$
+    Хотим доказывать это: $\int_{\Omega} { \frac{\partial Q}{\partial x} d \lambda_2 } = \int_{\gamma} {Q dy}$ и $-\int_{\Omega} {\frac{\partial P}{\partial y} d \lambda_2} = \int_{\gamma} {P dx}$, при этом формулы никак не связаны, то есть можно и по-отдельности доказывать. Проверим вторую формулу:
 
     \begin{enumerate}
         \item {
             % TODO: picture
-            $\Omega$ -- элементарная область.
+            $\Omega = \{ (x, y): \ x \in (a, b), \ \phi(x) < y < \psi(x) \}$ -- элементарная область.
 
-            $\int_{\Omega} {\frac{\delta P}{\delta y}} = \int_{a}^{b} { \int_{\phi(x)}^{\psi(x)} {\frac{\delta P}{\delta y} (x, y) dy} dx} =$
+            Левая часть: $\int_{\Omega} {\frac{\partial P}{\partial y} d \lambda_2} = \int_{a}^{b} { \int_{\phi(x)}^{\psi(x)} { \frac{\partial P}{\partial y} dy } dx } = \int_{a}^{b} { P(x, \psi(x)) dx } - \int_{a}^{b} { P(x, \phi(x)) dx }$
+
             
-            $= \int_{a}^{b} { P(x, \psi(x)) - P(x, \phi(x)) dx } = \int_{a}^{b} { P(x, \psi(x)) dx } - \int_{a}^{b} { P(x, \phi(x)) dx }$
+            Правая часть: $\int_{\gamma} { P dx } = \int_{I} + \int_{II} + \int_{III} + \int_{IV}$
+            \begin{center}
+                \includegraphics[width=5cm]{assets/03-intergrals-with-params/green-formula-proof-1.png}
+            \end{center}
 
-            % TODO: make romanian numbers here instead of `(i)`
-            $\int_{\delta \Omega} { P dx } = (1) + (2) + (3) + (4)$
+            $x\rightarrow (x, \phi(x)): \ (I) = \int_{a}^{b} { P(x, \phi(x)) dx}$
 
-            $x\rightarrow (x, \phi(x)): \ (1) = \int_{a}^{b} { P(x, \phi(x)) dx}$
+            $y \rightarrow (b, y): \ (II) = \int_{\phi(b)}^{\psi(b)} { P(b, y) b' dy } = 0$
 
-            $y \rightarrow (b, y): \ (2) = \int_{\phi(b)}^{\psi(b)} { P(b, y) b' dy } = 0$
+            $x \rightarrow (x, \psi(x)): \ (III) = -\int_{a}^{b} { P(x, \psi(x)) dx}$
 
-            $x \rightarrow (x, \psi(x)): \ (3) = -\int_{a}^{b} { P(x, \psi(x)) dx}$
+            $y \rightarrow (a, y): \ (IV) = - \int_{\phi(a)}^{\psi(x)} { P(a, y) a' dy } = 0$
 
-            $y \rightarrow (a, y): \ (4) = - \int_{\phi(a)}^{\psi(x)} { P(a, y) a' dy } = 0$
+            Записывая сумму $(I) + (II) + (III) + (IV)$, получим ровно то, что записано в левой части со знаком минус.
         }
         \item {
-            % TODO: picture
-            Пусть для $\Omega_1$ и $\Omega_2$ ф-ла доказана, тогда $\int_{\Omega_i} { \left( \frac{\delta  Q}{ \delta x} - \frac{\delta P}{\delta y} \right) d\lambda_2 } = \int_{\delta \Omega_i} { P d x + Q dy } \implies \int_{\Omega_1} { \left( \frac{\delta  Q}{ \delta x} - \frac{\delta P}{\delta y} \right) d\lambda_2 } + \int_{\Omega_2} { \dots } =$
+            $\Omega = \Omega_1 \cup l \cup \Omega_2$. Пусть формула верна для $\Omega_1, \ \Omega_2$, выведем ее для $\Omega$.
             
-            $= \int_{\delta \Omega_1} { Pdx + Qdy } + \int_{\delta \Omega_2} { \dots } = \int_{\delta \Omega} { P d x + Q d y } = \int_{\Omega} { \left( \frac{\delta  Q}{ \delta x} - \frac{\delta P}{\delta y} \right) }$.
+            \begin{center}
+                \includegraphics[width=8cm]{assets/03-intergrals-with-params/green-formula-proof-2.png}
+            \end{center}
+
+            $\int_{\Omega} { \left( \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} \right) d\lambda_2 } = \int_{\Omega_1} + \underbrace{\int_{l}}_{= 0 \text{, т.к. мера } l \text{ это } 0} + \int_{\Omega_2} = \int_{\Omega_1} + \int_{\Omega_2} = $
+
+            $= \int_{\gamma_1} { \left(P dx + Q dy\right) } + \int_{\gamma_2} { \left(P dx + Q dy\right) } = \int_{\gamma} { P dx + Q dy }$ (обходя $l$ с разных сторон, слагаемое сократится).
         }
         \item {
-            Формула верна для конечного объединения элем. областей.
+            Формула верна для конечного объединения элементарных областей.
         }
         \item {
-            Скипнули? Что?
+            Формула верна для области из условия, так как та нарезается на конечное число элементарных областей (без док-ва).
         }
     \end{enumerate}
 \end{proof}
-\begin{consequence}
-    $\lambda_2 \Omega = \int_{\delta \Omega} { xdy } = - \int_{\delta \Omega}{y d x} = \frac{1}{2} \int_{\delta \Omega} { xdy - ydx }$
+\begin{consequence} \textbf{Формулы площади}.
+
+    $\lambda_2 \Omega = \int_{\gamma} { xdy } = - \int_{\gamma}{y d x} = \frac{1}{2} \int_{\gamma} { xdy - ydx }$
 \end{consequence}
+\begin{proof}
+    Просто подставляем в формулу Грина подходящие $P$ и $Q$ (кто-то из них $0$, а кто-то $x$, либо $y$).
+\end{proof}
 
 
 \Subsection{Точные и замкнутые формы}
