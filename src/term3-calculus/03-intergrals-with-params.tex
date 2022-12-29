@@ -809,16 +809,27 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
     Можно определить $\int_{\gamma}^{}f ds$ для кусочно-гладких $\gamma$. Содержательная тут только проверка на корректность, но она проверятся с помощью аддитивности по кривой 
 \end{remark}
 
-% todo: change to "uprazhnenie" whatever this is
-\begin{theorem}\textbf{Упражнение}
+\begin{exerc}
 
-    $\int_{\gamma}^{}f ds = \lim \sum_{k = 1}^{m}f(\gamma(\xi(k))) \cdot l(\gamma|_[t_{k - 1}, t_k])$, где $\gamma: [a, b] \to \mathbb{R}^n$, при мелкости дробления $\to 0$
-\end{theorem}
+    $\int_{\gamma}^{}f ds = \lim_{m \rightarrow \infty} \sum_{k = 1}^{m}f(\gamma(\xi_k)) \cdot l(\gamma|_{[t_{k - 1}, t_k]})$, где $\gamma: [a, b] \to \mathbb{R}^n$, при мелкости дробления $\to 0$.
+
+    \begin{center}
+        \includegraphics[width=15cm]{assets/03-intergrals-with-params/exercise-for-line.png}
+    \end{center}
+\end{exerc}
 
 \begin{definition}
-    Дифференциальная форма (1-го порядка) в $\mathbb{R}^n$
+    Дифференциальная форма (1-го порядка) в $\mathbb{R}^n$.
 
-    $\omega = f_1dx_1 + f_2dx_2 + \dots + f_ndx_n$
+    $\omega = f_1dx_1 + f_2dx_2 + \dots + f_ndx_n$, где
+
+    $f_k: \Omega \subset \mathbb{R}^n \rightarrow \mathbb{R}$
+
+    $\omega(x)$ -- линейное отображение: $\mathbb{R}^n \rightarrow \mathbb{R}$
+
+    $dx_k: \mathbb{R}^n \rightarrow \mathbb{R}$ -- проекция на $k$-ую координату, то есть $dx_k(\underbrace{h}_{\text{вектор } = (h_1, \dots, h_n)}) = h_k$.
+
+    Пример записи: $\omega(x, h) = f_1(x) h_1 + \dots + f_n(x) h_n$.
 \end{definition}
 
 \begin{definition}
@@ -840,7 +851,7 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
     \begin{enumerate}
         \item Не зависит от параметризации
         \item Смена направления меняет знак интеграла
-        \item $\int_{\gamma}^{}\omega = \int_{\gamma}^{}\langle \overline{f}, \overline{\sigma} \rangle ds$, где $\overline{\sigma}$ -- единичный касательный вектор
+        \item $\int_{\gamma}^{}\omega = \int_{\gamma}^{}\langle \overline{f}, \overline{\sigma} \rangle ds$, где $\overline{\sigma}$ -- единичный касательный вектор к кривой
         \item Линейность по $\overline{f}$
         \item Аддитивность по кривой
         \item $|\int_{\gamma}^{}\omega| \leq \int_{\gamma}^{}||\overline{f}||ds \leq \max ||\overline{f}|| \cdot l(\gamma)$
@@ -858,27 +869,30 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
         \item Доказали вместе с первым: если меняется направление, то $\tau(c) = b, \tau(d) = a, \int_{b}^{a} = -\int_{\gamma}^{}\omega$
 
         \item $\overline{\sigma}(\gamma(t)) = \frac{\gamma'(t)}{||\gamma'(t)||}$. Тогда $\int_{\gamma}^{}\langle \overline{f}, \overline{\sigma} \rangle ds = \int_{a}^{b}\langle \overline{f}(\gamma(t)), \overline{\sigma}(\gamma(t)) \rangle ||\gamma'(t)|| dt = \int_{a}^{b} \langle \overline{f}(\gamma(t)), \frac{\gamma'(t)}{||\gamma'(t)||} \rangle||\gamma'(t)||dt = \int_{a}^{b} \langle \overline{f}(\gamma(t)), \gamma'(t) \rangle dt$
-        \item[4, 5] следуют из 3
-        \item[6] $|\int_{\gamma}^{}\omega| = |\int_{\gamma}^{} \langle \overline{f}, \overline{\sigma} \rangle ds| \leq \int_{\gamma}^{}|\langle \overline{f}, \overline{\sigma} \rangle| ds \leq \int_{\gamma}^{}||\overline{f}|| \cdot \overline{\sigma} || ds$
+        \item[4, 5.] следуют из 3 (по линейности интеграла $I$ рода и линейности скалярного произведения).
+        \item[6.] $|\int_{\gamma}^{}\omega| = |\int_{\gamma}^{} \langle \overline{f}, \overline{\sigma} \rangle ds| \leq \int_{\gamma}^{}|\langle \overline{f}, \overline{\sigma} \rangle| ds \leq \int_{\gamma}^{}||\overline{f}|| \cdot \overline{\sigma} || ds$
     \end{enumerate}
 \end{proof}
 
-%%todo: change to "uprazhnenie" whatever this is
+\newpage
 
-\begin{theorem}\textbf{Упражнение}
-    Доказать формулу: $\int_{\gamma}^{}\omega = \lim \sum_{j = 1}^{m} \sum_{k = 1}{n} f_k (\gamma(\xi_j))(\gamma_k(t_j) - \gamma_k(t_{j - 1}))$, если мелкость дробления $\to 0$
+\begin{exerc}
+    Доказать формулу: $\int_{\gamma}^{}\omega = \lim \sum_{j = 1}^{m} \sum_{k = 1}^{n} f_k (\gamma(\xi_j))(\gamma_k(t_j) - \gamma_k(t_{j - 1}))$, если мелкость дробления $\to 0$
 
     $\gamma: [a, b] \to \mathbb{R}^n$
     
-    %todo: picture here
-\end{theorem}
+    \begin{center}
+        \includegraphics[width=10cm]{assets/03-intergrals-with-params/exercise-for-line-and-int-0.png}
+        \includegraphics[width=5cm]{assets/03-intergrals-with-params/exercise-for-line-and-int-1.png}
+    \end{center}
+\end{exerc}
 
 \begin{definition}
     $\omega$ -- дифференциальная форма, заданная в $\Omega \subset \mathbb{R}^n$ -- открытом множестве
 
     $F: \Omega \to \mathbb{R}$ - первообразная для $\omega$, если $dF = \omega$
 
-    $dF = \frac{\delta F}{\delta x_1}dx_1 + \dots + \frac{\delta F}{\delta x_n}dx_n$, т.е нужно, чтобы $\frac{\delta F}{\delta x_k} = f_k$ при $k = 1, 2, \dots, n$
+    $dF = \frac{\partial F}{\partial x_1}dx_1 + \dots + \frac{\partial F}{\partial x_n}dx_n$, т.е нужно, чтобы $\frac{\partial F}{\partial x_k} = f_k$ при $k = 1, 2, \dots, n$
 \end{definition}
 
 \begin{theorem}
@@ -888,9 +902,9 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
 \end{theorem}
 
 \begin{proof}
-    $\gamma: [a, b] \to \mathbb{R}^n, f_k = \frac{\delta F}{\delta x_k}$
+    $\gamma: [a, b] \to \mathbb{R}^n, f_k = \frac{\partial F}{\partial x_k}$
 
-    $\int_{\gamma}^{}\omega = \int_{a}^{b}\sum_{k = 1}^{n}f_k(\gamma(t))\gamma_k'(t) dt = \int_{a}^{b}\underbrace{\sum_{k = 1}^{n} \frac{\delta F}{\delta x_k}(\gamma(t)) \cdot \gamma_k'(t)}_{(F \circ \gamma)'(t)} dt = \int_{a}^{b}(@F \circ \gamma)'(t) dt = F \circ \gamma(b) - F \circ \gamma(a) = F(\gamma(b)) - F(\gamma(a))$
+    $\int_{\gamma}^{}\omega = \int_{a}^{b}\sum_{k = 1}^{n}f_k(\gamma(t))\gamma_k'(t) dt = \int_{a}^{b}\underbrace{\sum_{k = 1}^{n} \frac{\partial F}{\partial x_k}(\gamma(t)) \cdot \gamma_k'(t)}_{(F \circ \gamma)'(t)} dt = \int_{a}^{b}(F \circ \gamma)'(t) dt = F \circ \gamma(b) - F \circ \gamma(a) = F(\gamma(b)) - F(\gamma(a)) = F(B) - F(A)$.
 \end{proof}
 
 \begin{definition}
@@ -907,7 +921,7 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
 \end{consequence}
 
 \begin{proof}
-    2. \item $F$ и $G$ -- первообразные $\omega$, возьмем точки $A, B$ из $\Omega$ и соединим кривой $\gamma \implies G(B) - G(A) = \int_{\gamma}^{}\omega = F(B) - F(A) \implies G(B) = F(B) + G(A) _ F(A)$ (фиксируем $A$ и меняем $B$)
+    \item[2.] $F$ и $G$ -- первообразные $\omega$, возьмем точки $A, B$ из $\Omega$ и соединим кривой $\gamma \implies G(B) - G(A) = \int_{\gamma}^{}\omega = F(B) - F(A) \implies G(B) = F(B) + \underbrace{G(A) - F(A)}_{=const \text{, при фикс. } A}$ (фиксируем $A$ и меняем $B$).
 \end{proof}
 
 \begin{lemma}
