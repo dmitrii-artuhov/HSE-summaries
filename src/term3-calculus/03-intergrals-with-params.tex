@@ -931,11 +931,11 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
 \end{lemma}
 
 \begin{proof}
-    $A, B \in \Omega \implies \exists \gamma: [a, b] \to \Omega$ такая что $\gamma(a) = A, \gamma(b) = B$. Для $t \in [a, b]$ рассмотрим шар $B_{r(t)}(\delta(t)) \in \Omega$
+    $A, B \in \Omega \implies \exists \gamma: [a, b] \to \Omega$ такая что $\gamma(a) = A, \gamma(b) = B$. Для $t \in [a, b]$ рассмотрим шар $B_{r(t)}(\gamma(t)) \in \Omega$
     
     %todo: picture here
 
-    $\gamma[a, b]$ -- компакт $\implies$ выберем конечное подпокрытие. Тогда можем перемещаться между центрами шариков по звеньям, параллельным осям координат
+    $\gamma([a, b])$ -- компакт $\implies$ выберем конечное подпокрытие. Тогда можем перемещаться между центрами шариков по звеньям, параллельным осям координат
 
     %todo: picture here
 \end{proof}
@@ -962,10 +962,14 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
 
     $0 = \int_{\gamma \cup \tilde{\gamma}^{-1}}^{}\omega = \int_{\gamma}^{}\omega + \int_{\tilde{\gamma}^{-1}}^{}\omega = \int_{\gamma}^{}\omega - \int_{\tilde{\gamma}}^{}\omega$, где $\tilde{\gamma}^{-1}$ -- инвертированная по направлению вторая ломаная
 
-    Осталось проверить, что $\frac{\delta F}{\delta x_k} = f_k$
+    Осталось проверить, что $\frac{\partial F}{\partial x_k} = f_k$
 
     % todo: picture here
-    $\frac{\delta F}{\delta x_1}(x) = \lim_{h \to 0} \frac{F(x_1 + h, x_2, \dots, x_n) - F(x_1, \dots, x_n)}{h} = \lim_{h \to 0} \frac{-\int_{\gamma}^{}\omega + \int_{\gamma \sqcup [x, x + h]}^{}\omega}{h} = \lim_{h \to 0} \frac{1}{n}\int_{[x, x + h]}^{}\omega = \underbrace{=}_{[0, h] = [x, x + h] (\text{сдвиг на x})} \lim_{h \to 0} \frac{1}{n}\int_{0}^{h}\underbrace{f_1(\gamma(t))}_{x + e_1t}\underbrace{\gamma_1'(t)}_{= 1}dt = \lim \frac{1}{n}\underbrace{\int_{0}^{1}f_1(x + e_1t)dt}_{= h \cdot f_1(x + e_1h\cdot\theta, \theta \in (0, 1))} = f_1(x)$, т.к. $\gamma(t) = x + e_1 \cdot t, \gamma_1'(t) = 1, \gamma_2'(t) = \dots = \gamma_n'(t) = 0$
+    $\frac{\partial F}{\partial x_1}(x) = \lim_{h \to 0} \frac{F(x_1 + h, x_2, \dots, x_n) - F(x_1, \dots, x_n)}{h} = \lim_{h \to 0} \frac{-\int_{\gamma}^{}\omega + \int_{\gamma \sqcup [x, x + h]}^{}\omega}{h} = \lim_{h \to 0} \frac{1}{h}\int_{[x, x + h]}^{}\omega =$
+    
+    $ \underbrace{=}_{[0, h] = [x, x + h] (\text{сдвиг на x})} \lim_{h \to 0} \frac{1}{h}\int_{0}^{h}\underbrace{f_1(\gamma(t))}_{x + e_1t}\underbrace{\gamma_1'(t)}_{= 1}dt = \lim \frac{1}{h}\underbrace{\int_{0}^{h}f_1(x + e_1t)dt}_{= h \cdot f_1(x + e_1h\cdot\theta), \theta \in (0, 1)} =$
+    
+    $ = f_1(x)$, т.к. $\gamma(t) = x + e_1 \cdot t, \gamma_1'(t) = 1, \gamma_2'(t) = \dots = \gamma_n'(t) = 0$
 \end{proof}
 
 \begin{remark}
@@ -973,8 +977,11 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
 \end{remark}
 
 \begin{proof}
-    % todo: picture here
-    Картинка.
+    Индукция по числу звеньев. Когда отсекаем новый прямоугольник, то по его ребру мы считаем интеграл в разные стороны, то есть с остатком фигуры значение сократится, поэтому такой индукционный переход сделать можно:
+
+    \begin{center}
+        \includegraphics[width=10cm]{assets/03-intergrals-with-params/remark-parallel-sides.png}
+    \end{center}
 \end{proof}
 
 \begin{remark}
@@ -992,13 +999,17 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
 \begin{definition}
     Живём в $\mathbb{R}^2$. Назовём элементарной область в $\mathbb{R}^2$, если 
 
-    $\Omega = \{ (x, y) : a < x < b \texttt{and} \phi(x) < y < \psi(x) \} = \{ (x, y): c < y < d \texttt{and} \alpha(y) < x < \beta(y) \}$
+    $\Omega = \{ (x, y) : a < x < b \land \phi(x) < y < \psi(x) \} = \{ (x, y): c < y < d \land \alpha(y) < x < \beta(y) \}$, причем ограничивающие функции непрерывны.
 
-    % todo: picture here
-    Может показаться, что такого не бывает, но вот пример: *картинка*
+    Может показаться, что такого не бывает, но вот пример: 
+    
+    \begin{center}
+        \includegraphics[width=12cm]{assets/03-intergrals-with-params/omega-set-example.png}
+    \end{center}
 \end{definition}
 
 \begin{theorem}\textbf{Формула Грина}
+
     $\Omega \subset \mathbb{R}^2$ область, граница которой состоит из конечного числа кусочно гладких простых замкнутых кривых, ориентированных положительно
 
     $P, Q: Cl \Omega \to \mathbb{R}$ непрерывны, $\frac{\delta P}{\delta x}$ и $\frac{\delta Q}{\delta y}$ непрерывны 
@@ -1018,7 +1029,9 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
             % TODO: picture
             $\Omega$ -- элементарная область.
 
-            $\int_{\Omega} {\frac{\delta P}{\delta y}} = \int_{a}^{b} { \int_{\phi(x)}^{\psi(x)} {\frac{\delta P}{\delta y} (x, y) dy} dx} = \int_{a}^{b} { P(x, \psi(x)) - P(x, \phi(x)) dx } = \int_{a}^{b} { P(x, \psi(x)) dx } - \int_{a}^{b} { P(x, \phi(x)) dx }$
+            $\int_{\Omega} {\frac{\delta P}{\delta y}} = \int_{a}^{b} { \int_{\phi(x)}^{\psi(x)} {\frac{\delta P}{\delta y} (x, y) dy} dx} =$
+            
+            $= \int_{a}^{b} { P(x, \psi(x)) - P(x, \phi(x)) dx } = \int_{a}^{b} { P(x, \psi(x)) dx } - \int_{a}^{b} { P(x, \phi(x)) dx }$
 
             % TODO: make romanian numbers here instead of `(i)`
             $\int_{\delta \Omega} { P dx } = (1) + (2) + (3) + (4)$
@@ -1033,7 +1046,9 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
         }
         \item {
             % TODO: picture
-            Пусть для $\Omega_1$ и $\Omega_2$ ф-ла доказана, тогда $\int_{\Omega_i} { \left( \frac{\delta  Q}{ \delta x} - \frac{\delta P}{\delta y} \right) d\lambda_2 } = \int_{\delta \Omega_i} { P d x + Q dy } \implies \int_{\Omega_1} { \left( \frac{\delta  Q}{ \delta x} - \frac{\delta P}{\delta y} \right) d\lambda_2 } + \int_{\Omega_2} { \dots } = \int_{\delta \Omega_1} { Pdx + Qdy } + \int_{\delta \Omega_2} { \dots } = \int_{\delta \Omega} { P d x + Q d y } = \int_{\Omega} { \left( \frac{\delta  Q}{ \delta x} - \frac{\delta P}{\delta y} \right) }$.
+            Пусть для $\Omega_1$ и $\Omega_2$ ф-ла доказана, тогда $\int_{\Omega_i} { \left( \frac{\delta  Q}{ \delta x} - \frac{\delta P}{\delta y} \right) d\lambda_2 } = \int_{\delta \Omega_i} { P d x + Q dy } \implies \int_{\Omega_1} { \left( \frac{\delta  Q}{ \delta x} - \frac{\delta P}{\delta y} \right) d\lambda_2 } + \int_{\Omega_2} { \dots } =$
+            
+            $= \int_{\delta \Omega_1} { Pdx + Qdy } + \int_{\delta \Omega_2} { \dots } = \int_{\delta \Omega} { P d x + Q d y } = \int_{\Omega} { \left( \frac{\delta  Q}{ \delta x} - \frac{\delta P}{\delta y} \right) }$.
         }
         \item {
             Формула верна для конечного объединения элем. областей.
