@@ -172,7 +172,9 @@
 
     Так как есть локальное условие Лебега (на самом деле $\int_{0}^{+\infty} { x e^{-x^2} d x } < +\infty$):
 
-    $F'(t) = -\int_{0}^{+\infty} { e^{-x^2} \sin(tx) \cdot x dx } = \frac{1}{2} \cdot \int_{0}^{+\infty} { \sin(tx) \cdot d (e^{-x^2}) } = \frac{1}{2} \cdot e^{-x^2} \sin(tx) |_{0}^{+\infty} - \frac{1}{2} \cdot \int_{0}^{+\infty} { t \cos{tx} e^{-x^2} dx }$.
+    $F'(t) = -\int_{0}^{+\infty} { e^{-x^2} \sin(tx) \cdot x dx } = \frac{1}{2} \cdot \int_{0}^{+\infty} { \sin(tx) \cdot d (e^{-x^2}) } =$
+    
+    $= \frac{1}{2} \cdot e^{-x^2} \sin(tx) |_{0}^{+\infty} - \frac{1}{2} \cdot \int_{0}^{+\infty} { t \cos{tx} e^{-x^2} dx }$.
 
     $F'(t) = -\frac{1}{2} t F(t)$.
     
@@ -695,7 +697,6 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
 \end{theorem}
 
 \begin{proof}
-    % $\frac{n^p \cdot n!}{\Gamma(p)p(p + 1)...(p + n)} = \frac{n^p n!}{\Gamma(n + 1 + p)} = \frac{n^p\Gamma(n + 1)}{\Gamma(n + 1 + p)} \to 1$
 
     $\Gamma(n + p) = (p + n - 1) \cdot (p + n - 2) \cdot \dots \cdot (p+1) \cdot p \cdot \Gamma(p)$
 
@@ -716,11 +717,11 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
         }
         \item {
 
-            $\int_{0}^{\frac{\pi}{2}} { \sin^{p - 1}(\phi) \cdot \cos^{p - 1}(\phi) d \phi } = \frac{1}{2} \cdot B\left(\frac{p}{2}, \frac{q}{2}\right)$.
+            $\int_{0}^{\frac{\pi}{2}} { \sin^{p - 1}(\phi) \cdot \cos^{q - 1}(\phi) d \phi } = \frac{1}{2} \cdot B\left(\frac{p}{2}, \frac{q}{2}\right)$.
 
             В частности, $\int_{0}^{\frac{\pi}{2}} { \sin^{p - 1}(\phi) d \phi } = \int_{0}^{\frac{\pi}{2}} { \cos^{p - 1}(\phi) d \phi } = \frac{1}{2} \cdot B\left(\frac{p}{2}, \frac{1}{2}\right) = \frac{\sqrt{\pi}}{2} \cdot \frac{\Gamma\left(\frac{p}{2}\right)}{\Gamma\left(\frac{p + 1}{2}\right)}$.
 
-            \textbf{Док-во:} $\int_{0}^{\frac{\pi}{2}} { \sin^{p - 1}(\phi) \cdot \cos^{p - 1}(\phi) d \phi } = \frac{1}{2} \cdot \int_{0}^{\frac{\pi}{2}} { \left(\sin^{2}(\phi)\right)^{\frac{p-2}{2}} \cdot \left(\cos^{2}(\phi)\right)^{\frac{p-2}{2}} \cdot 2 \sin(\phi) \cos(\phi) d \phi } \underbrace{=}_{t = \sin^2(\phi)}$
+            \textbf{Док-во:} $\int_{0}^{\frac{\pi}{2}} { \sin^{p - 1}(\phi) \cdot \cos^{q - 1}(\phi) d \phi } = \frac{1}{2} \cdot \int_{0}^{\frac{\pi}{2}} { \left(\sin^{2}(\phi)\right)^{\frac{p-2}{2}} \cdot \left(\cos^{2}(\phi)\right)^{\frac{q-2}{2}} \cdot 2 \sin(\phi) \cos(\phi) d \phi } \underbrace{=}_{t = \sin^2(\phi)}$
             
             $= \frac{1}{2} \cdot \int_{0}^{1} {t^{\frac{p}{2} - 1} (1 - t)^{\frac{q}{2} - 1} dt } = \frac{1}{2} B\left(\frac{p}{2}, \frac{q}{2}\right)$.  \newpage
         }
@@ -749,11 +750,11 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
 \begin{definition}
     $\gamma: [a, b] \to \mathbb{R}^n$ -- гладкая кривая
 
-    $f$ -- функция, заданная на $\gamma[a, b] \to \mathbb{R}$
+    $f$ -- функция, заданная на $\gamma([a, b]) \to \mathbb{R}$
 
     Криволинейный интеграл ($I$ рода (интеграл по длине дуги)): 
 
-    $\int_{\gamma}^{}fds := \int_{a}^{b}f(\gamma(f))\cdot ||\gamma'(t)||dt$, где $||\gamma'(t)|| = ||\begin{pmatrix}
+    $\int_{\gamma}^{}fds := \int_{a}^{b}f(\gamma(t))\cdot ||\gamma'(t)||dt$, где $||\gamma'(t)|| = ||\begin{pmatrix}
         \gamma_1'(t)\\
         \gamma_2'(t)\\
         \vdots\\
@@ -868,7 +869,9 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
 
         \item Доказали вместе с первым: если меняется направление, то $\tau(c) = b, \tau(d) = a, \int_{b}^{a} = -\int_{\gamma}^{}\omega$
 
-        \item $\overline{\sigma}(\gamma(t)) = \frac{\gamma'(t)}{||\gamma'(t)||}$. Тогда $\int_{\gamma}^{}\langle \overline{f}, \overline{\sigma} \rangle ds = \int_{a}^{b}\langle \overline{f}(\gamma(t)), \overline{\sigma}(\gamma(t)) \rangle ||\gamma'(t)|| dt = \int_{a}^{b} \langle \overline{f}(\gamma(t)), \frac{\gamma'(t)}{||\gamma'(t)||} \rangle||\gamma'(t)||dt = \int_{a}^{b} \langle \overline{f}(\gamma(t)), \gamma'(t) \rangle dt$
+        \item $\overline{\sigma}(\gamma(t)) = \frac{\gamma'(t)}{||\gamma'(t)||}$. Тогда $\int_{\gamma}^{}\langle \overline{f}, \overline{\sigma} \rangle ds = \int_{a}^{b}\langle \overline{f}(\gamma(t)), \overline{\sigma}(\gamma(t)) \rangle ||\gamma'(t)|| dt =$
+        
+        $= \int_{a}^{b} \langle \overline{f}(\gamma(t)), \frac{\gamma'(t)}{||\gamma'(t)||} \rangle||\gamma'(t)||dt = \int_{a}^{b} \langle \overline{f}(\gamma(t)), \gamma'(t) \rangle dt$
         \item[4, 5.] следуют из 3 (по линейности интеграла $I$ рода и линейности скалярного произведения).
         \item[6.] $|\int_{\gamma}^{}\omega| = |\int_{\gamma}^{} \langle \overline{f}, \overline{\sigma} \rangle ds| \leq \int_{\gamma}^{}|\langle \overline{f}, \overline{\sigma} \rangle| ds \leq \int_{\gamma}^{}||\overline{f}|| \cdot \overline{\sigma} || ds$
     \end{enumerate}
@@ -1301,7 +1304,6 @@ $F(t) := \int_{a}^{+\infty} { f(x, t) dx }: \ \forall t \in T$ интеграл 
 
     Знаем, что $F_1 = F_2 + const \implies f(\tau, \nu) - g(\tau, \nu) = F_1(\gamma(\tau, \nu)) - F_2(\gamma(\tau, \nu)) = const$.
 
-    \newpage
     \textbf{Существование}: берем $(t, u) \in [a, b] \times [c, d]$, у $\gamma(t, u)$ есть окр-ть $U_{\gamma(t, u)}$ в которой существует первообразная $\implies [a, b] \times [c, d] \subset \bigcup_{(t, u) \in [a, b] \times [c, d]} {U_{\gamma(t, u)}}$.
     
     Выбираем конечное подпокрытие, по нему $r > 0$ из леммы Лебега $\implies B_r(\gamma(t, u))$ целиком содержится в эл-те подпокрытия.
