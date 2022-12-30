@@ -561,6 +561,8 @@
     Докажем, что при $|z| \leq R, \ |f(z)|$ -- ограничена.
 
     $f \in H(\mathbb{C}) \implies f$ непрер. в $\mathbb{C} \implies f$ непрер. в $\{ |z| \leq R \}$ -- компакт $\implies |f|$ огр. в $\{ |z| \leq R \}$.
+
+    Тогда по т. Луивиля $f(z) = const \implies P(z) = \frac{1}{const}$, что противоречит условию, что $P(z)$ -- многочлен степени $\geq 1$.
 \end{proof}
 
 
@@ -585,7 +587,8 @@
 \begin{lemma}
     $\Omega$ -- область в метрическом пространстве, $E \subset \Omega$, т.ч. $E \not = \emptyset, \ E$ -- открыто в $\Omega$, $E$ -- замкнуто в $\Omega$. Тогда $E = \Omega$.
 \end{lemma}
-\begin{proof}
+\begin{proof} Леммы.
+
     Пусть $\Omega \setminus E \not = \emptyset$, берем $a \in E$ и $b \in \Omega \setminus E$. Возьмем путь $\gamma$, соединяющий эти точки.
 
     $\gamma: [\alpha, \beta] \rightarrow \Omega$, т.ч. $\gamma(\alpha) = a, \ \gamma(\beta) = b$. $\gamma$ -- непрер. $\implies \gamma^{-1} (E)$ -- открыто, $\gamma^{-1}(\Omega \setminus E)$ -- открыто $\implies \gamma^{-1}(E)$ -- открыт. и замкнут. подмн-во $[\alpha, \beta], \ \alpha \in \gamma^{-1}(E), \ \beta \not \in \gamma^{-1}(E)$.
@@ -633,7 +636,7 @@
 \begin{theorem}
     \textbf{О среднем}.
 
-    $f \in H(\Omega)$ и $a \in \Omega$, причем $\{ |z - a| \leq r \} \subset \Omega$, тогда $f(a) = \frac{1}{2\pi} \cdot \int_{0}^{2\pi} { f(a + r e^{i \phi}) d \phi }$
+    $f \in H(\Omega)$ и $a \in \Omega$, причем $\{ |z - a| \leq r \} \subset \Omega$, тогда $f(a) = \frac{1}{2\pi} \cdot \int_{0}^{2\pi} { f(a + r e^{i \phi}) d \phi }$ (т.е. среднее значение на окружности радиуса $r$ с центром в $a$ равно $f(a)$).
 \end{theorem}
 \begin{proof}
     $f(a) = \frac{1}{2 \pi i}\int_{|z - a| = r}{ \frac{f(z)}{z - a} dz } = \frac{1}{2 \pi i} \int_{0}^{2\pi} { \frac{f(a + r e^{i \phi})}{r e^{i \phi}} r e^{i \phi} i d \phi }$, где $z = a+re^{i\phi}, \ dz = r e^{i \phi} i d \phi$.
@@ -643,7 +646,9 @@
     $f \in H(\Omega), \ a \in \Omega, \ \{ |z - a| \leq r \} \subset \Omega$. Тогда $f(a) = \frac{1}{\pi r^2} \int_{|z-a|\leq r} { f(z) d \lambda_2 }$.
 \end{consequence}
 \begin{proof}
-    $\int_{|z-a| \leq r} { f(z) d \lambda_2 } = \int_{0}^{r} { \int_{0}^{2\pi} {f(a + \rho e^{e\phi}) \rho d \phi } d \rho } = \int_{0}^{r} { 2 \pi f(a) \rho \ d \rho } = 2 \pi f(a) \frac{r^2}{a} = \pi r^2 f(a)$.
+    $\int_{|z-a| \leq r} { f(z) d \lambda_2 } = \int_{0}^{r} { \int_{0}^{2\pi} {f(a + \rho e^{i\phi}) \rho d \phi } d \rho } = \int_{0}^{r} { 2 \pi f(a) \rho \ d \rho } =$
+    
+    $= 2 \pi f(a) \frac{r^2}{2} = \pi r^2 f(a)$.
 \end{proof}
 
 \begin{theorem}
@@ -658,7 +663,7 @@
 
     Все нер-ва обращаются в равенства $\implies |f(a + r e^{i \phi})| = M \ \forall \phi \ \forall$ маленьких $r$.
 
-    $Re (f(a)) = M = \frac{1}{2\pi} \int_{0}^{2\pi} { Re(f(a + r e^{i \phi})) d \phi } \leq \frac{1}{2 \pi} \int_{0}^{2\pi} { |f(a + r e^{i \phi})| d \phi } \leq M$. Это все равенства $\implies Re (f(a + r e^{i \phi})) = |f(a + r e^{i \phi})| = M \implies f(z) = f(a)$ в окр-ти точки $a \underbrace{\implies}_{\text{т. о единственности}} f(z) \equiv f(a)$.
+    $Re (f(a)) = M = \frac{1}{2\pi} \int_{0}^{2\pi} { Re(f(a + r e^{i \phi})) d \phi } \leq \frac{1}{2 \pi} \int_{0}^{2\pi} { |f(a + r e^{i \phi})| d \phi } \leq M$. Это все равенства $\implies Re (f(a + r e^{i \phi})) = |f(a + r e^{i \phi})| = M \implies f(z) = M$ в окр-ти точки $a \underbrace{\implies}_{\text{т. о единственности}} f(z) \equiv const$.
 \end{proof}
 
 
@@ -667,7 +672,7 @@
 \end{consequence}
 
 \begin{proof}
-    $Cl (\Omega)$ -- компакт $|f|$ непрер. на компакте $\implies$ в какой-то точке $a \in Cl (\Omega)$ достигает $\max$.
+    $Cl (\Omega)$ -- компакт, $|f|$ непрер. на компакте $\implies$ в какой-то точке $a \in Cl (\Omega)$ достигает $\max$.
 
     Если $a \in \Omega$, то по принципу максимума $f \equiv const$, значит на границе то же самое значение.
 
@@ -754,6 +759,10 @@
 
     $\Delta$ -- компонента связности $\Omega_1 \cap \Omega_2 \not = \emptyset$.
 
+    \begin{center}
+        \includegraphics[width=5cm]{assets/04-functions-of-complex-variables/analitical-extension-difinition.png}
+    \end{center}
+
     $f_2$ непосредственное аналитическое продолжение $f_1$ через $\Delta$, если $f_1(z) = f_2(z) \ \forall z \in \Delta$.
 \end{definition}
 \begin{remark}
@@ -766,7 +775,7 @@
             
                 $g(z) = f_1(z) = f_2(z) \ \forall z \in \Delta$
             
-                $g, f_2 \in H(\Omega_2) \implies f_2 \equiv g$.
+                $g, f_2 \in H(\Omega_2) \underbrace{\implies}_{\text{по т. единственности}} f_2 \equiv g$.
             \end{proof}            
         }
         \item {
@@ -780,12 +789,16 @@
 
     $\tilde{f}$ -- аналитическое продолжение $f$ на цепочке областей, если $\exists \Omega_1, \dots \Omega_n$ и $f_1 \in H(\Omega_1), \dots , f_n \in H(\Omega_n)$, т.ч. $f_1$ -- непосредственное аналитическое продолжение $f$, $f_2$ -- непосредственное аналитическое продолжение $f_1, \dots, \tilde{f}$ -- непосредственное аналитическое продолжение $f_n$.
     % todo: picture
+
+    \begin{center}
+        \includegraphics[width=11cm]{assets/04-functions-of-complex-variables/analitical-multiple-extension.png}
+    \end{center}
 \end{definition}
 
 
 
 \begin{remark}
-    Рассмотрим всевозможные пары $(f, \Omega)$, т.ч. $f \in H(\Omega)$, тогда существование аналитического продолжения по цепочке областей -- отношение эквивалентности. 
+    Рассмотрим всевозможные пары $(f, \Omega)$, т.ч. $f \in H(\Omega)$, тогда существование аналитического продолжения по цепочке областей -- отношение эквивалентности на мн-ве таких пар. 
 \end{remark}
 
 
@@ -799,9 +812,9 @@
     $M$ -- область.
 \end{statement}
 \begin{proof}
-    Открытость: объединения открытых -- открытое.
+    \textbf{Открытость}: объединения открытых -- открытое.
 
-    Линейная связность: $a, b \in M \implies a \in \Omega, b \in \tilde{\Omega}$. $(f, \Omega), \ (\tilde{f}, \tilde{\Omega})$ связана аналитическим продолжением по цепочке, будем переходить по соотвествующим областям и дойдем из $a$ в $b$.
+    \textbf{Линейная связность}: $a, b \in M \implies a \in \Omega, b \in \tilde{\Omega}$. $(f, \Omega), \ (\tilde{f}, \tilde{\Omega})$ связана аналитическим продолжением по цепочке, будем переходить по соотвествующим областям и дойдем из $a$ в $b$.
 \end{proof}
 
 
@@ -854,7 +867,7 @@
 
     $f(z) = \sum_{n=0}^{\infty} { c_n z^n }, \ R$ -- радиус сх-ти.
 
-    $\forall w: \ |w| = R$ найдется $B_{r_w} (w)$ и $g \in H(B_{r_w} (w))$, т.ч. $f = g$ на пересечении $\{ |z| < R \} \cap \{ |z - w| < r_w \}$.
+    $\forall w: \ |w| = R$ -- правильная, тогда найдется $B_{r_w} (w)$ и $g \in H(B_{r_w} (w))$, т.ч. $f = g$ на пересечении $\{ |z| < R \} \cap \{ |z - w| < r_w \}$.
 
     То есть круги $B_{r_w}(w)$ покрывают окр-ть $|w| = R$. Это компакт, выберем конечное подпокрытие. 
 
