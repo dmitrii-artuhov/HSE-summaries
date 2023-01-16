@@ -905,11 +905,200 @@
 \end{example}
 
 
+Начало 4-ого семестра.
+
+% Начало 4 семестра
+\begin{theorem}
+    $f \in H(\Omega)$, \ $\Omega$ -- односвязная, $f \not = 0$ в $\Omega$.
+
+    Тогда существует $g \in H(\Omega)$, т.ч. $e^{g(z)} = f(z)$ и $g$ -- единственна с точностью до аддит. константы $2 \pi i k, \ k \in \mathbb{Z}$.
+\end{theorem}
+
+\begin{proof}
+    \textbf{Существование}:
+
+    $\frac{f'}{f} \in H(\Omega) \implies $ есть первообразная $g \in H(\Omega)$. 
+    
+    Подберем константу так, что $e^{g(z_0)} =  f(z_0)$ для некоторого $z_0 \in \Omega$. 
+
+    Покажем, что $g$ подходит: $h(z) := e^{-g(z)} \cdot f(z)$.
+
+    Хотим доказать, что $h \equiv 1$. Знаем, что $h(z_0) = 1$ и
+    
+    $h'(z) = f'(z) e^{-g(z)} + f(z) e^{-g(z)} (-g'(z)) = e^{-g(z)} \left( f'(z) - f(z) \frac{f'(z)}{f(z)} \right) \equiv 0$.
+
+    \textbf{Единственность}:
+
+    Пусть $e^{g(z)} = f(z) = e^{\tilde{g}(z)} \implies e^{g(z) - \tilde{g}(z)} \equiv 1 \implies \underbrace{g(z) - \tilde{g}(z)}_{\in H(\Omega) \subset C(\Omega)} = 2 \pi i k_{z}: \ k_{z} \in \mathbb{Z} \implies g(z) - \tilde{g}(z) = 2 \pi i k$
+\end{proof}
+
+\begin{consequence}
+    Пусть $0 \not \in \Omega$ -- односвязна, тогда существует единственный с точностью до $+ 2 \pi i k$ функция $g \in H(\Omega)$, т.ч. $e^{g(z)} = z$.
+\end{consequence}
+
+\begin{remark}
+    $g(z) = \ln{|z|} + i \arg{z}$
+\end{remark}
+
+\begin{remark}
+    Обозначение:
+
+    $Ln(z) = \ln{|z|} + i Arg(z)$
+
+    % todo: picture
+
+    ветви логарифма
+\end{remark}
+
+
+\begin{properties}
+    \begin{enumerate}
+        \item $e^{Ln(z)} = z: \ \forall z \not = 0$
+        \item $Ln(z w) = Ln(z) + Ln(w)$
+        \item $Ln(z) = \ln{|z|} + i Arg(z)$, где $Arg(z) = \{ \arg{z} + 2 \pi i k: \ k \in \mathbb{Z} \}$
+    \end{enumerate}
+\end{properties}
+
+\begin{remark}
+    Св-во 2 для ветви может быть неверно.
+
+    Берем конкретную ветку и точку:
+    % todo: picture
+    $0 < \arg < 2 \pi$
+
+    $Ln(-i) = \underbrace{\ln{|-i|}}_{=0} + i Arg(-i) = \frac{3\pi i}{2}$
+
+    $Ln((-i)^2) = Ln(-1) = \ln{|-1|} + i Arg(-1) = \pi i$
+
+    Но $\pi i \not = \frac{3 \pi i}{2} + \frac{3 \pi i}{2}$
+\end{remark}
+
+\begin{remark}
+    $z^p := e^{p Ln(z)}$ -- полная аналит. функция.
+
+    Если $p \in \mathbb{Z}$, то все однозначно, т.к. $e^{p (2 \pi i k)} = 1$.
+
+    Если $p \in \mathbb{Q}, \ p = \underbrace{\frac{m}{n}}_{\text{несократимая}}$, то $e^{\frac{m}{n} (2 \pi i k)}$ -- принимает $n$ значений.
+
+    Если $p \in \mathbb{C} \setminus \mathbb{Q}$, то $e^{p (2 \pi i k)}$ -- принимает счетное кол-во значений.
+\end{remark}
 
 
 
+\begin{exerc}
+    \begin{enumerate}
+        \item Найти $i^i$
+        \item Д-ть, что $(z^p)' = \frac{p z^p}{z}$ при $z \not = 0$
+        \item $(z w)^p = z^p w^p$ как полные аналитичные функции, но это неверно для ветвей.
+    \end{enumerate}
+\end{exerc}
 
 
+\Subsection{Ряды Лорана}
 
+\begin{definition}
+    $\sum_{n=-\infty}^{+\infty} a_n (z - z_0)^n$ -- ряд Лорана.
+
+    $\sum_{n = 0}^{\infty} a_n (z - z_0)^n$ -- правильная часть.
+    
+    $\sum_{n = -\infty}^{-1} a_n (z - z_0)^n = \sum_{n = 1}^{\infty} a_{-n} (z - z_0)^{-n}$ -- главная часть.
+
+    Ряд Лорана сходится $\Leftrightarrow$ правильная и главная части сходятся.
+    
+    Ниже будем считать, что $z_0 = 0$ для простоты записи.
+
+    $\sum_{n=0}^{\infty} a_n z^n$ -- сх-ся в круге сх-ти $|z| < R$ -- радиус сх-ти $[0, +\infty]$.
+
+    $\sum_{n = 1}^{\infty} a_{-n}z^{-n} = \sum_{n=1}^{\infty} a_{-n} w^{n}$, где $w = \frac{1}{z}$ -- сх-ся в круге сх-ти $|w| < \tilde{R} \implies |z| > \frac{1}{\tilde{R}} =: r$.
+
+    То есть ряд Лорана сх-ся в кольце $r < |z| < R$ -- кольцо сх-ти ряда Лорана.
+\end{definition}
+
+\begin{properties}
+    \begin{enumerate}
+        \item Ряд Лорана абс. сх-ся в кольце $r < |z| < R$, где $r, R \in [0, +\infty]$
+        \item В кольце, лежащем строго внутри кольца сх-ти, ряда Лорана сх-ся равномерно.
+        \item В кольце сх-ти ряд Лорана можно почленно дифференцировать. 
+        \item Ряд Лорана в кольце сх-ти -- голоморфная функция.
+    \end{enumerate}
+\end{properties}
+
+\begin{theorem}
+    Пусть $f(z) = \sum_{n=-\infty}^{\infty} a_n z^n$ в кольце $r < |z| < R$.
+
+    Тогда $a_n = \frac{1}{2 \pi i} \int_{|z| = \rho} {\frac{f(z)}{z^{n+1}} dz}$, где $r < \rho < R$.
+\end{theorem}
+
+\begin{proof}
+    $\int_{|z| = \rho} { \frac{f(z)}{z^{n+1}} dz } = \int_{|z| = \rho} { \frac{\sum_{k = -\infty}^{+\infty} a_k z^k}{z^{n+1}} dz } =$
+    
+    $= \int_{|z| = \rho} { \sum_{k=-\infty}^{+\infty} a_k z^{k - n - 1} dz } = \sum_{k = -\infty}^{\infty} a_k \int_{|z| = \rho} { z^{k-n-1} dz } = 2\pi i a_n$
+
+    $\int_{|z| = \rho} { z^m dz } = \int_{0}^{2\pi} { \rho^m e^{i m t} i \rho e^{i t} dt } = \rho^{m+1} i \int_{0}^{2\pi} { e^{i (m+1) t} dt } = \begin{cases}
+        2 \pi i, \text{ при } m = -1 \\
+        0, \text{ иначе}
+    \end{cases}$
+\end{proof}
+
+
+\begin{remark}
+    Нер-во Коши тут тоже выполняется:
+
+    $|a_n| \leq \frac{M_{\rho}}{\rho^n}$, где $M_{\rho} = \max_{|z| = \rho}\{ |f(z)| \}$.
+\end{remark}
+
+\begin{theorem}
+    Пусть $f \in H(r < |z| < R)$. Тогда $f(z) = \sum_{n = -\infty}^{+\infty} a_n z^n$, для некоторых $a_n \in \mathbb{C}$.
+\end{theorem}
+\begin{proof}
+    % todo: picture
+    $r < r_1 < r_2 < R_2 < R_1 < R$.
+
+    Берем $r_2 < |z| < R_2$: пишем для него и компакта $K =\{ r_1 \leq |z| \leq R_2 \}$ интегральную теорему Коши:
+
+    $f(z) = \frac{1}{2 \pi i} \int_{\partial K} {\frac{f(\zeta)}{\zeta - z} d\zeta} = \frac{1}{2 \pi i} \int_{|\zeta| = R_1} { \frac{f(\zeta)}{\eta - z} d\zeta } - \frac{1}{2 \pi i} \int_{|\zeta| = r_1} { \frac{f(\zeta)}{\zeta - z} d\zeta }$
+
+    $|\zeta| = R_1, \ |z| < R_2, \ |frac{z}{\zeta}| < \frac{R_2}{R_1} < 1$
+
+    $\frac{1}{\zeta - z} = \frac{1}{1 - \frac{z}{\zeta}} \cdot \frac{1}{\zeta} = \sum_{n=0}^{\infty} { \frac{z^n}{\zeta^{n+1}} }$
+
+    $\int_{|\zeta| = R_1} { \frac{f(\zeta)}{\zeta - z} d\zeta } = \int_{|\zeta| = R_1} { \sum_{n=0}^{\infty} z^n \frac{f(\zeta)}{\zeta^{n+1}} d\zeta } = $
+
+    $= \sum_{n = 0}^{\infty} {z^n \underbrace{\int_{|\zeta| = R_1} { \frac{f(\zeta)}{\zeta^{n + 1}} d\zeta }}_{=: a_n}}$
+
+
+    $|\zeta| = r_1, \ |z| > r_2, \ |\frac{\zeta}{z}| < \frac{r_1}{r_2} < 1, \ \frac{1}{\zeta - z} = -\frac{1}{z} \cdot \frac{1}{1 - \frac{\zeta}{z}} = -\sum_{n = 0}^{\infty} \frac{\zeta^n}{z^{n + 1}}$
+
+    $-\int_{|\zeta| = r_1} { \frac{f(\zeta)}{\zeta - z} d\zeta } = \int_{|\zeta| = r_1} { \frac{1}{z^{n + 1}} f(\zeta) \zeta^n d\zeta } = $
+
+    $= \sum_{n=0}^{\infty} \frac{1}{z^{n+1}} \underbrace{\int_{|\zeta| = r_1}{f(\zeta) \zeta^n d\zeta}}_{=: a_{n-1}}$
+\end{proof}
+
+\begin{theorem}
+    Пусть $f \in H(r < |z| < R)$. Тогда существует $g \in H(|z| < R)$ и $h \in H(|z| > r)$, т.ч. $f(z) = g(z) + h(z)$. А если добавить условие: $h \rightarrow_{z \rightarrow \infty} 0$, то такое представление единственно.
+\end{theorem}
+
+\begin{proof}
+    \textbf{Существование}:
+
+    $f(z) = \sum_{n=-\infty}^{\infty} a_n z^n$.
+
+    Пусть $g(z) = \sum_{n = 0}^{\infty}$ -- главная часть (сх-ся в $\{ |z| < R \}$), $h(z) = \sum_{n = -\infty}^{-1} a_n z^n$ -- правильная часть (сх-ся в $\{ |z| > r \}$).
+
+    \textbf{Единственность}:
+
+    Пусть $f(z) = g(z) + h(z)$, $f(z) = g_1(z) + h_1(z) \implies g(z) - g_1(z) = h_1(z) - h(z)$ при $r < |z| < R$.
+
+    $F(z) := \begin{cases}
+        g(z) - g_1(z), \text{ при } |z| < R \\
+        h_1(z) - h(z), \text{ при } |z| > r
+    \end{cases} \in H(\mathbb{C})$
+
+    Поймем, что $F$ ограничена: $\lim_{z\rightarrow \infty} {F(z)} = 0 \implies$
+
+    $|F(z)| \leq 1$ при $|z| \geq \rho$
+
+    $|F(x)|$ -- огр. при $|z| \leq \rho$ по т. Вейерштрасса.
+\end{proof}
 
 
