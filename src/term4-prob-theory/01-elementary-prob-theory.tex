@@ -246,15 +246,21 @@
 \begin{proof}
     Рассмотрим случайный турнир(Всего $\binom{n}{2}$, тогда Всего
     $2^{\binom{n}{2}}$ разных турниров. Случайный - берём из этой
-    кучи наугад). TODO
-    %$P(\text{A выиграла у B}) = \frac{1}{2}$. Рассмотрим $A_1, A_2,
-    %\ldots A_k$ команды. $P(\text{A_1, A_2 \ldots A_k  подходят}) = (\frac{1}{2})^{\binom{k}{2}}$.
-    %$P(\text{A_1, A_2 \ldots A_k можно переименовать, так, что они подошли}) \leqslant \frac{k!}{2^{\binom{k}{2}}}$
-    %$P(\text{какие-то $k$ команд подошли}) \leqslant \binom{n}{k} \cdot \frac{k!}{2^{\binom{k}{2}}}$
-    %Нужно понять, что если $k \geqslant 1 + \log_2 n$, то $\binom{n}{k} \frac{k!}{2^{\binom{k}{2}}} < 1$
-    %$\binom{n}{k} \frac{k!}{2^{\binom{k}{2}}} = \frac{n(n - 1)(n - 2) \ldots (n - k + 1)}{2^{\frac{k(k - 1)}{2}}} < \frac{n^k}{(2^{\frac{k - 1}{2}})^k} = (\frac{n}{2^{\frac{k - 1}{2}}})^k$
+    кучи наугад).
+    
+    $P(\text{A выиграла у B}) = \frac{1}{2}$. Рассмотрим $A_1, A_2,$
+    $\ldots A_k$ команды.
+    
+    $P(A_1, A_2 \ldots A_k  \text{ подходят}) = (\frac{1}{2})^{\binom{k}{2}}$.
 
-    %Надо понять, что $2^{\frac{k - 1}{2}} \geqslant n \Leftrightarrow \frac{k - 1}{2} \geqslant \log_2 n$
+    $P(A_1, A_2 \ldots A_k \text{ можно переименовать, так, что они подошли}) \leqslant \frac{k!}{2^{\binom{k}{2}}}$
+
+    $P(\text{какие-то $k$ команд подошли}) \leqslant \binom{n}{k} \cdot \frac{k!}{2^{\binom{k}{2}}}$
+    
+    Нужно понять, что если $k \geqslant [2 + 2\log_2 n]$, то $\binom{n}{k} \frac{k!}{2^{\binom{k}{2}}} < 1$.
+    $\binom{n}{k} \frac{k!}{2^{\binom{k}{2}}} = \frac{n(n - 1)(n - 2) \ldots (n - k + 1)}{2^{\frac{k(k - 1)}{2}}} < \frac{n^k}{(2^{\frac{k - 1}{2}})^k} = (\frac{n}{2^{\frac{k - 1}{2}}})^k$
+
+    Надо понять, что $2^{\frac{k - 1}{2}} \geqslant n \Leftrightarrow \frac{k - 1}{2} \geqslant \log_2 n$
 \end{proof}
 
 \Subsection{Предельные теоремы для схем Бернулли}
