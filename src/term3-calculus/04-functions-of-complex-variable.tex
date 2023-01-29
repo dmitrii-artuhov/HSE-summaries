@@ -1101,4 +1101,249 @@
     $|F(x)|$ -- огр. при $|z| \leq \rho$ по т. Вейерштрасса.
 \end{proof}
 
+\begin{definition}
+    $a \in \mathbb{C}$. Если $f$ голоморфна в проколотой окрестности
+    точки $a$, но не голоморфна в $a$, то $a$ - изолированная особая точка.
+    
+    $f \in H(0 < |z - a| < r)$
+\end{definition}
+
+\begin{definition}
+    Если существует $\lim_{z \to a} f(z)$, то $a$ - устранимая особая точка.
+
+    Если $\lim_{z \to a} f(z) = \infty$, то $a$ - полюс.
+
+    Если $\lim_{z \to a}$ не существует, то $a$ существенно особая точка.
+\end{definition}
+
+\begin{example}
+    \begin{enumerate}
+        \item $\frac{\sin z}{z}, \frac{e^z - 1}{z}$. $z = 0$ - устранимая особая точка. Из Тейлора.
+        \item $\frac{1}{z}, \frac{1}{\sin z}$. $z = 0$ - полюс.
+        \item $e^{\frac{1}{z}}$. $z = 0$ - существенно особая точка. Предела нет, т.к. $\frac{1}{z_n} = 2\pi i n$, $\frac{1}{z_n} = 2\pi i n + \pi$. Разные последовательности точек.
+    \end{enumerate}
+\end{example}
+
+\begin{theorem}
+    \textbf{Характеристика устранимой особой точки}
+
+    $f \in H(0 < |z - a| < r)$
+
+    Следующие условия равносильны:
+    \begin{enumerate}
+        \item $a$ - устранимая особая точка
+        \item $f$ ограничена в некоторой проколотой окрестности $a$
+        \item $\exists \, g \in H(|z - a| < r)$, такая, что $f(z) = g(z) \forall \, z \neq a$
+        \item В главной части ряда Лорана в точке $a$ все коэффициенты $0$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item $4 \Rightarrow 3$ - очевидно
+        \item $3 \Rightarrow 1$ - очевидно. $g$ непрерывна, предел $g(a)$
+        \item $1 \Rightarrow 2$ - очевидно
+        \item Докажем $2 \Rightarrow 4$.
+        Пусть ограничена: $f(z) \leqslant M$. $\forall \, 0 < |z - a| < r$
+        
+        $f(z) = \sum_{n = -\infty}^{+\infty} c_n(z - a)^n$. $|c_n| \leqslant \frac{\max |f(z)|}{\rho^n}$ при $|z - a| = \rho$
+        $c_{-n} \leqslant \rho^n \max f(z) \leqslant M \rho^n$ и устремим $\rho$ к $0$. $M \rho^n \rightarrow 0$
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}
+    \textbf{Характеристика полюса}
+
+    Пусть $f \in H(0 < |z - a| < r)$
+
+    Следующие условия равносильны:
+
+    \begin{enumerate}
+        \item $a$ - полюс
+        \item Существует $g \in H(|z - a| < r)$, $g(a) \neq 0$, такая, что $f(z) = \frac{g(z)}{(z - a)^m}, m \in \mathbb{N}$
+        \item В главной части ряда Лорана в точке $a$ лишь конечное число ненулевых коэфцциентов. Но они есть.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item $2 \Rightarrow 3$. $g(z) = \sum c_n (z - a)^n, c_0 \neq 0 \Rightarrow f(z) = \sum_{n = 0}^{+\infty} c_n(z - a)^{n - m}$ - разложение в ряд Лорана
+        \item $3 \Rightarrow 1$. $f(z) = \sum_{n = -m}^{infty} b_n(z - a)^n$. Все слагаемые $o((z - a)^{-m})$, а на $b_{-m}(z - a)^{-n} \rightarrow infty$
+        \item $1 \Rightarrow 2$. $\lim_{z \to a} f(z) = \infty$. Значит в некоторой проколотой окрестности $0 <|z - a| < \varepsilon$
+        $|f(z)| > 1$. Рассмотрим $g(z) = \frac{1}{f(z)} \in H(0 < |z - a| < r)$
+        $\lim_{z \to a} g(z) = 0$. Доопределим $g(a) = 0$ и получим $g \in H(|z - a| < \varepsilon)$
+        (предыдущая теорема (?)). $a$ - ноль функции $g$. Тогда $g(z) = (z - a)^m h(z)$,
+        где $h(a) \neq 0$ и $h \in H(|z - a| < \varepsilon)$
+
+        $\frac{1}{f(z)} = g(z) = (z - a)^m h(z)$. Тогда $f(z) = (z - a)^{-m} \frac{1}{h(z)}$ и 
+        $\frac{1}{h(z)} \in H(|z - a| < \varepsilon)$, потому что $h$ не обращается в 0 
+    \end{enumerate}
+\end{proof}
+
+\begin{definition}
+    Это $m$ называется порядком полюса.
+    \begin{remark}
+        Это аналог кратности нуля
+    \end{remark}
+\end{definition}
+
+\begin{remark}
+    $f$ имеет в $a$ полюс порядка $m$ $\Longleftrightarrow \frac{1}{f}$ имеет в 
+    точке $a$ ноль кратности $m$ (доопределяем $\frac{1}{f}$ в $a$ пл непрерывности)
+
+    А также $\Longleftrightarrow$ $f(z) = \sum_{n = -m}^{+\infty} c_n (z - a)^n$, где $c_m \neq 0$
+\end{remark}
+
+\begin{theorem}
+    \textbf{Характеристика существенной особой точки}
+
+    $f \in H(0 < |z - a| < r)$
+
+    Следующие условия равносильны
+
+    \begin{enumerate}
+        \item $a$ - существенно особая точка
+        \item В главной части ряда Лорана в точке $a$ бесконечное число ненулевых коэфф.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Доказательство очевидно следует из предыдущего. 
+\end{proof}
+
+\begin{definition}
+    $f$ - мероморфная в $\Omega$, если $f \in H(\Omega \setminus E)$ и в точках из $E$ у неё полюсы 
+\end{definition}
+
+\begin{example}
+    $f = \ctg \frac{1}{z}$  - мероморфная в $\mathbb{C} \setminus 0$
+
+    Полюсы в точках $z = \frac{1}{\pi k}$.
+
+    Но при этом $\ctg \frac{1}{z}$ не будет мероморфной в $\mathbb{C}$. В точке $z = 0$ проблема.
+    В любой окрестности 0, найдётся плохая точка, а значит она не изолированная особая.
+\end{example}
+
+\begin{remark}
+    \begin{enumerate}
+        \item $E$ не имеет предельных точек в $\Omega$. 
+        \item $E$ не более чем счётно.
+    \end{enumerate}
+\end{remark}
+
+\begin{properties}
+    Пусть $f$ и $g$ мероморфные в $\Omega$. Тогда:
+
+    \begin{enumerate}
+        \item $f \pm g, \frac{f}{g}, fg, f'$ - мероморфны в $\Omega$ и порядки полюсов у $f'$ на 1 больше, чем у $f$
+        
+        Док-во: $fg$ и $\frac{f}{g}$. Если не полюсы и не нули, то голоморфность сохранится.
+        
+        $f(z) = \varphi (z) (z - a)^n$, $a$ - полюс или 0. 
+        
+        $g(z) = \varPsi (z) (z - a)^m$, $a$ - полюс или 0.
+
+        Тогда $f(z)g(z) = \varphi (z) \varPsi (z) (z - a)^{n + m}$
+
+        Для $f \pm g$ складываем ряды Лорана в $a$. В главной части $f \pm g$ конечное число ненулевых.
+
+        Для $f'$. $f'(z) = \varphi' (z) (z - a)^{-n} - n \varphi (z) (z - a)^{-n - 1} = (z - a)^{-n - 1}(z - a) - n\varphi (z) = \varPsi (z)$
+
+        $\varPsi (z) = -n \varphi (a) \neq 0$
+    \end{enumerate}
+\end{properties}
+
+\begin{statement}
+    Если $f$ мероморфна в $\mathbb{C}$, то существует $g, h \in H(\mathbb{C})$, т.ч. $f = \frac{g}{h}$
+\end{statement}
+
+\begin{theorem}
+    \textbf{Сохоцкого}
+
+    Пусть $a$ - существенно особая точка функции $f$. Тогда $Cl f(0 < |z - a| < \varepsilon) = \mathbb{C}$ 
+
+    Более того, $\forall b \in \mathbb{C} \cup \{ +\infty \}$ найдётся такая последовательность
+    $z_n \rightarrow a$, т.ч. $f(z_n) \rightarrow b$
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Случай $b = \infty$. $f$ не ограничена в $0 < |z - a| < \frac{1}{n}$. Иначе $a$ была бы устранимой особой точкой
+        Значит найдётся $z_n$, такое что $0 < |z_n - a| < \frac{1}{n}$ и $|f(z_n)| \geqslant n$
+        $z_n \rightarrow a$ и $f(z_n) \rightarrow \infty$
+        \item $b \in \mathbb{C}$. Если найдётся последовательность $z_n \rightarrow a$, т.ч. $f(z_n) = b$, то всё ясно.
+        Если на найдётся, то в некоторой проколотой окретности $0 < |z - a| < \varepsilon $ $f(z) \neq b$
+        Тогда рассмотрим $g(z) = \frac{1}{f(z) - b} \in H(0 < |z - a| < \varepsilon)$. 
+        $a$ - изолированнная особая точка для $g$.
+
+        $f(z) = b + \frac{1}{g(z)}$
+
+        Если $a$ - полюс у $g$, то $a$ - устранимая особая точка $f$ - не подходит
+
+        Если $a$ - устранимая особая точка $g$, то $a$ - устранимая особая точка $f$ или полюс - не подходит
+
+        Значит $a$ - существенно особая точка $g$. Воспользуемся уже доказанным случаем для $g$.
+        Найдётся $z_n \rightarrow a$, такая, что $g(z_n) \rightarrow \infty$. А тогда
+        $\lim f(z_n) = b$.
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}
+    \textbf{Пикара}
+
+    Пусть $a$ - существенно особая точка $f$ и $\varepsilon > 0$. Тогда 
+    $f(0 < |z - a| < \varepsilon) = \mathbb{C}$ или $\mathbb{C}$ без одной точки.
+\end{theorem}
+
+\begin{example}
+    $f(z) = e^{\frac{1}{z}}$ не обращается в ноль, хотя $z = 0$ - существенно особая точка.
+\end{example}
+
+\begin{definition}
+    Бексонечные пределы. $\lim z_n = \infty \Longleftrightarrow \lim |z_n| = +\infty$ 
+\end{definition}
+
+\begin{properties}
+
+    \item Если $\lim z_n = \infty$, $w_n$ ограничена. Тогда $\lim (z_n \pm w_n) = \infty$
+    \item $\lim z_n = 0 \Longleftrightarrow \lim \frac{1}{z_n} = \infty$
+    \item Если $\lim z_n = \infty$ и $|w_n| \geqslant c > 0$, то $\lim z_nw_n = \infty$
+    
+    Доказательства очевидны + с первого курса 
+\end{properties}
+
+\begin{definition}
+    $f \in H(|z| > R)$. $f$ голоморфна в $\infty$, если там устранимая особая точка. То есть $\lim_{z \to \infty} f(z) \in \mathbb{C}$
+
+    \begin{remark}
+        $g(z) = f(\frac{1}{z}) \in H(0 < |z| < \frac{1}{R})$ - перешли от бесконечности к нулю.
+    \end{remark}
+\end{definition}
+
+\begin{remark}
+    $f \in H(|z| > R), g(z) = f(\frac{1}{z}) \in H(0 < |z| < \frac{1}{R})$
+    \begin{enumerate}
+        \item $\infty$ - устранимая особая точка $f \Longleftrightarrow 0$ - устранимая особая точка $g$
+        \item $\infty$ - полюс $f \Longleftrightarrow 0$ - полюс $g$
+        \item $\infty$ - существенно особая точка $f \Longleftrightarrow 0$ - существенно особая точка $g$
+        
+        $f(z) = \sum_{n = -\infty}^{+\infty} c_nz_n, g(z) \sum_{n = -\infty}^{+\infty}$
+        \item $\infty$ - устранимая особая точка $f \Longleftrightarrow$ коэфф. при положительных степенях $0$
+        \item $\infty$ - полюс $f \Longleftrightarrow$ при положительных степенях лишь конечное число ненулевых коэфцциентов.
+        \item $\infty$ - существенно особая точка $f \Longleftrightarrow$ при положительных степенях беск. число ненулевых коэфф.
+    \end{enumerate}
+\end{remark}
+
+\begin{theorem}
+    \textbf{Луивилля}
+
+    Если $f \in H(\bar{\mathbb{C}})$, то $f \equiv const$
+\end{theorem}
+
+\begin{proof}
+    $\lim_{z \to \infty} f(z) \in \mathbb{C}$, значит при больших ограничена. $|f(z)| \leqslant M$ для $|z| > R$.
+    С другой стороны $f \in C(|z| \leqslant R)$. Значит $|f(z)| \leqslant \bar{M}$.
+    По теореме Лиувилля(старой), $f \equiv const$
+\end{proof}
+
 

@@ -235,7 +235,158 @@
     $P(k \text{ раз выпало 1, } k_2 \text{ раз выпало 2, ...}) = \binom{n}{k_1, k_2, \dots, k_m} p_1^{k_1} \cdot \dots \cdot p_m^{k_m} = \frac{n!}{k_1! \dots k_m!}$
 \end{theorem}
 
+\begin{theorem}
+    \textbf{Эрдёша-Мозера}
 
+    Рассмотрим турнир на $n$ команд. При каком наибольшем $k$ можно
+    всегда выбрать команды $A_1, A_2 \ldots A_k$, так, что $A_i$
+    выиграла у $A_j$, если $i < j$? При $k \leqslant 1 +  [2 \log_2 n] $
+\end{theorem}
+
+\begin{proof}
+    Рассмотрим случайный турнир(Всего $\binom{n}{2}$, тогда Всего
+    $2^{\binom{n}{2}}$ разных турниров. Случайный - берём из этой
+    кучи наугад). TODO
+    %$P(\text{A выиграла у B}) = \frac{1}{2}$. Рассмотрим $A_1, A_2,
+    %\ldots A_k$ команды. $P(\text{A_1, A_2 \ldots A_k  подходят}) = (\frac{1}{2})^{\binom{k}{2}}$.
+    %$P(\text{A_1, A_2 \ldots A_k можно переименовать, так, что они подошли}) \leqslant \frac{k!}{2^{\binom{k}{2}}}$
+    %$P(\text{какие-то $k$ команд подошли}) \leqslant \binom{n}{k} \cdot \frac{k!}{2^{\binom{k}{2}}}$
+    %Нужно понять, что если $k \geqslant 1 + \log_2 n$, то $\binom{n}{k} \frac{k!}{2^{\binom{k}{2}}} < 1$
+    %$\binom{n}{k} \frac{k!}{2^{\binom{k}{2}}} = \frac{n(n - 1)(n - 2) \ldots (n - k + 1)}{2^{\frac{k(k - 1)}{2}}} < \frac{n^k}{(2^{\frac{k - 1}{2}})^k} = (\frac{n}{2^{\frac{k - 1}{2}}})^k$
+
+    %Надо понять, что $2^{\frac{k - 1}{2}} \geqslant n \Leftrightarrow \frac{k - 1}{2} \geqslant \log_2 n$
+\end{proof}
+
+\Subsection{Предельные теоремы для схем Бернулли}
+
+\begin{definition}
+    Схема Бернулли с вероятностью успеха $p \in (0, 1)$. $S_n$ - число успехов при $n$ испытаниях. $P(S_n = k) = \binom{n}{k} p^k q^{n - k}$
+
+    Что будет больше $P(S_{1000} = 220)$ при $p = \frac{1}{5}$ или $P(S_{2000}) = 360$ при $p = \frac{1}{6}$. Точные вычисления дают $0.008984$ и 
+    $0.006625$ соответственно.
+
+\end{definition}
+
+\begin{theorem}
+    \textbf{Пуассона}
+
+    Схема Бернулли с $n$ испытаниями и вероятностью успеха $p_n$ - зависит от $n$.
+    Если $np_n \rightarrow \lambda > 0$. Тогда $P(S_n = k) \rightarrow \frac{\lambda^k}{k!} e^{-\lambda}$
+\end{theorem}
+
+\begin{remark}
+    Если $n p_n = \lambda$, то теорема верна при $k = o(\sqrt{n})$
+\end{remark}
+
+\begin{proof}
+    $P(S_n = k) = \binom{n}{k} p^k (1 - p)^{n - k} = \frac{n(n - 1)\ldots(n - k + 1)}{k!} p_n^k (1 - p_n)^{n - k}$.
+    $\sim \frac{n^k}{k!} p_n^k (1 - p)^{n - k} \sim \frac{\lambda^k}{k!} (1 - p_n)^n$. Прологарифмируем: $\ln (1 - p_n)^n = n \ln (1 - p_n)$
+    $\sim -n p_n \sim -\lambda$
+
+    Доказательство замечания:
+
+    $\ln (1 - p_n)^k = k \ln (1 - p_n) \sim -kp_n \rightarrow 0$
+
+    Осталось понять, что $\frac{n(n - 1) \ldots (n - k + 1)}{n^k} \to 1$ при $k = o(\sqrt{n})$.
+
+    $\frac{n(n - 1) \ldots (n - k + 1)}{n^k} = 1 \cdot (1 - \frac{1}{n}) \ldots \cdot (1 - \frac{k - 1}{n}) \geqslant$
+    $1 - \frac{1}{n} - \ldots -  \frac{k - 1}{n} = 1 - \frac{k(k - 1)}{2n} \rightarrow 1$
+
+    Неравенство $(1 - x_1) \ldots (1 - x_k) \geqslant 1 - x_1 - x_2 - \ldots - x_k$ при $0 \leqslant x_i \leqslant 1$ - индукция.
+\end{proof}
+
+\begin{theorem}
+    \textbf{Прохорова}
+
+    Если $\lambda = np$, то $\sum_{i = 0}^{+\infty} |P(S_n = k) - \frac{\lambda^k}{k!}e^{-\lambda}| \leqslant \frac{2\lambda}{n} \cdot \min(2, \lambda)$
+
+\end{theorem}
+
+\begin{example}
+    Игра в рулетку: 36 чисел и ноль. 
+
+    $p = \frac{1}{37}, n = 111, np = 3 \lambda$.
+
+    $P(S_111 = 3) = \binom{111}{3} (\frac{1}{37})^3 (1 - \frac{1}{37})^{111 - 3} = 0.227127$
+
+    Из Пуассона $\frac{\lambda^3}{3!} e^{-\lambda} = 0.224$
+
+    Видим, что приближение хорошее.
+
+    $P(\text{выигрыш}) = 1 - P(S_{111} = 0) - P(S_{111} = 1) - P(S_{111} = 2) - P(S_{111} = 3) = $
+    $1 - \frac{\lambda^0}{0!}e^{-\lambda} -$
+    $\frac{\lambda^1}{1!}e^{-\lambda} - \frac{\lambda^2}{2!}e^{-\lambda} - \frac{\lambda^3}{3!}e^{-\lambda} = 0.352754$
+    
+    А по формулам $0.352768$
+\end{example}
+
+\begin{theorem}
+    \textbf{Локальная предельная теорема Муавра-Лапласа}
+
+    Схема Бернулии с вероятностью успеха $p \in (0, 1)$. $x = \frac{k - np}{\sqrt{npq}}$
+
+    $P(S_n = k) \sim_{n \to +\infty} \frac{1}{\sqrt{2\pi n p q}} e^{\frac{-x^2}{2}}$
+
+    Если $|x| \leqslant T$, то есть равномерность.
+\end{theorem}
+
+\begin{proof}
+    $k = np + x\sqrt{npq} \geqslant np - T\sqrt{npq} \rightarrow +\infty$
+
+    $n - k = nq - -x\sqrt{npq} \geqslant nq - T\sqrt{npq} \rightarrow +\infty$
+
+    $P(S_n = k) = \binom{n}{k} p^k q^{n - k} = \frac{n!}{k!(n - k)!}p^k q^{n - k}$
+    
+    Напишем формулу Стирлинга:
+
+    $\frac{n^n e^{-n} \sqrt{2\pi n}p^kq^{n-k}}{k^ke^{-k}\sqrt{2\pi n} (n-k)^{n - k} e^{-(n - k)} \sqrt{2 \pi (n - k)}} =$
+    $\frac{p^k q^{n - k}}{(\frac{k}{n})^k \cdot (\frac{n - k}{n})^{n - k} \cdot \sqrt{2 \pi \frac{k}{n} (1 - \frac{k}{n})n}}$
+
+    $\frac{k}{n} \rightarrow p, \frac{n - k}{n} \rightarrow q$
+
+    Поэтому остаётся доказать, что $\frac{p^k q^{n - k}}{(\frac{k}{n})^k \cdot (\frac{n - k}{n})^{n - k}} \rightarrow e^{\frac{-x^2}{2}}$
+
+    $k \ln \frac{k}{n} + (n - k) \ln \frac{n - k}{n} - k \ln p - (n - k)\ln q \rightarrow \frac{x^2}{2}$
+
+    $\alpha = \frac{k}{n} \rightarrow p, \beta = \frac{n - k}{n} \rightarrow q$
+
+    $n \alpha \ln \alpha + n \beta \ln \beta - n\alpha \ln p - n\beta \ln q \rightarrow \frac{x^2}{2} = n\alpha \ln \frac{\alpha}{p} + n \beta \ln \frac{\beta}{q}$
+
+    Напишем Тейлора:
+
+    $\frac{\alpha}{p} = 1 + x\sqrt{\frac{q}{p}} \frac{1}{\sqrt{n}}$
+
+    $\frac{\beta}{q} = 1 - x \sqrt{\frac{p}{q}} \frac{1}{\sqrt{n}}$
+
+    $\ln \frac{\alpha}{p} = \ln (1 + x\sqrt{\frac{q}{p}} \frac{1}{\sqrt{n}}) = x \sqrt{\frac{q}{p}} - \frac{1}{2}x^2\frac{q}{p} \frac{1}{n} + o(\frac{1}{n}) $ 
+
+    $\ln \frac{\beta}{q} = \ln (1 - x \sqrt{\frac{p}{q} \frac{1}{\sqrt{n}}}) = -x \sqrt{\frac{p}{q}} \frac{1}{\sqrt{n}} - \frac{1}{2}x^2 \frac{p}{q} \frac{1}{n} + o(\frac{1}{n})$
+
+    Сумма равна: $x\sqrt{pq}\sqrt{n} + x^2q - \frac{1}{2}x^2q + o(\frac{1}{n}) - x\sqrt{pq}\sqrt{n} + x^2p - \frac{1}{2}x^2p + o(\frac{1}{n}) = $
+    $x^2 (\frac{q}{2} + \frac{p}{2}) + o(1) = \frac{x^2}{2} + o(1)$
+
+    Извините, это было очень больно...
+\end{proof}
+
+\begin{remark}
+    Если $\varphi (n) = o(n^\frac{2}{3})$ и $|k - np| \leqslant \varphi (n)$, то теорема тоже верна
+\end{remark}
+
+\begin{example}
+    Всё та же рулетка. $n = 222, k = 111$. Пытаемся ставить на на четное/нечётное(кроме 0). $p = \frac{18}{37}$
+
+    $P(S_{222} = 111) \approx \frac{1}{\sqrt{2 \pi n p q}} e^{\frac{-x^2}{2}} \approx 0.049395\ldots$
+
+    Если считать точно, то получим $0.0493228\ldots$
+\end{example}
+
+\begin{theorem}
+    \textbf{Интегральная теорема Муавра-Лапласа}
+
+    $0 < p < 1$. $P(a < \frac{S_n - np}{\sqrt{npq}} \leqslant b) \rightarrow_{n \to \infty} \frac{1}{\sqrt{2\pi}} \int_a^b e^{\frac{-t^2}{2}} \, dt$
+
+    Равномерно по $a$ и $b$
+\end{theorem}
 
 
 
