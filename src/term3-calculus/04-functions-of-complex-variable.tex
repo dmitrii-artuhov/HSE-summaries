@@ -1346,4 +1346,190 @@
     По теореме Лиувилля(старой), $f \equiv const$
 \end{proof}
 
+\begin{definition}
+    \textbf{Стереографическая проекция}
 
+    Здесь нужен рисунок.
+
+    $z = x + iy$ - плоскость. $(u, v, w) \in \mathbb{R}^3$.
+
+    $u^2 + v^2 + (w - \frac{1}{2})^2 = \frac{1}{2^2}$
+
+    Или же $u^2 + v^2 + w^2 = w$ - уравнение сферы.
+\end{definition}
+
+\begin{theorem}
+    \textbf{Связь между точкой на плоскости и точной на сфере}
+
+    Точке $z$ соответсвует точка с координатами $(\frac{x}{1 + |z|^2}, \frac{y}{1 + |z|^2}, \frac{|z|^2}{1 + |z|^2})$
+
+    \begin{remark}
+        Точке $(u, v, w)$ соответсвует точка $z = x + iy = \frac{u}{1 - w} + i \frac{v}{1 - w}$
+    \end{remark}
+\end{theorem}
+
+\begin{proof}
+    Прямая через точки $(0, 0, 1)$ и $(x, y, 0)$. Параметризация луча:
+    $(xt, yt, 1 - t)$. Нас интересует точка, в которой луч пересекает сферу, то есть:
+
+    $(xt)^2 + (yt)^2 + (1- t)^2 = 1 - t$.
+
+    $(x^2 + y^2 + 1)t^2 + 1 - 2t = 1 - t \Leftrightarrow t = \frac{1}{x^2 + y^2 + 1} = \frac{1}{|z|^2 + 1}$
+\end{proof}
+
+\begin{consequence}
+    \begin{enumerate}
+        \item Расстояние между образами $z$ и $ $ равно $\rho = \frac{|z - z|}{\sqrt{1 + |z|^2} \cdot \sqrt{1 + |z|^2}}$,
+        а расстояние между $z$ и $\infty$ равно $\frac{1}{\sqrt{1 + |z|^2}}$
+
+        \textbf{Доказательство:} $\rho^2 $ TODO
+        
+        \item Сходимость на плоскости и сходимость на сфере Римана совпадают
+        
+        \textbf{Доказательство:} $z_n \to z_0 \Rightarrow \frac{|z_n - z_0|}{\sqrt{1 + |z_n|^2}\cdot \sqrt{1 + |z_0|^2}} \to 0$
+
+        $z_n \to \infty \Leftrightarrow \frac{1}{\sqrt{1 + |z_n|^2}} \to 0$
+
+        Пусть $\frac{|z_n - z_0|}{\sqrt{1 + |z_n|^2}\cdot \sqrt{1 + |z_0|^2}} \to 0$
+
+        Тогда $\frac{|z_n - z_0|}{\sqrt{1 + |z_n|^2}} \to 0$. Если $z_n$  ограничена, то $|z_n - z_0| \to 0$
+
+        Если не ограничена, то возьмём $|z_{n_k}| \to \infty$, тогда $\frac{|z_{n_k} - z_0|}{\sqrt{1 + |z_{n_k}|^2}} \to 1$
+
+        \item $\mathbb{C} \cup \{ \infty \}$ - компакт.
+    \end{enumerate}
+\end{consequence}
+
+\Subsection{Вычеты}
+
+\begin{definition}
+    $a$ - изолированная особая точка. $f \in H(0 < |z - a| < R)$. 
+    $f(z) = \sum_{n = -\infty}^{+\infty} c_n (z - a)^n$ - сходится при $0 < |z - a| < R$.
+
+    $\res_{z = a} f = c_{-1}$
+\end{definition}
+
+\begin{definition}
+    $f \in H(|z| > R)$ раскладывается в $f(z) = \sum_{n = -\infty}^{+\infty} c_n z^n$
+
+    $\res_{z = \infty} f(z) = -c_{-1}$
+\end{definition}
+
+\begin{properties}
+    \begin{enumerate}
+        \item $f \in H(0 < |z - a| < R)$ и $0 < r < R$.
+        
+        Тогда $\res_{z = a} f = \frac{1}{2\pi i} \int_{|z - a| = r} f(z) \, dz$ - положительный обход
+        точки $a$.
+
+        \textbf{Доказательство:} смотреть формулу для коэффициентов ряда Лорана.
+
+        \item $f \in H(|z| > R), r > R$.
+        
+        Тогда $\res_{z = \infty} f = -\frac{1}{2\pi i} \int_{|z| = r} f(z) \, dz = \frac{1}{2\pi i} \int_{|z| = r} f(z) \, dz$ - 
+        положительный обход для $\infty$
+
+        \item Если $a \in \mathbb{C}$ - полюс $n$-го порядка. 
+        
+        Тогда $\res_{z = a} f(z) = \lim_{z \to a} \frac{1}{(n - 1)!} \frac{d^{n - 1}}{dz^{n - 1}} ((z - a)^n f(z))$
+
+        \textbf{Доказательство:} Считаем, что $a = 0$.
+
+        $f(z) = \sum_{k = -n}^{+\infty} c_kz^k \Rightarrow g(z) = z^n f(z) = \sum_{k = 0}^{\infty} c_{k - n}z^k $ - формула Тейлора.
+
+        Тогда $c_{-1} = \frac{g^{(n - 1)}(0)}{(n - 1)!}$.
+        
+        \item Если $a \in \mathbb{C}$ - полюс первого порядка.
+        
+        Тогда $\res_{z = a} f(z) = \lim_{z \to a} (z - a)f(z)$
+
+        \item Если $a \in \mathbb{C}$, $g$ и $h$ голоморфны в окрестности точки $a$.
+        $h(a) = 0, h'(a) \neq 0, g(a) \neq 0$. $f(z) = \frac{g(z)}{h(z)}$
+
+        Тогда $\res_{z = a} f(z) = \frac{g(a)}{h'(a)}$
+
+        \textbf{Доказательство:} $\res_{z = a} f(z) = \lim_{z \to a} (z - a)f(z) = 
+        \lim_{z \to a} \frac{z - a}{h(z) - h(a)} g(z) = \frac{g(a)}{h'(a)}$
+
+        \item Если $\lim_{z \to \infty} f(z) = A \in \mathbb{C}$.
+        
+        Тогда $\res_{z = \infty} f(z) = \lim_{z \to \infty} z (A - f(z))$
+
+        \textbf{Доказательство:} $f(z) = A + \sum_{k = -\infty}^{-1} c_nz^n$, правильная часть - константа,
+        иначе всё бы пошло на бесконечность. 
+
+        \item $\res_{z = \infty} f(z) = -\res_{z = 0} \frac{f(\frac{1}{z})}{z^2}$
+        
+        \textbf{Доказательство:} $f(z) = \sum_{n = -\infty}^{\infty} c_nz^n$
+
+        $\frac{1}{z^2} f(\frac{1}{z}) = \frac{1}{z^2} \sum_{n = -\infty}^{\infty} c_nz^{-n} =
+        \sum_{n = -\infty}^{\infty} c_nz^{-n - 2}$
+    \end{enumerate}
+\end{properties}
+
+\begin{theorem}
+    \textbf{Коши о вычетах}
+
+    $f$ голоморфна в $\Omega$, за исключением точек $a_1, \ldots a_n$.
+    $K \subset \Omega$ - компакт и $a_1 \ldots a_n \in Int K$
+
+    Тогда $\int_{\delta K} f(z) \, dz = 2\pi i \sum_{k = 1}^n \res_{z = a_k} f(z)$ 
+\end{theorem}
+
+\begin{proof}
+    Картинка.
+
+    У каждой точки можем взять окрестность, чтобы они лежали внутри компакта и
+    попарно не пересекаются. $\widetilde{K} = K \setminus \bigcup_{k = 1}^n B_{\varepsilon} (a_k)$ - компакт.
+    
+    А ещё $f \in H(\Omega \setminus \{ a_1 \ldots a_k\} )$
+
+    Из интегральной формулы Коши: $\int_{\delta \widetilde{K}} f(z) \, dz = 0$
+
+    Но $\int_{\delta \widetilde{K}} f(z) \, dz = \int_{\delta K} f(z) \, dz - \sum_{k = 1}^n \int_{|z - a_k| = \varepsilon} f(z) \, dz$, а 
+    под знаком суммы - вычеты.
+\end{proof}
+
+\begin{consequence}
+    Если $f$ голоморфна в $\mathbb{C} \setminus \{ a_1 \ldots a_n \} $, то
+    $\res_{z = \infty} f(z) + \sum_{k = 1}^n \res_{z = a_k} f(z) = 0$
+
+    \textbf{Доказательство:} возьмём круг $B_R (0)$, внутри которого содержатся все эти точки.
+
+    $\int_{|z| = R} f(z) \, dz = 2 \pi i \sum_{j = 1}^n \res_{z = a_j} f(z)$.
+
+    Но также $\int_{|z| = R} f(z) \, dz = -2 \pi i \res_{z = \infty} f(z)$. Перекидываем и доказываем.
+\end{consequence}
+
+\begin{example}
+    \begin{enumerate}
+        \item $\int_{|z| = 4} \frac{z^4}{e^z + 1} \, dz = 2 \pi i (\res_{z = \pi i} + \res_{z = -\pi i}) = -4\pi^5 i$.
+        
+        Особые точки: $e^z = -1$ при $z = \pi i + 2 \pi i k$. 
+
+        $\res_{z = \pi i} = \frac{g(\pi i)}{h'(\pi i)} = -\pi^4$
+
+        $g(z) = z^4, h(z) = e^z + 1$.
+
+        $\res_{z = -\pi i} = \frac{g(-\pi i)}{h'(-\pi i)} = -\pi^4$
+
+        \item $\int_{-\infty}^{\infty} \frac{dx}{1 + x^{2n}} = \lim_{R \to +\infty} \int_{-R}^{R} \frac{dx}{1 + x^{2n}}$.
+        Контур - полукруг. $\int_{\Gamma_R} \frac{dz}{1 + z^{2n}} = 2 \pi i \sum \res$
+
+        Но с другой стороны $\int_{\Gamma_R} = \int_{-R}^R + \int_{c_R}$
+
+        $| \int_{c_R} \frac{dz}{1 + z^{2n}}| \leqslant \pi R \cdot \max |\frac{1}{1 + z^{2n}}| = \pi R \frac{1}{\min |1 + z^{2n}|}
+        \leqslant \frac{\pi R}{R^{2n} - 1} \rightarrow 0$
+
+        Оценка: $|a + b| \geqslant |a| - |b|$.
+
+        Значит то, что мы хотим найти - просто сумма вычетов.
+
+        Какие особые точки? $z^{2n} = -1$. $e^{\frac{\pi i k}{2n}}$ и $k$ нечётно.
+        Нас интересует $k = 1, 3 \ldots 2n - 1$
+
+        Тогда $I = 2 \pi i \sum_{k = 1}^n \res_{2k - 1}$
+
+        $\res_{a_k} = \frac{1}{2n \cdot a_k^{2n - 1}} = \frac{a_k}{2na_k^{2n}} = -\frac{a_k}{2n}$, так как $a_k$ - полюс первого порядка. 
+    \end{enumerate}
+\end{example}

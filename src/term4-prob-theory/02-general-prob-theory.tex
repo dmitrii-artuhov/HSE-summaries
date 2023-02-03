@@ -1,0 +1,98 @@
+\Subsection{Колмогоровская модель теории вероятности}
+
+\begin{definition}
+    $(\Omega, \mathcal{F}, P)$ - вероятностное пространство.
+
+    $\Omega$ - множество или пространство элементарных исходов.
+
+    $\mathcal{F}$ - $\sigma$-алгебра подмножеств $\Omega$. Элементы $\mathcal{F}$ - случайный события.
+
+    $P$ - мера на $\mathcal{F}$ с условием $P(\Omega) = 1$.
+
+    \begin{remark}
+        Если $\Omega$ не более чем счётно, то можно взять $\mathcal{F} = 2^{\Omega}$
+    \end{remark}
+\end{definition}
+
+\begin{definition}
+    Условная вероятность. $A$ - событие, такое, что $P(A) > 0$.
+    Тогда $P(B | A) = \frac{P(B \cap A)}{P(A)}$
+\end{definition}
+
+\begin{definition}
+    Независимые события $A$ и $B$. Если $P(A \cap B) = P(A) \cdot P(B)$
+\end{definition}
+
+\begin{definition}
+    Независимость в совокупности $A_1, A_2 \ldots A_n$. $P(A_{i_1} \cap \ldots \cap A_{i_k}) = P(A_{i_1}) \cdot \ldots \cdot P({A_{i_k}})$
+    для всевозможных наборов индексов.
+\end{definition}
+
+\begin{definition}
+    Последовательность событий $A_1, A_2 \ldots $ независимы - любой конечный набор событий
+    независим в совокупности.
+\end{definition}
+
+\begin{lemma}
+    \textbf{Бореля-Кантелли}
+
+    $A_1, A_2, \ldots$ случайные события.
+
+    \begin{enumerate}
+        \item Если $\sum_{n = 1}^{\infty} P(A_n) < +\infty$, то вероятность,
+        что случилось бесконечное число из них равна 0.
+        \item Если $A_1, A_2, \ldots$ независимы и $\sum_{n = 1}^{\infty} P(A_n) = +\infty$, тогда
+        $P(\text{случилось бесконечное число из $A_n$}) = 1$
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    $B = \bigcap_{n = 1}^{\infty} \bigcup_{k = n}^{\infty} A_k$.
+
+    $\omega \in B \Longleftrightarrow \omega \in $ бесконечное количестве $A_i$.
+
+    \begin{enumerate}
+        \item $\Leftarrow$. Лежит в каждом объединении, значит лежит в $B$.
+        \item $\Rightarrow$ $\omega$ лежит в пересечении. Пусть лежит в конечном - возьмём самый большой номер и получим противоречие.
+    \end{enumerate}
+
+    \begin{enumerate}
+        \item $P(B) = 0$ - хотим доказать.
+        
+        $B \subset \bigcup_{k = n}^{\infty} A_k \Rightarrow P(B) \leqslant P(\bigcup_{k = n}^{\infty} A_k) \leqslant \sum_{k = n}^{\infty} P(A_k)$, 
+        а это хвост сходящегося ряда, а он стремится к нулю.
+
+        \item Давайте смотреть на $\bar{A_1}, \bar{A_2}, \ldots$ - независимые события (следует из упражнения с прошлой лекции).
+        
+        $P(\bigcap_{k = 1}^n \bar{A_k}) = \prod P(\bar{A_k}) \to_{n \to \infty} \prod P(\bar{A_k})$
+
+        Но всё вложено по убыванию, по монотонности меры получаем $P(\bigcap_{k = 1}^{\infty} \bar{A_k}) = \prod P(\bar{A_k}) = 
+        \prod (1 - P(A_k))$
+
+        Прологарифмируем это равенство.
+
+        $\ln (P(\bigcap_{n}^{\infty} \bar{A_k})) = \sum{k = n}^{\infty} \ln (1 - P(A_k)) \leqslant - \sum{k = n}^{\infty} P(A_k) = -\infty$ - сумма
+        хвоста расходящегося ряда.
+
+        А значит мы логарифмировали 0. $P(\bigcap_{k = n}^{\infty} \bar{A_k}) = 0 \Rightarrow 
+        P(\bigcup_{k = n}^{\infty} A_k) = 1$.
+
+        $B = \bigcap_{n = 1}^{\infty} \bigcup_{k = n}^{\infty} A_k = \bigcap_{n = 1}^{\infty} B_n$. $B_1 \supset B_2 \ldots$
+
+        $P(B) = \lim P(B_n) = 1$
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}
+    \textbf{Закон нуля и единицы}
+
+    Если $A_1, A_2 \ldots$ независимы, то $P(B) = 0$ или $P(B) = 1$.
+\end{theorem}
+
+\begin{example}
+    Испытания Бернулли, успех с вероятностью $p$. $P(ОРО встречается бесконечное число раз)$
+
+    $A_n = $ случилось $ОРО$ на позициях $n, n + 1, n + 2$.
+
+    Тогда $A_1, A_4, A_7$ независимы. $P(A_j) = pqp$
+\end{example}

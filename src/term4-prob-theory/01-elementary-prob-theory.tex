@@ -394,6 +394,118 @@
     Равномерно по $a$ и $b$
 \end{theorem}
 
+\begin{theorem}
+    \textbf{Берри-Эссеена}
+
+    Обозначение: $\Phi (x) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^x e^{-\frac{t^2}{2}} \, dt$
+
+    $|P(\frac{S_n - np}{\sqrt{npq}} \leqslant x) - \Phi (x)| \leqslant \frac{p^2 + q^2}{\sqrt{npq}} \cdot \frac{1}{2}$
+
+    \begin{remark}
+        Константа лучше, чем $\frac{c}{\sqrt{n}}$ не бывает. 
+    \end{remark}
+\end{theorem}
+
+\begin{example}
+    $p = q = \frac{1}{2}$. Вопрос: $P(S_{2n} = n) = \binom{2n}{n} \frac{1}{2^{2n}} \sim 
+    \frac{4^n}{\sqrt{\pi n}} \frac{1}{4^n} = \frac{1}{\sqrt{\pi n}}$.
+
+    Но $P(S_{2n} < n) = P(S_{2n} > n)$.
+    
+    Тогда $P(S_{2n} \leqslant n) = \frac{1 + P(S_{2n} = n)}{2} = \frac{1}{2} + \frac{1}{2\sqrt{\pi n}} + o(\frac{1}{\sqrt{n}})$
+
+    Муавра-Лаплас нам говорит, что $P(S_{2n} \leqslant n) \to \frac{1}{\sqrt{2\pi}} \int_{-\infty}^0 e^{-\frac{t^2}{2}} \, dt = \frac{1}{2}$
+
+    Но $P(S_{2n} \leqslant n) = \frac{1}{2} + \frac{1}{2\sqrt{\pi n}} + o(\frac{1}{\sqrt{n}})$
+\end{example}
+
+\begin{remark}
+    $P(a < S_n \leqslant b) = P(\frac{a - np}{\sqrt{npq}} < \frac{S_n - np}{\sqrt{npq}} \leqslant \frac{b - np}{\sqrt{npq}}) \to
+    \Phi (\frac{b - np}{\sqrt{npq}}) - \Phi (\frac{a - np}{\sqrt{npq}})$
+
+    Отсюда получили, что лучше всего писать полуцелые $a$ и $b$.
+\end{remark}
+
+\begin{example}
+    \textbf{Задача о театре}
+
+    Есть театр и 2 входа. У каждого входа расположен гардероб. 
+    В театре $n = 1600$ мест. Хотим сделать размер гардероба как можно меньше, но чтобы
+    переполнения случались как можно реже.
+
+    Пусть $c$ мест в итоге в гардеробе.
+
+    $p = q = \frac{1}{2}$. Нужно, чтобы $n - c \leqslant S_n \leqslant c$. 
+
+    $P(n - c \leqslant S_n \leqslant c) = P(\frac{n - c - \frac{n}{2}}{\sqrt{n \cdot \frac{1}{4}}})
+    \leqslant \frac{S_n - \frac{n}{2}}{\sqrt{n \cdot \frac{1}{4}}} \leqslant \frac{c - \frac{n}{2}}{\sqrt{n \cdot \frac{1}{4}}} =
+    P(\frac{800 - c}{20}) \leqslant \frac{S_n - 800}{20} \leqslant \frac{c - 800}{20} \to \Phi (\frac{800 - c}{20}) - \Phi (\frac{c - 800}{20}) =
+    \frac{1}{\sqrt{2\pi}} \int_{\frac{800 - c}{20}}^{\frac{c - 800}{20}} e^{-\frac{t^2}{2}} \, dt > \frac{29}{30}$
+
+    $\Phi_0 (\frac{c - 800}{20}) > \frac{29}{60}$. Тогда $c = 843$.
+
+\end{example}
+
+\begin{example}
+    \textbf{Случайное блуждание на прямой}
+
+    Есть прямая, будем считать, что у нас блуждания исключительно по целым точкам.
+
+    В каждой точке подбрасываем монетку. С вероятностью $p$ идём вперёд, $q$ - идём назад.
+
+    $a_{n + 1} = a_{n + 1}$ с вероятностью $p$
+
+    $a_{n + 1} = a_{n - 1}$ с вероятностью $q$
+
+    $a_n \equiv n \mod 2$
+
+    Это почти похоже на схему Бернулли: $2S_n - n = a_n$
+
+    $P(a_n = k) = P(S_n = \frac{n + k}{2}) = 0$, если $n \not \equiv k \mod 2$
+
+    $P(a_n = k) = P(S_n = \frac{n + k}{2}) = \binom{n}{\frac{n + k}{2}} p^{\frac{n + k}{2}} q^{\frac{n - k}{2}}$, если $n \equiv k \mod 2$, иначе
+\end{example}
+
+\begin{theorem}
+    \textbf{ван дер Вардена}
+
+    Рассмотрим числа $1, 2 \ldots k$ и покрасим их в 2 цвета. 
+
+    Тогда существует $k_n$, такое, что, если $k > k_n$, то при любой раскраске
+    найдётся одноцветная $n$-членная арифметическая прогрессия.
+\end{theorem}
+
+\begin{theorem}
+    \textbf{Эрдеша-Радо}
+
+    $k_{n + 1} \geqslant \sqrt{n \cdot 2^{n + 1}}$
+\end{theorem}
+
+\begin{proof}
+    $A_1, A_2 \ldots A_m$ - все арифметические прогрессии длины $n + 1$ из чисел
+    $1, 2 \ldots k$. 
+
+    С разностью 1 $k - n$ прогрессий.
+
+    С разностью 2 $k - 2n$ прогрессий.
+
+    $\ldots$
+
+    С разностью $k - [\frac{k}{n}] \cdot n$ прогрессий с разностью $[\frac{k}{n}]$
+
+    Тогда $m = (k - n) + (k - 2n) + \ldots = k \cdot [\frac{k}{n}] - n \cdot \frac{[\frac{k}{n}] \cdot ([\frac{k}{n}] + 1)}{2} = 
+    [\frac{k}{n}] (k - \frac{1}{2}n ([\frac{k}{n}] + 1)) < \frac{k}{n} (k - \frac{1}{2} \cdot n \cdot \frac{k}{n}) = \frac{k^2}{2n}$ - это
+    оценка сверху.
+
+    $P(\text{$A_i$ - одноцветная}) = 2 \cdot \frac{1}{2^{n + 1}} = \frac{1}{2^n}$ (2 - выбор цвета).
+
+    $P(\text{какое-то $A_i$ - одноцветно}) = \sum_{i = 1}^m P(\text{$A_i$ - одноцветно}) = \frac{m}{2^n} < 
+    \frac{k^2}{2n} \cdot \frac{1}{2^n} = (\frac{k}{\sqrt{2^{n + 1} \cdot n}})^2 \leqslant 1$
+    (если так, то найдётся, на которой не выполнится)
+\end{proof}
+
+
+
 
 
 
