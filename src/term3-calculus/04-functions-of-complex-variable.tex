@@ -1168,7 +1168,7 @@
 \begin{proof}
     \begin{enumerate}
         \item $2 \Rightarrow 3$. $g(z) = \sum c_n (z - a)^n, c_0 \neq 0 \Rightarrow f(z) = \sum_{n = 0}^{+\infty} c_n(z - a)^{n - m}$ - разложение в ряд Лорана
-        \item $3 \Rightarrow 1$. $f(z) = \sum_{n = -m}^{infty} b_n(z - a)^n$. Все слагаемые $o((z - a)^{-m})$, а на $b_{-m}(z - a)^{-n} \rightarrow infty$
+        \item $3 \Rightarrow 1$. $f(z) = \sum_{n = -m}^{\infty} b_n(z - a)^n$. Все слагаемые $o((z - a)^{-m})$, а на $b_{-m}(z - a)^{-n} \rightarrow \infty$
         \item $1 \Rightarrow 2$. $\lim_{z \to a} f(z) = \infty$. Значит в некоторой проколотой окрестности $0 <|z - a| < \varepsilon$
         $|f(z)| > 1$. Рассмотрим $g(z) = \frac{1}{f(z)} \in H(0 < |z - a| < r)$
         $\lim_{z \to a} g(z) = 0$. Доопределим $g(a) = 0$ и получим $g \in H(|z - a| < \varepsilon)$
@@ -1260,9 +1260,9 @@
 \begin{theorem}
     \textbf{Сохоцкого}
 
-    Пусть $a$ - существенно особая точка функции $f$. Тогда $Cl f(0 < |z - a| < \varepsilon) = \mathbb{C}$ 
+    Пусть $a$ - существенно особая точка функции $f$. Тогда $Cl \left(f(0 < |z - a| < \varepsilon)\right) = \mathbb{C} \cup \{ \infty \}$ 
 
-    Более того, $\forall b \in \mathbb{C} \cup \{ +\infty \}$ найдётся такая последовательность
+    Более того, $\forall b \in \mathbb{C} \cup \{ \infty \}$ найдётся такая последовательность
     $z_n \rightarrow a$, т.ч. $f(z_n) \rightarrow b$
 \end{theorem}
 
