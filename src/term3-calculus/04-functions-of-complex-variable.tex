@@ -1268,11 +1268,11 @@
 
 \begin{proof}
     \begin{enumerate}
-        \item Случай $b = \infty$. $f$ не ограничена в $0 < |z - a| < \frac{1}{n}$. Иначе $a$ была бы устранимой особой точкой
-        Значит найдётся $z_n$, такое что $0 < |z_n - a| < \frac{1}{n}$ и $|f(z_n)| \geqslant n$
+        \item Случай $b = \infty$. $f$ не ограничена в $0 < |z - a| < \frac{1}{n}$. Иначе $a$ была бы устранимой особой точкой.
+        Значит найдётся $z_n$, такое что $0 < |z_n - a| < \frac{1}{n}$ и $|f(z_n)| \geqslant n$.
         $z_n \rightarrow a$ и $f(z_n) \rightarrow \infty$
         \item $b \in \mathbb{C}$. Если найдётся последовательность $z_n \rightarrow a$, т.ч. $f(z_n) = b$, то всё ясно.
-        Если на найдётся, то в некоторой проколотой окретности $0 < |z - a| < \varepsilon $ $f(z) \neq b$
+        Если не найдётся, то в некоторой проколотой окретности $0 < |z - a| < \varepsilon $ $f(z) \neq b$
         Тогда рассмотрим $g(z) = \frac{1}{f(z) - b} \in H(0 < |z - a| < \varepsilon)$. 
         $a$ - изолированнная особая точка для $g$.
 
@@ -1346,16 +1346,19 @@
     По теореме Лиувилля(старой), $f \equiv const$
 \end{proof}
 
+\newpage
+
 \begin{definition}
     \textbf{Стереографическая проекция}
-
-    Здесь нужен рисунок.
+    \begin{center}
+        \includegraphics{assets/04-functions-of-complex-variables/stereo-graphical-projection.png}
+    \end{center}
 
     $z = x + iy$ - плоскость. $(u, v, w) \in \mathbb{R}^3$.
 
     $u^2 + v^2 + (w - \frac{1}{2})^2 = \frac{1}{2^2}$
 
-    Или же $u^2 + v^2 + w^2 = w$ - уравнение сферы.
+    Или же $u^2 + v^2 + w^2 = w$ - уравнение сферы Римана.
 \end{definition}
 
 \begin{theorem}
@@ -1379,10 +1382,10 @@
 
 \begin{consequence}
     \begin{enumerate}
-        \item Расстояние между образами $z$ и $ $ равно $\rho = \frac{|z - z|}{\sqrt{1 + |z|^2} \cdot \sqrt{1 + |z|^2}}$,
+        \item Расстояние между образами $z$ и $\tilde{z}$ равно $\rho = \frac{|z - \tilde{z}|}{\sqrt{1 + |z|^2} \cdot \sqrt{1 + |\tilde{z}|^2}}$,
         а расстояние между $z$ и $\infty$ равно $\frac{1}{\sqrt{1 + |z|^2}}$
 
-        \textbf{Доказательство:} $\rho^2 $ TODO
+        \textbf{Доказательство:} предложено посчитать самому, у кого есть силы добавьте, плиз.
         
         \item Сходимость на плоскости и сходимость на сфере Римана совпадают
         
