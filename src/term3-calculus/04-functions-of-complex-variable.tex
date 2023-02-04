@@ -1476,20 +1476,22 @@
     $f$ голоморфна в $\Omega$, за исключением точек $a_1, \ldots a_n$.
     $K \subset \Omega$ - компакт и $a_1 \ldots a_n \in Int K$
 
-    Тогда $\int_{\delta K} f(z) \, dz = 2\pi i \sum_{k = 1}^n \res_{z = a_k} f(z)$ 
+    Тогда $\int_{\partial K} f(z) \, dz = 2\pi i \sum_{k = 1}^n \res_{z = a_k} f(z)$ 
 \end{theorem}
 
 \begin{proof}
-    Картинка.
+    \begin{center}
+        \includegraphics[width=10cm]{assets/04-functions-of-complex-variables/koshi-theorem-for-deductions.png}
+    \end{center}
 
     У каждой точки можем взять окрестность, чтобы они лежали внутри компакта и
     попарно не пересекаются. $\widetilde{K} = K \setminus \bigcup_{k = 1}^n B_{\varepsilon} (a_k)$ - компакт.
     
     А ещё $f \in H(\Omega \setminus \{ a_1 \ldots a_k\} )$
 
-    Из интегральной формулы Коши: $\int_{\delta \widetilde{K}} f(z) \, dz = 0$
+    Из интегральной формулы Коши: $\int_{\partial \widetilde{K}} f(z) \, dz = 0$
 
-    Но $\int_{\delta \widetilde{K}} f(z) \, dz = \int_{\delta K} f(z) \, dz - \sum_{k = 1}^n \int_{|z - a_k| = \varepsilon} f(z) \, dz$, а 
+    Но $\int_{\partial \widetilde{K}} f(z) \, dz = \int_{\partial K} f(z) \, dz - \sum_{k = 1}^n \int_{|z - a_k| = \varepsilon} f(z) \, dz$, а 
     под знаком суммы - вычеты.
 \end{proof}
 
@@ -1501,7 +1503,7 @@
 
     $\int_{|z| = R} f(z) \, dz = 2 \pi i \sum_{j = 1}^n \res_{z = a_j} f(z)$.
 
-    Но также $\int_{|z| = R} f(z) \, dz = -2 \pi i \res_{z = \infty} f(z)$. Перекидываем и доказываем.
+    Но также $\int_{|z| = R} f(z) \, dz = \int_{|z| = R}{ \sum_{k = -\infty}^{\infty} c_k z^k dz } = -2 \pi i \res_{z = \infty} f(z)$. Перекидываем и доказываем.
 \end{consequence}
 
 \begin{example}
