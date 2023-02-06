@@ -232,7 +232,7 @@
     $k_1 + k_2 + \dots + k_m = n$
 
     
-    $P(k \text{ раз выпало 1, } k_2 \text{ раз выпало 2, ...}) = \binom{n}{k_1, k_2, \dots, k_m} p_1^{k_1} \cdot \dots \cdot p_m^{k_m} = \frac{n!}{k_1! \dots k_m!}$
+    $P(k_1 \text{ раз выпало 1, } k_2 \text{ раз выпало 2, ...}) = \underbrace{\binom{n}{k_1, k_2, \dots, k_m}}_{= \frac{n!}{k_1! \dots k_m!}} \cdot p_1^{k_1} \cdot \dots \cdot p_m^{k_m}$
 \end{theorem}
 
 \begin{theorem}
@@ -311,9 +311,9 @@
 \begin{example}
     Игра в рулетку: 36 чисел и ноль. 
 
-    $p = \frac{1}{37}, n = 111, np = 3 \lambda$.
+    $p = \frac{1}{37}, n = 111, np = 3 = \lambda$.
 
-    $P(S_111 = 3) = \binom{111}{3} (\frac{1}{37})^3 (1 - \frac{1}{37})^{111 - 3} = 0.227127$
+    $P(S_{111} = 3) = \binom{111}{3} (\frac{1}{37})^3 (1 - \frac{1}{37})^{111 - 3} = 0.227127$
 
     Из Пуассона $\frac{\lambda^3}{3!} e^{-\lambda} = 0.224$
 
@@ -329,7 +329,7 @@
 \begin{theorem}
     \textbf{Локальная предельная теорема Муавра-Лапласа}
 
-    Схема Бернулии с вероятностью успеха $p \in (0, 1)$. $x = \frac{k - np}{\sqrt{npq}}$
+    Схема Бернулии с вероятностью успеха $p \in (0, 1), \ q = 1 - p, \ x = \frac{k - np}{\sqrt{npq}}$.
 
     $P(S_n = k) \sim_{n \to +\infty} \frac{1}{\sqrt{2\pi n p q}} e^{\frac{-x^2}{2}}$
 
@@ -339,7 +339,7 @@
 \begin{proof}
     $k = np + x\sqrt{npq} \geqslant np - T\sqrt{npq} \rightarrow +\infty$
 
-    $n - k = nq - -x\sqrt{npq} \geqslant nq - T\sqrt{npq} \rightarrow +\infty$
+    $n - k = nq - x\sqrt{npq} \geqslant nq - T\sqrt{npq} \rightarrow +\infty$
 
     $P(S_n = k) = \binom{n}{k} p^k q^{n - k} = \frac{n!}{k!(n - k)!}p^k q^{n - k}$
     
@@ -379,7 +379,7 @@
 \end{remark}
 
 \begin{example}
-    Всё та же рулетка. $n = 222, k = 111$. Пытаемся ставить на на четное/нечётное(кроме 0). $p = \frac{18}{37}$
+    Всё та же рулетка. $n = 222, k = 111$. Пытаемся ставить на четное/нечётное(кроме 0). $p = \frac{18}{37}$
 
     $P(S_{222} = 111) \approx \frac{1}{\sqrt{2 \pi n p q}} e^{\frac{-x^2}{2}} \approx 0.049395\ldots$
 
@@ -391,7 +391,7 @@
 
     $0 < p < 1$. $P(a < \frac{S_n - np}{\sqrt{npq}} \leqslant b) \rightarrow_{n \to \infty} \frac{1}{\sqrt{2\pi}} \int_a^b e^{\frac{-t^2}{2}} \, dt$
 
-    Равномерно по $a$ и $b$
+    Стремление равномерно по $a, \ b \in \mathbb{R}$.
 \end{theorem}
 
 \begin{theorem}
@@ -399,7 +399,7 @@
 
     Обозначение: $\Phi (x) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^x e^{-\frac{t^2}{2}} \, dt$
 
-    $|P(\frac{S_n - np}{\sqrt{npq}} \leqslant x) - \Phi (x)| \leqslant \frac{p^2 + q^2}{\sqrt{npq}} \cdot \frac{1}{2}$
+    $\left| P(\frac{S_n - np}{\sqrt{npq}} \leqslant x) - \Phi (x) \right| \leqslant \frac{p^2 + q^2}{\sqrt{npq}} \cdot \frac{1}{2}$
 
     \begin{remark}
         Константа лучше, чем $\frac{c}{\sqrt{n}}$ не бывает. 
@@ -453,17 +453,18 @@
 
     В каждой точке подбрасываем монетку. С вероятностью $p$ идём вперёд, $q$ - идём назад.
 
-    $a_{n + 1} = a_{n + 1}$ с вероятностью $p$
+    $a_{n + 1} = a_{n} + 1$ с вероятностью $p$
 
-    $a_{n + 1} = a_{n - 1}$ с вероятностью $q$
+    $a_{n + 1} = a_{n} - 1$ с вероятностью $q$
 
     $a_n \equiv n \mod 2$
 
     Это почти похоже на схему Бернулли: $2S_n - n = a_n$
 
-    $P(a_n = k) = P(S_n = \frac{n + k}{2}) = 0$, если $n \not \equiv k \mod 2$
-
-    $P(a_n = k) = P(S_n = \frac{n + k}{2}) = \binom{n}{\frac{n + k}{2}} p^{\frac{n + k}{2}} q^{\frac{n - k}{2}}$, если $n \equiv k \mod 2$, иначе
+    $P(a_n = k) = P(S_n = \frac{n + k}{2}) = \begin{cases}
+        0 \text{, если } n \not \equiv k \mod 2 \\
+        \binom{n}{\frac{n + k}{2}} p^{\frac{n + k}{2}} q^{\frac{n - k}{2}} \text{, иначе}
+    \end{cases}$
 \end{example}
 
 \begin{theorem}
