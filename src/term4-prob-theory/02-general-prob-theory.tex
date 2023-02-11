@@ -109,3 +109,287 @@
 
     Лемма Бореля-Кантелли говорит: бесконечное кол-во $A_{3k + 1}$ случится, если $\sum_{k=1}^{\infty} {P(A_{3k + 1})} = +\infty \implies P(\text{ОРО встречается бесконечное число раз}) = 1$. 
 \end{example}
+
+\Subsection{Случайные величины}
+
+\begin{definition}
+    $(\Omega, \mathcal{F}, P)$ - вероятностное пространство.
+
+    $\xi: \Omega \to \mathbb{R}$ - случайная величина, если 
+    это измеримая функция.
+\end{definition}
+
+\begin{definition}
+    Распределение случайное величины
+
+    $P_{\xi}$ - вероятностная мера на борелевских подмножествах 
+    $\mathbb{R}$
+
+    $P_{\xi}(A) = P(\xi \in A)$
+\end{definition}
+
+\begin{definition}
+    Случаный величины $\xi$ и $\eta$ одинаково распределены, если
+    $P_{\xi} = P_{\eta}$
+\end{definition}
+
+\begin{remark}
+    $P_{\xi}$ однозначно определяются своими значениями на ячейках.
+
+    $P_{\xi} (a, b] = P_{\xi} (-\infty, b] - P_{\xi} (-\infty, a] = 
+    P(\xi \leqslant b) - P(\xi \leqslant a)$
+\end{remark}
+
+\begin{definition}
+    Функция распределения случайной величины
+
+    $F_{\xi} (x) = P(\xi \leqslant x)$
+\end{definition}
+
+\begin{properties}
+    \begin{enumerate}
+        \item {
+        Функция распределения однозначно определяет распределение
+        случайной величины.
+
+        \textit{Доказательство:} Если у двух случайных величин совпали, то у них одинаковые
+        распределения
+        }
+        \item {
+            $0 \leqslant F_{\xi}(x) \leqslant 1 \, \forall x \in \mathbb{R}$
+        }
+
+        \item {
+            $\lim_{x \to -\infty} F_{\xi} (x) = 0$
+
+            $\lim_{x \to +\infty} F_{\xi} (x) = 1$
+
+            \textit{Доказательство:} берём $x_n \to -\infty. A_n = \{ \xi \leqslant x_n \} $
+            Тогда $A_{n + 1} \subset A_n$. Тогда $\lim_{n \to \infty} P(A_n) = 
+            P(\bigcap_{n = 1}^{\infty} A_n) = P(\emptyset) = 0$
+        } 
+        \item {
+            $F_{\xi}$ монотонно возрастает
+        }
+        \item {
+            Непрерывность справа: $\lim_{y \to x+} F_{\xi} (y) = F_{\xi} (x)$
+
+            \textit{Доказательство:} берём $y_n$ убывающие и $y_n \to x$.
+            Тогда $A_n = \{ \xi \leqslant y_n \}$. $A_{n + 1} \subset A_n$.
+            А тогда $\lim P(A_n) = P(\bigcup_{n = 1}^{\infty} A_n) = P(\xi \leqslant x) = F_{\xi} (x)$.
+            Но с другой стороны $\lim P(A_n) = \lim P(\xi \leqslant y_n) = \lim F_{\xi} (y_n)$
+        }
+        \item {
+            $\lim_{y \to x-} F_{\xi} (y) P(\xi < x)$
+
+            \textit{Доказательство:} берём $y_n$ возрастающие и
+            $y_n \to x$. $B_n = \{ \xi \leqslant y_n \}$ и $B_{n} \subset B_{n + 1}$.
+            $\lim P(B_n) = P(\bigcup B_n) = P(\xi < x)$. Но с другой стороны
+            $\lim P(B_n) = \lim F_{\xi} (y_n)$
+        }
+        \item {
+            $F_{\xi + a} (x) = F_{\xi} (x - a)$
+
+            \textit{Доказательство:} $\{ \xi + a \leqslant x \} = 
+            \{ \xi \leqslant x - a \}$
+        }
+        \item {
+            $F_{c\xi} = F_{\xi} (\frac{x}{c})$
+
+            \textit{Доказательство:} $\{ c\xi \leqslant x \} = 
+            \{ \xi \leqslant \frac{x}{c} \}$
+        }
+    \end{enumerate}
+
+    \begin{remark}
+        Фукнция, обладающая свойствами 3, 4, 5 - это фукнция распределения
+        некоторой случайной величины.
+
+        \textit{Доказательство:} пусть $g$ - такая функция. Тогда $\nu_g (a, b] = g(b) - g(a) $.
+        Случайная величина $\xi (x) = x$. Тогда $F_{\xi} = g$
+    \end{remark}
+
+\end{properties}
+
+\begin{definition}
+    Случайная величина имеет дискретное распределение, если её 
+    множество значений не более чем счётное.
+
+    \begin{remark}
+        \begin{enumerate}
+            \item { $\xi \to \{y_1, y_2, \ldots \}$
+
+            Если $x \neq y_k$, то $P(\xi = x) = 0$, т.е. $P_{\xi}(\{ x \}) = 0$
+            }
+
+            \item { $P_{\xi} (A) = \sum_{k : y_k \in A} P(\xi = y_k)$. Тут счётное
+            число слагаемых, поэтому сумма корректно определена.
+    
+            Распределение однозначно определяется набором вероятностей $P(\xi = y_k)$
+            }
+            \item {
+                $F_{\xi} (x) = \sum_{k : y_k \leqslant x} P(\xi = y_k)$
+            }
+        \end{enumerate}
+    \end{remark}
+\end{definition}
+
+\begin{definition}
+    Случайная величина имеет непрерывное распределение, если 
+    $P(\xi = x) = 0$
+
+    \begin{remark}
+        \begin{enumerate}
+            \item {
+                Это значит, что фукнция распределения непрерывна.
+            }
+            \item {
+                Непрерывные распределения бывают не очень хорошими, например
+                Канторова лестница.
+            }
+        \end{enumerate}
+    \end{remark}
+\end{definition}
+
+\begin{definition}
+    Случайная величина имеет абсолюнто непрерывное распределение, если 
+    существует $p_{\xi} (t) \geqslant 0$, измеримая, т.ч. $F_{\xi} (x) = 
+    \int_{-\infty}^x p_{\xi} (t) \, dt$
+\end{definition}
+
+\begin{properties}
+    \begin{enumerate}
+        \item {
+            $P_{\xi} (A) = \int_{A} p_{\xi} (t) \, dt$
+
+            \textit{Доказательство:} слева мера и справа мера. Нужно понять, почему
+            они совпадают на ячейках. 
+
+            $P_{\xi} (a, b] = F_{\xi} (b) - F_{\xi} (a) = \int_{a}^b p_{\xi} (t) \, dt$
+        }
+        \item {
+            $\int_{-\infty}^{+\infty} p_{\xi} (t) \, dt = 1$
+        }
+        \item {
+            $p_{\xi}$ определена однозначно с точностью до почти везде (из теории меры)
+        }
+        \item {
+            $F_{\xi}$ почти везде диффиренцируема и $F_{\xi}' (x) = p_{\xi} (x)$
+
+            \textit{Доказательство:} а его не будет
+        }
+    \end{enumerate}
+\end{properties}
+
+\begin{example}
+    \textbf{Вероятностные распределения}
+
+    \begin{enumerate}
+        \item {
+            Биномиальное распределение: $\xi \sim Binom(p, n), 0 < p < 1$
+
+            $\xi : \Omega \to \{ 0, 1, \ldots n \}$. $P(\xi = k) \binom{n}{k} p^k (1 - p)^{n - k}$ 
+        }
+        \item {
+            Распределение Пуассона: $\xi \sim Poisson(\lambda), \lambda > 0$.
+
+            $\xi : \Omega \to \{ 0, 1, \ldots \}$. $P(\xi = k) = \frac{\lambda^k}{k!}e^{-\lambda}$
+        }
+        \item {
+            Геометрическое распределение: $\xi \sim Geom(p), 0 < p < 1$.
+
+            $\xi : \Omega \to \{ 1, 2, \ldots \}$. $P(\xi = k) = p(1 - p)^{k - 1}$.
+        }
+        \item {
+            Дискретные равномерные распределения: $\xi \sim U(\ldots)$
+
+            $\xi : \Omega \to \{ 1, 2, \ldots n \}$. $P(\xi = k) = \frac{1}{n}$
+        }
+        \item {
+            Непрерывно равномерное распределение: $\xi \sim U([a, b])$
+
+            $\xi : \Omega \to [a, b]$. $p_{\xi}(t) = \frac{1}{b - a} \cdot \mathbb{1}_{[a, b]} (t)$
+        }
+        \item {
+            Нормальное распределение: $\xi \sim \mathcal{N} (a, \sigma^2), a \in \mathbb{R}, \sigma > 0$
+
+            $\xi : \Omega \to \mathbb{R}$. $p_{\xi}(t) = \frac{1}{\sqrt{2\pi} \cdot \sigma} e^{-\frac{(t - a)^2}{2\sigma^2}}$
+
+            Стандартное нормальное распределение: $\mathcal{N} (0, 1)$
+        }
+        \item {
+            Экспонециальное распределение: $\xi \sim Exp(\lambda), \lambda > 0$.
+
+            $\xi : \Omega \to [0, +\infty]$. $p_{\xi}(t) = \lambda e^{-\lambda t}$ при $t \geqslant 0$. В других точках 0.
+        }
+    \end{enumerate}
+
+    \begin{remark}
+        \begin{enumerate}
+            \item {
+                $\Phi (x) = \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{x} e^{-\frac{t^2}{2}} \, dt$.
+
+                На самом деле это функция распределения стандартной нормальной случайной величины.
+            }
+            \item {
+                Если $\nu \sim \mathcal{N}(0, 1)$, то $\xi = \sigma \nu + a$. $\xi \sim \mathcal{N}(a, \sigma^2)$
+
+                $F_{\xi} (x) = P(\sigma \nu + a \leqslant x) = P(\nu \leqslant \frac{x - a}{\sigma}) = \frac{1}{\sqrt{2 \pi}} 
+                \int_{-\infty}^{\frac{x - a}{\sigma}} e^{-\frac{t^2}{2}} \, dt$
+
+                Замена $t = \frac{s - a}{\sigma}$. Тогда $dt = \frac{ds}{\sigma}$
+
+                Тогда: $\frac{1}{\sqrt{2 \pi}} 
+                \int_{-\infty}^{\frac{x - a}{\sigma}} e^{-\frac{t^2}{2}} \, dt = \frac{1}{\sqrt{2\pi} \sigma}
+                \int_{-\infty}^{x} e^{-\frac{(s - a)^2}{2\sigma^2}} \, ds$
+            }
+        \end{enumerate}
+    
+    \end{remark}
+\end{example}
+
+\Subsection{Совместное распределение}
+
+\begin{definition}
+    Совместное(многомерное) распределение.
+
+    $\bar{\xi} = (\xi_1, \xi_2, \ldots, \xi_n) : \Omega \to \mathbb{R}^n$
+
+    $P_{\bar{\xi}} (A) = P(\bar{\xi} \in A)$, где $A$ - борелевское подмножество $\mathbb{R}^n$ 
+
+    \begin{remark}
+        Совместное распределение однозначно определяет распределение случайной
+        величины, но не наоборот
+
+        \begin{example}
+            $\xi, \eta : \Omega \to \{ 0, 1 \}$  с равными вероятностями.
+
+            Если это были независимые подбрасывания: $(\xi, \eta) : \Omega \to
+            \{ (0, 0), (0, 1), (1, 0), (1, 1) \}$  с равными вероятностями.
+
+            Если $\xi = \eta$, то $(\xi, \eta) : \Omega \to \{ (0, 0), (1, 1) \}$.
+
+        \end{example}
+    \end{remark}
+\end{definition}
+
+\begin{definition}
+    Случайные величины $\xi_1, \xi_2 \ldots \xi_n$ независимы, если для любых
+    борелевских подмножеств $A_1, A_2 \ldots A_n \subset \mathbb{R}$, события
+    $\{ \xi_1 \in A_1 \}, \ldots, \{ \xi_n \in A_n \}$ независимы
+
+    \begin{remark}
+        $P(\xi_1 \in A_1, \ldots, \xi_n \in A_n) = P(\xi_1 \in A_1) \cdot \ldots \cdot P(\xi_n \in A_n)$
+    \end{remark}
+\end{definition}
+
+\begin{theorem}
+    $\xi_1, \xi_2 \ldots \xi_n$ независимы $\Longleftrightarrow P_{\bar{\xi}} P_{\xi_1} \times \ldots \times P_{\xi_n}$
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item $\Leftarrow$ очевидно. $P_{\bar{\xi}} (A_1 \times \ldots \times A_n) = P_{\xi_1} (A_1) \ldots P_{\xi_n}(A_n)$
+        \item $\Rightarrow$. На множествах $A_1 \times \ldots \times A_n$ есть равенство + единственность продолжения.
+    \end{enumerate}
+\end{proof}

@@ -1538,5 +1538,187 @@
         Тогда $I = 2 \pi i \sum_{k = 1}^n \res_{2k - 1}$
 
         $\res_{a_k} = \frac{1}{2n \cdot a_k^{2n - 1}} = \frac{a_k}{2na_k^{2n}} = -\frac{a_k}{2n}$, так как $a_k$ - полюс первого порядка. 
+
+        \item {
+            $\int_{-\infty}^{+\infty} \frac{dx}{1 + x^{2n}} = 2\int_{0}^{+\infty} \frac{dx}{1 + x^{2n}} = I$
+
+            Здесь нужен рисунок.
+
+            $f(x) = \frac{1}{1 + z^{2n}}$. $\int_{\Gamma_r} f(z) \, dz = \int_{c_R} + \int_{0}^{R} + \int_{Re^{i\alpha}}^{0}$.
+            
+            $\int_{e^{i\alpha R}}^{0} f(z) \, dz = -\int_{0}^{e^{i \alpha R}} = -\int_{0}^{R} f(e^{i \alpha} t) e^{i \alpha} \, dt$ - 
+            взяли параметризацию $t \to e^{i \alpha} t$.
+
+            $f(e^{i \alpha}t) = \frac{1}{1 + e^{2 \pi i \alpha} \cdot t^{2n}} = \frac{1}{1 + t^{2n}}$, $\alpha = \frac{\pi}{n}$.
+
+            Единственная особая точка $e^{\frac{i \pi}{2n}}$ и интеграл равен
+            $2 \pi i \res$.
+
+            То есть: $I - e^{i \frac{\pi }{n}} I = 2 \pi i \res_{z = e^{\frac{i \pi}{2n}}} f = 2 \pi i \cdot \left ( - \frac{e^{\frac{i \pi}{2n}}}{2n}  \right )$
+            
+            Тогда $I = \frac{2 i e^{\frac{i \pi}{2n}}}{e^{\frac{i \pi}{2n}}} \cdot \frac{\pi}{2n} = \frac{\pi}{2n \cdot \sin \frac{\pi}{2n}}$
+        }
     \end{enumerate}
+\end{example}
+
+\begin{lemma}
+    \textbf{Жордана}
+
+    $C_{R_n} = \{ z \in \mathbb{C} : |z| = R_n, \Im z \geqslant 0 \}$
+
+    $f : \{ \Im z \geqslant 0 \} \to \mathbb{C}$. $M_{R_n} = \lim_{n \to \infty} \sup_{z \in C_{R_n}} |f(z)| = 0$
+
+    Тогда $\forall \, \lambda > 0 \, : \, \lim \int_{C_{R_n}} f(z) e^{i \lambda z} \, dz = 0$
+\end{lemma}
+
+\begin{proof}
+    Параметризация $z = R_n \cdot e^{it}$, где $t \in [0, \pi]$. 
+    
+    Тогда $dz = R_n e^{it} dt$.
+    $\int_{C_{R_n}} f(z) e^{i \lambda z} \, dz = R_n \int_{0}^{\pi} f(R_n e^{it}) e^{it} \cdot e^{i \lambda R_n e^{it}} \, dt = I_n$
+
+    $|I_n| \leqslant  R_n \int_{0}^{\pi} |f(R_n e^{it}) e^{it}| \cdot |e^{i \lambda R_n e^{it}}| \, dt \leqslant R_n \cdot M_{R_n} \cdot \int_{0}^{\pi} e^{- \lambda R_n \sin t} \, dt = (*) $
+
+    То что написано под интегралом симметрично относительно $\frac{\pi}{2}$.
+
+    $(*) = 2R_n M_{R_n} \int_{0}^{\frac{\pi}{2}} e^{-\lambda R_n \sin t} \, dt \leqslant 
+    2R_n M_{R_n} \int_{0}^{\frac{\pi}{2}} e^{-\lambda R_n \frac{2t}{\pi}} \, dt = 2R_n M_{R_n} \frac{e^{-\lambda R_n \cdot \frac{2t}{\pi}}}{-\lambda R_n \frac{2}{\pi}} \bigg |_{t = 0}^{t = \frac{\pi}{2}} 
+    \leqslant M_{R_n} \cdot \frac{1}{\frac{\lambda}{\pi}} \rightarrow 0$ . 
+\end{proof}
+
+\begin{example}
+    $\int_0^{+\infty} \frac{\cos x}{1 + x^2} \, dx = I$.
+
+    Можем считать на всей прямой и не исходный интеграл, а $\int_{-\infty}^{+\infty} \frac{e^{ix}}{1 + x^2} = I^*$.
+
+    Тогда $\Re I^* = 2I$.
+
+    Пусть $f(z) = \frac{e^{iz}}{1 + z^2}$. Контур - полуокружность от $-R$ до $R$.
+
+    $\int_{\Gamma_R} f(z) \, dz = \int_{-R}^{R} + \int_{C_R}$. Здесь $\int_{C_R} \rightarrow 0$ по лемме
+    Жордана, где $\lambda = 1$ и $M_R = \sup_{|z| = R} \left | \frac{1}{1 + z^2} \right | \leqslant \frac{1}{R^2 - 1} $ 
+    ($|1 + z^2| \geqslant |z^2| - 1 = R^2 - 1$).
+
+    Тогда $\int_{\Gamma_R} f(z) \, dz = 2 \pi i \sum \res = 2 \pi i \cdot \res_{z = i} = (*)$.
+
+    $i$ - полюс 1 порядка, тогда $f(z) = \frac{g(z)}{h(z)}$, где $g(i) \neq 0, h(i) = 0, h'(i) \neq 0$. $
+    \res = \frac{g(i)}{h'(i)} = \frac{e^{-1}}{2i}$.
+
+    Тогда $(*) = \frac{\pi}{e}$. А значит $I = \frac{\pi}{2e}$
+    
+\end{example}
+
+\begin{lemma}
+    \textbf{О полувычете}
+
+    $f \in H(0 < |z - a| < R)$ и $a$ - полюс первого порядка. $C_{\varepsilon} = \{ z \in \mathbb{C} : |z - a| = \varepsilon, \alpha \leqslant \arg (z - a) \leqslant b \}$
+
+    Тут нужна картинка.
+
+    Тогда $\lim_{\varepsilon \to 0+} \int_{C_{\varepsilon}} f(z) \, dz = (\beta - \alpha) i \cdot \res_{z = a} f$
+\end{lemma}
+
+\begin{proof}
+    Считаем, что $a = 0$. У нас полюс 1-го порядка, тогда $f(z) = \frac{c}{z} + g(z)$, где $g \in H(|z| < R)$.
+
+    Параметризация $z = \varepsilon e^{it}$, где $t \in [a, b]$. Тогда $dz = \varepsilon e^{it} i \, dt$.
+
+    $\int_{C_{\varepsilon}} f(z) \, dz = \int_{C_{\varepsilon}} \frac{c}{z} \, dz + \int_{C_{\varepsilon}} g(z) \, dz = 
+    \int_{\alpha}^{\beta} \frac{c}{\varepsilon e^{it}} \cdot \varepsilon e^{it} i \, dt + \int_{C_{\varepsilon}} g(z) \, dz = (\beta - \alpha) \cdot i \cdot c + \int_{C_{\varepsilon}} g(z) \, dz$
+
+    Оценим второй интеграл: $\int_{C_{\varepsilon}} g(z) \, dz \leqslant M \varepsilon (\beta - \alpha)$, где $M = \max_{|z| \leqslant \frac{R}{2}} |g(z)|$. и
+    тогда $\int_{C_{\varepsilon}} g(z) \, dz \rightarrow 0$.
+\end{proof}
+
+\begin{definition}
+    Главное значение интеграла. $v.p. \int$
+
+    $\int_{a}^{b} f(x) \, dx$, где $c$ - особая точка $c \in (a, b)$. 
+
+    $\int_{a}^{c - \varepsilon} f(x) \, dx + \int_{c + \varepsilon}^{b} f(x) \, dx$ 
+    и устремляем $\varepsilon$ к нулю. Предел - главное значение интеграла.
+\end{definition}
+
+\begin{example}
+    $v.p. \int_{-1}^{1} \frac{dx}{x} = 0$. 
+
+    $\lim_{\varepsilon} \int_{-1}^{-\varepsilon} + \int_{\varepsilon}^{1} = 0$, потому что
+    фукнция нечетная.
+
+    $v.p. \int_{-\infty}^{\infty} \frac{dx}{x} = 0$
+\end{example}
+
+\begin{properties}
+    \begin{enumerate}
+        \item {
+            Если $\int$ сходится, то $\int = v.p. \int$
+        }
+        \item {
+            Линейность 
+        }
+        \item {
+            Аддитивность, если резать не по особым точкам
+        }
+    \end{enumerate}
+\end{properties}
+
+\begin{example}
+    $I = \int_{0}^{+\infty} \frac{\sin x}{x} \, dx$
+
+    Функция четная, поэтому $2I = \int_{-\infty}^{+\infty} \frac{\sin x}{x} \, dx = 
+    v.p. \int_{-\infty}^{+\infty} \frac{\sin x}{x} \, dx$. ($\frac{e^{ix}}{x} = \frac{1}{x} + 1 + \ldots$).
+
+    Тогда $2I = \Im v.p. \int_{-\infty}^{+\infty} \frac{e^{ix}}{x} \, dx$
+
+    $v.p. \int_{-\infty}^{+\infty} = \lim_{\varepsilon \to 0, R \to +\infty} \int_{-R}^{-\varepsilon} + \int_{\varepsilon}^{R}$.
+
+    %TODO
+    Тут нужна картинка (мы обходим ноль).
+
+    $f(z) = \frac{e^{iz}}{z}$
+
+    $\int_{\Gamma_{R, \varepsilon}} f(z) \, dz = 0$, так как особая точка только 0, а он не в контуре.
+    Но с другой стороны: $\int_{\Gamma_{R, \varepsilon}} f(z) \, dz = \int_{-R}^{\varepsilon} + \int_{\varepsilon}^{R} + \int_{C_R} + \int_{C_{\varepsilon}}$
+
+    $\int_{C_R} \rightarrow 0$ по лемме Жордана.
+
+    $\int_{C_{\varepsilon}} f(z) \, dz \rightarrow -\pi i \res_{z = 0} f = -\pi i$.
+
+    А значит $v.p. \int_{-\infty}^{\infty} \frac{e^{ix}}{x} \, dx = \pi i$. А значит
+    $I = \frac{1}{2} \Im \ldots = \frac{\pi}{2}$
+\end{example}
+
+\begin{example}
+    $I = \int_{0}^{+\infty} \frac{x^{p - 1}}{1 + x} \, dx $, где $0 < p < 1$.
+    
+    %TODO
+    Опять же нужна картинка.
+
+    $f(z) = \frac{e^{(p - 1) Ln z}}{1 + z}$
+
+    $\int_{\Gamma_{R, \varepsilon}} f(z) \, dz = \int_{\varepsilon}^{R} + \int_{Re^{2\pi i}}^{\varepsilon e^{2\pi i}} + \int_{C_{\varepsilon}} + \int_{C_R}$.
+    Но с другой стороны $\int_{\Gamma_{R, \varepsilon}} f(z) \, dz = 2 \pi i \sum \res = 2 \pi i \res_{z = -1}$
+
+    $\res_{z = -1} = e^{(p - 1) Ln (-1)} = e^{(p - 1)\pi i}$
+
+    \begin{enumerate}
+        \item $\int_{\varepsilon}^{R} \rightarrow I$
+        \item $\int_{Re^{2\pi i}}^{\varepsilon e^{2 \pi i}} \rightarrow -e^{(p - 1) \pi i} \cdot I$
+        \item {
+            $\left | \int_{C_{R}} \frac{e^{(p - 1)Ln z}}{1 + z} \, dz \right | \leqslant \pi R \cdot \max \left | \frac{e^{(p - 1) Ln z}}{1 + z} \right | = 
+            \pi R \cdot \frac{R^{p - 1}}{\min |1 + z|} = \pi R \cdot \frac{R^{p - 1}}{R - 1} \rightarrow 0$
+
+        }
+        \item {
+            $\left | \int_{C_{\varepsilon}} \frac{e^{(p - 1)Ln z}}{1 + z} \, dz \right | \leqslant \pi \varepsilon \cdot \max \left | \frac{e^{(p - 1) Ln z}}{1 + z} \right | = 
+            \pi \varepsilon \cdot \frac{\varepsilon^{p - 1}}{\min |1 + z|} = \pi \varepsilon \cdot \frac{\varepsilon^{p - 1}}{1 - \varepsilon} \rightarrow 0$
+        }
+
+        Получили в итоге $I = \pi \frac{2i e^{(p - 1)\pi i}}{1 - e^{(p - 1)2\pi i}} = \frac{\pi}{\sin \pi p}$
+    \end{enumerate}
+    
+
+    
+
+
 \end{example}
