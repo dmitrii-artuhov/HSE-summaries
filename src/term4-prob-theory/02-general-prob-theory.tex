@@ -125,7 +125,7 @@
     $P_{\xi}$ - вероятностная мера на борелевских подмножествах 
     $\mathbb{R}$
 
-    $P_{\xi}(A) = P(\xi \in A)$
+    $A$ -- борелевское мн-во, $P_{\xi}(A) = P(\omega \in \Omega \ : \ \xi(\omega) \in A)$
 \end{definition}
 
 \begin{definition}
@@ -252,15 +252,15 @@
 \end{definition}
 
 \begin{definition}
-    Случайная величина имеет абсолюнто непрерывное распределение, если 
+    Случайная величина имеет абсолютно непрерывное распределение, если 
     существует $p_{\xi} (t) \geqslant 0$, измеримая, т.ч. $F_{\xi} (x) = 
-    \int_{-\infty}^x p_{\xi} (t) \, dt$
+    \int_{-\infty}^x p_{\xi} (t) \, dt$ ($p_{\xi}(t)$ -- плотность распределения).
 \end{definition}
 
 \begin{properties}
     \begin{enumerate}
         \item {
-            $P_{\xi} (A) = \int_{A} p_{\xi} (t) \, dt$
+            $A \subset \mathbb{R}$ -- борелевское, то $P_{\xi} (A) = \int_{A} p_{\xi} (t) \, dt$
 
             \textit{Доказательство:} слева мера и справа мера. Нужно понять, почему
             они совпадают на ячейках. 
@@ -308,7 +308,7 @@
         \item {
             Непрерывно равномерное распределение: $\xi \sim U([a, b])$
 
-            $\xi : \Omega \to [a, b]$. $p_{\xi}(t) = \frac{1}{b - a} \cdot \mathbb{1}_{[a, b]} (t)$
+            $\xi : \Omega \to [a, b]$. $p_{\xi}(t) = \frac{1}{b - a} \cdot \mathds{1}_{[a, b]} (t)$
         }
         \item {
             Нормальное распределение: $\xi \sim \mathcal{N} (a, \sigma^2), a \in \mathbb{R}, \sigma > 0$
@@ -320,7 +320,10 @@
         \item {
             Экспонециальное распределение: $\xi \sim Exp(\lambda), \lambda > 0$.
 
-            $\xi : \Omega \to [0, +\infty]$. $p_{\xi}(t) = \lambda e^{-\lambda t}$ при $t \geqslant 0$. В других точках 0.
+            $\xi : \Omega \to [0, +\infty]$. $p_{\xi}(t) = \begin{cases}
+                \lambda e^{-\lambda t}, \text{ при } t \geqslant 0 \\
+                0, \text{ в других точках}
+            \end{cases}$
         }
     \end{enumerate}
 
@@ -384,7 +387,7 @@
 \end{definition}
 
 \begin{theorem}
-    $\xi_1, \xi_2 \ldots \xi_n$ независимы $\Longleftrightarrow P_{\bar{\xi}} P_{\xi_1} \times \ldots \times P_{\xi_n}$
+    $\xi_1, \xi_2 \ldots \xi_n$ независимы $\Longleftrightarrow P_{\bar{\xi}} = P_{\xi_1} \times \ldots \times P_{\xi_n}$
 \end{theorem}
 
 \begin{proof}
