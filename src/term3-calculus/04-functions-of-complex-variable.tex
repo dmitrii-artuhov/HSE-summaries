@@ -1716,9 +1716,137 @@
 
         Получили в итоге $I = \pi \frac{2i e^{(p - 1)\pi i}}{1 - e^{(p - 1)2\pi i}} = \frac{\pi}{\sin \pi p}$
     \end{enumerate}
-    
-
-    
-
-
 \end{example}
+
+\begin{theorem}
+
+    Пусть $f$ - мероморфная функция в $\mathbb{C}$. $z_1, \ldots, z_n$ - полюсы.
+    $G_1, \ldots, G_n$ - главные части рядов Лорана в точках $z_1, \ldots, z_n$.
+    $\infty$ - полюс или устранимая особая точка. $G$ - правильная часть
+    ряда Лорана в $\infty$
+
+    Тогда $f(z) = G(z) + \sum_{k = 1}^n G_k(z) + C$, в частности, 
+    $f$ - рациональная функция.
+\end{theorem}
+
+\begin{proof}
+    $g(z) = f(z) - G(z) - \sum_{k = 1}^n G_k(z)$. У этой функции $z_1, \ldots, z_n, \infty$ - 
+    устранимые особые точки, а во всех остальных точках есть голоморфность. 
+
+    Тогда по теореме Луивилля $g \equiv const$.
+\end{proof}
+
+\begin{theorem}
+    Пусть $f$ мероморфная функция в $\mathbb{C}$, $z_1, \ldots$ - полюсы.
+    $R_1, R_2, \ldots$ последовательность радиусов. $M_{R_n} = \max_{|z| = R_n} |f(z)| \rightarrow 0$.
+    Тогда $f(z) = \lim_{n \to \infty} \sum_{k:|z_k| < R_n} G_k (z)$ 
+\end{theorem}
+
+\begin{proof}
+    $\frac{1}{2\pi i} \int_{|z| = R_n} \frac{\zeta}{\zeta - z} \, d \zeta = \sum \res \frac{f(\zeta)}{\zeta - z} (*)$
+
+    $\left | \frac{1}{2\pi i} \int_{|z| = R_n} \frac{\zeta}{\zeta - z} \, d \zeta \right | = R_n \cdot 
+    \max_{|\zeta| = R_n} \left | \frac{f(\zeta)}{\zeta - z} \right | \leqslant R_n \cdot \frac{M_{R_n}}{R_n - |z|} \rightarrow 0$
+
+    Какие особые точки есть у $(*)$ - особые точки $z$ и особые точки $f$. 
+    Поймём как устроены вычеты в этих особых точках.
+
+    $z \neq z_k$. $\res_{\zeta = z} \frac{f(\zeta)}{\zeta - k}$ - полюс первого порядка, значит:
+    $\res_{\zeta = z} \frac{f(\zeta)}{\zeta - k} = f(z)$
+
+    $\res_{\zeta = z_k} \frac{f(\zeta)}{\zeta - z} = \res_{\zeta = z_k} \frac{G_k (\zeta)}{\zeta - z}$. Так как разность - 
+    голоморфная в точке $z_k$ функция. Такой вычет посчитаем так:
+
+    $\frac{1}{2\pi i} \int_{|\zeta| = R} \frac{G_k (\zeta)}{\zeta - z} \, d\zeta = \res_{\zeta = z} + \res_{\zeta = z_k}$.
+    С другой стороны:
+
+    $\left | \frac{1}{2\pi i} \int_{|\zeta| = R} \frac{G_k (\zeta)}{\zeta - z} \, d\zeta \right | \leqslant R \cdot \frac{\max_{|\zeta| = R} |G_k (\zeta)|}{R - |z|} \rightarrow 0$.
+    А значит $-\res_{\zeta = z} = \res_{\zeta = z_k}$.
+
+    Отсюда получили, что $\res_{\zeta = z_k} \frac{G_k (\zeta)}{\zeta - z} = \res_{\zeta = z} \frac{G_k(\zeta)}{\zeta - z} = -G_k (z)$.
+
+    Тогда $(*) = f(z) - \sum_{k : |z_k| < R_n} G_k (z)$
+\end{proof}
+
+\begin{example}
+    
+    $f(z) = \frac{\ctg z}{z}$. Особые точки вида $\pi k, k \in \mathbb{Z}$. Давайте брать $R_n = \pi n + \frac{\pi}{2}$.
+
+    % Тут, наверное, нужна картинка. 
+
+    \begin{lemma}
+        Существует $M$, такая что, $|\ctg z| \leqslant M \, \forall z \, |z| = \pi n + \frac{\pi}{2}$
+    \end{lemma}
+
+    $M_{R_n} \leqslant \frac{M}{R_n} \rightarrow 0$. Тогда исходя из теоремы 
+    $\frac{\ctg z}{z} = \lim_{n \to \infty} \sum_{-n}^n G_k(z)$, где $G_k$ - главная часть ряда Лорана в точке 
+    $\pi k$.
+
+    Пусть $k \neq 0$, тогда $f$ имеет в точке $\pi k$ полюс первого порядка. 
+    Тогда $G_k(z) = \frac{\res}{z - \pi k}$.
+
+    Нас интересует $\res_{z = \pi k} \frac{\ctg z}{z} = \res_{z = \pi k} \frac{\frac{\cos z}{z}}{\sin z}$.
+    Числитель и знаменатель голоморфны и $z = \pi k$ - ноль первой кратности. Тогда
+    $\res = \frac{\frac{\cos z}{z}}{(\sin z)'} = \frac{1}{\pi k}$.
+
+    Поэтому $G_k(z) = \frac{1}{\pi k(z - \pi k)}$
+
+    $z = 0$. Интересуемся $G_0(z) = \frac{a}{z} + \frac{b}{z^2}$. Здесь $a = 0$, так как функция чётная, $b = 
+    \res_{z = 0} \ctg z = \res_{z = 0} \frac{\cos z}{\sin z} = 1$.
+
+    То есть $\frac{\ctg z}{z} = \frac{1}{z^2} \lim_{n \to \infty} \sum_{k = 1}^n \left ( \frac{1}{\pi k(z - \pi k)} - \frac{1}{\pi k(z + \pi k)} \right ) =
+    \frac{1}{z^2} + \sum_{k = 1}^{\infty} \frac{2}{z^2 - \pi^2 k^2}$
+
+    \begin{proof}
+        \textbf{леммы про $\ctg$}
+
+        Нужен рисунок, без него беда. Тут потеряно доказательство.
+        %Рисунок и пруф.
+    \end{proof}
+\end{example}
+
+\begin{example}
+    $\ctg z = \frac{1}{z} + \sum_{k = 1}^{\infty} \frac{2z}{z^2 - \pi^2 k^2}$.
+
+    Знаем, что $(\ln \sin z)' = \ctg z$
+
+    $\ctg z - \frac{1}{z} = (\ln \frac{\sin z}{z})'$.
+
+    $\ln \frac{\sin z}{z} = \int_{0}^{z} (\ctg w - \frac{1}{w}) \, dw = \int_{0}^{z} \sum_{k=1}^{\infty} \frac{2w}{w^2 - \pi^2 k^2} \, dw = 
+    \sum_{k = 1}^{\infty} \int_{0}^{z} \frac{2w}{w^2 - \pi^2 k^2}$ (можем переставлять, потому что есть
+    равномерная сходимость). $\sum_{k = 1}^{\infty} \int_{0}^{z} \left ( \frac{1}{w - \pi k} + \frac{1}{w + \pi k} \right ) = 
+    \sum_{k = 1}^{\infty} \ln (w - \pi k) + \ln (w + \pi k) \bigg |_{0}^z = \sum_{k = 1}^{\infty} \ln 
+    \left ( \frac{z^2 - \pi^2 k^2}{-\pi^2 k^2} \right ) = \sum_{k = 1}^{\infty} \ln \left ( 1 - \frac{z^2}{\pi^2 k^2} \right )$.
+
+    Тогда $\frac{\sin z }{z} = \prod_{k = 1}^{\infty} \left ( 1 - \frac{z^2}{\pi^2 k^2} \right )$.
+    Тогда $\sin z = z \prod_{k = 1}^{\infty} \left ( 1- \frac{z^2}{\pi^2 k^2} \right )$
+\end{example}
+
+\begin{example}
+    $\sum_{n = 1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}$
+
+    $f(z) = \frac{1}{z^2}$. Посмотрим на $f(z) \cdot \ctg (\pi z)$. Тогда
+    $\res_{z = k} f(z) \cdot \ctg (\pi z) = \frac{f(k)}{\pi}$.
+
+    $g(z) = \frac{\ctg \pi z}{z^2}$ и проинтегрируем.
+
+    $\frac{1}{2 \pi i} \int_{|z| = n + \frac{1}{2}} \frac{\ctg \pi z}{z^2} \, dz = 
+    \sum_{k = -n, k \neq 0}^n \frac{1}{\pi k^2} + \res_{z = 0} \frac{\ctg \pi z}{z^2}$.
+
+    При этом есть такая оценка:
+    $\left | \frac{1}{2 \pi i} \int_{|z| = n + \frac{1}{2}} \frac{\ctg \pi z}{z^2} \, dz \right | \leqslant 
+    (n + \frac{1}{2}) \cdot \frac{M}{(n + \frac{1}{2})^2} \rightarrow 0$
+
+    Значит:
+    $\sum_{k = 1}^{\infty} \frac{1}{k^2} = -\frac{\pi}{2} \cdot \res_{z = 0} \frac{\ctg \pi z}{z^2}$.
+    Такой вычет не очень приятно считать - раскладываем в ряд.
+
+    Коэффициент перед $z^1$ в $\ctg \pi z = \frac{\cos \pi z}{\sin \pi z} = \frac{1 - \frac{\pi^2 z^2}{2} + \mathcal{O}(z^4)}{\pi z (1 - \frac{\pi^2 z^2}{6} + \mathcal{O}(z^4))} = 
+    \frac{(1 - \frac{\pi^2 z^2}{2} + \mathcal{O}(z^4))(1 + \frac{\pi^2 z^2}{6} + \mathcal{O}(z^4))}{\pi z} = \frac{1}{\pi z} - \frac{1}{3} \pi z + \mathcal{O}(z^3)$.
+
+    То есть коэффициент $-\frac{1\pi}{3}$.
+
+    Тогда $\sum_{k = 1}^{\infty} \frac{1}{k^2} = -\frac{\pi}{2} \cdot (-\frac{\pi}{3}) = \frac{\pi^2}{6} $
+\end{example}
+
+

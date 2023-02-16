@@ -396,3 +396,239 @@
         \item $\Rightarrow$. На множествах $A_1 \times \ldots \times A_n$ есть равенство + единственность продолжения.
     \end{enumerate}
 \end{proof}
+
+\begin{definition}
+    Совместная(многомерная) функция распределения.
+
+    $\bar{\xi} = (\xi_1 \ldots \xi_n)$. $F_{\bar{\xi}} : \mathbb{R}^n \to \mathbb{R}$. и
+    $F_{\bar{\xi}} (\bar{x}) = (\xi_1 \leqslant x_1,  \ldots, \xi_n \leqslant x_n) $
+\end{definition}
+
+\begin{properties}
+    \begin{enumerate}
+        \item {
+            $0 \leqslant F_{\bar{\xi}} \leqslant 1$
+        }
+        \item {
+            Монотонно возрастает по каждой координате
+        }
+        \item {
+            $\lim_{x_i \to -\infty} F_{\bar{\xi}} (\bar{x}) = 0$
+
+            $\lim_{x_1, \ldots, x_n \to +\infty} F_{\bar{\xi}} (\bar{x}) = 1$
+        }
+        \item {
+            $\lim_{x_i \to +\infty} F_{\bar{\xi}} (\bar{x}) = F_{\xi_1, \ldots, \xi_{i - 1}, \xi_{i + 1}, \ldots}$
+        }
+    \end{enumerate}
+\end{properties}
+
+\begin{definition}
+    Совместная плотность $p_{\bar{\xi}} (\bar{t})$ - неотрицательная измеримая функция, 
+    такая, что $F_{\bar{\xi}} (\bar{\xi}) = \int_{-\infty}^{x_1} \ldots \int_{-\infty}^{x_n} p_{\bar{\xi}} (\bar{t}) \, dt_n \ldots dt_1$
+\end{definition}
+
+\begin{theorem}
+    $\xi_1 \ldots \xi_n$ независимы $\Longleftrightarrow F_{\bar{\xi}} (\bar{x}) = F_{\xi_1} (x_1) \cdot \ldots \cdot F_{\xi_n} (x_n)$
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item {
+            Докажем $\Rightarrow$. Независимость $\Rightarrow (*) P_{\bar{\xi}} = P_{\xi_1} \times \ldots \times P_{\xi_n} \Rightarrow 
+            P_{\bar{\xi}} ((-\infty, x_1] \times \ldots \times (-\infty, x_n]) = P_{\xi_1} (-\infty, x_1] \cdot \ldots \cdot P_{\xi_n} (-\infty, x_n]$
+        }
+        \item {
+            Хотим проверить совпадение на ячейках (нужна картинка), чтобы доказать $(*)$ ещё и в другую сторону.
+            % TODO картинка
+
+            $P_{\bar{\xi}}((a, b] \times (c, d]) = F_{\bar{\xi}} (b, d) - F_{\bar{\xi}} (b, c) - F_{\bar{\xi}} (a, d) + F_{\bar{\xi}} (a, c) = 
+            (F_{\xi_1} (b) - F_{\xi_1}(a))(F_{\xi_2}(d) - F_{\xi_2}(c)) = P_{\xi_1} (a, b] \cdot P_{\xi_2}(c, d]$
+        }
+    \end{enumerate}
+\end{proof}
+
+\begin{consequence}
+    $\xi_1 \ldots \xi_n$ - абсолютно непрерывные случайные величины. Тогда 
+    $\xi_1 \ldots \xi_n$ независимы $\Longleftrightarrow p_{\bar{\xi}} (\bar{t}) = p_{\xi_1} (t_1) \cdot \ldots \cdot p_{\xi_n}(t_n)$
+
+    В частности, в случае независимости $\bar{\xi}$ абсолютно непрерывна.
+\end{consequence}
+
+\begin{proof}
+    \begin{enumerate}
+        \item {
+            Докажем $\Rightarrow$.
+            
+            Независимость $\Rightarrow F_{\bar{\xi}} (\bar{x}) = F_{\xi_1} (x_1) \cdot \ldots \cdot F_{\xi_n} (x_n) = 
+            \int_{-\infty}^{x_1} p_{\xi_1} (t_1) \, dt_1 \cdot \ldots \cdot \int_{-\infty}^{x_n} p_{\xi_n} (t_n) \, dt_n = 
+            \int_{-\infty}^{x_1} \ldots \int_{-\infty}^{x_n} p_{\xi_1} (t_1) \ldots p_{\xi_n} (t_n) \, dt_n \ldots dt_1$.
+
+            Запихали всё под один интеграл, то что под интегралом и есть совместная плотность.
+        }
+        \item {
+            Докажем $\Leftarrow$.
+            
+            Просто проинтегрируем равенство.
+            
+            $\int_{-\infty}^{x_1} \ldots \int_{-\infty}^{x_n} p_{\bar{\xi}} (\bar{t}) \, dt_n \ldots dt_1 = 
+            \int_{-\infty}^{x_1} \ldots \int_{-\infty}^{x_n} p_{\xi_1} (t_1) \ldots p_{\xi_n} (t_n) \, dt_n \ldots dt_1 = 
+            F_{\xi_1} (x_1) \cdot \ldots \cdot F_{\xi_n} (x_n)$
+        }
+    \end{enumerate}
+\end{proof}
+
+\begin{remark}
+    \textbf{Свертки мер}
+
+    $\mu$ и $\nu$ - конечные меры на борелевских подмножествах $\mathbb{R}$.
+
+    $\mu * \nu (A) = \int_{\mathbb{R}} \mu (A - x) \, d\nu (x)$ - это 
+
+    \begin{properties}
+        \textbf{Свойства свёртки}
+
+        \begin{enumerate}
+            \item {
+                $\mu * \nu (A) = \int_{\mathbb{R}^2} \mathds{1}_A (x + y) d\mu (x) \, d\nu (y)$
+
+                \textit{Доказательство: } $\mu * \nu (A) = \int_{\mathbb{R}} \mu (A - x) \, d\nu (x) =
+                \int_{\mathbb{R}} \int_{\mathbb{R}} \mathds{1}_{A - x} (y) d\mu (y) \, d\nu (x)$
+            }
+            \item {
+                $\mu * \nu = \nu * \mu$
+            }
+            \item {
+                $\mu_1 * \ldots * \mu_n (A) = \int_{\mathbb{R}^n} \mathds{1}_A (x_1 + \ldots + x_n) \, d\mu_1 (x_1) \ldots \, d \mu_n (x_n)$
+            }
+            \item {
+                $(\mu_1 * \mu_2) * \mu_3 = \mu_1 * (\mu_2 * \mu_3)$
+            }
+            \item {
+                $(\mu_1 + \mu_2) * \nu = \mu_1 * \nu + \mu_2 * \nu$
+            }
+            \item {
+                $\delta_x$ - мера с единичной нагрузкой в точке $x$. Тогда $\mu * \delta_0 = \mu$.
+
+                Получили линейное пространство относительно $+$ и $*$
+
+                \textit{Доказательство:} $\mu * \delta_0 (A) = \int_R \mu (A - x) \, d\delta_0 (x) = 
+                \mu A$ - значение подыинтегральной функции в точке $x = 0$.
+            }
+        \end{enumerate}
+    \end{properties}
+\end{remark}
+
+\begin{theorem}
+    Пусть $\mu$ и $\nu$ имеют плотности $p_{\mu}$ и $p_{\nu}$
+
+    Тогда $\mu * \nu$ имеет плотность $p(t) = \int_{\mathbb{R}} p_{\mu} (t - s) p_{\nu} \, ds$
+\end{theorem}
+
+\begin{proof}
+    Возьмём функцию, определяемую этой формулой и проверим, что подходит.
+
+    $\int_A p(t) \, dt = \int_A \int_{\mathbb{R}} p_{\mu} (t - s) p_{\nu} (s) \, ds \, dt = \int_{\mathbb{R}}
+    \int_{\mathbb{R}} \mathds{1}_A (t) p_{\mu} (t - s) p_{\nu} (s) \, ds \, dt = (*)$.
+
+    Положим $u = t - s$. Тогда $(*) = \int_{\mathbb{R}^2} \mathds{1}_{A} (u + s) p_{\mu} (u) p_{\nu} (s) \, ds \, du = 
+    \int_{\mathbb{R}^2} \mathds{1}_A (u + s) \, d\nu (s) \, d \mu (u) = \mu * \nu (A)$
+\end{proof}
+
+\begin{theorem}
+    Если $\xi$ и $\eta$ независимые случайный величины, то $P_{\xi + \eta} = P_{\xi} * P_{\eta}$
+\end{theorem}
+
+\begin{proof}
+    Нужно взять какое-то борелевское множество и понять как устроено там распределение суммы.
+
+    Пусть $B = \{ (x, y) : x + y \in A \}$
+
+    $P_{\xi + \eta} (A) = P(\xi + \eta \in A) = P((\xi, \eta) \in B) = P_{\xi, \eta} (B) = 
+    \int_{\mathbb{R}^2} \mathds{1}_B (x, y) d P_{\xi} (x) \, dP_{\eta} (y) =
+    \int_{\mathbb{R}^2} \mathds{1}_A (x + y) d P_{\xi} (x) \, dP_{\eta} (y) = P_{\xi} * P_{\eta} (A)$
+\end{proof}
+
+\begin{example}
+    \begin{enumerate}
+        \item {
+            \textbf{Свертка с дисректным распределением}
+
+            $\nu = \sum_{k = 1}^{\infty} p_k \delta_{x_k}$. Тогда $\mu * \nu (A) = \int_{\mathbb{R}} \mu (A - x) \, d\nu (x) = 
+            \sum_{k = 1}^{\infty} \mu (A - x_k) p_k$
+        }
+        \item {
+            $\xi_i \sim Poisson(\lambda_i)$. $\xi_1$ и $\xi_2$ независимы.
+
+            $P_{\xi_1 + \xi_2} (\{ n \}) = \sum_{k = 0}^{+\infty} P_{\xi_1} (\{ n \} - k) \cdot 
+            \frac{\lambda_2^k e^{-\lambda_2}}{k_2!} = \sum_{k = 0}^{n} \frac{\lambda_1^{n - k} e^{-\lambda_1}}{(n - k)!} \cdot 
+            \frac{\lambda_2^k e^{-\lambda_2}}{k!} = e^{-\lambda_1} e^{-\lambda_2} \sum_{k = 0}^n \frac{\lambda_1^{n - k} \lambda_2^k}{k! (n - k)!} =
+            \frac{(\lambda_1 + \lambda_2)^n e^{-\lambda_1 - \lambda_2}}{n!}$
+
+            $\xi_1 + \xi_2 \sim Poisson(\lambda_1 + \lambda_2)$
+        }
+    \end{enumerate}
+\end{example}
+
+
+
+\Subsection{Математическое ожидание и дисперсия}
+
+\begin{definition}
+    $\xi$ - случайная величина. $\mathbb{E} \xi = \int_{\Omega} \xi (\omega) \, dP(\omega)$ - матиематическое
+    ожидание (среднее значение случайной величины).
+\end{definition}
+
+\begin{properties}
+    \begin{enumerate}
+        \item {
+            $\mathbb{E} (a\xi + b \eta) = a\mathbb{E} \xi + b \mathbb{E} \eta, a, b \int \mathbb{R}$
+        }
+        \item {
+            Если $\xi \geqslant 0$, почти наверное, то $\mathbb{E} \xi \geqslant 0$
+        }
+        \item {
+            Если $\xi \geqslant \eta$, то $\mathbb{E}\xi \geqslant \mathbb{E} \eta$
+        }
+        \item {
+            $\mathbb{E} \xi = \int_{\mathbb{R}} x \, dP_{\xi} (x)$
+        }
+        \item {
+            Если $f : \mathbb{R}^n \to \mathbb{R}$ - измерима относительно борелевской $\sigma-$алгебры.
+
+            Тогда $\mathbb{E} f(\xi_1, \xi_2 \ldots \xi_n) = \int_{\mathbb{R}^n} f(x_1, \ldots, x_n) dP_{\xi_1, \ldots, \xi_n} (x_1, \ldots, x_n)$
+
+            \textit{Доказательство:} $f = \mathds{1}_A$. Тогда $\mathbb{E} \mathds{1}_A (\xi_1, \ldots \xi_n) = 
+            \int_{\Omega} \mathds{1}_A (\xi_1 (w), \ldots, \xi_n (w)) dP(\omega) = 
+            P(\omega \in \Omega : \bar{\xi} \in A) = P_{\bar{\xi}} (A) = \int_{\mathbb{R}^n} \mathds{1}_A (x_1, \ldots, x_n) dP_{\bar{\xi}} (x_1, \ldots, x_n)$.
+
+            Тогда по линейности верно для простых.
+
+            Теперь берём $f_j$ неотрицательный простые, такие, что возрастают и $\rightarrow f$. И предельный
+            переход по теореме Леви.
+        }
+        \item {
+            Если $\xi_1$ и $\xi_2$ независимы, то $\mathbb{E} (\xi \eta) = \mathbb{E} \xi \cdot \mathbb{E} \eta$
+
+            \textit{Доказательство: } $\mathbb{E} (\xi \eta) = \int_{\mathbb{R}^2} xy dP_{\xi, \eta} (x, y) =
+            \int_{\mathbb{R}} \int_{\mathbb{R}} xy dP_{\xi} (x) \, dP_{\eta} (y) =
+            \int_{\mathbb{R}} y \int_{\mathbb{R}} x dP_{\xi} (x) \, dP_{\eta} (y) = \mathbb{E} \xi \cdot \mathbb{E} \eta$
+        }
+        \item {
+            Если $\xi \geqslant 0$, то $\mathbb{E} \xi = \int_{0}^{+\infty} P(\xi \geqslant t) \, dt$ - из теории меры.
+        }
+        \item {
+            Если $p, q > 1$ и $\frac{1}{p} + \frac{1}{q} = 1$, то $\mathbb{E}|\xi \eta| \leqslant (\mathbb{E}|\xi|^p)^{\frac{1}{p}} (\mathbb{E} |\eta|^q)^{\frac{1}{q}}$ - 
+            неравенство Гёльдера
+        }
+        \item {
+            Неравенство Ляпунова
+
+            $o <r < s$, тогда $(\mathbb{E} |\xi| ^ r)^{\frac{1}{r}} \leqslant (\mathbb{E}|\xi|^s)^{\frac{1}{s}}$.
+
+            \textit{Доказательство:} достаточно доказать для $r = 1$. То есть $\mathbb{E} |\xi| \leqslant (\mathbb{E}|\xi|^s)^{\frac{1}{s}}$.
+
+            Возьмём $\eta \equiv 1$ и напишем Гёльдера.
+        }
+    \end{enumerate}
+\end{properties}
