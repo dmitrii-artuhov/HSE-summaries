@@ -398,10 +398,10 @@
 \end{proof}
 
 \begin{definition}
-    Совместная(многомерная) функция распределения.
+    Совместная (многомерная) функция распределения.
 
     $\bar{\xi} = (\xi_1 \ldots \xi_n)$. $F_{\bar{\xi}} : \mathbb{R}^n \to \mathbb{R}$. и
-    $F_{\bar{\xi}} (\bar{x}) = (\xi_1 \leqslant x_1,  \ldots, \xi_n \leqslant x_n) $
+    $F_{\bar{\xi}} (\bar{x}) = P(\xi_1 \leqslant x_1,  \ldots, \xi_n \leqslant x_n) $
 \end{definition}
 
 \begin{properties}
@@ -424,8 +424,7 @@
 \end{properties}
 
 \begin{definition}
-    Совместная плотность $p_{\bar{\xi}} (\bar{t})$ - неотрицательная измеримая функция, 
-    такая, что $F_{\bar{\xi}} (\bar{\xi}) = \int_{-\infty}^{x_1} \ldots \int_{-\infty}^{x_n} p_{\bar{\xi}} (\bar{t}) \, dt_n \ldots dt_1$
+    Совместная плотность $p_{\bar{\xi}} (\bar{t})$ - неотрицательная измеримая функция, такая, что $F_{\bar{\xi}} (\bar{\xi}) = \int_{-\infty}^{x_1} \ldots \int_{-\infty}^{x_n} p_{\bar{\xi}} (\bar{t}) \, dt_n \ldots dt_1$
 \end{definition}
 
 \begin{theorem}
@@ -439,11 +438,15 @@
             P_{\bar{\xi}} ((-\infty, x_1] \times \ldots \times (-\infty, x_n]) = P_{\xi_1} (-\infty, x_1] \cdot \ldots \cdot P_{\xi_n} (-\infty, x_n]$
         }
         \item {
-            Хотим проверить совпадение на ячейках (нужна картинка), чтобы доказать $(*)$ ещё и в другую сторону.
-            % TODO картинка
+            Хотим проверить совпадение на ячейках, чтобы доказать $(*)$ ещё и в другую сторону.
 
-            $P_{\bar{\xi}}((a, b] \times (c, d]) = F_{\bar{\xi}} (b, d) - F_{\bar{\xi}} (b, c) - F_{\bar{\xi}} (a, d) + F_{\bar{\xi}} (a, c) = 
-            (F_{\xi_1} (b) - F_{\xi_1}(a))(F_{\xi_2}(d) - F_{\xi_2}(c)) = P_{\xi_1} (a, b] \cdot P_{\xi_2}(c, d]$
+            \begin{center}
+                \includegraphics[width=10cm]{assets/02-general-prob-theory/arbitrary-value-independence.png}
+            \end{center}
+
+            $P_{\bar{\xi}}((a_1, b_1] \times (a_2, b_2]) = F_{\bar{\xi}} (b_1, b_2)  + F_{\bar{\xi}} (a_1, a_2) - F_{\bar{\xi}} (a_1, b_2) - F_{\bar{\xi}} (a_2, b_1) =$ 
+
+            $= (F_{\xi_1} (b_1) - F_{\xi_1}(a_1)) \cdot (F_{\xi_2}(b_2) - F_{\xi_2}(a_2)) = P_{\xi_1} (a_1, b_1] \cdot P_{\xi_2}(a_2, b_2]$
         }
     \end{enumerate}
 \end{proof}
@@ -472,18 +475,27 @@
             Просто проинтегрируем равенство.
             
             $\int_{-\infty}^{x_1} \ldots \int_{-\infty}^{x_n} p_{\bar{\xi}} (\bar{t}) \, dt_n \ldots dt_1 = 
-            \int_{-\infty}^{x_1} \ldots \int_{-\infty}^{x_n} p_{\xi_1} (t_1) \ldots p_{\xi_n} (t_n) \, dt_n \ldots dt_1 = 
-            F_{\xi_1} (x_1) \cdot \ldots \cdot F_{\xi_n} (x_n)$
+            \int_{-\infty}^{x_1} \ldots \int_{-\infty}^{x_n} p_{\xi_1} (t_1) \ldots p_{\xi_n} (t_n) \, dt_n \ldots dt_1 =$
+            
+            $\underbrace{=}_{\text{по т. Тонелли можно выносить интегралы}} F_{\xi_1} (x_1) \cdot \ldots \cdot F_{\xi_n} (x_n)$
         }
     \end{enumerate}
 \end{proof}
+
+\begin{remark}
+    Напоминание.
+
+    Свертка последовательностей: $\{a_n\}, \{b_n\}$ это $\{c_n\}$, такая что $c_n = a_0 b_n + a_1 b_{n - 1} + \ldots + a_n b_0$.
+
+    Мотивировка: $\left(\sum_{n=0}^{\infty}a_n z^n\right) \cdot \left(\sum_{n = 0}^{\infty} b_n z^n\right) = \sum_{n=0}^{\infty} c_n z^n$  (при наличии хоть каких-нибудь кругов сходимости у обоих рядов).
+\end{remark}
 
 \begin{remark}
     \textbf{Свертки мер}
 
     $\mu$ и $\nu$ - конечные меры на борелевских подмножествах $\mathbb{R}$.
 
-    $\mu * \nu (A) = \int_{\mathbb{R}} \mu (A - x) \, d\nu (x)$ - это 
+    $\mu * \nu (A) = \int_{\mathbb{R}} \mu (A - x) \, d\nu (x)$ - это свертка мер, где $(A - x) := \{ a - x \ | \ a \in A \}$.
 
     \begin{properties}
         \textbf{Свойства свёртки}
@@ -522,7 +534,7 @@
 \begin{theorem}
     Пусть $\mu$ и $\nu$ имеют плотности $p_{\mu}$ и $p_{\nu}$
 
-    Тогда $\mu * \nu$ имеет плотность $p(t) = \int_{\mathbb{R}} p_{\mu} (t - s) p_{\nu} \, ds$
+    Тогда $\mu * \nu$ имеет плотность $p(t) = \int_{\mathbb{R}} p_{\mu} (t - s) p_{\nu} (s) \, ds$
 \end{theorem}
 
 \begin{proof}
@@ -560,8 +572,8 @@
         \item {
             $\xi_i \sim Poisson(\lambda_i)$. $\xi_1$ и $\xi_2$ независимы.
 
-            $P_{\xi_1 + \xi_2} (\{ n \}) = \sum_{k = 0}^{+\infty} P_{\xi_1} (\{ n \} - k) \cdot 
-            \frac{\lambda_2^k e^{-\lambda_2}}{k_2!} = \sum_{k = 0}^{n} \frac{\lambda_1^{n - k} e^{-\lambda_1}}{(n - k)!} \cdot 
+            $P_{\xi_1 + \xi_2} (\{ n \}) = \sum_{k = 0}^{+\infty} P_{\xi_1} (\{ n  - k \}) \cdot 
+            \frac{\lambda_2^k e^{-\lambda_2}}{k!} = \sum_{k = 0}^{n} \frac{\lambda_1^{n - k} e^{-\lambda_1}}{(n - k)!} \cdot 
             \frac{\lambda_2^k e^{-\lambda_2}}{k!} = e^{-\lambda_1} e^{-\lambda_2} \sum_{k = 0}^n \frac{\lambda_1^{n - k} \lambda_2^k}{k! (n - k)!} =
             \frac{(\lambda_1 + \lambda_2)^n e^{-\lambda_1 - \lambda_2}}{n!}$
 
@@ -575,20 +587,19 @@
 \Subsection{Математическое ожидание и дисперсия}
 
 \begin{definition}
-    $\xi$ - случайная величина. $\mathbb{E} \xi = \int_{\Omega} \xi (\omega) \, dP(\omega)$ - матиематическое
-    ожидание (среднее значение случайной величины).
+    $\xi : \Omega \rightarrow \mathbb{R}$ - случайная величина ($\xi \geq 0 $, либо суммируемая функция). $\mathbb{E} \xi = \int_{\mathbb{R}} \xi (\omega) \, dP(\omega)$ - математическое ожидание (среднее значение случайной величины).
 \end{definition}
 
 \begin{properties}
     \begin{enumerate}
         \item {
-            $\mathbb{E} (a\xi + b \eta) = a\mathbb{E} \xi + b \mathbb{E} \eta, a, b \int \mathbb{R}$
+            $a, b \in \mathbb{R}: \ \mathbb{E} (a\xi + b \eta) = a\mathbb{E} \xi + b \mathbb{E} \eta$
         }
         \item {
-            Если $\xi \geqslant 0$, почти наверное, то $\mathbb{E} \xi \geqslant 0$
+            Если $\xi \geqslant 0$, с вероятностью 1, то $\mathbb{E} \xi \geqslant 0$ (по сути написано, что если функция почти везде неотрицательна, то интеграл неотрицателен).
         }
         \item {
-            Если $\xi \geqslant \eta$, то $\mathbb{E}\xi \geqslant \mathbb{E} \eta$
+            Если $\xi \geqslant \eta$ с вероятностью 1, то $\mathbb{E}\xi \geqslant \mathbb{E} \eta$
         }
         \item {
             $\mathbb{E} \xi = \int_{\mathbb{R}} x \, dP_{\xi} (x)$
@@ -608,10 +619,11 @@
             переход по теореме Леви.
         }
         \item {
-            Если $\xi_1$ и $\xi_2$ независимы, то $\mathbb{E} (\xi \eta) = \mathbb{E} \xi \cdot \mathbb{E} \eta$
+            Если $\xi_1$ и $\xi_2$ независимы, то $\mathbb{E} (\xi \cdot \eta) = \mathbb{E} \xi \cdot \mathbb{E} \eta$
 
-            \textit{Доказательство: } $\mathbb{E} (\xi \eta) = \int_{\mathbb{R}^2} xy dP_{\xi, \eta} (x, y) =
-            \int_{\mathbb{R}} \int_{\mathbb{R}} xy dP_{\xi} (x) \, dP_{\eta} (y) =
+            \textit{Доказательство: } $\mathbb{E} (\xi \eta) = \int_{\mathbb{R}^2} xy dP_{\xi, \eta} (x, y) = $
+            
+            $\underbrace{=}_{\text{независимость сл. вел.}} \int_{\mathbb{R}} \int_{\mathbb{R}} xy dP_{\xi} (x) \, dP_{\eta} (y) =
             \int_{\mathbb{R}} y \int_{\mathbb{R}} x dP_{\xi} (x) \, dP_{\eta} (y) = \mathbb{E} \xi \cdot \mathbb{E} \eta$
         }
         \item {
@@ -624,11 +636,17 @@
         \item {
             Неравенство Ляпунова
 
-            $o <r < s$, тогда $(\mathbb{E} |\xi| ^ r)^{\frac{1}{r}} \leqslant (\mathbb{E}|\xi|^s)^{\frac{1}{s}}$.
+            $0 < r < s$, тогда $(\mathbb{E} |\xi| ^ r)^{\frac{1}{r}} \leqslant (\mathbb{E}|\xi|^s)^{\frac{1}{s}}$.
 
-            \textit{Доказательство:} достаточно доказать для $r = 1$. То есть $\mathbb{E} |\xi| \leqslant (\mathbb{E}|\xi|^s)^{\frac{1}{s}}$.
+            \textit{Доказательство:} $p = \frac{s}{r} > 1, \ \frac{1}{q} = 1 - \frac{1}{p} = \frac{s - r}{s} < 1$.
 
-            Возьмём $\eta \equiv 1$ и напишем Гёльдера.
+            Тогда запишем Гельдера для $\xi$ и $\eta = 1$:
+            
+            $\mathbb{E} |\xi|^r |1| \leq \left(\mathbb{E} (|\xi|^r)^p \right)^{\frac{1}{p}} \cdot \left( \mathbb{E} 1^q \right)^{\frac{1}{q}} = \left( \mathbb{E} |\xi|^s \right)^{\frac{r}{s}}$.
+            
+            % достаточно доказать для $r = 1$. То есть $\mathbb{E} |\xi| \leqslant (\mathbb{E}|\xi|^s)^{\frac{1}{s}}$.
+
+            % Возьмём $\eta \equiv 1$ и напишем Гёльдера.
         }
     \end{enumerate}
 \end{properties}
