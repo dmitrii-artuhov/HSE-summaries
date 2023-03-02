@@ -650,3 +650,251 @@
         }
     \end{enumerate}
 \end{properties}
+
+\begin{remark}
+    $\mathbb{E}(\xi \eta) = \mathbb{E}\xi \cdot \mathbb{E} \eta$ без независимости неверно.
+    Пример.
+    % Тут нужен пример. 
+\end{remark}
+
+\begin{theorem}
+    \textbf{Неравенство Маркова}
+
+    Если $\xi \geqslant 0, p, t > 0$, то $P(\xi \geqslant t) \leqslant \frac{\mathbb{E}\xi^p}{t^p}$.
+\end{theorem}
+
+\begin{proof}
+    Неравенство Чебышёва из теории меры.
+\end{proof}
+
+\begin{definition}
+    \begin{enumerate}
+        \item Моменты случайной величины. $\mathbb{E} (\xi^k)$ - $k$-ый момент.
+        \item Центральный момент. $\mathbb{E}(\xi - \mathbb{E}\xi)^k$ - $k$-ый центральный момент.
+        \item Абсолютный момент. $\mathbb{E}|\xi|^k$ - $k$-ый абсолютный момент.
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    Медиана случайной величины. $m$ - медиана $\xi$, если $P(\xi \geqslant m) \geqslant \frac{1}{2}$ и 
+    $P(\xi \leqslant m) \geqslant \frac{1}{2}$.
+
+    \begin{remark}
+        Медиана не единственна.
+
+        Возьмём кубик. $\xi = 1, 2, \ldots, 6$ с вероятностью $\frac{1}{6}$. 
+        Тогда любое число $m \in [3, 4]$ подходит.
+
+        Чаще всего всё равно берут середину, чтобы была единственность.
+    \end{remark}
+\end{definition}
+
+\begin{example}
+    Есть организация из 1000 человек. 1 начальник и 999 подчиненных.
+
+    Зарплата начальника $1.000.000 \$ $, а подчинённых $1000 \$ $.
+
+    $\mathbb{E} = \frac{999}{1000} \cdot 1000 + \frac{1}{1000} \cdot 1000000 = 1999$
+
+    $m = 1000$ - медиана лучше характеризует ситуацию в этом случае.
+\end{example}
+
+\begin{definition}
+    Дисперсия. $\mathbb{D} \xi = \mathbb{E}(\xi - \mathbb{E} \xi)^2$ - второй центральный момент.
+
+    Обозначение в англоязычной литературе: $Var \xi$
+\end{definition}
+
+\begin{properties}
+    \begin{enumerate}
+        \item {
+            $\mathbb{D} \xi = \mathbb{E} \xi^2 - (\mathbb{E} \xi)^2$
+
+            \textit{Доказательство: } Пусть $a = \mathbb{E} \xi$.
+
+            Тогда $\mathbb{D} \xi = \mathbb{E} (\xi - a)^2 = \mathbb{E} \xi^2 - 2a\mathbb{E}\xi + a^2$
+        }
+        \item {
+            $\mathbb{D} \xi \geqslant 0$ и если $\mathbb{D} \xi = 0$, то $P(\xi = c) = 1$
+
+            \textit{Доказательство: } Если $\mathbb{D} \xi = 0$, то
+            $\int_{\Omega} (\xi - a)^2 \, dP = 0$, значит $(\xi - a)^2 = 0$ почти везде.
+        }
+        \item {
+            $\mathbb{D} (\xi + a) = \mathbb{D} \xi$
+
+            \textit{Доказательство: } $\mathbb{E} (\xi + a) = \mathbb{E} \xi + a$. А тогда 
+            $(\xi + a) - \mathbb{E} (\xi + a) = \xi - \mathbb{E} \xi$
+        }
+        \item {
+            $\mathbb{D} (c \xi) = c^2 \mathbb{D} \xi$
+
+            \textit{Доказательство: } $\mathbb{D} (c\xi) = \mathbb{E} (c\xi)^2 - (\mathbb{E} (c\xi))^2$
+        }
+        \item {
+            Если $\xi$ и $\eta$ независимы, то $\mathbb{D} (\xi + \eta) = \mathbb{D}\xi + \mathbb{D} \eta$
+
+            \textit{Доказательство: } $\mathbb{D} (\xi + \eta) = \mathbb{E} (\xi + \eta)^2 - (\mathbb{E} (\xi + \eta))^2 = 
+            \mathbb{E} \xi^2 + 2\mathbb{E}(\xi \eta) + \mathbb{E} \eta^2 - (\mathbb{E}\xi)^2 - 2\mathbb{E}\xi\mathbb{E}\eta - (\mathbb{E}\eta)^2 = \mathbb{D} \xi + \mathbb{D} \eta$
+        }
+        \item {
+            Аналогично предыдущему, но для $n$ случайных величин.
+
+            \textit{Доказательство: } индукция 
+        }
+        \item {
+            $\mathbb{E} |\xi - \mathbb{E} \xi| \leqslant \sqrt{\mathbb{D} \xi}$
+
+            \textit{Доказательство: } $\mathbb{E} |\xi - \mathbb{E} \xi| \leqslant (\mathbb{E}|\xi - \mathbb{E}\xi|^2)^{\frac{1}{2}} = \sqrt{\mathbb{D} \xi}$ - написали Ляпунова. 
+        }
+        \item {
+            \textbf{Неравенство Чебышёва}
+
+            $P(|\xi - \mathbb{E} \xi| \geqslant t) \leqslant \frac{\mathbb{D} \xi}{t^2}$, где $t > 0$
+
+            \textit{Доказательство: } $P(|\xi - \mathbb{E} \xi| \geqslant t) \leqslant \frac{\mathbb{E} |\xi - \mathbb{E} \xi|^2}{t^2} = \frac{\mathbb{D}\xi}{t^2}$ - неравенство Маркова для $p = 2$. 
+        }
+    \end{enumerate}
+\end{properties}
+
+\begin{definition}
+    Стандартное отклонение $\sigma = \sqrt{\mathbb{D} \xi}$
+\end{definition}
+
+\begin{example}
+    \begin{enumerate}
+        \item {
+            $\xi \sim U[0, 1]$. 
+            
+            Тогда $\mathbb{E} \xi = \int_{0}^{1} x \, dx = \frac{x^2}{2} \bigg |_0^1 = \frac{1}{2}$.
+
+            $\mathbb{E} \xi^2 = \int_{0}^{1} x^2 \, dx = \frac{x^3}{3} \bigg |_0^1 = \frac{1}{3}$. А тогда
+            $\mathbb{D} \xi = \mathbb{E} \xi^2 - (\mathbb{E} \xi)^2 = \frac{1}{12}$
+        }
+        \item {
+            $\xi \sim U[a, b]$. 
+            
+            Если $\eta \sim U[0, 1]$ и $\xi = (b - a)\eta + a \sim U[a, b]$.
+            Тогда $\mathbb{E} \xi = \mathbb{E} ((b - a) \eta  + a) = \frac{a + b}{2}$
+
+            $\mathbb{D} ((b-a)\eta + a) = \mathbb{D} ((b - a)\eta) = (b-a)^2\mathbb{D}\eta = \frac{(b-a)^2}{12}$
+        }
+        \item {
+            $\xi \sim \mathcal{N} (0, 1)$
+
+            $\mathbb{E} \xi = \frac{1}{\sqrt{2\pi}} \int_{\mathbb{R}} xe^{\frac{-x^2}{2}} \, dx = 0$, так как функция нечётная.
+
+            Значит $\mathbb{D} \xi = \mathbb{E} \xi ^2 = \frac{1}{\sqrt{2\pi}} \int_{\mathbb{R}} x^2 e^{-\frac{x^2}{2}} \, dx = 
+            -\frac{e^{\frac{-x^2}{2}}x}{\sqrt{2\pi}} \bigg |_{-\infty}^{+\infty} + \frac{1}{\sqrt{2\pi}} \int_{\mathbb{R}} e^{-\frac{x^2}{2}} \, dx = 1$ 
+        }
+        \item {
+            $\xi \sim \mathcal{N}(a, \sigma^2)$
+
+            Если $\eta \sim \mathcal{N}(0, 1)$, то $\xi = \sigma \eta + a \sim \mathcal{N}(a, \sigma^2)$.
+            
+            $\mathbb{E} \xi = \mathbb{E} (\sigma \eta + a) = \sigma \mathbb{E} \eta + a = a$
+
+            $\mathbb{D} \xi = \mathbb{D} (\sigma \eta + a) = \sigma^2 \mathbb{D} \eta = \sigma^2$
+        }
+    \end{enumerate}
+\end{example}
+
+\begin{definition}
+    Пусть $\mathbb{E} \xi^2 < +\infty$ и $\mathbb{E} \eta^2 < +\infty$.
+
+    Ковариация $cov (\xi, \eta) = \mathbb{E} ((\xi - \mathbb{E}\xi)(\eta - \mathbb{E}\eta))$
+\end{definition}
+
+\begin{properties}
+    \begin{enumerate}
+        \item {
+            $cov (\xi, \xi) = \mathbb{D} \xi$
+        }
+        \item {
+            $cov (\xi, \eta) = cov (\eta, \xi)$
+        }
+        \item {
+            $cov (c\xi, \eta) = c \cdot cov (\xi, \eta)$
+        }
+        \item {
+            $cov(\xi_1 + \xi_2, \eta) = cov(\xi_1, \eta) + cov(\xi_2, \eta)$
+        }
+        \item {
+            $cov (\xi, \eta) = \mathbb{E} (\xi \eta) - \mathbb{E}\xi\mathbb{E}\eta$
+
+            \textit{Доказательство: } $\mathbb{E} \xi = a, \mathbb{E} \eta = b$
+
+            $cov(\xi, \eta) = \mathbb{E}((\xi - a)(\eta - b)) = \mathbb{E}(\xi \eta) - a\mathbb{E}\eta - b \mathbb{E} \xi + ab$
+        }
+        \item {
+            Если $\xi$ и $\eta$ независимы, то $cov (\xi, \eta) = 0$
+        }
+        \item {
+            $\mathbb{D} (\xi + \eta) = \mathbb{D} \xi + \mathbb{D} \eta + 2 cov (\xi, \eta)$
+        }
+        \item {
+            $\mathbb{D} (\xi_1 + \xi_2 + \ldots + \xi_n) = \mathbb{D} \xi_1 + \mathbb{D} \xi_2 + \ldots + \mathbb{E} \xi_n + 2\sum_{i < j} cov(\xi_i, \xi_j)$.
+        }
+    \end{enumerate}
+\end{properties}
+
+\begin{example}
+    $P(\text{успех}) = p$. Делаем $n$ подбрасываний. $\eta =$ количество переходов от орла к решке.
+
+    Пусть $\xi_i = 1$, если на $i$ позиции орёл, на $i + 1$ позиции решка, иначе $\xi_i = 0$.
+
+    $\eta = \xi_1 + \ldots + \xi_{n - 1}$. Тогда $\mathbb{E} \eta = \sum_{i = 1}^{n - 1} \mathbb{E} \xi_i = (n - 1)pq$.
+
+    $\mathbb{D} \eta = \sum_{i = 1}^{n - 1} \mathbb{D}\xi_i + 2\sum_{i < j} cov(\xi_i, \xi_j)$.
+
+    Если $i + 1 < j$, то $\xi_i$ и $\xi_j$ независимы, поэтому в сумме почти везде нули.
+
+    Значит $\mathbb{D} \eta = \sum_{i = 1}^{n - 1} \mathbb{D}\xi_i + 2\sum_{i = 1}^{n - 1} cov(\xi_i, \xi_{i + 1})$.
+
+    $\mathbb{D} \xi_i = \mathbb{E} \xi_i^2 - (\mathbb{E} \xi_i)^2 = pq - p^2q^2$.
+
+    $cov(\xi, \xi_{i + 1}) = \mathbb{E} (\xi_i \xi_{i + 1}) - \mathbb{E} \xi_i \mathbb{E} \xi_{i + 1} = -p^2q^2$
+\end{example}
+
+\begin{remark}
+    \begin{enumerate}
+        \item {
+            $\{ \xi : \mathbb{E} \xi^2 < +\infty \}$
+
+            $\left <\xi, \eta \right > = \mathbb{E} (\xi \eta)$ - скалярное произведение.
+
+            $\mathbb{E} \xi$ - ортогональная проекция на константы.
+        }
+        \item {
+            $\left < \xi, \eta \right > = cov (\xi, \eta)$ - тоже скалярное произведение.
+
+            Норма - это стандартное отклонение.
+        }
+    \end{enumerate}
+\end{remark}
+
+\begin{theorem}
+    \textbf{Выбор двудольного подграфа}
+
+    Есть граф $G$ с $n$ вершинами и $m$ рёбрами. Хотим стереть некоторое количество рёбер(как можно меньше) так, чтобы
+    остался двудольный подграф.
+
+    Тогда $G$ содержит двудольный подграф с $\geqslant \frac{m}{2}$ рёбрами.
+\end{theorem}
+
+\begin{proof}
+    $A$ - те вершины, на которых выпал орёл, $B$ - на которых выпала решка.
+
+    Будем интересоваться матожидание количества рёбер в такой ситуации.
+
+    $
+    \xi_{xy} = 
+    \begin{cases}
+        1, & \text{если x, y из разных долей} \\
+        0, & \text{иначе}
+    \end{cases}
+    $
+
+    $\mathbb{E} \xi = \sum_{xy \in E} \mathbb{E} \xi_{xy} = \frac{m}{2}$, а значит есть реализация с $\frac{m}{2}$.
+\end{proof}
+    
