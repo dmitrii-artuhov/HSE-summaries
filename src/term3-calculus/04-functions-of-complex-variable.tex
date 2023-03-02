@@ -1978,4 +1978,226 @@
     Тогда $\sum_{k = 1}^{\infty} \frac{1}{k^2} = -\frac{\pi}{2} \cdot (-\frac{\pi}{3}) = \frac{\pi^2}{6}$.
 \end{example}
 
+\begin{theorem}
+    Пусть $f$ мероморфна в $\Omega$, $\gamma$ - простая замкнутая кривая в $\Omega$, 
+    не проходящая через нули и полюсы $f$.
 
+    Тогда $\frac{1}{2 \pi i} \int_{\gamma} \frac{f'(z)}{f(z)} \, dz = \mathcal{N}_f - \mathcal{P}_f$
+
+    $\mathcal{N}_f$ - количество нулей $f$ с учетом кратности в контуре $\gamma$.
+
+    $\mathcal{P}_f$ - количество полюсов $f$ с учетом кратности в контуре $\gamma$.
+
+    \begin{consequence}
+        Если $f \in H(\Omega)$, $\gamma$ - простая замкнутая кривая, не проходящая через нули $f$, тогда
+        $\frac{1}{2\pi i} \int_{\gamma} \frac{f'(z)}{f(z)} \, dz = \mathcal{N}_f$
+    \end{consequence}
+\end{theorem}
+
+\begin{proof}
+    Если $a$ - ноль или полюс $f$, то $f(z) = (z - a)^m g(z)$, где $g(a) \neq 0$ и 
+    $g$ голоморфна в окрестности $a$.
+
+    \begin{enumerate}
+        \item Если $a$ - ноль, то $m$ - кратность нуля
+        \item Если $a$ - полюс, то $m$ - порядок полюса.
+    \end{enumerate}
+
+    $f'(z) = m(z - a)^{m - 1} g(z) + (z - a)^m g'(z)$
+
+    $\frac{f'(z)}{f(z)} = \frac{m}{z - a} + \frac{g'(z)}{g(z)}$, второе слагаемое голоморфно с окрестности $a$. Значит,
+    $a$ - полюс первого порядка $\frac{f'}{f}$, а $m$ - вычет.
+\end{proof}
+
+\begin{consequence}
+    \textbf{Принцип аргумента}
+
+    Пусть $f \in H(\Omega)$, $\gamma$ - простая замкнутая кривая в $\Omega$, не проходящая через
+    нули $f$. 
+    
+    Тогда $\mathcal{N}_f = \frac{1}{2\pi} \Delta_{\gamma} \arg f(z)$, где $\Delta_{\gamma}$ - изменение аргумента
+    при движении по кривой.
+\end{consequence}
+
+\begin{proof}
+    $\mathcal{N}_f = \frac{1}{2\pi i} \int_{\gamma} \frac{f'(z)}{f(z)} \, dz$. Но $\frac{f'}{f} = (Ln f)'$. 
+    Если рассмотрим $Ln$ на кривой $\gamma$, то это будет первообразная вдоль пути $\gamma$ для $\frac{f'}{f}$.
+
+    $\mathcal{N}_f = \frac{1}{2\pi i} \Delta_\gamma (Ln f(z)) = \frac{1}{2 \pi i} (\Delta_\gamma
+    (\ln |f(z)| + i\arg f(z))) = \frac{1}{2\pi} \Delta_{\gamma} \arg f(z)$
+\end{proof}
+
+\begin{theorem}
+    \textbf{Руше}
+
+    $f, g \in H(\Omega)$, $\gamma$ - простой замкнутая кривая в $\Omega$ и 
+    $|f| > |g|$ на $\gamma$.
+
+    Тогда $f + g$ и $f$ внутри $\gamma$ имеют одинаковое число нулей с учетом кратности.
+\end{theorem}
+
+\begin{proof}
+    $\mathcal{N}_{f + g} = \frac{1}{2 \pi} \Delta_\gamma \arg (f + g)$.
+    $|f + g| \geqslant |f| - |g| > 0$ на $\gamma$, поэтому в ноль обращения нет и
+    можно использовать принцип аргумента.
+
+    $\mathcal{N}_{f + g} = \frac{1}{2\pi} \Delta_\gamma \arg (f \cdot (1 + \frac{g}{f})) = 
+    \frac{1}{2\pi} \Delta_\gamma \arg f + \frac{1}{2\pi} \Delta_\gamma \arg (1 + \frac{g}{f})$.
+
+    Значит надо доказать, что $\Delta_\gamma \arg (1 + \frac{g}{f}) = 0$.
+
+    Значения $1 + \frac{g}{f}$ на $\gamma$ лежат в круге $|z - 1| < 1$, потому что $\frac{|g|}{|f|} < 1$. А значит
+    вокруг нуля обойти не можем и изменения аргумента нет.
+\end{proof}
+
+\begin{example}
+    $z - e^{-z} = \lambda > 1$. Хотим понять, что в правой полуплоскости есть ровно 1 корень.
+
+    % Картинка
+    Возьмём окружность большого радиуса и по ней обход по контуру $\gamma$.
+
+    Возьмём $f(z) = z - \lambda$ и $g(z) = -e^{-z}$. 
+    
+    На отрезке $|f(z)| = |iy - \lambda| = \sqrt{y^2 + \lambda^2} \geqslant \lambda > 1$, а
+    $|g(z)| = |-e^{-iy}| = 1$, значит всё выполняется.
+
+    На полуокружности $|f(z)| = |z - \lambda| \geqslant |z| - \lambda = R - \lambda$, а 
+    $|g(z)| = |-e^{-x - iy}| = e^{-x} \leqslant 1$. То есть если $R > \lambda + 1$, то $|f| > |g|$ на $\gamma$.
+
+    Тогда $\mathcal{N}_{f + g} = \mathcal{N}_f = 1$
+\end{example}
+
+\Subsection{Конфорные отображения}
+
+\begin{definition}
+    $\Omega$ и $\tilde{\Omega}$, тогда $f: \Omega \to \tilde{\Omega}$ - конфорное отображение,
+    если $f$ биекция и $f \in H(\Omega)$
+\end{definition}
+
+\begin{theorem}
+    Пусть $f \in H(\Omega)$, $a \in \Omega$, такая, что $f'(a) \neq 0$.
+    
+    Тогда $f$ сохраняет углы между кривыми, проходящими через точку $a$.  
+\end{theorem}
+
+\begin{proof}
+    $\gamma : [0, 1] \to \Omega$ и $\gamma (0) = a$ (можно так считать).
+    
+    $\tilde{\gamma} : [0, 1] \to \Omega$ и $\tilde{\gamma} (0) = a$.
+
+    $\arg \gamma'(0) - \arg \tilde{\gamma}'(0)$ - угол между кривым в $\Omega$.
+
+    $\arg (f \circ \gamma)'(0) - \arg (f \circ \tilde{\gamma})'(0) = \arg f'(a)\gamma'(0) - \arg f'(a) \tilde{\gamma}'(0) = 
+    \arg \tilde{\gamma}'(0) - \arg \tilde{\gamma}'(0)$
+\end{proof}
+
+\begin{definition}
+    $f : \Omega \to \mathbb{C}$ - однолистная, если $f \in H(\Omega)$ и 
+    инъекция.
+\end{definition}
+
+\begin{theorem}
+    Если $f \in H(\Omega)$ и $f \neq const$, то $f(\Omega)$ - область.
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item {
+            Линейная связность остаётся
+        }
+        \item {
+            Нужно проверить, что $f(\Omega)$ - открытое множество. Возьмём точку 
+            в образе и докажем, что она там лежит с некоторым шариком.
+
+            $b \in f(\Omega) \Rightarrow \exists \, a \in \Omega \, : \, f(a) = b$.
+
+            % Сюда можно картинку.
+
+            Найдётся окружность $|z - a| < \varepsilon$, что $|f(z) - b| \neq 0$. Если на окружности радиуса $\frac{1}{n}$ нашлась точка $z_n$, 
+            такая, что $f(z_n) = b$, то $f \equiv b$ по теореме единственности.
+
+            $r = \min_{|z - a| = \varepsilon} |f(z) - b| > 0$. Посмотрим на $f(z) - w$. Хотим понять, что такое уравнение
+            имеет решение при $w$ близких к $b$. Это и будет значить, что близкие к $b$ точки попадают в образ.
+
+            Подставим всё в теорему Руше. $f(z) - w = (f(z) - b) + (b - w)$. Нужно, чтобы $|f(z) - b| > |b - w|$. Возьмём $|b-w| < r$ и всё выполнится.
+
+            Получили, что $\{ |w-b| < r \} \subset f(\Omega) \Rightarrow f(\Omega)$ открытое.
+        }
+    \end{enumerate}
+\end{proof}
+
+\begin{consequence}
+    Если $f$ однолистна, то $f$ конформное отображние $\Omega$ на $f(\Omega)$.
+\end{consequence}
+
+\begin{theorem}
+    $f : \Omega \to \mathbb{C}$ однолистна. Тогда $f'(z) \neq 0 \, \forall \, z \in \Omega$.
+\end{theorem}
+
+\begin{proof}
+    Пусть $f'(a) = 0$, $b = f(a)$. Возьмём $\varepsilon$ так, что
+    $f(z) - b \neq 0$ при $|z - a| = \varepsilon$ и $r = \min_{|z - a| = \varepsilon} |f(z) - b| > 0$.
+
+    Смотрим на уравнение $f(z) - w = f(z) - b + b - w$. Мы выяснили, что 
+    $\mathcal{N}_{f - w} = \mathcal{N}_{f - b} \geqslant 2$, потому что
+    $a$ - корень кратности $\geqslant 2$. Тогда $f(z) = w$ имеет хотя бы 2 решения. Но у нас инъекция, поэтому
+    все решения с кратностью 2. Хотим показать, что тогда найдётся последовательность нулей производных, 
+    стремящаяся к точке $a$ и получить противоречие.
+
+    Берём радиус $\frac{r}{2}$. $\{ |w - b| \leqslant \frac{r}{2} \} \subset f(\Omega)$.
+    Берём $w_1, w_2, \ldots$ из этого круга. Значит $\exists \, z_1, \ldots$ из $|z - a| < \varepsilon$, 
+    $f(z_k) = w_k$ и $f'(z_k) = 0 \Rightarrow$ в $|z - a| \leqslant \varepsilon$ бесконечно много нулей
+    $f'$. Значит у них есть предельная точка и тогда $f' \equiv 0 \Rightarrow f \equiv const$.
+\end{proof}
+
+\begin{remark}
+    Обратное неверно. $f(z) = e^z, f'(z) = e^z \neq 0$, но нет однолистности.
+\end{remark}
+
+\begin{consequence}
+    \begin{enumerate}
+        \item {
+            Конформное отображение сохраняет углы между кривыми
+
+            \textit{Доказательство: } оно инъективно, а значит производная в ноль не обращается.
+        }
+        \item {
+            Если $f(z) = c_0 + \frac{c_1}{z} + \frac{c_2}{z^2} + \ldots$ однолистна
+            в окрестности $\infty$, то $c_1 \neq 0$.
+
+            \textit{Доказательство: } $g(z) = f(\frac{1}{z})$ однолистна в проколотой окрестности нуля, в нуле можем доопределить, чтобы была голоморфность.
+
+            % Картинка
+            $g$ однолистна в меньшей не проколотой окрестности $\Rightarrow c_1 = g'(0) \neq 0$ 
+        }
+        \item {
+            $f$ имеет полюс в точке $a$ и однолистна в проколотой окрестности точки $a$, 
+            тогда это полюс первого порядка.
+
+            \textit{Доказательство: } пусть $g(z) = \frac{1}{f(z)}$ - однолистна в проколотой окрестности точки $a$.
+            Можем доопределить нулём в точке $a$ и тогда будет голоморфность. $g(a) = 0$.
+
+            Тогда $g$ однолистна в окрестности точки $a$, а значит $g'(a) \neq 0$, тогда $a$ - 
+            ноль первого порядка у $g$, а значит и ноль перовго порядка у $f$.
+        }
+    \end{enumerate}
+\end{consequence}
+
+\begin{definition}
+    $\Omega$ и $\tilde{\Omega}$ конформно эквивалентны, если $\exists \, f : \Omega \to \tilde{\Omega}$ - конформное отображение.
+
+    \begin{remark}
+        Это отношение эквивалентности.
+    \end{remark}
+\end{definition}
+
+\begin{theorem}
+    $\mathbb{C}$ и $\mathbb{D}$ не конформно эквивалентны.
+\end{theorem}
+
+\begin{proof}
+    От противного. Пусть $f : \mathbb{C} \to \mathbb{D}$ - конформное отображение.
+
+    Тогда $f \in H(\mathbb{C})$, $|f| \leqslant 1$. Тогда $f$ константа
+    по теореме Луивилля. А это не биекция
+\end{proof}
