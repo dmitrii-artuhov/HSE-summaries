@@ -2201,3 +2201,322 @@
     Тогда $f \in H(\mathbb{C})$, $|f| \leqslant 1$. Тогда $f$ константа
     по теореме Луивилля. А это не биекция
 \end{proof}
+
+\begin{lemma}
+    \textbf{Шварца}
+
+    $f : \mathbb{D} \to \mathbb{D}$ голомофрная, $f(0) = 0$. Тогда:
+    \begin{enumerate}
+        \item $|f(z)| \leqslant |z| \forall \, z \in \mathbb{D}$
+        \item Если для какого-то $a$, $|f(a)| = |a|$, то $f(z) = e^{i\phi} z$, где $\phi \in \mathbb{R}$
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    \begin{enumerate}
+        \item {
+            Пусть $g(z) = \frac{f(z)}{z}$, в нуле устранимая особая точка, устраним - получим голоморфную в круге функцию.
+            %TODO
+            Согласно принципу максимума, в круге $|g(z)| \leqslant \max_{|z| = r} |g(z)| \leqslant \frac{1}{r} \rightarrow_{r \to 1-} 1$.
+            И тогда $\frac{|f(z)|}{|z|} \leqslant 1$
+        }
+        \item {
+            Знаем, что $|g(z)| \leqslant 1$ в $\mathbb{D}$. Если $|g(a)| = 1$, для $a \in \mathbb{D}$, то 
+            $a$ локальный максимум модуля и тогла, по принципу максимума, $g \equiv const \Rightarrow g(z) = e^{i\phi}$
+        }
+    \end{enumerate}
+    
+\end{proof}
+
+\begin{theorem}
+    \textbf{Римана о конфорных отображениях}
+
+    $\Omega$ и $\tilde{\Omega}$ - односвязные области в $\bar{\mathbb{C}}$, причём их
+    граница состоит больше, чем из одной точки (есть хотя бы какая-то кривая).
+    Есть точка $z_0 \in \Omega, \tilde{z_0} \in \tilde{\Omega}$ и $\alpha \in \mathbb{R}$.
+
+    Тогда существует единственное конформное отображение $f : \Omega \to \tilde{\Omega}$, такое,что
+    $f(z_0) = \tilde{z_0}$ и $\arg f'(z_0) = \alpha$.
+\end{theorem}
+
+\begin{proof}
+    \textit{Единственность}
+
+    \begin{enumerate}
+        \item {
+            $\Omega = \tilde{\Omega} = \mathbb{D}, z_0 = \tilde{z_0} = 0$.
+
+            Пусть $f : \mathbb{D} \to \mathbb{D}$, $f(0) = 0$ и $\arg f'(0) = \alpha$.
+            По лемме Шварца для $f$ получаем, что $|f(z)| \leqslant |z| \, \forall z \in \mathbb{D}$.
+            
+            С другой стороны, $f^{-1} : \mathbb{D} \to \mathbb{D}$ тоже конфорное, $f^{-1}(0) = 0$, значит для
+            неё тоже можно применить лемму Шварца. $|f^{-1}(z)| \leqslant |z| \Rightarrow |z| \leqslant |f(z)|$.
+
+            Значит $|f(z)| = |z| \, \forall z \in \mathbb{D}$, тогда по лемме Шварца это поворот, то есть $f(z) = e^{i\phi}z$
+        }
+        \item {
+            $\Omega$ и $\tilde{\Omega}$ проивзольные. Пусть $f_1, f_2 \, : \, \Omega \to \tilde{\Omega}$ - конфорное.
+            $f_i(z_0) = \tilde{z_0}$ и $\arg f_i' (z_0) = \alpha$
+
+            Здесь нужна картинка и часть доказательства.
+            %TODO, картинка
+            %TODO
+        }
+    \end{enumerate}
+\end{proof}
+
+\begin{consequence}
+    \textbf{теорема Лиувилля}
+
+    $f \in H(\mathbb{C})$ и $f$ не принимает значения на некоторой кривой $\gamma$. Тогда
+    $f \equiv const$
+\end{consequence}
+
+\begin{proof}
+    $\bar{\mathbb{C}} \setminus \gamma$ - односвязная область, с границей, состоящей из более чем одной точки.
+    Тогда существует $g : \bar{\mathbb{C}} \setminus \gamma \to \mathbb{D} \Rightarrow g \circ f \in H(\mathbb{C})$ и $g \circ f \subset \mathbb{D}$, то есть
+    это ограниченная функция.
+
+    Тогда по теореме Лиувилля (стандартной), $g \circ f$ - константа, значит
+    $f(z) = g^{-1} (const) = const$.
+\end{proof}
+
+\begin{remark}
+    \textbf{Малая теорема Пикара}
+
+    Если $f \in H(\mathbb{C})$ не принимает 2 каких-то значения, то 
+    $f \equiv const$.
+\end{remark}
+
+\begin{example}
+    $f(z) = e^z \neq 0$ - одно значение целая функция может не принимать.
+\end{example}
+
+\begin{consequence}
+    Если $f$ мероморфна в $\mathbb{C}$ и не принимает 3 значения, то $f \equiv const$
+\end{consequence}
+
+\begin{proof}
+    Пусть нет значений $a, b, c$. Сделаем из меромофрной - голоморфную, которая не принимает 2 значения.
+    Пусть $c \neq \infty$, тогда $g(z) = \frac{1}{f(z) - c} \in H(\mathbb{C})$, но она не
+    принимает значения $\frac{1}{a - c}$ и $\frac{1}{b - c}$.
+\end{proof}
+
+\begin{example}
+    $f(z) = \tg z \neq \pm i$ - два значения может не принимать.
+\end{example}
+
+\begin{definition}
+    $f(z) = \frac{az + b}{cz + d}$ - дробно-линейное отображение, $ad - bc \neq 0$.
+\end{definition}
+
+\begin{theorem}
+    Если $f \in H(\bar{\mathbb{C}} \setminus z_0)$ и однолистна, то $f$ дробно-линейное отображение.
+\end{theorem}
+
+\begin{proof}
+    $z_0$ - изолированная особая точка. 
+
+    \begin{enumerate}
+        \item {
+            $z_0$ - существенная особая точка. Тогда по теореме Сохоцкого 
+            $Cl \, f \{ 0 < |z - z_0| < \varepsilon \} = \mathbb{C}$.
+
+            Возьмём $b = f(a)$. Тогда $f(|z - a| < r)$ - открытое множество. Более того, 
+            $f(|z - a| < r) \cap f(0 < |z - z_0| < \varepsilon) = \emptyset$ из однолистности.
+
+            $f(|z - a| < r) \cap Cl \; f(0 < |z - z_0| < \varepsilon) = \emptyset$,  противоречие.
+        }
+        \item {
+            $z_0 \neq \infty$ - полюс. Тогда из однолистности это полюс первого порядка. А тогда
+            $g(z) = f(z) - \frac{c}{z - z_0} \in H(\bar{\mathbb{C}}) \Rightarrow g(z) = const \Rightarrow f(z) = \frac{c}{z - z_0} + const$ 
+        }
+        \item {
+            $z_0 = \infty$ - полюс, тогда $g(z) = f(z) - cz \in H(\bar{\mathbb{C}}) \Rightarrow g(z) = const \Rightarrow f(z) = cz + const$.
+        }
+    \end{enumerate}
+\end{proof}
+
+\begin{consequence}
+    Если функция $f$ однолистная, то $f$ линейная.
+\end{consequence}
+
+\begin{proof}
+    $z_0 = \infty$ в теореме.
+\end{proof}
+
+\Subsection{Производящие функции}
+
+\begin{definition}
+    Есть последовательность $a_0, a_1, \ldots$. Производящая функция последовательности
+    $\mathcal{A}(z) = \sum_{n = 0}^{\infty} a_nz^n$.
+
+    Мы хотим, чтобы ряд сходился при $|z| < R$ для какого-то $R > 0$
+\end{definition}
+
+\begin{example}
+    \textbf{Задача о размене}
+
+    Есть монетки $1, 2, 5, 10$ рублей. Интересуемся, каким количеством способов мы 
+    можем разменять $n$ рублей, если запас монет не ограничен.
+
+    $\mathcal{A}(z) = (1 + z + z^2 + \ldots)(1 + z^2 + \ldots)(1 + z^5 + z^{10} + \ldots)(1 + z^{10} + z^{20} + \ldots)$ и 
+    раскроем все скобки.
+
+    Коэффициент при $z^n = z^a \cdot z^{2b} \cdot z^{5c} \cdot z^{10d}$, где $a + 2b + 5c + 10d = n$.
+    Тогда коэффициент - число решений уравнения $a + 2b + 5c + 10d = n$ в неотрицательных целых числах.
+
+    $\mathcal{A}(z) = \frac{1}{1 - z} \cdot \frac{1}{1 - z^2} \cdot \frac{1}{1 - z^5} \cdot \frac{1}{1 - z^{10}}$.
+\end{example}
+
+\begin{definition}
+    $H \subset \mathbb{N}$. $p(n, H)$ - количество способов представить $n$ в виде суммы слагаемых из $H$.
+
+    $\mathcal{F}_{H}(z) = \prod_{k \in H} \frac{1}{1 - z^k}$
+
+    Если каждое слагаемое можно брать $\leqslant m$, то $\prod \frac{1 - z^{(m+1)k}}{1 - z^k}$
+\end{definition}
+
+\begin{definition}
+    Число разбиений $n$ на натуральные слагаемые $p(n) = p(n, \mathbb{N})$.
+\end{definition}
+
+\begin{theorem}
+    $f(z) = \sum_{n = 0}^{\infty} p(n) z^n = \prod_{k=1}^{\infty} \frac{1}{1 - z^k}$ - сходится при $|z| < 1$
+    и $p(n) = \frac{1}{2\pi i} \int_{|z| = r} \frac{f(z)}{z^{n + 1}} \, dz$ при $0 < r < 1$.
+\end{theorem}
+
+\begin{proof}
+    $\ln \left (\prod_{k=1}^{\infty} \left | \frac{1}{1 - z^k} \right | \right ) = \sum_{k=1}^{\infty} -\ln |1 - z^k|$ - ряд сходится.
+
+    $\ln (1 + t) \geqslant t - t^2$ при $|t| < 1$. $\ln (1 - |z|^k) \geqslant |z|^k - |z|^{2k}$ и 
+    $0 \leqslant -\ln |1 - z^k| \leqslant |z|^k + |z|^{2k}$.
+
+    $\arg \left ( \frac{1}{1 - z^k} \right ) = -\arg (1 - z^k)$. $|\arg (1 - z^k)| \leqslant \arcsin |z|^k \leqslant 2|z|^k$.
+    Значит всё сходится.
+\end{proof}
+
+\begin{remark}
+    \textbf{Теорема Харди-Рамануджана}
+
+    $p(n) \sim \frac{1}{4n\sqrt{3}} e^{\pi \sqrt{\frac{2}{3}}\sqrt{n}}$
+\end{remark}
+
+\begin{theorem}
+    \textbf{Эйлера}
+
+    Количество разбиений $n$ на нечётные слагаемые равно количеству разбиений
+    $n$ на различные слагаемые
+\end{theorem}
+
+\begin{proof}
+    Для различных слагаемых $\prod_{k = 1}^{\infty} (1+z^k)$
+
+    Для нечётных слагаемых $\prod_{k = 1}^{\infty} (\frac{1}{1 - z^{2k -1}})$.
+
+    Хотим понять, что это одно и то же.$\prod_{k = 1}^{\infty} (\frac{1}{1 - z^{2k -1}}) =
+    \frac{\prod_{n = 1}^{\infty} \frac{1}{1-z^n}}{\prod_{k = 1}^{\infty} \frac{1}{1-z^{2k}}} =
+    \prod_{n = 1}^{\infty} \frac{1 - z^{2n}}{z - z^n} = \prod_{n = 1}^{\infty} (1 + z^n)$
+\end{proof}
+
+\begin{example}
+    $b_1b_2 \ldots b_k b_{k + 1} \ldots b_{2k}$ счастливый билет, если 
+    сумма первых $k$ равна сумме последних $k$.
+
+    Пусть $a_n$ - количество $k$-значных чисел с суммой цифр $n$. То есть 
+    количество счастливых билетов $a_0^2 + a_1^2 + \ldots + a_{9k}^2$.
+
+    Пусть $\mathcal{A}(z) = \sum_{n = 0}^{\infty} a_nz^n = (1 + z + z^2 + \ldots + z^9)^k$
+
+    $\mathcal{A}(z) \cdot \mathcal{A}(\frac{1}{z})$ - здесь коэффициент перед $z^0$ - это $a_0^2 + a_1^2 + \ldots$.
+
+    $\frac{1}{2\pi i} \int_{|z| = r} \frac{\mathcal{A}(z) \mathcal{A}\frac{1}{z}}{z} \, dz$ - количество счастливых билетов.
+\end{example}
+
+\begin{example}
+    \textbf{Диагонализация степенных рядов}
+
+    $f(w, z) = \sum_{n, k = 0}^{\infty} a_{nk} w^n z^k$. Хотим найти $g(z) = \sum_{n = 0}^{\infty} a_{nn}z^n$.
+    
+    $f(\frac{w}{z}, z) = \sum_{n, k = 0}^{\infty} a_{nk} \frac{w^n}{z^n} z^k$, нужен коэффициент перед $z_0$.
+    То есть $g(w) = \frac{1}{2\pi i} \int_{|z| = r} \frac{f(\frac{w}{z}, z)}{z} \, dz = \frac{1}{2\pi i} \int_{|z| = r} \sum_{n, k = 0}^{\infty} a_{nk} \frac{w^n}{z^n} z^{k - 1} \, dz = \frac{1}{2\pi i} \sum_{n, k = 0}^{\infty} w^n a_{nk} \int_{|z| = r} z^{k - n - 1} \, dz = 
+    \frac{1}{2\pi i} \sum_{n = 0}^{\infty} w^n a_{nn} 2\pi i = g(w)$
+
+    Почему можно было переставить интеграл и сумму? Нужна равномерная сходимость. Нужно попасть строго внутрь
+    круга сходимости. $\sum |a_{nk}| r^{k-1} \left |\frac{w}{z} \right |^n$. Нужно $\left | \frac{w}{z} \right | < \rho$. Берём
+    радиус сходимости для $z$, для $w$, всё половиним, ещё на что-то умножаем.
+
+    Например, если $f(w, z) = \sum_{n, k = 0}^{\infty} \binom{n+k}{k}w^nz^k = \sum_{m = 0}^{\infty} \sum_{k = 0}^{m} \binom{m}{k} w^{m - k}z^k = \sum_{m = 0}^{\infty} (w + z)^m = \frac{1}{1 - w - z}$
+
+    $\frac{1}{2\pi i} \int_{|z| = r} \frac{f(\frac{w}{z}, z)}{z} \, dz = \frac{1}{2\pi i} \int_{|z| = r} \frac{dz}{z(1 - \frac{w}{z} - z)} = -\frac{1}{2\pi i} \int_{|z| = r} \frac{dz}{z^2 - z + w} = (*)$.
+
+    Особые точки: $\frac{1 \pm \sqrt{1 - 4w}}{2}$. В контуре $\frac{1 - \sqrt{1 - 4w}}{2}$, второй корень близок к 1, а этот к нулю.
+
+    $(*) = - \res = -\frac{1}{2z - 1} \bigg |_{z = \frac{1 - \sqrt{1 - 4w}}{2}} = \frac{1}{\sqrt{1 - 4w}}$
+
+\end{example}
+
+\begin{definition}
+    \textbf{Произведение Адамара}
+
+    $\mathcal{A}(z) = \sum_{n = 0}^{\infty} a_nz^n, \mathcal{B}(z) = \sum_{n=0}^{\infty} b_nz^n, \mathcal{A} \circ \mathcal{B} (z) = \sum_{n = 0}^{\infty} a_nb_n z^n$ 
+\end{definition}
+
+\begin{example}
+    Как находить произведение Адамара.
+
+    $f(w, z) = \mathcal{A}(z) \mathcal{B}(w) = \sum_{n, k = 0}^{\infty} a_nb_kz^nw^k$. Нас интересует диагональ этой штуки.
+\end{example}
+
+\begin{theorem}
+    Произведение Адамара рациональных функций - рациональная функция
+\end{theorem}
+
+\begin{definition}
+    Последовательность $a_n$ - квазимногочлен, если $a_n = p_1(n)q_1^n + p_2(n)q_2^n + \ldots + p_k(n)q_k^n$, где
+    $q_1, \ldots, q_k \in \mathbb{C}$, а $p_1, \ldots, p_k$ - многочлены с комплексными коэффициентами.
+\end{definition}
+
+\begin{lemma}
+    $\mathcal{A}(z) = \sum_{n=0}^{\infty} a_nz^n$ - рациональная фукнция $\Leftrightarrow$ при больших $n \, - \, a_n - $ квазимногочлен.
+\end{lemma}
+
+\begin{proof}
+    \begin{enumerate}
+        \item {
+            $\Rightarrow$. Разложим рациональную функцию на простейшие. $\frac{1}{(1 - qz)^m}$ - одна из простейших.
+
+            $\frac{1}{(1 - z)^m} = \sum_{n = 0}^{\infty} \binom{n + m - 1}{m - 1} z^n$
+
+            Тогда $\frac{1}{(1 - qz)^m} = \sum_{n = 0}^{\infty} \frac{(n + m - 1) \ldots (n + 1)}{(m - 1)!}q^nz^n$
+        }
+        \item {
+            $\Leftarrow$. Достаточно понять, что $a_n = p(n)q^n$ имеет рациональную производящую функцию. Индукция по степени многочлена.
+            Для $\deg = 0$, $a_n =q^n$ производящая функция $\frac{1}{1 - qz}$.
+
+            Переход: $d - 1 \rightarrow d$. Возьмём конкретный многочлен степени $\tilde{P}(n) = \frac{(n + d)(n + d - 1) \ldots (n + 1)}{d!}$ - многочлен степени $d$.
+            И для $b_n = \tilde{P}(n)q^n$ производящая функция $\frac{1}{(1 - qz)^{d + 1}}$.
+
+            Вычтем из $P(n)$ $c\tilde{P}(n)$ так, что степень уменьшится.
+        }
+    \end{enumerate}
+\end{proof}
+
+\begin{example}
+    \textbf{Метод Дарбу}
+
+    $f(z) = \sum_{n = 0}^{\infty} a_nz^n$ сходится в круге $|z| < R$. Тогда при
+    $|z| < R$ ряд $\sum_{n = 0}^{\infty} a_nr^n$ - сходится и $a_nr^n \rightarrow 0 \Rightarrow a_n = o(r^{-n})$
+    
+    Пусть $R$ - радиус сходимости $f(z) = \sum_{n = 0}^{\infty} a_nz^n$, мы знаем, что на границе круга сходимости есть особая точка.
+    Если особых точек конечное число и это полюсы(для простоты будем считать, что одна), то тогда возьмём эту точку и напишем главную часть ряда Лорана.
+
+    $h(z) = \text{главная часть ряда Лорана для функции $f$ в точке $a$}$. Тогда $g(z) = f(z) - h(z)$ голоморфна в точке $a$. И тогда скорее всего
+    её радиус сходимости $\tilde{R} > R$.
+
+    $g(z) = \sum_{n = 0}^{\infty} b_nz^n \Rightarrow b_n =  o((\tilde{R} - \varepsilon)^{-n})$. А $h(z) = 
+    \frac{c_1}{z - a} + \frac{c_2}{(z - a)^2} + \ldots + \frac{c_r}{(z - a)^r}$, где $r$ -порядок полюса, а у неё можно явно выписать коэффициенты.
+
+    $\frac{1}{(z - a)^r} = \frac{1}{a^r(\frac{z}{a} - 1)^r} = \frac{(-1)^r}{a^r} \sum_{n = 0}^{\infty} \binom{n+r-1}{r-1} \left ( \frac{z}{a} \right )^n$. Тогда 
+    $a_n \sim c_r \frac{n^{r - 1}}{(r - 1)!}$ (там просто расписали бином и сказали, что $\frac{c_r}{(z - a)^r}$ - самое большое слагаемое).
+\end{example}

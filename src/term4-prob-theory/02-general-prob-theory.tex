@@ -905,4 +905,400 @@
 \begin{definition}
     Если $cov (\xi, \eta) = 0$, то это некоррелирующие случайные величины.
 \end{definition}
+
+\begin{theorem}
     
+    $v_1, v_2 \ldots v_n \in \mathbb{R}^n$ - единичные векторы, тогда
+    существует расстоновка знаков $\varepsilon_1 = \pm 1, \ldots, \varepsilon_n = \pm 1$,
+    такие, что $||\varepsilon_1 v_1 + \ldots + \varepsilon_nv_n|| \leqslant \sqrt{n}$.
+
+    \begin{remark}
+        Эта оценка не улучшаема, если все вектора попарно ортогональны, тогда
+        длина вектора $\sqrt{n}$.
+    \end{remark}
+\end{theorem}
+
+\begin{proof}
+    Пусть $\varepsilon_1 \ldots \varepsilon_n$ - независимые случайные величины, 
+    $\varepsilon_i = 1$, с вероятностью $\frac{1}{2}$ и $\varepsilon_i = -1$, с вероятностью $\frac{1}{2}$
+
+    $\xi = || \varepsilon_1 v_1 + \ldots + \varepsilon_nv_n || $. И тогда $\mathbb{E} \xi = E \left < v, v \right >  = 
+    \mathbb{E} (\sum_{i, j = 1}^n \varepsilon_i \varepsilon_j \left < v_i, v_j \right >) = 
+    \sum_{i, j = 1}^n \left < v_i, v_j \right > \mathbb{E} \varepsilon_i \varepsilon_j = 
+    \sum_{i = 1}^n \left < v_i, v_j \right > = n$.
+
+    \begin{enumerate}
+        \item Если $i = j$, то $\mathbb{E} \varepsilon_i \varepsilon_j = 1$
+        \item Если $i \neq j$, то $\mathbb{E}\varepsilon_i \varepsilon_j = 0$
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}
+    
+    $v_1, v_2 \ldots v_n \in \mathbb{R}^n$ - единичные векторы. $|| v_i \leqslant 1||, p_i \in [0, 1] $ и 
+    $w = p_1v_1 + \ldots + p_n v_n$
+    
+    Тогда существует $\varepsilon_1 = 0$ или $1, \ldots \varepsilon_n = 0$ или $1$, 
+    такие, что $v = \varepsilon_1v_1 + \ldots + \varepsilon_nv_n$ и $|| v - w || \leqslant \frac{\sqrt{n}}{2}$ 
+\end{theorem}
+    
+\begin{proof}
+    Пусть $\varepsilon_1 \ldots \varepsilon_n$ - независимые случайные величины.
+    
+    $
+    \varepsilon_{i} = 
+    \begin{cases}
+        1, & \text{с вероятностью $p_i$} \\
+        0, & \text{иначе}
+    \end{cases}
+    $
+
+    Интересуемся $\xi = || v - w ||$. $\mathbb{E} \xi = \mathbb{E} (\sum_{i, j = 1}^n (\varepsilon_i - p_i)(\varepsilon_j - p_j) \left < v_i, v_j \right > ) = 
+    \sum_{i, j = 1}^{n} \left < v_i, v_j \right > \mathbb{E} (\varepsilon_i - p_i)(\varepsilon_j - p_j) = \sum_{i = 1}^{n} \left < v_i, v_i \right > (p_i - p_i^2) \leqslant \frac{n}{4}$.
+
+    \begin{enumerate}
+        \item Если $i = j$, то $cov(\varepsilon_i, \varepsilon_j) = \mathbb{D}\varepsilon_i\varepsilon_j = p_i - p_i^2 \leqslant \frac{1}{4}$
+        \item Если $i \neq j$, то $cov (\varepsilon_i, \varepsilon_j) = 0$
+    \end{enumerate}
+\end{proof}
+
+\begin{example}
+    $\Omega = \{ 1, 2 \ldots n \}$, пусть $\nu (k)$ - число различных простых В
+    разложении $k$.
+
+    \begin{theorem}
+        \textbf{Харди-Рамануджана}
+
+        Если $w(n) \to +\infty$, то $P(k \, : \, | \nu (k) - \ln \ln n| \geqslant w(n) \sqrt{\ln \ln n}) \to 0$
+    \end{theorem}
+\end{example}
+
+\begin{proof}
+    Пусть $m = \sqrt[10]{n}$. $p \leqslant m$ - простое и
+
+    $
+    \xi_p = 
+    \begin{cases}
+        1, & \text{если $k$ делится на $p$} \\
+        0, & \text{иначе}
+    \end{cases}
+    $
+
+    $\xi = \sum_{p \leqslant m} \xi_p$ - количество различных простых $\leqslant m$. Тогда
+    $\nu(k) - 10 \leqslant \xi (k) \leqslant \nu (k)$. Посчитаем матожидание $\xi$.
+
+    $\mathbb{E} \xi_p = \frac{[\frac{n}{p}]}{n} \leqslant \frac{\frac{n}{p}}{n} = \frac{1}{p}$. С другой стороны,
+    $\mathbb{E} \xi_p \geqslant \frac{\frac{n}{p} - 1}{n} = \frac{1}{p} - \frac{1}{n}$.
+
+    Значит $\mathbb{E}\xi = \sum_{p \leqslant m} \mathbb{E}\xi_p. \sum_{p \leqslant m} \frac{1}{p} - \frac{m}{n} \leqslant
+    \sum_{p \leqslant m} \mathbb{E}\xi_p \leqslant \sum_{p \leqslant m} \frac{1}{p} = \ln \ln m + \mathcal{O}(1) =
+    \ln \ln n + \mathcal{O}(1)$. Оценка в другую сторону аналогично, потому что $\frac{m}{n} \leqslant 1$.
+
+    Теперь считаем дисперсию.
+
+    $\mathbb{D}\xi_p = \mathbb{E}\xi_p^2 - (\mathbb{E}\xi_p)^2 = \mathbb{E}\xi_p - (\mathbb{E}\xi_p)^2 \leqslant \frac{1}{p} - \frac{1}{p^2} + \frac{1}{n}$.
+    С другой стороны $\mathbb{E}\xi_p^2 - (\mathbb{E}\xi_p)^2 \geqslant \frac{1}{p} - \frac{1}{n} - \frac{1}{p^2}$.
+
+    $\sum_{p \leqslant m} \mathbb{D} \xi_p \sum_{p \leqslant m} \frac{1}{p} - \frac{1}{p^2} + \mathcal{O}(\frac{1}{n}) = \ln \ln n + \mathcal{O}(1)$.
+
+    $cov(\xi_p, \xi_q) = \mathbb{E}\xi_p \xi_q = \mathbb{E} (\xi_p \xi_q) - \mathbb{E} \xi_p \mathbb{E}\xi_q$. Здесь 
+    $\frac{1}{pq} - \frac{1}{n} \leqslant \mathbb{E} \xi_p \xi_q \leqslant \frac{1}{pq}$. Тогда $cov(\xi_p, \xi_q) \leqslant
+    \frac{1}{pq} - (\frac{1}{p} - \frac{1}{n})(\frac{1}{q} - \frac{1}{n}) = \frac{1}{n}(\frac{1}{p} + \frac{1}{q}) - \frac{1}{n^2} \leqslant \frac{1}{n}(\frac{1}{p} + \frac{1}{q})$.
+    Также оцениваем в другую сторону.
+
+    $-\frac{m^2}{n} = \mathcal{O}(1) \leqslant \sum_{p \neq q} cov (\xi_p, \xi_q) \leqslant \frac{1}{n}(\sum_{p \neq q} (\frac{1}{p} + \frac{1}{q})) = 
+    \frac{2m}{n} \sum_{p \leqslant m} \frac{1}{p} = \mathcal{O}(1)$.
+
+    $\mathbb{D}\xi = \ln \ln n + \mathcal{O}(1)$. Теперь применим Чебышёва.
+
+    $P(|\xi - \mathbb{E} \xi| \geqslant t) \leqslant \frac{\mathbb{D}\xi}{t^2}$. В качестве $t$ подставим $w(n) \sqrt{\ln \ln n}$.
+
+    Тогда $P (|\nu - \ln \ln n| \geqslant w(n) \sqrt{\ln \ln n}) < P(|\xi - \mathbb{E} \xi| \geqslant w(n) \sqrt{\ln \ln n}) \leqslant \frac{\mathbb{D}\xi}{w^2(n) \ln \ln n} \to 0$.
+
+\end{proof}
+
+\begin{remark}
+    \begin{theorem}
+        \textbf{Эрдёша-Каца}
+
+        $P(k \in \Omega \, : \, a \leqslant \frac{|\nu (k) - \ln \ln n|}{\sqrt{\ln \ln n}} \leqslant b ) \rightarrow \frac{1}{\sqrt{2\pi}} \int_{a}^{b} e^{-\frac{t^2}{2}} \, dt $
+    \end{theorem}
+\end{remark}
+
+\Subsection{Сходимость последовательностей случайных величин}
+
+\begin{theorem}
+    $\xi_1, \xi_2, \ldots$ - независимые случайные величины, $f_i : \mathbb{R}^{n_i} \to \mathbb{R}$ - измерима, 
+    относительно борелевской $\sigma$-алгребры.
+
+    Тогда $f_1 (\xi_1, \ldots \xi_{n_1}), f_2(\xi_{n_1 + 1}, \ldots, \xi_{n_1 + n_2})$ - независимые случаные величины.
+\end{theorem}
+
+\begin{proof}
+    $f : \mathbb{R}^m \to \mathbb{R}$ и $g : \mathbb{R}^n \to \mathbb{R}$. $f(\xi_1 \ldots \xi_m)$ и 
+    $g(\eta_1 \ldotp \eta_n)$ независимые.
+
+    Возьмём $\tilde{A}$ и $\tilde{B} \in \mathbb{R}$ борелевские. Надо доказать, что
+    $P(f(\xi_1 \ldots \xi_m) \in \tilde{A}) \cdot P(g(\eta_1 \ldots \eta_n) \in \tilde{B}) = 
+    P(f(\xi_1, \ldots, \xi_m) \in \tilde{A}, g(\eta_1 \ldotp \eta_n) \in \tilde{B})$.
+
+    $P((\xi_1, \ldots, \xi_m) \in f^{-1} (\tilde{A}) = A) \cdot P((\eta_1, \ldots, \eta_m) \in f^{-1} (\tilde{B}) = B) = P(\ldots)$
+
+    Поймём это для ячеек.
+
+    $A = (a, b]$, что такое $P((\xi_1, \ldots, \xi_m) \in (a, b]) = P(\xi_1 \in (a_1, b_1], \ldots, \xi_m \in (a_m, b_m]) = P(\ldots) \cdot \ldots \cdot P(\ldots)$.
+
+    Если $A_j$ дизъюнктны $P((\xi_1, \ldots, \xi_m) \in A_j) \cdot P((\eta_1, \ldots, \eta_m) \in B) = P(\ldots).$
+    Просуммируем $P((\xi_1, \ldots, \xi_m) \in \bigsqcup A_j) \cdot P((\eta_1, \ldots, \eta_m) \in B) = P(\ldots)$
+\end{proof}
+
+\begin{definition}
+    $\xi, \xi_1, \xi_2, \ldots : \Omega \to \mathbb{R}$. 
+
+    \begin{enumerate}
+        \item $\xi_n$ сходится к $\xi$ почти наверное, если $P(w \in \Omega : \lim_{n \to \infty} \xi_n(w) = \xi (w)) = 1$
+        \item $\xi_n$ сходится к $\xi$ в среднем порядка $r > 0$, если $\mathbb{E} (|\xi_n - \xi|^r) \rightarrow_{n \to \infty} 0$
+        \item $\xi_n$ сходится к $\xi$ по вероятности, если $\forall \varepsilon > 0,  \, P(|\xi_n - \xi| \geqslant \varepsilon) \rightarrow_{n \to \infty} 0$
+        \item $\xi_n : \Omega_n \to \mathbb{R}$. $\xi_n$ сходится к $\xi$ по распределению, если 
+        $\lim_{n \to \infty} F_{\xi_n} (x) = F_{\xi} (x)$ во всех точках непрерывности $F_{\xi}$
+    \end{enumerate}
+
+    Связь между ними $1 \Rightarrow 3, 2 \Rightarrow 3$ (неравенство Маркова). При этом $3 \not \Rightarrow 1, 2 \not \Rightarrow 1$
+    \color{red}
+      TODO      
+    \color{black}
+    %TODO
+    %TODO
+
+    $4 \not \Rightarrow 3$. Да и вообще они на разных вероятностных пространствах,
+    так что постановка вопроса в целом неверная.
+
+    $3 \Rightarrow 4$. $\{ \xi_n > x \} \supset \{ \xi > x+ \varepsilon \} \cap \{ |\xi_n - \xi| < \varepsilon \}$. Также верно обратное:
+    $\{ \xi_n \leqslant x \} \subset \{ \xi \leqslant x+ \varepsilon \} \cup \{ |\xi_n - \xi| \geqslant \varepsilon \}$.
+
+    Тогда $F_{\xi_n}(x) \leqslant F_{\xi}(x + \varepsilon) + P(|\xi_n - \xi| \geqslant \varepsilon)$.
+    $\bar{\lim} F_{\xi_n}(x) \leqslant F_{\xi}(x + \varepsilon) + \bar{\lim} P(|\xi_n - \xi| \geqslant \varepsilon) = F_{\xi}(x + \varepsilon)$.
+
+    $\{ \xi_n > x \} \subset \{ \xi > x - \varepsilon \} \cup \{ |\xi_n - \xi| \geqslant \varepsilon \}$ - запишем через вероятности.
+    $1 - F_{\xi_n}(x) \leqslant 1 - F_{\xi}(x - \varepsilon) + P(|\xi_n - \xi| \geqslant \varepsilon)$. То есть
+    $\underline{\lim} F_{\xi_n}(x) \geqslant F_{\xi}(x - \varepsilon) - \lim P(|\xi_n - \xi| \geqslant \varepsilon) = F_{\xi}(x - \varepsilon)$.
+
+    То есть $F_{\xi}(x - \varepsilon) \leqslant \underline{\lim} F_{\xi_n}(x) \leqslant \overline{\lim} F_{\xi_n}(x) \leqslant F_{\xi}(x + \varepsilon)$ - верно для любого $n$.
+    Устремим $\varepsilon \rightarrow 0$. Тогда $F_{\xi}(x) \leqslant \underline{\lim} F_{\xi_n}(x) \leqslant \overline{\lim} F_{\xi_n}(x) \leqslant F_{\xi}(x)$, но левая и правая штука равны.
+
+\end{definition}
+
+\begin{theorem}
+    \textbf{Закон больших чисел}
+
+    $\xi_1, \xi_2, \ldots$ - попарно некоррелируемые случайные величины и 
+    $\mathbb{D}\xi_n = o(n)$.
+
+    $S_n = \xi_1 + \xi_2 + \ldots + \xi_n$. 
+    
+    Тогда $\frac{S_n}{n} - \mathbb{E}\frac{\xi_n}{n} \rightarrow_P 0$.
+    То есть вероятность того, что $P(|\frac{S_n}{n} - \mathbb{E}\frac{S_n}{n}| \geqslant \varepsilon) \rightarrow 0$
+\end{theorem}
+
+\begin{consequence}
+    Если $\mathbb{D}\xi_n$ ограничены, то такой же вывод.
+\end{consequence}
+
+\begin{proof}
+    $P(\left |\frac{S_n}{n} - \mathbb{E}\frac{S_n}{n} \right | \geqslant \varepsilon) \leqslant \frac{\mathbb{D}\frac{S_n}{n}}{\varepsilon^2} = \frac{\mathbb{D}S_n}{\varepsilon^2n^2} = 
+    \frac{\sum_{k = 1}^n \mathbb{D}\xi_k}{\varepsilon^2n^2} \rightarrow_{\text{Штольц}} \lim_{n \to \infty} \frac{\mathbb{D}\xi_n}{\varepsilon^2(2n - 1)} = 0$.
+\end{proof}
+
+\begin{consequence}
+    \textbf{ЗБЧ в форме Чебышёва}
+
+    $\xi_1, \xi_2, \ldots$ независимые, одинаково распределенённые случайные величины с конечной дисперсией.
+    $a = \mathbb{\xi_1}$.
+    
+    Тогда $P(\left | \frac{S_n}{n} - a \right | \geqslant \varepsilon) \rightarrow 0$ или же $\frac{S_n}{n} \rightarrow_P a$
+\end{consequence}
+
+\begin{consequence}
+    \textbf{ЗБЧ для схем Бернулли}
+
+    Есть схема Бернулли с вероятностью успеха $p$.
+
+    Тогда $\frac{S_n}{n} \rightarrow_P p$
+\end{consequence}
+
+\begin{theorem}
+    \textbf{Усиленный ЗБЧ}
+
+    $\xi_1, \xi_2, \ldots$ - независимые случайные величины. 
+    $\mathbb{E} (\xi_n - \mathbb{E}\xi_n)^4 \leqslant C$.
+
+    Тогда $\frac{S_n}{n} - \mathbb{E} \frac{S_n}{n} \rightarrow 0$ почти наверное.
+\end{theorem}
+
+\begin{proof}
+    $\frac{S_n}{n} - \mathbb{E}\frac{S_n}{n} = \frac{1}{n} (S_n - \mathbb{E}S_n) = \frac{1}{n}(\sum_{k = 1}^n (\xi_k - \mathbb{E}\xi_k))$. Задвинем все
+    матожидания в ноль.
+
+    Тогда по условию $\mathbb{E} \xi_n^4 \leqslant C$ и надо доказать, что $\frac{S_n}{n} \rightarrow 0$ почти наверное.
+    
+    Пусть $A_n = \{ \left | \frac{S_n}{n} \right | \geqslant \varepsilon \}$. Нам нужно понять, что бесконечное количество $A_n$ случаются
+    с нулевой вероятностью. 
+
+    Из леммы Бореля-Кантелли, если $\sum_{k = 1}^{\infty} \sum_{k = 1}^{\infty} P(A_n) < +\infty$, то нужное нам условие выполнено.
+
+    Напишем неравенство Маркова: $P(A_n) \leqslant \frac{\mathbb{E} \frac{S_n^4}{n^4}}{\varepsilon^4} = \frac{\mathbb{E}S_n^4}{n^4\varepsilon^4}$. Достаточно доказать, что
+    $\mathbb{E}S_n^4 = \mathcal{O}(n^2)$, тогда ряд сойдётся. Раскроем все скобки.
+
+    $\mathbb{E}(\xi_1 + \ldots + \xi_n)^4 = \sum_{i = 1}^n \mathbb{E}\xi_i^4 + 4\sum_{i \neq j}\mathbb{E}\xi_i^3\xi_j +
+     6\sum_{i \neq j}\mathbb{E}\xi_i^2 \xi_j^2 + 12\sum_{i \neq j \neq k} \mathbb{E} \xi_i^2 \xi_j \xi_k + 24\sum_{\ldots} \mathbb{E}\xi_i \xi_j \xi_k \xi_m$
+
+    \begin{enumerate}
+        \item {
+            $\mathbb{E}\xi_i \xi_j \xi_k \xi_m = 0$
+        }
+        \item {
+            $\mathbb{E} \xi_i^2 \xi_j \xi_k = 0$
+        }
+    \end{enumerate}
+
+    Итого получаем $\sum_{i = 1}^n \mathbb{E}\xi_i^4 + 6 \sum \mathbb{E}x_i^2 \mathbb{E}\xi_j^2$ (*). По неравенству Ляпунова
+    $\mathbb{E}\xi_i^2 \leqslant \sqrt{\mathbb{E}\xi_i^4} \leqslant \sqrt{C}$.
+
+    Значит $(*) = nC + 6n(n-1)\sqrt{C}\sqrt{C} \leqslant 6Cn^2 = \mathcal{O}(n^2)$, значит ряд сходится и лемма Бореля-Кантелли выполняется.
+\end{proof}
+
+\begin{consequence}
+    \textbf{Усиленный ЗБЧ для схем Бернулли}
+
+    В схеме Бернулли с вероятностью успеха $p \, : \, \frac{S_n}{n} \rightarrow p$ почти наверное.
+\end{consequence}
+
+\begin{proof}
+    Нужно проверить, что $\mathbb{E}(\xi_i - p)^4$ - конечно, раскроем скобки, получим какие-то константы и $\xi_i^p$.
+\end{proof}
+
+\begin{theorem}
+    \textbf{Усиленный ЗБС в форме Колмогорова}
+
+    $\xi_1, \xi_2, \ldots$ - независимо, одинаково распределённые случайные величины.
+
+    Тогда $\frac{S_n}{n} \rightarrow a \in \mathbb{R}$ почти наверное $\Leftrightarrow a = \mathbb{E}\xi_1$
+\end{theorem}
+
+
+\textbf{Метод Монте-Карло}
+
+$\Phi$ - ограниченная фигура на плоскости. Хотим примерно узнать её площадь.
+
+Берём случайную точку в прямоугольнике и выясняем, попала она в фигуру или нет.
+
+$
+\xi_i = 
+\begin{cases}
+    1, & \text{точка попала в $\Phi$} \\
+    0, & \text{иначе}
+\end{cases}
+$
+
+Вероятность успеха $\frac{Area(\Phi)}{Area(\text{прямоугольника})}$. Тогда усиленный ЗБЧ
+говорит, что $\frac{S_n}{n} \rightarrow p$ почти наверное.
+
+\begin{theorem}
+    $\xi_1, \xi_2, \ldots$ последовательность случайных величин, $\xi_n \rightarrow_P a \in \mathbb{R}$.
+    $f$ ограниченная функция, непрерывная в точке $a$.
+
+    Тогда $\mathbb{E}f(\xi_n) \rightarrow f(a)$
+\end{theorem}
+
+\begin{proof}
+    $|\mathbb{E} f(\xi_n) - f(a)| = |\mathbb{E} (f(\xi_n) - f(a))| \leqslant \mathbb{E} |f(\xi_n) - f(a)| = 
+    \mathbb{E} |f(\xi_n - f(a))|\cdot \mathds{1}_{\{ \xi_n - a < \varepsilon \}} + \mathbb{E} |f(\xi_n - f(a))|\cdot \mathds{1}_{\{ \xi_n - a \geqslant \varepsilon \}} = (*)$.
+
+    Пусть $f$ ограничена константой $M$.
+
+    $\mathbb{E} |f(\xi_n - f(a))|\cdot \mathds{1}_{\{ \xi_n - a \geqslant \varepsilon \}} \leqslant 2M \mathbb{E} \mathds{1}_{\{ \xi_n - a \geqslant \varepsilon \}}$
+
+    $|f(\xi_n - f(a))|\cdot \mathds{1}_{\{ \xi_n - a < \varepsilon \}} \leqslant \sup_{|x - a| < \varepsilon}|f(x) - f(a)|$
+
+    Тогда $(*) \leqslant \sup_{|x - a| < \varepsilon} |f(x) - f(a)| + 2M P(|\xi_n - a| \geqslant \varepsilon)$.
+
+    $\overline{\lim} |\mathbb{E} f(\xi_n) - f(a)| \leqslant \sup_{|x - a| < \varepsilon} |f(x) - f(a)| + 2M \overline{\lim} P(|\xi_n - a| \geqslant \varepsilon) \leqslant
+    \sup_{|x - a| < \varepsilon} |f(x) - f(a)| \rightarrow 0$ при $\varepsilon \to 0$.
+
+    Тогда $0 \leqslant \underline{\lim} \leqslant \overline{\lim} \leqslant 0 \Rightarrow \lim |\mathbb{E} f(\xi_n) - f(a)| = 0$
+\end{proof}
+
+\begin{remark}
+    В условии теоремы $|\mathbb{E} f(\xi_n) - f(a)| \leqslant \sup_{|x - a| < \varepsilon} |f(x) - f(a)| + 2M P(|\xi_n - a| \geqslant \varepsilon)$
+\end{remark}
+
+\begin{theorem}
+    \textbf{Вейерштрасса}
+
+    $f \in C[a, b]$, то существует последовательность многочленов $P_n$, такая, что $P_n \rightrightarrows f$ на $[a, b]$
+\end{theorem}
+
+\begin{proof}
+    Можно считать, что всё на $[0, 1]$. Рассмотрим схему Бернулли с вероятностью успеха $p$.
+    Тогда $\frac{S_n}{n} \rightarrow p$. Подставим $\xi_n = \frac{S_n}{n}$ в замечание.
+
+    $|\mathbb{E} f(\frac{S_n}{n}) - f(p)| \leqslant \sup_{|x - a| < \varepsilon} |f(x) - f(a)| + 2M P(|\frac{S_n}{n} - p| \geqslant \varepsilon) = (*)$
+
+    Из неравенства Чебышёва $P(|\frac{S_n}{n} - p| \geqslant \varepsilon) \leqslant \frac{\mathbb{D}\frac{S_n}{n}}{\varepsilon^2} = \frac{np(1 - p)}{n^2\varepsilon^2} \leqslant \frac{1}{4n\varepsilon^2}$.
+
+    И тогда $(*) \leqslant \sup_{|x - y| < \varepsilon} |f(x) - f(y)| + \frac{M}{2n\varepsilon^2}$. При $n = \frac{1}{\varepsilon^3}$ правое слагаемое оценивается $\varepsilon'$, а первое
+    слагаемое мало из равномерной непрерывности.
+
+    Значит $\mathbb{E} f(\frac{S_n}{}n) - f(p) \rightrightarrows 0$. $\mathbb{E} f(\frac{S_n}{n}) = \sum_{k = 0}^n f(\frac{k}{n}) \cdot \binom{n}{k} p^k (1 - p)^{n - k}$ - многочлен Бернштейна.
+\end{proof}
+
+\begin{definition}
+    Многочлен Бернштейна $B_n(x) = \sum_{k = 0}^n f(\frac{k}{n}) \binom{n}{k} x^k (1-x)^{n - k}$
+\end{definition}
+
+\begin{consequence}
+    \begin{enumerate}
+        \item {
+            $B_n(0) = f(0)$
+        }
+        \item {
+            $B_n(1) = f(1)$
+        }
+        \item {
+            $B_n'(0) = n(f(\frac{1}{n}) - f(0))$
+
+            $B_n'(1) = n(f(1) - f(\frac{n - 1}{n}))$
+
+            \textit{Доказательство: } $B_n'(x) = \sum_{k = 0}^n f(\frac{k}{n})\binom{n}{k} (kx^{k - 1}(1 - x)^{n - k} - (n - k)x^k(1-x)^{n - k - 1}) = $
+
+            $= \sum_{k = 0}^n f(\frac{k}{n}) \binom{n}{k} x^{k-1}(1-x)^{n - k - 1}(k - nx)$
+        }
+        \item {
+            $B_n'(x) = \sum_{k = 0}^n f(\frac{k}{n}) f(\frac{k}{n}) \binom{n}{k} x^{k-1}(1-x)^{n - k -1} (k - nx)$
+        }
+        \item {
+            $B_n(\alpha f + \beta g, x) = \alpha B_n(f, x) + \beta B_n(g, x)$
+        }
+    \end{enumerate}
+\end{consequence}
+
+\textbf{Кривые Безье}
+
+$\sum_{k = 0}^n a_k \binom{n}{k} t^k (1 - t)^{n - k}, a_k \in \mathbb{R}^2$. Получается 
+отображение $\gamma \, : \, [0, 1] \to \mathbb{R}^2$.
+
+\begin{enumerate}
+    \item {
+        $n = 1 \, : \, a(1 - t) + bt$ - отрезок соединяющий точки $a$ и $b$.
+    }
+    \item {
+        $n = 2 \, : \, a(1 - t)^2 + 2bt(1 - t) + ct^2$. Мы знаем, что $B'(0) = 2(b - a)$ и $B'(1) = 2(c - b)$.
+        Это кривая из точки $a$ в $c$, параметр $b$ задаёт касательную в $a$ и $c$.
+    }
+    \item {
+        $n = 3 \, : \, a(1 - t)^3 + 3bt(1-t)^2 + 3ct^2(1 - t) + dt^3$.
+
+        Здесь $B(0) = a, B(1) = d, B'(0) = 3(b - a), B'(1) = 3(d - c)$. Кривая выходит
+        из точки $a$ с касательной $3(b - a)$, а заходит в точку $d$ с касательной $3(d - c)$.
+    }
+\end{enumerate}
