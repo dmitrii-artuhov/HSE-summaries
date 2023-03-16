@@ -1,0 +1,103 @@
+\Subsection{Характеристические функции случайных величин}
+
+\begin{definition}
+    Комплекснозначная случайная величина $\xi = \Re \xi + i \Im \xi$, где $\Re \xi$ и $\Im \xi$ 
+    вещественнозначные случайные величины.
+\end{definition}
+
+\begin{definition}
+    $\xi : \Omega \to \mathbb{C}$
+
+    $\mathbb{E} \xi = \mathbb{E} \Re \xi + i \mathbb{E} \Im \xi$
+\end{definition}
+
+\begin{properties}
+    \begin{enumerate}
+        \item {
+            $\mathbb{E} (i \xi) = i \mathbb{E}\xi$
+        }
+        \item {
+            Комплексная линейность $\mathbb{E} (\alpha \xi + \beta \eta) = \alpha \mathbb{E} \xi + \beta \mathbb{E} \eta$, где $\alpha, \beta \in \mathbb{C}, \xi, \eta : \Omega \to \mathbb{C}$
+
+            \textit{Доказательство: } $\mathbb{E} (\alpha \xi) = \mathbb{E} (a + ib)\xi = \mathbb{E} (a \xi) + \mathbb{E} (b\xi i) = (a + bi) \mathbb{E} \xi$
+        }
+        \item {
+            $\overline{\mathbb{E} \xi} = \mathbb{E} \overline{\xi}$
+        }
+        \item {
+            $|\mathbb{E} \xi | \leqslant \mathbb{E} |\xi|$
+
+            \textit{Доказательство: } Возьмём $c \in \mathbb{C}, |c| = 1$, такой, что $\mathbb{E} (c \xi) = |\mathbb{E} \xi|$, то есть $c = \frac{\overline{\mathbb{E} \xi}}{|\mathbb{E} \xi|}$
+
+            Тогда $|\mathbb{E} \xi| = \mathbb{E} (c \xi) = \mathbb{E} (\Re (c \xi)) \leqslant \mathbb{E} |\Re (c \xi)| \leqslant \mathbb{E} |c \xi | = \mathbb{E} |\xi|$
+        }
+    \end{enumerate}
+\end{properties}
+
+\begin{definition}
+    Ковариация $cov(\xi, \eta) = \mathbb{E} (\xi - \mathbb{E}\xi)\overline{(\eta - \mathbb{E} \eta)}$
+\end{definition}
+
+\begin{definition}
+    Дисперсия $\mathbb{D} \xi = \mathbb{E} |\xi - \mathbb{E}\xi|^2$
+
+    $cov(\xi, \xi) = \mathbb{D}\xi$
+\end{definition}
+
+\begin{definition}
+    $\xi : \Omega \to \mathbb{R}$. Назовём характеристической функцией $\xi$:
+
+    $\phi_\xi (t) = \mathbb{E} e^{it\xi}$, где $t \in \mathbb{R}$
+\end{definition}
+
+\begin{properties}
+    \begin{enumerate}
+        \item {
+            $\phi_\xi (0) = 1$ и $|\phi_\xi (t)| \leqslant 1$
+
+            \textit{Доказательство: } $|\phi_\xi (t)| \leqslant |\mathbb{E} e^{it\xi}| \leqslant \mathbb{E}|e^{it\xi}| = 1$
+        }
+        \item {
+            $\phi_{a\xi + b} (t) = e^{ibt} \phi_\xi (at)$
+
+            \textit{Доказательство: } $\phi_{a\xi + b} (t) = \mathbb{E} e^{i(a \xi + b)t} = \mathbb{E} e^{ibt} e^{i\xi a t} = e^{ibt} \mathbb{E} e^{i\xi (at)} = \phi_{\xi} (at) e^{ibt} $
+        }
+        \item {
+            Если $\xi$ и $\eta$ независимы, то $\phi_{\xi + \eta} (t) = \phi_\xi (t) \cdot \phi_{\eta} (t)$
+
+            \textit{Доказательство: } $e^{i\xi t}$ и $e^{i \eta t}$ независимы и пишем произведение матожиданий
+        }
+        \item {
+            $\overline{\phi_{\xi}(t)} = \phi_{\xi} (-t)$
+
+            \textit{Доказательство: } $\overline{\phi_{\xi}(t)} = \overline{\mathbb{E} e^{i \xi t}} = \mathbb{E} \overline{e^{i \xi t}} = \mathbb{E} e^{-i \xi t} = \phi_\xi (-t)$
+        }
+        \item {
+            $\phi_{\xi}$ равномерно непрерывна на $\mathbb{R}$
+
+            \textit{Доказательство: } TODO %$|\phi_{\xi} (t + h) - \phi_{\xi}(t)| = |\mathbb{E} (e^{i \xi (t + h) - \mathbb{E} e^{i \xi t}}) | = |\mathbb{E} (e^{i\xi t} \cdot e^{i \xi h}) - \mathbb{E} e^{i \xi t}| = 
+            %|\mathbb{E} (e^{i \xi t}(e^{i \xi h} - 1))| \leqslant \mathbb{E} |e^{i \xi t}| \cdot |e^{i \xi h} - 1| $
+
+            %$\lim_{h \to 0} \int_{\Omega} |e^{}|$
+        }
+    \end{enumerate}
+\end{properties}
+
+\begin{example}
+    $\xi \sim \mathcal{N}(a, \sigma^2)$. Хотим посчитать характеристическую функцию.
+
+    Возьмём $\eta \sim \mathcal{N}(0, 1)$. Тогда $\xi = \sigma \eta + a$ - имеет нужное нам распределение.
+
+    $\phi_{\sigma \eta + a}(t) = e^{ita} \phi_{\eta} (\sigma t)$
+
+    Считаем для $\eta$: $\phi_{\eta} (t) = \frac{1}{\sqrt{2\pi}} \int_{\mathbb{R}} e^{itx} e^{-\frac{x^2}{2}} \, dx = e^{-\frac{t^2}{2}} \frac{1}{\sqrt{2\pi}} \int_{\mathbb{R}} e^{-\frac{(x - it)^2}{2}} \, dx = (*)$
+    % TODO, нужна картинка и часть доказательство утеряна
+    $\int_{\mathbb{R}} e^{-\frac{(x - it)^2}{2}} \, dx = \int_{\Im = -it} e^{-\frac{z^2}{2}} \, dz$
+
+    $\int_{\Gamma_R} e^{-\frac{z^2}{2}} \, dz = 0$, потому что нет особых точек. 
+    
+    С другой стороны:
+    $\int_{\Gamma_R} e^{-\frac{z^2}{2}} \, dz = \int_{-R - it}^{R - it} + \int_{R - it}^{R} + \int_{R}^{-R} + \int_{-R}^{-R - it} \rightarrow I - \sqrt{2\pi}$. Значит $I = \sqrt{2\pi}$ (тут было потеряно несколько переходов)
+
+    Тогда $(*) = e^{- \frac{t^2}{2}} \frac{1}{\sqrt{2\pi}} \sqrt{2\pi}$
+\end{example}

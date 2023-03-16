@@ -2520,3 +2520,70 @@
     $\frac{1}{(z - a)^r} = \frac{1}{a^r(\frac{z}{a} - 1)^r} = \frac{(-1)^r}{a^r} \sum_{n = 0}^{\infty} \binom{n+r-1}{r-1} \left ( \frac{z}{a} \right )^n$. Тогда 
     $a_n \sim c_r \frac{n^{r - 1}}{(r - 1)!}$ (там просто расписали бином и сказали, что $\frac{c_r}{(z - a)^r}$ - самое большое слагаемое).
 \end{example}
+
+\begin{theorem}
+    Пусть $f \in H(|z| < R)$, где $|R| > 1$ и $f(1) \neq 0$. Пусть $\frac{f(z)}{(1 - z)^\alpha} = \sum_{n = 0}^{\infty} b_n z^n, \alpha \in \mathbb{R}, \alpha \neq 0, -1, -2 \ldots$.
+
+    Тогда $b_n \sim f(1) \binom{n + \alpha - 1}{n} \sim f(1) \frac{n^{\alpha - 1}}{\Gamma (\alpha)}$
+\end{theorem}
+
+\begin{proof}
+    Возьмём $1 < r < R$ и разложим $f(z) = \sum_{n = 0}^{\infty} a_nz^n$. Мы знаем, что ряд сходится в точке 
+    $z = r \Rightarrow a_n = o(r^{-n})$.
+
+    $\frac{1}{(1 - z)^\alpha} = \sum_{n = 0}^{\infty} \binom{n + \alpha - 1}{n} z^n$.
+
+    Тогда $\frac{f(z)}{(1 - z)^\alpha} = \sum a_nz^n \cdot \sum \binom{n + \alpha - 1}{n} z^n$ и $b_n = a_n \binom{\alpha - 1}{0} + a_{n - 1}\binom{\alpha}{1} + \ldots + a_0 \binom{n + \alpha - 1}{n} = 
+    \binom{n + \alpha - 1}{n} (a_0 + \frac{n}{n + \alpha - 1}a_1 + \frac{n(n - 1)}{(n + \alpha - 1)(n + \alpha -2)}a_2 + \ldots + (\ldots)\cdot a_n)$. Мы знаем, что все коэффициенты при $a_i$ стремятся к 1.
+    Хотим сказать, что это всё $\sim \binom{n + \alpha - 1}{n} (a_0 + a_1 + \ldots + a_n) \sim \binom{n + \alpha - 1}{n} f(1) = \frac{\alpha(\alpha - 1) \ldots (\alpha + n - 1)}{n!} f(1) \rightarrow \frac{n^{\alpha - 1}}{\Gamma(\alpha)}$ - последний переход из формулы Эйлера-Гаусса
+
+    Осталось понять, что $(a_0 + \frac{n}{n + \alpha - 1}a_1 + \frac{n(n - 1)}{(n + \alpha - 1)(n + \alpha -2)}a_2 + \ldots + (\ldots)\cdot a_n) - (a_0 + a_1 + \ldots +a_n) \rightarrow 0$. Мы знаем, что 
+    $a_n = \mathcal{O}(r^{-n}) \Rightarrow |a_n| \leqslant \frac{C}{r^n}$. Тогда
+    $|\Delta_n| \leqslant |a_1| |\frac{n}{n + \alpha - 1} - 1| + \ldots + |\ldots - 1| |a_n| + \frac{C}{r^{m + 1}} + \frac{C}{r^{m + 2}} + \ldots $. Подберём так $m$ чтобы
+    $\sum \frac{C}{r^{m + i}} \leqslant \varepsilon$. И тогда всё выполнилось при больших $n$
+\end{proof}
+
+\begin{example}
+    \begin{enumerate}
+        \item {
+            $f(z) = \frac{\sqrt{2 - z}}{(1 - z)^2}$. Здесь круг сходимости $|z| < 1$, особая точка $z = 1$ - полюс второго порядка. Главная 
+            часть ряда Лорана $\frac{a}{1 - z} + \frac{b}{(1 - z)^2}$. Здесь $b = \sqrt{2 - 1} = 1$, $a = \res_{z = 1} = ((1 - z)^2 f(z))' \bigg |_{z = 1} = (\sqrt{2 - z})' \bigg |_{z = 1} = -\frac{1}{2}$. Тогда
+            главная часть равна $\frac{1}{2} \cdot \frac{1}{1 - z} + \frac{1}{(1 - z)^2}$
+
+            $g(z) = f(z) - \frac{1}{(1 - z)^2} + \frac{1}{2} \cdot \frac{1}{1 - z}$ голоморфна в $z = 1$. Значит $g \in H(|z| < 2)$.
+
+            Если $f(z) = \sum a_n z^n, g(z) = \sum b_n z^n$. $b_n = o\left ( \frac{1}{(2 - \varepsilon)^n} \right )$
+
+            $a_n = b_n - \frac{1}{2} + n + 1 = n + \frac{1}{2} + o \left ( \frac{1}{(2 - \varepsilon)^n} \right )$
+        }
+        \item {
+            $f(z) = \frac{e^z}{\sqrt{1 - z}} = \sum_{n = 0}^{\infty} a_n z^n$, кргу сходимости $|z| < 1$, но $z = 1$ не полюс, а точка ветвления.
+
+            $g(z) = \frac{e^z}{\sqrt{1 - z}} - \frac{e}{\sqrt{1 - z}} = \frac{e}{\sqrt{1 - z}} (e^{z - 1} - 1) = \frac{e}{\sqrt{1 - z}} (1 - z) \underbrace{\frac{e^{z - 1}}{1 - z}}_{\text{голоморфна в 1}} = e\sqrt{1 - z} h(z)$, где $h(z) \in H(\mathbb{C})$.
+
+            $g(z) = \sum b_n z^n$. Из теоремы $b_n = h(1) \frac{n^{-\frac{3}{2}}}{\Gamma (\frac{1}{2})} = - \frac{1}{\sqrt{\pi} n\sqrt{n}}$
+
+            $e\sqrt{1 - z} = e \sum c_n z^n$. Тогда $a_n = ec_n + b_n$. $\sqrt{1 - 4z} = \sum_{n=0}^{\infty} \binom{2n}{n} z^n$. Тогда $\sqrt{1 - z} = \sum \binom{2n}{n} \frac{z^n}{4^n}$. И тогда
+            $a_n = \frac{\binom{2n}{n} \cdot e}{4^n} + b_n = \frac{e \binom{2n}{n}}{4^n} + \mathcal{O}(\frac{1}{n^{\frac{3}{2}}})$
+        }
+    \end{enumerate}
+\end{example}
+
+\begin{example}
+    \textbf{Метод Лапласа}
+
+    Есть $2k$-значный номер, интересуемся количеством таких номеров, что сумма первых $k$ знаков равна сумме последних $k$.
+
+    Пусть $a_k = $ количество $2k$ значных счастливых билетов.
+
+    $a_k = \frac{1}{2\pi i} \int_{|z| = 1} \mathcal{A}(z) \mathcal{A}(\frac{1}{z}) \frac{dz}{z}$. $\mathcal{A}(z) = (1 + z + z^2 + \ldots + z^9)^k = \left ( \frac{1 - z^{10}}{1 - z} \right )^k$.
+
+    То есть $\frac{1}{2 \pi i} \int_{|z| = 1} \left ( \frac{(1 - z^{10})(1 - z^{-10})}{(1 - z)(1 - \frac{1}{z})} \right )^k \frac{dz}{z}  = \frac{1}{2\pi i} \int_{|z| = 1} \left ( \frac{2 - z^{10} - z^{-10}}{2 - z - \frac{1}{z}} \right )^k \frac{dz}{z} = 
+    \frac{1}{2\pi i} \int_{0}^{2\pi} \left ( \frac{2 - e^{10it} - e^{-10it}}{2 - e^{it} - e^{-it}} \right )^k \frac{ie^{it}}{e^{it}} \, dt = 
+    \frac{1}{2\pi} \int_{0}^{2\pi} \left ( \frac{2 - 2 \cos (10 t)}{2 - 2\cos t} \right )^k \, dt = \frac{1}{2\pi} \int_{0}^{2\pi} \left ( \frac{2\sin^2 (st)}{2 \sin^2 \frac{t}{2}} \right )^k \, dt = \frac{1}{2\pi} \int_{0}^\pi 2\left ( \frac{\sin (10s)}{\sin s} \right )^{2k} \, ds  = 
+    \frac{2}{\pi} \int_{0}^{\frac{\pi}{2}} \left( \frac{\sin (10x)}{\sin x} \right)^{2k}$
+
+\end{example}
+
+%TODO
+Тут пропущено 30 минут лекции.
