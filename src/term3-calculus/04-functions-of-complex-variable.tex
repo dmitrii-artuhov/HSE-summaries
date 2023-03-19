@@ -1970,15 +1970,18 @@
     
     Такой вычет не очень приятно считать -- раскладываем в ряд.
 
-    Найдем коэффициент перед $z^1$: в разложении $\ctg \pi z = \frac{\cos \pi z}{\sin \pi z} = \frac{1 - \frac{\pi^2 z^2}{2} + \mathcal{O}(z^4)}{\pi z (1 - \frac{\pi^2 z^2}{6} + \mathcal{O}(z^4))} = 
-    \frac{(1 - \frac{\pi^2 z^2}{2} + \mathcal{O}(z^4))(1 + \frac{\pi^2 z^2}{6} + \mathcal{O}(z^4))}{\pi z} = \frac{1}{\pi z} - \frac{1}{3} \pi z + \mathcal{O}(z^3)$.
+    Найдем коэффициент перед $z^1$: в разложении $\ctg \pi z = \frac{\cos \pi z}{\sin \pi z} = \frac{1 - \frac{\pi^2 z^2}{2} + \mathcal{O}(z^4)}{\pi z (1 - \frac{\pi^2 z^2}{6} + \mathcal{O}(z^4))} = $
+
+
+    $ = \frac{(1 - \frac{\pi^2 z^2}{2} + \mathcal{O}(z^4))(1 + \frac{\pi^2 z^2}{6} + \mathcal{O}(z^4))}{\pi z} = \frac{1}{\pi z} - \frac{1}{3} \pi z + \mathcal{O}(z^3)$.
 
     То есть этот коэффициент равен: $-\frac{\pi}{3}$.
 
     Тогда $\sum_{k = 1}^{\infty} \frac{1}{k^2} = -\frac{\pi}{2} \cdot (-\frac{\pi}{3}) = \frac{\pi^2}{6}$.
 \end{example}
 
-\begin{theorem}
+\begin{theorem} (О числе нулей и полюсов).
+
     Пусть $f$ мероморфна в $\Omega$, $\gamma$ - простая замкнутая кривая в $\Omega$, 
     не проходящая через нули и полюсы $f$.
 
@@ -1986,7 +1989,7 @@
 
     $\mathcal{N}_f$ - количество нулей $f$ с учетом кратности в контуре $\gamma$.
 
-    $\mathcal{P}_f$ - количество полюсов $f$ с учетом кратности в контуре $\gamma$.
+    $\mathcal{P}_f$ - количество полюсов $f$ с учетом кратности (порядка) в контуре $\gamma$.
 
     \begin{consequence}
         Если $f \in H(\Omega)$, $\gamma$ - простая замкнутая кривая, не проходящая через нули $f$, тогда
@@ -1994,7 +1997,8 @@
     \end{consequence}
 \end{theorem}
 
-\begin{proof}
+\begin{proof} Теоремы.
+
     Если $a$ - ноль или полюс $f$, то $f(z) = (z - a)^m g(z)$, где $g(a) \neq 0$ и 
     $g$ голоморфна в окрестности $a$.
 
@@ -2005,7 +2009,7 @@
 
     $f'(z) = m(z - a)^{m - 1} g(z) + (z - a)^m g'(z)$
 
-    $\frac{f'(z)}{f(z)} = \frac{m}{z - a} + \frac{g'(z)}{g(z)}$, второе слагаемое голоморфно с окрестности $a$. Значит,
+    $\frac{f'(z)}{f(z)} = \frac{m}{z - a} + \frac{g'(z)}{g(z)}$, второе слагаемое голоморфно в окрестности $a$. Значит,
     $a$ - полюс первого порядка $\frac{f'}{f}$, а $m$ - вычет.
 \end{proof}
 
@@ -2053,16 +2057,23 @@
 \begin{example}
     $z - e^{-z} = \lambda > 1$. Хотим понять, что в правой полуплоскости есть ровно 1 корень.
 
-    % Картинка
+    \begin{center}
+        \includegraphics[width=7cm]{assets/04-functions-of-complex-variables/rushe-example.png}
+    \end{center}
+
     Возьмём окружность большого радиуса и по ней обход по контуру $\gamma$.
 
-    Возьмём $f(z) = z - \lambda$ и $g(z) = -e^{-z}$. 
+    Возьмём $f(z) = z - \lambda$ и $g(z) = -e^{-z}$. Хотим подставить в т. Руше, тогда необходимо чтобы $|f| > |g|$, проверим это: 
     
-    На отрезке $|f(z)| = |iy - \lambda| = \sqrt{y^2 + \lambda^2} \geqslant \lambda > 1$, а
-    $|g(z)| = |-e^{-iy}| = 1$, значит всё выполняется.
-
-    На полуокружности $|f(z)| = |z - \lambda| \geqslant |z| - \lambda = R - \lambda$, а 
-    $|g(z)| = |-e^{-x - iy}| = e^{-x} \leqslant 1$. То есть если $R > \lambda + 1$, то $|f| > |g|$ на $\gamma$.
+    \begin{enumerate}
+        \item {
+            На вертикальном отрезке: $|f(z)| = |iy - \lambda| = \sqrt{y^2 + \lambda^2} \geqslant \lambda > 1$, а
+            $|g(z)| = |-e^{-iy}| = 1$, значит всё выполняется.
+        }
+        \item {
+            На полуокружности: $|f(z)| = |z - \lambda| \geqslant |z| - \lambda = R - \lambda$, а $|g(z)| = |-e^{-x - iy}| = e^{-x} \leqslant 1$. То есть если $R > \lambda + 1$, то $|f| > |g|$ на $\gamma$.
+        }
+    \end{enumerate}
 
     Тогда $\mathcal{N}_{f + g} = \mathcal{N}_f = 1$
 \end{example}
@@ -2111,7 +2122,10 @@
 
             $b \in f(\Omega) \Rightarrow \exists \, a \in \Omega \, : \, f(a) = b$.
 
-            % Сюда можно картинку.
+
+            \begin{center}
+                \includegraphics[width=10cm]{assets/04-functions-of-complex-variables/single-leaf-theorem.png}
+            \end{center}
 
             Найдётся окружность $|z - a| < \varepsilon$, что $|f(z) - b| \neq 0$. Если на окружности радиуса $\frac{1}{n}$ нашлась точка $z_n$, 
             такая, что $f(z_n) = b$, то $f \equiv b$ по теореме единственности.
@@ -2168,6 +2182,9 @@
             \textit{Доказательство: } $g(z) = f(\frac{1}{z})$ однолистна в проколотой окрестности нуля, в нуле можем доопределить, чтобы была голоморфность.
 
             % Картинка
+            \begin{center}
+                \includegraphics[width=7cm]{assets/04-functions-of-complex-variables/conf-func-consequence-2.jpg}
+            \end{center}
             $g$ однолистна в меньшей не проколотой окрестности $\Rightarrow c_1 = g'(0) \neq 0$ 
         }
         \item {
@@ -2175,10 +2192,10 @@
             тогда это полюс первого порядка.
 
             \textit{Доказательство: } пусть $g(z) = \frac{1}{f(z)}$ - однолистна в проколотой окрестности точки $a$.
-            Можем доопределить нулём в точке $a$ и тогда будет голоморфность. $g(a) = 0$.
+            Можем доопределить нулём в точке $a$ и тогда будет голоморфность, $g(a) = 0$.
 
             Тогда $g$ однолистна в окрестности точки $a$, а значит $g'(a) \neq 0$, тогда $a$ - 
-            ноль первого порядка у $g$, а значит и ноль перовго порядка у $f$.
+            ноль первого порядка у $g$, а значит и ноль первого порядка у $f$.
         }
     \end{enumerate}
 \end{consequence}
@@ -2266,7 +2283,7 @@
 \end{proof}
 
 \begin{consequence}
-    \textbf{теорема Лиувилля}
+    \textbf{Обобщенная теорема Лиувилля}
 
     $f \in H(\mathbb{C})$ и $f$ не принимает значения на некоторой кривой $\gamma$. Тогда
     $f \equiv const$
