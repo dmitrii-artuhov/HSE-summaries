@@ -2413,24 +2413,29 @@
 \begin{example}
     \textbf{Задача о размене}
 
-    Есть монетки $1, 2, 5, 10$ рублей. Интересуемся, каким количеством способов мы 
-    можем разменять $n$ рублей, если запас монет не ограничен.
+    Есть монетки $1, 2, 5, 10$ рублей. Интересуемся, каким количеством способов мы можем разменять $n$ рублей, если запас монет не ограничен, пусть это число равно $a_n$.
+
+    Вместо формулы для этих коэффициентов будет искать формулу для ряда:
+
+    $\mathcal{A}(z) := \sum_{n=0}^{\infty} a_n z^n$.
+
+    Это будет равно:
 
     $\mathcal{A}(z) = (1 + z + z^2 + \ldots)(1 + z^2 + \ldots)(1 + z^5 + z^{10} + \ldots)(1 + z^{10} + z^{20} + \ldots)$ и 
     раскроем все скобки.
 
     Коэффициент при $z^n = z^a \cdot z^{2b} \cdot z^{5c} \cdot z^{10d}$, где $a + 2b + 5c + 10d = n$.
-    Тогда коэффициент - число решений уравнения $a + 2b + 5c + 10d = n$ в неотрицательных целых числах.
+    Тогда коэффициент $a_n$ -- число решений уравнения $a + 2b + 5c + 10d = n$ в неотрицательных целых числах.
 
     $\mathcal{A}(z) = \frac{1}{1 - z} \cdot \frac{1}{1 - z^2} \cdot \frac{1}{1 - z^5} \cdot \frac{1}{1 - z^{10}}$.
 \end{example}
 
 \begin{definition}
-    $H \subset \mathbb{N}$. $p(n, H)$ - количество способов представить $n$ в виде суммы слагаемых из $H$.
+    $H \subset \mathbb{N}, \ p(n, H)$ - количество способов представить $n$ в виде суммы слагаемых из $H$.
 
-    $\mathcal{F}_{H}(z) = \prod_{k \in H} \frac{1}{1 - z^k}$
+    $\mathcal{F}_{H}(z) = \sum_{n=0}^{\infty} p(n, H) z^n = \prod_{k \in H} \frac{1}{1 - z^k}$
 
-    Если каждое слагаемое можно брать $\leqslant m$, то $\prod \frac{1 - z^{(m+1)k}}{1 - z^k}$
+    Если каждое слагаемое можно брать $\leqslant m$, то $\prod_{k \in H} \underbrace{\frac{1 - z^{(m+1)k}}{1 - z^k}}_{=(1 + z^k + z^{2k} + \dots + z^{mk})}$
 \end{definition}
 
 \begin{definition}
@@ -2438,18 +2443,30 @@
 \end{definition}
 
 \begin{theorem}
-    $f(z) = \sum_{n = 0}^{\infty} p(n) z^n = \prod_{k=1}^{\infty} \frac{1}{1 - z^k}$ - сходится при $|z| < 1$
+    $f(z) = \sum_{n = 0}^{\infty} p(n) z^n = \prod_{k=1}^{\infty} \frac{1}{1 - z^k}$ -- сходится при $|z| < 1$
     и $p(n) = \frac{1}{2\pi i} \int_{|z| = r} \frac{f(z)}{z^{n + 1}} \, dz$ при $0 < r < 1$.
 \end{theorem}
 
 \begin{proof}
-    $\ln \left (\prod_{k=1}^{\infty} \left | \frac{1}{1 - z^k} \right | \right ) = \sum_{k=1}^{\infty} -\ln |1 - z^k|$ - ряд сходится.
+    $\ln \left (\prod_{k=1}^{\infty} \left | \frac{1}{1 - z^k} \right | \right ) = \sum_{k=1}^{\infty} -\ln |1 - z^k| = (*)$ -- покажем, что этот ряд сходится.
 
-    $\ln (1 + t) \geqslant t - t^2$ при $|t| < 1$. $\ln (1 - |z|^k) \geqslant |z|^k - |z|^{2k}$ и 
-    $0 \leqslant -\ln |1 - z^k| \leqslant |z|^k + |z|^{2k}$.
+    \begin{enumerate}
+        \item $\ln{(1 - t)} \geq -t - t^2 \implies -\ln{(1 - t)} \leq t + t^2$
+        \item $\ln{|1 - z^k|} \geq \ln{(1 - |z|^k)} \implies -\ln{|1 - z^k|} \leq -\ln{(1 - |z|^k)} \leq |z|^k + |z|^{2k}$
+    \end{enumerate}
 
-    $\arg \left ( \frac{1}{1 - z^k} \right ) = -\arg (1 - z^k)$. $|\arg (1 - z^k)| \leqslant \arcsin |z|^k \leqslant 2|z|^k$.
-    Значит всё сходится.
+    Из пункта (2) выше получаем, что $(*) \leq \sum_{k=1}^{\infty} |z|^k + \sum_{k=1}^{\infty} |z|^{2k} < +\infty$ -- справа от нер-ва сумма рядов сх-ся, тогда и $(*)$ тоже.
+    
+    Проверим, что аргумент ничего не испортит:
+
+    % $\ln (1 + t) \geqslant t - t^2$ при $|t| < 1$. $\ln (1 - |z|^k) \geqslant |z|^k - |z|^{2k}$ и 
+    % $0 \leqslant -\ln |1 - z^k| \leqslant |z|^k + |z|^{2k}$.
+
+    $\arg \left ( \frac{1}{1 - z^k} \right ) = -\arg (1 - z^k)$
+    
+    $|\arg (1 - z^k)| \leqslant \arcsin |z|^k \leqslant 2|z|^k$
+    
+    Действительно, аргумент ничего не портит.
 \end{proof}
 
 \begin{remark}
@@ -2472,7 +2489,7 @@
 
     Хотим понять, что это одно и то же.$\prod_{k = 1}^{\infty} (\frac{1}{1 - z^{2k -1}}) =
     \frac{\prod_{n = 1}^{\infty} \frac{1}{1-z^n}}{\prod_{k = 1}^{\infty} \frac{1}{1-z^{2k}}} =
-    \prod_{n = 1}^{\infty} \frac{1 - z^{2n}}{z - z^n} = \prod_{n = 1}^{\infty} (1 + z^n)$
+    \prod_{n = 1}^{\infty} \frac{1 - z^{2n}}{1 - z^n} = \prod_{n = 1}^{\infty} (1 + z^n)$
 \end{proof}
 
 \begin{example}
@@ -2492,30 +2509,50 @@
 \begin{example}
     \textbf{Диагонализация степенных рядов}
 
-    $f(w, z) = \sum_{n, k = 0}^{\infty} a_{nk} w^n z^k$. Хотим найти $g(z) = \sum_{n = 0}^{\infty} a_{nn}z^n$.
+    Пусть дана $f(w, z) = \sum_{n, k = 0}^{\infty} a_{nk} w^n z^k$, а мы хотим найти $g(w) = \sum_{n = 0}^{\infty} a_{nn} w^n$.
     
-    $f(\frac{w}{z}, z) = \sum_{n, k = 0}^{\infty} a_{nk} \frac{w^n}{z^n} z^k$, нужен коэффициент перед $z_0$.
-    То есть $g(w) = \frac{1}{2\pi i} \int_{|z| = r} \frac{f(\frac{w}{z}, z)}{z} \, dz = \frac{1}{2\pi i} \int_{|z| = r} \sum_{n, k = 0}^{\infty} a_{nk} \frac{w^n}{z^n} z^{k - 1} \, dz = \frac{1}{2\pi i} \sum_{n, k = 0}^{\infty} w^n a_{nk} \int_{|z| = r} z^{k - n - 1} \, dz = 
-    \frac{1}{2\pi i} \sum_{n = 0}^{\infty} w^n a_{nn} 2\pi i = g(w)$
+    Запишем $f(\frac{w}{z}, z) = \sum_{n, k = 0}^{\infty} a_{nk} \frac{w^n}{z^n} z^k$, видно, что нас интересует коэффициент перед $z_0$ (если мы его найдет, то получем ответ).
 
-    Почему можно было переставить интеграл и сумму? Нужна равномерная сходимость. Нужно попасть строго внутрь
-    круга сходимости. $\sum |a_{nk}| r^{k-1} \left |\frac{w}{z} \right |^n$. Нужно $\left | \frac{w}{z} \right | < \rho$. Берём
-    радиус сходимости для $z$, для $w$, всё половиним, ещё на что-то умножаем.
 
-    Например, если $f(w, z) = \sum_{n, k = 0}^{\infty} \binom{n+k}{k}w^nz^k = \sum_{m = 0}^{\infty} \sum_{k = 0}^{m} \binom{m}{k} w^{m - k}z^k = \sum_{m = 0}^{\infty} (w + z)^m = \frac{1}{1 - w - z}$
+    То есть $g(w) = \frac{1}{2\pi i} \int_{|z| = r} \frac{f(\frac{w}{z}, z)}{z} \, dz = \frac{1}{2\pi i} \int_{|z| = r} \sum_{n, k = 0}^{\infty} a_{nk} w^n z^{k - n - 1} \, dz =$
+    
+    $= \frac{1}{2\pi i} \sum_{n, k = 0}^{\infty} w^n a_{nk} \underbrace{\int_{|z| = r} z^{k - n - 1} \, dz}_{=0, \text{ при } k \not = n, \ 2\pi i \text{ иначе}} = \frac{1}{2\pi i} \sum_{n = 0}^{\infty} w^n a_{nn} 2\pi i = g(w)$
 
-    $\frac{1}{2\pi i} \int_{|z| = r} \frac{f(\frac{w}{z}, z)}{z} \, dz = \frac{1}{2\pi i} \int_{|z| = r} \frac{dz}{z(1 - \frac{w}{z} - z)} = -\frac{1}{2\pi i} \int_{|z| = r} \frac{dz}{z^2 - z + w} = (*)$.
 
-    Особые точки: $\frac{1 \pm \sqrt{1 - 4w}}{2}$. В контуре $\frac{1 - \sqrt{1 - 4w}}{2}$, второй корень близок к 1, а этот к нулю.
+    Чтобы можно было переставить интеграл и сумму, нужна равномерная сходимость. То есть нужно попасть строго внутрь круга сходимости ряда $\sum |a_{nk}| r^{k-1} \left |\frac{w}{z} \right |^n$.
+    
+    Пусть радиус сх-ти для $z$ и для $w$ равен $R$, тогда нужно, чтобы $r < R, \left|\frac{w}{r}\right| < R$.
 
-    $(*) = - \res = -\frac{1}{2z - 1} \bigg |_{z = \frac{1 - \sqrt{1 - 4w}}{2}} = \frac{1}{\sqrt{1 - 4w}}$
+    % Нужно $\left | \frac{w}{z} \right | < \rho$. Берём
+    % радиус сходимости для $z$, для $w$, всё половиним, ещё на что-то умножаем.
+
+    \bigskip
+
+    Давайте теперь воспользуемся полученной схемой на конкретном примере:
+    
+    пусть $f(w, z) = \sum_{n, k = 0}^{\infty} \binom{n+k}{k}w^nz^k = \sum_{m = 0}^{\infty} \sum_{k = 0}^{m} \binom{m}{k} w^{m - k}z^k = \sum_{m = 0}^{\infty} (w + z)^m = \frac{1}{1 - w - z}$.
+
+
+    Найдем $\frac{1}{2\pi i} \int_{|z| = r} \frac{f(\frac{w}{z}, z)}{z} \, dz = \frac{1}{2\pi i} \int_{|z| = r} \frac{dz}{z \left(1 - \frac{w}{z} - z\right)} = -\frac{1}{2\pi i} \int_{|z| = r} \frac{dz}{z^2 - z + w} = (*)$.
+
+    Ищем нули знаменателя, получаем особые точки: $\frac{1 \pm \sqrt{1 - 4w}}{2}$.
+    
+    В контур попадает только $\frac{1 - \sqrt{1 - 4w}}{2}$, так как второй корень близок к $1$, а этот как раз к нулю.
+
+    $(*) = - \res = -\frac{1}{2z - 1} \bigg |_{z = \frac{1 - \sqrt{1 - 4w}}{2}} = \frac{1}{\sqrt{1 - 4w}}$.
+
+    Мы получили, что $\sum_{n=0}^{\infty} \binom{2n}{n} w^n = \frac{1}{\sqrt{1 - 4 w}}$.
 
 \end{example}
 
 \begin{definition}
     \textbf{Произведение Адамара}
 
-    $\mathcal{A}(z) = \sum_{n = 0}^{\infty} a_nz^n, \mathcal{B}(z) = \sum_{n=0}^{\infty} b_nz^n, \mathcal{A} \circ \mathcal{B} (z) = \sum_{n = 0}^{\infty} a_nb_n z^n$ 
+    $\mathcal{A}(z) = \sum_{n = 0}^{\infty} a_nz^n$
+    
+    $\mathcal{B}(z) = \sum_{n=0}^{\infty} b_nz^n$
+    
+    $\mathcal{A} \circ \mathcal{B} (z) = \sum_{n = 0}^{\infty} a_nb_n z^n$ 
 \end{definition}
 
 \begin{example}
