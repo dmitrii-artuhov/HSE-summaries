@@ -2152,6 +2152,10 @@
     Пусть $f'(a) = 0$, $b = f(a)$. Возьмём $\varepsilon$ так, что
     $f(z) - b \neq 0$ при $|z - a| = \varepsilon$ и $r = \min_{|z - a| = \varepsilon} |f(z) - b| > 0$.
 
+    \begin{center}
+        \includegraphics[width=6cm]{assets/04-functions-of-complex-variables/single-leaf-theorem-derivative-none-zero.png}
+    \end{center}
+
     Смотрим на уравнение $f(z) - w = f(z) - b + b - w$. Мы выяснили, что 
     $\mathcal{N}_{f - w} = \mathcal{N}_{f - b} \geqslant 2$, потому что
     $a$ - корень кратности $\geqslant 2$. Тогда $f(z) = w$ имеет хотя бы 2 решения. Но у нас инъекция, поэтому
@@ -2181,7 +2185,6 @@
 
             \textit{Доказательство: } $g(z) = f(\frac{1}{z})$ однолистна в проколотой окрестности нуля, в нуле можем доопределить, чтобы была голоморфность.
 
-            % Картинка
             \begin{center}
                 \includegraphics[width=7cm]{assets/04-functions-of-complex-variables/conf-func-consequence-2.jpg}
             \end{center}
@@ -2269,15 +2272,41 @@
             С другой стороны, $f^{-1} : \mathbb{D} \to \mathbb{D}$ тоже конфорное, $f^{-1}(0) = 0$, значит для
             неё тоже можно применить лемму Шварца. $|f^{-1}(z)| \leqslant |z| \Rightarrow |z| \leqslant |f(z)|$.
 
-            Значит $|f(z)| = |z| \, \forall z \in \mathbb{D}$, тогда по лемме Шварца это поворот, то есть $f(z) = e^{i\phi}z$
+            Значит $|f(z)| = |z| \, \forall z \in \mathbb{D}$, тогда по лемме Шварца это поворот, то есть $f(z) = e^{i\phi}z$.
+            
+            Также мы знаем, что $f'(z) = e^{i\phi}$ и $\arg f'(0) = 0 \implies e^{i\phi} = 1$. 
         }
         \item {
             $\Omega$ и $\tilde{\Omega}$ проивзольные. Пусть $f_1, f_2 \, : \, \Omega \to \tilde{\Omega}$ - конфорное.
-            $f_i(z_0) = \tilde{z_0}$ и $\arg f_i' (z_0) = \alpha$
+            $f_i(z_0) = \tilde{z_0}$ и $\arg f_i' (z_0) = \alpha$, где $i \in \{1, 2\}$.
 
-            Здесь нужна картинка и часть доказательства.
-            %TODO, картинка
-            %TODO
+            Воспользуемся \textit{существованием}:
+            
+            \begin{enumerate}
+                \item {
+                    $\exists \phi : \mathbb{D} \rightarrow \Omega$ -- конформное, $\phi(0) = z_0$ и $\phi'(0) > 0$ (то есть, что $\arg \phi'(0) = 0$).
+                }
+                \item {
+                    $\exists \psi : \tilde{\Omega} \rightarrow \mathbb{D}$ -- конформное, $\psi(\tilde{z_0}) = 0$ и $\arg \psi'(\tilde{z_0}) = -\alpha$.
+                }
+            \end{enumerate}
+
+            Посмотрим на $g_i = \psi \circ f_i \circ \phi: \mathbb{D} \rightarrow \mathbb{D}$:
+
+            \begin{enumerate}
+                \item $g_i(0) = 0$
+                \item {
+                    $g_i'(0) = \psi'(f_i(\phi(0))) \cdot f_i'(\phi(0)) \cdot \phi'(0) = \psi'(\tilde{z_0}) \cdot f_i'(z_0) \cdot\phi'(0)$
+
+                    $\arg g_i'(0) = -\alpha + \alpha + 0 = 0$ -- сумма аргументов множителей.
+                }
+            \end{enumerate}
+
+            То есть мы получили, что $g_1$ и $g_2$ -- два комфорных отображения из круга в круг, переводящие ноль в ноль, и производную в нуле имеют с нулевым аргументом $\implies_{\text{по пункту (1)}} g_1 = g_2 = z$.
+
+            Тогда восстановим $f_i$ и поймем, что они равны:
+
+            $f_i(\phi(z)) = \psi^{-1}(g_i(z)) \implies f_i(z) = \psi^{-1}(g_i(\phi^{-1}(z))) \implies$ т.к. $g_1 = g_2$, то по полученной формуле $f_1 = f_2$.
         }
     \end{enumerate}
 \end{proof}
@@ -2291,7 +2320,8 @@
 
 \begin{proof}
     $\bar{\mathbb{C}} \setminus \gamma$ - односвязная область, с границей, состоящей из более чем одной точки.
-    Тогда существует $g : \bar{\mathbb{C}} \setminus \gamma \to \mathbb{D} \Rightarrow g \circ f \in H(\mathbb{C})$ и $g \circ f \subset \mathbb{D}$, то есть
+
+    Тогда по теореме Римана о комформных отображениях существует $g : \bar{\mathbb{C}} \setminus \gamma \to \mathbb{D} \Rightarrow g \circ f \in H(\mathbb{C})$ и $g \circ f \subset \mathbb{D}$, то есть
     это ограниченная функция.
 
     Тогда по теореме Лиувилля (стандартной), $g \circ f$ - константа, значит
@@ -2316,11 +2346,11 @@
 \begin{proof}
     Пусть нет значений $a, b, c$. Сделаем из меромофрной - голоморфную, которая не принимает 2 значения.
     Пусть $c \neq \infty$, тогда $g(z) = \frac{1}{f(z) - c} \in H(\mathbb{C})$, но она не
-    принимает значения $\frac{1}{a - c}$ и $\frac{1}{b - c}$.
+    принимает значения $\frac{1}{a - c}$ и $\frac{1}{b - c}$, а тогда по малой теореме Пикара получаем, что $f \equiv const$.
 \end{proof}
 
 \begin{example}
-    $f(z) = \tg z \neq \pm i$ - два значения может не принимать.
+    $f(z) = \tg z \neq \pm i$ - пример мероморфной функции, не принимающей 2 значения.
 \end{example}
 
 \begin{definition}
@@ -2328,34 +2358,43 @@
 \end{definition}
 
 \begin{theorem}
-    Если $f \in H(\bar{\mathbb{C}} \setminus z_0)$ и однолистна, то $f$ дробно-линейное отображение.
+    Если $f \in H(\bar{\mathbb{C}} \setminus \{z_0\})$ и однолистна, то $f$ дробно-линейное отображение.
 \end{theorem}
 
 \begin{proof}
-    $z_0$ - изолированная особая точка. 
+    % $z_0$ - изолированная особая точка. 
 
     \begin{enumerate}
         \item {
-            $z_0$ - существенная особая точка. Тогда по теореме Сохоцкого 
+            $z_0$ -- существенная особая точка. Тогда по теореме Сохоцкого 
             $Cl \, f \{ 0 < |z - z_0| < \varepsilon \} = \mathbb{C}$.
 
-            Возьмём $b = f(a)$. Тогда $f(|z - a| < r)$ - открытое множество. Более того, 
-            $f(|z - a| < r) \cap f(0 < |z - z_0| < \varepsilon) = \emptyset$ из однолистности.
+            Возьмём $b = f(a)$. Тогда $f(|z - a| < r)$ - открытое множество (т.к. $\{|z-a| < r\}$ -- открытое и $f$ -- однолистная).
+            
+            Более того, $f(|z - a| < r) \cap f(0 < |z - z_0| < \varepsilon) = \emptyset$ из однолистности.
 
-            $f(|z - a| < r) \cap Cl \; f(0 < |z - z_0| < \varepsilon) = \emptyset$,  противоречие.
+
+            \begin{center}
+                \includegraphics[width=5    cm]{assets/04-functions-of-complex-variables/fractional-linear-functions.png}
+            \end{center}
+
+            То же самое верно, если дописать замыкание: $f(|z - a| < r) \cap Cl \; f(0 < |z - z_0| < \varepsilon) = \emptyset$ --  противоречие (т.к. замыкание это все $\mathbb{C}$).
         }
         \item {
-            $z_0 \neq \infty$ - полюс. Тогда из однолистности это полюс первого порядка. А тогда
+            $z_0 \neq \infty$ -- полюс. Тогда из однолистности это полюс первого порядка. А тогда
             $g(z) = f(z) - \frac{c}{z - z_0} \in H(\bar{\mathbb{C}}) \Rightarrow g(z) = const \Rightarrow f(z) = \frac{c}{z - z_0} + const$ 
         }
         \item {
-            $z_0 = \infty$ - полюс, тогда $g(z) = f(z) - cz \in H(\bar{\mathbb{C}}) \Rightarrow g(z) = const \Rightarrow f(z) = cz + const$.
+            $z_0 = \infty$ -- полюс, тогда $g(z) = f(z) - cz \in H(\bar{\mathbb{C}}) \Rightarrow g(z) = const \Rightarrow f(z) = cz + const$.
+        }
+        \item {
+            $z_0$ -- устранимая особая точка $\implies f \in H(\bar{\mathbb{C}}) \implies f \equiv const \implies$ нет однолистности $f$ -- противоречие.
         }
     \end{enumerate}
 \end{proof}
 
 \begin{consequence}
-    Если функция $f$ однолистная, то $f$ линейная.
+    Если функция $f \in H(\mathbb{C})$ и однолистная, то $f$ линейная.
 \end{consequence}
 
 \begin{proof}
