@@ -1,0 +1,58 @@
+\Subsection{Пространства Лебега}
+
+\begin{definition}
+    $\mu$ -- мера, $p \geq 1$.
+
+    $L^{p} (E, \mu)$ -- векторное пр-во, $f : E \rightarrow \bar{\mathbb{R}}$, т.ч. $\int_{E} |f|^p d\mu < \infty$
+
+    $|| f ||_p = \left( \int_{E} |f|^p d\mu \right)^{\frac{1}{p}}$
+    
+    \begin{enumerate}
+        \item Нер-во треугольника -- нер-во Минковского
+        \item Неотрицательность
+        \item Константа выносится
+        \item Но в нуле не всегда значение равно нулю
+    \end{enumerate}
+    
+    Рассматриваем не функции, а классы эквивалентности с точностью до совпадения почти везде.
+
+    Проблема: нет значения функции в точке.
+\end{definition}
+
+\begin{definition}
+    \textbf{Существенный супремум} ($esssup$ или $rraisup$)
+
+    $a$ -- существенный супремум функции $f: E \rightarrow \bar{\mathbb{R}}$, если $a = \inf \{ c : f(x) \leq c \}$ при почти всех $x \in E$.
+\end{definition}
+
+\begin{properties}
+    \begin{enumerate}
+        \item $esssup f \leq \sup f$
+        \item {
+            $f(x) \leq esssup f$ при почти всех $x$
+
+            \begin{proof}
+                $a := esssup f \implies \exists e_n : \ \mu e_n = 0$, т.ч. $f(x) \leq a + \frac{1}{n}$
+
+                $\forall x \in E \setminus e_n$
+
+                $e = \bigcup_{n=1}^{\infty} e_n, \ \mu e = 0$ и $f(x) = a + \frac{1}{n} \ \forall x \in E \setminus e \implies f(x) \leq a \ \forall x \in E \setminus e$.
+            \end{proof}
+        }
+    \end{enumerate}
+\end{properties}
+
+\begin{definition}
+    $L^{\infty} (E, \mu), \ f: E \rightarrow \bar{\mathbb{R}}$, т.ч. $esssup |f| < +\infty$.
+
+    $|| f ||_{\infty} = esssup |f|$
+
+    \begin{enumerate}
+        \item Константа выносится
+        \item Нер-во треугольника есть
+        \item Функция 0 почти везде, но все же не везде
+    \end{enumerate}
+
+    % Тут лекция, видимо, закончилась
+    Рассмотрим классы эквивалентности...
+\end{definition}
