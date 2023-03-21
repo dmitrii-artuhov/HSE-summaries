@@ -2558,39 +2558,55 @@
 \begin{example}
     Как находить произведение Адамара.
 
-    $f(w, z) = \mathcal{A}(z) \mathcal{B}(w) = \sum_{n, k = 0}^{\infty} a_nb_kz^nw^k$. Нас интересует диагональ этой штуки.
+    $f(w, z) = \mathcal{A}(z) \mathcal{B}(w) = \sum_{n, k = 0}^{\infty} a_nb_kz^nw^k$.
+    
+    Нас интересует диагональ этой штуки.
 \end{example}
 
 \begin{theorem}
-    Произведение Адамара рациональных функций - рациональная функция
+    Произведение Адамара рациональных функций -- рациональная функция
 \end{theorem}
 
 \begin{definition}
-    Последовательность $a_n$ - квазимногочлен, если $a_n = p_1(n)q_1^n + p_2(n)q_2^n + \ldots + p_k(n)q_k^n$, где
-    $q_1, \ldots, q_k \in \mathbb{C}$, а $p_1, \ldots, p_k$ - многочлены с комплексными коэффициентами.
+    Последовательность $\{a_n\}$ -- \textbf{квазимногочлен}, если
+    
+    $a_n = p_1(n)q_1^n + p_2(n)q_2^n + \ldots + p_k(n)q_k^n$,
+    
+    где $q_1, \ldots, q_k \in \mathbb{C}$, а $p_1, \ldots, p_k$ -- многочлены с комплексными коэффициентами.
 \end{definition}
 
 \begin{lemma}
-    $\mathcal{A}(z) = \sum_{n=0}^{\infty} a_nz^n$ - рациональная фукнция $\Leftrightarrow$ при больших $n \, - \, a_n - $ квазимногочлен.
+    $\mathcal{A}(z) = \sum_{n=0}^{\infty} a_n z^n$ -- рациональная фукнция $\Leftrightarrow$ при больших $n \,: \, a_n$ -- квазимногочлен.
 \end{lemma}
 
 \begin{proof}
     \begin{enumerate}
         \item {
-            $\Rightarrow$. Разложим рациональную функцию на простейшие. $\frac{1}{(1 - qz)^m}$ - одна из простейших.
+            $\Rightarrow$. Разложим рациональную функцию на простейшие, $\frac{1}{(1 - qz)^m}$ -- то есть на линейную комбинацию таких.
 
             $\frac{1}{(1 - z)^m} = \sum_{n = 0}^{\infty} \binom{n + m - 1}{m - 1} z^n$
 
             Тогда $\frac{1}{(1 - qz)^m} = \sum_{n = 0}^{\infty} \frac{(n + m - 1) \ldots (n + 1)}{(m - 1)!}q^nz^n$
         }
         \item {
-            $\Leftarrow$. Достаточно понять, что $a_n = p(n)q^n$ имеет рациональную производящую функцию. Индукция по степени многочлена.
-            Для $\deg = 0$, $a_n =q^n$ производящая функция $\frac{1}{1 - qz}$.
+            $\Leftarrow$. Достаточно понять, что $a_n = p(n) \cdot q^n$ имеет рациональную производящую функцию, а потом просто сложить в сумму.
+            
+            Индукция по степени многочлена: 
+            
+            \begin{enumerate}
+                \item {
+                    База: $\deg = 0$, $a_n = q^n$ производящая функция $\frac{1}{1 - qz}$.
+                }
+                \item {
+                    Переход: $d - 1 \rightarrow d$.
+                    
+                    Возьмём конкретный многочлен степени $d$: $\tilde{p}(n) = \frac{(n + d)(n + d - 1) \ldots (n + 1)}{d!}$.
 
-            Переход: $d - 1 \rightarrow d$. Возьмём конкретный многочлен степени $\tilde{P}(n) = \frac{(n + d)(n + d - 1) \ldots (n + 1)}{d!}$ - многочлен степени $d$.
-            И для $b_n = \tilde{P}(n)q^n$ производящая функция $\frac{1}{(1 - qz)^{d + 1}}$.
+                    Для $b_n = \tilde{p}(n)q^n$ производящая функция $\frac{1}{(1 - qz)^{d + 1}}$.
 
-            Вычтем из $P(n)$ $c\tilde{P}(n)$ так, что степень уменьшится.
+                    Из $p(n)$ вычтем $c \cdot \tilde{p}(n)$ так, чтобы степень уменьшилась, тогда по предположению индукции -- все работает.
+                }
+            \end{enumerate}
         }
     \end{enumerate}
 \end{proof}
@@ -2598,66 +2614,101 @@
 \begin{example}
     \textbf{Метод Дарбу}
 
-    $f(z) = \sum_{n = 0}^{\infty} a_nz^n$ сходится в круге $|z| < R$. Тогда при
-    $|z| < R$ ряд $\sum_{n = 0}^{\infty} a_nr^n$ - сходится и $a_nr^n \rightarrow 0 \Rightarrow a_n = o(r^{-n})$
+    $f(z) = \sum_{n = 0}^{\infty} a_n z^n$ сходится в круге $|z| < R$.
     
-    Пусть $R$ - радиус сходимости $f(z) = \sum_{n = 0}^{\infty} a_nz^n$, мы знаем, что на границе круга сходимости есть особая точка.
-    Если особых точек конечное число и это полюсы(для простоты будем считать, что одна), то тогда возьмём эту точку и напишем главную часть ряда Лорана.
+    Тогда при любом $r$, таком что $r < R$, ряд $\sum_{n = 0}^{\infty} a_n r^n$ -- сходится и $a_n r^n \rightarrow 0 \Rightarrow a_n = o(r^{-n})$.
+    
+    Пусть $R$ -- радиус сходимости $f(z) = \sum_{n = 0}^{\infty} a_n z^n$, тогда мы знаем, что на границе круга сходимости есть особая точка.
 
-    $h(z) = \text{главная часть ряда Лорана для функции $f$ в точке $a$}$. Тогда $g(z) = f(z) - h(z)$ голоморфна в точке $a$. И тогда скорее всего
-    её радиус сходимости $\tilde{R} > R$.
+    Если особых точек конечное число и это полюсы (для простоты будем считать, что одна), то тогда возьмём эту точку и напишем главную часть ряда Лорана:
 
-    $g(z) = \sum_{n = 0}^{\infty} b_nz^n \Rightarrow b_n =  o((\tilde{R} - \varepsilon)^{-n})$. А $h(z) = 
-    \frac{c_1}{z - a} + \frac{c_2}{(z - a)^2} + \ldots + \frac{c_r}{(z - a)^r}$, где $r$ -порядок полюса, а у неё можно явно выписать коэффициенты.
+    $h(z) = \text{главная часть ряда Лорана для функции $f$ в точке $a$}$.
+    
+    Тогда $g(z) = f(z) - h(z)$ имеет устранимую особую точку $a$. Давайте устраним ее, тогда $g(z)$ голоморфна в точке $a$. Тогда скорее всего её радиус сходимости $\tilde{R} > R$.
 
-    $\frac{1}{(z - a)^r} = \frac{1}{a^r(\frac{z}{a} - 1)^r} = \frac{(-1)^r}{a^r} \sum_{n = 0}^{\infty} \binom{n+r-1}{r-1} \left ( \frac{z}{a} \right )^n$. Тогда 
-    $a_n \sim c_r \frac{n^{r - 1}}{(r - 1)!}$ (там просто расписали бином и сказали, что $\frac{c_r}{(z - a)^r}$ - самое большое слагаемое).
+    $g(z) = \sum_{n = 0}^{\infty} b_n z^n \Rightarrow b_n =  o((\tilde{R} - \varepsilon)^{-n})$
+    
+    $h(z) = \frac{c_1}{z - a} + \frac{c_2}{(z - a)^2} + \ldots + \frac{c_r}{(z - a)^r}$, где $r$ -- порядок полюса, у $h(z)$ можно явно выписать коэффициенты (самый быстрорастущий это последний).
+
+    $\frac{1}{(z - a)^r} = \frac{1}{a^r \left(\frac{z}{a} - 1\right)^r} = \frac{(-1)^r}{a^r} \cdot \sum_{n = 0}^{\infty} \binom{n + r - 1}{r - 1} \left( \frac{z}{a} \right)^n$.
+
+    Оценим биномиальный коэффициент: $\binom{n + r - 1}{r - 1} = \frac{(n + r - 1) \ldots (n + 1)}{(r - 1)!} \sim \frac{n^{r - 1}}{(r - 1)!}$.
+    
+    Тогда $a_n \sim c_r \cdot \frac{n^{r - 1}}{(r - 1)!} \cdot \frac{(-1)^r}{a^{n + r}}$.
 \end{example}
 
 \begin{theorem}
-    Пусть $f \in H(|z| < R)$, где $|R| > 1$ и $f(1) \neq 0$. Пусть $\frac{f(z)}{(1 - z)^\alpha} = \sum_{n = 0}^{\infty} b_n z^n, \alpha \in \mathbb{R}, \alpha \neq 0, -1, -2 \ldots$.
+    Пусть $f \in H(|z| < R)$, где $R > 1$ и $f(1) \neq 0$.
+    
+    Пусть $\frac{f(z)}{(1 - z)^\alpha} = \sum_{n = 0}^{\infty} b_n z^n, \ \alpha \in \mathbb{R}, \ \alpha \neq 0, -1, -2 \ldots$
 
-    Тогда $b_n \sim f(1) \binom{n + \alpha - 1}{n} \sim f(1) \frac{n^{\alpha - 1}}{\Gamma (\alpha)}$
+    Тогда $b_n \sim f(1) \cdot \binom{n + \alpha - 1}{n} \sim f(1) \cdot \frac{n^{\alpha - 1}}{\Gamma (\alpha)}$
 \end{theorem}
 
 \begin{proof}
-    Возьмём $1 < r < R$ и разложим $f(z) = \sum_{n = 0}^{\infty} a_nz^n$. Мы знаем, что ряд сходится в точке 
-    $z = r \Rightarrow a_n = o(r^{-n})$.
 
-    $\frac{1}{(1 - z)^\alpha} = \sum_{n = 0}^{\infty} \binom{n + \alpha - 1}{n} z^n$.
+    Возьмём $1 < r < R$ и разложим $f(z) = \sum_{n = 0}^{\infty} a_n z^n$.
+    
+    Ряд сходится в точке $z = r \Rightarrow a_n = o(r^{-n})$.
 
-    Тогда $\frac{f(z)}{(1 - z)^\alpha} = \sum a_nz^n \cdot \sum \binom{n + \alpha - 1}{n} z^n$ и $b_n = a_n \binom{\alpha - 1}{0} + a_{n - 1}\binom{\alpha}{1} + \ldots + a_0 \binom{n + \alpha - 1}{n} = 
-    \binom{n + \alpha - 1}{n} (a_0 + \frac{n}{n + \alpha - 1}a_1 + \frac{n(n - 1)}{(n + \alpha - 1)(n + \alpha -2)}a_2 + \ldots + (\ldots)\cdot a_n)$. Мы знаем, что все коэффициенты при $a_i$ стремятся к 1.
-    Хотим сказать, что это всё $\sim \binom{n + \alpha - 1}{n} (a_0 + a_1 + \ldots + a_n) \sim \binom{n + \alpha - 1}{n} f(1) = \frac{\alpha(\alpha - 1) \ldots (\alpha + n - 1)}{n!} f(1) \rightarrow \frac{n^{\alpha - 1}}{\Gamma(\alpha)}$ - последний переход из формулы Эйлера-Гаусса
+    $\frac{1}{(1 - z)^\alpha} = \sum_{n = 0}^{\infty} \underbrace{\binom{n + \alpha - 1}{n}}_{=\frac{(n + \alpha - 1)(n + \alpha - 2) \ldots \alpha}{n!}} z^n$.
 
-    Осталось понять, что $(a_0 + \frac{n}{n + \alpha - 1}a_1 + \frac{n(n - 1)}{(n + \alpha - 1)(n + \alpha -2)}a_2 + \ldots + (\ldots)\cdot a_n) - (a_0 + a_1 + \ldots +a_n) \rightarrow 0$. Мы знаем, что 
-    $a_n = \mathcal{O}(r^{-n}) \Rightarrow |a_n| \leqslant \frac{C}{r^n}$. Тогда
-    $|\Delta_n| \leqslant |a_1| |\frac{n}{n + \alpha - 1} - 1| + \ldots + |\ldots - 1| |a_n| + \frac{C}{r^{m + 1}} + \frac{C}{r^{m + 2}} + \ldots $. Подберём так $m$ чтобы
-    $\sum \frac{C}{r^{m + i}} \leqslant \varepsilon$. И тогда всё выполнилось при больших $n$
+    Получаем:
+    
+    $\frac{f(z)}{(1 - z)^\alpha} = \sum a_n z^n \cdot \sum \binom{n + \alpha - 1}{n} z^n$
+    
+    $b_n = a_n \binom{\alpha - 1}{0} + a_{n - 1}\binom{\alpha}{1} + \ldots + a_0 \binom{n + \alpha - 1}{n} = \binom{n + \alpha - 1}{n} (a_0 + \frac{n}{n + \alpha - 1} a_1 + \frac{n(n - 1)}{(n + \alpha - 1)(n + \alpha - 2)} a_2 + \ldots + (\ldots) \cdot a_n)$, где все коэффициенты при $a_i$ стремятся к $1$.
+
+    Хотим сказать, что $b_n \sim \binom{n + \alpha - 1}{n} \cdot (a_0 + a_1 + \ldots + a_n) \sim \binom{n + \alpha - 1}{n} \cdot f(1) =$
+    
+    $= \frac{\alpha(\alpha - 1) \ldots (\alpha + n - 1)}{n!} f(1) \rightarrow \frac{n^{\alpha - 1}}{\Gamma(\alpha)} \cdot f(1)$ -- последний переход из формулы Эйлера-Гаусса.
+
+    Осталось понять, что $\Delta_n = (a_0 + \frac{n}{n + \alpha - 1}a_1 + \frac{n(n - 1)}{(n + \alpha - 1)(n + \alpha -2)}a_2 + \ldots + (\ldots)\cdot a_n) - (a_0 + a_1 + \ldots +a_n) \rightarrow 0$.
+    
+    Мы знаем, что $a_n = \mathcal{O}(r^{-n}) \Rightarrow |a_n| \leqslant \frac{C}{r^n}$. 
+    
+    Тогда $|\Delta_n| \leqslant
+    \underbrace{|a_1| \left|\frac{n}{n + \alpha - 1} - 1\right| +
+    |a_2| \left|\frac{n (n - 1)}{(n + \alpha - 1) (n + \alpha - 2)} - 1\right| +
+    \ldots +
+    |a_m| \left|(\ldots) - 1\right|}_{\text{конечное число слагаемых } \rightarrow 0} +$
+    
+    $+ \left(\frac{C}{r^{m + 1}} + \frac{C}{r^{m + 2}} + \ldots\right)$
+    
+    Подберём так $m$ чтобы $\sum \frac{C}{r^{m + i}} \leqslant \varepsilon$. И тогда всё выполнилось при больших $n$.
 \end{proof}
 
 \begin{example}
     \begin{enumerate}
         \item {
-            $f(z) = \frac{\sqrt{2 - z}}{(1 - z)^2}$. Здесь круг сходимости $|z| < 1$, особая точка $z = 1$ - полюс второго порядка. Главная 
-            часть ряда Лорана $\frac{a}{1 - z} + \frac{b}{(1 - z)^2}$. Здесь $b = \sqrt{2 - 1} = 1$, $a = \res_{z = 1} = ((1 - z)^2 f(z))' \bigg |_{z = 1} = (\sqrt{2 - z})' \bigg |_{z = 1} = -\frac{1}{2}$. Тогда
-            главная часть равна $\frac{1}{2} \cdot \frac{1}{1 - z} + \frac{1}{(1 - z)^2}$
+            $f(z) = \frac{\sqrt{2 - z}}{(1 - z)^2}$
+            
+            Здесь круг сходимости $|z| < 1$, особая точка $z = 1$ -- полюс второго порядка.
+            
+            Главная часть ряда Лорана: $\frac{a}{1 - z} + \frac{b}{(1 - z)^2} = -\frac{1}{2} \cdot \frac{1}{1 - z} + \frac{1}{(1 - z)^2}$.
+            
+            Здесь $b = \sqrt{2 - 1} = 1$, $a = \res_{z = 1} = ((1 - z)^2 f(z))' \bigg|_{z = 1} = (\sqrt{2 - z})' \bigg|_{z = 1} = \frac{-1}{2 \sqrt{2 - z}} \bigg|_{z = 1} = -\frac{1}{2}$.
 
-            $g(z) = f(z) - \frac{1}{(1 - z)^2} + \frac{1}{2} \cdot \frac{1}{1 - z}$ голоморфна в $z = 1$. Значит $g \in H(|z| < 2)$.
+            $g(z) = f(z) - \frac{1}{(1 - z)^2} + \frac{1}{2} \cdot \frac{1}{1 - z}$  -- голоморфна в $z = 1$, тогда $g \in H(|z| < 2)$.
 
-            Если $f(z) = \sum a_n z^n, g(z) = \sum b_n z^n$. $b_n = o\left ( \frac{1}{(2 - \varepsilon)^n} \right )$
+            Пусть $f(z) = \sum_{n=0}^{\infty} a_n z^n, \ g(z) = \sum_{n=0}^{\infty} b_n z^n, \ b_n = o\left( \frac{1}{(2 - \varepsilon)^n} \right)$
 
-            $a_n = b_n - \frac{1}{2} + n + 1 = n + \frac{1}{2} + o \left ( \frac{1}{(2 - \varepsilon)^n} \right )$
+            $a_n = b_n -\frac{1}{2} + n + 1 = n + \frac{1}{2} + o \left( \frac{1}{(2 - \varepsilon)^n} \right)$
         }
         \item {
-            $f(z) = \frac{e^z}{\sqrt{1 - z}} = \sum_{n = 0}^{\infty} a_n z^n$, кргу сходимости $|z| < 1$, но $z = 1$ не полюс, а точка ветвления.
+            $f(z) = \frac{e^z}{\sqrt{1 - z}} = \sum_{n = 0}^{\infty} a_n z^n$, круг сходимости $|z| < 1$, но $z = 1$ не полюс, а точка ветвления.
 
-            $g(z) = \frac{e^z}{\sqrt{1 - z}} - \frac{e}{\sqrt{1 - z}} = \frac{e}{\sqrt{1 - z}} (e^{z - 1} - 1) = \frac{e}{\sqrt{1 - z}} (1 - z) \underbrace{\frac{e^{z - 1}}{1 - z}}_{\text{голоморфна в 1}} = e\sqrt{1 - z} h(z)$, где $h(z) \in H(\mathbb{C})$.
+            $g(z) = \frac{e^z}{\sqrt{1 - z}} - \frac{e}{\sqrt{1 - z}} = \frac{e}{\sqrt{1 - z}} (e^{z - 1} - 1) = \frac{e}{\sqrt{1 - z}} (1 - z) \underbrace{\frac{e^{z - 1} - 1}{1 - z}}_{=h(z) \text{, голоморфна в 1}} = e\sqrt{1 - z} h(z)$, где на самом деле $h(z) = \frac{1 + (z - 1) + \frac{(z - 1)^2}{2} + \ldots}{1 - z} \in H(\mathbb{C})$.
 
-            $g(z) = \sum b_n z^n$. Из теоремы $b_n = h(1) \frac{n^{-\frac{3}{2}}}{\Gamma (\frac{1}{2})} = - \frac{1}{\sqrt{\pi} n\sqrt{n}}$
+            $g(z) = \sum b_n z^n$, из теоремы имеем $b_n \sim h(1) \frac{n^{-\frac{3}{2}}}{\Gamma (\frac{1}{2})} = -\frac{1}{\sqrt{\pi} n \sqrt{n}}$
 
-            $e\sqrt{1 - z} = e \sum c_n z^n$. Тогда $a_n = ec_n + b_n$. $\sqrt{1 - 4z} = \sum_{n=0}^{\infty} \binom{2n}{n} z^n$. Тогда $\sqrt{1 - z} = \sum \binom{2n}{n} \frac{z^n}{4^n}$. И тогда
-            $a_n = \frac{\binom{2n}{n} \cdot e}{4^n} + b_n = \frac{e \binom{2n}{n}}{4^n} + \mathcal{O}(\frac{1}{n^{\frac{3}{2}}})$
+            $e \sqrt{1 - z} = e \sum_{n=0}^{\infty} c_n z^n$.
+            
+            Тогда $a_n = e \cdot c_n + b_n = \frac{e \cdot \binom{2n}{n}}{4^n} + b_n = e \cdot \underbrace{\frac{\binom{2n}{n}}{4^n}}_{\sim \frac{1}{\sqrt{\pi n}}} + \mathcal{O}\left(\frac{1}{\sqrt{n^3}}\right)$.
+            
+            $\sqrt{1 - 4z} = \sum_{n=0}^{\infty} \binom{2n}{n} z^n$ -- с одной из прошлый лекций. Тогда $\sqrt{1 - z} = \sum \binom{2n}{n} \frac{z^n}{4^n}$.
+            
+            И тогда $a_n = e \cdot \frac{\binom{2n}{n}}{4^n} + b_n = e \cdot \frac{\binom{2n}{n}}{4^n} + \mathcal{O}\left(\frac{1}{n^{\frac{3}{2}}}\right)$
         }
     \end{enumerate}
 \end{example}
@@ -2665,18 +2716,87 @@
 \begin{example}
     \textbf{Метод Лапласа}
 
-    Есть $2k$-значный номер, интересуемся количеством таких номеров, что сумма первых $k$ знаков равна сумме последних $k$.
+    Есть $2k$-значный номер, интересуемся количеством таких номеров, что сумма первых $k$ знаков равна сумме последних $k$ (счастливые билеты).
 
     Пусть $a_k = $ количество $2k$ значных счастливых билетов.
 
-    $a_k = \frac{1}{2\pi i} \int_{|z| = 1} \mathcal{A}(z) \mathcal{A}(\frac{1}{z}) \frac{dz}{z}$. $\mathcal{A}(z) = (1 + z + z^2 + \ldots + z^9)^k = \left ( \frac{1 - z^{10}}{1 - z} \right )^k$.
+    $a_k = \frac{1}{2\pi i} \int_{|z| = 1} \mathcal{A}(z) \mathcal{A}(\frac{1}{z}) \frac{dz}{z}$
+    
+    $\mathcal{A}(z) = (1 + z + z^2 + \ldots + z^9)^k = \left( \frac{1 - z^{10}}{1 - z} \right)^k$
 
-    То есть $\frac{1}{2 \pi i} \int_{|z| = 1} \left ( \frac{(1 - z^{10})(1 - z^{-10})}{(1 - z)(1 - \frac{1}{z})} \right )^k \frac{dz}{z}  = \frac{1}{2\pi i} \int_{|z| = 1} \left ( \frac{2 - z^{10} - z^{-10}}{2 - z - \frac{1}{z}} \right )^k \frac{dz}{z} = 
-    \frac{1}{2\pi i} \int_{0}^{2\pi} \left ( \frac{2 - e^{10it} - e^{-10it}}{2 - e^{it} - e^{-it}} \right )^k \frac{ie^{it}}{e^{it}} \, dt = 
-    \frac{1}{2\pi} \int_{0}^{2\pi} \left ( \frac{2 - 2 \cos (10 t)}{2 - 2\cos t} \right )^k \, dt = \frac{1}{2\pi} \int_{0}^{2\pi} \left ( \frac{2\sin^2 (st)}{2 \sin^2 \frac{t}{2}} \right )^k \, dt = \frac{1}{2\pi} \int_{0}^\pi 2\left ( \frac{\sin (10s)}{\sin s} \right )^{2k} \, ds  = 
-    \frac{2}{\pi} \int_{0}^{\frac{\pi}{2}} \left( \frac{\sin (10x)}{\sin x} \right)^{2k}$
+    Тогда $a_k =
+    \frac{1}{2 \pi i} \int_{|z| = 1} \left( \frac{(1 - z^{10})(1 - z^{-10})}{(1 - z)(1 - \frac{1}{z})} \right)^k \frac{dz}{z} =
+    \frac{1}{2\pi i} \int_{|z| = 1} \left( \frac{2 - z^{10} - z^{-10}}{2 - z - \frac{1}{z}} \right)^k \frac{dz}{z} = (*)$
 
+    Делаем замену: $z = e^{it}, \ dz = i \cdot e^{it} dt$.
+    
+    $(*) = \frac{1}{2\pi i} \int_{0}^{2\pi} \left( \frac{2 - e^{10 it} - e^{-10 it}}{2 - e^{it} - e^{-it}} \right)^k \frac{i e^{it}}{e^{it}} \, dt = $
+    
+    $= \frac{1}{2\pi} \int_{0}^{2\pi} \left( \frac{2 - 2 \cos{(10 t)}}{2 - 2\cos{t}} \right)^k \, dt = \frac{1}{2\pi} \int_{0}^{2\pi} \left( \frac{2\sin^2{(5 t)}}{2 \sin^2{\frac{t}{2}}} \right)^k \, dt =$
+    
+    Делаем доп. замену: $s = \frac{t}{2}, \ 1 - \cos{t} = 2 sin^2{\frac{t}{2}}$.
+
+    $= \frac{1}{2\pi} \int_{0}^\pi 2\left( \frac{\sin {(10s)}}{\sin s} \right)^{2k} \, ds \underbrace{=}_{\text{т.е. симметрия отн. } \frac{\pi}{2}} \frac{2}{\pi} \int_{0}^{\frac{\pi}{2}} \left( \frac{\sin (10x)}{\sin x} \right)^{2k} ds$.
+
+
+    Можно выловить скорость роста интеграла: поведение определено точкой максимума у $\frac{\sin{(10x)}}{\sin{x}}$.
+
+    \begin{center}
+        \includegraphics[width=6cm]{assets/04-functions-of-complex-variables/laplasian-method.png}
+    \end{center}
+
+    \begin{enumerate}
+        \item В нуле максимум равен $10$
+        \item В окрестности нуля разложим по Тейлору
+        \item Остальное просто оценим
+    \end{enumerate}
+
+    $\int_{0}^{\frac{\pi}{2}} \left( \frac{\sin{(10x)}}{\sin{x}} \right)^k dx = \int_{0}^{\varepsilon} + \int_{\varepsilon}^{\frac{\pi}{2}}$
+
+
+    \begin{enumerate}
+        \item {
+            Посмотрим на окрестность нуля.
+
+            Раскладываем по Тейлору:
+
+            $\frac{\sin{(10x)}}{\sin{x}} = \frac{10x - \frac{(10x)^3}{6} + \mathcal{O}(x^5)}{x - \frac{x^3}{3} + \mathcal{O}(x^3)} = 10 \cdot \frac{1 - \frac{100 x^2}{6} + \mathcal{O}(x^4)}{1 - \frac{x^2}{6} + \mathcal{O}(x^4)} =$
+            
+            $= 10 (1 - \frac{100}{6} x^2 + \mathcal{O}(x^4)) (1 + \frac{x^2}{6} + \mathcal{O}(x^4)) = 10 (1 - \frac{33}{2} x^2 + O(x^4))$
+
+            Под интегралами у нас это степенная функция, поэтому распишем логарифм от нашего выражения:
+
+            $\ln \frac{\sin(10x)}{\sin{x}} = \ln \left(10 (1 - \frac{33}{2} x^2 + O(x^4))\right)$
+
+            $\left( \frac{\sin(10x)}{\sin{x}} \right)^{2k} = e^{2k \ln\left( 10 (1 - \frac{33}{2} x^2 + O(x^4)) \right)} = 10^{2k} \cdot e^{-33 k x^2} \cdot e^{\mathcal{O}(2k x^4)}$
+
+            Подставим это в интеграл с $\varepsilon$:
+
+            $k \varepsilon^4 \rightarrow 0$,
+
+            $\int_{0}^{\varepsilon} 10^{2k} e^{-33k x^2} \underbrace{e^{\mathcal{O}(k x^4)}}_{= e^{\mathcal{O}(k \varepsilon^4)}, \text{ выберем $\varepsilon$ так, что } = 1 + \mathcal{O}(k \varepsilon^4)} = 10^{2k} \left( 1 + \mathcal{O}(k \varepsilon^4) \right) \int_{0}^{\varepsilon} e^{-33 k x^2} dx = (')$
+
+            Делаем замену: $y = \sqrt{33k} x$.
+
+            $(') = 10^{2k} \left(1 + \mathcal{O}(k \varepsilon^4)\right) \int_{0}^{\varepsilon \sqrt{33k}} e^{-y^2} \frac{1}{\sqrt{33k}} dy \sim 10^{2k} \frac{1}{\sqrt{33k}} \cdot \frac{\sqrt{\pi}}{2} = ('')$
+
+            Хотим, чтобы $\varepsilon \sqrt{33} \rightarrow +\infty$, тогда $('') \rightarrow \int_{0}^{+\infty} = \frac{\sqrt{\pi}}{2}$.
+            
+            Для этого подойдет $\varepsilon = \sqrt{1}{k^{\frac{1}{3}}}$.
+        }
+        \item {
+            Посмотрим на остальное.
+
+            $\int_{\frac{\pi}{10}}^{\frac{\pi}{2}} \left( \frac{\sin{(10x)}}{\sin{x}} \right)^{2k} dx \leq \underbrace{\frac{\pi}{2}}_{\text{длина отрезка $\leq$ этого}} \left( \frac{1}{\sin{(\frac{\pi}{10})}} \right)^{2k}$
+
+            если $\frac{\pi}{10}$ не подойдет, то немного подвинуть.
+
+            Смотрим на вторую часть:
+
+            $\int_{\varepsilon}^{\frac{\pi}{10}} \left( \frac{\sin{(10x)}}{\sin{x}} \right)^{2k} \underbrace{\leq}_{\text{т.к. функция убывает}} \frac{\pi}{10} \left(\frac{\sin{(10 \varepsilon)}}{\sin{\varepsilon}}\right)^{2k} \underbrace{=}_{\text{считали в предыдущем пункте}} \frac{\pi}{10} 10^{2k} \underbrace{e^{-33k \varepsilon^2}}_{\text{быстро убывает}} \underbrace{e^{\mathcal{O}(k \varepsilon^4)}}_{\sim 1}$
+        }
+    \end{enumerate}
+
+
+    Метод работает в случае $\int_{a}^{b} \left(f(x)\right)^n$ и $n \rightarrow \infty$.
 \end{example}
-
-%TODO
-Тут пропущено 30 минут лекции.
