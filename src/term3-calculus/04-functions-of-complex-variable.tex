@@ -1024,6 +1024,8 @@
 \end{properties}
 
 \begin{theorem}
+    \textbf{О единственности ряда Лорана}.
+
     Пусть $f(z) = \sum_{n=-\infty}^{\infty} a_n z^n$ в кольце $r < |z| < R$.
 
     Тогда $a_n = \frac{1}{2 \pi i} \int_{|z| = \rho} {\frac{f(z)}{z^{n+1}} dz}$, где $r < \rho < R$.
@@ -1048,6 +1050,8 @@
 \end{remark}
 
 \begin{theorem}
+    \textbf{О существовании ряда Лорана}.
+
     Пусть $f \in H(r < |z| < R)$. Тогда $f(z) = \sum_{n = -\infty}^{+\infty} a_n z^n$, для некоторых $a_n \in \mathbb{C}$.
 \end{theorem}
 \begin{proof}
@@ -1056,22 +1060,30 @@
 
     Берем $r_2 < |z| < R_2$: пишем для него и компакта $K =\{ r_1 \leq |z| \leq R_2 \}$ интегральную теорему Коши:
 
-    $f(z) = \frac{1}{2 \pi i} \int_{\partial K} {\frac{f(\zeta)}{\zeta - z} d\zeta} = \frac{1}{2 \pi i} \int_{|\zeta| = R_1} { \frac{f(\zeta)}{\eta - z} d\zeta } - \frac{1}{2 \pi i} \int_{|\zeta| = r_1} { \frac{f(\zeta)}{\zeta - z} d\zeta }$
+    $f(z) = \frac{1}{2 \pi i} \int_{\partial K} {\frac{f(\zeta)}{\zeta - z} d\zeta} = \frac{1}{2 \pi i} \int_{|\zeta| = R_1} { \frac{f(\zeta)}{\zeta - z} d\zeta } - \frac{1}{2 \pi i} \int_{|\zeta| = r_1} { \frac{f(\zeta)}{\zeta - z} d\zeta }$
 
-    $|\zeta| = R_1, \ |z| < R_2, \ |frac{z}{\zeta}| < \frac{R_2}{R_1} < 1$
+    \begin{enumerate}
+        \item {
+            Пускай $|\zeta| = R_1, \ |z| < R_2, \ |\frac{z}{\zeta}| < \frac{R_2}{R_1} < 1$.
 
-    $\frac{1}{\zeta - z} = \frac{1}{1 - \frac{z}{\zeta}} \cdot \frac{1}{\zeta} = \sum_{n=0}^{\infty} { \frac{z^n}{\zeta^{n+1}} }$
+            Распишем: $\frac{1}{\zeta - z} = \frac{1}{1 - \frac{z}{\zeta}} \cdot \frac{1}{\zeta} = \sum_{n=0}^{\infty} { \frac{z^n}{\zeta^{n+1}} }$
+        
+            Считаем первое слагаемое:
+            
+            $\int_{|\zeta| = R_1} { \frac{f(\zeta)}{\zeta - z} d\zeta } = \int_{|\zeta| = R_1} { \sum_{n=0}^{\infty} z^n \frac{f(\zeta)}{\zeta^{n+1}} d\zeta } = \sum_{n = 0}^{\infty} {z^n \underbrace{\int_{|\zeta| = R_1} { \frac{f(\zeta)}{\zeta^{n + 1}} d\zeta }}_{=: a_n}}$
+        }
+        \item {
+            Теперь пускай $|\zeta| = r_1, \ |z| > r_2, \ |\frac{\zeta}{z}| < \frac{r_1}{r_2} < 1$.
+            
+            Распишем: $\frac{1}{\zeta - z} = -\frac{1}{z} \cdot \frac{1}{1 - \frac{\zeta}{z}} = -\sum_{n = 0}^{\infty} \frac{\zeta^n}{z^{n + 1}}$.
 
-    $\int_{|\zeta| = R_1} { \frac{f(\zeta)}{\zeta - z} d\zeta } = \int_{|\zeta| = R_1} { \sum_{n=0}^{\infty} z^n \frac{f(\zeta)}{\zeta^{n+1}} d\zeta } = $
+            Считаем второе слагаемое:
 
-    $= \sum_{n = 0}^{\infty} {z^n \underbrace{\int_{|\zeta| = R_1} { \frac{f(\zeta)}{\zeta^{n + 1}} d\zeta }}_{=: a_n}}$
+            $-\int_{|\zeta| = r_1} { \frac{f(\zeta)}{\zeta - z} d\zeta } = \int_{|\zeta| = r_1} { \frac{1}{z^{n + 1}} f(\zeta) \zeta^n d\zeta } = \sum_{n=0}^{\infty} \frac{1}{z^{n+1}} \underbrace{\int_{|\zeta| = r_1}{f(\zeta) \zeta^n d\zeta}}_{=: a_{n-1}}$
+        }
+    \end{enumerate}
 
-
-    $|\zeta| = r_1, \ |z| > r_2, \ |\frac{\zeta}{z}| < \frac{r_1}{r_2} < 1, \ \frac{1}{\zeta - z} = -\frac{1}{z} \cdot \frac{1}{1 - \frac{\zeta}{z}} = -\sum_{n = 0}^{\infty} \frac{\zeta^n}{z^{n + 1}}$
-
-    $-\int_{|\zeta| = r_1} { \frac{f(\zeta)}{\zeta - z} d\zeta } = \int_{|\zeta| = r_1} { \frac{1}{z^{n + 1}} f(\zeta) \zeta^n d\zeta } = $
-
-    $= \sum_{n=0}^{\infty} \frac{1}{z^{n+1}} \underbrace{\int_{|\zeta| = r_1}{f(\zeta) \zeta^n d\zeta}}_{=: a_{n-1}}$
+    Складывая воединино как раз и получим ряд Лорана для $f(z)$.
 \end{proof}
 
 \begin{theorem}
