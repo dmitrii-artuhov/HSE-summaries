@@ -1024,6 +1024,8 @@
 \end{properties}
 
 \begin{theorem}
+    \textbf{О единственности ряда Лорана}.
+
     Пусть $f(z) = \sum_{n=-\infty}^{\infty} a_n z^n$ в кольце $r < |z| < R$.
 
     Тогда $a_n = \frac{1}{2 \pi i} \int_{|z| = \rho} {\frac{f(z)}{z^{n+1}} dz}$, где $r < \rho < R$.
@@ -1032,7 +1034,7 @@
 \begin{proof}
     $\int_{|z| = \rho} { \frac{f(z)}{z^{n+1}} dz } = \int_{|z| = \rho} { \frac{\sum_{k = -\infty}^{+\infty} a_k z^k}{z^{n+1}} dz } =$
     
-    $= \int_{|z| = \rho} { \sum_{k=-\infty}^{+\infty} a_k z^{k - n - 1} dz } = \sum_{k = -\infty}^{\infty} a_k \int_{|z| = \rho} { z^{k-n-1} dz } = 2\pi i a_n$
+    $= \int_{|z| = \rho} { \sum_{k=-\infty}^{+\infty} a_k z^{k - n - 1} dz } = \sum_{k = -\infty}^{\infty} a_k \int_{|z| = \rho} { z^{k-n-1} dz } = 2\pi i a_n$ -- т.к. при $|z| = \rho$ ряд равномерно сходится, то можно интегрировать по-членно.
 
     $\int_{|z| = \rho} { z^m dz } = \int_{0}^{2\pi} { \rho^m e^{i m t} i \rho e^{i t} dt } = \rho^{m+1} i \int_{0}^{2\pi} { e^{i (m+1) t} dt } = \begin{cases}
         2 \pi i, \text{ при } m = -1 \\
@@ -1048,30 +1050,40 @@
 \end{remark}
 
 \begin{theorem}
+    \textbf{О существовании ряда Лорана}.
+
     Пусть $f \in H(r < |z| < R)$. Тогда $f(z) = \sum_{n = -\infty}^{+\infty} a_n z^n$, для некоторых $a_n \in \mathbb{C}$.
 \end{theorem}
 \begin{proof}
     % todo: picture
     $r < r_1 < r_2 < R_2 < R_1 < R$.
 
-    Берем $r_2 < |z| < R_2$: пишем для него и компакта $K =\{ r_1 \leq |z| \leq R_2 \}$ интегральную теорему Коши:
+    Берем $r_2 < |z| < R_2$: пишем для него и компакта $K =\{ r_1 \leq |z| \leq R_1 \}$ интегральную теорему Коши:
 
-    $f(z) = \frac{1}{2 \pi i} \int_{\partial K} {\frac{f(\zeta)}{\zeta - z} d\zeta} = \frac{1}{2 \pi i} \int_{|\zeta| = R_1} { \frac{f(\zeta)}{\eta - z} d\zeta } - \frac{1}{2 \pi i} \int_{|\zeta| = r_1} { \frac{f(\zeta)}{\zeta - z} d\zeta }$
+    $f(z) = \frac{1}{2 \pi i} \int_{\partial K} {\frac{f(\zeta)}{\zeta - z} d\zeta} = \frac{1}{2 \pi i} \int_{|\zeta| = R_1} { \frac{f(\zeta)}{\zeta - z} d\zeta } - \frac{1}{2 \pi i} \int_{|\zeta| = r_1} { \frac{f(\zeta)}{\zeta - z} d\zeta }$
 
-    $|\zeta| = R_1, \ |z| < R_2, \ |frac{z}{\zeta}| < \frac{R_2}{R_1} < 1$
+    \begin{enumerate}
+        \item {
+            Пускай $|\zeta| = R_1, \ |z| < R_2, \ |\frac{z}{\zeta}| < \frac{R_2}{R_1} < 1$.
 
-    $\frac{1}{\zeta - z} = \frac{1}{1 - \frac{z}{\zeta}} \cdot \frac{1}{\zeta} = \sum_{n=0}^{\infty} { \frac{z^n}{\zeta^{n+1}} }$
+            Распишем: $\frac{1}{\zeta - z} = \frac{1}{1 - \frac{z}{\zeta}} \cdot \frac{1}{\zeta} = \sum_{n=0}^{\infty} { \frac{z^n}{\zeta^{n+1}} }$
+        
+            Считаем первое слагаемое:
+            
+            $\int_{|\zeta| = R_1} { \frac{f(\zeta)}{\zeta - z} d\zeta } = \int_{|\zeta| = R_1} { \sum_{n=0}^{\infty} z^n \frac{f(\zeta)}{\zeta^{n+1}} d\zeta } = \sum_{n = 0}^{\infty} {z^n \underbrace{\int_{|\zeta| = R_1} { \frac{f(\zeta)}{\zeta^{n + 1}} d\zeta }}_{=: a_n}}$ -- можем менять интеграл и сумму местами, из-за того, что ряд равномерно сходящийся.
+        }
+        \item {
+            Теперь пускай $|\zeta| = r_1, \ |z| > r_2, \ |\frac{\zeta}{z}| < \frac{r_1}{r_2} < 1$.
+            
+            Распишем: $\frac{1}{\zeta - z} = -\frac{1}{z} \cdot \frac{1}{1 - \frac{\zeta}{z}} = -\sum_{n = 0}^{\infty} \frac{\zeta^n}{z^{n + 1}}$.
 
-    $\int_{|\zeta| = R_1} { \frac{f(\zeta)}{\zeta - z} d\zeta } = \int_{|\zeta| = R_1} { \sum_{n=0}^{\infty} z^n \frac{f(\zeta)}{\zeta^{n+1}} d\zeta } = $
+            Считаем второе слагаемое (переходы по аналогии):
 
-    $= \sum_{n = 0}^{\infty} {z^n \underbrace{\int_{|\zeta| = R_1} { \frac{f(\zeta)}{\zeta^{n + 1}} d\zeta }}_{=: a_n}}$
+            $-\int_{|\zeta| = r_1} { \frac{f(\zeta)}{\zeta - z} d\zeta } = \int_{|\zeta| = r_1} { \frac{1}{z^{n + 1}} f(\zeta) \zeta^n d\zeta } = \sum_{n=0}^{\infty} \frac{1}{z^{n+1}} \underbrace{\int_{|\zeta| = r_1}{f(\zeta) \zeta^n d\zeta}}_{=: a_{n-1}}$
+        }
+    \end{enumerate}
 
-
-    $|\zeta| = r_1, \ |z| > r_2, \ |\frac{\zeta}{z}| < \frac{r_1}{r_2} < 1, \ \frac{1}{\zeta - z} = -\frac{1}{z} \cdot \frac{1}{1 - \frac{\zeta}{z}} = -\sum_{n = 0}^{\infty} \frac{\zeta^n}{z^{n + 1}}$
-
-    $-\int_{|\zeta| = r_1} { \frac{f(\zeta)}{\zeta - z} d\zeta } = \int_{|\zeta| = r_1} { \frac{1}{z^{n + 1}} f(\zeta) \zeta^n d\zeta } = $
-
-    $= \sum_{n=0}^{\infty} \frac{1}{z^{n+1}} \underbrace{\int_{|\zeta| = r_1}{f(\zeta) \zeta^n d\zeta}}_{=: a_{n-1}}$
+    Складывая воединино как раз и получим ряд Лорана для $f(z)$.
 \end{proof}
 
 \begin{theorem}
@@ -1098,7 +1110,12 @@
 
     $|F(z)| \leq 1$ при $|z| \geq \rho$
 
-    $|F(x)|$ -- огр. при $|z| \leq \rho$ по т. Вейерштрасса.
+    $|F(z)|$ -- огр. при $|z| \leq \rho$, так как $F(z)$ непрерывная на компакет.
+    % по т. Вейерштрасса.
+
+    Получили, что $F(z)$ голоморфна на $\mathbb{C}$ и ограничена $\implies_{\text{теорема Луивилля}}$ $F(z) \equiv const$.
+
+    А так как $F(z) \rightarrow_{z \rightarrow +\infty} 0$, то $F(z) = 0 \implies g_1 = g_2$ и $h_1 = h_2$.
 \end{proof}
 
 \begin{definition}
