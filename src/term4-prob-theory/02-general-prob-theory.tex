@@ -51,7 +51,7 @@
 \end{lemma}
 
 \begin{proof}
-    $B = \bigcap_{n = 1}^{\infty} \bigcup_{k = n}^{\infty} A_k$.
+    $B = \bigcap_{n = 1}^{\infty} \bigcup_{k = n}^{\infty} A_k$ - это переформулировка события из условия в терминах множеств
 
     $\omega \in B \Longleftrightarrow \omega \in \bigcup_{k = n}^{\infty} A_k \ \forall n \Longleftrightarrow w \in A_k$ для бесконечного количества индексов $k$.
 
@@ -65,30 +65,29 @@
     Док-во теоремы:
 
     \begin{enumerate}
-        \item $P(B) = 0$ - хотим доказать.
+        \item {
+            Хотим доказать, что $P(B) = 0$
         
-        $B \subset \bigcup_{k = n}^{\infty} A_k \Rightarrow P(B) \leqslant P(\bigcup_{k = n}^{\infty} A_k) \leqslant \sum_{k = n}^{\infty} P(A_k)$, 
-        а это хвост сходящегося ряда, а он стремится к нулю.
+            $B \subset \bigcup_{k = n}^{\infty} A_k \Rightarrow P(B) \leqslant P(\bigcup_{k = n}^{\infty} A_k) \leqslant \sum_{k = n}^{\infty} P(A_k)$ - это хвост сходящегося ряда, а он стремится к нулю.
 
-        \item Давайте смотреть на $\bar{A_1}, \bar{A_2}, \ldots$ - независимые события (следует из упражнения с прошлой лекции).
+        }
+        \item {
+            Давайте смотреть на $\bar{A_1}, \bar{A_2}, \ldots$ - независимые события.
         
-        $P(\bigcap_{k = 1}^n \bar{A_k}) = \prod_{k = 1}^{n} P(\bar{A_k}) \to_{n \to \infty} \prod_{k = 1}^{\infty}  P(\bar{A_k})$
+            $P(\bigcap_{k = 1}^n \bar{A_k}) \overbrace{=}^{\text{независимость}} \prod_{k = 1}^{n} P(\bar{A_k}) \to_{n \to \infty} \prod_{k = 1}^{\infty}  P(\bar{A_k}) = \prod_{k = 1}^{\infty}  (1 - P(A_k))$
 
-        Но всё вложено по убыванию, по монотонности меры получаем $P(\bigcap_{k = 1}^{\infty} \bar{A_k}) = \prod_{k = 1}^{\infty} P(\bar{A_k}) = 
-        \prod_{k=1}^{\infty} (1 - P(A_k))$
+            А ещё $P(\bigcap_{k = 1}^n \bar{A_k}) \rightarrow P(\bigcap_{k = 1}^\infty \bar{A_k})$, так как множества вложены в друг друга и есть монотонность меры.
 
-        Прологарифмируем это равенство.
+            \hfill \smallbreak
 
-        % $\ln (P(\bigcap_{n}^{\infty} \bar{A_k})) = \sum{k = n}^{\infty} \ln (1 - P(A_k)) \leqslant - \sum{k = n}^{\infty} P(A_k) = -\infty$ - сумма
-        % хвоста расходящегося ряда.
+            Значит $P(\bigcap_{k = n}^\infty \bar{A_k}) = \prod_{k = n}^{\infty}  (1 - P(A_k)) \overset{\text{логарифмируем}} {\Longleftrightarrow}
+            \ln P(\bigcap_{k = n}^\infty \bar{A_k}) = \\ = \sum_{k = n}^{\infty} \ln (1 - P(A_k)) \overset{\ln (1 - t) \leqslant -t}{\leqslant} 
+            \sum_{k = n}^{\infty} (-P(A_k)) = -\infty$ - хвост расходящегося ряда. 
 
-        $\ln (P(\bigcap_{k = n}^{\infty} \bar{A}_k)) = \sum_{k = n}^{\infty} \ln(1 - P(A_k)) \leqslant \sum_{k = n}^{\infty} (-P(A_k)) = -\infty$ -- сумма хвоста расходящегося ряда.
-
-        А значит мы логарифмировали $0 \Rightarrow P(\bigcap_{k = n}^{\infty} \bar{A_k}) = 0 \Rightarrow P(\bigcup_{n=1}^{\infty} \bigcap_{k = n}^{\infty} \bar{A}_k) = 0 \Rightarrow P(\bar{B}) = 0 \Rightarrow$
+            А значит мы логарифмировали $0 \Rightarrow P(\bigcap_{k = n}^{\infty} \bar{A_k}) = 0 \Rightarrow P(\bigcup_{n=1}^{\infty} \bigcap_{k = n}^{\infty} \bar{A}_k) = 0 \Rightarrow P(\bar{B}) = 0 \overset{(*)}{\Rightarrow} P(B) = 1$
         
-        $\Rightarrow \overline{\bigcup_{n=1}^{\infty} \bigcap_{k = n}^{\infty} \bar{A}_k} = \bigcap_{n=1}^{\infty} \bigcup_{k=n}^{\infty} A_k = B \Rightarrow P(B) = 1$.
-
-        Добавим, что $B = \bigcap_{n = 1}^{\infty} B_n$, где $B_1 \supset B_2 \supset \ldots$ и $P(B) = \lim P(B_n) = 1$.
+            $(*) \, \overline{\bigcup_{n=1}^{\infty} \bigcap_{k = n}^{\infty} \bar{A}_k} = \bigcap_{n=1}^{\infty} \bigcup_{k=n}^{\infty} A_k = B$
+        }
     \end{enumerate}
 \end{proof}
 
@@ -152,8 +151,9 @@
         Функция распределения однозначно определяет распределение
         случайной величины.
 
-        \textit{Доказательство:} Если у двух случайных величин совпали, то у них одинаковые
-        распределения
+        \begin{proof}
+            Функция распределения однозначно задаёт значения на ячейках
+        \end{proof} 
         }
         \item {
             $0 \leqslant F_{\xi}(x) \leqslant 1 \, \forall x \in \mathbb{R}$
@@ -164,9 +164,11 @@
 
             $\lim_{x \to +\infty} F_{\xi} (x) = 1$
 
-            \textit{Доказательство:} берём $x_n \to -\infty. A_n = \{ \xi \leqslant x_n \} $
-            Тогда $A_{n + 1} \subset A_n$. Тогда $\lim_{n \to \infty} P(A_n) = 
-            P(\bigcap_{n = 1}^{\infty} A_n) = P(\emptyset) = 0$
+            \begin{proof}
+                берём $x_n \to -\infty, A_n = \{ \xi \leqslant x_n \} $
+                Тогда $A_{n + 1} \subset A_n$. Тогда $\lim_{n \to \infty} P(A_n) = 
+                P(\bigcap_{n = 1}^{\infty} A_n) = P(\emptyset) = 0$
+            \end{proof}
         } 
         \item {
             $F_{\xi}$ монотонно возрастает
@@ -174,30 +176,37 @@
         \item {
             Непрерывность справа: $\lim_{y \to x+} F_{\xi} (y) = F_{\xi} (x)$
 
-            \textit{Доказательство:} берём $y_n$ убывающие и $y_n \to x$.
-            Тогда $A_n = \{ \xi \leqslant y_n \}$. $A_{n + 1} \subset A_n$.
-            А тогда $\lim P(A_n) = P(\bigcup_{n = 1}^{\infty} A_n) = P(\xi \leqslant x) = F_{\xi} (x)$.
-            Но с другой стороны $\lim P(A_n) = \lim P(\xi \leqslant y_n) = \lim F_{\xi} (y_n)$
-        }
-        \item {
-            $\lim_{y \to x-} F_{\xi} (y) P(\xi < x)$
+            \begin{proof}
+                берём $y_n$ убывающие и $y_n \to x$.
+                Тогда $A_n = \{ \xi \leqslant y_n \}$. $A_{n + 1} \subset A_n$.
+                А тогда $\lim P(A_n) = P(\bigcap_{n = 1}^{\infty} A_n) = P(\xi \leqslant x) = F_{\xi} (x)$.
+                Но с другой стороны $\lim P(A_n) = \lim P(\xi \leqslant y_n) = \lim F_{\xi} (y_n)$
+            \end{proof}
 
-            \textit{Доказательство:} берём $y_n$ возрастающие и
-            $y_n \to x$. $B_n = \{ \xi \leqslant y_n \}$ и $B_{n} \subset B_{n + 1}$.
-            $\lim P(B_n) = P(\bigcup B_n) = P(\xi < x)$. Но с другой стороны
-            $\lim P(B_n) = \lim F_{\xi} (y_n)$
+            }
+        \item {
+            $\lim_{y \to x-} F_{\xi} (y) = P(\xi < x)$
+
+            \begin{proof}
+                берём $y_n$ возрастающие и
+                $y_n \to x$. $B_n = \{ \xi \leqslant y_n \}$ и $B_{n} \subset B_{n + 1}$.
+                $\lim P(B_n) = P(\bigcup B_n) = P(\xi < x)$. Но с другой стороны
+                $\lim P(B_n) = \lim F_{\xi} (y_n)$
+            \end{proof}
         }
         \item {
             $F_{\xi + a} (x) = F_{\xi} (x - a)$
 
-            \textit{Доказательство:} $\{ \xi + a \leqslant x \} = 
-            \{ \xi \leqslant x - a \}$
+            \begin{proof}
+                $\{ \xi + a \leqslant x \} = \{ \xi \leqslant x - a \}$
+            \end{proof}
         }
         \item {
             $F_{c\xi} = F_{\xi} (\frac{x}{c})$
 
-            \textit{Доказательство:} $\{ c\xi \leqslant x \} = 
-            \{ \xi \leqslant \frac{x}{c} \}$
+            \begin{proof}
+                $\{ c\xi \leqslant x \} =  \{ \xi \leqslant \frac{x}{c} \}$
+            \end{proof}
         }
     \end{enumerate}
 
@@ -205,8 +214,9 @@
         Фукнция, обладающая свойствами 3, 4, 5 - это фукнция распределения
         некоторой случайной величины.
 
-        \textit{Доказательство:} пусть $g$ - такая функция. Тогда $\nu_g (a, b] = g(b) - g(a) $.
-        Случайная величина $\xi (x) = x$. Тогда $F_{\xi} = g$
+        \begin{proof}
+            пусть $g$ - такая функция. Тогда $\nu_g (a, b] = g(b) - g(a)$. $\Omega = \mathbb{R}$, $\mathcal{F}$ - измеримо по Лебегу, случайная величина $\xi (w) = w$. Тогда $F_{\xi} = g$
+        \end{proof}
     \end{remark}
 
 \end{properties}
@@ -262,8 +272,10 @@
         \item {
             $A \subset \mathbb{R}$ -- борелевское, то $P_{\xi} (A) = \int_{A} p_{\xi} (t) \, dt$
 
-            \textit{Доказательство:} слева мера и справа мера. Нужно понять, почему
-            они совпадают на ячейках. 
+            \begin{proof}
+                слева мера и справа написаны меры. На лучах они совпадают по определению, значит совпадают
+                на ячейках, а значит и совпадают везде
+            \end{proof} 
 
             $P_{\xi} (a, b] = F_{\xi} (b) - F_{\xi} (a) = \int_{a}^b p_{\xi} (t) \, dt$
         }
@@ -276,7 +288,9 @@
         \item {
             $F_{\xi}$ почти везде диффиренцируема и $F_{\xi}' (x) = p_{\xi} (x)$
 
-            \textit{Доказательство:} а его не будет
+            \begin{proof}
+                без доказательства
+            \end{proof}
         }
     \end{enumerate}
 \end{properties}
@@ -317,7 +331,7 @@
 
             Стандартное нормальное распределение: $\mathcal{N} (0, 1)$
         }
-        \item {
+        \item { 
             Экспонециальное распределение: $\xi \sim Exp(\lambda), \lambda > 0$.
 
             $\xi : \Omega \to [0, +\infty]$. $p_{\xi}(t) = \begin{cases}
@@ -361,8 +375,7 @@
     $P_{\bar{\xi}} (A) = P(\bar{\xi} \in A)$, где $A$ - борелевское подмножество $\mathbb{R}^n$ 
 
     \begin{remark}
-        Совместное распределение однозначно определяет распределение случайной
-        величины, но не наоборот
+        $P_{\bar{\xi}}$ однозначно определяет распределение $P_{\xi_k}$, но не наоборот
 
         \begin{example}
             $\xi, \eta : \Omega \to \{ 0, 1 \}$  с равными вероятностями.
@@ -371,6 +384,8 @@
             \{ (0, 0), (0, 1), (1, 0), (1, 1) \}$  с равными вероятностями.
 
             Если $\xi = \eta$, то $(\xi, \eta) : \Omega \to \{ (0, 0), (1, 1) \}$.
+
+            То есть получили 2 разных совместных распределения, при это координатное распределение только одно
 
         \end{example}
     \end{remark}
@@ -392,8 +407,11 @@
 
 \begin{proof}
     \begin{enumerate}
-        \item $\Leftarrow$ очевидно. $P_{\bar{\xi}} (A_1 \times \ldots \times A_n) = P_{\xi_1} (A_1) \ldots P_{\xi_n}(A_n)$
-        \item $\Rightarrow$. На множествах $A_1 \times \ldots \times A_n$ есть равенство + единственность продолжения.
+        \item $\Leftarrow$ $P(\xi_1 \in A_1, \ldots, \xi_n \in A_n) = P_{\xi_1, \ldots, \xi_n} (A_1 \times \ldots \times A_n) = P_{\xi_1} (A_1) \cdot \ldots \cdot P_{\xi_n} (A_n)$
+        \item {
+            $\Rightarrow$. Достаточно проверить совпадение на ячейках, то есть, что $P(\bar{\xi} \in (a, b]) = P_{\xi_1} (a_1, b_1] \cdot
+            \ldots \cdot P_{\xi_n} (a_n, b_n]$. А это просто определение независимости.
+        }
     \end{enumerate}
 \end{proof}
 
@@ -504,8 +522,10 @@
             \item {
                 $\mu * \nu (A) = \int_{\mathbb{R}^2} \mathds{1}_A (x + y) d\mu (x) \, d\nu (y)$
 
-                \textit{Доказательство: } $\mu * \nu (A) = \int_{\mathbb{R}} \mu (A - x) \, d\nu (x) =
-                \int_{\mathbb{R}} \int_{\mathbb{R}} \mathds{1}_{A - x} (y) d\mu (y) \, d\nu (x)$
+                \begin{proof}
+                    $\mu * \nu (A) = \int_{\mathbb{R}} \mu (A - x) \, d\nu (x) \overset{\mu (A - x) = \int_{\mathbb{R}} \mathds{1}_{A - x} d\mu (y) }{=}
+                    \int_{\mathbb{R}} \int_{\mathbb{R}} \mathds{1}_{A - x} (y) d\mu (y) \, d\nu (x)$
+                \end{proof}
             }
             \item {
                 $\mu * \nu = \nu * \mu$
@@ -524,8 +544,10 @@
 
                 Получили линейное пространство относительно $+$ и $*$
 
-                \textit{Доказательство:} $\mu * \delta_0 (A) = \int_R \mu (A - x) \, d\delta_0 (x) = 
-                \mu A$ - значение подыинтегральной функции в точке $x = 0$.
+                \begin{proof}
+                    $\mu * \delta_0 (A) = \delta_0 * \mu (A) = \int_{\mathbb{R}} \delta_0 (A - x) \, d\mu (x) 
+                    \overset{\delta_0 = 1 \Leftrightarrow 0 \in A - x \Leftrightarrow x \in A}{=} \int_{\mathbb{R}} \mathds{1}_{A} d\mu (x) = \mu A$
+                \end{proof}
             }
         \end{enumerate}
     \end{properties}
