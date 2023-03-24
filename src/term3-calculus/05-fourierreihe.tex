@@ -55,4 +55,205 @@
 
     % Тут лекция, видимо, закончилась
     Рассмотрим классы эквивалентности...
+
+    \textbf{Важный частный случай}
+
+    $X = \mathbb{N}$, $\mu$- считающая мера, $l^p = \{ (x_1, x_2, \ldots) \, : \, \sum_{k = 1}^{\infty} |x_k|^p < +\infty \}$
+
+    $|| x ||_p = \left( \sum_{k = 1}^{\infty} |x_k|^p \right)^{\frac{1}{p}}$
+
+    $l^\infty = \{ (x_1, x_2, \ldots) \, : \, \sup |x_k| < +\infty \}$
+
+    $|| x ||_{\infty} = \sup |x_k|$    
 \end{definition}
+
+\begin{theorem}
+    \textbf{Вложение пространств Лебега}
+
+    Пусть $\mu E < +\infty$ и $1 \leqslant p \leqslant q \leqslant +\infty$.
+
+    Тогда $L^q (E, \mu) < L^p (E, \mu)$ и $||f||_p \leqslant ||f||_q (\mu E)^{\frac{1}{p}-\frac{1}{q}}$
+\end{theorem}
+
+\begin{proof}
+    Пусть $q < +\infty$. 
+    
+    Напишем неравенство Гёльдера $\int_E |f|^p \cdot 1 \, d\mu \leqslant \left( \int_E |f|^q \, d\mu \right)^{\frac{p}{q}} \left( \int 1^{r'} \, d\mu \right)^{\frac{1}{r'}} = (*)$
+
+    Здесь $r = \frac{q}{p}, r'$, такое, что $\frac{1}{r} + \frac{1}{r'} = 1 \Rightarrow \frac{1}{r'} = \frac{q - p}{q}$ 
+
+    Тогда $(*) = ||f||_q^p (\mu E)^{\frac{q - p}{q}} \Rightarrow ||f||_p \leqslant ||f||_q (\mu E)^{\frac{q - p}{pq}}$
+
+    Пусть $q = +\infty$, тогда $||f||_p^p = \int_E |f|^p \, d\mu \leqslant \int_E ||f||_\infty^p \, d\mu = \mu E ||f||_\infty^p$
+
+    \begin{remark}
+        Для $\mu E = +\infty$ вложений нет
+    \end{remark}
+\end{proof}
+
+\begin{theorem}
+    $L^p (E, \mu)$ - полное, где $1 \leqslant p \leqslant +\infty$
+\end{theorem}
+
+\begin{proof}
+    только для $p < +\infty$
+
+    Пусть $f_n$ - фундаментальная последовательность функций. Мы знаем, что 
+    $\forall \, \varepsilon > 0 \, \exists N \, : \, \forall \, m, n \geqslant N \, : \, ||f_n - f_m||_p < \varepsilon$
+
+    Берём $\varepsilon = \frac{1}{2}, n_1 = N$ для этого $\varepsilon$, далее берём $\varepsilon = \frac{1}{2^2}$ и $n_2 = N$ для этого $\varepsilon$ и так далее.
+
+    Получилось, что $n_1 < n_2 < n_3 < \ldots$. А ещё $||f_{n_k} - f_n|| < \frac{1}{2^k}$ при $n \geqslant n_k$, в частности
+    $||f_{n_k} - f_{n_{k + 1}}|| < \frac{1}{2^k}$ - так строили подпоследовательность.
+
+    Тогда $\sum_{k = 1}^\infty ||f_{n_{k}} - f_{n_{k + 1}}|| < 1$.
+
+    Заведём $S(t) = \sum_{k = 1}^\infty |f_{n_{k}}(t) - f_{n_{k + 1}}(t)|$. $S \, : \, E \to \overline{\mathbb{R}}$. Пусть 
+    $S_n(t)$ - частичная сумма.
+
+    $||S_n|| \leqslant ||f_{n_1} - f_{n_2}|| + ||f_{n_2} - f_{n_3}|| + \ldots + ||f_{n_m} - f_{n_{m + 1}}|| < 1$ - норма суммы меньше суммы норм.
+
+    $||S||^p = \int_{E} |S(t)|^p \, dt = \int_E \lim_{n \to +\infty} |S_m(t)|^p \, dt \underbrace{\leqslant}_{\text{л. Фату}} \underline{\lim} \int_E |S_m(t)|^p \, dt = 
+    \underline{\lim} ||S_m ||^p \leqslant 1 $
+    
+    $ \implies \int_E |S(t)|^p \, dt < +\infty \implies S(t) < +\infty$ при почти всех $t$.
+
+    А тогда $f_{n_1} + \sum_{k = 1}^\infty (f_{n_k}(t) + f_{n_{k + 1}}(t))$ абсолютно сходится при почти всех $t \implies $ сходится при почти всех $t$.
+
+    Пусть $S(t)$ - его сумма. Но $f_{n_k}(t)$ - частичная сумма этого ряда. Тогда
+    $\lim f_{n_k} (t) = f(t)$ при почти всех $t$. Проверим, что $||f_n - f|| \rightarrow 0$.
+
+    Возьмём $n \geqslant n_k$, тогда $||f_n - f|| \leqslant ||f_n - f_{n_k}|| + ||f_{n_k} - f|| \leqslant \frac{1}{2^k}$
+
+    $f_{n_k} - f \rightarrow 0$ почти везде, $\lim \int_E |f_{n_k} - f|^p \, d\mu = \int E \lim |f_{n_k} - f|^p \, d\mu$, а под интегралом 
+    почти везде 0. Осталось понять, почему есть суммируемая мажоратна.
+
+    $f(t) = f_{n_k} + \sum_{j = k}^\infty (f_{n_{j + 1}} - f_{n_j})$. А тогда $|f(t) - f_{n_k}| \leqslant \sum_{j = k}^\infty |f_{n_{j + 1}} - f_{n_j} | \leqslant S(t)$. Тогда $S^p$ - суммируемая мажоранта.
+\end{proof}
+
+\begin{definition}
+    $(X, \rho)$ - метрическое пространство и $A \subset X$.
+
+    $A$ всюда плотно в $X$, если $Cl A = X$.
+
+    \begin{example}
+        $X = \mathbb{R}$ и $A = \mathbb{Q}$.
+    \end{example}
+\end{definition}
+
+\begin{definition}
+    $f \, : \, E \to \mathbb{R}$ называется ступенчатой, если она измерима и у неё конечное число значений.
+\end{definition}
+
+\begin{lemma}
+    $1 \leqslant p < +\infty, \varphi$ ступенчатая $\in L^p (E, \mu)$
+
+    Тогда $\mu E \{ \varphi \neq 0 \} < +\infty$
+\end{lemma}
+
+\begin{proof}
+    $|\varphi|$ - рассмотрим положительные значения, их конечное число, значит среди них есть наименьшее. Тогда 
+    на множестве $E \{ \varphi \neq 0 \}, |\varphi| \geqslant m$
+
+    Тогда $\int_E |\varphi|^p \, d\mu = \int_{E \{ \varphi \neq 0 \}} |\varphi|^p \, d\mu \geqslant \int_{E \{ \varphi \neq 0 \}} m^p \, d\mu = m^p \mu E \{ \varphi \neq 0 \}$
+\end{proof}
+
+\begin{theorem}
+    $1 \leqslant p \leqslant +\infty$
+
+    Тогда множество ступенчатых функций из $L^p (E, \mu)$ плотно в $L^p (E, \mu)$.
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item {
+            $p = +\infty$. Возьмём $f \in L^\infty (E, \mu), f \geqslant 0$. Эта функция ограничена.
+            Тогда существует возрастающая последовательность $\varphi_1 \leqslant \varphi_2 \leqslant \ldots$, таких, что $\varphi_n \rightrightarrows f$ - теорема из теории меры.
+
+            Тогда $||\varphi_n - f||_{\infty} = \sup_{t \in E} |f(t) - \varphi_n(t)| \rightarrow 0$ из равномерной сходимости.
+
+            Если $f$ проивзольная, то $f = f_{+} - f_{-}$. 
+            
+            Здесь $||\varphi_n - f_{+}||_\infty \rightarrow 0$ и $||\psi_n - f_{-}||_\infty \rightarrow 0 \implies ||(f_{+} - f_{-}) - (\varphi_n - \psi_n)||_\infty \rightarrow 0$
+        }
+        \item {
+            $p < +\infty$. Возьмём $f \in L^p (E, \mu), f \geqslant 0 \implies $ существуют ступенчатые $0 \leqslant \varphi_1 \leqslant \varphi_2 \leqslant \ldots$, такие, что $\lim \varphi_n = f$.
+
+            $||f - \varphi_n||_p^p = \int_E |f(t) - \varphi_n(t) |^p \, dt \rightarrow \int_E \lim |f(t) - \varphi_n(t) |^p \, dt = 0$.
+            Опять же нужна суммируемая мажоратна, но она есть, потому что $0 \leqslant \varphi_n \leqslant f$. Тогда $|f - \varphi_n|^p \leqslant f^p$
+
+            Для произвольной опять $f_{+}$ и $f_{-}$
+        }
+    \end{enumerate}
+\end{proof}
+
+\begin{definition}
+    $f$ - финитная функция, если она тождественно равна нулю вне некоторого компакта.
+    \begin{example}
+        индикаторная функция отрезка
+    \end{example}
+\end{definition}
+
+\begin{theorem}
+    $1 \leqslant p < +\infty$ и $E \in \mathbb{R}^d$ измеримо.
+
+    Тогда множество финитных бесконечно дифференцируемых функций плотно в $L^p (E, \lambda)$
+\end{theorem}
+
+\begin{proof}
+    Для приближения непрерывными финитными функциями.
+
+    $f$ приближается ступенчатыми функциями, поэтому достаточно научиться приближать только их, то есть
+    достаточно научится приближать функции $\mathds{1}_A$, где $A$ - измеримое и конечной меры.
+
+    Рассмотрим $\mathds{1}_A$, найдётся $K$ - компакт и $G$ - открытое, такие, что $K \subset A \subset G$ и 
+    $\lambda (G \setminus K) < \varepsilon$. $\varphi (x) = \frac{d(x, \mathbb{R}^d \setminus G)}{d(x, K) + d(x, \mathbb{R}^d \setminus G)}$.
+
+    По определению $d(x, B) = \inf_{y \in B} \rho (x, y)$.
+
+    $\varphi(x) = 0$, если $x \not \in G$ и $\varphi(x) = 1$, если $x \in K$ и в целом $\varphi \in [0, 1]$
+
+    Тогда $||\varphi - \mathds{1}_A||_p^p = \int_{\mathbb{R}^d} |\varphi (x) - \mathds{1}_A (x)|^p \, dx =
+    \int_{G \setminus K} \underbrace{|\varphi (x) - \mathds{1}_A(x) |^p}_{\leqslant 1} \, dx \leqslant \lambda (G \setminus K) < \varepsilon$
+\end{proof}
+
+\begin{definition}
+    $h \in \mathbb{R}^d, f \, : \, \mathbb{R}^d \to \overline{\mathbb{R}}$.
+
+    Тогда $f_h$ - свдиг $f$, если $f_h(x) = f(x + h)$
+\end{definition}
+
+\begin{theorem}
+    \textbf{о непрерывности сдвига}
+
+    \begin{enumerate}
+        \item {
+            Если $f$ равномерно непрерывна на $\mathbb{R}^d$, то $||f_h - f||_{\infty} \rightarrow_{h \to 0} 0$
+        }
+        \item {
+            Если $f \in L^p (\mathbb{R}^d, \lambda)$, $1 \leqslant p < +\infty$, то $||f_h - f||_p \rightarrow_{h \to 0} 0$
+        }
+        \item {
+            Если $f \, : \, \mathbb{R} \to \mathbb{R}$ непрерывна и $2\pi$ периодична, то $||f_h - f||_{\infty} \rightarrow_{h \to 0} 0$
+        }
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item {
+            1 и 3 пункт - определение равномерной непрерывности
+
+            $||f_h - f||_\infty = \sup_{x \in \mathbb{R}} |f_n(x) - f(x)| = \sup_{x \in \mathbb{R}^d} |f(x + h) - f(x)|$
+        }
+        \item {
+            Возьмём $\varepsilon > 0$ и $g$ финитную непрерывную функцию, что $||f - g||_p < \varepsilon$.
+
+            $||f_h - f||_p \leqslant ||f_h - g_h ||_p + ||g_h - g||_p + ||g - f||_p \leqslant 2\varepsilon + ||g_h - g||_p$.
+
+            $||g_h - g||_p^p = \int_{\mathbb{R}^d} |g_h(x) - g(x)|^p \, dx = (*)$. $g$ нулится вне $B_R (0)$. Тогда 
+            $(*) = \int_{B_{R + 1}(0)} |g(x + h) - g(x)|^p \, dx \leqslant \lambda B_{R + 1} (0) \cdot \underbrace{\sup |g(x + h) - g(x)|}_{||g_h - g||_{\infty} \rightarrow 0}$
+        }
+    \end{enumerate}
+    
+\end{proof}
