@@ -1160,11 +1160,20 @@
         \item $4 \Rightarrow 3$ - очевидно
         \item $3 \Rightarrow 1$ - очевидно. $g$ непрерывна, предел $g(a)$
         \item $1 \Rightarrow 2$ - очевидно
-        \item Докажем $2 \Rightarrow 4$.
-        Пусть ограничена: $f(z) \leqslant M$. $\forall \, 0 < |z - a| < r$
-        
-        $f(z) = \sum_{n = -\infty}^{+\infty} c_n(z - a)^n$. $|c_n| \leqslant \frac{\max |f(z)|}{\rho^n}$ при $|z - a| = \rho$
-        $c_{-n} \leqslant \rho^n \max f(z) \leqslant M \rho^n$ и устремим $\rho$ к $0$. $M \rho^n \rightarrow 0$
+        \item {
+            Докажем $2 \Rightarrow 4$.
+            
+            Пусть ограничена $\forall \, 0 < |z - a| < r$: $f(z) \leqslant M$
+            
+            Запишем ряд Лорана: $f(z) = \sum_{n = -\infty}^{+\infty} c_n(z - a)^n$.
+            
+            Теперь воспользуемся нер-вом Коши для ряда Лорана: $|c_n| \leqslant \frac{\max |f(z)|}{\rho^n}$ при $|z - a| = \rho$.
+
+
+            $c_{-n} \leqslant \rho^n \max f(z) \leqslant M \rho^n$ и устремим $\rho$ к $0$.
+            
+            Получаем, что $M \rho^n \rightarrow 0$, а тогда и $c_{-n} \rightarrow 0$.
+        }
     \end{enumerate}
 \end{proof}
 
@@ -1176,7 +1185,7 @@
     Следующие условия равносильны:
 
     \begin{enumerate}
-        \item $a$ - полюс
+        \item $a$ -- полюс
         \item Существует $g \in H(|z - a| < r)$, $g(a) \neq 0$, такая, что $f(z) = \frac{g(z)}{(z - a)^m}, m \in \mathbb{N}$
         \item В главной части ряда Лорана в точке $a$ лишь конечное число ненулевых коэфцциентов. Но они есть.
     \end{enumerate}
@@ -1184,16 +1193,40 @@
 
 \begin{proof}
     \begin{enumerate}
-        \item $2 \Rightarrow 3$. $g(z) = \sum c_n (z - a)^n, c_0 \neq 0 \Rightarrow f(z) = \sum_{n = 0}^{+\infty} c_n(z - a)^{n - m}$ - разложение в ряд Лорана
-        \item $3 \Rightarrow 1$. $f(z) = \sum_{n = -m}^{\infty} b_n(z - a)^n$. Все слагаемые $o((z - a)^{-m})$, а на $b_{-m}(z - a)^{-n} \rightarrow \infty$
-        \item $1 \Rightarrow 2$. $\lim_{z \to a} f(z) = \infty$. Значит в некоторой проколотой окрестности $0 <|z - a| < \varepsilon$
-        $|f(z)| > 1$. Рассмотрим $g(z) = \frac{1}{f(z)} \in H(0 < |z - a| < r)$
-        $\lim_{z \to a} g(z) = 0$. Доопределим $g(a) = 0$ и получим $g \in H(|z - a| < \varepsilon)$
-        (предыдущая теорема (?)). $a$ - ноль функции $g$. Тогда $g(z) = (z - a)^m h(z)$,
-        где $h(a) \neq 0$ и $h \in H(|z - a| < \varepsilon)$
+        \item {
+            $2 \Rightarrow 3$:
+            
+            $g(z)$ -- голоморфна, тогда раскладывается по Тейлору:
+            
+            $g(z) = \sum_{n=0}^{\infty} c_n (z - a)^n, g(a) = c_0 \neq 0 \Rightarrow f(z) = \sum_{n = 0}^{+\infty} c_n(z - a)^{n - m}$ -- разложение в ряд Лорана, где $c^{-m} \neq 0$.
+        }
+        \item {
+            $3 \Rightarrow 1$:
+            
+            $f(z) = \sum_{n = -m}^{\infty} b_n(z - a)^n$
+            
+            Все слагаемые $o((z - a)^{-m})$, тогда перепишем $f(z) = \sum_{n=-m}^{\infty} b_n \frac{(z-a)^{n + m}}{(z - a)^{m}}$ и становится видно, что при $z \rightarrow a$ каждая дробь стремится к $\infty$.
+            
+            % а на $b_{-m}(z - a)^{-m} \rightarrow \infty$
+        } 
+        \item {
+            $1 \Rightarrow 2$:
+            
+            $\lim_{z \to a} f(z) = \infty$
+            
+            Значит, в некоторой проколотой окрестности $0 <|z - a| < \varepsilon$:
+            $|f(z)| > 1$.
+            
+            Рассмотрим $g(z) = \frac{1}{f(z)} \in H(0 < |z - a| < \varepsilon)$:
+            
+            $\lim_{z \to a} g(z) = 0$.
+            
+            Доопределим $g(a) = 0$ и получим $g \in H(|z - a| < \varepsilon)$.
+            
+            $a$ -- ноль функции $g$, тогда по теореме о нулях голоморфной функции $g(z) = (z - a)^m h(z)$, где $h(a) \neq 0$ и $h \in H(|z - a| < \varepsilon)$
 
-        $\frac{1}{f(z)} = g(z) = (z - a)^m h(z)$. Тогда $f(z) = (z - a)^{-m} \frac{1}{h(z)}$ и 
-        $\frac{1}{h(z)} \in H(|z - a| < \varepsilon)$, потому что $h$ не обращается в 0 
+            $\frac{1}{f(z)} = g(z) = (z - a)^m h(z)$, тогда $f(z) = (z - a)^{-m} \frac{1}{h(z)}$ и $\frac{1}{h(z)} \in H(|z - a| < \varepsilon)$, потому что $h$ не обращается в $0$. 
+        }
     \end{enumerate}
 \end{proof}
 
