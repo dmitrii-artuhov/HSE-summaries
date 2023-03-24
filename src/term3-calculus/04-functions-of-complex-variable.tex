@@ -18,7 +18,7 @@
 \end{statement}
 
 \begin{consequence}
-    $f$ и $g$ голоморфны в точке $z_0$. Тогда 
+    $f$ и $g$ голоморфны в точке $z_0$. Тогда
 
     \begin{enumerate}
         \item {
@@ -43,7 +43,7 @@
 
     $\frac{\partial f}{\partial x} (z_0) = \lim_{h \rightarrow 0, \ h \in \mathbb{R}} {\frac{f(z_0 + h) - f(z_0)}{h}} = f'(z_0)$.
 
-    
+
     $\frac{\partial f}{\partial y} (z_0) = \lim_{h \rightarrow 0, \ h \in \mathbb{R}} {\frac{f(z_0 + i h) - f(z_0)}{h}} = \frac{f'(z_0)}{i} = i \cdot f'(z_0)$.
 \end{remark}
 
@@ -63,11 +63,11 @@
 \begin{remark}
     Комплескная дифференцируемость $\Leftrightarrow$ вещественная дифференцируемость + матрица Якоби $\binom{\alpha \ \beta}{-\beta \ \alpha}$
 
-    
+
     Комплескная дифференцируемость $\Leftrightarrow$ вещественная дифференцируемость + условия Коши-Римана $
     \begin{cases}
-        \frac{\partial Re(f)}{\partial x} = \frac{\partial Im (f)}{\partial y} \\ 
-        \frac{\partial Re(f)}{\partial y} = -\frac{\partial Im (f)}{\partial x} \\ 
+        \frac{\partial Re(f)}{\partial x} = \frac{\partial Im (f)}{\partial y} \\
+        \frac{\partial Re(f)}{\partial y} = -\frac{\partial Im (f)}{\partial x} \\
     \end{cases}
     $
 \end{remark}
@@ -82,7 +82,7 @@
     Обозначения.
 
     $\frac{\partial}{\partial z} = \frac{1}{2} \cdot \left( \frac{\partial}{\partial x} - i \frac{\partial}{\partial y} \right)$
-    
+
     $\frac{\partial}{\partial \overline{z}} = \frac{1}{2} \cdot \left( \frac{\partial}{\partial x} + i \frac{\partial}{\partial y} \right)$
 
     $dz = dx + i dy$
@@ -119,7 +119,7 @@
     Мы выяснили все, кроме $(3) \Leftrightarrow (4)$:
 
     $\frac{\partial f}{\partial \overline{z}} = 0 \Leftrightarrow \frac{\partial f}{\partial x} + i \frac{\partial f}{\partial y} = 0 \Leftrightarrow \frac{\partial (Re(f) + i Im(f))}{\partial x} + i \cdot \frac{\partial (Re (f) + i Im (f))}{\partial y} = 0 \Leftrightarrow \begin{cases}
-        \frac{\partial Re(f)}{\partial x} - \frac{\partial Im (f)}{\partial y} = 0 \\ 
+        \frac{\partial Re(f)}{\partial x} - \frac{\partial Im (f)}{\partial y} = 0 \\
         \frac{\partial Im(f)}{\partial x} + \frac{\partial Re(f)}{\partial y} = 0
     \end{cases}$ -- а это и есть условия Коши-Римана.
 \end{proof}
@@ -172,7 +172,7 @@
                 \includegraphics[width=7cm]{assets/04-functions-of-complex-variables/Cauchy-theorem-rectangle-partition.png}
             \end{center}
 
-            
+
             Режем прямоугольник на 4 части, индексируем как $P^{1}, P^{2}, P^{3}, P^{4}$, строим обходы каждого (против часовой стрелки). Тогда $\alpha(P) = \alpha(P^{1}) + \alpha(P^{2}) + \alpha(P^{3}) + \alpha(P^{4})$, $|\alpha(P)| \leq |\alpha(P^{1})| + |\alpha(P^{2})| + |\alpha(P^{3})| + \alpha(P^{4})$.
 
             Хотя бы одно из слагаемых $\geq \frac{1}{4} |\alpha(P)|$, назовем такое $P_1$ (индекс уже снизу!). Разрежем его на 4 равные части. Пусть $P_2$ такой, что $|\alpha(P_2)| \geq \frac{1}{4} |\alpha (P_1)|$ и т.д.
@@ -193,7 +193,7 @@
 
             \begin{center}
                 \includegraphics[width=7cm]{assets/04-functions-of-complex-variables/Cauchy-theorem-rectangle-partition-3.png}
-            \end{center} 
+            \end{center}
 
 
             $o(z - a) = (z - a) \cdot \beta (z - a)$, где $\beta(z - a) \underbrace{\rightarrow}_{z \rightarrow a} 0$
@@ -236,7 +236,7 @@
     \end{center}
 
     Очевидно, что если прямоугольник не пересекает $\Delta$, то там все очевидно. Хотим рассматривать только те, что задевают. Те, что пересекают $\Delta$, можно разбить на две части (верхнюю и нижнюю). По каждой из частей будет 0, тогда и в сумме тоже будет 0. То есть нас вообще интересуют только те прямоугольники, у которых $\Delta$ это одна из сторон. Рассмотрим их:
-    
+
     \begin{center}
         \includegraphics*[width=0.5\textwidth]{assets/04-functions-of-complex-variables/smaller-rectangle-locally-exact-form-without-line.png}
     \end{center}
@@ -251,7 +251,7 @@
 
     $f$ непрер. на компакте $\implies$ равномерно непрер.
 
-    $\forall \gamma > 0: \ \exists \epsilon > 0$ если $\rho (\text{аргумент}) < \epsilon \implies |f(\dots) - f(\dots)| < \gamma$, тогда 
+    $\forall \gamma > 0: \ \exists \epsilon > 0$ если $\rho (\text{аргумент}) < \epsilon \implies |f(\dots) - f(\dots)| < \gamma$, тогда
 
     $(*) \leq (b - a) \cdot \gamma$
 \end{proof}
@@ -282,7 +282,7 @@
 
 \begin{theorem}
     Пусть $\gamma$ -- замкнутая кривая, не проходящая через 0. Тогда
-    
+
     $\int_{\gamma} { \frac{d z}{z} } = 2\pi i Ind(\gamma, 0)$.
 \end{theorem}
 \begin{proof}
@@ -365,7 +365,7 @@
     \begin{enumerate}
         \item {
             Если $f \in H(r \mathbb{D})$ и $0 < r_1 < r$, то
-    
+
             $\frac{n!}{2 \pi i} \cdot \int_{r_1 \mathbb{T}} { \frac{f(z)}{z^{n+1}} dz } = f^{(n)} (0)$
         }
         \item {
@@ -394,11 +394,11 @@
             \begin{definition}
                 $g: \mathbb{R}^n \rightarrow \mathbb{R}$ -- гармоническая, если $\frac{\partial^2 g}{\partial x_1^2} + \frac{\partial^2 g}{\partial x_2^2} + \dots + \frac{\partial g}{\partial x_n^2} = 0$.
             \end{definition}
-            
+
             Продолжаем свойство:
 
             $f \in H(\Omega) \implies Re (f)$ и $Im(f)$ -- гармонические функции.
-            
+
             \begin{proof}
                 $\frac{\partial^2 Re(f)}{\partial x^2} = \frac{\partial}{\partial x} \left( \frac{\partial Re (f)}{\partial x} \right) = \frac{\partial}{\partial x} \left( \frac{\partial Im(f)}{\partial y} \right) = \frac{\partial}{\partial y} \left( \frac{\partial Im(f)}{\partial x} \right) = \frac{\partial}{\partial y} \left( - \frac{\partial Re(f)}{\partial y} \right) = - \frac{\partial^2 Re(f)}{\partial y^2}$
 
@@ -418,8 +418,8 @@
     $f \in C(\Omega)$. Если $f(z) dz$ локально точная, то $f \in H(\Omega)$.
 \end{theorem}
 \begin{proof}
-    Возьмем $a \in \Omega$. Существует окр-ть $a$, что для $f$ в ней есть первообразная $F$ (т.е. $F' = f$ в $U$). 
-    
+    Возьмем $a \in \Omega$. Существует окр-ть $a$, что для $f$ в ней есть первообразная $F$ (т.е. $F' = f$ в $U$).
+
     Тогда $F \in H(U) \implies F' = f \in H(U)$ -- это локальное свойство, поэтому на всей $\Omega$ тоже будет гомоморфность.
 \end{proof}
 
@@ -437,7 +437,7 @@
 
     $f \in H(\Omega)$
 
-    $K \subset \Omega$ -- компакт, граница которого -- конечное число кусочно-гладких замкнутых кривых. Тогда 
+    $K \subset \Omega$ -- компакт, граница которого -- конечное число кусочно-гладких замкнутых кривых. Тогда
 
     \begin{enumerate}
         \item {
@@ -454,13 +454,13 @@
             Пишем \textbf{формулу Грина}.
 
             $\int_{\partial K} { f(z) dz } = \int_{\partial K} { f(z) dx + i \cdot f(z) dy } \underbrace{=}_{\text{Грин}} \int_{K} { \left( i \cdot \frac{\partial f}{\partial x}  - \frac{\partial f}{\partial y} \right) dx dy } = $
-            
+
             $ = i \cdot \int_{K} {\left( \frac{\partial f}{\partial x} + i \frac{\partial f}{\partial y} \right) dx dy} = 2 i \int_{K} { \frac{\partial f}{\partial \overline{z}} d \lambda_2 } = 0$.
         }
         \item {
             % todo: picture !!!
             Берем круг, содержащий $a$, не вылезающий за границу формы $B_r(a)$.
-            
+
             $\tilde{K} = K \setminus B_r(a)$ -- компакт.
 
             $\frac{f(z)}{z - a} \in H(\Omega \setminus \{ a \}), \ \tilde{K} \subset \Omega \setminus \{ a \}$.
@@ -473,7 +473,7 @@
     $f \in H(r \mathbb{D})$ и $f \in C(Cl (r \mathbb{D}))$
 
     $a \in \mathbb{D}$.
-    
+
     Доказать, что $\int_{r \mathbb{T}} { \frac{f(z)}{z - a} dz } = 2 \pi i f(a)$
 \end{exerc}
 
@@ -522,7 +522,7 @@
 \end{theorem}
 \begin{proof}
     $f$ -- ограничена $\implies |f| \leq M$.
-    
+
     $f \in H(\mathbb{C}) \implies f(z) = \sum_{n=0}^{\infty} { a_n z^{n} }$ и ряд сходится $\forall z \in \mathbb{C} \underbrace{\implies}_{\text{нер-во Коши}} |a_n| \leq \frac{M_r}{r^n} \leq \frac{M}{r^n} \underbrace{\rightarrow}_{r \rightarrow +\infty} 0 \implies a_n = 0: \ \forall n \geq 1$
 \end{proof}
 
@@ -597,7 +597,7 @@
 
     % todo: picture
 
-    Возьмем окр-ть $s$, т.ч. $(s - \delta, s + \delta) \subset \gamma^{-1}(E) \cap (\alpha, \beta) \implies $ в $\gamma^{-1}(E)$ есть точки $> s \implies s $ не $\sup$. Противоречие. 
+    Возьмем окр-ть $s$, т.ч. $(s - \delta, s + \delta) \subset \gamma^{-1}(E) \cap (\alpha, \beta) \implies $ в $\gamma^{-1}(E)$ есть точки $> s \implies s $ не $\sup$. Противоречие.
 \end{proof}
 
 \begin{proof}
@@ -647,7 +647,7 @@
 \end{consequence}
 \begin{proof}
     $\int_{|z-a| \leq r} { f(z) d \lambda_2 } = \int_{0}^{r} { \int_{0}^{2\pi} {f(a + \rho e^{i\phi}) \rho d \phi } d \rho } = \int_{0}^{r} { 2 \pi f(a) \rho \ d \rho } =$
-    
+
     $= 2 \pi f(a) \frac{r^2}{2} = \pi r^2 f(a)$.
 \end{proof}
 
@@ -739,7 +739,7 @@
 \begin{proof}
     Теоремы.
 
-    $h(z) = f(z) - g(z)$. По условию $h \in H(\Omega)$ и $h(z_n) = 0$. $a := \lim{z_n}$, по непрерывности $h(a) = 0 \underbrace{\implies}_{\text{по следствию 1}} \exists U_a$, т.ч. $h(z) \not = 0 \ \forall z \in U^{\circ}_a$, но $z_n$ начиная с некоторого места лежат в $U_a$. 
+    $h(z) = f(z) - g(z)$. По условию $h \in H(\Omega)$ и $h(z_n) = 0$. $a := \lim{z_n}$, по непрерывности $h(a) = 0 \underbrace{\implies}_{\text{по следствию 1}} \exists U_a$, т.ч. $h(z) \not = 0 \ \forall z \in U^{\circ}_a$, но $z_n$ начиная с некоторого места лежат в $U_a$.
 \end{proof}
 
 
@@ -772,11 +772,11 @@
 
             \begin{proof}
                 $g$ -- непоср. аналитическое продолжение $f_1$:
-            
+
                 $g(z) = f_1(z) = f_2(z) \ \forall z \in \Delta$
-            
+
                 $g, f_2 \in H(\Omega_2) \underbrace{\implies}_{\text{по т. единственности}} f_2 \equiv g$.
-            \end{proof}            
+            \end{proof}
         }
         \item {
             Для другой компоненты продолжение может быть другим (тут понятнее на картинке, добавьте, плиз).
@@ -798,12 +798,12 @@
 
 
 \begin{remark}
-    Рассмотрим всевозможные пары $(f, \Omega)$, т.ч. $f \in H(\Omega)$, тогда существование аналитического продолжения по цепочке областей -- отношение эквивалентности на мн-ве таких пар. 
+    Рассмотрим всевозможные пары $(f, \Omega)$, т.ч. $f \in H(\Omega)$, тогда существование аналитического продолжения по цепочке областей -- отношение эквивалентности на мн-ве таких пар.
 \end{remark}
 
 
 \begin{definition}
-    Полная аналитическая функция -- класс эквивалентности. 
+    Полная аналитическая функция -- класс эквивалентности.
 
     $F$ -- полная аналитическая ф-я. $M := \bigcup_{(f, \Omega) \in F} {\Omega}$ -- область определения (существования) $F$.
 \end{definition}
@@ -850,18 +850,18 @@
 
     % todo: picture
 
-    Берем точку $w$ на границе круга ($|w - z_0| = R$). $w$ -- правильная точка, если найдется $U_w$ -- окр-ть точки $w$ и $g \in H(U_w)$ являющаяся непосредственным продолжением $f$. 
+    Берем точку $w$ на границе круга ($|w - z_0| = R$). $w$ -- правильная точка, если найдется $U_w$ -- окр-ть точки $w$ и $g \in H(U_w)$ являющаяся непосредственным продолжением $f$.
 \end{definition}
 
 \begin{definition}
-    Особая точка -- точка, не являющаяся правильной. 
+    Особая точка -- точка, не являющаяся правильной.
 \end{definition}
 
 \begin{theorem}
     На границе круга сх-ти лежит хотя бы одна особая точка.
 \end{theorem}
 \begin{proof}
-    От противного. 
+    От противного.
 
     Пусть все точки правильные $|z| = R$ -- правильные.
 
@@ -869,16 +869,16 @@
 
     $\forall w: \ |w| = R$ -- правильная, тогда найдется $B_{r_w} (w)$ и $g \in H(B_{r_w} (w))$, т.ч. $f = g$ на пересечении $\{ |z| < R \} \cap \{ |z - w| < r_w \}$.
 
-    То есть круги $B_{r_w}(w)$ покрывают окр-ть $|w| = R$. Это компакт, выберем конечное подпокрытие. 
+    То есть круги $B_{r_w}(w)$ покрывают окр-ть $|w| = R$. Это компакт, выберем конечное подпокрытие.
 
     % todo: picture
 
     По лемме Лебега $\exists \epsilon > 0: \ B_{\epsilon} (w)$ целиком содержится в элементе подпокрытия.
 
-    $\{ |z| < R + \epsilon \} \subset \{ |z| < R \} \cup$ конечное подпокрытие. 
+    $\{ |z| < R + \epsilon \} \subset \{ |z| < R \} \cup$ конечное подпокрытие.
 
     $h(z) := \begin{cases}
-        f(z), \ |z| < R \\ 
+        f(z), \ |z| < R \\
         g_{w_j} (z), \ |z - w_j| < r_{w_j}
     \end{cases} \in H(\{ |z| < R + \epsilon \})$.
 
@@ -898,7 +898,7 @@
             $(zf'(z))' = \sum_{n=0}^{\infty} { z^{n-1} } = \frac{1}{1-z}$
         }
         \item {
-            $\sum_{n=0}^{\infty} { z^{2^n} }$ -- сх-ся при $|z| < 1$, все точки $|z| = 1$ -- особые. 
+            $\sum_{n=0}^{\infty} { z^{2^n} }$ -- сх-ся при $|z| < 1$, все точки $|z| = 1$ -- особые.
             % todo: picture
         }
     \end{enumerate}
@@ -917,14 +917,14 @@
 \begin{proof}
     \textbf{Существование}:
 
-    $\frac{f'}{f} \in H(\Omega) \implies $ есть первообразная $g \in H(\Omega)$. 
-    
-    Подберем константу так, что $e^{g(z_0)} =  f(z_0)$ для некоторого $z_0 \in \Omega$. 
+    $\frac{f'}{f} \in H(\Omega) \implies $ есть первообразная $g \in H(\Omega)$.
+
+    Подберем константу так, что $e^{g(z_0)} =  f(z_0)$ для некоторого $z_0 \in \Omega$.
 
     Покажем, что $g$ подходит: $h(z) := e^{-g(z)} \cdot f(z)$.
 
     Хотим доказать, что $h \equiv 1$. Знаем, что $h(z_0) = 1$ и
-    
+
     $h'(z) = f'(z) e^{-g(z)} + f(z) e^{-g(z)} (-g'(z)) = e^{-g(z)} \left( f'(z) - f(z) \frac{f'(z)}{f(z)} \right) \equiv 0$.
 
     \textbf{Единственность}:
@@ -1000,11 +1000,11 @@
     $\sum_{n=-\infty}^{+\infty} a_n (z - z_0)^n$ -- ряд Лорана.
 
     $\sum_{n = 0}^{\infty} a_n (z - z_0)^n$ -- правильная часть.
-    
+
     $\sum_{n = -\infty}^{-1} a_n (z - z_0)^n = \sum_{n = 1}^{\infty} a_{-n} (z - z_0)^{-n}$ -- главная часть.
 
     Ряд Лорана сходится $\Leftrightarrow$ правильная и главная части сходятся.
-    
+
     Ниже будем считать, что $z_0 = 0$ для простоты записи.
 
     $\sum_{n=0}^{\infty} a_n z^n$ -- сх-ся в круге сх-ти $|z| < R$ -- радиус сх-ти $[0, +\infty]$.
@@ -1018,7 +1018,7 @@
     \begin{enumerate}
         \item Ряд Лорана абс. сх-ся в кольце $r < |z| < R$, где $r, R \in [0, +\infty]$
         \item В кольце, лежащем строго внутри кольца сх-ти, ряда Лорана сх-ся равномерно.
-        \item В кольце сх-ти ряд Лорана можно почленно дифференцировать. 
+        \item В кольце сх-ти ряд Лорана можно почленно дифференцировать.
         \item Ряд Лорана в кольце сх-ти -- голоморфная функция.
     \end{enumerate}
 \end{properties}
@@ -1033,7 +1033,7 @@
 
 \begin{proof}
     $\int_{|z| = \rho} { \frac{f(z)}{z^{n+1}} dz } = \int_{|z| = \rho} { \frac{\sum_{k = -\infty}^{+\infty} a_k z^k}{z^{n+1}} dz } =$
-    
+
     $= \int_{|z| = \rho} { \sum_{k=-\infty}^{+\infty} a_k z^{k - n - 1} dz } = \sum_{k = -\infty}^{\infty} a_k \int_{|z| = \rho} { z^{k-n-1} dz } = 2\pi i a_n$ -- т.к. при $|z| = \rho$ ряд равномерно сходится, то можно интегрировать по-членно.
 
     $\int_{|z| = \rho} { z^m dz } = \int_{0}^{2\pi} { \rho^m e^{i m t} i \rho e^{i t} dt } = \rho^{m+1} i \int_{0}^{2\pi} { e^{i (m+1) t} dt } = \begin{cases}
@@ -1055,8 +1055,11 @@
     Пусть $f \in H(r < |z| < R)$. Тогда $f(z) = \sum_{n = -\infty}^{+\infty} a_n z^n$, для некоторых $a_n \in \mathbb{C}$.
 \end{theorem}
 \begin{proof}
-    % todo: picture
     $r < r_1 < r_2 < R_2 < R_1 < R$.
+
+    \begin{center}
+        \includegraphics[height=6cm]{assets/04-functions-of-complex-variables/existence-of-function-decomposition-into-loran-series.jpg}
+    \end{center}
 
     Берем $r_2 < |z| < R_2$: пишем для него и компакта $K =\{ r_1 \leq |z| \leq R_1 \}$ интегральную теорему Коши:
 
@@ -1067,14 +1070,14 @@
             Пускай $|\zeta| = R_1, \ |z| < R_2, \ |\frac{z}{\zeta}| < \frac{R_2}{R_1} < 1$.
 
             Распишем: $\frac{1}{\zeta - z} = \frac{1}{1 - \frac{z}{\zeta}} \cdot \frac{1}{\zeta} = \sum_{n=0}^{\infty} { \frac{z^n}{\zeta^{n+1}} }$
-        
+
             Считаем первое слагаемое:
-            
+
             $\int_{|\zeta| = R_1} { \frac{f(\zeta)}{\zeta - z} d\zeta } = \int_{|\zeta| = R_1} { \sum_{n=0}^{\infty} z^n \frac{f(\zeta)}{\zeta^{n+1}} d\zeta } = \sum_{n = 0}^{\infty} {z^n \underbrace{\int_{|\zeta| = R_1} { \frac{f(\zeta)}{\zeta^{n + 1}} d\zeta }}_{=: a_n}}$ -- можем менять интеграл и сумму местами, из-за того, что ряд равномерно сходящийся.
         }
         \item {
             Теперь пускай $|\zeta| = r_1, \ |z| > r_2, \ |\frac{\zeta}{z}| < \frac{r_1}{r_2} < 1$.
-            
+
             Распишем: $\frac{1}{\zeta - z} = -\frac{1}{z} \cdot \frac{1}{1 - \frac{\zeta}{z}} = -\sum_{n = 0}^{\infty} \frac{\zeta^n}{z^{n + 1}}$.
 
             Считаем второе слагаемое (переходы по аналогии):
@@ -1121,7 +1124,7 @@
 \begin{definition}
     $a \in \mathbb{C}$. Если $f$ голоморфна в проколотой окрестности
     точки $a$, но не голоморфна в $a$, то $a$ - изолированная особая точка.
-    
+
     $f \in H(0 < |z - a| < r)$
 \end{definition}
 
@@ -1160,11 +1163,20 @@
         \item $4 \Rightarrow 3$ - очевидно
         \item $3 \Rightarrow 1$ - очевидно. $g$ непрерывна, предел $g(a)$
         \item $1 \Rightarrow 2$ - очевидно
-        \item Докажем $2 \Rightarrow 4$.
-        Пусть ограничена: $f(z) \leqslant M$. $\forall \, 0 < |z - a| < r$
-        
-        $f(z) = \sum_{n = -\infty}^{+\infty} c_n(z - a)^n$. $|c_n| \leqslant \frac{\max |f(z)|}{\rho^n}$ при $|z - a| = \rho$
-        $c_{-n} \leqslant \rho^n \max f(z) \leqslant M \rho^n$ и устремим $\rho$ к $0$. $M \rho^n \rightarrow 0$
+        \item {
+            Докажем $2 \Rightarrow 4$.
+            
+            Пусть ограничена $\forall \, 0 < |z - a| < r$: $f(z) \leqslant M$
+            
+            Запишем ряд Лорана: $f(z) = \sum_{n = -\infty}^{+\infty} c_n(z - a)^n$.
+            
+            Теперь воспользуемся нер-вом Коши для ряда Лорана: $|c_n| \leqslant \frac{\max |f(z)|}{\rho^n}$ при $|z - a| = \rho$.
+
+
+            $c_{-n} \leqslant \rho^n \max f(z) \leqslant M \rho^n$ и устремим $\rho$ к $0$.
+            
+            Получаем, что $M \rho^n \rightarrow 0$, а тогда и $c_{-n} \rightarrow 0$.
+        }
     \end{enumerate}
 \end{proof}
 
@@ -1176,7 +1188,7 @@
     Следующие условия равносильны:
 
     \begin{enumerate}
-        \item $a$ - полюс
+        \item $a$ -- полюс
         \item Существует $g \in H(|z - a| < r)$, $g(a) \neq 0$, такая, что $f(z) = \frac{g(z)}{(z - a)^m}, m \in \mathbb{N}$
         \item В главной части ряда Лорана в точке $a$ лишь конечное число ненулевых коэфцциентов. Но они есть.
     \end{enumerate}
@@ -1184,16 +1196,40 @@
 
 \begin{proof}
     \begin{enumerate}
-        \item $2 \Rightarrow 3$. $g(z) = \sum c_n (z - a)^n, c_0 \neq 0 \Rightarrow f(z) = \sum_{n = 0}^{+\infty} c_n(z - a)^{n - m}$ - разложение в ряд Лорана
-        \item $3 \Rightarrow 1$. $f(z) = \sum_{n = -m}^{\infty} b_n(z - a)^n$. Все слагаемые $o((z - a)^{-m})$, а на $b_{-m}(z - a)^{-n} \rightarrow \infty$
-        \item $1 \Rightarrow 2$. $\lim_{z \to a} f(z) = \infty$. Значит в некоторой проколотой окрестности $0 <|z - a| < \varepsilon$
-        $|f(z)| > 1$. Рассмотрим $g(z) = \frac{1}{f(z)} \in H(0 < |z - a| < r)$
-        $\lim_{z \to a} g(z) = 0$. Доопределим $g(a) = 0$ и получим $g \in H(|z - a| < \varepsilon)$
-        (предыдущая теорема (?)). $a$ - ноль функции $g$. Тогда $g(z) = (z - a)^m h(z)$,
-        где $h(a) \neq 0$ и $h \in H(|z - a| < \varepsilon)$
+        \item {
+            $2 \Rightarrow 3$:
+            
+            $g(z)$ -- голоморфна, тогда раскладывается по Тейлору:
+            
+            $g(z) = \sum_{n=0}^{\infty} c_n (z - a)^n, g(a) = c_0 \neq 0 \Rightarrow f(z) = \sum_{n = 0}^{+\infty} c_n(z - a)^{n - m}$ -- разложение в ряд Лорана, где $c^{-m} \neq 0$.
+        }
+        \item {
+            $3 \Rightarrow 1$:
+            
+            $f(z) = \sum_{n = -m}^{\infty} b_n(z - a)^n$
+            
+            Все слагаемые $o((z - a)^{-m})$, тогда перепишем $f(z) = \sum_{n=-m}^{\infty} b_n \frac{(z-a)^{n + m}}{(z - a)^{m}}$ и становится видно, что при $z \rightarrow a$ каждая дробь стремится к $\infty$.
+            
+            % а на $b_{-m}(z - a)^{-m} \rightarrow \infty$
+        } 
+        \item {
+            $1 \Rightarrow 2$:
+            
+            $\lim_{z \to a} f(z) = \infty$
+            
+            Значит, в некоторой проколотой окрестности $0 <|z - a| < \varepsilon$:
+            $|f(z)| > 1$.
+            
+            Рассмотрим $g(z) = \frac{1}{f(z)} \in H(0 < |z - a| < \varepsilon)$:
+            
+            $\lim_{z \to a} g(z) = 0$.
+            
+            Доопределим $g(a) = 0$ и получим $g \in H(|z - a| < \varepsilon)$.
+            
+            $a$ -- ноль функции $g$, тогда по теореме о нулях голоморфной функции $g(z) = (z - a)^m h(z)$, где $h(a) \neq 0$ и $h \in H(|z - a| < \varepsilon)$
 
-        $\frac{1}{f(z)} = g(z) = (z - a)^m h(z)$. Тогда $f(z) = (z - a)^{-m} \frac{1}{h(z)}$ и 
-        $\frac{1}{h(z)} \in H(|z - a| < \varepsilon)$, потому что $h$ не обращается в 0 
+            $\frac{1}{f(z)} = g(z) = (z - a)^m h(z)$, тогда $f(z) = (z - a)^{-m} \frac{1}{h(z)}$ и $\frac{1}{h(z)} \in H(|z - a| < \varepsilon)$, потому что $h$ не обращается в $0$. 
+        }
     \end{enumerate}
 \end{proof}
 
@@ -1205,7 +1241,7 @@
 \end{definition}
 
 \begin{remark}
-    $f$ имеет в $a$ полюс порядка $m$ $\Longleftrightarrow \frac{1}{f}$ имеет в 
+    $f$ имеет в $a$ полюс порядка $m$ $\Longleftrightarrow \frac{1}{f}$ имеет в
     точке $a$ ноль кратности $m$ (доопределяем $\frac{1}{f}$ в $a$ пл непрерывности)
 
     А также $\Longleftrightarrow$ $f(z) = \sum_{n = -m}^{+\infty} c_n (z - a)^n$, где $c_m \neq 0$
@@ -1225,11 +1261,11 @@
 \end{theorem}
 
 \begin{proof}
-    Доказательство очевидно следует из предыдущего. 
+    Доказательство очевидно следует из предыдущего.
 \end{proof}
 
 \begin{definition}
-    $f$ - мероморфная в $\Omega$, если $f \in H(\Omega \setminus E)$ и в точках из $E$ у неё полюсы 
+    $f$ - мероморфная в $\Omega$, если $f \in H(\Omega \setminus E)$ и в точках из $E$ у неё полюсы
 \end{definition}
 
 \begin{example}
@@ -1243,7 +1279,7 @@
 
 \begin{remark}
     \begin{enumerate}
-        \item $E$ не имеет предельных точек в $\Omega$. 
+        \item $E$ не имеет предельных точек в $\Omega$.
         \item $E$ не более чем счётно.
     \end{enumerate}
 \end{remark}
@@ -1253,11 +1289,11 @@
 
     \begin{enumerate}
         \item $f \pm g, \frac{f}{g}, fg, f'$ - мероморфны в $\Omega$ и порядки полюсов у $f'$ на 1 больше, чем у $f$
-        
+
         Док-во: $fg$ и $\frac{f}{g}$. Если не полюсы и не нули, то голоморфность сохранится.
-        
-        $f(z) = \varphi (z) (z - a)^n$, $a$ - полюс или 0. 
-        
+
+        $f(z) = \varphi (z) (z - a)^n$, $a$ - полюс или 0.
+
         $g(z) = \varPsi (z) (z - a)^m$, $a$ - полюс или 0.
 
         Тогда $f(z)g(z) = \varphi (z) \varPsi (z) (z - a)^{n + m}$
@@ -1277,7 +1313,7 @@
 \begin{theorem}
     \textbf{Сохоцкого}
 
-    Пусть $a$ - существенно особая точка функции $f$. Тогда $Cl \left(f(0 < |z - a| < \varepsilon)\right) = \mathbb{C} \cup \{ \infty \}$ 
+    Пусть $a$ - существенно особая точка функции $f$. Тогда $Cl \left(f(0 < |z - a| < \varepsilon)\right) = \mathbb{C} \cup \{ \infty \}$
 
     Более того, $\forall b \in \mathbb{C} \cup \{ \infty \}$ найдётся такая последовательность
     $z_n \rightarrow a$, т.ч. $f(z_n) \rightarrow b$
@@ -1290,7 +1326,7 @@
         $z_n \rightarrow a$ и $f(z_n) \rightarrow \infty$
         \item $b \in \mathbb{C}$. Если найдётся последовательность $z_n \rightarrow a$, т.ч. $f(z_n) = b$, то всё ясно.
         Если не найдётся, то в некоторой проколотой окретности $0 < |z - a| < \varepsilon $ $f(z) \neq b$
-        Тогда рассмотрим $g(z) = \frac{1}{f(z) - b} \in H(0 < |z - a| < \varepsilon)$. 
+        Тогда рассмотрим $g(z) = \frac{1}{f(z) - b} \in H(0 < |z - a| < \varepsilon)$.
         $a$ - изолированнная особая точка для $g$.
 
         $f(z) = b + \frac{1}{g(z)}$
@@ -1308,7 +1344,7 @@
 \begin{theorem}
     \textbf{Пикара}
 
-    Пусть $a$ - существенно особая точка $f$ и $\varepsilon > 0$. Тогда 
+    Пусть $a$ - существенно особая точка $f$ и $\varepsilon > 0$. Тогда
     $f(0 < |z - a| < \varepsilon) = \mathbb{C}$ или $\mathbb{C}$ без одной точки.
 \end{theorem}
 
@@ -1317,7 +1353,7 @@
 \end{example}
 
 \begin{definition}
-    Бексонечные пределы. $\lim z_n = \infty \Longleftrightarrow \lim |z_n| = +\infty$ 
+    Бексонечные пределы. $\lim z_n = \infty \Longleftrightarrow \lim |z_n| = +\infty$
 \end{definition}
 
 \begin{properties}
@@ -1325,8 +1361,8 @@
     \item Если $\lim z_n = \infty$, $w_n$ ограничена. Тогда $\lim (z_n \pm w_n) = \infty$
     \item $\lim z_n = 0 \Longleftrightarrow \lim \frac{1}{z_n} = \infty$
     \item Если $\lim z_n = \infty$ и $|w_n| \geqslant c > 0$, то $\lim z_nw_n = \infty$
-    
-    Доказательства очевидны + с первого курса 
+
+    Доказательства очевидны + с первого курса
 \end{properties}
 
 \begin{definition}
@@ -1343,7 +1379,7 @@
         \item $\infty$ - устранимая особая точка $f \Longleftrightarrow 0$ - устранимая особая точка $g$
         \item $\infty$ - полюс $f \Longleftrightarrow 0$ - полюс $g$
         \item $\infty$ - существенно особая точка $f \Longleftrightarrow 0$ - существенно особая точка $g$
-        
+
         $f(z) = \sum_{n = -\infty}^{+\infty} c_nz_n, g(z) \sum_{n = -\infty}^{+\infty}$
         \item $\infty$ - устранимая особая точка $f \Longleftrightarrow$ коэфф. при положительных степенях $0$
         \item $\infty$ - полюс $f \Longleftrightarrow$ при положительных степенях лишь конечное число ненулевых коэфцциентов.
@@ -1403,9 +1439,9 @@
         а расстояние между $z$ и $\infty$ равно $\frac{1}{\sqrt{1 + |z|^2}}$
 
         \textbf{Доказательство:} предложено посчитать самому, у кого есть силы добавьте, плиз.
-        
+
         \item Сходимость на плоскости и сходимость на сфере Римана совпадают
-        
+
         \textbf{Доказательство:} $z_n \to z_0 \Rightarrow \frac{|z_n - z_0|}{\sqrt{1 + |z_n|^2}\cdot \sqrt{1 + |z_0|^2}} \to 0$
 
         $z_n \to \infty \Leftrightarrow \frac{1}{\sqrt{1 + |z_n|^2}} \to 0$
@@ -1423,7 +1459,7 @@
 \Subsection{Вычеты}
 
 \begin{definition}
-    $a$ - изолированная особая точка. $f \in H(0 < |z - a| < R)$. 
+    $a$ - изолированная особая точка. $f \in H(0 < |z - a| < R)$.
     $f(z) = \sum_{n = -\infty}^{+\infty} c_n (z - a)^n$ - сходится при $0 < |z - a| < R$.
 
     $\res_{z = a} f = c_{-1}$
@@ -1438,19 +1474,19 @@
 \begin{properties}
     \begin{enumerate}
         \item $f \in H(0 < |z - a| < R)$ и $0 < r < R$.
-        
+
         Тогда $\res_{z = a} f = \frac{1}{2\pi i} \int_{|z - a| = r} f(z) \, dz$ - положительный обход
         точки $a$.
 
         \textbf{Доказательство:} смотреть формулу для коэффициентов ряда Лорана.
 
         \item $f \in H(|z| > R), r > R$.
-        
-        Тогда $\res_{z = \infty} f = -\frac{1}{2\pi i} \int_{|z| = r} f(z) \, dz = \frac{1}{2\pi i} \int_{|z| = r} f(z) \, dz$ - 
+
+        Тогда $\res_{z = \infty} f = -\frac{1}{2\pi i} \int_{|z| = r} f(z) \, dz = \frac{1}{2\pi i} \int_{|z| = r} f(z) \, dz$ -
         положительный обход для $\infty$
 
-        \item Если $a \in \mathbb{C}$ - полюс $n$-го порядка. 
-        
+        \item Если $a \in \mathbb{C}$ - полюс $n$-го порядка.
+
         Тогда $\res_{z = a} f(z) = \lim_{z \to a} \frac{1}{(n - 1)!} \frac{d^{n - 1}}{dz^{n - 1}} ((z - a)^n f(z))$
 
         \textbf{Доказательство:} Считаем, что $a = 0$.
@@ -1458,9 +1494,9 @@
         $f(z) = \sum_{k = -n}^{+\infty} c_kz^k \Rightarrow g(z) = z^n f(z) = \sum_{k = 0}^{\infty} c_{k - n}z^k $ - формула Тейлора.
 
         Тогда $c_{-1} = \frac{g^{(n - 1)}(0)}{(n - 1)!}$.
-        
+
         \item Если $a \in \mathbb{C}$ - полюс первого порядка.
-        
+
         Тогда $\res_{z = a} f(z) = \lim_{z \to a} (z - a)f(z)$
 
         \item Если $a \in \mathbb{C}$, $g$ и $h$ голоморфны в окрестности точки $a$.
@@ -1468,18 +1504,18 @@
 
         Тогда $\res_{z = a} f(z) = \frac{g(a)}{h'(a)}$
 
-        \textbf{Доказательство:} $\res_{z = a} f(z) = \lim_{z \to a} (z - a)f(z) = 
+        \textbf{Доказательство:} $\res_{z = a} f(z) = \lim_{z \to a} (z - a)f(z) =
         \lim_{z \to a} \frac{z - a}{h(z) - h(a)} g(z) = \frac{g(a)}{h'(a)}$
 
         \item Если $\lim_{z \to \infty} f(z) = A \in \mathbb{C}$.
-        
+
         Тогда $\res_{z = \infty} f(z) = \lim_{z \to \infty} z (A - f(z))$
 
         \textbf{Доказательство:} $f(z) = A + \sum_{k = -\infty}^{-1} c_nz^n$, правильная часть - константа,
-        иначе всё бы пошло на бесконечность. 
+        иначе всё бы пошло на бесконечность.
 
         \item $\res_{z = \infty} f(z) = -\res_{z = 0} \frac{f(\frac{1}{z})}{z^2}$
-        
+
         \textbf{Доказательство:} $f(z) = \sum_{n = -\infty}^{\infty} c_nz^n$
 
         $\frac{1}{z^2} f(\frac{1}{z}) = \frac{1}{z^2} \sum_{n = -\infty}^{\infty} c_nz^{-n} =
@@ -1493,22 +1529,22 @@
     $f$ голоморфна в $\Omega$, за исключением точек $a_1, \ldots a_n$.
     $K \subset \Omega$ - компакт и $a_1 \ldots a_n \in Int K$
 
-    Тогда $\int_{\partial K} f(z) \, dz = 2\pi i \sum_{k = 1}^n \res_{z = a_k} f(z)$ 
+    Тогда $\int_{\partial K} f(z) \, dz = 2\pi i \sum_{k = 1}^n \res_{z = a_k} f(z)$
 \end{theorem}
 
 \begin{proof}
 
     У каждой точки можем взять окрестность, чтобы они лежали внутри компакта и
     попарно не пересекаются. $\widetilde{K} = K \setminus \bigcup_{k = 1}^n B_{\varepsilon} (a_k)$ - компакт.
-    
+
     А ещё $f \in H(\Omega \setminus \{ a_1 \ldots a_n\} )$
 
     Из интегральной формулы Коши: $\int_{\partial \widetilde{K}} f(z) \, dz = 0$
 
-    Но $\int_{\partial \widetilde{K}} f(z) \, dz = \int_{\partial K} f(z) \, dz - \sum_{k = 1}^n \int_{|z - a_k| = \varepsilon} f(z) \, dz$, а 
+    Но $\int_{\partial \widetilde{K}} f(z) \, dz = \int_{\partial K} f(z) \, dz - \sum_{k = 1}^n \int_{|z - a_k| = \varepsilon} f(z) \, dz$, а
     под знаком суммы - вычеты.
 
-    
+
     \begin{center}
         \includegraphics{assets/04-functions-of-complex-variables/koshi-theorem-for-deductions.png}
     \end{center}
@@ -1529,8 +1565,8 @@
     \begin{enumerate}
         \item {
             $\int_{|z| = 4} \frac{z^4}{e^z + 1} \, dz = 2 \pi i (\res_{z = \pi i} + \res_{z = -\pi i}) = -4\pi^5 i$.
-            
-            Особые точки: $e^z = -1$ при $z = \pi i + 2 \pi i k$. 
+
+            Особые точки: $e^z = -1$ при $z = \pi i + 2 \pi i k$.
 
             $\res_{z = \pi i} = \frac{g(\pi i)}{h'(\pi i)} = -\pi^4$
 
@@ -1538,9 +1574,9 @@
 
             $\res_{z = -\pi i} = \frac{g(-\pi i)}{h'(-\pi i)} = -\pi^4$
         }
-        \item {     
+        \item {
             $\int_{-\infty}^{\infty} \frac{dx}{1 + x^{2n}} = \lim_{R \to +\infty} \int_{-R}^{R} \frac{dx}{1 + x^{2n}}$.
-            
+
             \begin{center}
                 \includegraphics[width=12cm]{assets/04-functions-of-complex-variables/example-2-cauchy-about-deductions.png}
             \end{center}
@@ -1561,7 +1597,7 @@
 
             Тогда $I = 2 \pi i \sum_{k = 1}^n \res_{2k - 1}$
 
-            $\res_{a_k} f = \frac{1}{(z^{2n} + 1)'} = \frac{1}{2n \cdot a_k^{2n - 1}} = \frac{a_k}{2na_k^{2n}} = -\frac{a_k}{2n}$, так как $a_k$ - полюс первого порядка. 
+            $\res_{a_k} f = \frac{1}{(z^{2n} + 1)'} = \frac{1}{2n \cdot a_k^{2n - 1}} = \frac{a_k}{2na_k^{2n}} = -\frac{a_k}{2n}$, так как $a_k$ - полюс первого порядка.
         }
         \item {
             Оптимизация решения из предыдущего пункта.
@@ -1573,8 +1609,8 @@
             \end{center}
 
             $f(x) = \frac{1}{1 + z^{2n}}$. $\int_{\Gamma_r} f(z) \, dz = \int_{c_R} + \int_{0}^{R} + \int_{Re^{i\alpha}}^{0}$.
-            
-            $\int_{e^{i\alpha R}}^{0} f(z) \, dz = -\int_{0}^{e^{i \alpha R}} = -\int_{0}^{R} f(e^{i \alpha} t) e^{i \alpha} \, dt$ - 
+
+            $\int_{e^{i\alpha R}}^{0} f(z) \, dz = -\int_{0}^{e^{i \alpha R}} = -\int_{0}^{R} f(e^{i \alpha} t) e^{i \alpha} \, dt$ -
             взяли параметризацию $t \to e^{i \alpha} t$.
 
             $f(e^{i \alpha}t) = \frac{1}{1 + e^{2 \pi i \alpha} \cdot t^{2n}} = \frac{1}{1 + t^{2n}}$, $\alpha = \frac{\pi}{n}$.
@@ -1583,7 +1619,7 @@
             $2 \pi i \res$.
 
             То есть: $I - e^{i \frac{\pi }{n}} I = 2 \pi i \res_{z = e^{\frac{i \pi}{2n}}} f = 2 \pi i \cdot \left ( - \frac{e^{\frac{i \pi}{2n}}}{2n}  \right )$
-            
+
             Тогда $I = \frac{2 i e^{\frac{i \pi}{2n}}}{e^{\frac{i \pi}{2n}}} \cdot \frac{\pi}{2n} = \frac{\pi}{2n \cdot \sin \frac{\pi}{2n}}$
         }
     \end{enumerate}
@@ -1600,8 +1636,8 @@
 \end{lemma}
 
 \begin{proof}
-    Параметризация $z = R_n \cdot e^{it}$, где $t \in [0, \pi]$. 
-    
+    Параметризация $z = R_n \cdot e^{it}$, где $t \in [0, \pi]$.
+
     Тогда $dz = R_n e^{it} dt$.
     $\int_{C_{R_n}} f(z) e^{i \lambda z} \, dz = R_n \int_{0}^{\pi} f(R_n e^{it}) e^{it} \cdot e^{i \lambda R_n e^{it}} \, dt = I_n$
 
@@ -1609,10 +1645,10 @@
 
     То что написано под интегралом симметрично относительно $\frac{\pi}{2}$.
 
-    $(*) = 2R_n M_{R_n} \int_{0}^{\frac{\pi}{2}} e^{-\lambda R_n \sin t} \, dt \underbrace{\leqslant}_{(**)} 
-    2R_n M_{R_n} \int_{0}^{\frac{\pi}{2}} e^{-\lambda R_n \frac{2t}{\pi}} \, dt = 2R_n M_{R_n} \frac{e^{-\lambda R_n \cdot \frac{2t}{\pi}}}{-\lambda R_n \frac{2}{\pi}} \bigg |_{t = 0}^{t = \frac{\pi}{2}} 
+    $(*) = 2R_n M_{R_n} \int_{0}^{\frac{\pi}{2}} e^{-\lambda R_n \sin t} \, dt \underbrace{\leqslant}_{(**)}
+    2R_n M_{R_n} \int_{0}^{\frac{\pi}{2}} e^{-\lambda R_n \frac{2t}{\pi}} \, dt = 2R_n M_{R_n} \frac{e^{-\lambda R_n \cdot \frac{2t}{\pi}}}{-\lambda R_n \frac{2}{\pi}} \bigg |_{t = 0}^{t = \frac{\pi}{2}}
     \leqslant M_{R_n} \cdot \frac{1}{\frac{\lambda}{\pi}} \rightarrow 0$
-    
+
     $(**): $ верно, так как при $0 \leq t \leq \frac{\pi}{2}: \ \sin(t) \geq \frac{2}{\pi} t$
 \end{proof}
 
@@ -1636,7 +1672,7 @@
     \res = \frac{g(i)}{h'(i)} = \frac{e^{-1}}{2i}$.
 
     Тогда $(*) = \frac{\pi}{e}$. А значит $I = \frac{\pi}{2e}$
-    
+
 \end{example}
 
 \begin{lemma}
@@ -1656,7 +1692,7 @@
 
     Параметризация $z = \varepsilon e^{it}$, где $t \in [\alpha, \beta]$. Тогда $dz = \varepsilon e^{it} i \, dt$.
 
-    $\int_{C_{\varepsilon}} f(z) \, dz = \int_{C_{\varepsilon}} \frac{c}{z} \, dz + \int_{C_{\varepsilon}} g(z) \, dz = 
+    $\int_{C_{\varepsilon}} f(z) \, dz = \int_{C_{\varepsilon}} \frac{c}{z} \, dz + \int_{C_{\varepsilon}} g(z) \, dz =
     \int_{\alpha}^{\beta} \frac{c}{\varepsilon e^{it}} \cdot \varepsilon e^{it} i \, dt + \int_{C_{\varepsilon}} g(z) \, dz = (\beta - \alpha) \cdot i \cdot c + \int_{C_{\varepsilon}} g(z) \, dz$
 
     Оценим второй интеграл: $\int_{C_{\varepsilon}} g(z) \, dz \leqslant M \varepsilon (\beta - \alpha)$, где $M = \max_{|z| \leqslant \frac{R}{2}} |g(z)|$. и
@@ -1666,14 +1702,14 @@
 \begin{definition}
     \textbf{Главное значение интеграла} ($v.p. \int$).
 
-    $\int_{a}^{b} f(x) \, dx$, где $c$ - единственная особая (в этой точке нет непрерывности функции) точка, $c \in (a, b)$. 
+    $\int_{a}^{b} f(x) \, dx$, где $c$ - единственная особая (в этой точке нет непрерывности функции) точка, $c \in (a, b)$.
 
-    $\int_{a}^{c - \varepsilon} f(x) \, dx + \int_{c + \varepsilon}^{b} f(x) \, dx$ 
+    $\int_{a}^{c - \varepsilon} f(x) \, dx + \int_{c + \varepsilon}^{b} f(x) \, dx$
     и устремляем $\varepsilon$ к нулю. Предел - главное значение интеграла.
 \end{definition}
 
 \begin{example}
-    $v.p. \int_{-1}^{1} \frac{dx}{x} = 0$. 
+    $v.p. \int_{-1}^{1} \frac{dx}{x} = 0$.
 
     $\lim_{\varepsilon \rightarrow 0+} \int_{-1}^{-\varepsilon} + \int_{\varepsilon}^{1} = 0$, потому что
     фукнция нечетная.
@@ -1687,7 +1723,7 @@
             Если $\int$ сходится, то $\int = v.p. \int$
         }
         \item {
-            Линейность 
+            Линейность
         }
         \item {
             Аддитивность, если резать не по особым точкам
@@ -1699,7 +1735,7 @@
     $I = \int_{0}^{+\infty} \frac{\sin x}{x} \, dx$
 
     Функция четная, поэтому $2I = \int_{-\infty}^{+\infty} \frac{\sin x}{x} \, dx = v.p. \int_{-\infty}^{+\infty} \frac{\sin x}{x} \, dx$
-    
+
     ($\frac{e^{ix}}{x} = \frac{1}{x} + \frac{ix}{x} + \ldots$).
 
     Тогда $2I = \Im v.p. \int_{-\infty}^{+\infty} \frac{e^{ix}}{x} \, dx$
@@ -1727,7 +1763,7 @@
 
 \begin{example}
     $I = \int_{0}^{+\infty} \frac{x^{p - 1}}{1 + x} \, dx $, где $0 < p < 1$.
-    
+
     \begin{center}
         \includegraphics[width=9cm]{assets/04-functions-of-complex-variables/example-2-principal-value-integral.png}
     \end{center}
@@ -1744,12 +1780,12 @@
         \item $\int_{\varepsilon}^{R} \rightarrow I$
         \item $\int_{Re^{2\pi i}}^{\varepsilon e^{2 \pi i}} \rightarrow -e^{(p - 1) \pi i} \cdot I$
         \item {
-            $\left | \int_{C_{R}} \frac{e^{(p - 1)Ln z}}{1 + z} \, dz \right | \leqslant \pi R \cdot \max \left | \frac{e^{(p - 1) Ln z}}{1 + z} \right | = 
+            $\left | \int_{C_{R}} \frac{e^{(p - 1)Ln z}}{1 + z} \, dz \right | \leqslant \pi R \cdot \max \left | \frac{e^{(p - 1) Ln z}}{1 + z} \right | =
             \pi R \cdot \frac{R^{p - 1}}{\min |1 + z|} = \pi R \cdot \frac{R^{p - 1}}{R - 1} \rightarrow 0$
 
         }
         \item {
-            $\left | \int_{C_{\varepsilon}} \frac{e^{(p - 1)Ln z}}{1 + z} \, dz \right | \leqslant \pi \varepsilon \cdot \max \left | \frac{e^{(p - 1) Ln z}}{1 + z} \right | = 
+            $\left | \int_{C_{\varepsilon}} \frac{e^{(p - 1)Ln z}}{1 + z} \, dz \right | \leqslant \pi \varepsilon \cdot \max \left | \frac{e^{(p - 1) Ln z}}{1 + z} \right | =
             \pi \varepsilon \cdot \frac{\varepsilon^{p - 1}}{\min |1 + z|} = \pi \varepsilon \cdot \frac{\varepsilon^{p - 1}}{1 - \varepsilon} \rightarrow 0$
         }
 
@@ -1764,13 +1800,13 @@
     $\infty$ - полюс или устранимая особая точка. $G$ - правильная часть
     ряда Лорана в $\infty$
 
-    Тогда $f(z) = G(z) + \sum_{k = 1}^n G_k(z) + C$, в частности, 
+    Тогда $f(z) = G(z) + \sum_{k = 1}^n G_k(z) + C$, в частности,
     $f$ - рациональная функция.
 \end{theorem}
 
 \begin{proof}
-    $g(z) = f(z) - G(z) - \sum_{k = 1}^n G_k(z)$. У этой функции $z_1, \ldots, z_n, \infty$ - 
-    устранимые особые точки, а во всех остальных точках есть голоморфность. 
+    $g(z) = f(z) - G(z) - \sum_{k = 1}^n G_k(z)$. У этой функции $z_1, \ldots, z_n, \infty$ -
+    устранимые особые точки, а во всех остальных точках есть голоморфность.
 
     Тогда по теореме Луивилля $g \equiv const$.
 \end{proof}
@@ -1803,36 +1839,36 @@
         }
     \end{enumerate}
 
-    
+
     Теперь мы имеем, что $I_n(z) = f(z) - \sum_{k: \ |z_k| < R_n} G_k(z)$, осталось доказать, что $\lim_{n \rightarrow \infty} I_n(z) = 0$.
 
     $\left| I_n(z) \right| \leq \frac{1}{2 \pi} \cdot 2\pi R_n \cdot max_{|\zeta| = R_n} \left| \frac{f(\zeta)}{\zeta - z} \right| \leq R_n \cdot \frac{M_{R_n}}{R_n - |z|} \rightarrow 0$.
 
     % $\frac{1}{2\pi i} \int_{|\zeta| = R_n} \frac{f(\zeta)}{\zeta - z} \, d \zeta = \sum \res \frac{f(\zeta)}{\zeta - z} = (*)$
 
-    % $\left| \frac{1}{2\pi i} \int_{|\zeta| = R_n} \frac{f(\zeta)}{\zeta - z} \, d \zeta \right| = R_n \cdot 
+    % $\left| \frac{1}{2\pi i} \int_{|\zeta| = R_n} \frac{f(\zeta)}{\zeta - z} \, d \zeta \right| = R_n \cdot
     % \max_{|\zeta| = R_n} \left | \frac{f(\zeta)}{\zeta - z} \right | \leqslant R_n \cdot \frac{M_{R_n}}{R_n - |z|} \rightarrow 0$
 
-    % Какие особые точки есть у $(*)$ -- особые точки $z$ и особые точки $f$. 
+    % Какие особые точки есть у $(*)$ -- особые точки $z$ и особые точки $f$.
     % Поймём, как устроены вычеты в этих особых точках.
 
     % \begin{enumerate}
     %     \item {
     %         $\res_{\zeta = z} \frac{f(\zeta)}{\zeta - k}$ - полюс первого порядка, значит:
-            
+
     %         $\res_{\zeta = z} \frac{f(\zeta)}{\zeta - k} = f(z)$
     %     }
     %     \item {
-    %         $\res_{\zeta = z_k} \frac{f(\zeta)}{\zeta - z} = \res_{\zeta = z_k} \frac{G_k (\zeta)}{\zeta - z}$, так как разность -- голоморфная в точке $z_k$ функция. 
+    %         $\res_{\zeta = z_k} \frac{f(\zeta)}{\zeta - z} = \res_{\zeta = z_k} \frac{G_k (\zeta)}{\zeta - z}$, так как разность -- голоморфная в точке $z_k$ функция.
 
     %         Такой вычет посчитаем так, посчитаем интеграл по кружности радиуса $R$:
 
     %         $\frac{1}{2\pi i} \int_{|\zeta| = R} \frac{G_k (\zeta)}{\zeta - z} \, d\zeta = \res_{\zeta = z} + \res_{\zeta = z_k}$.
-            
+
     %         С другой стороны:
 
     %         $\left | \frac{1}{2\pi i} \int_{|\zeta| = R} \frac{G_k (\zeta)}{\zeta - z} \, d\zeta \right | \leqslant R \cdot \frac{\max_{|\zeta| = R} |G_k (\zeta)|}{R - |z|} \rightarrow 0$.
-            
+
     %         А значит $-\res_{\zeta = z} = \res_{\zeta = z_k}$.
 
     %         Отсюда получили, что $\res_{\zeta = z_k} \frac{G_k (\zeta)}{\zeta - z} = \res_{\zeta = z} \frac{G_k(\zeta)}{\zeta - z} = -G_k (z)$.
@@ -1844,17 +1880,17 @@
 % \begin{example}
 %     $f(z) = \frac{\ctg z}{z}$. Особые точки вида $\pi k, k \in \mathbb{Z}$. Давайте брать $R_n = \pi n + \frac{\pi}{2}$.
 
-%     % Тут, наверное, нужна картинка. 
+%     % Тут, наверное, нужна картинка.
 
 %     \begin{lemma}
         % Существует $M$, такая что, $|\ctg z| \leqslant M$ при $|z| = \pi (n + \frac{1}{2})$.
 %     \end{lemma}
 
-%     $M_{R_n} \leqslant \frac{M}{R_n} \rightarrow 0$. Тогда исходя из теоремы 
-%     $\frac{\ctg z}{z} = \lim_{n \to \infty} \sum_{-n}^n G_k(z)$, где $G_k$ - главная часть ряда Лорана в точке 
+%     $M_{R_n} \leqslant \frac{M}{R_n} \rightarrow 0$. Тогда исходя из теоремы
+%     $\frac{\ctg z}{z} = \lim_{n \to \infty} \sum_{-n}^n G_k(z)$, где $G_k$ - главная часть ряда Лорана в точке
 %     $\pi k$.
 
-%     Пусть $k \neq 0$, тогда $f$ имеет в точке $\pi k$ полюс первого порядка. 
+%     Пусть $k \neq 0$, тогда $f$ имеет в точке $\pi k$ полюс первого порядка.
 %     Тогда $G_k(z) = \frac{\res}{z - \pi k}$.
 
 %     Нас интересует $\res_{z = \pi k} \frac{\ctg z}{z} = \res_{z = \pi k} \frac{\frac{\cos z}{z}}{\sin z}$.
@@ -1863,7 +1899,7 @@
 
 %     Поэтому $G_k(z) = \frac{1}{\pi k(z - \pi k)}$
 
-%     $z = 0$. Интересуемся $G_0(z) = \frac{a}{z} + \frac{b}{z^2}$. Здесь $a = 0$, так как функция чётная, $b = 
+%     $z = 0$. Интересуемся $G_0(z) = \frac{a}{z} + \frac{b}{z^2}$. Здесь $a = 0$, так как функция чётная, $b =
 %     \res_{z = 0} \ctg z = \res_{z = 0} \frac{\cos z}{\sin z} = 1$.
 
 %     То есть $\frac{\ctg z}{z} = \frac{1}{z^2} \lim_{n \to \infty} \sum_{k = 1}^n \left ( \frac{1}{\pi k(z - \pi k)} - \frac{1}{\pi k(z + \pi k)} \right ) =
@@ -1918,8 +1954,8 @@
             $|\ctg z| = |\frac{\cos z}{\sin z}| = \left|\frac{e^{iz} + e^{-iz}}{e^{iz} - e^{-iz}}\right| = \left| \frac{1 + e^{2iz}}{1 - e^{2iz}} \right| \leq  \frac{1 + \left|e^{2iz}\right|}{\left|1 - e^{2iz}\right|} = (*)$
 
             Пусть $z = x + iy$ и пока что $y \geq 1$:
-        
-            $|e^{2iz}| = |e^{2ix} \cdot e^{-2y}| = e^{-2y}$, тогда $(*) = \frac{1 + e^{-2y}}{|1 - e^{2iz}|} \leq \frac{1 + e^{-2y}}{1-e^{-2y}} \leq \frac{2}{1 - e^{-2}}$ 
+
+            $|e^{2iz}| = |e^{2ix} \cdot e^{-2y}| = e^{-2y}$, тогда $(*) = \frac{1 + e^{-2y}}{|1 - e^{2iz}|} \leq \frac{1 + e^{-2y}}{1-e^{-2y}} \leq \frac{2}{1 - e^{-2}}$
         }
         \item {
             Зона 2:
@@ -1946,7 +1982,7 @@
     $G_0(z) = \frac{A}{z^2} = \frac{1}{z^2}$, так как $\frac{\ctg(z)}{z} = \frac{\cos(z)}{z \sin(z)} \sim \frac{1}{z^2}$ при $z$ близких к нулю.
 
     То есть $\frac{\ctg(z)}{z} = G_0(z) + \sum_{k=1}^{\infty} \left(G_{k}(z) + G_{-k}(z)\right) =$
-    
+
     $= \frac{1}{z^2} + \sum_{k=1}^{\infty} \left( \frac{1}{\pi k(z - \pi k)} + \frac{1}{\pi (-k) (z + \pi k)} \right) = \frac{1}{z^2} + \sum_{k=1}^{\infty} \frac{2}{z^2 - \pi^2 k^2}$.
 \end{proof}
 
@@ -1955,16 +1991,16 @@
 
     $(\ln \frac{\sin z}{z})' = \ctg z - \frac{1}{z}$.
 
-    $\ln \frac{\sin z}{z} = \int_{0}^{z} (\ctg w - \frac{1}{w}) \, dw = \int_{0}^{z} \sum_{k=1}^{\infty} \frac{2w}{w^2 - \pi^2 k^2} \, dw = 
+    $\ln \frac{\sin z}{z} = \int_{0}^{z} (\ctg w - \frac{1}{w}) \, dw = \int_{0}^{z} \sum_{k=1}^{\infty} \frac{2w}{w^2 - \pi^2 k^2} \, dw =
     \sum_{k = 1}^{\infty} \int_{0}^{z} {\frac{2w}{w^2 - \pi^2 k^2} dw}$ (можем переставлять, потому что есть равномерная сходимость).
-    
+
     $\sum_{k = 1}^{\infty} \int_{0}^{z} \left ( \frac{1}{w - \pi k} + \frac{1}{w + \pi k} \right ) =$
 
-    $= \sum_{k = 1}^{\infty} \ln (w - \pi k) + \ln (w + \pi k) \bigg |_{0}^z = \sum_{k = 1}^{\infty} \ln 
+    $= \sum_{k = 1}^{\infty} \ln (w - \pi k) + \ln (w + \pi k) \bigg |_{0}^z = \sum_{k = 1}^{\infty} \ln
     \left ( \frac{z^2 - \pi^2 k^2}{-\pi^2 k^2} \right ) = \sum_{k = 1}^{\infty} \ln \left ( 1 - \frac{z^2}{\pi^2 k^2} \right )$.
 
     Тогда $\frac{\sin z}{z} = \prod_{k = 1}^{\infty} \left(1 - \frac{z^2}{\pi^2 k^2} \right)$.
-    
+
     Либо $\sin z = z \prod_{k = 1}^{\infty} \left(1 - \frac{z^2}{\pi^2 k^2} \right)$.
 \end{example}
 
@@ -1976,15 +2012,15 @@
 
     $g(z) = \frac{\ctg \pi z}{z^2}$ и проинтегрируем.
 
-    $\frac{1}{2 \pi i} \int_{|z| = n + \frac{1}{2}} \frac{\ctg \pi z}{z^2} \, dz = 
+    $\frac{1}{2 \pi i} \int_{|z| = n + \frac{1}{2}} \frac{\ctg \pi z}{z^2} \, dz =
     \sum_{k = -n, k \neq 0}^n \frac{1}{\pi k^2} + \res_{z = 0} \frac{\ctg \pi z}{z^2}$.
 
     При этом есть такая оценка:
-    $\left | \frac{1}{2 \pi i} \int_{|z| = n + \frac{1}{2}} \frac{\ctg \pi z}{z^2} \, dz \right | \leqslant 
+    $\left | \frac{1}{2 \pi i} \int_{|z| = n + \frac{1}{2}} \frac{\ctg \pi z}{z^2} \, dz \right | \leqslant
     (n + \frac{1}{2}) \cdot \frac{M}{(n + \frac{1}{2})^2} \rightarrow 0$
 
     Значит, $\sum_{k = 1}^{\infty} \frac{1}{k^2} = -\frac{\pi}{2} \cdot \res_{z = 0} \frac{\ctg \pi z}{z^2}$.
-    
+
     Такой вычет не очень приятно считать -- раскладываем в ряд.
 
     Найдем коэффициент перед $z^1$: в разложении $\ctg \pi z = \frac{\cos \pi z}{\sin \pi z} = \frac{1 - \frac{\pi^2 z^2}{2} + \mathcal{O}(z^4)}{\pi z (1 - \frac{\pi^2 z^2}{6} + \mathcal{O}(z^4))} = $
@@ -1999,7 +2035,7 @@
 
 \begin{theorem} (О числе нулей и полюсов).
 
-    Пусть $f$ мероморфна в $\Omega$, $\gamma$ - простая замкнутая кривая в $\Omega$, 
+    Пусть $f$ мероморфна в $\Omega$, $\gamma$ - простая замкнутая кривая в $\Omega$,
     не проходящая через нули и полюсы $f$.
 
     Тогда $\frac{1}{2 \pi i} \int_{\gamma} \frac{f'(z)}{f(z)} \, dz = \mathcal{N}_f - \mathcal{P}_f$
@@ -2016,7 +2052,7 @@
 
 \begin{proof} Теоремы.
 
-    Если $a$ - ноль или полюс $f$, то $f(z) = (z - a)^m g(z)$, где $g(a) \neq 0$ и 
+    Если $a$ - ноль или полюс $f$, то $f(z) = (z - a)^m g(z)$, где $g(a) \neq 0$ и
     $g$ голоморфна в окрестности $a$.
 
     \begin{enumerate}
@@ -2034,14 +2070,14 @@
     \textbf{Принцип аргумента}
 
     Пусть $f \in H(\Omega)$, $\gamma$ - простая замкнутая кривая в $\Omega$, не проходящая через
-    нули $f$. 
-    
+    нули $f$.
+
     Тогда $\mathcal{N}_f = \frac{1}{2\pi} \Delta_{\gamma} \arg f(z)$, где $\Delta_{\gamma}$ - изменение аргумента
     при движении по кривой.
 \end{consequence}
 
 \begin{proof}
-    $\mathcal{N}_f = \frac{1}{2\pi i} \int_{\gamma} \frac{f'(z)}{f(z)} \, dz$. Но $\frac{f'}{f} = (Ln f)'$. 
+    $\mathcal{N}_f = \frac{1}{2\pi i} \int_{\gamma} \frac{f'(z)}{f(z)} \, dz$. Но $\frac{f'}{f} = (Ln f)'$.
     Если рассмотрим $Ln$ на кривой $\gamma$, то это будет первообразная вдоль пути $\gamma$ для $\frac{f'}{f}$.
 
     $\mathcal{N}_f = \frac{1}{2\pi i} \Delta_\gamma (Ln f(z)) = \frac{1}{2 \pi i} (\Delta_\gamma
@@ -2051,7 +2087,7 @@
 \begin{theorem}
     \textbf{Руше}
 
-    $f, g \in H(\Omega)$, $\gamma$ - простой замкнутая кривая в $\Omega$ и 
+    $f, g \in H(\Omega)$, $\gamma$ - простой замкнутая кривая в $\Omega$ и
     $|f| > |g|$ на $\gamma$.
 
     Тогда $f + g$ и $f$ внутри $\gamma$ имеют одинаковое число нулей с учетом кратности.
@@ -2062,7 +2098,7 @@
     $|f + g| \geqslant |f| - |g| > 0$ на $\gamma$, поэтому в ноль обращения нет и
     можно использовать принцип аргумента.
 
-    $\mathcal{N}_{f + g} = \frac{1}{2\pi} \Delta_\gamma \arg (f \cdot (1 + \frac{g}{f})) = 
+    $\mathcal{N}_{f + g} = \frac{1}{2\pi} \Delta_\gamma \arg (f \cdot (1 + \frac{g}{f})) =
     \frac{1}{2\pi} \Delta_\gamma \arg f + \frac{1}{2\pi} \Delta_\gamma \arg (1 + \frac{g}{f})$.
 
     Значит надо доказать, что $\Delta_\gamma \arg (1 + \frac{g}{f}) = 0$.
@@ -2080,8 +2116,8 @@
 
     Возьмём окружность большого радиуса и по ней обход по контуру $\gamma$.
 
-    Возьмём $f(z) = z - \lambda$ и $g(z) = -e^{-z}$. Хотим подставить в т. Руше, тогда необходимо чтобы $|f| > |g|$, проверим это: 
-    
+    Возьмём $f(z) = z - \lambda$ и $g(z) = -e^{-z}$. Хотим подставить в т. Руше, тогда необходимо чтобы $|f| > |g|$, проверим это:
+
     \begin{enumerate}
         \item {
             На вертикальном отрезке: $|f(z)| = |iy - \lambda| = \sqrt{y^2 + \lambda^2} \geqslant \lambda > 1$, а
@@ -2104,23 +2140,23 @@
 
 \begin{theorem}
     Пусть $f \in H(\Omega)$, $a \in \Omega$, такая, что $f'(a) \neq 0$.
-    
-    Тогда $f$ сохраняет углы между кривыми, проходящими через точку $a$.  
+
+    Тогда $f$ сохраняет углы между кривыми, проходящими через точку $a$.
 \end{theorem}
 
 \begin{proof}
     $\gamma : [0, 1] \to \Omega$ и $\gamma (0) = a$ (можно так считать).
-    
+
     $\tilde{\gamma} : [0, 1] \to \Omega$ и $\tilde{\gamma} (0) = a$.
 
     $\arg \gamma'(0) - \arg \tilde{\gamma}'(0)$ - угол между кривым в $\Omega$.
 
-    $\arg (f \circ \gamma)'(0) - \arg (f \circ \tilde{\gamma})'(0) = \arg f'(a)\gamma'(0) - \arg f'(a) \tilde{\gamma}'(0) = 
+    $\arg (f \circ \gamma)'(0) - \arg (f \circ \tilde{\gamma})'(0) = \arg f'(a)\gamma'(0) - \arg f'(a) \tilde{\gamma}'(0) =
     \arg \tilde{\gamma}'(0) - \arg \tilde{\gamma}'(0)$
 \end{proof}
 
 \begin{definition}
-    $f : \Omega \to \mathbb{C}$ - однолистная, если $f \in H(\Omega)$ и 
+    $f : \Omega \to \mathbb{C}$ - однолистная, если $f \in H(\Omega)$ и
     инъекция.
 \end{definition}
 
@@ -2134,7 +2170,7 @@
             Линейная связность остаётся
         }
         \item {
-            Нужно проверить, что $f(\Omega)$ - открытое множество. Возьмём точку 
+            Нужно проверить, что $f(\Omega)$ - открытое множество. Возьмём точку
             в образе и докажем, что она там лежит с некоторым шариком.
 
             $b \in f(\Omega) \Rightarrow \exists \, a \in \Omega \, : \, f(a) = b$.
@@ -2144,7 +2180,7 @@
                 \includegraphics[width=10cm]{assets/04-functions-of-complex-variables/single-leaf-theorem.png}
             \end{center}
 
-            Найдётся окружность $|z - a| < \varepsilon$, что $|f(z) - b| \neq 0$. Если на окружности радиуса $\frac{1}{n}$ нашлась точка $z_n$, 
+            Найдётся окружность $|z - a| < \varepsilon$, что $|f(z) - b| \neq 0$. Если на окружности радиуса $\frac{1}{n}$ нашлась точка $z_n$,
             такая, что $f(z_n) = b$, то $f \equiv b$ по теореме единственности.
 
             $r = \min_{|z - a| = \varepsilon} |f(z) - b| > 0$. Посмотрим на $f(z) - w$. Хотим понять, что такое уравнение
@@ -2173,14 +2209,14 @@
         \includegraphics[width=6cm]{assets/04-functions-of-complex-variables/single-leaf-theorem-derivative-none-zero.png}
     \end{center}
 
-    Смотрим на уравнение $f(z) - w = f(z) - b + b - w$. Мы выяснили, что 
+    Смотрим на уравнение $f(z) - w = f(z) - b + b - w$. Мы выяснили, что
     $\mathcal{N}_{f - w} = \mathcal{N}_{f - b} \geqslant 2$, потому что
     $a$ - корень кратности $\geqslant 2$. Тогда $f(z) = w$ имеет хотя бы 2 решения. Но у нас инъекция, поэтому
-    все решения с кратностью 2. Хотим показать, что тогда найдётся последовательность нулей производных, 
+    все решения с кратностью 2. Хотим показать, что тогда найдётся последовательность нулей производных,
     стремящаяся к точке $a$ и получить противоречие.
 
     Берём радиус $\frac{r}{2}$. $\{ |w - b| \leqslant \frac{r}{2} \} \subset f(\Omega)$.
-    Берём $w_1, w_2, \ldots$ из этого круга. Значит $\exists \, z_1, \ldots$ из $|z - a| < \varepsilon$, 
+    Берём $w_1, w_2, \ldots$ из этого круга. Значит $\exists \, z_1, \ldots$ из $|z - a| < \varepsilon$,
     $f(z_k) = w_k$ и $f'(z_k) = 0 \Rightarrow$ в $|z - a| \leqslant \varepsilon$ бесконечно много нулей
     $f'$. Значит у них есть предельная точка и тогда $f' \equiv 0 \Rightarrow f \equiv const$.
 \end{proof}
@@ -2205,16 +2241,16 @@
             \begin{center}
                 \includegraphics[width=7cm]{assets/04-functions-of-complex-variables/conf-func-consequence-2.jpg}
             \end{center}
-            $g$ однолистна в меньшей не проколотой окрестности $\Rightarrow c_1 = g'(0) \neq 0$ 
+            $g$ однолистна в меньшей не проколотой окрестности $\Rightarrow c_1 = g'(0) \neq 0$
         }
         \item {
-            $f$ имеет полюс в точке $a$ и однолистна в проколотой окрестности точки $a$, 
+            $f$ имеет полюс в точке $a$ и однолистна в проколотой окрестности точки $a$,
             тогда это полюс первого порядка.
 
             \textit{Доказательство: } пусть $g(z) = \frac{1}{f(z)}$ - однолистна в проколотой окрестности точки $a$.
             Можем доопределить нулём в точке $a$ и тогда будет голоморфность, $g(a) = 0$.
 
-            Тогда $g$ однолистна в окрестности точки $a$, а значит $g'(a) \neq 0$, тогда $a$ - 
+            Тогда $g$ однолистна в окрестности точки $a$, а значит $g'(a) \neq 0$, тогда $a$ -
             ноль первого порядка у $g$, а значит и ноль первого порядка у $f$.
         }
     \end{enumerate}
@@ -2258,11 +2294,11 @@
             И тогда $\frac{|f(z)|}{|z|} \leqslant 1$
         }
         \item {
-            Знаем, что $|g(z)| \leqslant 1$ в $\mathbb{D}$. Если $|g(a)| = 1$, для $a \in \mathbb{D}$, то 
+            Знаем, что $|g(z)| \leqslant 1$ в $\mathbb{D}$. Если $|g(a)| = 1$, для $a \in \mathbb{D}$, то
             $a$ локальный максимум модуля и тогла, по принципу максимума, $g \equiv const \Rightarrow g(z) = e^{i\phi}$
         }
     \end{enumerate}
-    
+
 \end{proof}
 
 \begin{theorem}
@@ -2285,20 +2321,20 @@
 
             Пусть $f : \mathbb{D} \to \mathbb{D}$, $f(0) = 0$ и $\arg f'(0) = \alpha$.
             По лемме Шварца для $f$ получаем, что $|f(z)| \leqslant |z| \, \forall z \in \mathbb{D}$.
-            
+
             С другой стороны, $f^{-1} : \mathbb{D} \to \mathbb{D}$ тоже конфорное, $f^{-1}(0) = 0$, значит для
             неё тоже можно применить лемму Шварца. $|f^{-1}(z)| \leqslant |z| \Rightarrow |z| \leqslant |f(z)|$.
 
             Значит $|f(z)| = |z| \, \forall z \in \mathbb{D}$, тогда по лемме Шварца это поворот, то есть $f(z) = e^{i\phi}z$.
-            
-            Также мы знаем, что $f'(z) = e^{i\phi}$ и $\arg f'(0) = 0 \implies e^{i\phi} = 1$. 
+
+            Также мы знаем, что $f'(z) = e^{i\phi}$ и $\arg f'(0) = 0 \implies e^{i\phi} = 1$.
         }
         \item {
             $\Omega$ и $\tilde{\Omega}$ проивзольные. Пусть $f_1, f_2 \, : \, \Omega \to \tilde{\Omega}$ - конфорное.
             $f_i(z_0) = \tilde{z_0}$ и $\arg f_i' (z_0) = \alpha$, где $i \in \{1, 2\}$.
 
             Воспользуемся \textit{существованием}:
-            
+
             \begin{enumerate}
                 \item {
                     $\exists \phi : \mathbb{D} \rightarrow \Omega$ -- конформное, $\phi(0) = z_0$ и $\phi'(0) > 0$ (то есть, что $\arg \phi'(0) = 0$).
@@ -2348,7 +2384,7 @@
 \begin{remark}
     \textbf{Малая теорема Пикара}
 
-    Если $f \in H(\mathbb{C})$ не принимает 2 каких-то значения, то 
+    Если $f \in H(\mathbb{C})$ не принимает 2 каких-то значения, то
     $f \equiv const$.
 \end{remark}
 
@@ -2379,15 +2415,15 @@
 \end{theorem}
 
 \begin{proof}
-    % $z_0$ - изолированная особая точка. 
+    % $z_0$ - изолированная особая точка.
 
     \begin{enumerate}
         \item {
-            $z_0$ -- существенная особая точка. Тогда по теореме Сохоцкого 
+            $z_0$ -- существенная особая точка. Тогда по теореме Сохоцкого
             $Cl \, f \{ 0 < |z - z_0| < \varepsilon \} = \mathbb{C}$.
 
             Возьмём $b = f(a)$. Тогда $f(|z - a| < r)$ - открытое множество (т.к. $\{|z-a| < r\}$ -- открытое и $f$ -- однолистная).
-            
+
             Более того, $f(|z - a| < r) \cap f(0 < |z - z_0| < \varepsilon) = \emptyset$ из однолистности.
 
 
@@ -2399,7 +2435,7 @@
         }
         \item {
             $z_0 \neq \infty$ -- полюс. Тогда из однолистности это полюс первого порядка. А тогда
-            $g(z) = f(z) - \frac{c}{z - z_0} \in H(\bar{\mathbb{C}}) \Rightarrow g(z) = const \Rightarrow f(z) = \frac{c}{z - z_0} + const$ 
+            $g(z) = f(z) - \frac{c}{z - z_0} \in H(\bar{\mathbb{C}}) \Rightarrow g(z) = const \Rightarrow f(z) = \frac{c}{z - z_0} + const$
         }
         \item {
             $z_0 = \infty$ -- полюс, тогда $g(z) = f(z) - cz \in H(\bar{\mathbb{C}}) \Rightarrow g(z) = const \Rightarrow f(z) = cz + const$.
@@ -2438,7 +2474,7 @@
 
     Это будет равно:
 
-    $\mathcal{A}(z) = (1 + z + z^2 + \ldots)(1 + z^2 + \ldots)(1 + z^5 + z^{10} + \ldots)(1 + z^{10} + z^{20} + \ldots)$ и 
+    $\mathcal{A}(z) = (1 + z + z^2 + \ldots)(1 + z^2 + \ldots)(1 + z^5 + z^{10} + \ldots)(1 + z^{10} + z^{20} + \ldots)$ и
     раскроем все скобки.
 
     Коэффициент при $z^n = z^a \cdot z^{2b} \cdot z^{5c} \cdot z^{10d}$, где $a + 2b + 5c + 10d = n$.
@@ -2473,16 +2509,16 @@
     \end{enumerate}
 
     Из пункта (2) выше получаем, что $(*) \leq \sum_{k=1}^{\infty} |z|^k + \sum_{k=1}^{\infty} |z|^{2k} < +\infty$ -- справа от нер-ва сумма рядов сх-ся, тогда и $(*)$ тоже.
-    
+
     Проверим, что аргумент ничего не испортит:
 
-    % $\ln (1 + t) \geqslant t - t^2$ при $|t| < 1$. $\ln (1 - |z|^k) \geqslant |z|^k - |z|^{2k}$ и 
+    % $\ln (1 + t) \geqslant t - t^2$ при $|t| < 1$. $\ln (1 - |z|^k) \geqslant |z|^k - |z|^{2k}$ и
     % $0 \leqslant -\ln |1 - z^k| \leqslant |z|^k + |z|^{2k}$.
 
     $\arg \left ( \frac{1}{1 - z^k} \right ) = -\arg (1 - z^k)$
-    
+
     $|\arg (1 - z^k)| \leqslant \arcsin |z|^k \leqslant 2|z|^k$
-    
+
     Действительно, аргумент ничего не портит.
 \end{proof}
 
@@ -2510,10 +2546,10 @@
 \end{proof}
 
 \begin{example}
-    $b_1b_2 \ldots b_k b_{k + 1} \ldots b_{2k}$ счастливый билет, если 
+    $b_1b_2 \ldots b_k b_{k + 1} \ldots b_{2k}$ счастливый билет, если
     сумма первых $k$ равна сумме последних $k$.
 
-    Пусть $a_n$ - количество $k$-значных чисел с суммой цифр $n$. То есть 
+    Пусть $a_n$ - количество $k$-значных чисел с суммой цифр $n$. То есть
     количество счастливых билетов $a_0^2 + a_1^2 + \ldots + a_{9k}^2$.
 
     Пусть $\mathcal{A}(z) = \sum_{n = 0}^{\infty} a_nz^n = (1 + z + z^2 + \ldots + z^9)^k$
@@ -2527,17 +2563,17 @@
     \textbf{Диагонализация степенных рядов}
 
     Пусть дана $f(w, z) = \sum_{n, k = 0}^{\infty} a_{nk} w^n z^k$, а мы хотим найти $g(w) = \sum_{n = 0}^{\infty} a_{nn} w^n$.
-    
+
     Запишем $f(\frac{w}{z}, z) = \sum_{n, k = 0}^{\infty} a_{nk} \frac{w^n}{z^n} z^k$, видно, что нас интересует коэффициент перед $z_0$ (если мы его найдет, то получем ответ).
 
 
     То есть $g(w) = \frac{1}{2\pi i} \int_{|z| = r} \frac{f(\frac{w}{z}, z)}{z} \, dz = \frac{1}{2\pi i} \int_{|z| = r} \sum_{n, k = 0}^{\infty} a_{nk} w^n z^{k - n - 1} \, dz =$
-    
+
     $= \frac{1}{2\pi i} \sum_{n, k = 0}^{\infty} w^n a_{nk} \underbrace{\int_{|z| = r} z^{k - n - 1} \, dz}_{=0, \text{ при } k \not = n, \ 2\pi i \text{ иначе}} = \frac{1}{2\pi i} \sum_{n = 0}^{\infty} w^n a_{nn} 2\pi i = g(w)$
 
 
     Чтобы можно было переставить интеграл и сумму, нужна равномерная сходимость. То есть нужно попасть строго внутрь круга сходимости ряда $\sum |a_{nk}| r^{k-1} \left |\frac{w}{z} \right |^n$.
-    
+
     Пусть радиус сх-ти для $z$ и для $w$ равен $R$, тогда нужно, чтобы $r < R, \left|\frac{w}{r}\right| < R$.
 
     % Нужно $\left | \frac{w}{z} \right | < \rho$. Берём
@@ -2546,14 +2582,14 @@
     \bigskip
 
     Давайте теперь воспользуемся полученной схемой на конкретном примере:
-    
+
     пусть $f(w, z) = \sum_{n, k = 0}^{\infty} \binom{n+k}{k}w^nz^k = \sum_{m = 0}^{\infty} \sum_{k = 0}^{m} \binom{m}{k} w^{m - k}z^k = \sum_{m = 0}^{\infty} (w + z)^m = \frac{1}{1 - w - z}$.
 
 
     Найдем $\frac{1}{2\pi i} \int_{|z| = r} \frac{f(\frac{w}{z}, z)}{z} \, dz = \frac{1}{2\pi i} \int_{|z| = r} \frac{dz}{z \left(1 - \frac{w}{z} - z\right)} = -\frac{1}{2\pi i} \int_{|z| = r} \frac{dz}{z^2 - z + w} = (*)$.
 
     Ищем нули знаменателя, получаем особые точки: $\frac{1 \pm \sqrt{1 - 4w}}{2}$.
-    
+
     В контур попадает только $\frac{1 - \sqrt{1 - 4w}}{2}$, так как второй корень близок к $1$, а этот как раз к нулю.
 
     $(*) = - \res = -\frac{1}{2z - 1} \bigg |_{z = \frac{1 - \sqrt{1 - 4w}}{2}} = \frac{1}{\sqrt{1 - 4w}}$.
@@ -2566,17 +2602,17 @@
     \textbf{Произведение Адамара}
 
     $\mathcal{A}(z) = \sum_{n = 0}^{\infty} a_nz^n$
-    
+
     $\mathcal{B}(z) = \sum_{n=0}^{\infty} b_nz^n$
-    
-    $\mathcal{A} \circ \mathcal{B} (z) = \sum_{n = 0}^{\infty} a_nb_n z^n$ 
+
+    $\mathcal{A} \circ \mathcal{B} (z) = \sum_{n = 0}^{\infty} a_nb_n z^n$
 \end{definition}
 
 \begin{example}
     Как находить произведение Адамара.
 
     $f(w, z) = \mathcal{A}(z) \mathcal{B}(w) = \sum_{n, k = 0}^{\infty} a_nb_kz^nw^k$.
-    
+
     Нас интересует диагональ этой штуки.
 \end{example}
 
@@ -2586,9 +2622,9 @@
 
 \begin{definition}
     Последовательность $\{a_n\}$ -- \textbf{квазимногочлен}, если
-    
+
     $a_n = p_1(n)q_1^n + p_2(n)q_2^n + \ldots + p_k(n)q_k^n$,
-    
+
     где $q_1, \ldots, q_k \in \mathbb{C}$, а $p_1, \ldots, p_k$ -- многочлены с комплексными коэффициентами.
 \end{definition}
 
@@ -2607,16 +2643,16 @@
         }
         \item {
             $\Leftarrow$. Достаточно понять, что $a_n = p(n) \cdot q^n$ имеет рациональную производящую функцию, а потом просто сложить в сумму.
-            
-            Индукция по степени многочлена: 
-            
+
+            Индукция по степени многочлена:
+
             \begin{enumerate}
                 \item {
                     База: $\deg = 0$, $a_n = q^n$ производящая функция $\frac{1}{1 - qz}$.
                 }
                 \item {
                     Переход: $d - 1 \rightarrow d$.
-                    
+
                     Возьмём конкретный многочлен степени $d$: $\tilde{p}(n) = \frac{(n + d)(n + d - 1) \ldots (n + 1)}{d!}$.
 
                     Для $b_n = \tilde{p}(n)q^n$ производящая функция $\frac{1}{(1 - qz)^{d + 1}}$.
@@ -2632,31 +2668,31 @@
     \textbf{Метод Дарбу}
 
     $f(z) = \sum_{n = 0}^{\infty} a_n z^n$ сходится в круге $|z| < R$.
-    
+
     Тогда при любом $r$, таком что $r < R$, ряд $\sum_{n = 0}^{\infty} a_n r^n$ -- сходится и $a_n r^n \rightarrow 0 \Rightarrow a_n = o(r^{-n})$.
-    
+
     Пусть $R$ -- радиус сходимости $f(z) = \sum_{n = 0}^{\infty} a_n z^n$, тогда мы знаем, что на границе круга сходимости есть особая точка.
 
     Если особых точек конечное число и это полюсы (для простоты будем считать, что одна), то тогда возьмём эту точку и напишем главную часть ряда Лорана:
 
     $h(z) = \text{главная часть ряда Лорана для функции $f$ в точке $a$}$.
-    
+
     Тогда $g(z) = f(z) - h(z)$ имеет устранимую особую точку $a$. Давайте устраним ее, тогда $g(z)$ голоморфна в точке $a$. Тогда скорее всего её радиус сходимости $\tilde{R} > R$.
 
     $g(z) = \sum_{n = 0}^{\infty} b_n z^n \Rightarrow b_n =  o((\tilde{R} - \varepsilon)^{-n})$
-    
+
     $h(z) = \frac{c_1}{z - a} + \frac{c_2}{(z - a)^2} + \ldots + \frac{c_r}{(z - a)^r}$, где $r$ -- порядок полюса, у $h(z)$ можно явно выписать коэффициенты (самый быстрорастущий это последний).
 
     $\frac{1}{(z - a)^r} = \frac{1}{a^r \left(\frac{z}{a} - 1\right)^r} = \frac{(-1)^r}{a^r} \cdot \sum_{n = 0}^{\infty} \binom{n + r - 1}{r - 1} \left( \frac{z}{a} \right)^n$.
 
     Оценим биномиальный коэффициент: $\binom{n + r - 1}{r - 1} = \frac{(n + r - 1) \ldots (n + 1)}{(r - 1)!} \sim \frac{n^{r - 1}}{(r - 1)!}$.
-    
+
     Тогда $a_n \sim c_r \cdot \frac{n^{r - 1}}{(r - 1)!} \cdot \frac{(-1)^r}{a^{n + r}}$.
 \end{example}
 
 \begin{theorem}
     Пусть $f \in H(|z| < R)$, где $R > 1$ и $f(1) \neq 0$.
-    
+
     Пусть $\frac{f(z)}{(1 - z)^\alpha} = \sum_{n = 0}^{\infty} b_n z^n, \ \alpha \in \mathbb{R}, \ \alpha \neq 0, -1, -2 \ldots$
 
     Тогда $b_n \sim f(1) \cdot \binom{n + \alpha - 1}{n} \sim f(1) \cdot \frac{n^{\alpha - 1}}{\Gamma (\alpha)}$
@@ -2665,33 +2701,33 @@
 \begin{proof}
 
     Возьмём $1 < r < R$ и разложим $f(z) = \sum_{n = 0}^{\infty} a_n z^n$.
-    
+
     Ряд сходится в точке $z = r \Rightarrow a_n = o(r^{-n})$.
 
     $\frac{1}{(1 - z)^\alpha} = \sum_{n = 0}^{\infty} \underbrace{\binom{n + \alpha - 1}{n}}_{=\frac{(n + \alpha - 1)(n + \alpha - 2) \ldots \alpha}{n!}} z^n$.
 
     Получаем:
-    
+
     $\frac{f(z)}{(1 - z)^\alpha} = \sum a_n z^n \cdot \sum \binom{n + \alpha - 1}{n} z^n$
-    
+
     $b_n = a_n \binom{\alpha - 1}{0} + a_{n - 1}\binom{\alpha}{1} + \ldots + a_0 \binom{n + \alpha - 1}{n} = \binom{n + \alpha - 1}{n} (a_0 + \frac{n}{n + \alpha - 1} a_1 + \frac{n(n - 1)}{(n + \alpha - 1)(n + \alpha - 2)} a_2 + \ldots + (\ldots) \cdot a_n)$, где все коэффициенты при $a_i$ стремятся к $1$.
 
     Хотим сказать, что $b_n \sim \binom{n + \alpha - 1}{n} \cdot (a_0 + a_1 + \ldots + a_n) \sim \binom{n + \alpha - 1}{n} \cdot f(1) =$
-    
+
     $= \frac{\alpha(\alpha - 1) \ldots (\alpha + n - 1)}{n!} f(1) \rightarrow \frac{n^{\alpha - 1}}{\Gamma(\alpha)} \cdot f(1)$ -- последний переход из формулы Эйлера-Гаусса.
 
     Осталось понять, что $\Delta_n = (a_0 + \frac{n}{n + \alpha - 1}a_1 + \frac{n(n - 1)}{(n + \alpha - 1)(n + \alpha -2)}a_2 + \ldots + (\ldots)\cdot a_n) - (a_0 + a_1 + \ldots +a_n) \rightarrow 0$.
-    
-    Мы знаем, что $a_n = \mathcal{O}(r^{-n}) \Rightarrow |a_n| \leqslant \frac{C}{r^n}$. 
-    
+
+    Мы знаем, что $a_n = \mathcal{O}(r^{-n}) \Rightarrow |a_n| \leqslant \frac{C}{r^n}$.
+
     Тогда $|\Delta_n| \leqslant
     \underbrace{|a_1| \left|\frac{n}{n + \alpha - 1} - 1\right| +
     |a_2| \left|\frac{n (n - 1)}{(n + \alpha - 1) (n + \alpha - 2)} - 1\right| +
     \ldots +
     |a_m| \left|(\ldots) - 1\right|}_{\text{конечное число слагаемых } \rightarrow 0} +$
-    
+
     $+ \left(\frac{C}{r^{m + 1}} + \frac{C}{r^{m + 2}} + \ldots\right)$
-    
+
     Подберём так $m$ чтобы $\sum \frac{C}{r^{m + i}} \leqslant \varepsilon$. И тогда всё выполнилось при больших $n$.
 \end{proof}
 
@@ -2699,11 +2735,11 @@
     \begin{enumerate}
         \item {
             $f(z) = \frac{\sqrt{2 - z}}{(1 - z)^2}$
-            
+
             Здесь круг сходимости $|z| < 1$, особая точка $z = 1$ -- полюс второго порядка.
-            
+
             Главная часть ряда Лорана: $\frac{a}{1 - z} + \frac{b}{(1 - z)^2} = -\frac{1}{2} \cdot \frac{1}{1 - z} + \frac{1}{(1 - z)^2}$.
-            
+
             Здесь $b = \sqrt{2 - 1} = 1$, $a = \res_{z = 1} = ((1 - z)^2 f(z))' \bigg|_{z = 1} = (\sqrt{2 - z})' \bigg|_{z = 1} = \frac{-1}{2 \sqrt{2 - z}} \bigg|_{z = 1} = -\frac{1}{2}$.
 
             $g(z) = f(z) - \frac{1}{(1 - z)^2} + \frac{1}{2} \cdot \frac{1}{1 - z}$  -- голоморфна в $z = 1$, тогда $g \in H(|z| < 2)$.
@@ -2720,11 +2756,11 @@
             $g(z) = \sum b_n z^n$, из теоремы имеем $b_n \sim h(1) \frac{n^{-\frac{3}{2}}}{\Gamma (\frac{1}{2})} = -\frac{1}{\sqrt{\pi} n \sqrt{n}}$
 
             $e \sqrt{1 - z} = e \sum_{n=0}^{\infty} c_n z^n$.
-            
+
             Тогда $a_n = e \cdot c_n + b_n = \frac{e \cdot \binom{2n}{n}}{4^n} + b_n = e \cdot \underbrace{\frac{\binom{2n}{n}}{4^n}}_{\sim \frac{1}{\sqrt{\pi n}}} + \mathcal{O}\left(\frac{1}{\sqrt{n^3}}\right)$.
-            
+
             $\sqrt{1 - 4z} = \sum_{n=0}^{\infty} \binom{2n}{n} z^n$ -- с одной из прошлый лекций. Тогда $\sqrt{1 - z} = \sum \binom{2n}{n} \frac{z^n}{4^n}$.
-            
+
             И тогда $a_n = e \cdot \frac{\binom{2n}{n}}{4^n} + b_n = e \cdot \frac{\binom{2n}{n}}{4^n} + \mathcal{O}\left(\frac{1}{n^{\frac{3}{2}}}\right)$
         }
     \end{enumerate}
@@ -2738,7 +2774,7 @@
     Пусть $a_k = $ количество $2k$ значных счастливых билетов.
 
     $a_k = \frac{1}{2\pi i} \int_{|z| = 1} \mathcal{A}(z) \mathcal{A}(\frac{1}{z}) \frac{dz}{z}$
-    
+
     $\mathcal{A}(z) = (1 + z + z^2 + \ldots + z^9)^k = \left( \frac{1 - z^{10}}{1 - z} \right)^k$
 
     Тогда $a_k =
@@ -2746,11 +2782,11 @@
     \frac{1}{2\pi i} \int_{|z| = 1} \left( \frac{2 - z^{10} - z^{-10}}{2 - z - \frac{1}{z}} \right)^k \frac{dz}{z} = (*)$
 
     Делаем замену: $z = e^{it}, \ dz = i \cdot e^{it} dt$.
-    
+
     $(*) = \frac{1}{2\pi i} \int_{0}^{2\pi} \left( \frac{2 - e^{10 it} - e^{-10 it}}{2 - e^{it} - e^{-it}} \right)^k \frac{i e^{it}}{e^{it}} \, dt = $
-    
+
     $= \frac{1}{2\pi} \int_{0}^{2\pi} \left( \frac{2 - 2 \cos{(10 t)}}{2 - 2\cos{t}} \right)^k \, dt = \frac{1}{2\pi} \int_{0}^{2\pi} \left( \frac{2\sin^2{(5 t)}}{2 \sin^2{\frac{t}{2}}} \right)^k \, dt =$
-    
+
     Делаем доп. замену: $s = \frac{t}{2}, \ 1 - \cos{t} = 2 sin^2{\frac{t}{2}}$.
 
     $= \frac{1}{2\pi} \int_{0}^\pi 2\left( \frac{\sin {(10s)}}{\sin s} \right)^{2k} \, ds \underbrace{=}_{\text{т.е. симметрия отн. } \frac{\pi}{2}} \frac{2}{\pi} \int_{0}^{\frac{\pi}{2}} \left( \frac{\sin (10x)}{\sin x} \right)^{2k} ds$.
@@ -2778,7 +2814,7 @@
             Раскладываем по Тейлору:
 
             $\frac{\sin{(10x)}}{\sin{x}} = \frac{10x - \frac{(10x)^3}{6} + \mathcal{O}(x^5)}{x - \frac{x^3}{3} + \mathcal{O}(x^3)} = 10 \cdot \frac{1 - \frac{100 x^2}{6} + \mathcal{O}(x^4)}{1 - \frac{x^2}{6} + \mathcal{O}(x^4)} =$
-            
+
             $= 10 (1 - \frac{100}{6} x^2 + \mathcal{O}(x^4)) (1 + \frac{x^2}{6} + \mathcal{O}(x^4)) = 10 (1 - \frac{33}{2} x^2 + O(x^4))$
 
             Под интегралами у нас это степенная функция, поэтому распишем логарифм от нашего выражения:
@@ -2798,7 +2834,7 @@
             $(') = 10^{2k} \left(1 + \mathcal{O}(k \varepsilon^4)\right) \int_{0}^{\varepsilon \sqrt{33k}} e^{-y^2} \frac{1}{\sqrt{33k}} dy \sim 10^{2k} \frac{1}{\sqrt{33k}} \cdot \frac{\sqrt{\pi}}{2} = ('')$
 
             Хотим, чтобы $\varepsilon \sqrt{33} \rightarrow +\infty$, тогда $('') \rightarrow \int_{0}^{+\infty} = \frac{\sqrt{\pi}}{2}$.
-            
+
             Для этого подойдет $\varepsilon = \sqrt{1}{k^{\frac{1}{3}}}$.
         }
         \item {
