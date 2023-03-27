@@ -1179,7 +1179,7 @@
     Следующие условия равносильны:
 
     \begin{enumerate}
-        \item $a$ - полюс
+        \item $a$ -- полюс
         \item Существует $g \in H(|z - a| < r)$, $g(a) \neq 0$, такая, что $f(z) = \frac{g(z)}{(z - a)^m}, m \in \mathbb{N}$
         \item В главной части ряда Лорана в точке $a$ лишь конечное число ненулевых коэфцциентов. Но они есть.
     \end{enumerate}
@@ -1263,13 +1263,42 @@
 
         $g(z) = \varPsi (z) (z - a)^m$, $a$ - полюс или 0.
 
-        Тогда $f(z)g(z) = \varphi (z) \varPsi (z) (z - a)^{n + m}$
+                $f(z) = \varphi (z) (z - a)^n$, $a$ -- полюс или $0$.
 
-        Для $f \pm g$ складываем ряды Лорана в $a$. В главной части $f \pm g$ конечное число ненулевых.
+                $g(z) = \psi (z) (z - a)^m$, $a$ -- полюс или $0$.
 
-        Для $f'$. $f'(z) = \varphi' (z) (z - a)^{-n} - n \varphi (z) (z - a)^{-n - 1} = (z - a)^{-n - 1}(z - a) - n\varphi (z) = \varPsi (z)$
+                \begin{enumerate}
+                    \item {
+                        $fg$ и $\frac{f}{g}$:
 
-        $\varPsi (z) = -n \varphi (a) \neq 0$
+                        Тогда $f(z)g(z) = (z - a)^{n + m} \underbrace{\varphi(z) \psi(z)}_{= (*)}$.
+
+                        (*) -- в окр-ти точки $a$ голоморфна и в самой точке в ноль не обращается.
+
+                        Для отношения по аналогии.
+                    }
+                    \item {
+                        $f \pm g$:
+
+                        Складываем ряды Лорана в точке $a$, в главной части $f \pm g$ конечное число ненулевых коэффициентов.
+                    }
+                    \item {
+                        $f'$:
+
+                        $f'(z) = (z - a)^n \varphi'(z) + n (z - a)^{n - 1} \varphi(z) = (z - a)^{n - 1} \cdot \underbrace{\left( (z - a) \varphi'(z) + n \varphi(z) \right)}_{= (*)}$
+
+                        (*) -- в окр-ти точки $a$ голоморфна и в самой точке в ноль не обращается.
+
+                        % $f'(z) = \varphi' (z) (z - a)^{-n} - n \varphi (z) (z - a)^{-n - 1} = (z - a)^{-n - 1}(z - a) - n\varphi (z) = \psi (z)$
+
+                        % $\psi (z) = -n \varphi (a) \neq 0$
+                    }
+                \end{enumerate}
+            \end{proof}
+        }
+        \item {
+            Порядки полюсов у $f'$ на 1 больше, чем у $f$
+        }
     \end{enumerate}
 \end{properties}
 
