@@ -1598,7 +1598,7 @@
             $\int_{|z| = 4} \frac{z^4}{e^z + 1} \, dz = 2 \pi i (\res_{z = \pi i} + \res_{z = -\pi i}) = -4\pi^5 i$.
 
             Особые точки: $e^z = -1$ при $z = \pi i + 2 \pi i k$.
-            
+
             Пусть $g(z) = z^4, h(z) = e^z + 1 \implies f = \frac{g}{h}$.
 
             $\pi i$ -- полюс первого порядка: $\res_{z = \pi i} f = \frac{g(\pi i)}{h'(\pi i)} = -\pi^4$
@@ -1622,9 +1622,9 @@
             Значит то, что мы хотим найти - просто сумма вычетов.
 
             Какие особые точки?
-            
+
             $z^{2n} = -1 \implies z = e^{\frac{\pi i k}{2n}}$ и $k$ нечётно.
-            
+
             Нас интересует $k = 1, 3 \ldots 2n - 1$
 
             Тогда $I = 2 \pi i \sum_{k = 1}^n \res_{2k - 1}$
@@ -1665,7 +1665,7 @@
     $C_{n} = \{ z \in \mathbb{C} : |z| = R_n, \Im z \geqslant 0 \}$, $R_n \rightarrow +\infty$
 
     $g : \{ \Im z \geqslant 0 \} \to \mathbb{C}$
-    
+
     $M_{n} = \sup_{z \in C_{n}} |g(z)| \rightarrow_{n \to \infty} 0$
 
     Тогда $\forall \, \lambda > 0 \, : \, \int_{C_{n}} g(z) e^{i \lambda z} \, dz \rightarrow_{n \to \infty} 0$
@@ -1681,9 +1681,9 @@
     Введем параметризацию: $z = R_n e^{i t}, \ dz = R_n e^{it} i dt$, где $t \in [0, \ \pi]$, тогда получим
 
     $\int_{C_{n}} f(z) dz = i \int_{0}^{\pi} R_n e^{it} \cdot f\left(R_n e^{it}\right) dt$
-    
+
     Оценим этот интеграл по модулю:
-    
+
     $\left| i \int_{0}^{\pi} R_n e^{it} f\left(R_n e^{it}\right) dt \right| \leq R_n \int_{0}^{\pi} \underbrace{\left| g\left(R_n e^{it}\right) \right|}_{\leq M_{n}} \cdot \left| e^{i \lambda R_n e^{it}} \right| dt \leq M_n R_n \int_{0}^{\pi} \cdot \left| e^{i \lambda R_n e^{it}} \right| dt = (*)$
 
 
@@ -1710,11 +1710,11 @@
     \end{center}
 
     Пусть $f(z) = \frac{e^{iz}}{1 + z^2}$.
-    
+
     Контур - полуокружность от $-R$ до $R$.
 
     $\int_{\Gamma_R} f(z) \, dz = \int_{-R}^{R} + \int_{C_R}$.
-    
+
     Здесь $\int_{C_R} \rightarrow 0$ по лемме Жордана, где $\lambda = 1$ и $M_R = \sup_{|z| = R} \left | \frac{1}{1 + z^2} \right | \leqslant \frac{1}{R^2 - 1} \rightarrow 0$
 
     (написанное выше верно, так как $|1 + z^2| \geqslant |z^2| - 1 = R^2 - 1$)
@@ -1722,7 +1722,7 @@
     Тогда $\int_{\Gamma_R} f(z) \, dz = 2 \pi i \sum \res f = 2 \pi i \cdot \res_{z = i} f = (*)$.
 
     $i$ - полюс 1-ого порядка, тогда $f(z) = \frac{g(z)}{h(z)}$, где $g(i) \neq 0, h(i) = 0, h'(i) \neq 0$:
-    
+
     $\res_{z=i} f = \frac{g(i)}{h'(i)} = \frac{e^{-1}}{2i}$.
 
     Тогда $(*) = \frac{\pi}{e} \implies I = \frac{\pi}{2e}$
@@ -2190,7 +2190,7 @@
 \Subsection{Конфорные отображения}
 
 \begin{definition}
-    $\Omega$ и $\tilde{\Omega}$, тогда $f: \Omega \to \tilde{\Omega}$ - конфорное отображение,
+    $\Omega$ и $\tilde{\Omega}$ - области, $f: \Omega \to \tilde{\Omega}$ - конфорное отображение,
     если $f$ биекция и $f \in H(\Omega)$
 \end{definition}
 
@@ -2204,6 +2204,12 @@
     $\gamma : [0, 1] \to \Omega$ и $\gamma (0) = a$ (можно так считать).
 
     $\tilde{\gamma} : [0, 1] \to \Omega$ и $\tilde{\gamma} (0) = a$.
+
+    Улог между кривыми в точке $a$ определяется, как угол между касательными к данным кривым в данной точке.
+
+    \begin{center}
+        \includegraphics[width=8cm]{assets/04-functions-of-complex-variables/angle-between-curves.jpg}
+    \end{center}
 
     $\arg \gamma'(0) - \arg \tilde{\gamma}'(0)$ - угол между кривым в $\Omega$.
 
@@ -2223,7 +2229,7 @@
 \begin{proof}
     \begin{enumerate}
         \item {
-            Линейная связность остаётся
+            Линейная связность остаётся (т.к. при непрерывном отображении путь, соединяющий некоторые точки, под действием непрерывного отображения будет переходить в путь, соединяющий образы этих точек).
         }
         \item {
             Нужно проверить, что $f(\Omega)$ - открытое множество. Возьмём точку
@@ -2236,15 +2242,23 @@
                 \includegraphics[width=10cm]{assets/04-functions-of-complex-variables/single-leaf-theorem.png}
             \end{center}
 
-            Найдётся окружность $|z - a| < \varepsilon$, что $|f(z) - b| \neq 0$. Если на окружности радиуса $\frac{1}{n}$ нашлась точка $z_n$,
-            такая, что $f(z_n) = b$, то $f \equiv b$ по теореме единственности.
+            Найдётся окружность $|z - a| < \varepsilon$, что $|f(z) - b| \neq 0$. Иначе бы на окружности радиуса $\frac{1}{n}$ нашлась точка $z_n$,
+            такая, что $f(z_n) = b$, то $f \equiv b$ по теореме единственности, но $f \neq const$ по условию.
 
-            $r = \min_{|z - a| = \varepsilon} |f(z) - b| > 0$. Посмотрим на $f(z) - w$. Хотим понять, что такое уравнение
-            имеет решение при $w$ близких к $b$. Это и будет значить, что близкие к $b$ точки попадают в образ.
+            $r = \min_{|z - a| = \varepsilon} |f(z) - b| > 0$. Мы хотим показать, что некоторый шарик $B_{\frac{r}{2}}(b) \subset f(\Omega)$, для этого посмотрим на уравнение $f(z) - w = 0$. Хотим понять, что такое уравнение
+            имеет решение при $w$ близких к $b$ (а именно: $|w - b| < \frac{r}{2}$). Это и будет значить, что близкие к $b$ точки попадают в образ.
 
-            Подставим всё в теорему Руше. $f(z) - w = (f(z) - b) + (b - w)$. Нужно, чтобы $|f(z) - b| > |b - w|$. Возьмём $|b-w| < r$ и всё выполнится.
+            Подставим всё в теорему Руше: $f(z) - w = (f(z) - b) + (b - w)$. Нужно, чтобы $|f(z) - b| > |b - w|$:
 
-            Получили, что $\{ |w-b| < r \} \subset f(\Omega) \Rightarrow f(\Omega)$ открытое.
+            $|f(z) - b| \geq r$ - т.к. $r$ -- это минимум данного выражения.
+
+            $|b - w| \leq \frac{r}{2}$ -- т.к. мы берем $w$ из шарика $B_{\frac{r}{2}}(b)$.
+
+            Итого получаем: $|f(z) - b| \geq r > \frac{r}{2} \geq |b - w| \rightarrow |f(z) - b| > |b-w|$ -- условия теоремы Руше выполнены, тогда $\mathcal{N}_{f(z) - w} = \mathcal{N}_{f(z) - b} \geq 1 \implies$ существует корень.
+
+            Возьмём $|b-w| < \frac{r}{2}$ и всё выполнится.
+
+            Получили, что $\{ |w-b| < \frac{r}{2} \} \subset f(\Omega) \Rightarrow f(\Omega)$ открытое.
         }
     \end{enumerate}
 \end{proof}
