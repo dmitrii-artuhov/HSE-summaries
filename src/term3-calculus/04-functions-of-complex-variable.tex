@@ -1598,12 +1598,12 @@
             $\int_{|z| = 4} \frac{z^4}{e^z + 1} \, dz = 2 \pi i (\res_{z = \pi i} + \res_{z = -\pi i}) = -4\pi^5 i$.
 
             Особые точки: $e^z = -1$ при $z = \pi i + 2 \pi i k$.
+            
+            Пусть $g(z) = z^4, h(z) = e^z + 1 \implies f = \frac{g}{h}$.
 
-            $\res_{z = \pi i} = \frac{g(\pi i)}{h'(\pi i)} = -\pi^4$
+            $\pi i$ -- полюс первого порядка: $\res_{z = \pi i} f = \frac{g(\pi i)}{h'(\pi i)} = -\pi^4$
 
-            $g(z) = z^4, h(z) = e^z + 1$.
-
-            $\res_{z = -\pi i} = \frac{g(-\pi i)}{h'(-\pi i)} = -\pi^4$
+            $-\pi i$ -- полюс первого порядка: $\res_{z = -\pi i} f = \frac{g(-\pi i)}{h'(-\pi i)} = -\pi^4$
         }
         \item {
             $\int_{-\infty}^{\infty} \frac{dx}{1 + x^{2n}} = \lim_{R \to +\infty} \int_{-R}^{R} \frac{dx}{1 + x^{2n}}$.
@@ -1612,23 +1612,26 @@
                 \includegraphics[width=12cm]{assets/04-functions-of-complex-variables/example-2-cauchy-about-deductions.png}
             \end{center}
 
-            Контур - полукруг. $\int_{\Gamma_R} \frac{dz}{1 + z^{2n}} = 2 \pi i \sum \res$
+            Контур - полукруг. $I := \int_{\Gamma_R} \frac{dz}{1 + z^{2n}} = 2 \pi i \sum \res$
 
             Но с другой стороны $\int_{\Gamma_R} = \int_{-R}^R + \int_{c_R}$
 
             $| \int_{c_R} \frac{dz}{1 + z^{2n}}| \leqslant \underbrace{\pi R}_{\text{длина кривой}} \cdot \underbrace{\max \left|\frac{1}{1 + z^{2n}}\right|}_{\text{макс. подъинтегрального выражения}} = \pi R \frac{1}{\min |1 + z^{2n}|}
-            \leqslant \frac{\pi R}{R^{2n} - 1} \rightarrow 0$
-
-            Оценка: $|a + b| \geqslant |a| - |b|$.
+            \underbrace{\leqslant}_{|a + b| \geqslant |a| - |b|} \frac{\pi R}{R^{2n} - 1} \rightarrow_{R \to \infty} 0$
 
             Значит то, что мы хотим найти - просто сумма вычетов.
 
-            Какие особые точки? $z^{2n} = -1$. $e^{\frac{\pi i k}{2n}}$ и $k$ нечётно.
+            Какие особые точки?
+            
+            $z^{2n} = -1 \implies z = e^{\frac{\pi i k}{2n}}$ и $k$ нечётно.
+            
             Нас интересует $k = 1, 3 \ldots 2n - 1$
 
             Тогда $I = 2 \pi i \sum_{k = 1}^n \res_{2k - 1}$
 
-            $\res_{a_k} f = \frac{1}{(z^{2n} + 1)'} = \frac{1}{2n \cdot a_k^{2n - 1}} = \frac{a_k}{2na_k^{2n}} = -\frac{a_k}{2n}$, так как $a_k$ - полюс первого порядка.
+            Все $a_k$ -- полюсы первого порядка:
+
+            $\res_{a_k} f = \frac{1}{(z^{2n} + 1)'} \big|_{z = a_k} = \frac{1}{2n \cdot a_k^{2n - 1}} = \frac{a_k}{2na_k^{2n}} = -\frac{a_k}{2n}$.
         }
         \item {
             Оптимизация решения из предыдущего пункта.
@@ -1639,7 +1642,7 @@
                 \includegraphics[width=12cm]{assets/04-functions-of-complex-variables/example-3-cauchy-about-deductions.png}
             \end{center}
 
-            $f(x) = \frac{1}{1 + z^{2n}}$. $\int_{\Gamma_r} f(z) \, dz = \int_{c_R} + \int_{0}^{R} + \int_{Re^{i\alpha}}^{0}$.
+            $f(x) = \frac{1}{1 + z^{2n}}$. $\int_{\Gamma_R} f(z) \, dz = \int_{c_R} + \int_{0}^{R} + \int_{Re^{i\alpha}}^{0}$.
 
             $\int_{e^{i\alpha R}}^{0} f(z) \, dz = -\int_{0}^{e^{i \alpha R}} = -\int_{0}^{R} f(e^{i \alpha} t) e^{i \alpha} \, dt$ -
             взяли параметризацию $t \to e^{i \alpha} t$.
@@ -1659,43 +1662,40 @@
 \begin{lemma}
     \textbf{Жордана}
 
-    $C_{R_n} = \{ z \in \mathbb{C} : |z| = R_n, \Im z \geqslant 0 \}$, $R_n \rightarrow +\infty$
+    $C_{n} = \{ z \in \mathbb{C} : |z| = R_n, \Im z \geqslant 0 \}$, $R_n \rightarrow +\infty$
 
-    $f : \{ \Im z \geqslant 0 \} \to \mathbb{C}$. $M_{R_n} = \lim_{n \to \infty} \sup_{z \in C_{R_n}} |f(z)| = 0$
+    $g : \{ \Im z \geqslant 0 \} \to \mathbb{C}$
+    
+    $M_{n} = \sup_{z \in C_{n}} |g(z)| \rightarrow_{n \to \infty} 0$
 
-    Тогда $\forall \, \lambda > 0 \, : \, \lim \int_{C_{R_n}} f(z) e^{i \lambda z} \, dz = 0$
+    Тогда $\forall \, \lambda > 0 \, : \, \int_{C_{n}} g(z) e^{i \lambda z} \, dz \rightarrow_{n \to \infty} 0$
 \end{lemma}
 
 \begin{proof}
-    Параметризация $z = R_n \cdot e^{it}$, где $t \in [0, \pi]$.
-
-    Тогда $dz = R_n e^{it} dt$.
-    $\int_{C_{R_n}} f(z) e^{i \lambda z} \, dz = R_n \int_{0}^{\pi} f(R_n e^{it}) e^{it} \cdot e^{i \lambda R_n e^{it}} \, dt = I_n$
-
-    $|I_n| \leqslant  R_n \int_{0}^{\pi} |f(R_n e^{it}) e^{it}| \cdot |e^{i \lambda R_n e^{it}}| \, dt \leqslant R_n \cdot M_{R_n} \cdot \int_{0}^{\pi} e^{- \lambda R_n \sin t} \, dt = (*) $
-
-    То что написано под интегралом симметрично относительно $\frac{\pi}{2}$.
-
-    $(*) = 2R_n M_{R_n} \int_{0}^{\frac{\pi}{2}} e^{-\lambda R_n \sin t} \, dt \underbrace{\leqslant}_{(**)}
-    2R_n M_{R_n} \int_{0}^{\frac{\pi}{2}} e^{-\lambda R_n \frac{2t}{\pi}} \, dt = 2R_n M_{R_n} \frac{e^{-\lambda R_n \cdot \frac{2t}{\pi}}}{-\lambda R_n \frac{2}{\pi}} \bigg |_{t = 0}^{t = \frac{\pi}{2}}
-    \leqslant M_{R_n} \cdot \frac{1}{\frac{\lambda}{\pi}} \rightarrow 0$
-
-    $(**): $ верно, так как при $0 \leq t \leq \frac{\pi}{2}: \ \sin(t) \geq \frac{2}{\pi} t$
-
-
-    Док-во в Лекториуме:
+    Пусть $f(z) = g(z) e^{i \lambda z}$.
 
     \begin{center}
-        \includegraphics[width=12cm]{assets/04-functions-of-complex-variables/Jordans-lemma-lectorium-1}
+        \includegraphics[width=7cm]{./assets/04-functions-of-complex-variables/Jordan's-lemma-proof.png}
     \end{center}
 
-    \begin{center}
-        \includegraphics[width=12cm]{assets/04-functions-of-complex-variables/Jordans-lemma-lectorium-2}
-    \end{center}
+    Введем параметризацию: $z = R_n e^{i t}, \ dz = R_n e^{it} i dt$, где $t \in [0, \ \pi]$, тогда получим
 
-    \begin{center}
-        \includegraphics[width=12cm]{assets/04-functions-of-complex-variables/Jordans-lemma-lectorium-3}
-    \end{center}
+    $\int_{C_{n}} f(z) dz = i \int_{0}^{\pi} R_n e^{it} \cdot f\left(R_n e^{it}\right) dt$
+    
+    Оценим этот интеграл по модулю:
+    
+    $\left| i \int_{0}^{\pi} R_n e^{it} f\left(R_n e^{it}\right) dt \right| \leq R_n \int_{0}^{\pi} \underbrace{\left| g\left(R_n e^{it}\right) \right|}_{\leq M_{n}} \cdot \left| e^{i \lambda R_n e^{it}} \right| dt \leq M_n R_n \int_{0}^{\pi} \cdot \left| e^{i \lambda R_n e^{it}} \right| dt = (*)$
+
+
+    Поймем, что такое $|e^{i \lambda R_n e^{it}}|$:
+
+    $Re\left( i \lambda R_n e^{it} \right) = \lambda R_n Re\left(i e^{it}\right) = \lambda R_n (-\sin{t})$
+
+    Тогда можем продолжить оценивать исходный интеграл, но предварительно заметим, что под интегралом записана выражение симметричное относительно $\frac{\pi}{2}$, тогда переписываем так:
+
+    $(*) = 2 M_n R_n \int_{0}^{\frac{\pi}{2}} e^{-\lambda R_n \sin{t}} dt \underbrace{\leq}_{(**)} 2 M_n R_n \int_{0}^{\frac{\pi}{2}} e^{-\lambda R_n \frac{2}{\pi} t} dt = 2 M_n R_n \frac{1 - e^{-\lambda R_n}}{\lambda R_n \frac{2}{\pi}} \leq \frac{\pi M_n}{\lambda} \rightarrow_{n \to \infty} 0$.
+
+    $(**)$: верно, так как при $0 \leq t \leq \frac{\pi}{2}: \ \sin(t) \geq \frac{2}{\pi} t$.
 \end{proof}
 
 \begin{example}
@@ -1705,19 +1705,27 @@
 
     Тогда $\Re I^* = 2I$.
 
-    Пусть $f(z) = \frac{e^{iz}}{1 + z^2}$. Контур - полуокружность от $-R$ до $R$.
+    \begin{center}
+        \includegraphics[width=7cm]{./assets/04-functions-of-complex-variables/example-for-jordan-lemma.png}
+    \end{center}
 
-    $\int_{\Gamma_R} f(z) \, dz = \int_{-R}^{R} + \int_{C_R}$. Здесь $\int_{C_R} \rightarrow 0$ по лемме
-    Жордана, где $\lambda = 1$ и $M_R = \sup_{|z| = R} \left | \frac{1}{1 + z^2} \right | \leqslant \frac{1}{R^2 - 1} \rightarrow 0$
+    Пусть $f(z) = \frac{e^{iz}}{1 + z^2}$.
+    
+    Контур - полуокружность от $-R$ до $R$.
+
+    $\int_{\Gamma_R} f(z) \, dz = \int_{-R}^{R} + \int_{C_R}$.
+    
+    Здесь $\int_{C_R} \rightarrow 0$ по лемме Жордана, где $\lambda = 1$ и $M_R = \sup_{|z| = R} \left | \frac{1}{1 + z^2} \right | \leqslant \frac{1}{R^2 - 1} \rightarrow 0$
 
     (написанное выше верно, так как $|1 + z^2| \geqslant |z^2| - 1 = R^2 - 1$)
 
-    Тогда $\int_{\Gamma_R} f(z) \, dz = 2 \pi i \sum \res = 2 \pi i \cdot \res_{z = i} = (*)$.
+    Тогда $\int_{\Gamma_R} f(z) \, dz = 2 \pi i \sum \res f = 2 \pi i \cdot \res_{z = i} f = (*)$.
 
-    $i$ - полюс 1 порядка, тогда $f(z) = \frac{g(z)}{h(z)}$, где $g(i) \neq 0, h(i) = 0, h'(i) \neq 0$. $
-    \res = \frac{g(i)}{h'(i)} = \frac{e^{-1}}{2i}$.
+    $i$ - полюс 1-ого порядка, тогда $f(z) = \frac{g(z)}{h(z)}$, где $g(i) \neq 0, h(i) = 0, h'(i) \neq 0$:
+    
+    $\res_{z=i} f = \frac{g(i)}{h'(i)} = \frac{e^{-1}}{2i}$.
 
-    Тогда $(*) = \frac{\pi}{e}$. А значит $I = \frac{\pi}{2e}$
+    Тогда $(*) = \frac{\pi}{e} \implies I = \frac{\pi}{2e}$
 
 \end{example}
 
