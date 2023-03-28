@@ -1674,6 +1674,10 @@
 \begin{proof}
     Пусть $f(z) = g(z) e^{i \lambda z}$.
 
+    \begin{center}
+        \includegraphics[width=7cm]{./assets/04-functions-of-complex-variables/Jordan's-lemma-proof.png}
+    \end{center}
+
     Введем параметризацию: $z = R_n e^{i t}, \ dz = R_n e^{it} i dt$, где $t \in [0, \ \pi]$, тогда получим
 
     $\int_{C_{n}} f(z) dz = i \int_{0}^{\pi} R_n e^{it} \cdot f\left(R_n e^{it}\right) dt$
@@ -1692,36 +1696,6 @@
     $(*) = 2 M_n R_n \int_{0}^{\frac{\pi}{2}} e^{-\lambda R_n \sin{t}} dt \underbrace{\leq}_{(**)} 2 M_n R_n \int_{0}^{\frac{\pi}{2}} e^{-\lambda R_n \frac{2}{\pi} t} dt = 2 M_n R_n \frac{1 - e^{-\lambda R_n}}{\lambda R_n \frac{2}{\pi}} \leq \frac{\pi M_n}{\lambda} \rightarrow_{n \to \infty} 0$.
 
     $(**)$: верно, так как при $0 \leq t \leq \frac{\pi}{2}: \ \sin(t) \geq \frac{2}{\pi} t$.
-
-    % Параметризация $z = R_n \cdot e^{it}$, где $t \in [0, \pi]$.
-
-    % Тогда $dz = R_n e^{it} dt$.
-    % $\int_{C_{R_n}} f(z) e^{i \lambda z} \, dz = R_n \int_{0}^{\pi} f(R_n e^{it}) e^{it} \cdot e^{i \lambda R_n e^{it}} \, dt = I_n$
-
-    % $|I_n| \leqslant  R_n \int_{0}^{\pi} |f(R_n e^{it}) e^{it}| \cdot |e^{i \lambda R_n e^{it}}| \, dt \leqslant R_n \cdot M_{R_n} \cdot \int_{0}^{\pi} e^{- \lambda R_n \sin t} \, dt = (*) $
-
-    % То что написано под интегралом симметрично относительно $\frac{\pi}{2}$.
-
-    % $(*) = 2R_n M_{R_n} \int_{0}^{\frac{\pi}{2}} e^{-\lambda R_n \sin t} \, dt \underbrace{\leqslant}_{(**)}
-    % 2R_n M_{R_n} \int_{0}^{\frac{\pi}{2}} e^{-\lambda R_n \frac{2t}{\pi}} \, dt = 2R_n M_{R_n} \frac{e^{-\lambda R_n \cdot \frac{2t}{\pi}}}{-\lambda R_n \frac{2}{\pi}} \bigg |_{t = 0}^{t = \frac{\pi}{2}}
-    % \leqslant M_{R_n} \cdot \frac{1}{\frac{\lambda}{\pi}} \rightarrow 0$
-
-    % $(**): $ верно, так как при $0 \leq t \leq \frac{\pi}{2}: \ \sin(t) \geq \frac{2}{\pi} t$
-
-
-    % Док-во в Лекториуме:
-
-    % \begin{center}
-    %     \includegraphics[width=12cm]{assets/04-functions-of-complex-variables/Jordans-lemma-lectorium-1}
-    % \end{center}
-
-    % \begin{center}
-    %     \includegraphics[width=12cm]{assets/04-functions-of-complex-variables/Jordans-lemma-lectorium-2}
-    % \end{center}
-
-    % \begin{center}
-    %     \includegraphics[width=12cm]{assets/04-functions-of-complex-variables/Jordans-lemma-lectorium-3}
-    % \end{center}
 \end{proof}
 
 \begin{example}
@@ -1731,19 +1705,27 @@
 
     Тогда $\Re I^* = 2I$.
 
-    Пусть $f(z) = \frac{e^{iz}}{1 + z^2}$. Контур - полуокружность от $-R$ до $R$.
+    \begin{center}
+        \includegraphics[width=7cm]{./assets/04-functions-of-complex-variables/example-for-jordan-lemma.png}
+    \end{center}
 
-    $\int_{\Gamma_R} f(z) \, dz = \int_{-R}^{R} + \int_{C_R}$. Здесь $\int_{C_R} \rightarrow 0$ по лемме
-    Жордана, где $\lambda = 1$ и $M_R = \sup_{|z| = R} \left | \frac{1}{1 + z^2} \right | \leqslant \frac{1}{R^2 - 1} \rightarrow 0$
+    Пусть $f(z) = \frac{e^{iz}}{1 + z^2}$.
+    
+    Контур - полуокружность от $-R$ до $R$.
+
+    $\int_{\Gamma_R} f(z) \, dz = \int_{-R}^{R} + \int_{C_R}$.
+    
+    Здесь $\int_{C_R} \rightarrow 0$ по лемме Жордана, где $\lambda = 1$ и $M_R = \sup_{|z| = R} \left | \frac{1}{1 + z^2} \right | \leqslant \frac{1}{R^2 - 1} \rightarrow 0$
 
     (написанное выше верно, так как $|1 + z^2| \geqslant |z^2| - 1 = R^2 - 1$)
 
-    Тогда $\int_{\Gamma_R} f(z) \, dz = 2 \pi i \sum \res = 2 \pi i \cdot \res_{z = i} = (*)$.
+    Тогда $\int_{\Gamma_R} f(z) \, dz = 2 \pi i \sum \res f = 2 \pi i \cdot \res_{z = i} f = (*)$.
 
-    $i$ - полюс 1 порядка, тогда $f(z) = \frac{g(z)}{h(z)}$, где $g(i) \neq 0, h(i) = 0, h'(i) \neq 0$. $
-    \res = \frac{g(i)}{h'(i)} = \frac{e^{-1}}{2i}$.
+    $i$ - полюс 1-ого порядка, тогда $f(z) = \frac{g(z)}{h(z)}$, где $g(i) \neq 0, h(i) = 0, h'(i) \neq 0$:
+    
+    $\res_{z=i} f = \frac{g(i)}{h'(i)} = \frac{e^{-1}}{2i}$.
 
-    Тогда $(*) = \frac{\pi}{e}$. А значит $I = \frac{\pi}{2e}$
+    Тогда $(*) = \frac{\pi}{e} \implies I = \frac{\pi}{2e}$
 
 \end{example}
 
