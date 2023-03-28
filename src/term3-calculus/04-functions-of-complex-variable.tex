@@ -1739,7 +1739,7 @@
 \begin{lemma}
     \textbf{О полувычете}
 
-    $f \in H(0 < |z - a| < R)$ и $a$ - полюс первого порядка. $C_{\varepsilon} = \{ z \in \mathbb{C} : |z - a| = \varepsilon, \alpha \leqslant \arg (z - a) \leqslant b \}$
+    $f \in H(0 < |z - a| < R)$ и $a$ - полюс первого порядка. $C_{\varepsilon} = \{ z \in \mathbb{C} : |z - a| = \varepsilon, \alpha \leqslant \arg (z) \leqslant b \}$
 
     \begin{center}
         \includegraphics[width=9cm]{assets/04-functions-of-complex-variables/lemma-about-half-deduction.png}
@@ -1749,14 +1749,20 @@
 \end{lemma}
 
 \begin{proof}
-    Считаем, что $a = 0$. У нас полюс 1-го порядка, тогда $f(z) = \frac{c}{z} + g(z)$, где $g \in H(|z| < R)$.
+    Считаем, что $a = 0$.
+    
+    У нас полюс 1-го порядка, тогда $f(z) = \frac{c}{z} + g(z)$, где $g \in H(|z| < R)$.
 
     Параметризация $z = \varepsilon e^{it}$, где $t \in [\alpha, \beta]$. Тогда $dz = \varepsilon e^{it} i \, dt$.
 
     $\int_{C_{\varepsilon}} f(z) \, dz = \int_{C_{\varepsilon}} \frac{c}{z} \, dz + \int_{C_{\varepsilon}} g(z) \, dz =
     \int_{\alpha}^{\beta} \frac{c}{\varepsilon e^{it}} \cdot \varepsilon e^{it} i \, dt + \int_{C_{\varepsilon}} g(z) \, dz = (\beta - \alpha) \cdot i \cdot c + \int_{C_{\varepsilon}} g(z) \, dz$
 
-    Оценим второй интеграл: $\int_{C_{\varepsilon}} g(z) \, dz \leqslant M \varepsilon (\beta - \alpha)$, где $M = \max_{|z| \leqslant \frac{R}{2}} |g(z)|$. и
+    Оценим второй интеграл:
+
+    $g$ -- голоморфма, тогда ограничена в окр. точки $\implies |g| \leq M$.
+    
+    $\left|\int_{C_{\varepsilon}} g(z) \, dz\right| \leqslant M \underbrace{\varepsilon (\beta - \alpha)}_{\text{длина дуги}}$, где $M = \max_{|z| \leqslant \frac{R}{2}} |g(z)|$. и
     тогда $\int_{C_{\varepsilon}} g(z) \, dz \rightarrow 0$.
 \end{proof}
 
@@ -1804,20 +1810,31 @@
     $v.p. \int_{-\infty}^{+\infty} = \lim_{\varepsilon \to 0, R \to +\infty} \int_{-R}^{-\varepsilon} + \int_{\varepsilon}^{R}$.
 
     \begin{center}
-        \includegraphics[width=12cm]{assets/04-functions-of-complex-variables/example-principal-value-integral.png}
+        \includegraphics[width=8cm]{assets/04-functions-of-complex-variables/example-principal-value-integral.png}
     \end{center}
 
     $f(z) = \frac{e^{iz}}{z}$
 
-    $\int_{\Gamma_{R, \varepsilon}} f(z) \, dz = 0$, так как особая точка только 0, а он не в контуре.
+    $\int_{\Gamma_{R, \varepsilon}} f(z) \, dz = 0$, так как особая точка только $0$, а она не в контуре.
+
     Но с другой стороны: $\int_{\Gamma_{R, \varepsilon}} f(z) \, dz = \int_{-R}^{-\varepsilon} + \int_{\varepsilon}^{R} + \int_{C_R} + \int_{C_{\varepsilon}}$
 
-    $\int_{C_R} \rightarrow 0$ по лемме Жордана.
+    \begin{enumerate}
+        \item {
+            $\int_{-R}^{-\varepsilon} + \int_{\varepsilon}^{R} \rightarrow v.p. \int_{-R}^{R}$
+        }
+        \item {
+            $\int_{C_R} \rightarrow 0$ -- по лемме Жордана.
+        }
+        \item {
+            $\int_{C_{\varepsilon}} f(z) \, dz \rightarrow -\pi i \cdot res_{z = 0} f = (-\pi i)$ -- лемма о полувычете, где $\alpha=\pi$, $\beta=0$, $0$ -- полюс 1-го порядка.
+        }
+    \end{enumerate}
 
-    $ \underbrace{\int_{C_{\varepsilon}} f(z) \, dz \rightarrow -\pi i res_{z = 0} f = -\pi i}_{\text{Лемма о полувычете $\alpha=\pi$, $\beta=0$ - т.к. обход в другую сторону}}$
-
-    А значит $v.p. \int_{-\infty}^{\infty} \frac{e^{ix}}{x} \, dx = \pi i$. А значит
-    $I = \frac{1}{2} \Im \ldots = \frac{\pi}{2}$
+    
+    А значит $v.p. \int_{-\infty}^{\infty} \frac{e^{ix}}{x} \, dx = \pi i$.
+    
+    Тогда $I = \frac{1}{2} \Im \left(v.p. \int_{-\infty}^{\infty} \frac{e^{ix}}{x} \, dx\right) = \frac{\pi}{2}$
 \end{example}
 
 \newpage
@@ -1826,31 +1843,37 @@
     $I = \int_{0}^{+\infty} \frac{x^{p - 1}}{1 + x} \, dx $, где $0 < p < 1$.
 
     \begin{center}
-        \includegraphics[width=9cm]{assets/04-functions-of-complex-variables/example-2-principal-value-integral.png}
+        \includegraphics[width=7cm]{assets/04-functions-of-complex-variables/example-2-principal-value-integral.png}
     \end{center}
 
-    $f(z) = \frac{e^{(p - 1) Ln z}}{1 + z}$
+    $f(z) = \frac{e^{(p - 1) Ln z}}{1 + z}$, и пусть $Ln (1) = 0$.
 
     $\int_{\Gamma_{R, \varepsilon}} f(z) \, dz = \int_{\varepsilon}^{R} + \int_{Re^{2\pi i}}^{\varepsilon e^{2\pi i}} + \int_{C_{\varepsilon}} + \int_{C_R}$.
 
-    Но с другой стороны $\int_{\Gamma_{R, \varepsilon}} f(z) \, dz = 2 \pi i \sum \res = 2 \pi i \res_{z = -1}$
+    Но с другой стороны $\int_{\Gamma_{R, \varepsilon}} f(z) \, dz = 2 \pi i \sum \res f = 2 \pi i \res_{z = -1} f$
 
-    $\res_{z = -1} = e^{(p - 1) Ln (-1)} = e^{(p - 1)\pi i}$
+    $\res_{z = -1} f = e^{(p - 1) Ln (-1)} = e^{(p - 1)\pi i} = -e^{p \pi i}$
 
     \begin{enumerate}
-        \item $\int_{\varepsilon}^{R} \rightarrow I$
-        \item $\int_{Re^{2\pi i}}^{\varepsilon e^{2 \pi i}} = \int_{R}^{\epsilon} \frac{e^{(p-1)\cdot (ln(z) + 2\pi i)}}{1 + x}dx = e^{2\pi i \cdot (p-1)} \cdot (-1)\cdot \int_{\epsilon}^{R} \rightarrow -e^{(p - 1) \pi i} \cdot I$
         \item {
-            $\left | \int_{C_{R}} \frac{e^{(p - 1)Ln z}}{1 + z} \, dz \right | \leqslant 2\pi R \cdot \max \left | \frac{e^{(p - 1) Ln z}}{1 + z} \right | =
+            $\int_{\varepsilon}^{R} \rightarrow I$
+        }
+        \item {
+            $\int_{Re^{2\pi i}}^{\varepsilon e^{2 \pi i}} = \int_{R}^{\varepsilon} \frac{e^{(p-1)\cdot (ln(x) + 2\pi i)}}{1 + x}dx = e^{2\pi i \cdot (p-1)} \cdot (-1)\cdot \int_{\varepsilon}^{R} \frac{x^{p - 1}}{1 + x} dx \rightarrow -e^{(p - 1) 2 \pi i} \cdot I = -e^{2\pi p i} \cdot I$
+        }
+        \item {
+            $\left | \int_{C_{R}} \frac{e^{(p - 1)Ln z}}{1 + z} \, dz \right | \leqslant 2\pi R \cdot \max_{|z| = R} \left | \frac{e^{(p - 1) Ln z}}{1 + z} \right | =
             2\pi R \cdot \frac{R^{p - 1}}{\min |1 + z|} = 2\pi R \cdot \frac{R^{p - 1}}{R - 1} \rightarrow 0$
 
         }
         \item {
-            $\left | \int_{C_{\varepsilon}} \frac{e^{(p - 1)Ln z}}{1 + z} \, dz \right | \leqslant 2\pi \varepsilon \cdot \max \left | \frac{e^{(p - 1) Ln z}}{1 + z} \right | =
+            $\left | \int_{C_{\varepsilon}} \frac{e^{(p - 1)Ln z}}{1 + z} \, dz \right | \leqslant 2\pi \varepsilon \cdot \max_{|z| = \varepsilon} \left | \frac{e^{(p - 1) Ln z}}{1 + z} \right | =
             2\pi \varepsilon \cdot \frac{\varepsilon^{p - 1}}{\min |1 + z|} = 2\pi \varepsilon \cdot \frac{\varepsilon^{p - 1}}{1 - \varepsilon} \rightarrow 0$
         }
 
-        Получили в итоге $I = \pi \frac{2i e^{(p - 1)\pi i}}{1 - e^{(p - 1)2\pi i}} = \pi \frac{2i}{e^{-\pi i(p-1)} - e^{\pi i(p - 1)}} = \pi \frac{2i}{e^{\pi i p} - e^{-\pi i p}} = \frac{\pi}{\sin \pi p}$
+        Тогда получаем, что $I - e^{2 \pi p i} \cdot I = -2 \pi i e^{\pi p i} \implies$
+        
+        $\implies I = \frac{2 \pi i e^{\pi p i}}{e^{2 \pi p i} - 1} = \pi \cdot \frac{2 i}{e^{\pi p i} -e^{-\pi p i}} = \frac{\pi}{\sin {(\pi p)}}$.
     \end{enumerate}
 \end{example}
 
@@ -1887,14 +1910,14 @@
             $res_{\zeta = z} \ g = \frac{f(\zeta)}{(\zeta - z)'}|_{\zeta = z} = f(z)$ -- формула для полюса $1$-ого порядка.
         }
         \item {
-            $res_{\zeta = z_k} \ g = \underbrace{res_{\zeta = z_k} \ \frac{f(\zeta) - G_k(\zeta)}{\zeta - z}}_{\text{голоморфна в окр. } z_k, т.е. равна 0} + res_{\zeta = z_k} \ \frac{G_k(\zeta)}{\zeta - z}$
+            $res_{\zeta = z_k} \ g = \underbrace{res_{\zeta = z_k} \ \frac{f(\zeta) - G_k(\zeta)}{\zeta - z}}_{\text{голоморфна в окр. $z_k$, т.е. равна $0$}} + res_{\zeta = z_k} \ \frac{G_k(\zeta)}{\zeta - z}$
 
             Рассмотрим окр. радиуса $R$ и запишем интеграл $\frac{1}{2 \pi i} \int_{|\zeta| = R} {\frac{G_k(\zeta)}{\zeta - z} d\zeta} = res_{\zeta = z} \ \frac{G_k(\zeta)}{\zeta - z} + res_{\zeta = z_k} \ \frac{G_k(\zeta)}{\zeta - z}$ -- так как все особые точки для подъинтегрального выражения это $z$ и $z_k$.
 
 
-            $res_{\zeta = z} \ \frac{G_k(\zeta)}{\zeta - z} = G_k(z)$, а второе слагаемое равно тому, что мы хотим найти.
+            $res_{\zeta = z} \ \frac{G_k(\zeta)}{\zeta - z} = G_k(z)$ (по формуле для полюса 1-ого порядка), а второе слагаемое равно тому, что мы хотим найти.
 
-            $\left| \int_{|\zeta| = R} {\frac{G_k(\zeta)}{\zeta - z} d\zeta} \right| \leq 2\pi R \cdot \frac{O\left(\frac{1}{R}\right)}{R - |z|} \rightarrow 0$, где $G_k = \frac{c_{-1}}{\zeta - z_k} + \frac{c_{-2}}{(\zeta - z_k)^2} + \ldots = O(\frac{1}{R})$.
+            $\left| \int_{|\zeta| = R} {\frac{G_k(\zeta)}{\zeta - z} d\zeta} \right| \leq 2\pi R \cdot \frac{O\left(\frac{1}{R}\right)}{R - |z|} \rightarrow_{R \to \infty} 0$, где $G_k = \frac{c_{-1}}{\zeta - z_k} + \frac{c_{-2}}{(\zeta - z_k)^2} + \ldots = O(\frac{1}{R})$ (кол-ва слагаемых конечно, т.к. $a_k$ -- полюс).
 
             Из стремления к нулю, мы поняли, что $res_{\zeta = z_k} \ \frac{G_k(\zeta)}{\zeta - z} = -G_k(z)$.
         }
@@ -1903,7 +1926,9 @@
 
     Теперь мы имеем, что $I_n(z) = f(z) - \sum_{k: \ |z_k| < R_n} G_k(z)$, осталось доказать, что $\lim_{n \rightarrow \infty} I_n(z) = 0$.
 
-    $\left| I_n(z) \right| \leq \frac{1}{2 \pi} \cdot 2\pi R_n \cdot max_{|\zeta| = R_n} \left| \frac{f(\zeta)}{\zeta - z} \right| \leq R_n \cdot \frac{M_{R_n}}{R_n - |z|} \rightarrow 0$.
+    Вспоминаем, что  $I_n(z) := \frac{1}{2\pi i}\int_{|\zeta| = R_n} {\frac{f(\zeta)}{\zeta - z} d\zeta}$ и тогда:
+
+    $\left| I_n(z) \right| \leq \frac{1}{2 \pi} \cdot 2\pi R_n \cdot max_{|\zeta| = R_n} \left| \frac{f(\zeta)}{\zeta - z} \right| \leq R_n \cdot \frac{M_{R_n}}{R_n - |z|} \rightarrow_{n \to \infty} 0$.
 
     % $\frac{1}{2\pi i} \int_{|\zeta| = R_n} \frac{f(\zeta)}{\zeta - z} \, d \zeta = \sum \res \frac{f(\zeta)}{\zeta - z} = (*)$
 
