@@ -1617,7 +1617,7 @@
 
             То есть: $I - e^{i \frac{\pi }{n}} I = 2 \pi i \res_{z = e^{\frac{i \pi}{2n}}} f = 2 \pi i \cdot \left ( - \frac{e^{\frac{i \pi}{2n}}}{2n}  \right )$
 
-            Тогда $I = \frac{2 i e^{\frac{i \pi}{2n}}}{e^{\frac{i \pi}{2n}}} \cdot \frac{\pi}{2n} = \frac{\pi}{2n \cdot \sin \frac{\pi}{2n}}$
+            Тогда $I = -\frac{2 i e^{\frac{i \pi}{2n}}}{1 - e^{\frac{i \pi}{2n}}} \cdot \frac{\pi}{2n} = \frac{2 i \cdot e^{\frac{2 \pi}{2n}}}{e^{\frac{i \pi}{2n}} \cdot (e^{\frac{i \pi}{2n}} - e^{-\frac{i \pi}{2n}})} \cdot \frac{\pi}{2n} = \frac{\pi}{2n \cdot \sin \frac{\pi}{2n}}$ - т.к. $\sin(z) = \frac{e^{iz} - e^{-iz}}{2i}$
         }
     \end{enumerate}
 \end{example}
