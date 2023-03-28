@@ -2054,7 +2054,7 @@
     $\sum_{n = 1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}$
 
     $f(z) = \frac{1}{z^2}$. Посмотрим на $f(z) \cdot \ctg (\pi z)$. Тогда
-    $\res_{z = k} f(z) \cdot \ctg (\pi z) = \frac{f(k)}{\pi}$.
+    $\res_{z = k} f(z) \cdot \ctg (\pi z) \underbrace{=}_{f(k)\neq 0} \frac{f(z)\cdot \cos{\pi z}}{(\sin{\pi z})'}|_{z=k}  = \frac{f(k)}{\pi}$ - т.е. если $f(k) \neq 0$, то $z=0$ - полюс кратности 1, значит $\res_{z=a}f = \frac{g(a)}{h'(a)}$ при условии, что $f(z) = \frac{g(z)}{h(z)}$.
 
     $g(z) = \frac{\ctg \pi z}{z^2}$ и проинтегрируем.
 
