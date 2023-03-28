@@ -1903,14 +1903,14 @@
             $res_{\zeta = z} \ g = \frac{f(\zeta)}{(\zeta - z)'}|_{\zeta = z} = f(z)$ -- формула для полюса $1$-ого порядка.
         }
         \item {
-            $res_{\zeta = z_k} \ g = \underbrace{res_{\zeta = z_k} \ \frac{f(\zeta) - G_k(\zeta)}{\zeta - z}}_{\text{голоморфна в окр. } z_k, т.е. равна 0} + res_{\zeta = z_k} \ \frac{G_k(\zeta)}{\zeta - z}$
+            $res_{\zeta = z_k} \ g = \underbrace{res_{\zeta = z_k} \ \frac{f(\zeta) - G_k(\zeta)}{\zeta - z}}_{\text{голоморфна в окр. $z_k$, т.е. равна $0$}} + res_{\zeta = z_k} \ \frac{G_k(\zeta)}{\zeta - z}$
 
             Рассмотрим окр. радиуса $R$ и запишем интеграл $\frac{1}{2 \pi i} \int_{|\zeta| = R} {\frac{G_k(\zeta)}{\zeta - z} d\zeta} = res_{\zeta = z} \ \frac{G_k(\zeta)}{\zeta - z} + res_{\zeta = z_k} \ \frac{G_k(\zeta)}{\zeta - z}$ -- так как все особые точки для подъинтегрального выражения это $z$ и $z_k$.
 
 
-            $res_{\zeta = z} \ \frac{G_k(\zeta)}{\zeta - z} = G_k(z)$, а второе слагаемое равно тому, что мы хотим найти.
+            $res_{\zeta = z} \ \frac{G_k(\zeta)}{\zeta - z} = G_k(z)$ (по формуле для полюса 1-ого порядка), а второе слагаемое равно тому, что мы хотим найти.
 
-            $\left| \int_{|\zeta| = R} {\frac{G_k(\zeta)}{\zeta - z} d\zeta} \right| \leq 2\pi R \cdot \frac{O\left(\frac{1}{R}\right)}{R - |z|} \rightarrow 0$, где $G_k = \frac{c_{-1}}{\zeta - z_k} + \frac{c_{-2}}{(\zeta - z_k)^2} + \ldots = O(\frac{1}{R})$.
+            $\left| \int_{|\zeta| = R} {\frac{G_k(\zeta)}{\zeta - z} d\zeta} \right| \leq 2\pi R \cdot \frac{O\left(\frac{1}{R}\right)}{R - |z|} \rightarrow_{R \to \infty} 0$, где $G_k = \frac{c_{-1}}{\zeta - z_k} + \frac{c_{-2}}{(\zeta - z_k)^2} + \ldots = O(\frac{1}{R})$ (кол-ва слагаемых конечно, т.к. $a_k$ -- полюс).
 
             Из стремления к нулю, мы поняли, что $res_{\zeta = z_k} \ \frac{G_k(\zeta)}{\zeta - z} = -G_k(z)$.
         }
@@ -1919,7 +1919,9 @@
 
     Теперь мы имеем, что $I_n(z) = f(z) - \sum_{k: \ |z_k| < R_n} G_k(z)$, осталось доказать, что $\lim_{n \rightarrow \infty} I_n(z) = 0$.
 
-    $\left| I_n(z) \right| \leq \frac{1}{2 \pi} \cdot 2\pi R_n \cdot max_{|\zeta| = R_n} \left| \frac{f(\zeta)}{\zeta - z} \right| \leq R_n \cdot \frac{M_{R_n}}{R_n - |z|} \rightarrow 0$.
+    Вспоминаем, что  $I_n(z) := \frac{1}{2\pi i}\int_{|\zeta| = R_n} {\frac{f(\zeta)}{\zeta - z} d\zeta}$ и тогда:
+
+    $\left| I_n(z) \right| \leq \frac{1}{2 \pi} \cdot 2\pi R_n \cdot max_{|\zeta| = R_n} \left| \frac{f(\zeta)}{\zeta - z} \right| \leq R_n \cdot \frac{M_{R_n}}{R_n - |z|} \rightarrow_{n \to \infty} 0$.
 
     % $\frac{1}{2\pi i} \int_{|\zeta| = R_n} \frac{f(\zeta)}{\zeta - z} \, d \zeta = \sum \res \frac{f(\zeta)}{\zeta - z} = (*)$
 
