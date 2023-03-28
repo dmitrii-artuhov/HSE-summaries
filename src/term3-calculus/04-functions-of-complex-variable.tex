@@ -1836,31 +1836,37 @@
     $I = \int_{0}^{+\infty} \frac{x^{p - 1}}{1 + x} \, dx $, где $0 < p < 1$.
 
     \begin{center}
-        \includegraphics[width=9cm]{assets/04-functions-of-complex-variables/example-2-principal-value-integral.png}
+        \includegraphics[width=7cm]{assets/04-functions-of-complex-variables/example-2-principal-value-integral.png}
     \end{center}
 
-    $f(z) = \frac{e^{(p - 1) Ln z}}{1 + z}$
+    $f(z) = \frac{e^{(p - 1) Ln z}}{1 + z}$, и пусть $Ln (1) = 0$.
 
     $\int_{\Gamma_{R, \varepsilon}} f(z) \, dz = \int_{\varepsilon}^{R} + \int_{Re^{2\pi i}}^{\varepsilon e^{2\pi i}} + \int_{C_{\varepsilon}} + \int_{C_R}$.
 
-    Но с другой стороны $\int_{\Gamma_{R, \varepsilon}} f(z) \, dz = 2 \pi i \sum \res = 2 \pi i \res_{z = -1}$
+    Но с другой стороны $\int_{\Gamma_{R, \varepsilon}} f(z) \, dz = 2 \pi i \sum \res f = 2 \pi i \res_{z = -1} f$
 
-    $\res_{z = -1} = e^{(p - 1) Ln (-1)} = e^{(p - 1)\pi i}$
+    $\res_{z = -1} f = e^{(p - 1) Ln (-1)} = e^{(p - 1)\pi i} = -e^{p \pi i}$
 
     \begin{enumerate}
-        \item $\int_{\varepsilon}^{R} \rightarrow I$
-        \item $\int_{Re^{2\pi i}}^{\varepsilon e^{2 \pi i}} = \int_{R}^{\epsilon} \frac{e^{(p-1)\cdot (ln(z) + 2\pi i)}}{1 + x}dx = e^{2\pi i \cdot (p-1)} \cdot (-1)\cdot \int_{\epsilon}^{R} \rightarrow -e^{(p - 1) \pi i} \cdot I$
         \item {
-            $\left | \int_{C_{R}} \frac{e^{(p - 1)Ln z}}{1 + z} \, dz \right | \leqslant 2\pi R \cdot \max \left | \frac{e^{(p - 1) Ln z}}{1 + z} \right | =
+            $\int_{\varepsilon}^{R} \rightarrow I$
+        }
+        \item {
+            $\int_{Re^{2\pi i}}^{\varepsilon e^{2 \pi i}} = \int_{R}^{\varepsilon} \frac{e^{(p-1)\cdot (ln(x) + 2\pi i)}}{1 + x}dx = e^{2\pi i \cdot (p-1)} \cdot (-1)\cdot \int_{\varepsilon}^{R} \frac{x^{p - 1}}{1 + x} dx \rightarrow -e^{(p - 1) 2 \pi i} \cdot I = -e^{2\pi p i} \cdot I$
+        }
+        \item {
+            $\left | \int_{C_{R}} \frac{e^{(p - 1)Ln z}}{1 + z} \, dz \right | \leqslant 2\pi R \cdot \max_{|z| = R} \left | \frac{e^{(p - 1) Ln z}}{1 + z} \right | =
             2\pi R \cdot \frac{R^{p - 1}}{\min |1 + z|} = 2\pi R \cdot \frac{R^{p - 1}}{R - 1} \rightarrow 0$
 
         }
         \item {
-            $\left | \int_{C_{\varepsilon}} \frac{e^{(p - 1)Ln z}}{1 + z} \, dz \right | \leqslant 2\pi \varepsilon \cdot \max \left | \frac{e^{(p - 1) Ln z}}{1 + z} \right | =
+            $\left | \int_{C_{\varepsilon}} \frac{e^{(p - 1)Ln z}}{1 + z} \, dz \right | \leqslant 2\pi \varepsilon \cdot \max_{|z| = \varepsilon} \left | \frac{e^{(p - 1) Ln z}}{1 + z} \right | =
             2\pi \varepsilon \cdot \frac{\varepsilon^{p - 1}}{\min |1 + z|} = 2\pi \varepsilon \cdot \frac{\varepsilon^{p - 1}}{1 - \varepsilon} \rightarrow 0$
         }
 
-        Получили в итоге $I = \pi \frac{2i e^{(p - 1)\pi i}}{1 - e^{(p - 1)2\pi i}} = \pi \frac{2i}{e^{-\pi i(p-1)} - e^{\pi i(p - 1)}} = \pi \frac{2i}{e^{\pi i p} - e^{-\pi i p}} = \frac{\pi}{\sin \pi p}$
+        Тогда получаем, что $I - e^{2 \pi p i} \cdot I = -2 \pi i e^{\pi p i} \implies$
+        
+        $\implies I = \frac{2 \pi i e^{\pi p i}}{e^{2 \pi p i} - 1} = \pi \cdot \frac{2 i}{e^{\pi p i} -e^{-\pi p i}} = \frac{\pi}{\sin {(\pi p)}}$.
     \end{enumerate}
 \end{example}
 
