@@ -1163,20 +1163,11 @@
         \item $4 \Rightarrow 3$ - очевидно
         \item $3 \Rightarrow 1$ - очевидно. $g$ непрерывна, предел $g(a)$
         \item $1 \Rightarrow 2$ - очевидно
-        \item {
-            Докажем $2 \Rightarrow 4$.
-            
-            Пусть ограничена $\forall \, 0 < |z - a| < r$: $f(z) \leqslant M$
-            
-            Запишем ряд Лорана: $f(z) = \sum_{n = -\infty}^{+\infty} c_n(z - a)^n$.
-            
-            Теперь воспользуемся нер-вом Коши для ряда Лорана: $|c_n| \leqslant \frac{\max |f(z)|}{\rho^n}$ при $|z - a| = \rho$.
+        \item Докажем $2 \Rightarrow 4$.
+        Пусть ограничена: $f(z) \leqslant M$. $\forall \, 0 < |z - a| < r$
 
-
-            $c_{-n} \leqslant \rho^n \max f(z) \leqslant M \rho^n$ и устремим $\rho$ к $0$.
-            
-            Получаем, что $M \rho^n \rightarrow 0$, а тогда и $c_{-n} \rightarrow 0$.
-        }
+        $f(z) = \sum_{n = -\infty}^{+\infty} c_n(z - a)^n$. $|c_n| \leqslant \frac{\max |f(z)|}{\rho^n}$ при $|z - a| = \rho$
+        $c_{-n} \leqslant \rho^n \max f(z) \leqslant M \rho^n$ и устремим $\rho$ к $0$. $M \rho^n \rightarrow 0$
     \end{enumerate}
 \end{proof}
 
@@ -1196,40 +1187,16 @@
 
 \begin{proof}
     \begin{enumerate}
-        \item {
-            $2 \Rightarrow 3$:
-            
-            $g(z)$ -- голоморфна, тогда раскладывается по Тейлору:
-            
-            $g(z) = \sum_{n=0}^{\infty} c_n (z - a)^n, g(a) = c_0 \neq 0 \Rightarrow f(z) = \sum_{n = 0}^{+\infty} c_n(z - a)^{n - m}$ -- разложение в ряд Лорана, где $c^{-m} \neq 0$.
-        }
-        \item {
-            $3 \Rightarrow 1$:
-            
-            $f(z) = \sum_{n = -m}^{\infty} b_n(z - a)^n$
-            
-            Все слагаемые $o((z - a)^{-m})$, тогда перепишем $f(z) = \sum_{n=-m}^{\infty} b_n \frac{(z-a)^{n + m}}{(z - a)^{m}}$ и становится видно, что при $z \rightarrow a$ каждая дробь стремится к $\infty$.
-            
-            % а на $b_{-m}(z - a)^{-m} \rightarrow \infty$
-        } 
-        \item {
-            $1 \Rightarrow 2$:
-            
-            $\lim_{z \to a} f(z) = \infty$
-            
-            Значит, в некоторой проколотой окрестности $0 <|z - a| < \varepsilon$:
-            $|f(z)| > 1$.
-            
-            Рассмотрим $g(z) = \frac{1}{f(z)} \in H(0 < |z - a| < \varepsilon)$:
-            
-            $\lim_{z \to a} g(z) = 0$.
-            
-            Доопределим $g(a) = 0$ и получим $g \in H(|z - a| < \varepsilon)$.
-            
-            $a$ -- ноль функции $g$, тогда по теореме о нулях голоморфной функции $g(z) = (z - a)^m h(z)$, где $h(a) \neq 0$ и $h \in H(|z - a| < \varepsilon)$
+        \item $2 \Rightarrow 3$. $g(z) = \sum c_n (z - a)^n, c_0 \neq 0 \Rightarrow f(z) = \sum_{n = 0}^{+\infty} c_n(z - a)^{n - m}$ - разложение в ряд Лорана
+        \item $3 \Rightarrow 1$. $f(z) = \sum_{n = -m}^{\infty} b_n(z - a)^n$. Все слагаемые $o((z - a)^{-m})$, а на $b_{-m}(z - a)^{-n} \rightarrow \infty$
+        \item $1 \Rightarrow 2$. $\lim_{z \to a} f(z) = \infty$. Значит в некоторой проколотой окрестности $0 <|z - a| < \varepsilon$
+        $|f(z)| > 1$. Рассмотрим $g(z) = \frac{1}{f(z)} \in H(0 < |z - a| < r)$
+        $\lim_{z \to a} g(z) = 0$. Доопределим $g(a) = 0$ и получим $g \in H(|z - a| < \varepsilon)$
+        (предыдущая теорема (?)). $a$ - ноль функции $g$. Тогда $g(z) = (z - a)^m h(z)$,
+        где $h(a) \neq 0$ и $h \in H(|z - a| < \varepsilon)$
 
-            $\frac{1}{f(z)} = g(z) = (z - a)^m h(z)$, тогда $f(z) = (z - a)^{-m} \frac{1}{h(z)}$ и $\frac{1}{h(z)} \in H(|z - a| < \varepsilon)$, потому что $h$ не обращается в $0$. 
-        }
+        $\frac{1}{f(z)} = g(z) = (z - a)^m h(z)$. Тогда $f(z) = (z - a)^{-m} \frac{1}{h(z)}$ и
+        $\frac{1}{h(z)} \in H(|z - a| < \varepsilon)$, потому что $h$ не обращается в 0
     \end{enumerate}
 \end{proof}
 
@@ -1288,14 +1255,14 @@
     Пусть $f$ и $g$ мероморфные в $\Omega$. Тогда:
 
     \begin{enumerate}
-        \item {
-            $f \pm g, \frac{f}{g}, fg, f'$ - мероморфны в $\Omega$.
+        \item $f \pm g, \frac{f}{g}, fg, f'$ - мероморфны в $\Omega$ и порядки полюсов у $f'$ на 1 больше, чем у $f$
 
-            \begin{proof}
-                
-                Если подставляем точки, которые не полюсы и не нули, то голоморфность сохранится.
-                
-                Тогда пускай:
+        \begin{proof}
+        Док-во: $fg$ и $\frac{f}{g}$. Если не полюсы и не нули, то голоморфность сохранится.
+
+        $f(z) = \varphi (z) (z - a)^n$, $a$ - полюс или 0.
+
+        $g(z) = \varPsi (z) (z - a)^m$, $a$ - полюс или 0.
 
                 $f(z) = \varphi (z) (z - a)^n$, $a$ -- полюс или $0$.
 
@@ -1313,7 +1280,7 @@
                     }
                     \item {
                         $f \pm g$:
-                        
+
                         Складываем ряды Лорана в точке $a$, в главной части $f \pm g$ конечное число ненулевых коэффициентов.
                     }
                     \item {
@@ -1328,8 +1295,8 @@
                         % $\psi (z) = -n \varphi (a) \neq 0$
                     }
                 \end{enumerate}
-            \end{proof}
-        }
+        \end{proof}
+        % }
         \item {
             Порядки полюсов у $f'$ на 1 больше, чем у $f$
         }
@@ -1650,7 +1617,7 @@
 
             То есть: $I - e^{i \frac{\pi }{n}} I = 2 \pi i \res_{z = e^{\frac{i \pi}{2n}}} f = 2 \pi i \cdot \left ( - \frac{e^{\frac{i \pi}{2n}}}{2n}  \right )$
 
-            Тогда $I = \frac{2 i e^{\frac{i \pi}{2n}}}{e^{\frac{i \pi}{2n}}} \cdot \frac{\pi}{2n} = \frac{\pi}{2n \cdot \sin \frac{\pi}{2n}}$
+            Тогда $I = -\frac{2 i e^{\frac{i \pi}{2n}}}{1 - e^{\frac{i \pi}{2n}}} \cdot \frac{\pi}{2n} = \frac{2 i \cdot e^{\frac{2 \pi}{2n}}}{e^{\frac{i \pi}{2n}} \cdot (e^{\frac{i \pi}{2n}} - e^{-\frac{i \pi}{2n}})} \cdot \frac{\pi}{2n} = \frac{\pi}{2n \cdot \sin \frac{\pi}{2n}}$ - т.к. $\sin(z) = \frac{e^{iz} - e^{-iz}}{2i}$
         }
     \end{enumerate}
 \end{example}
@@ -1658,7 +1625,7 @@
 \begin{lemma}
     \textbf{Жордана}
 
-    $C_{R_n} = \{ z \in \mathbb{C} : |z| = R_n, \Im z \geqslant 0 \}$
+    $C_{R_n} = \{ z \in \mathbb{C} : |z| = R_n, \Im z \geqslant 0 \}$, $R_n \rightarrow +\infty$
 
     $f : \{ \Im z \geqslant 0 \} \to \mathbb{C}$. $M_{R_n} = \lim_{n \to \infty} \sup_{z \in C_{R_n}} |f(z)| = 0$
 
@@ -1680,6 +1647,21 @@
     \leqslant M_{R_n} \cdot \frac{1}{\frac{\lambda}{\pi}} \rightarrow 0$
 
     $(**): $ верно, так как при $0 \leq t \leq \frac{\pi}{2}: \ \sin(t) \geq \frac{2}{\pi} t$
+
+    Док-во в Лекториуме:
+
+    \begin{center}
+        \includegraphics[width=12cm]{assets/04-functions-of-complex-variables/Jordans-lemma-lectorium-1}
+    \end{center}
+
+    \begin{center}
+        \includegraphics[width=12cm]{assets/04-functions-of-complex-variables/Jordans-lemma-lectorium-2}
+    \end{center}
+
+    \begin{center}
+        \includegraphics[width=12cm]{assets/04-functions-of-complex-variables/Jordans-lemma-lectorium-3}
+    \end{center}
+
 \end{proof}
 
 \begin{example}
@@ -1779,11 +1761,11 @@
     $f(z) = \frac{e^{iz}}{z}$
 
     $\int_{\Gamma_{R, \varepsilon}} f(z) \, dz = 0$, так как особая точка только 0, а он не в контуре.
-    Но с другой стороны: $\int_{\Gamma_{R, \varepsilon}} f(z) \, dz = \int_{-R}^{\varepsilon} + \int_{\varepsilon}^{R} + \int_{C_R} + \int_{C_{\varepsilon}}$
+    Но с другой стороны: $\int_{\Gamma_{R, \varepsilon}} f(z) \, dz = \int_{-R}^{-\varepsilon} + \int_{\varepsilon}^{R} + \int_{C_R} + \int_{C_{\varepsilon}}$
 
     $\int_{C_R} \rightarrow 0$ по лемме Жордана.
 
-    $\int_{C_{\varepsilon}} f(z) \, dz \rightarrow -\pi i \res_{z = 0} f = -\pi i$.
+    $ \underbrace{\int_{C_{\varepsilon}} f(z) \, dz \rightarrow -\pi i res_{z = 0} f = -\pi i}_{\text{Лемма о полувычете $\alpha=\pi$, $\beta=0$ - т.к. обход в другую сторону}}$
 
     А значит $v.p. \int_{-\infty}^{\infty} \frac{e^{ix}}{x} \, dx = \pi i$. А значит
     $I = \frac{1}{2} \Im \ldots = \frac{\pi}{2}$
@@ -1808,7 +1790,7 @@
 
     \begin{enumerate}
         \item $\int_{\varepsilon}^{R} \rightarrow I$
-        \item $\int_{Re^{2\pi i}}^{\varepsilon e^{2 \pi i}} \rightarrow -e^{(p - 1) \pi i} \cdot I$
+        \item $\int_{Re^{2\pi i}}^{\varepsilon e^{2 \pi i}} = \int_{R}^{\epsilon} \frac{e^{(p-1)\cdot (ln(z) + 2\pi i)}}{1 + x}dx = e^{2\pi i \cdot (p-1)} \cdot (-1)\cdot \int_{\epsilon}^{R} \rightarrow -e^{(p - 1) \pi i} \cdot I$
         \item {
             $\left | \int_{C_{R}} \frac{e^{(p - 1)Ln z}}{1 + z} \, dz \right | \leqslant \pi R \cdot \max \left | \frac{e^{(p - 1) Ln z}}{1 + z} \right | =
             \pi R \cdot \frac{R^{p - 1}}{\min |1 + z|} = \pi R \cdot \frac{R^{p - 1}}{R - 1} \rightarrow 0$
