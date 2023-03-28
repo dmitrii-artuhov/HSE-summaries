@@ -1732,7 +1732,7 @@
 \begin{lemma}
     \textbf{О полувычете}
 
-    $f \in H(0 < |z - a| < R)$ и $a$ - полюс первого порядка. $C_{\varepsilon} = \{ z \in \mathbb{C} : |z - a| = \varepsilon, \alpha \leqslant \arg (z - a) \leqslant b \}$
+    $f \in H(0 < |z - a| < R)$ и $a$ - полюс первого порядка. $C_{\varepsilon} = \{ z \in \mathbb{C} : |z - a| = \varepsilon, \alpha \leqslant \arg (z) \leqslant b \}$
 
     \begin{center}
         \includegraphics[width=9cm]{assets/04-functions-of-complex-variables/lemma-about-half-deduction.png}
@@ -1742,14 +1742,20 @@
 \end{lemma}
 
 \begin{proof}
-    Считаем, что $a = 0$. У нас полюс 1-го порядка, тогда $f(z) = \frac{c}{z} + g(z)$, где $g \in H(|z| < R)$.
+    Считаем, что $a = 0$.
+    
+    У нас полюс 1-го порядка, тогда $f(z) = \frac{c}{z} + g(z)$, где $g \in H(|z| < R)$.
 
     Параметризация $z = \varepsilon e^{it}$, где $t \in [\alpha, \beta]$. Тогда $dz = \varepsilon e^{it} i \, dt$.
 
     $\int_{C_{\varepsilon}} f(z) \, dz = \int_{C_{\varepsilon}} \frac{c}{z} \, dz + \int_{C_{\varepsilon}} g(z) \, dz =
     \int_{\alpha}^{\beta} \frac{c}{\varepsilon e^{it}} \cdot \varepsilon e^{it} i \, dt + \int_{C_{\varepsilon}} g(z) \, dz = (\beta - \alpha) \cdot i \cdot c + \int_{C_{\varepsilon}} g(z) \, dz$
 
-    Оценим второй интеграл: $\int_{C_{\varepsilon}} g(z) \, dz \leqslant M \varepsilon (\beta - \alpha)$, где $M = \max_{|z| \leqslant \frac{R}{2}} |g(z)|$. и
+    Оценим второй интеграл:
+
+    $g$ -- голоморфма, тогда ограничена в окр. точки $\implies |g| \leq M$.
+    
+    $\left|\int_{C_{\varepsilon}} g(z) \, dz\right| \leqslant M \underbrace{\varepsilon (\beta - \alpha)}_{\text{длина дуги}}$, где $M = \max_{|z| \leqslant \frac{R}{2}} |g(z)|$. и
     тогда $\int_{C_{\varepsilon}} g(z) \, dz \rightarrow 0$.
 \end{proof}
 
@@ -1797,20 +1803,31 @@
     $v.p. \int_{-\infty}^{+\infty} = \lim_{\varepsilon \to 0, R \to +\infty} \int_{-R}^{-\varepsilon} + \int_{\varepsilon}^{R}$.
 
     \begin{center}
-        \includegraphics[width=12cm]{assets/04-functions-of-complex-variables/example-principal-value-integral.png}
+        \includegraphics[width=8cm]{assets/04-functions-of-complex-variables/example-principal-value-integral.png}
     \end{center}
 
     $f(z) = \frac{e^{iz}}{z}$
 
-    $\int_{\Gamma_{R, \varepsilon}} f(z) \, dz = 0$, так как особая точка только 0, а он не в контуре.
+    $\int_{\Gamma_{R, \varepsilon}} f(z) \, dz = 0$, так как особая точка только $0$, а она не в контуре.
+
     Но с другой стороны: $\int_{\Gamma_{R, \varepsilon}} f(z) \, dz = \int_{-R}^{-\varepsilon} + \int_{\varepsilon}^{R} + \int_{C_R} + \int_{C_{\varepsilon}}$
 
-    $\int_{C_R} \rightarrow 0$ по лемме Жордана.
+    \begin{enumerate}
+        \item {
+            $\int_{-R}^{-\varepsilon} + \int_{\varepsilon}^{R} \rightarrow v.p. \int_{-R}^{R}$
+        }
+        \item {
+            $\int_{C_R} \rightarrow 0$ -- по лемме Жордана.
+        }
+        \item {
+            $\int_{C_{\varepsilon}} f(z) \, dz \rightarrow -\pi i \cdot res_{z = 0} f = (-\pi i)$ -- лемма о полувычете, где $\alpha=\pi$, $\beta=0$, $0$ -- полюс 1-го порядка.
+        }
+    \end{enumerate}
 
-    $ \underbrace{\int_{C_{\varepsilon}} f(z) \, dz \rightarrow -\pi i res_{z = 0} f = -\pi i}_{\text{Лемма о полувычете $\alpha=\pi$, $\beta=0$ - т.к. обход в другую сторону}}$
-
-    А значит $v.p. \int_{-\infty}^{\infty} \frac{e^{ix}}{x} \, dx = \pi i$. А значит
-    $I = \frac{1}{2} \Im \ldots = \frac{\pi}{2}$
+    
+    А значит $v.p. \int_{-\infty}^{\infty} \frac{e^{ix}}{x} \, dx = \pi i$.
+    
+    Тогда $I = \frac{1}{2} \Im \left(v.p. \int_{-\infty}^{\infty} \frac{e^{ix}}{x} \, dx\right) = \frac{\pi}{2}$
 \end{example}
 
 \newpage
