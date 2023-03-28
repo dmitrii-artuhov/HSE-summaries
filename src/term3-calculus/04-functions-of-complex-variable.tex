@@ -1851,13 +1851,13 @@
         \item $\int_{\varepsilon}^{R} \rightarrow I$
         \item $\int_{Re^{2\pi i}}^{\varepsilon e^{2 \pi i}} = \int_{R}^{\epsilon} \frac{e^{(p-1)\cdot (ln(z) + 2\pi i)}}{1 + x}dx = e^{2\pi i \cdot (p-1)} \cdot (-1)\cdot \int_{\epsilon}^{R} \rightarrow -e^{(p - 1) \pi i} \cdot I$
         \item {
-            $\left | \int_{C_{R}} \frac{e^{(p - 1)Ln z}}{1 + z} \, dz \right | \leqslant \pi R \cdot \max \left | \frac{e^{(p - 1) Ln z}}{1 + z} \right | =
-            \pi R \cdot \frac{R^{p - 1}}{\min |1 + z|} = \pi R \cdot \frac{R^{p - 1}}{R - 1} \rightarrow 0$
+            $\left | \int_{C_{R}} \frac{e^{(p - 1)Ln z}}{1 + z} \, dz \right | \leqslant 2\pi R \cdot \max \left | \frac{e^{(p - 1) Ln z}}{1 + z} \right | =
+            2\pi R \cdot \frac{R^{p - 1}}{\min |1 + z|} = 2\pi R \cdot \frac{R^{p - 1}}{R - 1} \rightarrow 0$
 
         }
         \item {
-            $\left | \int_{C_{\varepsilon}} \frac{e^{(p - 1)Ln z}}{1 + z} \, dz \right | \leqslant \pi \varepsilon \cdot \max \left | \frac{e^{(p - 1) Ln z}}{1 + z} \right | =
-            \pi \varepsilon \cdot \frac{\varepsilon^{p - 1}}{\min |1 + z|} = \pi \varepsilon \cdot \frac{\varepsilon^{p - 1}}{1 - \varepsilon} \rightarrow 0$
+            $\left | \int_{C_{\varepsilon}} \frac{e^{(p - 1)Ln z}}{1 + z} \, dz \right | \leqslant 2\pi \varepsilon \cdot \max \left | \frac{e^{(p - 1) Ln z}}{1 + z} \right | =
+            2\pi \varepsilon \cdot \frac{\varepsilon^{p - 1}}{\min |1 + z|} = 2\pi \varepsilon \cdot \frac{\varepsilon^{p - 1}}{1 - \varepsilon} \rightarrow 0$
         }
 
         Получили в итоге $I = \pi \frac{2i e^{(p - 1)\pi i}}{1 - e^{(p - 1)2\pi i}} = \pi \frac{2i}{e^{-\pi i(p-1)} - e^{\pi i(p - 1)}} = \pi \frac{2i}{e^{\pi i p} - e^{-\pi i p}} = \frac{\pi}{\sin \pi p}$
@@ -2045,7 +2045,7 @@
 
     Особые точки $f(z): \ z = 0 \text{ -- полюс 2-ого порядка}, z = \pi k \text{ -- полюсы 1-ого порядка при } k \neq 0$.
 
-    $G_k$ -- главная часть ряда Лорана в $\pi k, \ k \neq 0$ $\implies G_k(z) = \frac{res_{z = \pi k} \ \ctg(z)}{z - \pi k} = \frac{1}{\pi k(z - \pi k)}$, где $res_{z = \pi k} \ \ctg(z) = \frac{\cos(z)}{\sin'(z)} |_{z = \pi k} = \frac{1}{\pi k}$.
+    $G_k$ -- главная часть ряда Лорана в $\pi k, \ k \neq 0$ $\implies G_k(z) = \frac{res_{z = \pi k} \ \frac{\ctg(z)}{z}}{z - \pi k} = \frac{1}{\pi k(z - \pi k)}$, где $res_{z = \pi k} \ \frac{\ctg(z)}{z} = \frac{\frac{\cos(z)}{z}}{\sin'(z)} |_{z = \pi k} = \frac{1}{\pi k}$.
 
 
     $G_0(z) = \frac{A}{z^2} + \frac{res_{z = 0} \ f(z)}{z} = \frac{A}{z^2}$, вычет занулился, так как $f(z)$ -- четная функция и все коэффициенты перед нечетными степенями в ряде Лорана равны $0$.
@@ -2079,7 +2079,7 @@
     $\sum_{n = 1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}$
 
     $f(z) = \frac{1}{z^2}$. Посмотрим на $f(z) \cdot \ctg (\pi z)$. Тогда
-    $\res_{z = k} f(z) \cdot \ctg (\pi z) = \frac{f(k)}{\pi}$.
+    $\res_{z = k} f(z) \cdot \ctg (\pi z) \underbrace{=}_{f(k)\neq 0} \frac{f(z)\cdot \cos{\pi z}}{(\sin{\pi z})'}|_{z=k}  = \frac{f(k)}{\pi}$ - т.е. если $f(k) \neq 0$, то $z=0$ - полюс кратности 1, значит $\res_{z=a}f = \frac{g(a)}{h'(a)}$ при условии, что $f(z) = \frac{g(z)}{h(z)}$.
 
     $g(z) = \frac{\ctg \pi z}{z^2}$ и проинтегрируем.
 
@@ -2092,9 +2092,11 @@
 
     Значит, $\sum_{k = 1}^{\infty} \frac{1}{k^2} = -\frac{\pi}{2} \cdot \res_{z = 0} \frac{\ctg \pi z}{z^2}$.
 
-    Такой вычет не очень приятно считать -- раскладываем в ряд.
+    Такой вычет не очень приятно считать -- раскладываем в ряд (хотим найти коэфф $c_{-1}$ перед $\frac{1}{z}$, т.к. это и есть вычет по определению). Тогда нужно найти коэфф. перед $z^1$ в разложении $\ctg{z}$, т.к. потом мы поделим на $\frac{1}{z^2}$ и получим то, что надо.
 
-    Найдем коэффициент перед $z^1$: в разложении $\ctg \pi z = \frac{\cos \pi z}{\sin \pi z} = \frac{1 - \frac{\pi^2 z^2}{2} + \mathcal{O}(z^4)}{\pi z (1 - \frac{\pi^2 z^2}{6} + \mathcal{O}(z^4))} = $
+    (*): $\frac{1}{1-t} = 1 + t + o(t), \ t \rightarrow 0$
+
+    Найдем коэффициент перед $z^1$: в разложении $\ctg \pi z = \frac{\cos \pi z}{\sin \pi z} = \frac{1 - \frac{\pi^2 z^2}{2} + \mathcal{O}(z^4)}{\pi z (1 - \frac{\pi^2 z^2}{6} + \mathcal{O}(z^4))} \underbrace{=}_{(*)} $
 
 
     $ = \frac{(1 - \frac{\pi^2 z^2}{2} + \mathcal{O}(z^4))(1 + \frac{\pi^2 z^2}{6} + \mathcal{O}(z^4))}{\pi z} = \frac{1}{\pi z} - \frac{1}{3} \pi z + \mathcal{O}(z^3)$.
