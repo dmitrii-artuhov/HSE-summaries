@@ -1631,28 +1631,35 @@
 
             Все $a_k$ -- полюсы первого порядка:
 
-            $\res_{a_k} f = \frac{1}{(z^{2n} + 1)'} \big|_{z = a_k} = \frac{1}{2n \cdot a_k^{2n - 1}} = \frac{a_k}{2na_k^{2n}} = -\frac{a_k}{2n}$.
+            (*): так как все $a_k$ - корни уравнения $z^{2n} = -1$, то $a_k^{2n} = -1$.
+
+            $\res_{a_k} f = \frac{1}{(z^{2n} + 1)'} \big|_{z = a_k} = \frac{1}{2n \cdot a_k^{2n - 1}} = \frac{a_k}{2n\cdot a_k^{2n}} \underbrace{=}_{(*)} -\frac{a_k}{2n}$.
         }
         \item {
-            Оптимизация решения из предыдущего пункта.
+            Оптимизация решения из предыдущего пункта: мы хотим считать не по всей дуге, а по какой-то ее части (до такого угла $\alpha$, что интеграл $\int_{R\cdot e^{i\alpha}}^{0}$ был бы равен исходному интегралу, домноженному на какую-то константу).
 
-            $\int_{-\infty}^{+\infty} \frac{dx}{1 + x^{2n}} = 2\int_{0}^{+\infty} \frac{dx}{1 + x^{2n}} = I$
+            $\int_{-\infty}^{+\infty} \frac{dx}{1 + x^{2n}} = 2\int_{0}^{+\infty} \frac{dx}{1 + x^{2n}} = I$ - т.к. функция $f(z) = \frac{1}{1 + x^{2n}}$ четная.
 
             \begin{center}
                 \includegraphics[width=12cm]{assets/04-functions-of-complex-variables/example-3-cauchy-about-deductions.png}
             \end{center}
 
-            $f(x) = \frac{1}{1 + z^{2n}}$. $\int_{\Gamma_R} f(z) \, dz = \int_{c_R} + \int_{0}^{R} + \int_{Re^{i\alpha}}^{0}$.
+            $f(x) = \frac{1}{1 + z^{2n}}$.
 
-            $\int_{e^{i\alpha R}}^{0} f(z) \, dz = -\int_{0}^{e^{i \alpha R}} = -\int_{0}^{R} f(e^{i \alpha} t) e^{i \alpha} \, dt$ -
-            взяли параметризацию $t \to e^{i \alpha} t$.
+            $\int_{\Gamma_R} f(z) \, dz = \int_{c_R} + \int_{0}^{R} + \int_{Re^{i\alpha}}^{0}$ - интеграл по контуру разбили на кусочки.
 
-            $f(e^{i \alpha}t) = \frac{1}{1 + e^{2 \pi i \alpha} \cdot t^{2n}} = \frac{1}{1 + t^{2n}}$, $\alpha = \frac{\pi}{n}$.
+            $\int_{R \cdot e^{i\alpha}}^{0} f(z) \, dz = -\int_{0}^{R \cdot e^{i \alpha}} \underbrace{=}_{z=e^{i\alpha} \cdot t, \ t \in [0, R]} -\int_{0}^{R} f(e^{i \alpha} t) e^{i \alpha} \, dt$ -
+            взяли параметризацию $z \to e^{i \alpha} t$.
 
-            Единственная особая точка $e^{\frac{i \pi}{2n}}$ и интеграл равен
-            $2 \pi i \res$.
+            $f(e^{i \alpha}t) = \frac{1}{1 + e^{2n\cdot i\cdot \alpha} \cdot t^{2n}} \underbrace{=}_{\text{Хотим: } e^{2n\cdot i\cdot \alpha} = 1} \frac{1}{1 + t^{2n}}$, $\alpha = \frac{\pi}{n}$.
 
-            То есть: $I - e^{i \frac{\pi }{n}} I = 2 \pi i \res_{z = e^{\frac{i \pi}{2n}}} f = 2 \pi i \cdot \left ( - \frac{e^{\frac{i \pi}{2n}}}{2n}  \right )$
+            Единственная особая точка $e^{\frac{i \pi}{2n}}$ (т.к. особые точки имеют вид $e^{\frac{\pi i k}{2n}}$, и мы хотим, чтобы точка лежала \textbf{строго внутри контура}: $0 < \frac{\pi k}{2n} < \alpha \Rightarrow 0 < \frac{\pi k}{2n} < \frac{\pi}{n} \Rightarrow k=1$).
+
+            Тогда, так как особая точка для контура $\Gamma_{R}$ всего одна, то интеграл $\int_{\Gamma_{R}}$ равен: $2 \pi i \res_{z=e^{\frac{i \pi}{2n}}}$.
+
+            Получаем равенство (при этом $\int_{C_R} \rightarrow 0$, т.к. он еще меньше того, что мы считали выше, поэтому про $\int_{C_R}$ можно забыть): $2 \pi i \res_{z=e^{\frac{i \pi}{2n}}} = \int_{\Gamma_{R}} = I - e^{i\frac{\pi}{n}}\cdot I + \int_{C_R} \implies$
+
+            $\implies I - e^{i \frac{\pi }{n}} I = 2 \pi i \res_{z = e^{\frac{i \pi}{2n}}} f = 2 \pi i \cdot \left ( - \frac{e^{\frac{i \pi}{2n}}}{2n}  \right )$ - вычет именно такой, так как наша точка является полюсом 1-ого порядка, следовательно применимо свойство вычета $f(z) = \frac{g(z)}{h(z)} \Rightarrow res_{z=a}f = \frac{g(a)}{h'(a)}$.
 
             Тогда $I = -\frac{2 i e^{\frac{i \pi}{2n}}}{1 - e^{\frac{i \pi}{2n}}} \cdot \frac{\pi}{2n} = \frac{2 i \cdot e^{\frac{2 \pi}{2n}}}{e^{\frac{i \pi}{2n}} \cdot (e^{\frac{i \pi}{2n}} - e^{-\frac{i \pi}{2n}})} \cdot \frac{\pi}{2n} = \frac{\pi}{2n \cdot \sin \frac{\pi}{2n}}$ - т.к. $\sin(z) = \frac{e^{iz} - e^{-iz}}{2i}$
         }
@@ -1867,7 +1874,7 @@
 
 \begin{theorem}
     Пусть $f$ мероморфная функция в $\mathbb{C}$, $z_1, z_2 \ldots$ -- полюсы,
-    $R_1, R_2, \ldots$ -- последовательность радиусов, $M_{R_n} = \max_{|z| = R_n} |f(z)| \rightarrow 0$.
+    $R_1, R_2, \ldots$ -- последовательность радиусов, т.ч. $R_n$ возрастают и $R_n \rightarrow +\infty$, $M_{R_n} = \max_{|z| = R_n} |f(z)| \rightarrow 0$.
 
     Тогда $f(z) = \lim_{n \to \infty} \sum_{k:|z_k| < R_n} G_k (z)$.
 \end{theorem}
