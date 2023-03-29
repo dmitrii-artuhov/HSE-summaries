@@ -2147,13 +2147,13 @@
 
     $\frac{f'(z)}{f(z)} = \frac{m}{z - a} + \frac{g'(z)}{g(z)}$, второе слагаемое голоморфно в окрестности $a$. Значит,
     $a$ - полюс первого порядка $\frac{f'}{f}$, а $m$ -- вычет.
-    
+
     Так как $m$ -- вычет, то со знаком плюс он пойдет в сумму как кратность нуля, а со знаком минус -- как порядок полюса.
 \end{proof}
 
 \begin{consequence}
     \begin{enumerate}
-        \item {            
+        \item {
             Если $f \in H(\Omega)$, $\gamma$ - простая замкнутая кривая, не проходящая через нули $f$, тогда
             $\frac{1}{2\pi i} \int_{\gamma} \frac{f'(z)}{f(z)} \, dz = \mathcal{N}_f$
 
@@ -2170,7 +2170,7 @@
             Тогда $\mathcal{N}_f = \frac{1}{2\pi} \Delta_{\gamma} \arg f(z)$, где $\Delta_{\gamma}$ - изменение аргумента
             при движении по кривой.
 
-            
+
             \begin{proof}
                 $\mathcal{N}_f = \frac{1}{2\pi i} \int_{\gamma} \frac{f'(z)}{f(z)} \, dz$. Но $\frac{f'}{f} = (Ln f)'$.
                 Если рассмотрим $Ln$ на кривой $\gamma$, то это будет первообразная вдоль пути $\gamma$ для $\frac{f'}{f}$.
@@ -2645,6 +2645,12 @@
 
     $|\arg (1 - z^k)| \leqslant \arcsin |z|^k \leqslant 2|z|^k$
 
+    \begin{center}
+        \includegraphics[width=8cm]{assets/04-functions-of-complex-variables/number-of-partitions-of-n-into-natural-terms.jpg}
+    \end{center}
+
+    Т.к. $z$ ($|z| < 1$) возводится в степень $k$, и $k \rightarrow +\infty$, то $z^k \rightarrow 0$, значит угол $\alpha$ стримится к нулю (см. картинку).
+
     Действительно, аргумент ничего не портит.
 \end{proof}
 
@@ -2662,11 +2668,13 @@
 \end{theorem}
 
 \begin{proof}
-    Для различных слагаемых $\prod_{k = 1}^{\infty} (1+z^k)$
+    Для различных слагаемых -- $\prod_{k = 1}^{\infty} (1+z^k)$.
 
-    Для нечётных слагаемых $\prod_{k = 1}^{\infty} (\frac{1}{1 - z^{2k -1}})$.
+    Для нечётных слагаемых -- $\prod_{k = 1}^{\infty} (\frac{1}{1 - z^{2k -1}})$.
 
-    Хотим понять, что это одно и то же.$\prod_{k = 1}^{\infty} (\frac{1}{1 - z^{2k -1}}) =
+    Хотим понять, что это одно и то же:
+
+    $\prod_{k = 1}^{\infty} (\frac{1}{1 - z^{2k -1}}) = \frac{\text{Произведение всех $n$}}{\text{Произведение четных $n$}} =
     \frac{\prod_{n = 1}^{\infty} \frac{1}{1-z^n}}{\prod_{k = 1}^{\infty} \frac{1}{1-z^{2k}}} =
     \prod_{n = 1}^{\infty} \frac{1 - z^{2n}}{1 - z^n} = \prod_{n = 1}^{\infty} (1 + z^n)$
 \end{proof}
