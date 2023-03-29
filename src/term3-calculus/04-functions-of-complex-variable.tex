@@ -1750,7 +1750,7 @@
 
 \begin{proof}
     Считаем, что $a = 0$.
-    
+
     У нас полюс 1-го порядка, тогда $f(z) = \frac{c}{z} + g(z)$, где $g \in H(|z| < R)$.
 
     Параметризация $z = \varepsilon e^{it}$, где $t \in [\alpha, \beta]$. Тогда $dz = \varepsilon e^{it} i \, dt$.
@@ -1761,7 +1761,7 @@
     Оценим второй интеграл:
 
     $g$ -- голоморфма, тогда ограничена в окр. точки $\implies |g| \leq M$.
-    
+
     $\left|\int_{C_{\varepsilon}} g(z) \, dz\right| \leqslant M \underbrace{\varepsilon (\beta - \alpha)}_{\text{длина дуги}}$, где $M = \max_{|z| \leqslant \frac{R}{2}} |g(z)|$. и
     тогда $\int_{C_{\varepsilon}} g(z) \, dz \rightarrow 0$.
 \end{proof}
@@ -1831,9 +1831,9 @@
         }
     \end{enumerate}
 
-    
+
     А значит $v.p. \int_{-\infty}^{\infty} \frac{e^{ix}}{x} \, dx = \pi i$.
-    
+
     Тогда $I = \frac{1}{2} \Im \left(v.p. \int_{-\infty}^{\infty} \frac{e^{ix}}{x} \, dx\right) = \frac{\pi}{2}$
 \end{example}
 
@@ -1872,7 +1872,7 @@
         }
 
         Тогда получаем, что $I - e^{2 \pi p i} \cdot I = -2 \pi i e^{\pi p i} \implies$
-        
+
         $\implies I = \frac{2 \pi i e^{\pi p i}}{e^{2 \pi p i} - 1} = \pi \cdot \frac{2 i}{e^{\pi p i} -e^{-\pi p i}} = \frac{\pi}{\sin {(\pi p)}}$.
     \end{enumerate}
 \end{example}
@@ -2274,7 +2274,7 @@
                 \includegraphics[width=10cm]{assets/04-functions-of-complex-variables/single-leaf-theorem.png}
             \end{center}
 
-            Найдётся окружность $|z - a| < \varepsilon$, что $|f(z) - b| \neq 0$. Иначе бы на окружности радиуса $\frac{1}{n}$ нашлась точка $z_n$,
+            Найдётся окружность $|z - a| = \varepsilon$, что $|f(z) - b| \neq 0$. Иначе бы на окружности радиуса $\frac{1}{n}$ нашлась точка $z_n$,
             такая, что $f(z_n) = b$, то $f \equiv b$ по теореме единственности, но $f \neq const$ по условию.
 
             $r = \min_{|z - a| = \varepsilon} |f(z) - b| > 0$. Мы хотим показать, что некоторый шарик $B_{\frac{r}{2}}(b) \subset f(\Omega)$, для этого посмотрим на уравнение $f(z) - w = 0$. Хотим понять, что такое уравнение
