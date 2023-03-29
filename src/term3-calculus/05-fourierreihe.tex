@@ -3,7 +3,7 @@
 \begin{definition}
     $\mu$ -- мера, $p \geq 1$.
 
-    $L^{p} (E, \mu)$ -- векторное пр-во, $\{f : E \rightarrow \bar{\mathbb{R}}$ - измеримые, т.ч. $\int_{E} |f|^p d\mu < \infty\}$
+    $L^{p} (E, \mu) := \{f : E \rightarrow \bar{\mathbb{R}}$ - измеримые, т.ч. $\int_{E} |f|^p d\mu < \infty\}$  -- векторное пр-во.
 
     $|| f ||_p = \left( \int_{E} |f|^p d\mu \right)^{\frac{1}{p}}$
 
@@ -22,7 +22,9 @@
 \begin{definition}
     \textbf{Существенный супремум} ($esssup$ или $rraisup$)
 
-    $a$ -- существенный супремум функции $f: E \rightarrow \bar{\mathbb{R}}$, если $a = \inf \{ c : f(x) \leq c \}$ при почти всех $x \in E$.
+    $a$ -- существенный супремум функции $f: E \rightarrow \bar{\mathbb{R}}$,
+    
+    если $a = \inf \{ c \in \mathbb{R} : f(x) \leq c \text{ при почти всех $x \in E$}\}$.
 \end{definition}
 
 \begin{properties}
@@ -78,11 +80,13 @@
 \begin{proof}
     Пусть $q < +\infty$.
 
-    Напишем неравенство Гёльдера $\int_E |f|^p \cdot 1 \, d\mu \leqslant \left( \int_E |f|^q \, d\mu \right)^{\frac{p}{q}} \left( \int 1^{r'} \, d\mu \right)^{\frac{1}{r'}} = (*)$
+    Напишем неравенство Гёльдера:
+    
+    $\int_E |f|^p \cdot 1 \, d\mu \leqslant \left( \int_E \left(|f|^p\right)^{r} \, d\mu \right)^{\frac{1}{r}} \left( \int 1^{r'} \, d\mu \right)^{\frac{1}{r'}} = (*)$
 
-    Здесь $r = \frac{q}{p}, r'$, такое, что $\frac{1}{r} + \frac{1}{r'} = 1 \Rightarrow \frac{1}{r'} = \frac{q - p}{q}$
+    Здесь $\frac{1}{r} + \frac{1}{r'} = 1, \ r = \frac{q}{p} \Rightarrow \frac{1}{r'} = \frac{q - p}{q}$.
 
-    Тогда $(*) = ||f||_q^p (\mu E)^{\frac{q - p}{q}} \Rightarrow ||f||_p \leqslant ||f||_q (\mu E)^{\frac{q - p}{pq}}$
+    Тогда $(*) = \left(||f||_q\right)^p \cdot (\mu E)^{\frac{q - p}{q}} \Rightarrow_{\text{извлекаем корень $p$-ой степени слева и справа}} ||f||_p \leqslant ||f||_q (\mu E)^{\frac{q - p}{pq}}$
 
     Пусть $q = +\infty$, тогда $||f||_p^p = \int_E |f|^p \, d\mu \leqslant \int_E ||f||_\infty^p \, d\mu = \mu E ||f||_\infty^p$
 
