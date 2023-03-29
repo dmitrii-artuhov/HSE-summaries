@@ -2131,46 +2131,56 @@
     $\mathcal{N}_f$ - количество нулей $f$ с учетом кратности в контуре $\gamma$.
 
     $\mathcal{P}_f$ - количество полюсов $f$ с учетом кратности (порядка) в контуре $\gamma$.
-
-    \begin{consequence}
-        Если $f \in H(\Omega)$, $\gamma$ - простая замкнутая кривая, не проходящая через нули $f$, тогда
-        $\frac{1}{2\pi i} \int_{\gamma} \frac{f'(z)}{f(z)} \, dz = \mathcal{N}_f$
-    \end{consequence}
 \end{theorem}
 
-\begin{proof} Теоремы.
+\begin{proof}
 
     Если $a$ - ноль или полюс $f$, то $f(z) = (z - a)^m g(z)$, где $g(a) \neq 0$ и
     $g$ голоморфна в окрестности $a$.
 
     \begin{enumerate}
-        \item Если $a$ - ноль, то $m$ - кратность нуля
-        \item Если $a$ - полюс, то $m$ - порядок полюса.
+        \item Если $a$ -- ноль, то $m$ -- кратность нуля
+        \item Если $a$ -- полюс, то $-m$ -- порядок полюса (т.к. $m$ будет отрицательным числом).
     \end{enumerate}
 
     $f'(z) = m(z - a)^{m - 1} g(z) + (z - a)^m g'(z)$
 
     $\frac{f'(z)}{f(z)} = \frac{m}{z - a} + \frac{g'(z)}{g(z)}$, второе слагаемое голоморфно в окрестности $a$. Значит,
-    $a$ - полюс первого порядка $\frac{f'}{f}$, а $m$ - вычет.
+    $a$ - полюс первого порядка $\frac{f'}{f}$, а $m$ -- вычет.
+    
+    Так как $m$ -- вычет, то со знаком плюс он пойдет в сумму как кратность нуля, а со знаком минус -- как порядок полюса.
 \end{proof}
 
 \begin{consequence}
-    \textbf{Принцип аргумента}
+    \begin{enumerate}
+        \item {            
+            Если $f \in H(\Omega)$, $\gamma$ - простая замкнутая кривая, не проходящая через нули $f$, тогда
+            $\frac{1}{2\pi i} \int_{\gamma} \frac{f'(z)}{f(z)} \, dz = \mathcal{N}_f$
 
-    Пусть $f \in H(\Omega)$, $\gamma$ - простая замкнутая кривая в $\Omega$, не проходящая через
-    нули $f$.
+            \begin{proof}
+                Потребовали голоморфность $f$, а значит, полюсов просто нет.
+            \end{proof}
+        }
+        \item {
+            \textbf{Принцип аргумента}
 
-    Тогда $\mathcal{N}_f = \frac{1}{2\pi} \Delta_{\gamma} \arg f(z)$, где $\Delta_{\gamma}$ - изменение аргумента
-    при движении по кривой.
+            Пусть $f \in H(\Omega)$, $\gamma$ - простая замкнутая кривая в $\Omega$, не проходящая через
+            нули $f$.
+
+            Тогда $\mathcal{N}_f = \frac{1}{2\pi} \Delta_{\gamma} \arg f(z)$, где $\Delta_{\gamma}$ - изменение аргумента
+            при движении по кривой.
+
+            
+            \begin{proof}
+                $\mathcal{N}_f = \frac{1}{2\pi i} \int_{\gamma} \frac{f'(z)}{f(z)} \, dz$. Но $\frac{f'}{f} = (Ln f)'$.
+                Если рассмотрим $Ln$ на кривой $\gamma$, то это будет первообразная вдоль пути $\gamma$ для $\frac{f'}{f}$.
+
+                $\mathcal{N}_f = \frac{1}{2\pi i} \Delta_\gamma (Ln f(z)) = \frac{1}{2 \pi i} (\Delta_\gamma
+                (\ln |f(z)| + i\arg f(z))) = \frac{1}{2\pi} \Delta_{\gamma} \arg f(z)$
+            \end{proof}
+        }
+    \end{enumerate}
 \end{consequence}
-
-\begin{proof}
-    $\mathcal{N}_f = \frac{1}{2\pi i} \int_{\gamma} \frac{f'(z)}{f(z)} \, dz$. Но $\frac{f'}{f} = (Ln f)'$.
-    Если рассмотрим $Ln$ на кривой $\gamma$, то это будет первообразная вдоль пути $\gamma$ для $\frac{f'}{f}$.
-
-    $\mathcal{N}_f = \frac{1}{2\pi i} \Delta_\gamma (Ln f(z)) = \frac{1}{2 \pi i} (\Delta_\gamma
-    (\ln |f(z)| + i\arg f(z))) = \frac{1}{2\pi} \Delta_{\gamma} \arg f(z)$
-\end{proof}
 
 \begin{theorem}
     \textbf{Руше}
