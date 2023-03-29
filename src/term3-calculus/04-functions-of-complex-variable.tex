@@ -2383,21 +2383,21 @@
     $f : \mathbb{D} \to \mathbb{D}$ голомофрная, $f(0) = 0$. Тогда:
     \begin{enumerate}
         \item $|f(z)| \leqslant |z| \forall \, z \in \mathbb{D}$
-        \item Если для какого-то $a$, $|f(a)| = |a|$, то $f(z) = e^{i\phi} z$, где $\phi \in \mathbb{R}$
+        \item Если для какого-то $a \neq 0$, $|f(a)| = |a|$, то $f(z) = e^{i\phi} z$, где $\phi \in \mathbb{R}$
     \end{enumerate}
 \end{lemma}
 
 \begin{proof}
     \begin{enumerate}
         \item {
-            Пусть $g(z) = \frac{f(z)}{z}$, в нуле устранимая особая точка, устраним - получим голоморфную в круге функцию.
+            Пусть $g(z) = \frac{f(z)}{z}$, в нуле устранимая особая точка (т.к. для $f$ $(\cdot)$ $0$ - ноль первого порядка, то $f(z)$ можно разложить в ряд Тейлора в окрестности этой точки, при этом коэфф $c_0 = f(0) = 0$, значит если далее поделить ряд на $z$, то новый ряд для $\frac{f(z)}{z}$ все равно будет сходиться, т.к. слогаемое $\frac{c_0}{z} = \frac{0}{z} = 0$), устраним - получим голоморфную в круге функцию.
             %TODO
-            Согласно принципу максимума, в круге $|g(z)| \leqslant \max_{|z| = r} |g(z)| \leqslant \frac{1}{r} \rightarrow_{r \to 1-} 1$.
+            Согласно принципу максимума (т.е. $\Omega$ - компакт, максимум функции $f \in H(\Omega)$ достигается на границе компакта), в круге $|g(z)| \leqslant \max_{|z| = r} |g(z)| \leqslant \frac{1}{r} \rightarrow_{r \to 1-} 1$.
             И тогда $\frac{|f(z)|}{|z|} \leqslant 1$
         }
         \item {
-            Знаем, что $|g(z)| \leqslant 1$ в $\mathbb{D}$. Если $|g(a)| = 1$, для $a \in \mathbb{D}$, то
-            $a$ локальный максимум модуля и тогла, по принципу максимума, $g \equiv const \Rightarrow g(z) = e^{i\phi}$
+            Знаем, что $|g(z)| \leqslant 1$ в $\mathbb{D}$. Если $|g(a)| = 1$, для $a \in \mathbb{D}$ (значит у нас есть какая-то внутренняя точка, в которой достигается максимум), то
+            $a$ является точкой максимума, тогда по принципу максимума, $g \equiv const \Rightarrow g(z) = e^{i\phi} \Rightarrow f(z) = e^{i\phi} \cdot z$
         }
     \end{enumerate}
 
