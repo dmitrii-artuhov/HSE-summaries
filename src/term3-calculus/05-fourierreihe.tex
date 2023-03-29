@@ -3,17 +3,17 @@
 \begin{definition}
     $\mu$ -- мера, $p \geq 1$.
 
-    $L^{p} (E, \mu)$ -- векторное пр-во, $f : E \rightarrow \bar{\mathbb{R}}$, т.ч. $\int_{E} |f|^p d\mu < \infty$
+    $L^{p} (E, \mu)$ -- векторное пр-во, $\{f : E \rightarrow \bar{\mathbb{R}}$ - измеримые, т.ч. $\int_{E} |f|^p d\mu < \infty\}$
 
     $|| f ||_p = \left( \int_{E} |f|^p d\mu \right)^{\frac{1}{p}}$
-    
+
     \begin{enumerate}
-        \item Нер-во треугольника -- нер-во Минковского
-        \item Неотрицательность
-        \item Константа выносится
-        \item Но в нуле не всегда значение равно нулю
+        \item Нер-во треугольника -- нер-во Минковского: $||f+g||_p \leq ||f||_p + ||g||_p$.
+        \item Неотрицательность: $|| f ||_{p} \geq 0$.
+        \item Константа выносится: $|| \alpha \cdot f ||_p = |\alpha| \cdot ||f||_p$.
+        \item Но в нуле не всегда значение равно нулю: $||f||_p = 0 \Rightarrow$ интеграл от неотрицательной функции $|f|^p$ равен нулю $\Rightarrow$ $f = 0$ \textbf{почти везде}.
     \end{enumerate}
-    
+
     Рассматриваем не функции, а классы эквивалентности с точностью до совпадения почти везде.
 
     Проблема: нет значения функции в точке.
@@ -32,20 +32,18 @@
             $f(x) \leq esssup f$ при почти всех $x$
 
             \begin{proof}
-                $a := esssup f \implies \exists e_n : \ \mu e_n = 0$, т.ч. $f(x) \leq a + \frac{1}{n}$
+                $a := esssup f \implies \exists e_n : \ \mu e_n = 0$ (т.е. существует мн-во $e_n$ нулевой меры), т.ч. $f(x) \leq a + \frac{1}{n}$, $\forall x \in E \setminus e_n$
 
-                $\forall x \in E \setminus e_n$
-
-                $e = \bigcup_{n=1}^{\infty} e_n, \ \mu e = 0$ и $f(x) = a + \frac{1}{n} \ \forall x \in E \setminus e \implies f(x) \leq a \ \forall x \in E \setminus e$.
+                $e = \bigcup_{n=1}^{\infty} e_n, \ \mu e = 0$ и $f(x) = a + \frac{1}{n}, \ \forall x \in E \setminus e \implies f(x) \leq a \ \forall x \in E \setminus e$.
             \end{proof}
         }
     \end{enumerate}
 \end{properties}
 
 \begin{definition}
-    $L^{\infty} (E, \mu), \ f: E \rightarrow \bar{\mathbb{R}}$, т.ч. $esssup |f| < +\infty$.
+    $L^{\infty} (E, \mu) := \{ f: E \rightarrow \bar{\mathbb{R}}$ - измеримые, т.ч. $esssup_{x\in E} |f(x)| < +\infty \}$ - векторное пр-во.
 
-    $|| f ||_{\infty} = esssup |f|$
+    Заведем норму для данного векторного пр-ва: $|| f ||_{\infty} := esssup_{x\in E} |f(x)|$.
 
     \begin{enumerate}
         \item Константа выносится
@@ -56,15 +54,17 @@
     % Тут лекция, видимо, закончилась
     Рассмотрим классы эквивалентности...
 
-    \textbf{Важный частный случай}
+    \textbf{Важный частный случай ($X = \mathbb{N}$)}
 
-    $X = \mathbb{N}$, $\mu$- считающая мера, $l^p = \{ (x_1, x_2, \ldots) \, : \, \sum_{k = 1}^{\infty} |x_k|^p < +\infty \}$
+    $X = \mathbb{N}$, $\mu$- считающая мера, тогда:
 
-    $|| x ||_p = \left( \sum_{k = 1}^{\infty} |x_k|^p \right)^{\frac{1}{p}}$
+    1. $l^p = \{ (x_1, x_2, \ldots) \text{ - последовательность} \, : \, \sum_{k = 1}^{\infty} |x_k|^p < +\infty \}$
 
-    $l^\infty = \{ (x_1, x_2, \ldots) \, : \, \sup |x_k| < +\infty \}$
+        Норма в данном случае: $|| x ||_p = \left( \sum_{k = 1}^{\infty} |x_k|^p \right)^{\frac{1}{p}}$
 
-    $|| x ||_{\infty} = \sup |x_k|$    
+    2. $l^\infty = \{ (x_1, x_2, \ldots) \, : \, \sup |x_k| < +\infty \}$
+
+        Норма в данном случае: $|| x ||_{\infty} = \sup_{k \in \mathbb{N}} |x_k|$
 \end{definition}
 
 \begin{theorem}
@@ -72,15 +72,15 @@
 
     Пусть $\mu E < +\infty$ и $1 \leqslant p \leqslant q \leqslant +\infty$.
 
-    Тогда $L^q (E, \mu) < L^p (E, \mu)$ и $||f||_p \leqslant ||f||_q (\mu E)^{\frac{1}{p}-\frac{1}{q}}$
+    Тогда $L^q (E, \mu) \subset L^p (E, \mu)$ и $||f||_p \leqslant ||f||_q \cdot (\mu E)^{\frac{1}{p}-\frac{1}{q}}$
 \end{theorem}
 
 \begin{proof}
-    Пусть $q < +\infty$. 
-    
+    Пусть $q < +\infty$.
+
     Напишем неравенство Гёльдера $\int_E |f|^p \cdot 1 \, d\mu \leqslant \left( \int_E |f|^q \, d\mu \right)^{\frac{p}{q}} \left( \int 1^{r'} \, d\mu \right)^{\frac{1}{r'}} = (*)$
 
-    Здесь $r = \frac{q}{p}, r'$, такое, что $\frac{1}{r} + \frac{1}{r'} = 1 \Rightarrow \frac{1}{r'} = \frac{q - p}{q}$ 
+    Здесь $r = \frac{q}{p}, r'$, такое, что $\frac{1}{r} + \frac{1}{r'} = 1 \Rightarrow \frac{1}{r'} = \frac{q - p}{q}$
 
     Тогда $(*) = ||f||_q^p (\mu E)^{\frac{q - p}{q}} \Rightarrow ||f||_p \leqslant ||f||_q (\mu E)^{\frac{q - p}{pq}}$
 
@@ -98,7 +98,7 @@
 \begin{proof}
     только для $p < +\infty$
 
-    Пусть $f_n$ - фундаментальная последовательность функций. Мы знаем, что 
+    Пусть $f_n$ - фундаментальная последовательность функций. Мы знаем, что
     $\forall \, \varepsilon > 0 \, \exists N \, : \, \forall \, m, n \geqslant N \, : \, ||f_n - f_m||_p < \varepsilon$
 
     Берём $\varepsilon = \frac{1}{2}, n_1 = N$ для этого $\varepsilon$, далее берём $\varepsilon = \frac{1}{2^2}$ и $n_2 = N$ для этого $\varepsilon$ и так далее.
@@ -108,14 +108,14 @@
 
     Тогда $\sum_{k = 1}^\infty ||f_{n_{k}} - f_{n_{k + 1}}|| < 1$.
 
-    Заведём $S(t) = \sum_{k = 1}^\infty |f_{n_{k}}(t) - f_{n_{k + 1}}(t)|$. $S \, : \, E \to \overline{\mathbb{R}}$. Пусть 
+    Заведём $S(t) = \sum_{k = 1}^\infty |f_{n_{k}}(t) - f_{n_{k + 1}}(t)|$. $S \, : \, E \to \overline{\mathbb{R}}$. Пусть
     $S_n(t)$ - частичная сумма.
 
     $||S_n|| \leqslant ||f_{n_1} - f_{n_2}|| + ||f_{n_2} - f_{n_3}|| + \ldots + ||f_{n_m} - f_{n_{m + 1}}|| < 1$ - норма суммы меньше суммы норм.
 
-    $||S||^p = \int_{E} |S(t)|^p \, dt = \int_E \lim_{n \to +\infty} |S_m(t)|^p \, dt \underbrace{\leqslant}_{\text{л. Фату}} \underline{\lim} \int_E |S_m(t)|^p \, dt = 
+    $||S||^p = \int_{E} |S(t)|^p \, dt = \int_E \lim_{n \to +\infty} |S_m(t)|^p \, dt \underbrace{\leqslant}_{\text{л. Фату}} \underline{\lim} \int_E |S_m(t)|^p \, dt =
     \underline{\lim} ||S_m ||^p \leqslant 1 $
-    
+
     $ \implies \int_E |S(t)|^p \, dt < +\infty \implies S(t) < +\infty$ при почти всех $t$.
 
     А тогда $f_{n_1} + \sum_{k = 1}^\infty (f_{n_k}(t) + f_{n_{k + 1}}(t))$ абсолютно сходится при почти всех $t \implies $ сходится при почти всех $t$.
@@ -125,16 +125,14 @@
 
     Возьмём $n \geqslant n_k$, тогда $||f_n - f|| \leqslant ||f_n - f_{n_k}|| + ||f_{n_k} - f|| \leqslant \frac{1}{2^k}$
 
-    $f_{n_k} - f \rightarrow 0$ почти везде, $\lim \int_E |f_{n_k} - f|^p \, d\mu = \int E \lim |f_{n_k} - f|^p \, d\mu$, а под интегралом 
+    $f_{n_k} - f \rightarrow 0$ почти везде, $\lim \int_E |f_{n_k} - f|^p \, d\mu = \int E \lim |f_{n_k} - f|^p \, d\mu$, а под интегралом
     почти везде 0. Осталось понять, почему есть суммируемая мажоратна.
 
     $f(t) = f_{n_k} + \sum_{j = k}^\infty (f_{n_{j + 1}} - f_{n_j})$. А тогда $|f(t) - f_{n_k}| \leqslant \sum_{j = k}^\infty |f_{n_{j + 1}} - f_{n_j} | \leqslant S(t)$. Тогда $S^p$ - суммируемая мажоранта.
 \end{proof}
 
 \begin{definition}
-    $(X, \rho)$ - метрическое пространство и $A \subset X$.
-
-    $A$ всюда плотно в $X$, если $Cl A = X$.
+    $(X, \rho)$ - метрическое пространство и $A \subset X$. $A$ \textbf{всюду плотно} в $X$ (или \textbf{плотно} в $X$), если $Cl A = X$.
 
     \begin{example}
         $X = \mathbb{R}$ и $A = \mathbb{Q}$.
@@ -152,7 +150,7 @@
 \end{lemma}
 
 \begin{proof}
-    $|\varphi|$ - рассмотрим положительные значения, их конечное число, значит среди них есть наименьшее. Тогда 
+    $|\varphi|$ - рассмотрим положительные значения, их конечное число, значит среди них есть наименьшее. Тогда
     на множестве $E \{ \varphi \neq 0 \}, |\varphi| \geqslant m$
 
     Тогда $\int_E |\varphi|^p \, d\mu = \int_{E \{ \varphi \neq 0 \}} |\varphi|^p \, d\mu \geqslant \int_{E \{ \varphi \neq 0 \}} m^p \, d\mu = m^p \mu E \{ \varphi \neq 0 \}$
@@ -172,8 +170,8 @@
 
             Тогда $||\varphi_n - f||_{\infty} = \sup_{t \in E} |f(t) - \varphi_n(t)| \rightarrow 0$ из равномерной сходимости.
 
-            Если $f$ проивзольная, то $f = f_{+} - f_{-}$. 
-            
+            Если $f$ проивзольная, то $f = f_{+} - f_{-}$.
+
             Здесь $||\varphi_n - f_{+}||_\infty \rightarrow 0$ и $||\psi_n - f_{-}||_\infty \rightarrow 0 \implies ||(f_{+} - f_{-}) - (\varphi_n - \psi_n)||_\infty \rightarrow 0$
         }
         \item {
@@ -206,7 +204,7 @@
     $f$ приближается ступенчатыми функциями, поэтому достаточно научиться приближать только их, то есть
     достаточно научится приближать функции $\mathds{1}_A$, где $A$ - измеримое и конечной меры.
 
-    Рассмотрим $\mathds{1}_A$, найдётся $K$ - компакт и $G$ - открытое, такие, что $K \subset A \subset G$ и 
+    Рассмотрим $\mathds{1}_A$, найдётся $K$ - компакт и $G$ - открытое, такие, что $K \subset A \subset G$ и
     $\lambda (G \setminus K) < \varepsilon$. $\varphi (x) = \frac{d(x, \mathbb{R}^d \setminus G)}{d(x, K) + d(x, \mathbb{R}^d \setminus G)}$.
 
     По определению $d(x, B) = \inf_{y \in B} \rho (x, y)$.
@@ -251,9 +249,9 @@
 
             $||f_h - f||_p \leqslant ||f_h - g_h ||_p + ||g_h - g||_p + ||g - f||_p \leqslant 2\varepsilon + ||g_h - g||_p$.
 
-            $||g_h - g||_p^p = \int_{\mathbb{R}^d} |g_h(x) - g(x)|^p \, dx = (*)$. $g$ нулится вне $B_R (0)$. Тогда 
+            $||g_h - g||_p^p = \int_{\mathbb{R}^d} |g_h(x) - g(x)|^p \, dx = (*)$. $g$ нулится вне $B_R (0)$. Тогда
             $(*) = \int_{B_{R + 1}(0)} |g(x + h) - g(x)|^p \, dx \leqslant \lambda B_{R + 1} (0) \cdot \underbrace{\sup |g(x + h) - g(x)|}_{||g_h - g||_{\infty} \rightarrow 0}$
         }
     \end{enumerate}
-    
+
 \end{proof}
