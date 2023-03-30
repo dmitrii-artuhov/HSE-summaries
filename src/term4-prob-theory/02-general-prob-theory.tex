@@ -674,9 +674,11 @@
 \end{properties}
 
 \begin{remark}
-    $\mathbb{E}(\xi \eta) = \mathbb{E}\xi \cdot \mathbb{E} \eta$ без независимости неверно.
-    Пример.
-    % Тут нужен пример. 
+    $\mathbb{E}(\xi \eta) = \mathbb{E}\xi \cdot \mathbb{E} \eta$ без независимости неверно. 
+    
+    Возьмём $\xi = \pm 1$ с вероятностями $\frac{1}{2}$. Тогда $\mathbb{E} \xi = 0$.
+
+    Также пусть $\eta = \xi$. Тогда $\mathbb{\xi \eta} = \mathbb{E} \xi^2 = 1 \neq (\mathbb{E} \xi)^2$
 \end{remark}
 
 \begin{theorem}
@@ -844,9 +846,11 @@
         \item {
             $cov (\xi, \eta) = \mathbb{E} (\xi \eta) - \mathbb{E}\xi\mathbb{E}\eta$
 
-            \textit{Доказательство: } $\mathbb{E} \xi = a, \mathbb{E} \eta = b$
+            \begin{proof}
+                $\mathbb{E} \xi = a, \mathbb{E} \eta = b$
 
-            $cov(\xi, \eta) = \mathbb{E}((\xi - a)(\eta - b)) = \mathbb{E}(\xi \eta) - a\mathbb{E}\eta - b \mathbb{E} \xi + ab$
+                $cov(\xi, \eta) = \mathbb{E}((\xi - a)(\eta - b)) = \mathbb{E}(\xi \eta) - a\mathbb{E}\eta - b \mathbb{E} \xi + ab$
+            \end{proof}
         }
         \item {
             Если $\xi$ и $\eta$ независимы, то $cov (\xi, \eta) = 0$
