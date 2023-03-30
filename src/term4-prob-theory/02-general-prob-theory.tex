@@ -1128,7 +1128,7 @@
 
     $S_n = \xi_1 + \xi_2 + \ldots + \xi_n$. 
     
-    Тогда $\frac{S_n}{n} - \mathbb{E}\frac{\xi_n}{n} \rightarrow_P 0$.
+    Тогда $\frac{S_n}{n} - \mathbb{E}\frac{S_n}{n} \underset{P}{\rightarrow} 0$.
     То есть вероятность того, что $P(|\frac{S_n}{n} - \mathbb{E}\frac{S_n}{n}| \geqslant \varepsilon) \rightarrow 0$
 \end{theorem}
 
@@ -1145,9 +1145,15 @@
     \textbf{ЗБЧ в форме Чебышёва}
 
     $\xi_1, \xi_2, \ldots$ независимые, одинаково распределенённые случайные величины с конечной дисперсией.
-    $a = \mathbb{\xi_1}$.
+    Пусть $a = \mathbb{E}_{\xi_1}$
     
-    Тогда $P(\left | \frac{S_n}{n} - a \right | \geqslant \varepsilon) \rightarrow 0$ или же $\frac{S_n}{n} \rightarrow_P a$
+    Тогда $P(\left | \frac{S_n}{n} - a \right | \geqslant \varepsilon) \rightarrow 0$ или же $\frac{S_n}{n} \underset{P}{\rightarrow} a$
+
+    \begin{proof}
+        Мат. ожидание всех случайных величин равно, они одинаково распределены. Поэтому 
+        $\mathbb{E} \frac{S_n}{n} = \mathbb{E} \frac{\xi_1 + \ldots + \xi_n}{n} = a$. Поэтому все условия предыдущей 
+        теоремы выполнены
+    \end{proof}
 \end{consequence}
 
 \begin{consequence}
@@ -1155,7 +1161,7 @@
 
     Есть схема Бернулли с вероятностью успеха $p$.
 
-    Тогда $\frac{S_n}{n} \rightarrow_P p$
+    Тогда $\frac{S_n}{n} \underset{P}{\rightarrow} p$
 \end{consequence}
 
 \begin{theorem}
