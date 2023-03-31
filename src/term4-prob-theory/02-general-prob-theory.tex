@@ -602,7 +602,17 @@
         \item {
             \textbf{Свертка с дисректным распределением}
 
-            $\nu = \sum_{k = 1}^{\infty} p_k \delta_{x_k}$. Тогда $\mu * \nu (A) = \int_{\mathbb{R}} \mu (A - x) \, d\nu (x) =
+            $\nu = \sum_{k = 1}^{\infty} p_k \delta_{x_k}$.
+
+            \begin{equation}
+                \delta_{x_k}(A) =
+                \begin{cases}
+                    1, \ x \in A \\
+                    0, \ otherwise
+                  \end{cases}
+            \end{equation}
+
+            Тогда $\mu * \nu (A) = \int_{\mathbb{R}} \mu (A - x) \, d\nu (x) =
             \sum_{k = 1}^{\infty} \mu (A - x_k) p_k$
         }
         \item {
