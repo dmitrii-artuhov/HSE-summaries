@@ -362,9 +362,9 @@
         }
     \end{enumerate}
 
-    $P(S_n = k) = \binom{n}{k} p^k q^{n - k} = \frac{n!}{k!(n - k)!}p^k q^{n - k}$. Напишем формулу Стирлинга:
-
-    Формула Стирлинга: $n! \sim \sqrt{2\pi n} \cdot \left(\frac{n}{e}\right)^{n}$
+    $P(S_n = k) = \binom{n}{k} p^k q^{n - k} = \frac{n!}{k!(n - k)!}p^k q^{n - k}$
+    
+    Напишем формулу Стирлинга ($n! \sim_{n \to \infty} \sqrt{2 \pi n} \cdot n^n e^{-n}$):
 
     $\frac{n^n e^{-n} \sqrt{2\pi n}p^kq^{n-k}}{k^ke^{-k}\sqrt{2\pi n} (n-k)^{n - k} e^{-(n - k)} \sqrt{2 \pi (n - k)}} =$
     $\frac{p^k q^{n - k}}{(\frac{k}{n})^k \cdot (\frac{n - k}{n})^{n - k} \cdot \sqrt{2 \pi \frac{k}{n} (1 - \frac{k}{n})n}}$.
