@@ -36,7 +36,7 @@
 
                 $P(\underbrace{A_1 \cup \dots \cup A_m}_{=: B} \cup A_{m + 1}) = P(B \cup A_{m+1}) = \underbrace{P(B)}_{\text{это умеем расписывать по инд. предп.}} + P(A_{m+1}) - P(B \cap A_{m + 1}) = $
 
-                $= \sum_{j = 1}^{m+1} P(A_j) - sum_{i \not = j}^{m} P(A_i \cap A_j) + \sum_{i \not = j \not = k}^{m} P(A_i \cap A_j \cap A_k) - \underbrace{P(A_{m + 1} \cap B)}_{= P(B_1 \cup B_2 \dots \cup B_m)}$, где $B_i := A_i \cap A_{m + 1}$. 
+                $= \sum_{j = 1}^{m+1} P(A_j) - \sum_{i \not = j}^{m} P(A_i \cap A_j) + \sum_{i \not = j \not = k}^{m} P(A_i \cap A_j \cap A_k) - \underbrace{P(A_{m + 1} \cap B)}_{= P(B_1 \cup B_2 \dots \cup B_m)}$, где $B_i := A_i \cap A_{m + 1}$. 
             \end{proof}
         }
         \item {
@@ -317,7 +317,7 @@
 \begin{theorem}
     \textbf{Прохорова}
 
-    Если $\lambda = np$, то $\sum_{i = 0}^{+\infty} |P(S_n = k) - \frac{\lambda^k}{k!}e^{-\lambda}| \leqslant \frac{2\lambda}{n} \cdot \min(2, \lambda)$
+    Если $\lambda = np$, то $\sum_{k = 0}^{+\infty} |P(S_n = k) - \frac{\lambda^k}{k!}e^{-\lambda}| \leqslant \frac{2\lambda}{n} \cdot \min(2, \lambda)$
 
 \end{theorem}
 
@@ -360,7 +360,9 @@
         }
     \end{enumerate}
 
-    $P(S_n = k) = \binom{n}{k} p^k q^{n - k} = \frac{n!}{k!(n - k)!}p^k q^{n - k}$. Напишем формулу Стирлинга:
+    $P(S_n = k) = \binom{n}{k} p^k q^{n - k} = \frac{n!}{k!(n - k)!}p^k q^{n - k}$
+    
+    Напишем формулу Стирлинга ($n! \sim_{n \to \infty} \sqrt{2 \pi n} \cdot n^n e^{-n}$):
 
     $\frac{n^n e^{-n} \sqrt{2\pi n}p^kq^{n-k}}{k^ke^{-k}\sqrt{2\pi n} (n-k)^{n - k} e^{-(n - k)} \sqrt{2 \pi (n - k)}} =$
     $\frac{p^k q^{n - k}}{(\frac{k}{n})^k \cdot (\frac{n - k}{n})^{n - k} \cdot \sqrt{2 \pi \frac{k}{n} (1 - \frac{k}{n})n}}$.
