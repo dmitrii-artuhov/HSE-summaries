@@ -363,11 +363,13 @@
     \end{enumerate}
 
     $P(S_n = k) = \binom{n}{k} p^k q^{n - k} = \frac{n!}{k!(n - k)!}p^k q^{n - k}$
-    
+
     Напишем формулу Стирлинга ($n! \sim_{n \to \infty} \sqrt{2 \pi n} \cdot n^n e^{-n}$):
 
-    $\frac{n^n e^{-n} \sqrt{2\pi n}p^kq^{n-k}}{k^ke^{-k}\sqrt{2\pi n} (n-k)^{n - k} e^{-(n - k)} \sqrt{2 \pi (n - k)}} =$
+    $\frac{n^n e^{-n} \sqrt{2\pi n}p^kq^{n-k}}{k^k e^{-k} \sqrt{2\pi k} \cdot (n - k)^{n - k} e^{-(n - k)} \sqrt{2 \pi (n - k)}} =$
     $\frac{p^k q^{n - k}}{(\frac{k}{n})^k \cdot (\frac{n - k}{n})^{n - k} \cdot \sqrt{2 \pi \frac{k}{n} (1 - \frac{k}{n})n}}$.
+
+
     Заметим, что $\frac{k}{n} = p + \frac{x\sqrt{pq}}{\sqrt{n}} \rightarrow p$ \\ и $\frac{n - k}{n} \rightarrow q$
 
     Поэтому остаётся доказать, что $\frac{(\frac{k}{n})^k \cdot (\frac{n - k}{n})^{n - k}}{p^k q^{n - k}} \rightarrow e^{\frac{x^2}{2}}$. Прологарифмируем:
@@ -464,12 +466,14 @@
 
     $p = q = \frac{1}{2}$. Нужно, чтобы $n - c \leqslant S_n \leqslant c$. И $P(n - c \leqslant S_n \leqslant c) > \frac{29}{30}$ -- т.е. хотя бы в 29 днях из 30 ближайший к каждому входу гардероб не переполняется.
 
-    $P(n - c \leqslant S_n \leqslant c) = P(\frac{n - c - \frac{n}{2}}{\sqrt{n \cdot \frac{1}{4}}})
-    \leqslant \frac{S_n - \frac{n}{2}}{\sqrt{n \cdot \frac{1}{4}}} \leqslant \frac{c - \frac{n}{2}}{\sqrt{n \cdot \frac{1}{4}}} =
-    P(\frac{800 - c}{20}) \leqslant \frac{S_n - 800}{20} \leqslant \frac{c - 800}{20} \to \Phi (\frac{800 - c}{20}) - \Phi (\frac{c - 800}{20}) =
-    \frac{1}{\sqrt{2\pi}} \int_{\frac{800 - c}{20}}^{\frac{c - 800}{20}} e^{-\frac{t^2}{2}} \, dt > \frac{29}{30}$
+    $P(n - c \leqslant S_n \leqslant c) = P\left(\frac{n - c - \frac{n}{2}}{\sqrt{n \cdot \frac{1}{4}}}
+    \leqslant \frac{S_n - \frac{n}{2}}{\sqrt{n \cdot \frac{1}{4}}} \leqslant \frac{c - \frac{n}{2}}{\sqrt{n \cdot \frac{1}{4}}}\right) =$
 
-    $\Phi_0 (\frac{c - 800}{20}) > \frac{29}{60}$. Тогда $c = 843$.
+
+    $P\left(\frac{800 - c}{20} \leqslant \frac{S_n - 800}{20} \leqslant \frac{c - 800}{20}\right) \to \Phi (\frac{800 - c}{20}) - \Phi (\frac{c - 800}{20}) =
+    \frac{1}{\sqrt{2\pi}} \int_{\frac{800 - c}{20}}^{\frac{c - 800}{20}} e^{-\frac{t^2}{2}} \, dt = 2 \cdot \Phi_0(\frac{c - 800}{20}) > \frac{29}{30}$
+
+    $\Phi_0 (\frac{c - 800}{20}) > \frac{29}{60} \implies c = 843$.
 
 \end{example}
 
