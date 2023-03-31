@@ -1135,21 +1135,36 @@
 \end{theorem}
 
 \begin{proof}
-    $f : \mathbb{R}^m \to \mathbb{R}$ и $g : \mathbb{R}^n \to \mathbb{R}$. $f(\xi_1 \ldots \xi_m)$ и
-    $g(\eta_1 \ldotp \eta_n)$ независимые.
+    $f : \mathbb{R}^m \to \mathbb{R}$ и $g : \mathbb{R}^n \to \mathbb{R}$, $\xi_1 \ldots \xi_m$ и $\eta_1 \ldots \eta_n$ независимые случайные величины.
 
-    Возьмём $\tilde{A}$ и $\tilde{B} \in \mathbb{R}$ борелевские. Надо доказать, что
+    Возьмём $\tilde{A}$ и $\tilde{B} \in \mathbb{R}$ борелевские.
+    
+    Надо доказать, что
+
     $P(f(\xi_1 \ldots \xi_m) \in \tilde{A}) \cdot P(g(\eta_1 \ldots \eta_n) \in \tilde{B}) =
-    P(f(\xi_1, \ldots, \xi_m) \in \tilde{A}, g(\eta_1 \ldotp \eta_n) \in \tilde{B})$.
+    P(f(\xi_1, \ldots, \xi_m) \in \tilde{A}, g(\eta_1 \ldots \eta_n) \in \tilde{B})$.
 
-    $P((\xi_1, \ldots, \xi_m) \in f^{-1} (\tilde{A}) = A) \cdot P((\eta_1, \ldots, \eta_m) \in f^{-1} (\tilde{B}) = B) = P(\ldots)$
+    $P((\xi_1, \ldots, \xi_m) \in \underbrace{f^{-1} (\tilde{A})}_{=: A}) \cdot P((\eta_1, \ldots, \eta_n) \in \underbrace{g^{-1} (\tilde{B})}_{=: B}) = P((\xi_1, \ldots, \xi_m) \in A, \ (\eta_1, \ldots, \eta_n) \in B)$
 
     Поймём это для ячеек.
 
-    $A = (a, b]$, что такое $P((\xi_1, \ldots, \xi_m) \in (a, b]) = P(\xi_1 \in (a_1, b_1], \ldots, \xi_m \in (a_m, b_m]) = P(\ldots) \cdot \ldots \cdot P(\ldots)$.
+    $A = (a, b]: \ (\xi_1, \ldots, \xi_m) \in (a, b] \Leftrightarrow \forall k: \ \xi_k \in (a_k, b_k]$
 
-    Если $A_j$ дизъюнктны $P((\xi_1, \ldots, \xi_m) \in A_j) \cdot P((\eta_1, \ldots, \eta_m) \in B) = P(\ldots).$
-    Просуммируем $P((\xi_1, \ldots, \xi_m) \in \bigsqcup A_j) \cdot P((\eta_1, \ldots, \eta_m) \in B) = P(\ldots)$
+    
+    $B = (c, d]: \ (\eta_1, \ldots, \eta_n) \in (c, d] \Leftrightarrow \forall k: \ \eta_k \in (c_k, d_k]$
+
+    Мы знаем, что 
+
+    $P((\xi, \ldots, \xi_m) \in A, \ (\eta_1, \ldots, \eta_n) \in B) = P(\forall k: \ \xi_k \in (a_k, b_k], \ \forall k: \ \eta_k \in (c_k, d_k]) = \prod_{k=1}^{m} P(\xi_k \in (a_k, b_k]) \cdot \prod_{k=1}^{n} P(\eta_k \in (c_k, d_k])$
+
+    Но $\prod_{k=1}^{m} P(\xi_k \in (a_k, b_k]) = P((\xi_1, \ldots, \xi_m) \in A)$, а $\prod_{k=1}^{n} P(\eta_k \in (c_k, d_k]) = P((\eta_1, \ldots, \eta_n) \in B)$.
+
+    То есть доказали на ячейках, а значит и доказали теорему.
+    
+    % $P((\xi_1, \ldots, \xi_m) \in (a, b]) = P(\xi_1 \in (a_1, b_1], \ldots, \xi_m \in (a_m, b_m]) = P(\xi_1 \in (a_1, b_1]) \cdot \ldots \cdot P(\xi_m \in (a_m, b_m])$.
+
+    % Если $A_j$ дизъюнктны $P((\xi_1, \ldots, \xi_m) \in A_j) \cdot P((\eta_1, \ldots, \eta_m) \in B) = P(\ldots).$
+    % Просуммируем $P((\xi_1, \ldots, \xi_m) \in \bigsqcup A_j) \cdot P((\eta_1, \ldots, \eta_m) \in B) = P(\ldots)$
 \end{proof}
 
 \begin{definition}
