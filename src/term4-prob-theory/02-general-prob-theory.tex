@@ -584,7 +584,9 @@
 
     Пусть $B = \{ (x, y) : x + y \in A \}$
 
-    $P_{\xi + \eta} (A) = P(\xi + \eta \in A) = P((\xi, \eta) \in B) = P_{\xi, \eta} (B) =
+    $P_{\xi + \eta} (A) = P(\xi + \eta \in A) = P((\xi, \eta) \in B) = P_{\xi, \eta} (B) =\int_{\mathbb{R}^2} \mathds{1}_{B}(x, y) d P_{\xi, \eta}(x, y) =$
+    
+    $\underbrace{=}_{\text{т.к. $\xi$ и $\eta$ независимые}}
     \int_{\mathbb{R}^2} \mathds{1}_B (x, y) d P_{\xi} (x) \, dP_{\eta} (y) =
     \int_{\mathbb{R}^2} \mathds{1}_A (x + y) d P_{\xi} (x) \, dP_{\eta} (y) = P_{\xi} * P_{\eta} (A)$
 \end{proof}
