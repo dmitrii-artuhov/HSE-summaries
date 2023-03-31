@@ -94,7 +94,7 @@
 \begin{theorem}
     \textbf{Закон нуля и единицы}
 
-    Если $A_1, A_2 \ldots$ независимы, то $P(B) = 0$ или $P(B) = 1$.
+    Если $A_1, A_2 \ldots$ независимы, то $P(B) = 0$ или $P(B) = 1$. При $B = \bigcap_{n = 1}^{\infty} \bigcup_{k = n}^{\infty} A_k$.
 \end{theorem}
 
 \begin{example}
@@ -246,12 +246,16 @@
 
 \begin{definition}
     Случайная величина имеет непрерывное распределение, если
-    $P(\xi = x) = 0$
+    $\forall x\in \mathbb{R}: P(\xi = x) = 0$
 
     \begin{remark}
         \begin{enumerate}
             \item {
-                Это значит, что фукнция распределения непрерывна.
+                $\xi$ -- имеет непрерывное распределение $\Longleftrightarrow$ $F_{\xi}$ непрерывна во всех точках.
+
+                $P(\xi < x) = \lim_{y\rightarrow x-}P(\xi \leq y) = \lim_{y\rightarrow x-} F_{\xi}(y)$
+
+                $0 = P(\xi = x) = P(\xi \leq x) - P(\xi < x) = F_{\xi}(x) - \lim_{y\rightarrow x-}F_{\xi}(y) \Rightarrow F_{\xi}(x) = \lim_{y\rightarrow x-}F_{\xi}(y)$
             }
             \item {
                 Непрерывные распределения бывают не очень хорошими, например
@@ -302,7 +306,7 @@
         \item {
             Биномиальное распределение: $\xi \sim Binom(p, n), 0 < p < 1$
 
-            $\xi : \Omega \to \{ 0, 1, \ldots n \}$. $P(\xi = k) \binom{n}{k} p^k (1 - p)^{n - k}$
+            $\xi : \Omega \to \{ 0, 1, \ldots n \}$. $P(\xi = k) = \binom{n}{k} p^k (1 - p)^{n - k}$
         }
         \item {
             Распределение Пуассона: $\xi \sim Poisson(\lambda), \lambda > 0$.
