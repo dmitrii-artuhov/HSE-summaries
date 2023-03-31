@@ -951,9 +951,9 @@
 
 \begin{theorem}
 
-    $v_1, v_2 \ldots v_n \in \mathbb{R}^n$ - единичные векторы, тогда
+    $v_1, v_2 \ldots v_n \in \mathbb{R}^n$ - векторы единичной длины, тогда
     существует расстановка знаков $\varepsilon_1 = \pm 1, \ldots, \varepsilon_n = \pm 1$,
-    такие, что $||\varepsilon_1 v_1 + \ldots + \varepsilon_nv_n|| \leqslant \sqrt{n}$.
+    такая, что $||\varepsilon_1 v_1 + \ldots + \varepsilon_nv_n|| \leqslant \sqrt{n}$.
 
     \begin{remark}
         Эта оценка не улучшаема, если все вектора попарно ортогональны, тогда
@@ -965,14 +965,16 @@
     Пусть $\varepsilon_1 \ldots \varepsilon_n$ - независимые случайные величины, такие, что:
 
     $
-    \xi_{i} =
+    \varepsilon_{i} =
     \begin{cases}
         1, & \text{с вероятностью $\frac{1}{2}$} \\
         -1, & \text{с вероятностью $\frac{1}{2}$}
     \end{cases}
     $
 
-    $\xi = || \varepsilon_1 v_1 + \ldots + \varepsilon_nv_n ||^2 $. И тогда $\mathbb{E} \xi = \mathbb{E} \left < v, v \right >  =
+    Введем величину $\xi = || \varepsilon_1 v_1 + \ldots + \varepsilon_nv_n ||^2 $.
+    
+    Тогда $\mathbb{E} \xi = \mathbb{E} \left < v, v \right >  =
     \mathbb{E} (\sum_{i, j = 1}^n \varepsilon_i \varepsilon_j \left < v_i, v_j \right >) =
     \sum_{i, j = 1}^n \left < v_i, v_j \right > \mathbb{E} \varepsilon_i \varepsilon_j =
     \sum_{i = 1}^n \left < v_i, v_j \right > = n$.
@@ -1012,22 +1014,26 @@
     \end{enumerate}
 \end{proof}
 
-\begin{example}
-    $\Omega = \{ 1, 2 \ldots n \}$, пусть $\nu (k)$ - число различных простых В
-    разложении $k$.
+% \begin{example}
+    % $\Omega = \{ 1, 2 \ldots n \}$, пусть $\nu (k)$ - число различных простых В
+    % разложении $k$.
 
     \begin{theorem}
         \textbf{Харди-Рамануджана}
 
-        Если $w(n) \to +\infty$, то $P(k \, : \, | \nu (k) - \ln \ln n| \geqslant w(n) \sqrt{\ln \ln n}) \to 0$
+        Пусть $\nu (k)$ -- число различных простых делителей в разложении $k$. 
+        
+        Хотим понять, чему будет равно это число, если мы наугад возьмем число из мн-ва $\{1, 2, \ldots, n\}$.
+
+        $P(| \nu (k) - \ln \ln n| \geqslant w(n) \sqrt{\ln \ln n}) \to_{n \to \infty} 0$, где $w(n) \to_{n \to \infty} +\infty$ и $k \in \{1, 2, \ldots, n\}$. 
     \end{theorem}
-\end{example}
+% \end{example}
 
 \begin{proof}
     Пусть $m = \sqrt[10]{n}$. $p \leqslant m$ - простое и
 
     $
-    \xi_p =
+    \xi_p(k) =
     \begin{cases}
         1, & \text{если $k$ делится на $p$} \\
         0, & \text{иначе}
@@ -1035,45 +1041,79 @@
     $
 
     $\xi = \sum_{p \leqslant m} \xi_p$ - количество различных простых $\leqslant m$. Тогда
-    $\nu(k) - 10 \leqslant \xi (k) \leqslant \nu (k)$. Посчитаем матожидание $\xi$.
+    $\nu(k) - 10 \leqslant \xi (k) \leqslant \nu (k)$.
+    
+    Посчитаем матожидание $\xi$, тогда посчитаем мат. ожидание слагаемых:
 
     $\mathbb{E} \xi_p = \frac{[\frac{n}{p}]}{n} \leqslant \frac{\frac{n}{p}}{n} = \frac{1}{p}$. С другой стороны,
     $\mathbb{E} \xi_p \geqslant \frac{\frac{n}{p} - 1}{n} = \frac{1}{p} - \frac{1}{n}$.
 
-    Значит $\mathbb{E}\xi = \sum_{p \leqslant m} \mathbb{E}\xi_p. \sum_{p \leqslant m} \frac{1}{p} - \frac{m}{n} \leqslant
+    Знаем, что $\mathbb{E}\xi = \sum_{p \leqslant m} \mathbb{E}\xi_p$, тогда
+    
+    $\sum_{p \leqslant m} \frac{1}{p} - \frac{m}{n} \leqslant
     \sum_{p \leqslant m} \mathbb{E}\xi_p \leqslant \sum_{p \leqslant m} \frac{1}{p} = \ln \ln m + \mathcal{O}(1) =
     \ln \ln n + \mathcal{O}(1)$. Оценка в другую сторону аналогично, потому что $\frac{m}{n} \leqslant 1$.
 
-    Теперь считаем дисперсию.
+    Теперь считаем дисперсию для $\xi_p$:
 
-    $\mathbb{D}\xi_p = \mathbb{E}\xi_p^2 - (\mathbb{E}\xi_p)^2 = \mathbb{E}\xi_p - (\mathbb{E}\xi_p)^2 \leqslant \frac{1}{p} - \frac{1}{p^2} + \frac{1}{n}$.
-    С другой стороны $\mathbb{E}\xi_p^2 - (\mathbb{E}\xi_p)^2 \geqslant \frac{1}{p} - \frac{1}{n} - \frac{1}{p^2}$.
+    $\mathbb{D}\xi_p = \mathbb{E}\xi_p^2 - (\mathbb{E}\xi_p)^2 = \mathbb{E}\xi_p - (\mathbb{E}\xi_p)^2 = \frac{1}{p} - \frac{1}{p^2} + \mathcal{O}(\frac{1}{n})$
 
-    $\sum_{p \leqslant m} \mathbb{D} \xi_p \sum_{p \leqslant m} \frac{1}{p} - \frac{1}{p^2} + \mathcal{O}(\frac{1}{n}) = \ln \ln n + \mathcal{O}(1)$.
+    % $\sum_{p \leqslant m} \mathbb{D} \xi_p \sum_{p \leqslant m} \frac{1}{p} - \frac{1}{p^2} + \mathcal{O}(\frac{1}{n}) = \ln \ln n + \mathcal{O}(1)$.
 
-    $cov(\xi_p, \xi_q) = \mathbb{E}\xi_p \xi_q = \mathbb{E} (\xi_p \xi_q) - \mathbb{E} \xi_p \mathbb{E}\xi_q$. Здесь
-    $\frac{1}{pq} - \frac{1}{n} \leqslant \mathbb{E} \xi_p \xi_q \leqslant \frac{1}{pq}$. Тогда $cov(\xi_p, \xi_q) \leqslant
-    \frac{1}{pq} - (\frac{1}{p} - \frac{1}{n})(\frac{1}{q} - \frac{1}{n}) = \frac{1}{n}(\frac{1}{p} + \frac{1}{q}) - \frac{1}{n^2} \leqslant \frac{1}{n}(\frac{1}{p} + \frac{1}{q})$.
-    Также оцениваем в другую сторону.
+    % $cov(\xi_p, \xi_q) = \mathbb{E}\xi_p \xi_q = \mathbb{E} (\xi_p \xi_q) - \mathbb{E} \xi_p \mathbb{E}\xi_q$. Здесь
+    % $\frac{1}{pq} - \frac{1}{n} \leqslant \mathbb{E} \xi_p \xi_q \leqslant \frac{1}{pq}$. Тогда $cov(\xi_p, \xi_q) \leqslant
+    % \frac{1}{pq} - (\frac{1}{p} - \frac{1}{n})(\frac{1}{q} - \frac{1}{n}) = \frac{1}{n}(\frac{1}{p} + \frac{1}{q}) - \frac{1}{n^2} \leqslant \frac{1}{n}(\frac{1}{p} + \frac{1}{q})$.
+    % Также оцениваем в другую сторону.
 
-    $-\frac{m^2}{n} = \mathcal{O}(1) \leqslant \sum_{p \neq q} cov (\xi_p, \xi_q) \leqslant \frac{1}{n}(\sum_{p \neq q} (\frac{1}{p} + \frac{1}{q})) =
-    \frac{2m}{n} \sum_{p \leqslant m} \frac{1}{p} = \mathcal{O}(1)$.
+    Теперь оценим ковариацию:
+    
+    $cov(\xi_p, \xi_q) = \underbrace{\mathbb{E} (\xi_p \xi_q)}_{\text{аргумент равен 1, когда $n \divby pq$}} - \mathbb{E}\xi_p \mathbb{E} \xi_q = \frac{\left[\frac{n}{pq}\right]}{n} - \frac{\left[ \frac{n}{p} \right]}{n} \cdot \frac{\left[\frac{n}{q}\right]}{n} = (*)$.
 
-    $\mathbb{D}\xi = \ln \ln n + \mathcal{O}(1)$. Теперь применим Чебышёва.
+    Оценим $(*)$ с двух сторон:
+
+    \begin{enumerate}
+        \item {
+            $(*) \geq \frac{\frac{n}{pq} - 1}{n} - \frac{\frac{n}{p}}{n} \cdot \frac{\frac{n}{q}}{n} = -\frac{1}{n}$
+        }
+        \item {
+            $(*) \leq \frac{\frac{n}{pq}}{n} - \frac{\frac{n}{p} - 1}{n} \cdot \frac{\frac{n}{q} - 1}{n} \leq (\frac{1}{p} + \frac{1}{q}) \cdot \frac{1}{n}$
+        }
+    \end{enumerate}
+
+    Теперь смотрим на сумму ковариаций (так как она фигурирует как слагаемое для $\mathbb{D} \xi$):
+
+    $\underbrace{\frac{1}{n} \cdot \sum_{p < q \leq m} \left(\frac{1}{p} + \frac{1}{q}\right)}_{=\frac{1}{2n} \sum_{p \neq q, \ p, q \leq m} \left(\frac{1}{p} + \frac{1}{q}\right) \leq \frac{1}{2n} 2 m \sum_{p \leq m} \frac{1}{p} = \mathcal{O}(1)} \geq \sum_{p < q \leq m} cov(\xi_p, \xi_q) \geq - \frac{m^2}{n} = \mathcal{O}(1)$
+
+    Теперь оцениваем дисперсию для $\xi$:
+
+    $\mathbb{D} \xi = \sum_{p \leq m} \mathbb{D} \xi_p + \underbrace{2 \sum_{p < q \leq m} cov(\xi_p, \xi_q)}_{=\mathcal{O}(1)} = \sum_{p \leq m} \left(\frac{1}{p} - \frac{1}{p^2} + \mathcal{O}(\frac{1}{n})\right) + \mathcal{O}(1) =$
+    
+    $= \sum_{p \leq m} \frac{1}{p} + \mathcal{O}(1) = \ln \ln m + \mathcal{O}(1) = \ln \ln n + \mathcal{O}(1)$.
+
+    % $-\frac{m^2}{n} = \mathcal{O}(1) \leqslant \sum_{p \neq q} cov (\xi_p, \xi_q) \leqslant \frac{1}{n}(\sum_{p \neq q} (\frac{1}{p} + \frac{1}{q})) =
+    % \frac{2m}{n} \sum_{p \leqslant m} \frac{1}{p} = \mathcal{O}(1)$.
+
+    % $\mathbb{D}\xi = \ln \ln n + \mathcal{O}(1)$.
+    
+    Теперь применим Чебышёва.
 
     $P(|\xi - \mathbb{E} \xi| \geqslant t) \leqslant \frac{\mathbb{D}\xi}{t^2}$. В качестве $t$ подставим $w(n) \sqrt{\ln \ln n}$.
 
-    Тогда $P (|\nu - \ln \ln n| \geqslant w(n) \sqrt{\ln \ln n}) < P(|\xi - \mathbb{E} \xi| \geqslant w(n) \sqrt{\ln \ln n}) \leqslant \frac{\mathbb{D}\xi}{w^2(n) \ln \ln n} \to 0$.
+    Тогда $P (|\nu(k) - \ln \ln n| \underbrace{\geqslant}_{(**)} w(n) \sqrt{\ln \ln n}) < P(|\xi - \mathbb{E} \xi| \geqslant w(n) \sqrt{\ln \ln n}) \leqslant \frac{\mathbb{D}\xi}{w^2(n) \ln \ln n} \to 0$.
+
+    $(**):$ такое нер-во можно писать, так как $|\nu(k) - \xi(k)| \leq 10$ и $\mathbb{E} \xi = \ln \ln n \mathcal{O}(1)$.
 
 \end{proof}
 
-\begin{remark}
-    \begin{theorem}
-        \textbf{Эрдёша-Каца}
+% \begin{remark}
+\begin{theorem}
+    \textbf{Эрдёша-Каца}
 
-        $P(k \in \Omega \, : \, a \leqslant \frac{|\nu (k) - \ln \ln n|}{\sqrt{\ln \ln n}} \leqslant b ) \rightarrow \frac{1}{\sqrt{2\pi}} \int_{a}^{b} e^{-\frac{t^2}{2}} \, dt $
-    \end{theorem}
-\end{remark}
+    % $P(k \in \Omega \, : \, a \leqslant \frac{|\nu (k) - \ln \ln n|}{\sqrt{\ln \ln n}} \leqslant b ) \rightarrow \frac{1}{\sqrt{2\pi}} \int_{a}^{b} e^{-\frac{t^2}{2}} \, dt $
+
+    $\lim_{n \to \infty} \frac{ \# \{ k \leq n : \, a \leqslant \frac{|\nu (k) - \ln \ln n|}{\sqrt{\ln \ln n}} \leqslant b \} }{n} \rightarrow \frac{1}{\sqrt{2\pi}} \int_{a}^{b} e^{-\frac{t^2}{2}} \, dt $
+\end{theorem}
+% \end{remark}
 
 \Subsection{Сходимость последовательностей случайных величин}
 
