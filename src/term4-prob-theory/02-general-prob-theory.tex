@@ -1173,33 +1173,129 @@
     \begin{enumerate}
         \item $\xi_n$ сходится к $\xi$ почти наверное, если $P(w \in \Omega : \lim_{n \to \infty} \xi_n(w) = \xi (w)) = 1$
         \item $\xi_n$ сходится к $\xi$ в среднем порядка $r > 0$, если $\mathbb{E} (|\xi_n - \xi|^r) \rightarrow_{n \to \infty} 0$
-        \item $\xi_n$ сходится к $\xi$ по вероятности, если $\forall \varepsilon > 0,  \, P(|\xi_n - \xi| \geqslant \varepsilon) \rightarrow_{n \to \infty} 0$
-        \item $\xi_n : \Omega_n \to \mathbb{R}$. $\xi_n$ сходится к $\xi$ по распределению, если
-        $\lim_{n \to \infty} F_{\xi_n} (x) = F_{\xi} (x)$ во всех точках непрерывности $F_{\xi}$
+        \item $\xi_n$ сходится к $\xi$ по вероятности, если $\forall \varepsilon > 0,  \, P(\omega \in \Omega : |\xi_n(\omega) - \xi(\omega)| \geqslant \varepsilon) \rightarrow_{n \to \infty} 0$
+        \item {
+            $\xi_n : \Omega_n \to \mathbb{R}$.
+            
+            $\xi_n$ сходится к $\xi$ по распределению, если $\lim_{n \to \infty} F_{\xi_n} (x) = F_{\xi} (x)$ во всех точках непрерывности $F_{\xi}$.
+        }
     \end{enumerate}
 
-    Связь между ними $1 \Rightarrow 3, 2 \Rightarrow 3$ (неравенство Маркова). При этом $3 \not \Rightarrow 1, 2 \not \Rightarrow 1$
-    \color{red}
-      TODO
-    \color{black}
-    %TODO
-    %TODO
 
-    $4 \not \Rightarrow 3$. Да и вообще они на разных вероятностных пространствах,
-    так что постановка вопроса в целом неверная.
+    Связь между сходимостями:
 
-    $3 \Rightarrow 4$. $\{ \xi_n > x \} \supset \{ \xi > x+ \varepsilon \} \cap \{ |\xi_n - \xi| < \varepsilon \}$. Также верно обратное:
-    $\{ \xi_n \leqslant x \} \subset \{ \xi \leqslant x+ \varepsilon \} \cup \{ |\xi_n - \xi| \geqslant \varepsilon \}$.
+    \begin{enumerate}
+        \item {
+            $1 \Rightarrow 3$: теорема Лебега из теории меры
+        }
+        \item {
+            $2 \Rightarrow 3$:
 
-    Тогда $F_{\xi_n}(x) \leqslant F_{\xi}(x + \varepsilon) + P(|\xi_n - \xi| \geqslant \varepsilon)$.
-    $\bar{\lim} F_{\xi_n}(x) \leqslant F_{\xi}(x + \varepsilon) + \bar{\lim} P(|\xi_n - \xi| \geqslant \varepsilon) = F_{\xi}(x + \varepsilon)$.
+            Пишем нер-во Маркова
 
-    $\{ \xi_n > x \} \subset \{ \xi > x - \varepsilon \} \cup \{ |\xi_n - \xi| \geqslant \varepsilon \}$ - запишем через вероятности.
-    $1 - F_{\xi_n}(x) \leqslant 1 - F_{\xi}(x - \varepsilon) + P(|\xi_n - \xi| \geqslant \varepsilon)$. То есть
-    $\underline{\lim} F_{\xi_n}(x) \geqslant F_{\xi}(x - \varepsilon) - \lim P(|\xi_n - \xi| \geqslant \varepsilon) = F_{\xi}(x - \varepsilon)$.
+            $P(|\xi_n - \xi| \geq \varepsilon) \leq \frac{\mathbb{E} |\xi_n - \xi|^r}{\varepsilon^r} \rightarrow 0$.
+        }
+        \item {
+            $2 \not \Rightarrow 1$:
 
-    То есть $F_{\xi}(x - \varepsilon) \leqslant \underline{\lim} F_{\xi_n}(x) \leqslant \overline{\lim} F_{\xi_n}(x) \leqslant F_{\xi}(x + \varepsilon)$ - верно для любого $n$.
-    Устремим $\varepsilon \rightarrow 0$. Тогда $F_{\xi}(x) \leqslant \underline{\lim} F_{\xi_n}(x) \leqslant \overline{\lim} F_{\xi_n}(x) \leqslant F_{\xi}(x)$, но левая и правая штука равны.
+            $\Omega := [0, 1), \ P := \lambda$ (мера Лебега).
+
+            Возьмем такую последовательность функций, для которой нет такого следствия:
+
+            $\mathds{1}_{[0, 1)}, \mathds{1}_{[0, \frac{1}{2})}, \mathds{1}_{[\frac{1}{2}, 1)}, \mathds{1}_{[0, \frac{1}{3})}, \mathds{1}_{[\frac{1}{3}, \frac{2}{3})}, \mathds{1}_{[\frac{2}{3}, 1)}, \ldots$
+
+            Тогда $\mathbb{E} |\xi_n|^r = \mathbb{E} \ \mathds{1}_{[\frac{k}{m}, \frac{k+1}{m})} = \frac{1}{m} \to \infty$, то сх-ть в среднем есть.
+
+            Сх-ти почти наверное нет, потому что ни в одной точке нет сх-ти, так как у $\xi_n(\omega)$ сколько угодно далеко есть как значения $1$, так и значения $0$.
+
+            Иными словами $\lim \xi_n(\omega)$ не существует.
+        }
+        \item {
+            $3 \not \Rightarrow 1$:
+
+            верно, так как $2 \Rightarrow 3$, но $2 \not \Rightarrow 1$. 
+        }
+        \item {
+            $1 \not \Rightarrow 3$:
+
+            $\Omega := [0, 1], \ P:=\lambda$ (мера Лебега).
+
+            $\xi_n(\omega) = n^{\frac{1}{r}} \cdot \mathds{1}_{[0, \frac{1}{n})}$.
+
+            Тогда $\xi_n(\omega) \rightarrow 0$ при $\omega \neq 0$, тогда $\xi_n$ сх-ся к $\xi \equiv 0$ почти наверное.
+
+            $\mathbb{E}|\xi_n|^r = \mathbb{E} \left( n \mathds{1}_{[0, \frac{1}{n})} \right) = 1 \not \to 0$
+        }
+        \item {
+            $3 \not \Rightarrow 2$:
+
+            верно, так как $1 \not \Rightarrow 3$.
+        }
+        \item {
+            $3 \Rightarrow 4$:
+
+            Хотим понять, что $P(\xi_1 \leq x) \to P(\xi \leq x)$ если $x$ -- точка непрерывности $F_{\xi}$.
+
+            $\{ \xi_n \leq x \} \subset \{ \xi \leq x + \varepsilon \} \cup \{ |\xi_n - \xi| > \varepsilon \}$
+
+            $P (\xi_n \leq x) \subset P(\xi \leq x + \varepsilon) + P(|\xi_n - \xi| > \varepsilon)$
+
+            Напишем верхние пределы для этого нер-ва:
+
+            $\overline{\lim} P(\xi_n \leq x) \leq \underbrace{P(\xi \leq x + \varepsilon)}_{\text{это просто $const$}} + \underbrace{\overline{\lim} P(|\xi_n - \xi| > \varepsilon)}_{\to 0, \text{ т.к. сх-ть по вероятности}}$
+
+            Теперь надо подпереть чем-то снизу:
+
+            $\{ \xi_n \leq x \} \supset \{ \xi \leq x - \varepsilon \} \setminus \{ |\xi_n - \xi| > \varepsilon \}$
+
+            
+            $P(\xi_n \leq x) \geq P(\xi \leq x - \varepsilon) - P(|\xi_n - \xi| > \varepsilon)$
+
+            Теперь пишем нижние пределы:
+
+            $\underline{\lim} P(\xi_n \leq x) \geq \underbrace{P(\xi \leq x - \varepsilon)}_{= const} - \underbrace{P(|\xi_n - \xi| > \varepsilon)}_{\to 0}$
+
+            Тогда получаем, что
+            
+            $F_{\xi} (x - \varepsilon) \leq \underline{\lim} F_{\xi_n}(x) \leq \overline{\lim} F_{\xi_n} (x) \leq F_{\xi} (x + \varepsilon)$
+
+            Теперь устремим $\varepsilon \to 0$, тогда
+
+            $F_{\xi}(x) \leq \underline{\lim} F_{\xi_n} (x) \leq \overline{\lim} F_{\xi_n} (x) \leq F_{\xi}(x)$
+
+            Тогда $\lim_{n \to \infty} F_{\xi_n}(x) = F_{\xi} (x)$ -- доказали стрелочку.
+        }
+        \item {
+            $4 \not \Rightarrow 3, 2, 1$:
+
+            из-за разных определений (где-то одно вероятностное пр-во, а где-то их может быть много разных)
+        }
+    \end{enumerate}
+
+
+
+    % Связь между ними $1 \Rightarrow 3, 2 \Rightarrow 3$ (неравенство Маркова). При этом $3 \not \Rightarrow 1, 2 \not \Rightarrow 1$
+    % \color{red}
+    %   TODO
+    % \color{black}
+    % %TODO
+    % %TODO
+
+    % $4 \not \Rightarrow 3$. Да и вообще они на разных вероятностных пространствах,
+    % так что постановка вопроса в целом неверная.
+
+    % $3 \Rightarrow 4$. $\{ \xi_n > x \} \supset \{ \xi > x+ \varepsilon \} \cap \{ |\xi_n - \xi| < \varepsilon \}$. Также верно обратное:
+    % $\{ \xi_n \leqslant x \} \subset \{ \xi \leqslant x+ \varepsilon \} \cup \{ |\xi_n - \xi| \geqslant \varepsilon \}$.
+
+    % Тогда $F_{\xi_n}(x) \leqslant F_{\xi}(x + \varepsilon) + P(|\xi_n - \xi| \geqslant \varepsilon)$.
+    % $\bar{\lim} F_{\xi_n}(x) \leqslant F_{\xi}(x + \varepsilon) + \bar{\lim} P(|\xi_n - \xi| \geqslant \varepsilon) = F_{\xi}(x + \varepsilon)$.
+
+    % $\{ \xi_n > x \} \subset \{ \xi > x - \varepsilon \} \cup \{ |\xi_n - \xi| \geqslant \varepsilon \}$ - запишем через вероятности.
+    % $1 - F_{\xi_n}(x) \leqslant 1 - F_{\xi}(x - \varepsilon) + P(|\xi_n - \xi| \geqslant \varepsilon)$. То есть
+    % $\underline{\lim} F_{\xi_n}(x) \geqslant F_{\xi}(x - \varepsilon) - \lim P(|\xi_n - \xi| \geqslant \varepsilon) = F_{\xi}(x - \varepsilon)$.
+
+    % То есть $F_{\xi}(x - \varepsilon) \leqslant \underline{\lim} F_{\xi_n}(x) \leqslant \overline{\lim} F_{\xi_n}(x) \leqslant F_{\xi}(x + \varepsilon)$ - верно для любого $n$.
+    % Устремим $\varepsilon \rightarrow 0$. Тогда $F_{\xi}(x) \leqslant \underline{\lim} F_{\xi_n}(x) \leqslant \overline{\lim} F_{\xi_n}(x) \leqslant F_{\xi}(x)$, но левая и правая штука равны.
 
 \end{definition}
 
