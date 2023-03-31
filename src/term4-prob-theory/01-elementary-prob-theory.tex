@@ -27,7 +27,7 @@
 
             \begin{proof}
                 Индукция по $m$.
-                
+
                 База $m = 2$.
 
                 Переход $m \rightarrow m + 1$:
@@ -36,7 +36,7 @@
 
                 $P(\underbrace{A_1 \cup \dots \cup A_m}_{=: B} \cup A_{m + 1}) = P(B \cup A_{m+1}) = \underbrace{P(B)}_{\text{это умеем расписывать по инд. предп.}} + P(A_{m+1}) - P(B \cap A_{m + 1}) = $
 
-                $= \sum_{j = 1}^{m+1} P(A_j) - \sum_{i \not = j}^{m} P(A_i \cap A_j) + \sum_{i \not = j \not = k}^{m} P(A_i \cap A_j \cap A_k) - \underbrace{P(A_{m + 1} \cap B)}_{= P(B_1 \cup B_2 \dots \cup B_m)}$, где $B_i := A_i \cap A_{m + 1}$. 
+                $= \sum_{j = 1}^{m+1} P(A_j) - \sum_{i \not = j}^{m} P(A_i \cap A_j) + \sum_{i \not = j \not = k}^{m} P(A_i \cap A_j \cap A_k) - \underbrace{P(A_{m + 1} \cap B)}_{= P(B_1 \cup B_2 \dots \cup B_m)}$, где $B_i := A_i \cap A_{m + 1}$.
             \end{proof}
         }
         \item {
@@ -89,9 +89,12 @@
 \end{proof}
 
 \begin{example}
+
+    Пусть есть 2 урны с шариками:
+
     \begin{enumerate}
         \item[I.] $3$ белых шара, $5$ черных шаров
-        \item[II.] $5$ белых, $5$ черных  
+        \item[II.] $5$ белых, $5$ черных
     \end{enumerate}
 
     $2$ шара из $I$ положили в $II$, затем вынули 1 шар из $II$, $P(\text{вынули белый}) = ?$
@@ -101,16 +104,16 @@
     $B_0, \ B_1, \ B_2$, где $B_j$ -- переложили $j$ белых шаров из $I$ в $II$.
 
     Тогда $P(A | B_0) = \frac{5}{12}, \ P(A | B_1) = \frac{1}{2}, \ P(A | B_2) = \frac{7}{12}$.
-    
+
     $P(B_0) = \frac{C_5^2}{C_8^2} = \frac{5}{14}$
 
     $P(B_1) = \frac{15}{C_8^2} = \frac{15}{28}$
-    
+
     $P(B_2) = \frac{C_3^2}{C_8^2} = \frac{3}{28}$
 
     Подставляем в формулу:
 
-    $P(A) = \frac{331}{336}$
+    $P(A) = \frac{5}{12} \cdot \frac{5}{14} + \frac{1}{2}\cdot \frac{15}{28} + \frac{7}{12}\cdot \frac{3}{28} = \frac{23}{48}$
 \end{example}
 
 \begin{theorem}
@@ -125,7 +128,7 @@
 \begin{theorem}
     \textbf{Байеса}.
 
-    Пусть $P(A) > 0, \ P(B_j) > 0, \ \Omega = \bigsqcup_{j=1}^{m} B_j$, тогда 
+    Пусть $P(A) > 0, \ P(B_j) > 0, \ \Omega = \bigsqcup_{j=1}^{m} B_j$, тогда
 
     $P(B_j | A) = \frac{P(A | B_j) \cdot P(B_j)}{P(A|B_1) P(B_1) + \dots + P(A|B_m) P(B_m)}$
 \end{theorem}
@@ -143,13 +146,13 @@
 \begin{definition}
     \textbf{Независимые события}.
 
-    Рассуждения: $A$ не зависит от $B$, если $P(A) = P(A | B) = \frac{P(A \cap B)}{P(B)}$.
+    \textbf{Рассуждения:} $A$ не зависит от $B$, если $P(A) = P(A | B) = \frac{P(A \cap B)}{P(B)}$.
 
-    Опр. $A, \ B$ независимые события, если $P(A \cap B) = P(A) \cdot P(B)$
+    \textbf{Def:} $A, \ B$ независимые события, если $P(A \cap B) = P(A) \cdot P(B)$
 \end{definition}
 
 \begin{definition}
-    События $A_1, A_2, \dots, A_m$ -- независимы в совокупности, если 
+    События $A_1, A_2, \dots, A_m$ -- независимы в совокупности, если
 
     $P(A_{i_1} \cap A_{i_2} \cap \dots \cap A_{i_k}) = P(A_{i_1}) \cdot P(A_{i_2}) \cdot \dots \cdot P(A_{i_k})$ -- для любых индексов $i_j$.
 \end{definition}
@@ -202,7 +205,7 @@
     решка $=$ неудача $=$ 0.
 
     $P(\text{орел}) = p, \ 0 \leq p \leq 1$
-    
+
     $P(\text{решка}) = 1 - p$
 
     Бросаем монету $n$ раз, получаем последовательность исходов:
@@ -212,10 +215,10 @@
     $\omega = (x_1, x_2, \dots, x_n), \ P(\{ \omega \}) = p^{\# i: \ x_i = 1} \cdot q^{\# i: \ x_i = 0} = p^{\sum x_i} \cdot q^{n - \sum x_i}$
 
     Хотим узнать:
-    
+
     $P(\text{выпало ровно } k \text{ орлов}) = C_{n}^{k} p^k q^{n - k}$
-    
-    $P(i\text{-ое подбрасывание } = \text{ орел})$ -- независимые в совокупности по $i = 1, 2, \dots, n$.
+
+    $P(i\text{-ое подбрасывание }) = P(\text{орел}) = p$ -- независимые в совокупности по $i = 1, 2, \dots, n$.
 \end{theorem}
 
 \begin{theorem}
@@ -231,7 +234,7 @@
 
     $k_1 + k_2 + \dots + k_m = n$
 
-    
+
     $P(k_1 \text{ раз выпало 1, } k_2 \text{ раз выпало 2, ...}) = \underbrace{\binom{n}{k_1, k_2, \dots, k_m}}_{= \frac{n!}{k_1! \dots k_m!}} \cdot p_1^{k_1} \cdot \dots \cdot p_m^{k_m}$
 \end{theorem}
 
@@ -244,17 +247,17 @@
 \end{theorem}
 
 \begin{proof}
-    Предположим, что $k \geqslant 2 + [2 \log_2 n] > 1 + 2 \log_2 n$. Хотим показать, что 
+    Предположим, что $k \geqslant 2 + [2 \log_2 n] > 1 + 2 \log_2 n$. Хотим показать, что
     при таких $k$ точно найдётся турнир, в котором нельзя выбрать $k$ команд.
 
     Рассмотрим случайный турнир(Всего встреч $\binom{n}{2}$, тогда
     $2^{\binom{n}{2}}$ разных турниров. Случайный - берём из этой
     кучи наугад).
-    
-    $P(\text{A выиграла у B}) = \frac{1}{2}$. 
-    
+
+    $P(\text{A выиграла у B}) = \frac{1}{2}$.
+
     Рассмотрим $A_1, A_2, \ldots A_k$ команды.
-    
+
     \begin{enumerate}
         \item {
             $P(A_1, A_2 \ldots A_k  \text{ подходят}) = (\frac{1}{2})^{\binom{k}{2}}$.
@@ -266,13 +269,13 @@
             $P(\text{какие-то $k$ команд подошли}) \leqslant \binom{n}{k} \cdot \frac{k!}{2^{\binom{k}{2}}}$
         }
     \end{enumerate}
-    
+
     Нужно понять, что если $k \geqslant 2 + [2\log_2 n]$, то $\binom{n}{k} \frac{k!}{2^{\binom{k}{2}}} < 1$.
 
     Действительно, $\binom{n}{k} \frac{k!}{2^{\binom{k}{2}}} = \frac{n(n - 1)(n - 2) \ldots (n - k + 1)}{2^{\frac{k(k - 1)}{2}}} < \frac{n^k}{(2^{\frac{k - 1}{2}})^k} =
     \left( \frac{n}{2^{\frac{k - 1}{2}}}\right)^k$
 
-    Мы знаем, что $k > 1 + 2 \log_2 n \Leftrightarrow \frac{k - 1}{2} > \log_2 n \implies 2^{\frac{k - 1}{2}} > n$. И тогда $\left( \frac{n}{2^{\frac{k - 1}{2}}}\right)^k < 1$. 
+    Мы знаем, что $k > 1 + 2 \log_2 n \Leftrightarrow \frac{k - 1}{2} > \log_2 n \implies 2^{\frac{k - 1}{2}} > n$. И тогда $\left( \frac{n}{2^{\frac{k - 1}{2}}}\right)^k < 1$.
     Это значит, что вероятность, что никакие команды не подходят - положительная, значит есть турнир, в котором $k$ команд выбрать нельзя.
 \end{proof}
 
@@ -281,7 +284,7 @@
 \begin{definition}
     Схема Бернулли с вероятностью успеха $p \in (0, 1)$. $S_n$ - число успехов при $n$ испытаниях. $P(S_n = k) = \binom{n}{k} p^k q^{n - k}$
 
-    Что будет больше $P(S_{1000} = 220)$ при $p = \frac{1}{5}$ или $P(S_{2000}) = 360$ при $p = \frac{1}{6}$. Точные вычисления дают $0.008984$ и 
+    Что будет больше $P(S_{1000} = 220)$ при $p = \frac{1}{5}$ или $P(S_{2000}) = 360$ при $p = \frac{1}{6}$. Точные вычисления дают $0.008984$ и
     $0.006625$ соответственно.
 
 \end{definition}
@@ -300,7 +303,7 @@
 \begin{proof}
     $P(S_n = k) = \binom{n}{k} p^k (1 - p)^{n - k} = \frac{n(n - 1)\ldots(n - k + 1)}{k!} p^k (1 - p)^{n - k}$
     $\sim \frac{n^k}{k!} p^k (1 - p)^{n - k} = \frac{(np)^k}{k!} (1 - p)^{n - k} \sim \frac{\lambda^k}{k!} (1 - p)^{n - k}$.
-    
+
     Осталось показать, что $(1 - p)^{n - k} \sim e^{-\lambda}$. Прологарифмируем: $\ln (1 - p)^{n - k} = \\ = (n - k) \ln (1 - p)$
     $\sim -n p \sim -\lambda$
 
@@ -322,7 +325,7 @@
 \end{theorem}
 
 \begin{example}
-    Игра в рулетку: 36 чисел и ноль. 
+    Игра в рулетку: 36 чисел и ноль.
 
     $p = \frac{1}{37}, n = 111, np = 3 = \lambda$.
 
@@ -332,21 +335,20 @@
 
     Видим, что приближение хорошее.
 
-    $P(\text{выигрыш}) = 1 - P(S_{111} = 0) - P(S_{111} = 1) - P(S_{111} = 2) - P(S_{111} = 3) = $
+    $P(\text{ставка удачная хотя бы 4 раза}) = 1 - P(S_{111} = 0) - P(S_{111} = 1) - P(S_{111} = 2) - P(S_{111} = 3) = $
     $1 - \frac{\lambda^0}{0!}e^{-\lambda} -$
     $\frac{\lambda^1}{1!}e^{-\lambda} - \frac{\lambda^2}{2!}e^{-\lambda} - \frac{\lambda^3}{3!}e^{-\lambda} = 0.352754$
-    
+
     А по формулам $0.352768$
 \end{example}
 
 \begin{theorem}
     \textbf{Локальная предельная теорема Муавра-Лапласа}
 
-    Схема Бернулии с вероятностью успеха $p \in (0, 1), \ q = 1 - p, \ x = \frac{k - np}{\sqrt{npq}}$.
+    Схема Бернулии с вероятностью успеха $p \in (0, 1), \ q = 1 - p, \ x = \frac{k - np}{\sqrt{npq}}$, где $k$ зависит от $n$, и $n$ меняется. $|x| \leqslant T$ -- при $n \rightarrow +\infty$ и любых $k$. Тогда:
 
     $P(S_n = k) \sim_{n \to +\infty} \frac{1}{\sqrt{2\pi n p q}} e^{\frac{-x^2}{2}}$
 
-    Если $|x| \leqslant T$, то есть равномерность.
 \end{theorem}
 
 \begin{proof}
@@ -371,16 +373,18 @@
     Поэтому остаётся доказать, что $\frac{(\frac{k}{n})^k \cdot (\frac{n - k}{n})^{n - k}}{p^k q^{n - k}} \rightarrow e^{\frac{x^2}{2}}$. Прологарифмируем:
 
     Получим: $k \ln \frac{k}{n} + (n - k) \ln \frac{n - k}{n} - k \ln p - (n - k)\ln q \rightarrow \frac{x^2}{2}$
-    
+
     Введём обозначения: $\alpha = \frac{k}{n} \rightarrow p, \beta = \frac{n - k}{n} \rightarrow q$. Тогда $k = n\alpha, n - k = n\beta$ и всё перепишется в виде:
 
     $n \alpha \ln \alpha + n \beta \ln \beta - n\alpha \ln p - n\beta \ln q = \underbrace{n\alpha \ln \frac{\alpha}{p} + n \beta \ln \frac{\beta}{q}}_{(*)} \rightarrow \frac{x^2}{2}$
 
     Мы знаем, что $\frac{\alpha}{p} = 1 + x\sqrt{\frac{q}{np}}$ и $\frac{\beta}{q} = 1 - x\sqrt{\frac{p}{nq}}$ - из первых двух тождеств в доказательстве.
 
-    Напишем Тейлора: 
+    Напишем Тейлора:
 
-    $\ln \frac{\alpha}{p} = \ln (1 + x\sqrt{\frac{q}{np}}) = x\sqrt{\frac{q}{np}} - \frac{1}{2}x^2\frac{q}{np} + o(\frac{1}{n}) $ 
+    $ln(1+t) = t - \frac{t^2}{2} + o(t^2)$
+
+    $\ln \frac{\alpha}{p} = \ln (1 + x\sqrt{\frac{q}{np}}) = x\sqrt{\frac{q}{np}} - \frac{1}{2}x^2\frac{q}{np} + o(\frac{1}{n}) $
 
     $\ln \frac{\beta}{q} = \ln (1 - x\sqrt{\frac{p}{nq}}) = -x\sqrt{\frac{p}{nq}} - \frac{1}{2}x^2 \frac{p}{nq} + o(\frac{1}{n})$
 
@@ -411,18 +415,18 @@
 \begin{theorem}
     \textbf{Берри-Эссеена}
 
-    Обозначение: $\Phi (x) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^x e^{-\frac{t^2}{2}} \, dt$
+    Обозначение: $\Phi (x) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^x e^{-\frac{t^2}{2}} \, dt$, $\Phi_0 (x) = \frac{1}{\sqrt{2\pi}} \int_{0}^x e^{-\frac{t^2}{2}} \, dt$
 
-    $\left| P(\frac{S_n - np}{\sqrt{npq}} \leqslant x) - \Phi (x) \right| \leqslant \frac{p^2 + q^2}{\sqrt{npq}} \cdot \frac{1}{2}$
+    $\sup_{x\in \mathbb{R}}\left| P(\frac{S_n - np}{\sqrt{npq}} \leqslant x) - \Phi (x) \right| \leqslant \frac{p^2 + q^2}{\sqrt{npq}} \cdot \frac{1}{2}$
 
     \begin{remark}
-        Константа лучше, чем $\frac{c}{\sqrt{n}}$ не бывает. 
+        Константа лучше, чем $\frac{c}{\sqrt{n}}$ не бывает.
     \end{remark}
 
     \begin{remark}
         $P(a < S_n \leqslant b) = P(\frac{a - np}{\sqrt{npq}} < \frac{S_n - np}{\sqrt{npq}} \leqslant \frac{b - np}{\sqrt{npq}}) \to
         \Phi (\frac{b - np}{\sqrt{npq}}) - \Phi (\frac{a - np}{\sqrt{npq}})$
-    
+
         Отсюда получили, что лучше всего писать полуцелые $a$ и $b$.
     \end{remark}
 
@@ -433,11 +437,11 @@
 \end{theorem}
 
 \begin{example}
-    $p = q = \frac{1}{2}$. Вопрос: $P(S_{2n} = n) = \binom{2n}{n} \frac{1}{2^{2n}} \sim 
+    $p = q = \frac{1}{2}$. Вопрос: $P(S_{2n} = n) = \binom{2n}{n} \frac{1}{2^{2n}} \sim
     \frac{4^n}{\sqrt{\pi n}} \frac{1}{4^n} = \frac{1}{\sqrt{\pi n}}$.
 
     Но $P(S_{2n} < n) = P(S_{2n} > n)$.
-    
+
     Тогда $P(S_{2n} \leqslant n) = \frac{1 + P(S_{2n} = n)}{2} = \frac{1}{2} + \frac{1}{2\sqrt{\pi n}} + o(\frac{1}{\sqrt{n}})$
 
     Муавра-Лаплас нам говорит, что $P(S_{2n} \leqslant n) \to \frac{1}{\sqrt{2\pi}} \int_{-\infty}^0 e^{-\frac{t^2}{2}} \, dt = \frac{1}{2}$
@@ -448,13 +452,13 @@
 \begin{example}
     \textbf{Задача о театре}
 
-    Есть театр и 2 входа. У каждого входа расположен гардероб. 
+    Есть театр и 2 входа. У каждого входа расположен гардероб.
     В театре $n = 1600$ мест. Хотим сделать размер гардероба как можно меньше, но чтобы
-    переполнения случались как можно реже.
+    переполнения случались как можно реже (не чаще, чем раз в месяц).
 
     Пусть $c$ мест в итоге в гардеробе.
 
-    $p = q = \frac{1}{2}$. Нужно, чтобы $n - c \leqslant S_n \leqslant c$. 
+    $p = q = \frac{1}{2}$. Нужно, чтобы $n - c \leqslant S_n \leqslant c$. И $P(n - c \leqslant S_n \leqslant c) > \frac{29}{30}$ -- т.е. хотя бы в 29 днях из 30 гардероб не переполняется.
 
     $P(n - c \leqslant S_n \leqslant c) = P(\frac{n - c - \frac{n}{2}}{\sqrt{n \cdot \frac{1}{4}}})
     \leqslant \frac{S_n - \frac{n}{2}}{\sqrt{n \cdot \frac{1}{4}}} \leqslant \frac{c - \frac{n}{2}}{\sqrt{n \cdot \frac{1}{4}}} =
@@ -489,7 +493,7 @@
 \begin{theorem}
     \textbf{ван дер Вардена}
 
-    Рассмотрим числа $1, 2 \ldots k$ и покрасим их в 2 цвета. 
+    Рассмотрим числа $1, 2 \ldots k$ и покрасим их в 2 цвета.
 
     Тогда существует $k_n$, такое, что, если $k > k_n$, то при любой раскраске
     найдётся одноцветная $n$-членная арифметическая прогрессия.
@@ -503,7 +507,7 @@
 
 \begin{proof}
     $A_1, A_2 \ldots A_m$ - все арифметические прогрессии длины $n + 1$ из чисел
-    $1, 2 \ldots k$. 
+    $1, 2 \ldots k$.
 
     С разностью $1 \, : \, k - n$ прогрессий.
 
@@ -513,13 +517,13 @@
 
     С разностью $[\frac{k}{n}] \, : \, k - [\frac{k}{n}] \cdot n$ прогрессий
 
-    Тогда $m = (k - n) + (k - 2n) + \ldots + k - [\frac{k}{n}] \cdot n = k \cdot [\frac{k}{n}] - n \cdot \frac{[\frac{k}{n}] \cdot ([\frac{k}{n}] + 1)}{2} = 
+    Тогда $m = (k - n) + (k - 2n) + \ldots + k - [\frac{k}{n}] \cdot n = k \cdot [\frac{k}{n}] - n \cdot \frac{[\frac{k}{n}] \cdot ([\frac{k}{n}] + 1)}{2} =
     [\frac{k}{n}] (k - \frac{1}{2}n ([\frac{k}{n}] + 1)) < \frac{k}{n} (k - \frac{1}{2} \cdot n \cdot \frac{k}{n}) = \frac{k^2}{2n}$ - это
     оценка сверху.
 
     $P(\text{$A_i$ - одноцветная}) = 2 \cdot \frac{1}{2^{n + 1}} = \frac{1}{2^n}$ (2 - выбор цвета).
 
-    $P(\text{какое-то $A_i$ - одноцветно}) = \sum_{i = 1}^m P(\text{$A_i$ - одноцветно}) = \frac{m}{2^n} < 
+    $P(\text{какое-то $A_i$ - одноцветно}) = \sum_{i = 1}^m P(\text{$A_i$ - одноцветно}) = \frac{m}{2^n} <
     \frac{k^2}{2n} \cdot \frac{1}{2^n} = (\frac{k}{\sqrt{2^{n + 1} \cdot n}})^2 \leqslant 1$
     (если так, то найдётся, на которой не выполнится)
 \end{proof}
