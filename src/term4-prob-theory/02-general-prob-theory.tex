@@ -372,7 +372,7 @@
 \Subsection{Совместное распределение}
 
 \begin{definition}
-    Совместное(многомерное) распределение.
+    Совместное (многомерное) распределение.
 
     $\bar{\xi} = (\xi_1, \xi_2, \ldots, \xi_n) : \Omega \to \mathbb{R}^n$
 
@@ -440,7 +440,7 @@
             $\lim_{x_1, \ldots, x_n \to +\infty} F_{\bar{\xi}} (\bar{x}) = 1$
         }
         \item {
-            $\lim_{x_i \to +\infty} F_{\bar{\xi}} (\bar{x}) = F_{\xi_1, \ldots, \xi_{i - 1}, \xi_{i + 1}, \ldots}$
+            $\lim_{x_i \to +\infty} F_{\bar{\xi}} (\bar{x}) = F_{\xi_1, \ldots, \xi_{i - 1}, \xi_{i + 1}, .., \xi_n}(x_1, .., x_{i-1}, x_{i+1}, .., x_n)$
         }
     \end{enumerate}
 \end{properties}
@@ -450,7 +450,7 @@
 \end{definition}
 
 \begin{theorem}
-    $\xi_1 \ldots \xi_n$ независимы $\Longleftrightarrow F_{\bar{\xi}} (\bar{x}) = F_{\xi_1} (x_1) \cdot \ldots \cdot F_{\xi_n} (x_n)$
+    $\xi_1 \ldots \xi_n$ независимы $\Longleftrightarrow F_{\bar{\xi}} (\bar{x}) = F_{\xi_1} (x_1) \cdot \ldots \cdot F_{\xi_n} (x_n), \ \forall \bar{x} \in \mathbb{R}^n$
 \end{theorem}
 
 \begin{proof}
@@ -460,7 +460,7 @@
             P_{\bar{\xi}} ((-\infty, x_1] \times \ldots \times (-\infty, x_n]) = P_{\xi_1} (-\infty, x_1] \cdot \ldots \cdot P_{\xi_n} (-\infty, x_n]$
         }
         \item {
-            Хотим проверить совпадение на ячейках, чтобы доказать $(*)$ ещё и в другую сторону.
+            Хотим проверить совпадение на ячейках, чтобы доказать $(*)$ ещё и в другую сторону (приведем выкладки для $n=2$, для больших $n$ рассуждения не меняются).
 
             \begin{center}
                 \includegraphics[width=10cm]{assets/02-general-prob-theory/arbitrary-value-independence.png}
@@ -500,6 +500,8 @@
             \int_{-\infty}^{x_1} \ldots \int_{-\infty}^{x_n} p_{\xi_1} (t_1) \ldots p_{\xi_n} (t_n) \, dt_n \ldots dt_1 =$
 
             $\underbrace{=}_{\text{по т. Тонелли можно выносить интегралы}} F_{\xi_1} (x_1) \cdot \ldots \cdot F_{\xi_n} (x_n)$
+
+            т. Тонелли можно использовать, так как мы интегрируем неотрицательную функцию.
         }
     \end{enumerate}
 \end{proof}
@@ -582,10 +584,14 @@
 \begin{proof}
     Нужно взять какое-то борелевское множество и понять как устроено там распределение суммы.
 
+    \begin{center}
+        \includegraphics[width=8cm]{assets/02-general-prob-theory/new-set-B-x+y-in-A.PNG}
+    \end{center}
+
     Пусть $B = \{ (x, y) : x + y \in A \}$
 
     $P_{\xi + \eta} (A) = P(\xi + \eta \in A) = P((\xi, \eta) \in B) = P_{\xi, \eta} (B) =\int_{\mathbb{R}^2} \mathds{1}_{B}(x, y) d P_{\xi, \eta}(x, y) =$
-    
+
     $\underbrace{=}_{\text{т.к. $\xi$ и $\eta$ независимые}}
     \int_{\mathbb{R}^2} \mathds{1}_B (x, y) d P_{\xi} (x) \, dP_{\eta} (y) =
     \int_{\mathbb{R}^2} \mathds{1}_A (x + y) d P_{\xi} (x) \, dP_{\eta} (y) = P_{\xi} * P_{\eta} (A)$
