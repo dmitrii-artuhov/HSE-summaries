@@ -1271,32 +1271,6 @@
             из-за разных определений (где-то одно вероятностное пр-во, а где-то их может быть много разных)
         }
     \end{enumerate}
-
-
-
-    % Связь между ними $1 \Rightarrow 3, 2 \Rightarrow 3$ (неравенство Маркова). При этом $3 \not \Rightarrow 1, 2 \not \Rightarrow 1$
-    % \color{red}
-    %   TODO
-    % \color{black}
-    % %TODO
-    % %TODO
-
-    % $4 \not \Rightarrow 3$. Да и вообще они на разных вероятностных пространствах,
-    % так что постановка вопроса в целом неверная.
-
-    % $3 \Rightarrow 4$. $\{ \xi_n > x \} \supset \{ \xi > x+ \varepsilon \} \cap \{ |\xi_n - \xi| < \varepsilon \}$. Также верно обратное:
-    % $\{ \xi_n \leqslant x \} \subset \{ \xi \leqslant x+ \varepsilon \} \cup \{ |\xi_n - \xi| \geqslant \varepsilon \}$.
-
-    % Тогда $F_{\xi_n}(x) \leqslant F_{\xi}(x + \varepsilon) + P(|\xi_n - \xi| \geqslant \varepsilon)$.
-    % $\bar{\lim} F_{\xi_n}(x) \leqslant F_{\xi}(x + \varepsilon) + \bar{\lim} P(|\xi_n - \xi| \geqslant \varepsilon) = F_{\xi}(x + \varepsilon)$.
-
-    % $\{ \xi_n > x \} \subset \{ \xi > x - \varepsilon \} \cup \{ |\xi_n - \xi| \geqslant \varepsilon \}$ - запишем через вероятности.
-    % $1 - F_{\xi_n}(x) \leqslant 1 - F_{\xi}(x - \varepsilon) + P(|\xi_n - \xi| \geqslant \varepsilon)$. То есть
-    % $\underline{\lim} F_{\xi_n}(x) \geqslant F_{\xi}(x - \varepsilon) - \lim P(|\xi_n - \xi| \geqslant \varepsilon) = F_{\xi}(x - \varepsilon)$.
-
-    % То есть $F_{\xi}(x - \varepsilon) \leqslant \underline{\lim} F_{\xi_n}(x) \leqslant \overline{\lim} F_{\xi_n}(x) \leqslant F_{\xi}(x + \varepsilon)$ - верно для любого $n$.
-    % Устремим $\varepsilon \rightarrow 0$. Тогда $F_{\xi}(x) \leqslant \underline{\lim} F_{\xi_n}(x) \leqslant \overline{\lim} F_{\xi_n}(x) \leqslant F_{\xi}(x)$, но левая и правая штука равны.
-
 \end{definition}
 
 \begin{theorem}
@@ -1323,8 +1297,7 @@
 \begin{consequence}
     \textbf{ЗБЧ в форме Чебышёва}
 
-    $\xi_1, \xi_2, \ldots$ независимые, одинаково распределенённые случайные величины с конечной дисперсией.
-    Пусть $a = \mathbb{E}_{\xi_1}$
+    $\xi_1, \xi_2, \ldots$ независимые, одинаково распределенённые случайные величины с конечной дисперсией и $a = \mathbb{E} \xi_1$.
 
     Тогда $P(\left | \frac{S_n}{n} - a \right | \geqslant \varepsilon) \rightarrow 0$ или же $\frac{S_n}{n} \underset{P}{\rightarrow} a$
 
@@ -1338,9 +1311,9 @@
 \begin{consequence}
     \textbf{ЗБЧ для схем Бернулли}
 
-    Есть схема Бернулли с вероятностью успеха $p$.
+    Есть схема Бернулли с вероятностью успеха $p \in (0, 1)$.
 
-    Тогда $\frac{S_n}{n} \underset{P}{\rightarrow} p$
+    Тогда $P(|\frac{S_n}{n} - p| \geq \varepsilon) \to 0$, где $S_n$ число успехов при $n$ подбрасываниях.
 \end{consequence}
 
 \begin{theorem}
@@ -1359,11 +1332,11 @@
     Тогда по условию $\mathbb{E} \xi_n^4 \leqslant C$ и надо доказать, что $\frac{S_n}{n} \rightarrow 0$ почти наверное.
 
     Пусть $A_n = \{ \left | \frac{S_n}{n} \right | \geqslant \varepsilon \}$. Нам нужно понять, что бесконечное количество $A_n$ случаются
-    с нулевой вероятностью.
+    с нулевой вероятностью, то есть что $P(\bigcap_{n=1}^{\infty} \bigcup_{k=n}^{\infty} A_k) = 0$.
 
-    Из леммы Бореля-Кантелли, если $\sum_{k = 1}^{\infty} \sum_{k = 1}^{\infty} P(A_n) < +\infty$, то нужное нам условие выполнено.
+    Из леммы Бореля-Кантелли, если $\sum_{k = 1}^{\infty} P(A_n) < +\infty$, то нужное нам условие выполнено.
 
-    Напишем неравенство Маркова: $P(A_n) \leqslant \frac{\mathbb{E} \frac{S_n^4}{n^4}}{\varepsilon^4} = \frac{\mathbb{E}S_n^4}{n^4\varepsilon^4}$. Достаточно доказать, что
+    Напишем неравенство Маркова: $P(A_n) = P\left( \frac{S_n^4}{n^4} \geq \varepsilon^4 \right) \leqslant \frac{\mathbb{E} \frac{S_n^4}{n^4}}{\varepsilon^4} = \frac{\mathbb{E}S_n^4}{n^4\varepsilon^4}$. Достаточно доказать, что
     $\mathbb{E}S_n^4 = \mathcal{O}(n^2)$, тогда ряд сойдётся. Раскроем все скобки.
 
     $\mathbb{E}(\xi_1 + \ldots + \xi_n)^4 = \sum_{i = 1}^n \mathbb{E}\xi_i^4 + 4\sum_{i \neq j}\mathbb{E}\xi_i^3\xi_j +
@@ -1378,7 +1351,7 @@
         }
     \end{enumerate}
 
-    Итого получаем $\sum_{i = 1}^n \mathbb{E}\xi_i^4 + 6 \sum \mathbb{E}x_i^2 \mathbb{E}\xi_j^2$ (*). По неравенству Ляпунова
+    Итого получаем $\sum_{i = 1}^n \mathbb{E}\xi_i^4 + 6 \sum \mathbb{E}x_i^2 \mathbb{E}\xi_j^2$ = (*). По неравенству Ляпунова
     $\mathbb{E}\xi_i^2 \leqslant \sqrt{\mathbb{E}\xi_i^4} \leqslant \sqrt{C}$.
 
     Значит $(*) = nC + 6n(n-1)\sqrt{C}\sqrt{C} \leqslant 6Cn^2 = \mathcal{O}(n^2)$, значит ряд сходится и лемма Бореля-Кантелли выполняется.
