@@ -1109,9 +1109,9 @@
 
     $P(|\xi - \mathbb{E} \xi| \geqslant t) \leqslant \frac{\mathbb{D}\xi}{t^2}$. В качестве $t$ подставим $w(n) \sqrt{\ln \ln n}$.
 
-    Тогда $P (|\nu(k) - \ln \ln n| \underbrace{\geqslant}_{(**)} w(n) \sqrt{\ln \ln n}) < P(|\xi - \mathbb{E} \xi| \geqslant w(n) \sqrt{\ln \ln n}) \leqslant \frac{\mathbb{D}\xi}{w^2(n) \ln \ln n} \to 0$.
+    Тогда $P (|\nu(k) - \ln \ln n| \geqslant w(n) \sqrt{\ln \ln n}) \underbrace{<}_{(**)} P(|\xi - \mathbb{E} \xi| \geqslant w(n) \sqrt{\ln \ln n}) \leqslant \frac{\mathbb{D}\xi}{w^2(n) \ln \ln n} \to 0$.
 
-    $(**):$ такое нер-во можно писать, так как $|\nu(k) - \xi(k)| \leq 10$ и $\mathbb{E} \xi = \ln \ln n \mathcal{O}(1)$.
+    $(**):$ такое нер-во можно писать, так как $|\nu(k) - \xi(k)| \leq 10$ и $\mathbb{E} \xi = \ln \ln n + \mathcal{O}(1)$.
 
 \end{proof}
 
