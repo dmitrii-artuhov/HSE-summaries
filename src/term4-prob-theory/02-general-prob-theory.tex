@@ -961,9 +961,9 @@
 
 \begin{theorem}
 
-    $v_1, v_2 \ldots v_n \in \mathbb{R}^n$ - единичные векторы, тогда
+    $v_1, v_2 \ldots v_n \in \mathbb{R}^n$ - векторы единичной длины, тогда
     существует расстановка знаков $\varepsilon_1 = \pm 1, \ldots, \varepsilon_n = \pm 1$,
-    такие, что $||\varepsilon_1 v_1 + \ldots + \varepsilon_nv_n|| \leqslant \sqrt{n}$.
+    такая, что $||\varepsilon_1 v_1 + \ldots + \varepsilon_nv_n|| \leqslant \sqrt{n}$.
 
     \begin{remark}
         Эта оценка не улучшаема, если все вектора попарно ортогональны, тогда
@@ -975,14 +975,16 @@
     Пусть $\varepsilon_1 \ldots \varepsilon_n$ - независимые случайные величины, такие, что:
 
     $
-    \xi_{i} =
+    \varepsilon_{i} =
     \begin{cases}
         1, & \text{с вероятностью $\frac{1}{2}$} \\
         -1, & \text{с вероятностью $\frac{1}{2}$}
     \end{cases}
     $
 
-    $\xi = || \varepsilon_1 v_1 + \ldots + \varepsilon_nv_n ||^2 $. И тогда $\mathbb{E} \xi = \mathbb{E} \left < v, v \right >  =
+    Введем величину $\xi = || \varepsilon_1 v_1 + \ldots + \varepsilon_nv_n ||^2 $.
+    
+    Тогда $\mathbb{E} \xi = \mathbb{E} \left < v, v \right >  =
     \mathbb{E} (\sum_{i, j = 1}^n \varepsilon_i \varepsilon_j \left < v_i, v_j \right >) =
     \sum_{i, j = 1}^n \left < v_i, v_j \right > \mathbb{E} \varepsilon_i \varepsilon_j =
     \sum_{i = 1}^n \left < v_i, v_j \right > = n$.
@@ -1022,22 +1024,26 @@
     \end{enumerate}
 \end{proof}
 
-\begin{example}
-    $\Omega = \{ 1, 2 \ldots n \}$, пусть $\nu (k)$ - число различных простых В
-    разложении $k$.
+% \begin{example}
+    % $\Omega = \{ 1, 2 \ldots n \}$, пусть $\nu (k)$ - число различных простых В
+    % разложении $k$.
 
     \begin{theorem}
         \textbf{Харди-Рамануджана}
 
-        Если $w(n) \to +\infty$, то $P(k \, : \, | \nu (k) - \ln \ln n| \geqslant w(n) \sqrt{\ln \ln n}) \to 0$
+        Пусть $\nu (k)$ -- число различных простых делителей в разложении $k$. 
+        
+        Хотим понять, чему будет равно это число, если мы наугад возьмем число из мн-ва $\{1, 2, \ldots, n\}$.
+
+        $P(| \nu (k) - \ln \ln n| \geqslant w(n) \sqrt{\ln \ln n}) \to_{n \to \infty} 0$, где $w(n) \to_{n \to \infty} +\infty$ и $k \in \{1, 2, \ldots, n\}$. 
     \end{theorem}
-\end{example}
+% \end{example}
 
 \begin{proof}
     Пусть $m = \sqrt[10]{n}$. $p \leqslant m$ - простое и
 
     $
-    \xi_p =
+    \xi_p(k) =
     \begin{cases}
         1, & \text{если $k$ делится на $p$} \\
         0, & \text{иначе}
@@ -1045,45 +1051,79 @@
     $
 
     $\xi = \sum_{p \leqslant m} \xi_p$ - количество различных простых $\leqslant m$. Тогда
-    $\nu(k) - 10 \leqslant \xi (k) \leqslant \nu (k)$. Посчитаем матожидание $\xi$.
+    $\nu(k) - 10 \leqslant \xi (k) \leqslant \nu (k)$.
+    
+    Посчитаем матожидание $\xi$, тогда посчитаем мат. ожидание слагаемых:
 
     $\mathbb{E} \xi_p = \frac{[\frac{n}{p}]}{n} \leqslant \frac{\frac{n}{p}}{n} = \frac{1}{p}$. С другой стороны,
     $\mathbb{E} \xi_p \geqslant \frac{\frac{n}{p} - 1}{n} = \frac{1}{p} - \frac{1}{n}$.
 
-    Значит $\mathbb{E}\xi = \sum_{p \leqslant m} \mathbb{E}\xi_p. \sum_{p \leqslant m} \frac{1}{p} - \frac{m}{n} \leqslant
+    Знаем, что $\mathbb{E}\xi = \sum_{p \leqslant m} \mathbb{E}\xi_p$, тогда
+    
+    $\sum_{p \leqslant m} \frac{1}{p} - \frac{m}{n} \leqslant
     \sum_{p \leqslant m} \mathbb{E}\xi_p \leqslant \sum_{p \leqslant m} \frac{1}{p} = \ln \ln m + \mathcal{O}(1) =
     \ln \ln n + \mathcal{O}(1)$. Оценка в другую сторону аналогично, потому что $\frac{m}{n} \leqslant 1$.
 
-    Теперь считаем дисперсию.
+    Теперь считаем дисперсию для $\xi_p$:
 
-    $\mathbb{D}\xi_p = \mathbb{E}\xi_p^2 - (\mathbb{E}\xi_p)^2 = \mathbb{E}\xi_p - (\mathbb{E}\xi_p)^2 \leqslant \frac{1}{p} - \frac{1}{p^2} + \frac{1}{n}$.
-    С другой стороны $\mathbb{E}\xi_p^2 - (\mathbb{E}\xi_p)^2 \geqslant \frac{1}{p} - \frac{1}{n} - \frac{1}{p^2}$.
+    $\mathbb{D}\xi_p = \mathbb{E}\xi_p^2 - (\mathbb{E}\xi_p)^2 = \mathbb{E}\xi_p - (\mathbb{E}\xi_p)^2 = \frac{1}{p} - \frac{1}{p^2} + \mathcal{O}(\frac{1}{n})$
 
-    $\sum_{p \leqslant m} \mathbb{D} \xi_p \sum_{p \leqslant m} \frac{1}{p} - \frac{1}{p^2} + \mathcal{O}(\frac{1}{n}) = \ln \ln n + \mathcal{O}(1)$.
+    % $\sum_{p \leqslant m} \mathbb{D} \xi_p \sum_{p \leqslant m} \frac{1}{p} - \frac{1}{p^2} + \mathcal{O}(\frac{1}{n}) = \ln \ln n + \mathcal{O}(1)$.
 
-    $cov(\xi_p, \xi_q) = \mathbb{E}\xi_p \xi_q = \mathbb{E} (\xi_p \xi_q) - \mathbb{E} \xi_p \mathbb{E}\xi_q$. Здесь
-    $\frac{1}{pq} - \frac{1}{n} \leqslant \mathbb{E} \xi_p \xi_q \leqslant \frac{1}{pq}$. Тогда $cov(\xi_p, \xi_q) \leqslant
-    \frac{1}{pq} - (\frac{1}{p} - \frac{1}{n})(\frac{1}{q} - \frac{1}{n}) = \frac{1}{n}(\frac{1}{p} + \frac{1}{q}) - \frac{1}{n^2} \leqslant \frac{1}{n}(\frac{1}{p} + \frac{1}{q})$.
-    Также оцениваем в другую сторону.
+    % $cov(\xi_p, \xi_q) = \mathbb{E}\xi_p \xi_q = \mathbb{E} (\xi_p \xi_q) - \mathbb{E} \xi_p \mathbb{E}\xi_q$. Здесь
+    % $\frac{1}{pq} - \frac{1}{n} \leqslant \mathbb{E} \xi_p \xi_q \leqslant \frac{1}{pq}$. Тогда $cov(\xi_p, \xi_q) \leqslant
+    % \frac{1}{pq} - (\frac{1}{p} - \frac{1}{n})(\frac{1}{q} - \frac{1}{n}) = \frac{1}{n}(\frac{1}{p} + \frac{1}{q}) - \frac{1}{n^2} \leqslant \frac{1}{n}(\frac{1}{p} + \frac{1}{q})$.
+    % Также оцениваем в другую сторону.
 
-    $-\frac{m^2}{n} = \mathcal{O}(1) \leqslant \sum_{p \neq q} cov (\xi_p, \xi_q) \leqslant \frac{1}{n}(\sum_{p \neq q} (\frac{1}{p} + \frac{1}{q})) =
-    \frac{2m}{n} \sum_{p \leqslant m} \frac{1}{p} = \mathcal{O}(1)$.
+    Теперь оценим ковариацию:
+    
+    $cov(\xi_p, \xi_q) = \underbrace{\mathbb{E} (\xi_p \xi_q)}_{\text{аргумент равен 1, когда $n \divby pq$}} - \mathbb{E}\xi_p \mathbb{E} \xi_q = \frac{\left[\frac{n}{pq}\right]}{n} - \frac{\left[ \frac{n}{p} \right]}{n} \cdot \frac{\left[\frac{n}{q}\right]}{n} = (*)$.
 
-    $\mathbb{D}\xi = \ln \ln n + \mathcal{O}(1)$. Теперь применим Чебышёва.
+    Оценим $(*)$ с двух сторон:
+
+    \begin{enumerate}
+        \item {
+            $(*) \geq \frac{\frac{n}{pq} - 1}{n} - \frac{\frac{n}{p}}{n} \cdot \frac{\frac{n}{q}}{n} = -\frac{1}{n}$
+        }
+        \item {
+            $(*) \leq \frac{\frac{n}{pq}}{n} - \frac{\frac{n}{p} - 1}{n} \cdot \frac{\frac{n}{q} - 1}{n} \leq (\frac{1}{p} + \frac{1}{q}) \cdot \frac{1}{n}$
+        }
+    \end{enumerate}
+
+    Теперь смотрим на сумму ковариаций (так как она фигурирует как слагаемое для $\mathbb{D} \xi$):
+
+    $\underbrace{\frac{1}{n} \cdot \sum_{p < q \leq m} \left(\frac{1}{p} + \frac{1}{q}\right)}_{=\frac{1}{2n} \sum_{p \neq q, \ p, q \leq m} \left(\frac{1}{p} + \frac{1}{q}\right) \leq \frac{1}{2n} 2 m \sum_{p \leq m} \frac{1}{p} = \mathcal{O}(1)} \geq \sum_{p < q \leq m} cov(\xi_p, \xi_q) \geq - \frac{m^2}{n} = \mathcal{O}(1)$
+
+    Теперь оцениваем дисперсию для $\xi$:
+
+    $\mathbb{D} \xi = \sum_{p \leq m} \mathbb{D} \xi_p + \underbrace{2 \sum_{p < q \leq m} cov(\xi_p, \xi_q)}_{=\mathcal{O}(1)} = \sum_{p \leq m} \left(\frac{1}{p} - \frac{1}{p^2} + \mathcal{O}(\frac{1}{n})\right) + \mathcal{O}(1) =$
+    
+    $= \sum_{p \leq m} \frac{1}{p} + \mathcal{O}(1) = \ln \ln m + \mathcal{O}(1) = \ln \ln n + \mathcal{O}(1)$.
+
+    % $-\frac{m^2}{n} = \mathcal{O}(1) \leqslant \sum_{p \neq q} cov (\xi_p, \xi_q) \leqslant \frac{1}{n}(\sum_{p \neq q} (\frac{1}{p} + \frac{1}{q})) =
+    % \frac{2m}{n} \sum_{p \leqslant m} \frac{1}{p} = \mathcal{O}(1)$.
+
+    % $\mathbb{D}\xi = \ln \ln n + \mathcal{O}(1)$.
+    
+    Теперь применим Чебышёва.
 
     $P(|\xi - \mathbb{E} \xi| \geqslant t) \leqslant \frac{\mathbb{D}\xi}{t^2}$. В качестве $t$ подставим $w(n) \sqrt{\ln \ln n}$.
 
-    Тогда $P (|\nu - \ln \ln n| \geqslant w(n) \sqrt{\ln \ln n}) < P(|\xi - \mathbb{E} \xi| \geqslant w(n) \sqrt{\ln \ln n}) \leqslant \frac{\mathbb{D}\xi}{w^2(n) \ln \ln n} \to 0$.
+    Тогда $P (|\nu(k) - \ln \ln n| \geqslant w(n) \sqrt{\ln \ln n}) \underbrace{<}_{(**)} P(|\xi - \mathbb{E} \xi| \geqslant w(n) \sqrt{\ln \ln n}) \leqslant \frac{\mathbb{D}\xi}{w^2(n) \ln \ln n} \to 0$.
+
+    $(**):$ такое нер-во можно писать, так как $|\nu(k) - \xi(k)| \leq 10$ и $\mathbb{E} \xi = \ln \ln n + \mathcal{O}(1)$.
 
 \end{proof}
 
-\begin{remark}
-    \begin{theorem}
-        \textbf{Эрдёша-Каца}
+% \begin{remark}
+\begin{theorem}
+    \textbf{Эрдёша-Каца}
 
-        $P(k \in \Omega \, : \, a \leqslant \frac{|\nu (k) - \ln \ln n|}{\sqrt{\ln \ln n}} \leqslant b ) \rightarrow \frac{1}{\sqrt{2\pi}} \int_{a}^{b} e^{-\frac{t^2}{2}} \, dt $
-    \end{theorem}
-\end{remark}
+    % $P(k \in \Omega \, : \, a \leqslant \frac{|\nu (k) - \ln \ln n|}{\sqrt{\ln \ln n}} \leqslant b ) \rightarrow \frac{1}{\sqrt{2\pi}} \int_{a}^{b} e^{-\frac{t^2}{2}} \, dt $
+
+    $\lim_{n \to \infty} \frac{ \# \{ k \leq n : \, a \leqslant \frac{|\nu (k) - \ln \ln n|}{\sqrt{\ln \ln n}} \leqslant b \} }{n} \rightarrow \frac{1}{\sqrt{2\pi}} \int_{a}^{b} e^{-\frac{t^2}{2}} \, dt $
+\end{theorem}
+% \end{remark}
 
 \Subsection{Сходимость последовательностей случайных величин}
 
@@ -1095,21 +1135,36 @@
 \end{theorem}
 
 \begin{proof}
-    $f : \mathbb{R}^m \to \mathbb{R}$ и $g : \mathbb{R}^n \to \mathbb{R}$. $f(\xi_1 \ldots \xi_m)$ и
-    $g(\eta_1 \ldotp \eta_n)$ независимые.
+    $f : \mathbb{R}^m \to \mathbb{R}$ и $g : \mathbb{R}^n \to \mathbb{R}$, $\xi_1 \ldots \xi_m$ и $\eta_1 \ldots \eta_n$ независимые случайные величины.
 
-    Возьмём $\tilde{A}$ и $\tilde{B} \in \mathbb{R}$ борелевские. Надо доказать, что
+    Возьмём $\tilde{A}$ и $\tilde{B} \in \mathbb{R}$ борелевские.
+    
+    Надо доказать, что
+
     $P(f(\xi_1 \ldots \xi_m) \in \tilde{A}) \cdot P(g(\eta_1 \ldots \eta_n) \in \tilde{B}) =
-    P(f(\xi_1, \ldots, \xi_m) \in \tilde{A}, g(\eta_1 \ldotp \eta_n) \in \tilde{B})$.
+    P(f(\xi_1, \ldots, \xi_m) \in \tilde{A}, g(\eta_1 \ldots \eta_n) \in \tilde{B})$.
 
-    $P((\xi_1, \ldots, \xi_m) \in f^{-1} (\tilde{A}) = A) \cdot P((\eta_1, \ldots, \eta_m) \in f^{-1} (\tilde{B}) = B) = P(\ldots)$
+    $P((\xi_1, \ldots, \xi_m) \in \underbrace{f^{-1} (\tilde{A})}_{=: A}) \cdot P((\eta_1, \ldots, \eta_n) \in \underbrace{g^{-1} (\tilde{B})}_{=: B}) = P((\xi_1, \ldots, \xi_m) \in A, \ (\eta_1, \ldots, \eta_n) \in B)$
 
     Поймём это для ячеек.
 
-    $A = (a, b]$, что такое $P((\xi_1, \ldots, \xi_m) \in (a, b]) = P(\xi_1 \in (a_1, b_1], \ldots, \xi_m \in (a_m, b_m]) = P(\ldots) \cdot \ldots \cdot P(\ldots)$.
+    $A = (a, b]: \ (\xi_1, \ldots, \xi_m) \in (a, b] \Leftrightarrow \forall k: \ \xi_k \in (a_k, b_k]$
 
-    Если $A_j$ дизъюнктны $P((\xi_1, \ldots, \xi_m) \in A_j) \cdot P((\eta_1, \ldots, \eta_m) \in B) = P(\ldots).$
-    Просуммируем $P((\xi_1, \ldots, \xi_m) \in \bigsqcup A_j) \cdot P((\eta_1, \ldots, \eta_m) \in B) = P(\ldots)$
+    
+    $B = (c, d]: \ (\eta_1, \ldots, \eta_n) \in (c, d] \Leftrightarrow \forall k: \ \eta_k \in (c_k, d_k]$
+
+    Мы знаем, что 
+
+    $P((\xi, \ldots, \xi_m) \in A, \ (\eta_1, \ldots, \eta_n) \in B) = P(\forall k: \ \xi_k \in (a_k, b_k], \ \forall k: \ \eta_k \in (c_k, d_k]) = \prod_{k=1}^{m} P(\xi_k \in (a_k, b_k]) \cdot \prod_{k=1}^{n} P(\eta_k \in (c_k, d_k])$
+
+    Но $\prod_{k=1}^{m} P(\xi_k \in (a_k, b_k]) = P((\xi_1, \ldots, \xi_m) \in A)$, а $\prod_{k=1}^{n} P(\eta_k \in (c_k, d_k]) = P((\eta_1, \ldots, \eta_n) \in B)$.
+
+    То есть доказали на ячейках, а значит и доказали теорему.
+    
+    % $P((\xi_1, \ldots, \xi_m) \in (a, b]) = P(\xi_1 \in (a_1, b_1], \ldots, \xi_m \in (a_m, b_m]) = P(\xi_1 \in (a_1, b_1]) \cdot \ldots \cdot P(\xi_m \in (a_m, b_m])$.
+
+    % Если $A_j$ дизъюнктны $P((\xi_1, \ldots, \xi_m) \in A_j) \cdot P((\eta_1, \ldots, \eta_m) \in B) = P(\ldots).$
+    % Просуммируем $P((\xi_1, \ldots, \xi_m) \in \bigsqcup A_j) \cdot P((\eta_1, \ldots, \eta_m) \in B) = P(\ldots)$
 \end{proof}
 
 \begin{definition}
@@ -1118,34 +1173,104 @@
     \begin{enumerate}
         \item $\xi_n$ сходится к $\xi$ почти наверное, если $P(w \in \Omega : \lim_{n \to \infty} \xi_n(w) = \xi (w)) = 1$
         \item $\xi_n$ сходится к $\xi$ в среднем порядка $r > 0$, если $\mathbb{E} (|\xi_n - \xi|^r) \rightarrow_{n \to \infty} 0$
-        \item $\xi_n$ сходится к $\xi$ по вероятности, если $\forall \varepsilon > 0,  \, P(|\xi_n - \xi| \geqslant \varepsilon) \rightarrow_{n \to \infty} 0$
-        \item $\xi_n : \Omega_n \to \mathbb{R}$. $\xi_n$ сходится к $\xi$ по распределению, если
-        $\lim_{n \to \infty} F_{\xi_n} (x) = F_{\xi} (x)$ во всех точках непрерывности $F_{\xi}$
+        \item $\xi_n$ сходится к $\xi$ по вероятности, если $\forall \varepsilon > 0,  \, P(\omega \in \Omega : |\xi_n(\omega) - \xi(\omega)| \geqslant \varepsilon) \rightarrow_{n \to \infty} 0$
+        \item {
+            $\xi_n : \Omega_n \to \mathbb{R}$.
+            
+            $\xi_n$ сходится к $\xi$ по распределению, если $\lim_{n \to \infty} F_{\xi_n} (x) = F_{\xi} (x)$ во всех точках непрерывности $F_{\xi}$.
+        }
     \end{enumerate}
 
-    Связь между ними $1 \Rightarrow 3, 2 \Rightarrow 3$ (неравенство Маркова). При этом $3 \not \Rightarrow 1, 2 \not \Rightarrow 1$
-    \color{red}
-      TODO
-    \color{black}
-    %TODO
-    %TODO
 
-    $4 \not \Rightarrow 3$. Да и вообще они на разных вероятностных пространствах,
-    так что постановка вопроса в целом неверная.
+    Связь между сходимостями:
 
-    $3 \Rightarrow 4$. $\{ \xi_n > x \} \supset \{ \xi > x+ \varepsilon \} \cap \{ |\xi_n - \xi| < \varepsilon \}$. Также верно обратное:
-    $\{ \xi_n \leqslant x \} \subset \{ \xi \leqslant x+ \varepsilon \} \cup \{ |\xi_n - \xi| \geqslant \varepsilon \}$.
+    \begin{enumerate}
+        \item {
+            $1 \Rightarrow 3$: теорема Лебега из теории меры
+        }
+        \item {
+            $2 \Rightarrow 3$:
 
-    Тогда $F_{\xi_n}(x) \leqslant F_{\xi}(x + \varepsilon) + P(|\xi_n - \xi| \geqslant \varepsilon)$.
-    $\bar{\lim} F_{\xi_n}(x) \leqslant F_{\xi}(x + \varepsilon) + \bar{\lim} P(|\xi_n - \xi| \geqslant \varepsilon) = F_{\xi}(x + \varepsilon)$.
+            Пишем нер-во Маркова
 
-    $\{ \xi_n > x \} \subset \{ \xi > x - \varepsilon \} \cup \{ |\xi_n - \xi| \geqslant \varepsilon \}$ - запишем через вероятности.
-    $1 - F_{\xi_n}(x) \leqslant 1 - F_{\xi}(x - \varepsilon) + P(|\xi_n - \xi| \geqslant \varepsilon)$. То есть
-    $\underline{\lim} F_{\xi_n}(x) \geqslant F_{\xi}(x - \varepsilon) - \lim P(|\xi_n - \xi| \geqslant \varepsilon) = F_{\xi}(x - \varepsilon)$.
+            $P(|\xi_n - \xi| \geq \varepsilon) \leq \frac{\mathbb{E} |\xi_n - \xi|^r}{\varepsilon^r} \rightarrow 0$.
+        }
+        \item {
+            $2 \not \Rightarrow 1$:
 
-    То есть $F_{\xi}(x - \varepsilon) \leqslant \underline{\lim} F_{\xi_n}(x) \leqslant \overline{\lim} F_{\xi_n}(x) \leqslant F_{\xi}(x + \varepsilon)$ - верно для любого $n$.
-    Устремим $\varepsilon \rightarrow 0$. Тогда $F_{\xi}(x) \leqslant \underline{\lim} F_{\xi_n}(x) \leqslant \overline{\lim} F_{\xi_n}(x) \leqslant F_{\xi}(x)$, но левая и правая штука равны.
+            $\Omega := [0, 1), \ P := \lambda$ (мера Лебега).
 
+            Возьмем такую последовательность функций, для которой нет такого следствия:
+
+            $\mathds{1}_{[0, 1)}, \mathds{1}_{[0, \frac{1}{2})}, \mathds{1}_{[\frac{1}{2}, 1)}, \mathds{1}_{[0, \frac{1}{3})}, \mathds{1}_{[\frac{1}{3}, \frac{2}{3})}, \mathds{1}_{[\frac{2}{3}, 1)}, \ldots$
+
+            Тогда $\mathbb{E} |\xi_n|^r = \mathbb{E} \ \mathds{1}_{[\frac{k}{m}, \frac{k+1}{m})} = \frac{1}{m} \to \infty$, то сх-ть в среднем есть.
+
+            Сх-ти почти наверное нет, потому что ни в одной точке нет сх-ти, так как у $\xi_n(\omega)$ сколько угодно далеко есть как значения $1$, так и значения $0$.
+
+            Иными словами $\lim \xi_n(\omega)$ не существует.
+        }
+        \item {
+            $3 \not \Rightarrow 1$:
+
+            верно, так как $2 \Rightarrow 3$, но $2 \not \Rightarrow 1$. 
+        }
+        \item {
+            $1 \not \Rightarrow 2$:
+
+            $\Omega := [0, 1], \ P:=\lambda$ (мера Лебега).
+
+            $\xi_n(\omega) = n^{\frac{1}{r}} \cdot \mathds{1}_{[0, \frac{1}{n})}$.
+
+            Тогда $\xi_n(\omega) \rightarrow 0$ при $\omega \neq 0$, тогда $\xi_n$ сх-ся к $\xi \equiv 0$ почти наверное.
+
+            $\mathbb{E}|\xi_n|^r = \mathbb{E} \left( n \mathds{1}_{[0, \frac{1}{n})} \right) = 1 \not \to 0$
+        }
+        \item {
+            $3 \not \Rightarrow 2$:
+
+            верно, так как $1 \not \Rightarrow 2$.
+        }
+        \item {
+            $3 \Rightarrow 4$:
+
+            Хотим понять, что $P(\xi_1 \leq x) \to P(\xi \leq x)$ если $x$ -- точка непрерывности $F_{\xi}$.
+
+            $\{ \xi_n \leq x \} \subset \{ \xi \leq x + \varepsilon \} \cup \{ |\xi_n - \xi| > \varepsilon \}$
+
+            $P (\xi_n \leq x) \subset P(\xi \leq x + \varepsilon) + P(|\xi_n - \xi| > \varepsilon)$
+
+            Напишем верхние пределы для этого нер-ва:
+
+            $\overline{\lim} P(\xi_n \leq x) \leq \underbrace{P(\xi \leq x + \varepsilon)}_{\text{это просто $const$}} + \underbrace{\overline{\lim} P(|\xi_n - \xi| > \varepsilon)}_{\to 0, \text{ т.к. сх-ть по вероятности}}$
+
+            Теперь надо подпереть чем-то снизу:
+
+            $\{ \xi_n \leq x \} \supset \{ \xi \leq x - \varepsilon \} \setminus \{ |\xi_n - \xi| > \varepsilon \}$
+
+            
+            $P(\xi_n \leq x) \geq P(\xi \leq x - \varepsilon) - P(|\xi_n - \xi| > \varepsilon)$
+
+            Теперь пишем нижние пределы:
+
+            $\underline{\lim} P(\xi_n \leq x) \geq \underbrace{P(\xi \leq x - \varepsilon)}_{= const} - \underbrace{P(|\xi_n - \xi| > \varepsilon)}_{\to 0}$
+
+            Тогда получаем, что
+            
+            $F_{\xi} (x - \varepsilon) \leq \underline{\lim} F_{\xi_n}(x) \leq \overline{\lim} F_{\xi_n} (x) \leq F_{\xi} (x + \varepsilon)$
+
+            Теперь устремим $\varepsilon \to 0$, тогда
+
+            $F_{\xi}(x) \leq \underline{\lim} F_{\xi_n} (x) \leq \overline{\lim} F_{\xi_n} (x) \leq F_{\xi}(x)$
+
+            Тогда $\lim_{n \to \infty} F_{\xi_n}(x) = F_{\xi} (x)$ -- доказали стрелочку.
+        }
+        \item {
+            $4 \not \Rightarrow 3, 2, 1$:
+
+            из-за разных определений (где-то одно вероятностное пр-во, а где-то их может быть много разных)
+        }
+    \end{enumerate}
 \end{definition}
 
 \begin{theorem}
@@ -1172,8 +1297,7 @@
 \begin{consequence}
     \textbf{ЗБЧ в форме Чебышёва}
 
-    $\xi_1, \xi_2, \ldots$ независимые, одинаково распределенённые случайные величины с конечной дисперсией.
-    Пусть $a = \mathbb{E}_{\xi_1}$
+    $\xi_1, \xi_2, \ldots$ независимые, одинаково распределенённые случайные величины с конечной дисперсией и $a = \mathbb{E} \xi_1$.
 
     Тогда $P(\left | \frac{S_n}{n} - a \right | \geqslant \varepsilon) \rightarrow 0$ или же $\frac{S_n}{n} \underset{P}{\rightarrow} a$
 
@@ -1187,9 +1311,9 @@
 \begin{consequence}
     \textbf{ЗБЧ для схем Бернулли}
 
-    Есть схема Бернулли с вероятностью успеха $p$.
+    Есть схема Бернулли с вероятностью успеха $p \in (0, 1)$.
 
-    Тогда $\frac{S_n}{n} \underset{P}{\rightarrow} p$
+    Тогда $P(|\frac{S_n}{n} - p| \geq \varepsilon) \to 0$, где $S_n$ число успехов при $n$ подбрасываниях.
 \end{consequence}
 
 \begin{theorem}
@@ -1208,11 +1332,11 @@
     Тогда по условию $\mathbb{E} \xi_n^4 \leqslant C$ и надо доказать, что $\frac{S_n}{n} \rightarrow 0$ почти наверное.
 
     Пусть $A_n = \{ \left | \frac{S_n}{n} \right | \geqslant \varepsilon \}$. Нам нужно понять, что бесконечное количество $A_n$ случаются
-    с нулевой вероятностью.
+    с нулевой вероятностью, то есть что $P(\bigcap_{n=1}^{\infty} \bigcup_{k=n}^{\infty} A_k) = 0$.
 
-    Из леммы Бореля-Кантелли, если $\sum_{k = 1}^{\infty} \sum_{k = 1}^{\infty} P(A_n) < +\infty$, то нужное нам условие выполнено.
+    Из леммы Бореля-Кантелли, если $\sum_{k = 1}^{\infty} P(A_n) < +\infty$, то нужное нам условие выполнено.
 
-    Напишем неравенство Маркова: $P(A_n) \leqslant \frac{\mathbb{E} \frac{S_n^4}{n^4}}{\varepsilon^4} = \frac{\mathbb{E}S_n^4}{n^4\varepsilon^4}$. Достаточно доказать, что
+    Напишем неравенство Маркова: $P(A_n) = P\left( \frac{S_n^4}{n^4} \geq \varepsilon^4 \right) \leqslant \frac{\mathbb{E} \frac{S_n^4}{n^4}}{\varepsilon^4} = \frac{\mathbb{E}S_n^4}{n^4\varepsilon^4}$. Достаточно доказать, что
     $\mathbb{E}S_n^4 = \mathcal{O}(n^2)$, тогда ряд сойдётся. Раскроем все скобки.
 
     $\mathbb{E}(\xi_1 + \ldots + \xi_n)^4 = \sum_{i = 1}^n \mathbb{E}\xi_i^4 + 4\sum_{i \neq j}\mathbb{E}\xi_i^3\xi_j +
@@ -1227,7 +1351,7 @@
         }
     \end{enumerate}
 
-    Итого получаем $\sum_{i = 1}^n \mathbb{E}\xi_i^4 + 6 \sum \mathbb{E}x_i^2 \mathbb{E}\xi_j^2$ (*). По неравенству Ляпунова
+    Итого получаем $\sum_{i = 1}^n \mathbb{E}\xi_i^4 + 6 \sum \mathbb{E}x_i^2 \mathbb{E}\xi_j^2$ = (*). По неравенству Ляпунова
     $\mathbb{E}\xi_i^2 \leqslant \sqrt{\mathbb{E}\xi_i^4} \leqslant \sqrt{C}$.
 
     Значит $(*) = nC + 6n(n-1)\sqrt{C}\sqrt{C} \leqslant 6Cn^2 = \mathcal{O}(n^2)$, значит ряд сходится и лемма Бореля-Кантелли выполняется.
@@ -1240,7 +1364,7 @@
 \end{consequence}
 
 \begin{proof}
-    Нужно проверить, что $\mathbb{E}(\xi_i - p)^4$ - конечно, раскроем скобки, получим какие-то константы и $\xi_i^p$.
+    Нужно проверить, что $\mathbb{E}(\xi_i - p)^4$ - конечно, раскроем скобки, получим какие-то константы и $\xi_i^4$.
 \end{proof}
 
 \begin{theorem}
