@@ -150,11 +150,6 @@
 
     Сейчас мы показали обычную сходимость, нужно показать сходимость по норме пр-ва, т.е. $|| f_n - f ||_p \rightarrow 0$:
 
-    % А тогда $f_{n_1} + \sum_{k = 1}^\infty (f_{n_k}(t) + f_{n_{k + 1}}(t))$ абсолютно сходится при почти всех $t \implies $ сходится при почти всех $t$.
-
-    % Пусть $S(t)$ - его сумма. Но $f_{n_k}(t)$ - частичная сумма этого ряда. Тогда
-    % $\lim f_{n_k} (t) = f(t)$ при почти всех $t$. Проверим, что $||f_n - f|| \rightarrow 0$.
-
     Возьмём $n \geqslant n_k$, тогда:
 
     $$||f_n - f|| \leqslant \underbrace{||f_n - f_{n_k}||}_{\cdot < \frac{1}{2^k}} + \underbrace{||f_{n_k} - f||}_{\cdot < \frac{1}{2^k} \ (**)} \leqslant \frac{1}{2^{k-1}} \rightarrow 0$$
@@ -183,11 +178,6 @@
     $$ \Rightarrow \text{т.к. $p < +\infty$: } \int_{E} |f|^p \, d\mu < +\infty $$
 
     Следовательно, $f \in L^p(E, \mu)$, чтд.
-
-    % $f_{n_k} - f \rightarrow 0$ почти везде, $\lim \int_E |f_{n_k} - f|^p \, d\mu = \int E \lim |f_{n_k} - f|^p \, d\mu$, а под интегралом
-    % почти везде 0. Осталось понять, почему есть суммируемая мажоратна.
-
-    % $f(t) = f_{n_k} + \sum_{j = k}^\infty (f_{n_{j + 1}} - f_{n_j})$. А тогда $|f(t) - f_{n_k}| \leqslant \sum_{j = k}^\infty |f_{n_{j + 1}} - f_{n_j} | \leqslant S(t)$. Тогда $S^p$ - суммируемая мажоранта.
 \end{proof}
 
 \begin{definition}
