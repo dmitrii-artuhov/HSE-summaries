@@ -23,7 +23,7 @@
     \textbf{Существенный супремум} ($esssup$ или $rraisup$)
 
     $a$ -- существенный супремум функции $f: E \rightarrow \bar{\mathbb{R}}$,
-    
+
     если $a = \inf \{ c \in \mathbb{R} : f(x) \leq c \text{ при почти всех $x \in E$}\}$.
 \end{definition}
 
@@ -81,7 +81,7 @@
     Пусть $q < +\infty$.
 
     Напишем неравенство Гёльдера:
-    
+
     $\int_E |f|^p \cdot 1 \, d\mu \leqslant \left( \int_E \left(|f|^p\right)^{r} \, d\mu \right)^{\frac{1}{r}} \left( \int 1^{r'} \, d\mu \right)^{\frac{1}{r'}} = (*)$
 
     Здесь $\frac{1}{r} + \frac{1}{r'} = 1, \ r = \frac{q}{p} \Rightarrow \frac{1}{r'} = \frac{q - p}{q}$.
@@ -100,39 +100,84 @@
 \end{theorem}
 
 \begin{proof}
-    только для $p < +\infty$
+    Только для $p < +\infty$
 
-    Пусть $f_n$ - фундаментальная последовательность функций. Мы знаем, что
+    \underline{Идейно, что хотим доказать}: пространство является полным, если $\forall$ фундаментальная последовательность сходится, и её предел принадлежит данному пространству.
+
+    Пусть $f_n$ - фундаментальная последовательность функций. Мы знаем по определению фундаментальности:
+
     $\forall \, \varepsilon > 0 \, \exists N \, : \, \forall \, m, n \geqslant N \, : \, ||f_n - f_m||_p < \varepsilon$
 
-    Берём $\varepsilon = \frac{1}{2}, n_1 = N$ для этого $\varepsilon$, далее берём $\varepsilon = \frac{1}{2^2}$ и $n_2 = N$ для этого $\varepsilon$ и так далее.
+    Выберем некоторую подпоследовательность $f_{n_k}$:
 
-    Получилось, что $n_1 < n_2 < n_3 < \ldots$. А ещё $||f_{n_k} - f_n|| < \frac{1}{2^k}$ при $n \geqslant n_k$, в частности
+    1. Берём $\varepsilon_1 = \frac{1}{2}$, по нему возьмем $N_1$ из определения, далее определим $n_1 := N_1$.
+
+    2. Далее возьмем $\varepsilon_2 = \frac{1}{2^2}$, по нему возьмем $N_2$ из определения, далее определим $n_2 := max(N_2, \ n_1 + 1)$.
+
+    И так далее.\newline
+
+    Получилось, что $n_1 < n_2 < n_3 < \ldots$, а также $||f_{n_k} - f_n|| < \frac{1}{2^k}$ при $n \geqslant n_k$, в частности
     $||f_{n_k} - f_{n_{k + 1}}|| < \frac{1}{2^k}$ - так строили подпоследовательность.
 
-    Тогда $\sum_{k = 1}^\infty ||f_{n_{k}} - f_{n_{k + 1}}|| < 1$.
+    Рассматрим $\Sigma_{k=1}^{+\infty} || f_{n_k} - f_{n_{k+1}} ||_p$:
 
-    Заведём $S(t) = \sum_{k = 1}^\infty |f_{n_{k}}(t) - f_{n_{k + 1}}(t)|$. $S \, : \, E \to \overline{\mathbb{R}}$. Пусть
-    $S_n(t)$ - частичная сумма.
+    $$ \Sigma_{k=1}^{+\infty} || f_{n_k} - f_{n_{k+1}} ||_p < \Sigma_{k=1}^{+\infty} \frac{1}{2^k} = 1$$
 
-    $||S_n|| \leqslant ||f_{n_1} - f_{n_2}|| + ||f_{n_2} - f_{n_3}|| + \ldots + ||f_{n_m} - f_{n_{m + 1}}|| < 1$ - норма суммы меньше суммы норм.
+    Тогда $\sum_{k = 1}^\infty ||f_{n_{k}} - f_{n_{k + 1}}||_p < 1$.
 
-    $||S||^p = \int_{E} |S(t)|^p \, dt = \int_E \lim_{n \to +\infty} |S_m(t)|^p \, dt \underbrace{\leqslant}_{\text{л. Фату}} \underline{\lim} \int_E |S_m(t)|^p \, dt =
-    \underline{\lim} ||S_m ||^p \leqslant 1 $
+    Пусть $S(t) = \sum_{k = 1}^\infty |f_{n_{k}}(t) - f_{n_{k + 1}}(t)|$. $S \, : \, E \to \overline{\mathbb{R}}$.
 
-    $ \implies \int_E |S(t)|^p \, dt < +\infty \implies S(t) < +\infty$ при почти всех $t$.
+    Пусть $S_m(t) := \sum_{k = 1}^m |f_{n_{k}}(t) - f_{n_{k + 1}}(t)|$ - частичная сумма.
 
-    А тогда $f_{n_1} + \sum_{k = 1}^\infty (f_{n_k}(t) + f_{n_{k + 1}}(t))$ абсолютно сходится при почти всех $t \implies $ сходится при почти всех $t$.
+    $||S_n||_p \leqslant ||f_{n_1} - f_{n_2}||_p + ||f_{n_2} - f_{n_3}||_p + \ldots + ||f_{n_m} - f_{n_{m + 1}}||_p < 1$ - норма суммы меньше суммы норм.
 
-    Пусть $S(t)$ - его сумма. Но $f_{n_k}(t)$ - частичная сумма этого ряда. Тогда
-    $\lim f_{n_k} (t) = f(t)$ при почти всех $t$. Проверим, что $||f_n - f|| \rightarrow 0$.
+    Следовательно: $||S_n||_p < 1 \quad (*)$.\newline
 
-    Возьмём $n \geqslant n_k$, тогда $||f_n - f|| \leqslant ||f_n - f_{n_k}|| + ||f_{n_k} - f|| \leqslant \frac{1}{2^k}$
+    Теперь рассмотрим $|| S ||^p_p$:
 
-    $f_{n_k} - f \rightarrow 0$ почти везде, $\lim \int_E |f_{n_k} - f|^p \, d\mu = \int E \lim |f_{n_k} - f|^p \, d\mu$, а под интегралом
-    почти везде 0. Осталось понять, почему есть суммируемая мажоратна.
+    \underline{Напоминание (Лемма Фату)}: Если $f_n \geq 0$, то $\int_E{\underline{\lim}{f_n d \mu}} \leq \underline{\lim}{\int_E{f_n d \mu}}$.
 
-    $f(t) = f_{n_k} + \sum_{j = k}^\infty (f_{n_{j + 1}} - f_{n_j})$. А тогда $|f(t) - f_{n_k}| \leqslant \sum_{j = k}^\infty |f_{n_{j + 1}} - f_{n_j} | \leqslant S(t)$. Тогда $S^p$ - суммируемая мажоранта.
+    $||S||^p_p = \int_{E} |S(t)|^p \, dt = \int_E \lim_{n \to +\infty} |S_m(t)|^p \, dt \underbrace{\leqslant}_{\text{л. Фату}} \underline{\lim} \int_E |S_m(t)|^p \, dt =
+    \underline{\lim} ||S_m ||^p_p \underbrace{\leqslant}_{\text{т.к. верно (*)}} 1 $.
+
+    Так как по определению $S = \lim_{n\rightarrow +\infty} S_n$ (т.е. предел $S_n$ существует и равен $S$), то $\underline{\lim} = \lim = \bar{\lim}$.
+
+    $ \implies \int_E |S(t)|^p \, dt < +\infty \implies S(t) < +\infty$ при почти всех $t \in E$.
+
+    Тогда $S(t) = \Sigma_{k=1}^{+\infty} |f_{n_k}(x) - f_{n_{k+1}}(x)| < +\infty$ -- ряд из суммы неотрицательных слагаемых ограничен, значит он сходится. Если мы рассматривем данный ряд без модулей, то такой ряд уже имеет абсолютную сходимость почти везде, а значит и обычную почти везде тоже.\newline
+
+    Заметим, что: $f_{n_1} + \Sigma_{k=1}^{m} (f_{n_{k+1}} - f_{n_k}) = \Sigma_{k=2}^{m+1} f_{n_k} - \Sigma_{k=2}^{m} f_{n_k} = f_{n_{m+1}}$ -- так как сумма ряда сходится почти везде, то $f_{n_m}$ сходятся при почти всех $t \in E \Rightarrow \lim_{m\rightarrow +\infty} f_{n_m} = f$.\newline
+
+    Сейчас мы показали обычную сходимость, нужно показать сходимость по норме пр-ва, т.е. $|| f_n - f ||_p \rightarrow 0$:
+
+    Возьмём $n \geqslant n_k$, тогда:
+
+    $$||f_n - f|| \leqslant \underbrace{||f_n - f_{n_k}||}_{\cdot < \frac{1}{2^k}} + \underbrace{||f_{n_k} - f||}_{\cdot < \frac{1}{2^k} \ (**)} \leqslant \frac{1}{2^{k-1}} \rightarrow 0$$
+
+    Нужно показать, что (**) верно:
+
+    Мы уже знаем, что $\lim_{k\rightarrow +\infty} f_{n_k} = f$ -- почти везде, тогда рассмотрим $|| f_{n_k} - f ||^p_p$:
+
+    $$|| f_{n_k} - f ||^p_p = \lim_{k\rightarrow \infty} \int_{E} |f_{n_k} - f|^p \,d\mu \underbrace{=}_{(***)} \int_{E} \underbrace{\lim_{k\rightarrow \infty} |f_{n_k}-f|^p}_{\text{Почти везде $= 0$}}\, d\mu$$
+
+    Выше мы использовали теорему Лебега о предельном переходе (о мажорируемой сходимости), для того, чтобы ее использовать в (***) нужно показать, что $|f_{n_k} - f|^p \leq F$, где $F$ -- некоторая суммируемая функция (т.е. искомая суммир. мажоратна):
+
+    Ранее мы уже показали, что $f_{n_{m+1}} = f_{n_1} + \Sigma_{k=1}^{m} (f_{n_{k+1}} - f_{n_k})$ -- заметим, что если написать $f_{n_k} + \Sigma_{i=k}^{m} (f_{n_{i+1}} - f_{n_i}) = f_{n_{m+1}}$, то сумма не изменится. Тогда рассмотрим произвольное $k$ и устремим $m \rightarrow +\infty$:
+
+    $$ f(t) = f_{n_k} + \Sigma_{i=k}^{+\infty} (f_{n_{i+1}} - f_{n_i}) \Rightarrow $$
+    $$ \Rightarrow |f(t) - f_{n_k}(t)| = \left|\Sigma_{i=k}^{+\infty} (f_{n_{i+1}} - f_{n_i})\right| \leq \Sigma_{i=k}^{+\infty} |f_{n_{i+1}} - f_{n_i}| \leq S(t) \underbrace{<}_{\text{т.к. ранее показали}} +\infty \Rightarrow$$
+    $$ \Rightarrow \forall k: |f - f_{n_k}| \leq S^p(t) < +\infty $$
+
+    Получаем суммируемую мажоратну $S^p(t) \Rightarrow$ переход (***) корректен. А значит и утверждение (**) тоже корректно, следовательно у нашей фундаментальной последовательности $f_n$ есть сходимость по норме. \newline
+
+    Осталось показать, что предел $f = \lim_{k\rightarrow +\infty} f_n$ принадлежит пространству $\Leftrightarrow$ его норма конечна (см. опр. $L^p (E, \mu)$):
+
+    Применим нер-во Минковского для $f = f_{n_k} + \Sigma_{i=k}^{+\infty} (f_{n_{i+1}} - f_{n_i})$:
+
+    $$ \left(\int_{E} |f|^p \, d\mu\right)^{\frac{1}{p}} \leq \underbrace{\left(\int_{E} |f_{n_k}|^p \, d\mu\right)^{\frac{1}{p}}}_{\cdot < +\infty \text{ т.к. $f_{n_k} \in L^p(E, \mu)$}} + \underbrace{\left(\int_{E} |\Sigma|^p \, d\mu\right)^{\frac{1}{p}}}_{\cdot \leq \left(\int_{E} |S(t)|^p \, d\mu\right)^{\frac{1}{p}} < +\infty} < +\infty \Rightarrow$$
+    $$ \Rightarrow \text{т.к. $p < +\infty$: } \int_{E} |f|^p \, d\mu < +\infty $$
+
+    Следовательно, $f \in L^p(E, \mu)$, чтд.
 \end{proof}
 
 \begin{definition}
