@@ -325,3 +325,310 @@
     \end{enumerate}
 
 \end{proof}
+
+\Subsection{Гильбертовы пространства}
+
+\begin{remark}
+    Скалярное произведение. $H$ - векторное пространство над $\mathbb{R}$ или $\mathbb{C}$
+
+    Тогда $\left < ., . \right > \, : \, H \times H \to \mathbb{R} (\mathbb{C})$
+
+    \begin{enumerate}
+        \item $\left <x, x \right > \geqslant 0$ и$\left <x, x \right > = 0 \Leftrightarrow x = \bar{0}$
+        \item $\left <x, y \right > = \overline{\left <y, x \right >}$
+        \item $\left <x + y, z \right > = \left <x, z \right > + \left <y, z \right >$
+        \item $\left <\alpha x, y \right > = \alpha \left <x, y \right > \forall \, x \, \in \mathbb{R} (\mathbb{C})$
+    \end{enumerate}
+\end{remark}
+
+\begin{definition}
+    $H$ гильбертовово, если в нём есть скалярное произведение и оно полное.
+\end{definition}
+
+\begin{example}
+    \begin{enumerate}
+        \item {
+            $l^2$, в нём $<x, y> = \sum_{k = 1}^{\infty} x_k \overline{y_k}$
+        }
+        \item {
+            $L^2 (E, \mu)$, в нём $\left < f, g \right > = \int_{E} f \overline{g} d\mu$
+        }
+        \item {
+            $\mathbb{R}^d (\mathbb{C}^d)$, в нём $\left < x, y \right > = \sum_{k = 1}^d x_k \overline{y_k}$
+        }
+    \end{enumerate}
+\end{example}
+
+\begin{lemma}
+    Если $\sum_{n = 1}^{\infty} x_n$ сходится, то $\left < \sum_{n = 1}^\infty, y \right > = \sum_{n = 1}^{\infty} \left < x_n, y \right >$
+\end{lemma}
+
+\begin{proof}
+    $S_n = \sum_{k = 1}^n x_n \rightarrow S = \sum_{k = 1}^{\infty} x_n \implies \underbrace{\left < S_n, y \right >}_{=\left < \sum_{k = 1}^n x_k y \right > = \sum_{k=1}^{n} \left < x_k , y \right >} \rightarrow \left < S, y \right >$
+\end{proof}
+
+\begin{definition}
+    $x \bot y$ ортогональный, если $\left < x, y \right > = 0 $
+\end{definition}
+
+\begin{definition}
+    Ряд $\sum_{k=1}^{\infty} x_n$ ортогональный, если $x_n \bot x_k \, \forall k \neq n$
+\end{definition}
+
+\begin{remark}
+    Если $x_n \neq 0$ и попарно отрогональны, то они линейно независимы
+
+    \begin{proof}
+        Пусть $c_1 x_1 + \ldots + c_n x_n = 0$. Тогда $\left < c_1 x_1 + \ldots + c_n x_n , x_k \right > = 0 $. Раскроем по линейности
+        $\sum_{j = 1}^n c_j \left < x_k, x_k \right > = 0 = c_k \left < x_k, x_k \right > \implies c_k = 0$
+    \end{proof}
+\end{remark}
+
+\begin{theorem}
+    Пусть $H$ - гильбертово пространство, $\sum_{n = 1}^{\infty} x_n$ - ортогональный ряд.
+
+    Тогда $\sum_{n = 1}^\infty x_n $ - сходится $\Longleftrightarrow \sum_{n = 1}^\infty || x_n ||^2 < +\infty$
+\end{theorem}
+
+\begin{proof}
+    $S_n = \sum_{k = 1}^n x_k, C_n = \sum_{k = 1}^n ||x_k||^2$
+
+    Пространство полно, есть критерий Коши.
+
+    $\forall \varepsilon > 0 \exists N \, : \, \forall \, n, m \geqslant N \, ||S_n - S_m|| < \varepsilon$.
+
+    $||S_n - S_m||^2 = || \sum_{k = n + 1}^m x_k ||^2 = \left < \sum_{k = n + 1}^m x_k, \sum_{k = n + 1}^m x_k \right > = \sum_{k = m + 1}^n \left < x_k , x_k \right > = \sum_{k = n + 1}^m ||x_k||^2 = C_m - C_n 
+    \Longleftrightarrow C_n$ - фундаментальная последовательность $\Longleftrightarrow \sum_{n = 1}^\infty ||x_n||^2 < +\infty$
+\end{proof}
+
+\begin{consequence}
+    Пусть $\sum_{n = 1}^{\infty} x_n$ сходящийся ортогональный ряд в гильбертовом пространстве $H$, а $\varphi \, : \, \mathbb{N} \to \mathbb{N}$ - перестановка.
+    
+    Тогда $\sum_{n = 1}^\infty x_{\varphi(n)} $ сходится к той же сумме 
+\end{consequence}
+
+\begin{proof}
+    $S = \sum x_n$ - сходится $\Longleftrightarrow \sum ||x_n||^2$ - сходится $\Longleftrightarrow \sum ||x_{\varphi(n)}||^2$ - сходится $\Longleftrightarrow \sum x_{\varphi(n)} = \tilde{S}$ - сходится.
+
+    Посмотрим на $||S - \tilde{S}||^2 = \left <  S - \tilde{S}, S - \tilde{S} \right > = \left < S, S \right > + \left < \tilde{S}, \tilde{S} \right > - \left < S, \tilde{S} \right > - \left < \tilde{S}, S \right > = 
+    \sum_{n = 1}^\infty \sum_{k = 1}^\infty \left < x_n, x_k \right > + \sum_{n = 1}^\infty \sum_{k = 1}^\infty \left < x_{\varphi(n)}, x_{\varphi(k)} \right > - \sum_{n = 1}^\infty \sum_{k = 1}^\infty \left < x_n, x_{\varphi(k)} \right > - \sum_{n = 1}^\infty \sum_{k = 1}^\infty \left < x_{\varphi(n)}, x_k \right > = 
+    \sum_{n = 1}^\infty \left < x_n , x_n \right > + \sum_{n = 1}^\infty \left < x_{\varphi(n), x_{\varphi(n)}} \right > - \sum_{n = 1}^\infty \left < x_n, x_n \right > - \sum_{n = 1}^\infty \left < x_{\varphi(n), x_{\varphi(n)}} \right > = 0 $
+\end{proof}
+
+\begin{definition}
+    $x_1, x_2, \ldots$ ортогональная система, если они попарно ортогональны и $x_n \neq 0 \, \forall n$
+\end{definition}
+
+\begin{definition}
+    $x_1, x_2, \ldots$ ортонормированная система, если они попарно ортогональны и $||x_n|| = 1 \, \forall n$
+\end{definition}
+
+\begin{remark}
+    Эти системы линейно независимы
+\end{remark}
+
+\begin{example}
+    \begin{enumerate}
+        \item {
+            $l^2, e_n = (0, 0, \ldots , 0, 1, 0, \ldots, 0)$ - ортонормированная система.
+        }
+        \item {
+            $L^2 [0, 2\pi]$, ортогональная система $1, \cos t, \sin t, \cos 2t, \sin 2t$
+        }
+        \item {
+            $L^2 [0, 2\pi]$, ортогональная система $e^{int}, n \in \mathbb{Z}$
+
+            А $\frac{1}{\sqrt{2\pi}} e^{int}$ - ортонормированная система
+        }
+        \item {
+            $L^2 [0, \pi]$, ортогональная система $1, \cos t, \cos 2t, \cos 3t, \ldots$
+        }
+        \item {
+            $L^2 [0, \pi]$, ортогональная система $\sin t, \sin 2t, \sin 3t, \ldots$
+        }
+    \end{enumerate}
+\end{example}
+
+\begin{theorem}
+    Пусть $e_1, e_2, \ldots$ ортогональная система в $H$ и $x = \sum_{k = 1}^\infty c_k e_k \in H$.
+
+    Тогда $c_k = \frac{\left < x, e_k  \right >}{\left < e_k, e_k \right >}$
+\end{theorem}
+
+\begin{proof}
+    $\left < x, e_k \right > = \sum_{j = 1}^\infty c_j \left < e_j, e_k \right > = c_k \left < e_k , e_k \right > = c_k ||e_k||^2$
+\end{proof}
+
+\begin{definition}
+    Пусть $e_1, e_2, \ldots$ - ортогональная система в $H$ и $x \in H$. Назовём $c_k (x) = \frac{\left < x, e_k \right >}{||e_k||^2}$ коэффициентом Фурье для вектора $x$ по ортогональной системе $\{ e_n \}$
+
+    А $\sum_{k = 1}^\infty c_k (x) e_k $ - ряд Фурье
+\end{definition}
+
+\begin{remark}
+    \begin{enumerate}
+        \item {
+            Если $x = \sum_{k = 1}^\infty c_k e_k$, то этот ряд - ряд Фурье.
+        }
+        \item {
+            $k$-ое слагаемое ряда Фурье - это проекция вектора $x$ на прямую, идущую в направлении $e_k$
+
+            То есть $x = c_k e_k + z$, где $z \bot e_k$
+        }
+    \end{enumerate}
+\end{remark}
+
+\begin{theorem}
+    \textbf{о частичных суммах ряда Фурье}
+
+    $x \in H, \{ e_n \}$ ортогональная система и $S_n = \sum_{k = 1}^n c_k (x) e_k $ - частичная сумма ряда Фурье для $x$.
+    $L_n$ - линейная оболочка $\{ e_1, \ldots e_n \}$
+
+    Тогда:
+    \begin{enumerate}
+        \item $S_n$ - проекция $x$ на $L_n$, то есть $x = S_n + z$, где $z \bot L_n$
+        \item $S_n$ - наилучшее приближение к $x$ в $L_n$, т.е. $||x - S_n|| = \min_{y \in L_n} ||x - y||$
+        \item $||S_n|| \leqslant ||x||$
+    \end{enumerate}
+    
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item {
+            $z = x - S_n$, надо доказать, что $z \bot L_n$, то есть $z \bot e_j$ при $j = 1, \ldots, n$
+
+            $\left < z, e_j \right > = \left < x, e_j \right > - \left < S_n, e_j \right > = \left < x, e_j \right > - \left < \sum_{k = 1}^n c_k (x) e_k, e_j \right > = 
+            \left < x, e_j \right > - c_j (x) \left < e_j, e_j \right > = 0$
+        }
+        \item {
+            $x - \underbrace{y}_{\in L_n} = \underbrace{S_n + z - y}_{z \bot L_n} = z + (S_n - y)$
+            
+            Тогда $||x - y||^2 = ||z||^2 + ||S_n - y||^2 \geqslant ||z||^2 = ||x - S_n||^2$ и равенство $\Longleftrightarrow y = S_n$
+        }
+        \item {
+            $x = S_n + z$ и $z \bot S_n$
+
+            Тогда $||x||^2 = ||S_n||^2 + ||z||^2 \geqslant ||S_n||^2$
+        }
+    \end{enumerate}
+\end{proof}
+
+\begin{consequence}
+    \textbf{Неравенство Бесселя}
+
+    $\sum_{n = 1}^\infty |c_n (x)|^2 ||e_n||^2 \leqslant ||x||^2$
+\end{consequence}
+
+\begin{proof}
+    $||x||^2 \geqslant ||S_n||^2 = \left < \sum_{k = 1}^n c_k (x)e_k, \sum_{k = 1}^n c_k (x)e_k \right > = \sum_{k  = 1}^n |c_k (x)|^2 ||e_k||^2$ и $n \to \infty$
+\end{proof}
+
+\begin{theorem}
+    \textbf{Рисса-Фишера}
+
+    $H$ - гильбертово пространство, $\{ e_n \}$ - ортогональная система в $H$ и $x \in H$. Тогда:
+
+    \begin{enumerate}
+        \item {
+            Ряд Фурье $\sum_{n = 1}^\infty c_n (x) e_n$ сходится
+        }
+        \item {
+            $x = \sum_{n = 1}^\infty c_n (x) e_n + z$, где $z \bot e_n \, \forall n$
+
+        }
+        \item {
+            $x = \sum_{n = 1}^\infty c_n(x) e_n \Longleftrightarrow ||x||^2 \overset{\text{Тождество Парсеваля}}{=} \sum_{n = 1}^\infty |c_n (x)|^2 ||e_n||^2$
+        }
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item {
+            $\sum_{n = 1}^\infty c_n (x) e_n$ - сходится $\Longleftrightarrow \underbrace{\sum_{n = 1}^\infty ||c_n (x) e_n||^2}_{= \sum_{n = 1}^\infty |c_n (x)| ||e_n||^2 \leqslant ||x||^2} < +\infty$
+        }
+        \item {
+            $z = x - \sum_{k = 1}^\infty c_k(x)e_k$
+
+            $\left < z, e_n \right > = \left < x, e_n \right > - \left < \sum_{k = 1}^\infty c_k (x) e_k, e_n \right > = \left < x, e_n \right > - c_n(x) \left < e_n, e_n \right > = 0$
+        }
+        \item {
+            $x = \sum_{k = 1}^\infty c_k (x) e_k + z$, где $z \bot e_n \forall n$
+
+            Тогда $||x||^2 = ||z||^2 + \sum_{k = 1}^\infty |c_k (x)| ||e_k||^2$, то есть $z = 0 \Longleftrightarrow ||x||^2 = \sum_{k = 1}^\infty |c_k(x)|^2 ||e_k||^2$
+        }
+    \end{enumerate}
+\end{proof}
+
+\begin{remark}
+    $\sum_{n = 1}^\infty c_n (x) e_n$ - это ортогональная проекция на $Cl \, Lin \, \{ e_n \}$
+\end{remark}
+
+\begin{remark}
+    Если $\sum_{n = 1}^\infty |c_k|^2 ||e_k||^2 < +\infty$, то найдётся $x \in H$, для которого $\sum_{k = 1}^\infty c_k e_k$ - ряд Фурье
+\end{remark}
+
+\begin{definition}
+    $\{ e_n \}$ - ортогональная система в $H$
+
+    \begin{enumerate}
+        \item {
+            $\{ e_n \}$ - базис, если $\forall x \in H \, : \, x = \sum_{n = 1}^\infty c_n (x) e_n$
+        }
+        \item {
+            $\{ e_n \}$ - полная, если из того, что $z \bot e_n \, \forall \, n \implies z = 0$
+        }
+        \item {
+            $\{ e_n \}$ - замкнутая, если $\forall \, x \in H \, : \, ||x||^2 = \sum_{k = 1}^\infty |c_k (x)|^2 ||e_k||^2$
+
+        }
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem}
+    $\{ e_n \}$ ортогональная система в $H$. Следующие условия равносильны:
+
+    \begin{enumerate}
+        \item $\{ e_n \}$ - базис
+        \item $\{ e_n \}$ - полная
+        \item $\{ e_n \}$ - замкнутая 
+        \item $\forall \, x, y \in H \, : \, \left < x, y \right > = \sum_{n = 1}^\infty c_n (x) \overline{c_n (y)} ||e_n||^2$
+        \item $Cl \; Lin \; \{ e_n \} = H$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item {
+            $4 \implies 3$
+
+            Берём $x = y$
+        }
+        \item {
+            $1 \implies 4$
+
+            $\left < x, y \right > = \left < \sum_{k = 1}^\infty c_k(x) e_k, \sum_{n = 1}^\infty c_n (y) e_n \right > = \sum_{n = 1}^\infty c_n(x) \overline{c_n(y)} ||e_n||^2$
+        }
+        \item {
+            $3 \implies 2$
+
+            Возьмём $z \bot e_n \, \forall n$. Тогда $||z||^2 = \sum_{n = 1}^\infty \underbrace{|c_n (z)|^2}_{= 0} ||e_n||^2 = 0 \implies z = 0$
+        }
+        \item {
+            $2 \implies 1$
+
+            Рисс-Фишер $\implies x = z + \sum_{k = 1}^infty c_k (x) e_k$ и $z \bot e_n \, \forall \, n$
+        }
+        \item {
+            $1 \implies 5$
+
+            $x = \sum_{k = 1}^\infty c_k (x) e_k = \lim_{n \to +infty} \sum_{k = 1}^n c_k (x) e_k \in Lin \, \{ e_n \} \implies \lim \in Cl \, Lin \, \{ e_n \} \implies Cl \, Lin \, \{ e_n \} \supset H$
+        }
+        \item {
+            $5 \implies 2$
+
+            Пусть $z \bot e_n \, \forall \, n$. Тогда $z \bot Lin \, \{ e_n \} \implies z \bot Cl \, Lin \, \{ e_n \} = H \implies z \bot z \implies z = 0$
+        }
+    \end{enumerate}
+\end{proof}

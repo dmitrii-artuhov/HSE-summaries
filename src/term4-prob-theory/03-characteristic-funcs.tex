@@ -255,3 +255,162 @@
     e^{ita_0} e^{ia_1c_1 t} e^{- \frac{(c_1 \sigma_1 t)^2}{2}} \ldots e^{ia_nc_n t} e^{- \frac{(c_n \sigma_n t)^2}{2}} =
     e^{ita} e^{- \frac{\sigma^2t^2}{2}} $
 \end{proof}
+
+\Subsection{Сходимость по распределению}
+
+\begin{remark}
+    \begin{enumerate}
+        \item {
+            Точек, где нет непрерывности $F_{\xi}$ не более чем счётное множество
+
+            %\begin{proof}
+            %    $P(\xi = x) > 0$ - эти точки, а мера вероятностная. 
+            %\end{proof}
+        }
+        \item {
+            Если $F_{\xi_n}(b) - F_{\xi_n} (a) \rightarrow F_{\xi}(b) - F_{\xi}(a)$ для всех $a, b$, за исключением счётного множества.
+            
+            Тогда $F_{\xi_n}(b) \rightarrow F_{\xi} (b)$ за исключением счётного множества.
+
+            \begin{proof}
+                Рассмотрим $F(x)$, функцию распределения. Возьмём хорошие $a$, т.ч. $F(a) < \varepsilon$ и 
+                $b$, т.ч. $F(b) > 1 - \varepsilon$. Тогда $(F_n(b) - F_n (a)) - (F(b) - F(a)) \rightarrow 0 \implies 
+                |(F_n(b) - F_n(a)) - \underbrace{(F(b) - F(a))}_{> 1 - 2\varepsilon}| < \varepsilon \implies F_n(b) - F_n(a) > 1 - 3\varepsilon \implies F_n(a) < 3\varepsilon$ при больших $n$.
+
+                Возьмём хорошее $x$, $|F_n(x) - F(x)| \leqslant |(F_n(x) - F_n(a)) - (F(x) - F(a))| + \underbrace{F_n(a)}_{<3\varepsilon} + \underbrace{F(a)}_{<\varepsilon} < 5\varepsilon$ при больших $n$
+            \end{proof}
+        }
+        \item {
+            $D \subset \mathbb{R}$ не более чем счётное и $U \subset \mathbb{R}$ - открытое.
+
+            Тогда $U = \bigcup_{k = 1}^{\infty} (a_k, B_k]$, где $a_k, b_k \not \in D$
+
+            \begin{proof}
+                Нарезаем открытое множество с шагом 1, тем ячейки, которые целиком попали - берём. Те, что не попали - бьём пополам и так далее.
+            \end{proof}
+        }
+        \item {
+            $\xi$ и $\eta$ независимые и $\eta$ имеет непрерывное распределение.
+
+            Тогда $\xi + \eta$ имеет непрерывное распределение.
+
+            \begin{proof}
+                $P_{\xi + \eta} = P_{\xi} * P_{\eta}$
+
+                $P_{\xi + \eta} (\{ a \}) = \int_{\mathbb{R}} \underbrace{P_{\eta} ( \{ a - x \} )}_{= 0, \text{т.к. непрерывность}}  dP_{\xi} (x) $
+            \end{proof}
+        }
+    \end{enumerate}
+\end{remark}
+
+\begin{definition}
+    Множество $B \subset \mathbb{R}$ - регулярное, относительно $P_{\xi}$, если $P_{\xi} (Cl \, B \setminus Int \, B) = 0$, 
+    то есть $P(\xi \in Cl \, B \setminus Int \, B) = 0$
+\end{definition}
+
+\begin{theorem}
+    $\xi, \xi_1, \xi_2, \ldots$ - случаный величины, $F, F_1, F_2, \ldots$ - их функции распределения, а
+    $\varphi, \varphi_1, \varphi_2, \ldots$ - их характеристичечкие функции. Следующие условия равносильны:
+
+    \begin{enumerate}
+        \item $\xi_n$ сходится к $\xi$ по распределению
+        \item Для любого $U$ открытого $\underline{\lim} P(\xi_n \in U) \geqslant P(\xi \in U)$
+        \item Для любого $A$ замкнутого $\overline{\lim} P(\xi_n \in A) \leqslant P(\xi \in A)$
+        \item Для любого $B$ регулярного борелевского $\lim P(\xi_n \in B) = P(\xi \in B)$
+        \item Для любого $B$ регулярного борелевского $\lim \mathbb{E} \mathds{1}_{B}(\xi_n) = \mathbb{E} \mathds{1}_B (\xi)$
+        \item Для любой $f$ непрерывной на прямой и ограниченной $\lim \mathbb{E} f(\xi_n) = \mathbb{E} f(\xi)$
+        \item $\varphi_n$ сходится к $\varphi$ поточечно
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item {
+            $2 \Longleftrightarrow 3$
+            
+            Если $A = \mathbb{R} \setminus U$, тогда $P(\xi_n \in A) = 1 - P(\xi_n \in U)$.
+
+            $P(\xi \in A) > \overline{\lim} P(\xi_n \in A) = 1 - \underline{\lim} P(\xi_n \in U) \leqslant 1 - P(\xi \in U) = P(\xi \in A)$
+        }
+        \item {
+            $2 \cup 3 \implies 4$
+            
+            Мы знаем, что $U = \{ \xi_n \in Int \, B \} \{ \xi_n \in B \} \subset \{ \xi_n \in Cl \, B \} = A$
+
+            Тогда $P(\xi_n \in U) \leqslant P(\xi_n \in B) \leqslant P(\xi_n \in A) \implies \underbrace{\overline{\lim} P(\xi_n \in B)}_{\geqslant \underline{\lim} P(\xi_n \in B) \geqslant \underline{\lim} P(\xi_n \in U) \geqslant P(\xi \in U) = P(\xi \in B)} \leqslant \overline{\lim} P(\xi_n \in A) \leqslant P(\xi \in A) = P(\xi \in B)$
+        }
+        \item {
+            $4 \Longleftrightarrow 5$
+
+            $\mathbb{E} \mathds{1}_B (\xi_n) = P(\mathds{1}_B (\xi_n) = 1) = P(\xi_n \in B)$ 
+        }
+        \item {
+            $6 \implies 7$
+
+            $\varphi_{\eta} (t) = \mathbb{E} e^{et\eta} = \mathbb{E} \cos (t\eta) + i \mathbb{E} \sin (t \eta)$
+
+            Тогда $\varphi_n(t) = \mathbb{E} \cos (t \xi_n) + i\mathbb{E} \sin (t\xi_n) \rightarrow \mathbb{E} \cos (t\xi) + i \mathbb{E} \sin (t\xi) = \varphi (t)$
+        }
+        \item {
+            $1 \implies 2$
+
+            Берём открытое $U$, по замечанию $U =  \bigcup\limits_{k = 1}^{\infty} (a_k, b_k]$, где $a_k, b_k$ - точки непрерывности $F$. 
+
+            $\{ \xi_n \in U \} \supset \{ \xi_n \in \bigcup\limits_{k = 1}^{m} (a_k, b_k] \} \implies P(\xi_n \in U) \geqslant \sum_{k = 1}^m P(\xi_n \in (a_k, b_k])$
+
+            $\underline{\lim} P(\xi_n \in U) \geqslant \underline{\lim} \sum_{k  = 1}^m \geqslant \sum_{k = 1}^m \underline{\lim} P(\xi_n \in (a_k, b_k]) \overset{*}{=} \sum_{k = 1}^m P(\xi \in (a_k b_k]) \overset{m \to \infty}{\rightarrow} \sum_{k = 1}^{\infty} P(\xi \in (a_k, b_k]) = P(\xi \in U)$
+
+            А значит $\underline{\lim} P(\xi_n \in U) \geqslant P(\xi \in U)$
+
+            $(*) P(\xi_n \in (a_k, b_k]) = F_n (b_k) - F_n (a_k) \rightarrow F(b_k) - F(a_k) = P(\xi \in (a_k, b_k])$
+        }
+        \item {
+            $5 \implies 6$
+
+            Пусть $|f| \leqslant M$ и $D = \{ x \in \mathbb{R} \, : \, P(f(\xi) = x) > 0 \} = \{ x \, : \, P_{\xi} (f^{-1} (x) > 0) \}$. Это не более чем счётное множество. Потому что для разных $x$ - это дизъюнктные. 
+            Множеств с вероятностью $\frac{1}{2}$ - не больше двух, с вероятностью $\frac{1}{3}$ не больше трёх и так далее.
+
+            Пусть $-M = t_0 < t_1 < \ldots < t_m = M$, так, что $t_y \not \in D$ и мелкость $< \varepsilon$.
+
+            Заведём множества $A_j = \{ x \in \mathbb{R} \, : \, t_{j - 1} \leqslant f(x) \leqslant t_j \} \supset B_j = \{ x \in \mathbb{R} \, : \, t_{j - 1} < f(x) \leqslant t_j \} \supset U_j = \{ x \in \mathbb{R} \, : \, t_{j - 1} < f(x) < t_j \}$. Где $A_j$ - замкнутое,а $U_j$ - открытое.
+
+            Мы поняли, что $U_j \subset Int \, B_j \subset B_j \subset Cl \, B_j \subset A_j \implies Cl \, B_j \setminus Int \, B_j \subset A_j \setminus U_j$
+
+            Тогда $B_j$ регулярно относительно $P_\xi$
+
+            Определим $g(x) = \sum_{j = 1}^{m} t_{j - 1} \mathds{1}_{B_j} (x)$. Тогда $g(x) < f(x) < g(x) + \varepsilon$.
+
+            $|g(x) - f(x)| < \varepsilon$ и тогда $\mathbb{E} |g(\xi_n) - f(\xi_n)| \leqslant \varepsilon$ и мы знаем, что $\mathbb{E}g(\xi_n) \rightarrow \mathbb{E}g(\xi)$ - видно, если расписать матожидание $g$ по линейности.
+
+            $\mathbb{E} |f(\xi_n) - f(\xi)| \leqslant |\mathbb{E} f(\xi_n) - \mathbb{E} g(\xi_n)| + |\mathbb{E} g(\xi_n) - \mathbb{E} g(\xi)| + |\mathbb{E} g(\xi) - \mathbb{E} f(\xi) | < 3\varepsilon$ при больших $n$, каждый из модулей $< \varepsilon$
+        }
+        \item {
+            $7 \implies 1$
+
+            Возьмём $\eta \sim \mathcal{N} (0, \sigma^2)$, такую, что $\eta$ не зависит от всех $\xi_n$ и $\xi$
+
+            $\varphi_{\xi_n + \eta} (t) = \varphi_{\xi_n} (t) \varphi_{\eta} (t) = \varphi_{n} (t) \cdot e^{-\frac{\sigma^2 t^2}{2}} \overset{\text{поточечно}}{\rightarrow} \varphi(t) e^{-\frac{\sigma^2t^2}{2}} = \varphi_{\xi + \eta} (t)$
+
+            $\xi_n + \eta$ и $\xi + \eta$ имеют непрерывное распределение, поэтому можем не задумываясь писать формулу обращения:
+
+            $P(\xi_n + \eta \in (a, b]) = \frac{1}{2\pi} \int_{\mathbb{R}} \frac{e^{-iat} - e^{-ibt}}{it} \varphi_{\xi_n + \eta} (t) \, dt \overset{*}{\rightarrow} \frac{1}{2\pi} \int_{\mathbb{R}} \frac{e^{-iat} - e^{-ibt}}{it} \varphi_{\xi + \eta} \, dt = P(\xi + \eta \in (a, b])$.
+
+            $(*)$ Нужна суммируемая мажоранта $\left | \frac{e^{-iat} - e^{-ibt}}{it} \varphi_{\xi_n + \eta} (t) \right | \leqslant e^{-\frac{\sigma^2t^2}{2}}$ - суммируемая мажоранта.
+
+            То есть $\underbrace{P(\xi_n + \eta \in (a, b])}_{G_n (b) - G_n(a)} \rightarrow \underbrace{P(\xi + \eta \in (a, b])}_{G(b) - G(a)}$, где $G_n (x) = F_{\xi_n + \eta}(x)$ и $G(x) = F_{\xi + \eta} (x)$
+
+            Тогда из замечания $G_n(x) \rightarrow G(x)$
+
+            Возьмём $x$ - точка непрерывности $F$ и выберем $\delta > 0$, так, что $|F(x \pm \delta) - F(x)| < \varepsilon$ - есть из непрерывности.
+
+            $ \{ \xi_n + \eta \leqslant x - \delta \} \setminus \{ |\eta| > \delta \} \subset  \{ \xi_n \leqslant x \} \subset \{ \xi_n + \eta \leqslant x + \delta \} \cup \{ |\eta| > \delta \}$.
+
+            Тогда $\underbrace{G_{n} (x - \delta) - P(|\eta| > \delta)}_{G_n (x - \delta - \frac{\sigma^2}{\delta^2}) > G_n (x - \delta) - \varepsilon > G(x - \delta) - 2\varepsilon > F(x - 2\delta) - 3\varepsilon > F(x) - 4\varepsilon} \leqslant F_n (x) \leqslant
+            \underbrace{G_{n} (x + \delta) + P(|\eta| > \delta)}_{G_n (x + \delta) + \frac{\sigma^2}{\delta^2} < G_n (x + \delta) + \varepsilon < G(x + \delta) + 2\varepsilon < F(x + 2\delta) + 3\varepsilon < F(x) + 4\varepsilon}$
+
+            Оценим вероятность: $P(|\eta| > \delta) \leqslant \frac{\mathbb{D} \eta}{\delta^2} = \frac{\sigma^2}{\delta^2}$
+
+
+        }
+    \end{enumerate}
+\end{proof}
