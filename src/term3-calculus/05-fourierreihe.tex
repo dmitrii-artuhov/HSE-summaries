@@ -618,12 +618,12 @@
         \item {
             $2 \implies 1$
 
-            Рисс-Фишер $\implies x = z + \sum_{k = 1}^infty c_k (x) e_k$ и $z \bot e_n \, \forall \, n$
+            Рисс-Фишер $\implies x = z + \sum_{k = 1}^\infty c_k (x) e_k$ и $z \bot e_n \, \forall \, n$
         }
         \item {
             $1 \implies 5$
 
-            $x = \sum_{k = 1}^\infty c_k (x) e_k = \lim_{n \to +infty} \sum_{k = 1}^n c_k (x) e_k \in Lin \, \{ e_n \} \implies \lim \in Cl \, Lin \, \{ e_n \} \implies Cl \, Lin \, \{ e_n \} \supset H$
+            $x = \sum_{k = 1}^\infty c_k (x) e_k = \lim_{n \to +\infty} \sum_{k = 1}^n c_k (x) e_k \in Lin \, \{ e_n \} \implies \lim \in Cl \, Lin \, \{ e_n \} \implies Cl \, Lin \, \{ e_n \} \supset H$
         }
         \item {
             $5 \implies 2$
@@ -631,4 +631,180 @@
             Пусть $z \bot e_n \, \forall \, n$. Тогда $z \bot Lin \, \{ e_n \} \implies z \bot Cl \, Lin \, \{ e_n \} = H \implies z \bot z \implies z = 0$
         }
     \end{enumerate}
+\end{proof}
+
+\begin{example}
+    Ортогональные системы
+
+    \begin{enumerate}
+        \item {
+            Функция Радемахера $L^2 [0, 1]$
+
+            $r_k (t) = (-1)^{[2^k t]}$, где $k = 0, 1, 2, \ldots$
+            % TODO, картинка
+
+            Это ортонормированная система, покажем это:
+
+            $\mathds{1}_{[\frac{j}{2^k}, \frac{j + 1}{2^k}]} (t) r_n (t) = 0$ и $\int_{0}^1 r_i (t) r_j (t) \, dt = 0$
+
+            Она не полная: $r_1r_2 \bot r_n \, \forall \, n$
+        }
+        \item {
+            Функция Уолша. Пространство $L^2 [0, 1]$
+
+            $A \subset \mathbb{N}$ и $\#A < +\infty$. Пусть $w_A (t) = \prod\limits_{k \in A} r_k (t)$
+
+            Это ортонормированная система:
+
+            $\left < w_A, w_B \right > = \left < w_{A \setminus B} , w_{B \setminus A} \right > = 
+            \int_0^1 \prod_{i \in } r_i (t) \, dt = 0$
+
+            Это полная система $Cl \, Lin \, w_A = L^2 [0, 1]$
+
+            $Lin_{A \subset \{ 0, 1, \ldots, n \}} \,  w_A = Lin_{j = 0, 1, \ldots, 2^n - 1} \, \mathds{1}_{[\frac{j}{2^n}, \frac{j + 1}{2^n}]}$. 
+            Тогда $Lin \, w_A = Lin \, \mathds{1}_{(\frac{j}{2^n}, \frac{j + 1}{2^n}]}$
+        }
+        \item {
+            Функции Хаара. Пространство $L^2 [0, 1]$
+
+            \begin{enumerate}
+                \item {
+                    $h_0 (t) \equiv 1$
+                }
+                \item {
+                    $h_1 (t) = \begin{cases}
+                        +1, & \text{на $[0, \frac{1}{2})$} \\
+                        -1, & \text{на $[\frac{1}{2}, 1)$}
+                    \end{cases}$
+                }
+                \item {
+                    $h_2 (t) = \begin{cases}
+                        +1, & \text{на $[0, \frac{1}{4})$} \\
+                        -1, & \text{на $[\frac{1}{4}, \frac{1}{2})$}
+                    \end{cases}$
+                }
+                \item {
+                    $h_3 (t) = \begin{cases}
+                        +1, & \text{на $[\frac{1}{2} \frac{3}{4})$} \\
+                        -1, & \text{на $[\frac{3}{4}, 1)$}
+                    \end{cases}$
+                }
+                \item {
+                    $\ldots$    
+                }
+            \end{enumerate}
+        }
+    \end{enumerate}
+
+    Это ортогональная система и полная система
+
+    $Lin \, \{ h_0, h_1, \ldots h_{2n} \} = Lin \, \mathds{1}_{[\frac{j}{2^n}, \frac{j + 1}{2^n})}$
+\end{example}
+
+\begin{remark}
+    \textbf{Ортогонализация Грамма-Шмидта}
+
+    $\{ x_1, x_2, \ldots \}$ линейно независимые вектора.
+
+    Тогда существуют $\{ e_1, e_2, \ldots  \}$ - ортонормированная система, такая, что:
+    $Lin \, \{ e_1, \ldots \} = Lin \, \{ x_1, x_2, \ldots \}$
+
+    Если $f_1, f_2, \ldots$ тоже ортонормированная система с тем же свойством, то 
+    $f_k = \lambda_k e_k$, где $|\lambda_k| = 1$
+    
+    \begin{remark}
+        Пусть $w \, : \, \mathbb{R} \rightarrow [0, +\infty)$ измеримая,
+        т.ч. $t^n w(t)$ - суммируемая на $\mathbb{R} \, \forall \, n$. Определим меру $\mu A = \int_A w \, d\lambda$ и пространство будет $L^2 (\mathbb{R}, \mu)$
+
+        Если $f \bot g$ в таком пространстве, то они ортогональны с весом $w$
+
+        Рассмотрим последовательность мономов $1, t, t^2, \ldots \in L^2 (\mathbb{R}, \mu)$, они линейно независимы.
+
+        Тогда мы можем прокрутить ортогонализацию Грамма-Шмидта на этой последовательности мономов. Получим последовательность многочленов $p_0, p_1, \ldots$.
+        Мы понимаем, что $\left < p_i, p_j \right > = 0 \, \forall \, i \neq j$. А ещё $\deg p_n = n$ - по индукции.
+
+        Получившиеся многочлены называют ортогональными многочленами с весом $w$.
+
+        \begin{example}
+            \begin{enumerate}
+                \item {
+                    Многочлены Лежандра. Пространство $L^2 (-1, 1)$
+
+                    $P_n (t) = \frac{1}{2^n \cdot n!} ((t^2 - 1)^n)^{(n)}$
+
+                    $\left < P_k, P_n \right > = \frac{1}{2^n \cdot n!} \cdot \frac{1}{2^k \cdot k!} \int_{-1}^1 ((t^2 - 1)^k)^{(k)} ((t^2 - 1)^n)^{(n)} \, dt = C (((t^2 - 1)^k)^{(k)} \cdot ((t^2 - 1)^n)^{(n - 1)}) \bigg |_{-1}^1 - 
+                    \int_{-1}^1 ((t^2 - 1)^k)^{(k + 1)} ((t^2 - 1)^n)^{(n - 1)} \, dt = \pm C \int_{-1}^1 ((t^2 - 1)^k)^{(k + n)} (t^2 - 1)^n \, dt = 0$
+                }
+                \item {
+                    Многочлены Чебышёва первого рода. Пространство $L^2 ((-1, 1), w(t) = \frac{1}{\sqrt{1 - t^2}})$
+
+                    $T_n (t) = \cos (n \arccos t)$ - оказывается, что это многочлен. Проверить можно по индукции.
+
+                    $\left < T_k, T_n \right > = \int_{-1}^1 \cos (k \arccos t) \cdot \cos (n \arccos t) \cdot \frac{dt}{\sqrt{1 - t^2}} = (*)$
+
+                    Пусть $x = \arccos t$. Тогда $dx = \frac{1}{\sqrt{1 - t^2}}$
+
+                    $(*) = \int_0^\pi \cos (kx) \cos (nx) \, dx = 0$
+                }
+                \item {
+                    Многочлены Чебышёва второго рода. Пространство $L^2 ((-1, 1), w(t) = \sqrt{1 - t^2})$
+
+                    $U_n (t) = \frac{\sin ((n + 1) \arccos t)}{\sqrt{1 - t^2}}$
+
+                    $\left < U_k, U_n \right > = \int_{-1}^1 \frac{\sin ((k + 1) \arccos t)}{\sqrt{1 - t^2}} \cdot \frac{\sin ((n + 1) \arccos t)}{\sqrt{1 - t^2}} \cdot \sqrt{1 - t^2} \, dt = \int_0^\pi \sin ((n + 1)x) \sin ((k + 1)x) \, dx = 0$ - такая же замена.
+                }
+                \item {
+                    Многочлены Лагерра. Пространство $L^2 ((0, +\infty), w(t) = e^{-t})$
+
+                    $L_n (t) = \frac{1}{n!} e^t (t^n e^{-t})^{(n)}$
+
+                    Ортогональность проверяется также, как в Лежандре - интегрированием по частям.
+                }
+                \item {
+                    Многочлены Эрмита. Пространство $L^2 (\mathbb{R}, w(t) = e^{-t^2})$
+
+                    $H_n (t) = e^{t^2} (e^{-t^2})^{(n)}$
+
+                    Ортогональность проверяется опять интегрированием по частям.
+                }
+            \end{enumerate}
+        \end{example}
+    \end{remark}
+\end{remark}
+
+\begin{definition}
+    $(X, \rho)$ - метрическое пространство, $A \subset X$, и есть точка $x \in X$. Назовём расстоянием от $x$ до $A$ (или наилучшим приближением к $x$ в множестве $A$):
+    
+    $d(x, A) = \inf_{y \in A} \rho (x, y)$ 
+\end{definition}
+
+\begin{definition}
+    Элемент $y^{*} \in A$ элемент наилучшего приближения, если $\rho (x, y^*) = d(x, A)$
+\end{definition}
+
+\begin{theorem}
+    \textbf{о существовании наилучшего приближения в гильбертовом пространстве}
+
+    $H$ - гильбертово пространство, $A \subset H$ - выпуклое и замкнутое и $x \in H$.
+
+    Тогда в $A$ существует единственный элемент наилучшего приближения.
+\end{theorem}
+
+\begin{lemma}
+    $||x + y||^2 + ||x - y||^2 = 2||x||^2 + 2||y||^2 $
+\end{lemma}
+
+\begin{proof}
+    Пусть $d = d(x, A)$ - оно конечно. Возьмём $y, z \in A$, тогда $\frac{y + z}{2} \in A$ из выпуклости.
+    
+    $\underbrace{|| 2 (x - \frac{y + z}{2})||^2}_{= 4 || x - \frac{y + z}{2} || \geqslant 4d^2} + ||y - z||^2 = 2 ||x - y||^2 + 2||x - z||^2 \geqslant 4d^2$ - подставили в лемму $x - y$ и $x - z$
+
+    Отсюда $||y-z||^2 = 2 ||x - y||^2 + 2 ||x - z||^2 - 4 || x - \frac{y + z}{2}|| \leqslant 2 ||x - y||^2 + 2||x - z||^2 - 4d^2$
+
+    Единственность. Если $||x - y|| = d$ и $||x - z|| = d$, то $||y - z||^2 \leqslant 0 \implies y = z$
+
+    Существование. Возьмём $y_n$, т.ч. $||x - y_n|| \rightarrow d$. Тогда
+    $||y_n - y_m||^2 \leqslant 2 ||x - y_n||^2 + 2||x - y_m||^2 - 4d^2 < 4\varepsilon$, значит это фундаментальная последовательность и есть предел $y^*$
+
+    $||x - y*|| = \lim ||x - y_n|| = d$
 \end{proof}

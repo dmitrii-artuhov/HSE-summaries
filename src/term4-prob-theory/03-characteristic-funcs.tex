@@ -414,3 +414,175 @@
         }
     \end{enumerate}
 \end{proof}
+
+\begin{theorem}
+    $F_n, F \, \mathbb{R} \to [0, 1]$ монотонные, $F \in C(\mathbb{R})$ и 
+    $F_n \to F$ поточечно.
+
+    Тогда $F_n \rightrightarrows F$
+\end{theorem}
+
+\begin{proof}
+    Берём $\varepsilon > 0$ и $m > \frac{1}{\varepsilon}$. Пусть $t_j$, такие, что $F(t_j) = \frac{j}{m}$. Если для большого $j$ точки не нашлось, то
+    $F < \frac{j + 1}{m}$, а если для маленького не нашлось, то $F > \frac{j - 1}{m}$ (потому что иначе из непрерывности такие точки найдутся).
+
+    Знаем, что $F_n(t_j) \rightarrow F(t_j)$. Берём $N \, : \, \forall \, n \geqslant N \, |F_n(t_j) - F(t_j)| < \varepsilon$.
+
+    Теперь смотрим на произвольную точку: $t_j < t < t_{j + 1}$. Тогда 
+    $F_n(t) \leqslant F_n(t_{j + 1}) < F(t_{j + 1}) + \varepsilon = \frac{j + 1}{m} + \varepsilon = F(t_j) + \frac{1}{m} + \varepsilon \leqslant F(t) + \frac{1}{m} + \varepsilon < F(t) + 2\varepsilon$.
+
+    Аналогично в другую сторону:
+
+    $F_n (t_j) > F(t_j) - \varepsilon = \frac{j}{m} - \varepsilon = F(t_{j + 1}) - \frac{1}{m} - \varepsilon \geqslant F(t) - 2\varepsilon$.
+
+\end{proof}
+
+\Subsection{Центральная предельная теорема}
+
+\begin{theorem}
+    \textbf{ЦПТ в форме Леви}
+
+    $\xi_1, \xi_2, \ldots $ независимые, одинаково распределённые случайные величины. $a = \mathbb{E} \xi_1, 
+    \sigma^2 = \mathbb{D} \xi_1, S_n = \xi_1 + \xi_2 + \ldots + \xi_n$.
+
+    Тогда $P \left ( \frac{S_n - nq}{\sigma \sqrt{n}} \leqslant x \right ) = P\left ( \frac{S_n - \mathbb{E} S_n}{\sqrt{\mathbb{D} S_n}} \leqslant x \right ) \rightrightarrows \Phi (x) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^x e^{-\frac{t^2}{2}} \, dt$
+\end{theorem}
+
+\begin{proof}
+    Достаточно проверять поточечную сходимость характеристических функций.
+
+    $\varphi_{\xi_k - a} (t) = 1 - \frac{\sigma^2 t^2}{2} + o(t^2)$, потому что 
+    мы знаем, что $\mathbb{E} (\xi_k - a) = 0$ и $\mathbb{D} (\xi_k - a) \sigma^2$
+
+    Тогда $\varphi_{S_n - na} (t) = \prod\limits_{k = 1}^n \varphi_{\xi_k - a} (t) = \left ( 1 - \frac{\sigma^2t^2}{2} + o(t^2) \right )^n$
+
+    $\varphi_{\frac{S_n - na}{\sigma \sqrt{n}}} = \varphi_{S_n - na} \left ( \frac{t}{\sqrt{n}\sigma} \right ) = \left( 1 - \frac{t^2}{2n} + o(\frac{t^2}{n}) \right) \rightarrow e^{-\frac{t^2}{2}}$.
+
+    Чтобы получить последний переход - логарифмируем.
+
+    То есть $\frac{S_n - na}{\sqrt{n} \sigma}$ сходится по распределению к $\mathcal{N} (0, 1) \implies$ функция распределения сходится равномерно.
+\end{proof}
+
+\begin{consequence}
+    \textbf{Интегральная теорема Муавра-Лапласа}
+
+    $S_n$ - количество успехов в схеме Бернулли с вероятностью успеха $p \in (0, 1)$.
+
+    Тогда $P \left( \frac{S_n - np}{\sqrt{npq}} \leqslant \right) \rightrightarrows \Phi (x)$
+\end{consequence}
+
+\begin{proof}
+    $\mathbb{E} \xi_k = p, \mathbb{D} \xi_k = pq$
+\end{proof}
+
+\begin{example}
+    \textbf{Посчитаем характеристическую функцию для Poisson($\lambda$)}
+
+    $\varphi_{\xi} (t) = \mathbb{E} e^{i t \xi} = \sum_{n = 0}^\infty e^{itn} \frac{e^-\lambda \lambda^n}{n!} = \sum_{n = 0}^\infty \frac{(\lambda e^{it})^n}{n!} \cdot e^{-\lambda} = exp (\lambda (e^{it} - 1))$
+\end{example}
+
+\begin{theorem}
+    $P(\xi_{nk} = 1) = p_{nk}$ и $P(\xi_{nk} = 0) = 1 - p_{nk}$ и пусть $S_n = \xi_{n1} + \ldots + \xi_{nn}$.
+
+    $\max \{ p_{n1}, \ldots, p_{nn} \} \rightarrow 0$ и $p_{n1} + \ldots p_{nn} \rightarrow \lambda$.
+
+    Тогда $P(S_n = k) \rightarrow \frac{\lambda^k e^{-\lambda}}{k!}$
+\end{theorem}
+
+\begin{proof}
+    $\varphi_{\xi_{nk}} (t) = \mathbb{E} e^{it\xi_{nk}} = 1 - p_{nk} + p_{nk}e^{it} = 1 + p_{nk} (e^{it} - 1)$
+
+    Тогда $\varphi_{S_n} = \prod_{k = 1}^n (1 + p_{nk} (e^{it} - 1)) \overset{?}{\rightarrow} exp (\lambda (e^{it} - 1)) $.
+
+    Пусть $z = e^{it} - 1$
+
+    Значит, нужно проверить $\sum_{k = 1}^n \ln (1 + p_{nk} z) \rightarrow \lambda z$. Раскладываем логарифм:
+
+    $\underbrace{\sum_{k = 1}^n p_{nk} z}_{\rightarrow \lambda z} + \sum_{k = 1}^n \mathcal{O} (p_{nk}^2)$. Значит осталось показать, что вторая сумма стремится к нулю.
+
+    Действительно, $\sum_{k = 1}^n \mathcal{O} (p_{nk}^2) \leqslant (p_{n1} + \ldots p_{nn}) \cdot \max \{ p_{n1}, \ldots, p_{nn} \}  \rightarrow 0$
+\end{proof}
+
+\begin{theorem}
+    \textbf{ЦПТ в форме Линденберга}
+
+    $\xi_1, \ldots$ - независимые случайные величины, $a_k = \mathbb{E} \xi_k, \sigma_k^2 = \mathbb{D} \xi_k > 0, S_n = \xi_1 + \ldots + \xi_n, \mathbb{D}_n^2 = \sum_{k = 1}^n \sigma_k^2$
+
+    $f(x) = x^2 \mathds{1}_{\{ |x| \geqslant \varepsilon \mathbb{D}_n \} } (x) \, \forall \, \varepsilon > 0$ и $Lind (\varepsilon, n) = \frac{1}{\mathbb{D}_n^2} \sum_{k = 1}^n \mathbb{E} f (\xi_k - a_k) \rightarrow 0$   
+    
+    Тогда $P \left( \frac{S_n - \mathbb{E} S_n}{\sqrt{\mathbb{D} S_n}} \leqslant x \right) \rightrightarrows \Phi (x)$
+\end{theorem}
+
+\begin{theorem}
+    \textbf{ЦПТ в форме Ляпунова}
+
+    $\xi_1, \ldots$ независимые случайные величины
+
+    $L(\delta, n) = \frac{1}{\mathbb{D}_n^{2 + \delta}} \sum_{k = 1}^n \mathbb{E} | \xi_k - a_k |^{2 + \delta} \rightarrow 0$ при некотором $\delta$
+    
+    Тогда $P\left( \frac{S_n - \mathbb{E} S_n}{\sqrt{\mathbb{D} S_n}} \leqslant x \right) \rightrightarrows \Phi (x)$
+\end{theorem}
+
+\begin{proof}
+    %Ляпунов из Линденберга:
+    % TODO
+    %$Lind (\varepsilon, n) = \frac{1}{\mathbb{D}_n^2} \sum_{k = 1}^n \mathbb{E} (|\xi_k - a_k|^2 \cdot \mathds{1}_{|x| \geqslant \varepsilon \mathbb{D}_n} (\xi_k - a_k) ) \leqslant \frac{1}{\mathbb{D}_n^2} \sum_{k = 1}^n \mathbb{E} \left( \frac{|\xi_k - a_k|^{2 + \delta}}{} \right)$
+\end{proof}
+
+\begin{theorem}
+    Пусть $\delta \in [0, 1]$ и $\xi_1, \ldots$ независимые случаные величины.
+
+    Тогда $\left | P \left( \frac{S_n - \mathbb{E} S_n}{\sqrt{\mathbb{D} S_n}} \leqslant x \right) - \Phi (x) \right | \leqslant C_{\delta} L (\delta, n)$
+\end{theorem}
+
+\begin{theorem}
+    \textbf{Берри-Эссенна}
+
+    $\xi_1, \ldots$ независимые, одинаково распределённые случаные величины.    
+
+    Тогда$\left | P \left( \frac{S_n - na}{\sqrt{\sqrt{n} \sigma}} \leqslant x \right) - \Phi (x) \right | \leqslant C_{\delta} \cdot \frac{\mathbb{E} |\xi_1 - a|^{2 + \delta}}{n^{\frac{\delta}{2}} \sigma^{2 + \delta}}$
+\end{theorem}
+
+\begin{proof}
+    $\mathbb{D}_n^2 = n \sigma^2$ и $L (\delta, n) = \frac{1}{n^{1 + \frac{\delta}{2} \cdot \sigma^{2 + \delta}}} \cdot n \mathbb{E} |\xi_1 - a|^{2 + \delta}$
+
+    В частности при $\delta = 1 \, |P - \Phi| \leqslant C \frac{\mathbb{E} |\xi_1 - a|^3}{\sqrt{n} \sigma^3}$
+\end{proof}
+
+\begin{remark}
+    \textbf{Про константы}
+
+    \begin{enumerate}
+        \item {
+            Эссен (1956) $C \geqslant \frac{3 + \sqrt{10}}{6 \sqrt{2 \pi}} \approx 0,4097$
+        }
+        \item {
+            Шевцова (2014) $C \leqslant 0,469$
+        }
+        \item {
+            Для общего случая: $C_1 \leqslant 0,5583$
+        }
+        \item {
+            Для схемы Бернулли (2018) $C_1 \leqslant 0,4099$
+        }
+        \item {
+            Для схемы Бернулли с $p = \frac{1}{2}$ $C = \frac{1}{\sqrt{2\pi}}$
+        }
+    \end{enumerate}
+\end{remark}
+
+\begin{theorem}
+    \textbf{Хартмана-Винтнера (закон повторного логарифма)}
+
+    $\xi_1, \xi_2, \ldots$ - независимые, одинаково распределённые. $\mathbb{E} \xi_1 = 0, \, \mathbb{D} \xi_1 = \sigma^2 > 0$
+
+    Тогда $\overline{\lim} \frac{S_n}{\sqrt{2n \ln \ln n}} = \sigma$, а $\underline{\lim} \frac{S_n}{\sqrt{2n \ln \ln n}} = -\sigma$
+\end{theorem}
+
+\begin{theorem}
+    \textbf{Штрассена} 
+
+    $\xi_1, \xi_2 \ldots$ независимые одинаково распределённые, $\mathbb{E} \xi_1 = 0$ и $\mathbb{D} \xi_1 = \sigma^2 > 0$
+
+    Тогда любое число из $[-\sigma, \sigma]$ - пред. точка послед. $\frac{S_n}{\sqrt{2n \ln \ln n}}$
+\end{theorem}
