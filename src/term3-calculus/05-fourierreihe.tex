@@ -873,3 +873,218 @@
         }
     \end{enumerate}
 \end{proof}
+
+\begin{theorem}
+    \textbf{теорема о проекции}
+
+    $H$ - гильбертово пространство, $L$ - замкнутое подпространство $H$
+
+    Тогда $\forall \, x \in H \, : \, \exists \, y \in L \, : \, \underbrace{x - y}_{=z} \bot L$ и 
+    такой $y$ единственный.
+\end{theorem}
+
+\begin{proof}
+    \textit{Единственность}:
+
+    $x = y + z = y_1 + z_1$, $y, y_1 \in L$ и $z, z_1 \bot L \implies \underbrace{y - y_1}_{\in L} = \underbrace{z_1 - z}_{\bot L} \implies z_1 - z \bot y - y_1 = z_1 - z \implies z = z_1 \implies y = y_1$
+
+    \textit{Существование}:
+
+    Пусть $y$ - элемент наилучшего приближения к $x$ в $L$
+
+    $z = x - y, l \in L, \lambda \in \mathbb{C}$
+
+    Мы знаем, что $\underbrace{|| x - y ||^2}_{= |||z||^2} \leqslant \underbrace{|| x - (y - \lambda l) ||^2}_{||z + \lambda l||^2} = \left < z, z \right > \leqslant \left < z, z \right > + \left < z, \lambda l \right > + \left < \lambda l, z \right > + \left < \lambda l, \lambda l \right >$
+
+    $|\lambda|^2 \left < l, l \right > + \lambda \left < l, z \right > + \overline{\lambda} \left < z, l \right > \geqslant 0$
+
+    $|\lambda|^2 \left < l, l \right > + 2 \Re (\lambda \left < l, z \right >) \geqslant 0$ при всех $\lambda \in \mathbb{C}$
+
+    Возьмём $\lambda = -\frac{\left < z, l \right >}{||l||^2}$
+
+    Подставляем: $\frac{|\left < z, l \right >|^2}{||l||^2} - 2\Re \left( \frac{|\left < z, l \right >|^2}{||l||^2} \right) = - \frac{|\left <z, l \right >|^2}{||l||^2} \implies z \bot l$
+\end{proof}
+
+\begin{definition}
+    Этот $y$ называется ортогональной проекцией $x$ на $L$
+    
+    То есть получилось отображение $P_L \, : \, H \to L$ - оператор ортогонального проецирования
+\end{definition}
+
+\begin{definition}
+    Ортогональное дополнение. Пусть $L$ замкнутое подпространство $H$. Тогда $L^\bot = \{ x \in H \, : \, x \bot L \}$ - замкнутое подпространство $H$
+\end{definition}
+
+\begin{properties}
+    \begin{enumerate}
+        \item { $P_L$ - линейный оператор
+            \begin{proof}
+                $y_1 = P_L x_1$ и $y_2 = P_L x_2 \implies x_1 - y_1 \bot L$ и $x_2 - y_2 \bot L$
+
+                Тогда $(\alpha_1 x_1 + \alpha_2 x_2) - (\alpha_1 y_1 + \alpha_2 x_2) \bot L \implies \alpha_1 y_1 + \alpha_2 y_2 = P_L (\alpha_1 x_1 + \alpha_2 x_2)$
+            \end{proof}
+        }
+        \item {
+            Если $L \neq \{ 0 \}$, то $||P_L|| = 1$
+
+            \begin{proof}
+                $y = P_L x \implies x = y + z$, где $y \in L, z \in L \implies y \bot z$
+
+                $||x||^2 = ||y||^2 + ||z||^2 \geqslant ||y||^2 \implies ||x|| \geqslant ||P_L x|| \implies ||P_L|| \leqslant 1$
+
+                Если $L \neq \{ 0 \}$, то возьмём в $L$ единичный вектор и он переходит в себя
+            \end{proof}
+        }
+        \item {
+            $P_{L^\bot} = Id - P_L$
+
+            \begin{proof}
+                $x = y + z$, где $y \in L, z \in L \implies Z \in L^\bot$ и $y \bot L^\bot$
+
+                Тогда $y = P_L x$ и $z = P_{L^\bot} x \implies x = P_{L} x + P_{L^\bot} x$
+            \end{proof}
+        }
+        \item {
+            $(L^\bot)^\bot = L$  
+
+            \begin{proof}
+                $P_{(L^\bot)^\bot} = Id - P_{L^\bot} = Id - (Id - P_L) = P_L$
+
+                $(L^\bot)^\bot = P_{(L^\bot)^\bot} (H) = P_L (H) = L$
+            \end{proof}
+        }
+    \end{enumerate}
+\end{properties}
+
+\begin{definition}
+    $(X, \rho)$ - метрическое пространство.
+
+    $X$ - сепарабельное, если существует счётное множество $A \subset X$, т.ч. $Cl \, A = X$
+\end{definition}
+
+\begin{example}
+    \begin{enumerate}
+        \item {
+            $\mathbb{R}^d$ и $A = \mathbb{Q}^d$
+        }
+        \item {
+            $p < +\infty$, $L^p (\mathbb{R}^d, \lambda_d)$
+
+            $A = \{ \text{линейные комбинации с $\mathbb{Q}$ коэффициентами $\mathds{1}_B$, где $B$ - ячейка с $\mathbb{Q}$ координатами вершин} \} $
+
+            Для $p = +\infty$, здесь $L^\infty (\mathbb{R}^d, \lambda_d)$ не сепарабельно
+        }
+    \end{enumerate}
+\end{example}
+
+\begin{theorem}
+    В сепарабельном гильбертовом пространстве обязательно существует базис
+\end{theorem}
+
+\begin{proof}
+    $\{ x_n \}$ - счётное множество, т.ч. $Cl \, \{ x_n \} = H$
+
+    $x_1, x_2, \ldots x_k$, $x_k$ оставляем, только если он линейно независим от $x_1, \ldots, x_{k - 1}$, иначе выкидываем
+
+    Пусть $y_1, y_2, \ldots$ - уже прореженные $x_1, x_2, \ldots$
+
+    Тогда $Lin \, \{ y_n \} = Lin \, \{ x_n \} \implies Cl \, Lin \, \{ y_n \} = Cl \, Lin \, \{ x_n \} = H$
+
+    $y_1, y_2, \ldots$ - линейно независимая система, запустим ортогонализацию Грамма-Шмидта, получим $e_1, e_2, \ldots$.
+    Мы знаем, что $Lin \, \{ e_i \}_{i = 1}^n = Lin \, \{ y_i \}_{i = 1}^n \implies Lin \, \{ e_n \} = Lin \, \{ y_n \} = Lin \, \{ x_n \} \implies Cl \, Lin \, \{e_n \} = H$, значит это базис
+\end{proof}
+
+\begin{theorem}
+    Бесконечномерное сепарабельное гильбертово пространство $H$ изометрично $l^2$
+
+    То есть существует линейный оператор $T \, : \, H \to l^2$, т.ч. $T$ - биекция и $\forall \, x, y \in H \, : \, \left < x, y \right >_H = \left < T_x, T_y \right >_{l^2}$
+\end{theorem}
+
+\begin{proof}
+    Возьмём базис $e_1, e_2, \ldots$, он счётный и отнормируем. Тогда $x \rightarrow (\left < x, e_1 \right >, \left < x, e_2 \right >, \ldots)$. Хотим показать, что это то, что надо.
+
+    \begin{enumerate}
+        \item {
+            Попадание в $l^2$
+
+            $\sum\limits_{k = 1}^\infty |\left < x, e_k \right >|^2 \overset{\text{неравенство Бесселя}}{\leqslant} ||x||^2 < +\infty$
+        }
+        \item {
+            Сохранение скалярного произведения
+
+            $\left < x, y \right >_H = \sum\limits_{k = 1}^\infty \left < x, e_k \right > \overline{\left < y, e_k \right >}$ - была такая теорема
+         }
+    \end{enumerate}
+\end{proof}
+
+\Subsection{Тригонометрические ряды Фурье}
+
+\begin{definition}
+    $\frac{a_0}{2} + \sum_{k = 1}^n (a_k \cos (kx) + b_k \sin (kx))$ - тригонометрический многочлен
+
+    А если $|a_n| + |b_n| \neq 0$, то тригонометрический многочлен степени $n$
+\end{definition}
+
+\begin{definition}
+    $\frac{a_0}{2} + \sum_{k=1}^\infty (a_k \cos (kx) + b_k \sin (kx))$ - тригонометрический ряд
+\end{definition}
+
+\textbf{Комплексная форма тригонометричсекого многочлена}
+
+$\cos (kx) = \frac{e^{ikx} + e^{-ikx}}{2}$ и $\sin (kx) = \frac{e^{ikx} - e^{-ikx}}{2i}$
+
+$T_n (x) = \frac{a_0}{2} + \sum_{k = 1}^n \left ( e^{ikx} \cdot \underbrace{\frac{a_k - ib_k}{2}}_{=c_k} + e^{-ikx} \cdot \underbrace{\frac{a_k + ib_k}{2}}_{=c_{-k}} \right ) = \sum_{k = -n}^n c_k e^{ikx}$
+
+\textbf{Комплексная форма тригонометрического ряда}
+
+$\sum_{k = -n}^n c_k e^{ikx} \rightarrow \sum_{k = -\infty}^{+\infty} c_k e^{ikx}$
+
+\begin{theorem}
+    Если тригонометрический ряд сходится в пространстве $L^1 [-\pi, \pi]$ к функции $f$, то
+    $a_k = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \cos (kx) \, dx$, $b_k = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \sin (kx) \, dx$ и 
+    $c_k = \frac{1}{2\pi} \int_{-\pi}^\pi f(x) e^{-ikx} \, dx$
+\end{theorem}
+
+\begin{proof}
+    $T_n (x) = \frac{a_0}{2} + \sum_{k = 1}^n (a_k \cos (kx) + b_k \sin (kx))$
+
+    $||T_n - f ||_{L^1 [-\pi, \pi]} = \int_{-\pi}^\pi |T_n(x) - f(x)| \, dx \rightarrow 0$
+
+    $\int_{-\pi}^\pi T_n(x) \cos (kx) \, dx = \frac{a_0}{2} \int_{-\pi}^\pi \cos (kx) \, dx + \sum_{j = 1}^n a_k \int_{-\pi}^\pi \cos (jx) \cos (kx) \, dx + \sum_{j = 1}^n b_j \int_{-\pi}^\pi \sin (jx) \cos (kx) \, dx = a_k \pi$
+
+    %TODO, здесь немного пропущено
+\end{proof}
+
+\begin{definition}
+    Пусть $f \in L^1 [-\pi, \pi]$, тогда $a_k (f) = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \cos (kx) \, dx$, $b_k (f) = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \sin (kx) \, dx$ и 
+    $c_k(f) = \frac{1}{2\pi} \int_{-\pi}^\pi f(x) e^{-ikx} \, dx$ - коэффициенты Фурье для функции $f$, а соответствующий ряд называется рядом Фурье
+\end{definition}
+
+\begin{remark}
+    Если $f$ - сумма сх-ся в $L^1 [-\pi, \pi]$ тригонометрического ряда, то это её ряд Фурье
+
+    Вопрос, когда $f (x) = \frac{a_0 (f)}{2} + \sum_{k = 1}^\infty (a_k (f) \cos (kx) + b_k (f) \sin (kx))$
+
+    \begin{enumerate}
+        \item {
+            Дюбуа-Реймон показал, что $\exists \, f$ непрерывная $2\pi$ периодическая, т.ч. её ряд Фурье расходится в некоторой точке
+        }
+        \item {
+            Лебег показал, что $\exists \, f$ непрерывная $2\pi$ периодическая, т.ч. ряд Фурье сходится во всех точках, но нет равномерной сходиомсти
+        }
+        \item {
+            Колмогоров показал, что $\exists \, f \in L^1 [-\pi, \pi]$, т.ч. её ряд Фурье расходится во всех точках
+        }
+        \item {
+            Карлесон показал, что $\forall \, f \in L^2 [-\pi, \pi]$ ряд Фурье сходится почти везде
+        }
+        \item {
+            Рисс показал, что $1 < p < +\infty \, \forall \, f \in L^p [-\pi, \pi]$ ряд сходится к $f$ в $L^p$
+        }
+    \end{enumerate}
+
+    $C_{2\pi}$ - непрерывные $2\pi$ периодичные функции
+
+    $A_k (f, x) = \frac{a_0(f)}{2}$, если $k = 0$ и $a_k (f) \cos (kx) + b_k (f) \sin (kx)$ иначе
+    
+\end{remark}
