@@ -75,7 +75,14 @@
         \item {
             $\phi_{\xi}$ равномерно непрерывна на $\mathbb{R}$
 
-            \textit{Доказательство: } TODO %$|\phi_{\xi} (t + h) - \phi_{\xi}(t)| = |\mathbb{E} (e^{i \xi (t + h) - \mathbb{E} e^{i \xi t}}) | = |\mathbb{E} (e^{i\xi t} \cdot e^{i \xi h}) - \mathbb{E} e^{i \xi t}| = 
+            \textit{Доказательство: } $|\phi_{\xi}(t + h) - \phi_{\xi}(t)| = | \mathbb{E} e^{i (t + h) \xi} - \mathbb{E} e^{i t \xi} | = | \mathbb{E} \left( e^{it \xi} (e^{i h \xi} - 1) \right) | \leq $
+            
+            $\leq \mathbb{E} \left| e^{it \xi} (e^{i h \xi} - 1) \right| = \mathbb{E} | e^{i h \xi} - 1 | = \int_{\mathbb{R}} | e^{i h x} - 1 | d P_{\xi}(x) \rightarrow_{(*)} 0$.
+
+            $(*)$: Знаем, что $e^{i h x} \rightarrow_{h \to 0} 1$, хотим понять, что можно вносить предел под знак интеграла. Это сделать можно по теорема Лебега, где суммируемая мажоранта будет $2$.
+            
+            
+            %$|\phi_{\xi} (t + h) - \phi_{\xi}(t)| = |\mathbb{E} (e^{i \xi (t + h) - \mathbb{E} e^{i \xi t}}) | = |\mathbb{E} (e^{i\xi t} \cdot e^{i \xi h}) - \mathbb{E} e^{i \xi t}| = 
             %|\mathbb{E} (e^{i \xi t}(e^{i \xi h} - 1))| \leqslant \mathbb{E} |e^{i \xi t}| \cdot |e^{i \xi h} - 1| $
 
             %$\lim_{h \to 0} \int_{\Omega} |e^{}|$
@@ -90,22 +97,36 @@
 
     $\phi_{\sigma \eta + a}(t) = e^{ita} \phi_{\eta} (\sigma t)$
 
-    Считаем для $\eta$: $\phi_{\eta} (t) = \frac{1}{\sqrt{2\pi}} \int_{\mathbb{R}} e^{itx} e^{-\frac{x^2}{2}} \, dx = e^{-\frac{t^2}{2}} \frac{1}{\sqrt{2\pi}} \int_{\mathbb{R}} e^{-\frac{(x - it)^2}{2}} \, dx = (*)$
-    % TODO, нужна картинка и часть доказательство утеряна
-    $\int_{\mathbb{R}} e^{-\frac{(x - it)^2}{2}} \, dx = \int_{\Im = -it} e^{-\frac{z^2}{2}} \, dz$
-
-    $\int_{\Gamma_R} e^{-\frac{z^2}{2}} \, dz = 0$, потому что нет особых точек. 
+    Считаем для $\eta$:
     
-    С другой стороны:
-    $\int_{\Gamma_R} e^{-\frac{z^2}{2}} \, dz = \int_{-R - it}^{R - it} + \int_{R - it}^{R} + \int_{R}^{-R} + \int_{-R}^{-R - it} \rightarrow I - \sqrt{2\pi}$. Значит $I = \sqrt{2\pi}$ (тут было потеряно несколько переходов)
+    $\phi_{\eta}(t) = \mathbb{E} e^{i \eta t} = \frac{1}{\sqrt{2 \pi}} \int_{\mathbb{R}} e^{i t x} e^{-\frac{x^2}{2}} dx = \frac{1}{\sqrt{2 \pi}} e^{-\frac{t^2}{2}} \int_{\mathbb{R}} e^{- \frac{(x - it)^2}{2}} dx$.
 
-    Тогда $(*) = e^{- \frac{t^2}{2}} \frac{1}{\sqrt{2\pi}} \sqrt{2\pi}$
+    Посчитаем $I := \int_{\mathbb{R}} e^{-\frac{(x - it)^2}{2}} dx = \int_{-it + \mathbb{R}} e^{-\frac{z^2}{2}} dz = \int_{\Gamma_R} e^{-\frac{z^2}{2}} dz = 0$.
+
+    С другой стороны это также равно: $\int_{\Gamma_R} e^{-\frac{z^2}{2}} dz = \underbrace{-\int_{-R}^{R}}_{\to \sqrt{2 \pi}} + \underbrace{\int_{-R - it}^{R - it}}_{\to I} + \underbrace{\int_{R - it}^{R}}_{(*): \to 0} + \underbrace{\int_{-R}^{-R - it}}_{(*): \to 0}$
+
+
+    \begin{center}
+        \includegraphics[width=8cm]{./assets/03-characteristic-funcs/complex-arbitrary-value-example-1.png}
+    \end{center}
+
+    $(*): \left| \int_{R - it}^{R} e^{-\frac{z^2}{2}} dz \right| =_{z = R + i y} \left| i \int_{-t}^{0} e^{- \frac{(R + iy)^2}{2}} dy \right| \leq \int_{-t}^{0} |\ldots|dy = \int_{-t}^{0} e^{\frac{-R^2 + y^2}{2}} dy \leq t e^{\frac{t^2}{2}} e^{\frac{-R^2}{2}} \rightarrow_{R \to \infty} 0$.
+
+
+    Тогда получаем, что $I = \sqrt{2 \pi}$, и $\phi_{\eta}(t) = e^{-\frac{t^2}{2}}$.
+
+
+    Теперь находим $\phi_{\xi}(t) = e^{iat} \phi_{\eta}(\sigma t) = e^{- \frac{\sigma^2 t^2}{2} + iat}$.
 \end{example}
 
 \begin{theorem}
     Пусть $\mathbb{E} |\xi|^n < +\infty$.
     
-    Тогда при $k \leqslant n$ верно, что $\varphi^{(k)} (t) = \mathbb{E} ((i\xi)^k e^{i\xi t}) $. В частности, $\varphi^k (0) = i^k \mathbb{E} \xi^k$
+    Тогда при $k \leqslant n$ верно, что $\varphi^{(k)} (t) = \mathbb{E} ((i\xi)^k e^{i\xi t}) $.
+    
+    В частности, $\varphi^{(k)} (0) = i^k \mathbb{E} \xi^k$.
+
+    \textit{Тут имеется в виду $k$-ая производная.}
 \end{theorem}
 
 \begin{consequence}
@@ -113,57 +134,66 @@
 \end{consequence}
 
 \begin{proof}
+    Теоремы.
+
     Индукция по $k$
 
-    База $k = 0$ - определение $\varphi$.
+    База $k = 0$: определение $\varphi$.
 
-    Переход $k \to k + 1$. $\varphi^{(k + 1)}(t) = \lim_{h \to 0} \frac{\varphi^{(k)}(t + h) - \varphi^{(k)}(t)}{h} = $
+    Переход $k \to k + 1$:
+    
+    $\varphi^{(k + 1)}(t) = \lim_{h \to 0} \frac{\varphi^{(k)}(t + h) - \varphi^{(k)}(t)}{h} = $
 
     $= \lim_{h \to 0} \frac{\mathbb{E} (i \xi)^k e^{i\xi(t + h)} - \mathbb{E} (i \xi)^k e^{i\xi(t)}}{h} = 
-    \lim_{h \to 0} \mathbb{E} ((i \xi)^k e^{i t \xi} \cdot \frac{e^{ih\xi} - 1}{h}) = \mathbb{E} ((i\xi)^k e^{i t \xi} \cdot \lim_{h \to 0} \frac{e^{i h \xi} - 1}{h})$, а предел - это $i \xi$.
+    \lim_{h \to 0} \mathbb{E} ((i \xi)^k e^{i t \xi} \cdot \frac{e^{ih\xi} - 1}{h}) = \mathbb{E} ((i\xi)^k e^{i t \xi} \cdot \lim_{h \to 0} \frac{e^{i h \xi} - 1}{h})$, а предел -- это $i \xi$.
 
-    Почему можно было запихать предел по матожидание?
+    Почему можно было запихать предел под матожидание?
 
-    $\lim \int_{\mathbb{R}} (ix)^k e^{itx} \frac{e^{ihx} - 1}{h} = \int_{R} \lim_{h \to 0} ((ix)^k e^{itx} \frac{e^{ihx} - 1}{h})$ - нужна суммируемая мажоранта.
+    $\lim \int_{\mathbb{R}} (ix)^k e^{itx} \frac{e^{ihx} - 1}{h} d P_{\xi}(x) = \int_{R} \lim_{h \to 0} ((ix)^k e^{itx} \frac{e^{ihx} - 1}{h}) d P_{\xi}(x)$ -- нужна суммируемая мажоранта.
 
     $\left | (ix)^k e^{itx} \frac{e^{ihx} - 1}{h}  \right | = |x|^k \left | \frac{e^{ihx} - 1}{h} \right | = (*)$.
 
     \begin{enumerate}
         \item {
-            Если $|xh| \geqslant 1$, то $\left | \frac{e^{ihx} - 1}{h} \leqslant \frac{2}{|h|} \leqslant 2|x| \right |$
+            Если $|xh| \geqslant 1$, то $\left | \frac{e^{ihx} - 1}{h} \right | \leqslant \frac{2}{|h|} \leqslant 2|x| $ и тогда $(*) \leq 2|x|^{k + 1}$.
         }
         \item {
-            Если $|xh| < 1$, то $e^{ihx} = 1 + \mathcal{O}(1 + ihx) \Rightarrow \left | \frac{e^{ihx} - 1}{h}  \right | = \left | \frac{\mathcal{O}(hx)}{h}  \right | = \mathcal{O}(x)$.
-            То есть $(*) = \mathcal{O}(|x|^{k + 1})$, а ещё есть конечный момент, значит всё выполняется.
+            Если $|xh| < 1$, то $e^{ihx} = 1 + \mathcal{O}(1 + ihx) \Rightarrow \left | \frac{e^{ihx} - 1}{h}  \right | = \left | \frac{\mathcal{O}(hx)}{h}  \right | = \mathcal{O}(x)$ и тогда $(*) = \mathcal{O}(|x|^{k + 1})$.
         }
     \end{enumerate}
+
+    Но $\int_{\mathbb{R}} |x|^{k + 1} d P_{\xi} (x) = \mathbb{E} |\xi|^{k + 1} < +\infty$ по условию, тогда мажоранту подобрали правильную.
 \end{proof}
 
 \begin{theorem}
-    Если существует $\varphi_{\xi}''(0)$, то $\mathbb{E} \xi^2 < +\infty$
+    Если существует $\varphi_{\xi}''(0)$ и конечна, то $\mathbb{E} \xi^2 < +\infty$
 \end{theorem}
 
 \begin{remark}
-    Если существует $\varphi_{\xi}^{(2n)}$, то $\mathbb{E} \xi^{2n} < +\infty$
+    Если существует $\varphi_{\xi}^{(2n)}$ и конечна, то $\mathbb{E} \xi^{2n} < +\infty$
 \end{remark}
 
 \begin{proof}
-    $\mathbb{E} \xi^2 = \int_{\mathbb{R}} x^2 dP_{\xi} (x) = (*)$ - хотим доказать, что этот интеграл конечен.
+    $\mathbb{E} \xi^2 = \int_{\mathbb{R}} x^2 dP_{\xi} (x) = (*)$ -- хотим доказать, что этот интеграл конечен.
 
-    Заметим, что $x = \lim_{t \to 0} \frac{\sin (tx)}{t}$ и подставим вместо $x$. Тогда:
+    Заметим, что $x = \lim_{t \to 0} \frac{\sin (tx)}{t}$ и подставим вместо $x$.
+    
+    Тогда:
 
     $(*) = \int_{\mathbb{R}} \lim_{t \to 0} \frac{\sin^2 (tx)}{t^2} dP_{\xi}(x) \leqslant
-    \underline{\lim}_{t \to 0} \int_{\mathbb{R}} -\frac{e^{2itx} + e^{-2itx} - 2}{4t^2} dP_{\xi} (x) = (*)$ - лемма Фату и расписали синус.
+    \underline{\lim}_{t \to 0} \int_{\mathbb{R}} -\frac{e^{2itx} + e^{-2itx} - 2}{4t^2} dP_{\xi} (x) = (*)$ -- лемма Фату и расписали синус.
 
-    $(*) = \underline{\lim}_{t \to 0} \int_{\mathbb{R}} -\frac{\varphi_{\xi}(2t) - \varphi_{\xi}(-2t) - 2}{4t^2} = (*)$. Причём $\varphi_{\xi} (u) = 1 + \varphi_{\xi}'(0) \cdot u + \frac{\varphi_{\xi}''(0) u^2}{2} + o(u^2)$.
+    $(*) = \underline{\lim}_{t \to 0} -\frac{\varphi_{\xi}(2t) - \varphi_{\xi}(-2t) - 2}{4t^2} = (*)$.
+    
+    Причём $\varphi_{\xi} (u) = \varphi_{\xi}(0) + \varphi_{\xi}'(0) \cdot u + \frac{\varphi_{\xi}''(0) u^2}{2} + o(u^2)$.
 
-    Тогда $\varphi_{\xi}(2t) + \varphi_{\xi}(-2t) = 2 + \frac{\varphi_{\xi}''(0) (2t)^2}{2} + o(t^2)$, а тогда $(*) = \underline{\lim}_{t \to 0} (-\varphi_{\xi}''(0) + o(1))$
+    Тогда $\varphi_{\xi}(2t) + \varphi_{\xi}(-2t) = 2 + \frac{\varphi_{\xi}''(0) \left((2t)^2 + (-2t)^2 \right)}{2} + o(t^2)$, а тогда $(*) = \underline{\lim}_{t \to 0} (-\varphi_{\xi}''(0) + o(1))$
 \end{proof}
 
 \begin{theorem}
     \textbf{Формула обращения}
 
-    Пусть $a < b$ и $P_{\xi}(\{ a \}) = P_{\xi}(\{  b \}) = 0$
+    Пусть $a < b$ и $P(\xi = a) = P(\xi = b) = 0$.
 
     Тогда $P(\xi \in [a, b]) = \lim_{T \to +\infty} \frac{1}{2\pi} \int_{-T}^{T} \frac{e^{-iat} - e^{ibt}}{it} \varphi_{\xi}(t) \, dt $
 
@@ -171,21 +201,23 @@
 \end{theorem}
 
 \begin{proof}
-    $\xi = \frac{a + b}{2} + \frac{b - a}{2}\eta$, тогда $P(\xi \in [a, b]) \Leftrightarrow P(\eta \in [-1, 1])$, в частности
-    $P_{\eta}(\{ \pm 1 \}) = 0$
+    % TODO: тут я выпал из жизни, пока пытался внести исправления. Надо убедиться, что все ок.
+
+    $\xi = \frac{a + b}{2} + \frac{b - a}{2}\eta$, тогда $P(\xi \in [a, b]) = P(\eta \in [-1, 1])$, в частности $P_{\eta}(\{ \pm 1 \}) = 0$.
 
     $\varphi_{\xi}(t) = e^{i \frac{a + b}{2} t} \varphi_{\eta}(\frac{b - a}{2}t)$ - подставим в наш интеграл.
 
     $ \int_{-T}^{T} \frac{e^{-iat} - e^{-ibt}}{it} \varphi_{\xi} (t) \, dt = \int_{-T}^{T} \frac{e^{-iat} - e^{-ibt}}{it} e^{i \frac{a + b}{2} t} \varphi_{\eta} (\frac{b - a}{2} t) \, dt = $
 
-    $ = \int_{-T}^{T} \frac{e^{-i\frac{a - b}{2}t} - e^{-i\frac{b - a}{2}t}}{it} \varphi_{\eta} (\frac{b - a}{2}) \, dt = \int_{-\frac{b - a}{2}T}^{\frac{b - a}{2}T} \frac{e^{is} - e^{-is}}{is} \varphi_{\eta} (s) \, ds$, здесь замена $s = \frac{b - a}{t}$
+    $ = \int_{-T}^{T} \frac{e^{-i\frac{a - b}{2}t} - e^{-i\frac{b - a}{2}t}}{it} \varphi_{\eta} (\frac{b - a}{2}) \, dt = \int_{-\frac{b - a}{2}T}^{\frac{b - a}{2}T} \frac{e^{is} - e^{-is}}{is} \varphi_{\eta} (s) \, ds$, здесь замена $s = \frac{b - a}{2} t$
 
     Можно считать, что $a = -1$, а $b = 1$
 
     $\int_{-T}^T \frac{e^{it} - e^{-it}}{it} \varphi_{\xi}(t) \, dt = \int_{-T}^T \int_{\mathbb{R}} \frac{e^{it} - e^{-it}}{it} e^{itx} dP_{\xi}(x) \, dt = (*)$ - давайте переставим местами интегралы.
+    
     Нужна суммируемость того, что под интегралом, а она есть, всё ограничено какой-то суммируемой константой.
     
-    $(*) = \int_{\mathbb{R}} \int_{-T}^T \frac{e^{it} - e^{-it}}{it} e^{itx} \, dt \, dP_{\xi}(x)$.  Пусть $\Phi_T (x) = \frac{e^{it} - e^{-it}}{it} e^{itx} \, dt$
+    $(*) = \int_{\mathbb{R}} \int_{-T}^T \frac{e^{it} - e^{-it}}{it} e^{itx} \, dt \, dP_{\xi}(x)$.  Пусть $\Phi_T (x) = \int_{-T}^{T} \frac{e^{it} - e^{-it}}{it} e^{itx} \, dt$
 
     $\lim_{T \to +\infty} \int_{-T}^T \frac{e^{it} - e^{-it}}{it} \varphi_{\xi} (t) \, dt = \lim_{T \to +\infty} \int_{\mathbb{R}} \Phi_T(x) dP_{\xi} (x) = \int_{\mathbb{R}} \lim_{T \to +\infty} \Phi_T (x) \, dP_{\xi} (x) $ - хотим понять, почему 
     можно внести предел под интеграл, но разберемся с этим позже.
@@ -219,12 +251,21 @@
             Тогда $\mathbb{R} \setminus A$ - не более чем счётное. 
             Если $a < b$ и $a, b \in A$, то $P_{\xi} ([a, b]) = P_\eta ([a, b])$
 
-            Пусть $a \in \mathbb{R}, b \in A$. Рассмотрим $a_n \in A$, такие, что $a_n \to a$ и убывают.
+            \begin{enumerate}
+                \item {
+                    Пусть $a \in \mathbb{R}, b \in A$:
+            
+                    Рассмотрим $a_n \in A$, такие, что $a_n \to a$ и убывают.
 
-            $P_{\xi} ((a, b]) = \lim_{n \to \infty} P_{\xi} ([a_n, b_n]) = \lim P_{\eta} ([a_n, b_n]) = P_\eta ((a, b])$.
-
-            Пусть $a < b$ произвольные. Возьмём $b_n \in A$, такие, что $b_n \to b$ и убывают. Тогда $P_{\xi} ((a, b]) = \lim_{n \to \infty} P_{\xi} (a, b_n] = \lim P_\eta (a, b_n] = P_\eta (a, b] \Rightarrow 
-            P_\xi = P_\eta$ на ячейках, а тогда по единственности продолжения везде совпадают.
+                    $P_{\xi} ((a, b]) = \lim_{n \to \infty} P_{\xi} ([a_n, b_n]) = \lim P_{\eta} ([a_n, b_n]) = P_\eta ((a, b])$.
+                }
+                \item {
+                    Пусть $a < b$ произвольные:
+                    
+                    Возьмём $b_n \in A$, такие, что $b_n \to b$ и убывают. Тогда $P_{\xi} ((a, b]) = \lim_{n \to \infty} P_{\xi} (a, b_n] = \lim P_\eta (a, b_n] = P_\eta (a, b] \Rightarrow 
+                    P_\xi = P_\eta$ на ячейках, а тогда по единственности продолжения везде совпадают.
+                }
+            \end{enumerate}
         }
 
         \item {
@@ -243,14 +284,15 @@
 \end{consequence}
 
 \begin{theorem}
-    $\xi_k \sim \mathcal{N} (a_k, \sigma_k^2)$, $c_k \in \mathbb{R}$ не все нулевые и $\xi_k$ - независимы.
+    $\xi_k \sim \mathcal{N} (a_k, \sigma_k^2)$, $c_k \in \mathbb{R}$ не все нулевые и $\xi_k$ -- независимы и $\xi = a_0 + \sum_{k = 1}^n c_k \xi_k$.
 
-    Тогда $\xi = a_0 + \sum_{k = 1}^n c_k \xi_k  \sim \mathcal{N} (a, \sigma^2)$, где
-    $a = a_0 + \sum_{k = 1}^n c_k a_k$ и $\sigma^2 = \sum_{k = 1}^n c_k^2 \sigma_k^2$
+    Тогда $\xi \sim \mathcal{N} (a, \sigma^2)$, где
+    $a = a_0 + \sum_{k = 1}^n c_k a_k$ и $\sigma^2 = \sum_{k = 1}^n c_k^2 \sigma_k^2$.
 \end{theorem}
 
 \begin{proof}
     $\varphi_{\xi} (t) = \varphi_{a_0} (t) \varphi_{c_1\xi_1} (t) \ldots \varphi_{c_n\xi_n} (t) = $
+
     $=  e^{ita_0} (t) \varphi_{\xi_1} (c_1t) \ldots \varphi_{\xi_n} (c_nt) = 
     e^{ita_0} e^{ia_1c_1 t} e^{- \frac{(c_1 \sigma_1 t)^2}{2}} \ldots e^{ia_nc_n t} e^{- \frac{(c_n \sigma_n t)^2}{2}} =
     e^{ita} e^{- \frac{\sigma^2t^2}{2}} $
@@ -274,7 +316,9 @@
 
             \begin{proof}
                 Рассмотрим $F(x)$, функцию распределения. Возьмём хорошие $a$, т.ч. $F(a) < \varepsilon$ и 
-                $b$, т.ч. $F(b) > 1 - \varepsilon$. Тогда $(F_n(b) - F_n (a)) - (F(b) - F(a)) \rightarrow 0 \implies 
+                $b$, т.ч. $F(b) > 1 - \varepsilon$.
+                
+                Тогда $(F_n(b) - F_n (a)) - (F(b) - F(a)) \rightarrow 0 \implies 
                 |(F_n(b) - F_n(a)) - \underbrace{(F(b) - F(a))}_{> 1 - 2\varepsilon}| < \varepsilon \implies F_n(b) - F_n(a) > 1 - 3\varepsilon \implies F_n(a) < 3\varepsilon$ при больших $n$.
 
                 Возьмём хорошее $x$, $|F_n(x) - F(x)| \leqslant |(F_n(x) - F_n(a)) - (F(x) - F(a))| + \underbrace{F_n(a)}_{<3\varepsilon} + \underbrace{F(a)}_{<\varepsilon} < 5\varepsilon$ при больших $n$
