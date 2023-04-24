@@ -1,0 +1,118 @@
+\Subsection{Условные математические ожидания}
+
+\begin{definition}
+    $(\Omega, \mathcal{F}, P)$ - вероятностное пространство, $\xi : \Omega \to \mathbb{R}$ и $\mathbb{E} |\xi| < +\infty$. Пусть $\mathcal{A} \subset \mathcal{F}$ и $\mathcal{A}$ - $\sigma-$алгебра.
+
+    $\mathbb{E} (\xi | \mathcal{A}) = \eta \, : \, \Omega \to \mathbb{R}$ - случайная величина, которая:
+
+    \begin{enumerate}
+        \item измерима относительно $\mathcal{A}$
+        \item $\forall \, A \in \mathbb{A} \, : \, \mathbb{E} (\xi \mathds{1}_A) = \mathbb{E} (\eta \mathds{1}_A)$
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem}
+    $\mathcal{A} \subset \mathcal{F}, \mathbb{E} |\xi| < +\infty$, тогда $\mathbb{E} (\xi | \mathcal{A})$ существует и единственно, с точностью до почти наверное
+\end{theorem}
+
+\begin{proof}
+    Существование:
+
+    $\xi = \xi_+ - \xi_-$. Пусть $A \in \mathcal{A}$, определим $\mu_{\pm} A = \int_A \xi_{\pm} \, dP$ - это конечные меры на $\mathcal{A}$, так как интеграл от измеримой неотрицательной функции.
+    А ещё эти меры абсолютно непрерывны относительно $P \overset{\text{т. Радона-Никодима}}{\implies} \exists \, \eta_{\pm} > 0$ измеримые относительно $\mathcal{A}$, т.ч. $\mu_{\pm} A = \int_A \eta_{\pm} \, dP$
+    
+    $\eta = \eta_+ - \eta_-$, надо проверить, что $\forall \, A \in \mathcal{A} \, : \, \underbrace{\mathbb{E} (\xi \mathds{1}_A)}_{\mathbb{E}(\xi_+ \mathds{1}_A) - \mathbb{E}(\xi_- \mathds{1}_A)} = \mathbb{E} (\eta \mathds{1}_A)$
+
+    А ещё $\mathbb{E}(\xi_+ \mathds{1}_A) = \mu_+ A = \int_A \xi_+ \, dP$ и для остальных точно также
+
+    Единственность:
+
+    Пусть $\eta_1$ и $\eta_2$ - условные матожидания. Тогда $\{ \eta_1 > \eta_2 \} \in \mathcal{A}$
+
+    $\mathbb{E} (\eta_1 \mathds{1}_A) = \mathbb{E} (\xi \mathds{1}_A) = \mathbb{E} (\eta_2 \mathds{1}_A) \implies \underbrace{\mathbb{E} ((\eta_1 - \eta_2) \mathds{1}_A)}_{=\int_A (\eta_1 - \eta_2) \, dP} = 0 \implies P(A) = P(\eta_1 > \eta_2) = 0$. Аналогично $P(\eta_1 < \eta_2) = 0$
+\end{proof}
+
+\begin{properties}
+    \begin{enumerate}
+        \item $\mathbb{E} (c | \mathcal{A}) = c$
+        \item $\mathbb{E} (\xi | \mathcal{A})$ линейно по $\xi$
+        \item {$\xi \leqslant \eta$, то $\mathbb{E} (\xi | \mathcal{A}) \leqslant \mathbb{E} (\eta | \mathcal{A})$
+            \begin{proof}
+                Достаточно проверить, что если $\xi \geqslant 0$, то $\mathbb{E} (\xi | \mathcal{A}) \geqslant 0$
+            \end{proof}
+        }
+        \item {
+            $\mathbb{E} (\xi | \{ \emptyset, \Omega \}) = \mathbb{E} \xi$
+
+            \begin{proof}
+                Измеримы относительно такой $\sigma$-алгебры только константы. Надо проверить, что $\mathbb{E} (\mathbb{E} \xi \mathds{1}_A) = \mathbb{E} (\xi \mathds{1}_A)$ для $A = \emptyset$ и $A = \Omega$
+            \end{proof}
+        }
+        \item {
+            $\mathcal{F} \supset \mathcal{A}_1 \supset \mathcal{A}_2$ - $\sigma$-алгебры
+
+            Тогда $\mathbb{E} (\mathbb{E} (\xi | \mathcal{A}_1) | \mathcal{A}_2) = \mathbb{E} (\xi | \mathcal{A}_2)$
+
+            \begin{proof}
+                $\eta = \mathbb{E} (\xi | \mathcal{A}_2)$ и $\zeta = \mathbb{E} (\xi | \mathcal{A}_1)$
+
+                Надо доказать, что $\eta = \mathbb{E} (\zeta | \mathcal{A}_2)$. $\eta$ измерима относительно $\mathcal{A_2}$. Надо проверить, что 
+                $\forall \, A \in \mathcal{A}_2 \, : \, \mathbb{E} (\eta \mathds{1}_A) = \mathbb{E} (\zeta \mathds{1}_A) = \mathbb{E} (\xi \mathds{1}_A)$, т.к. $A \in \mathcal{A}_1$ по определению $\zeta$. А ещё
+                $\mathbb{E} (\xi \mathds{1}_A) = \mathbb{E} (\eta \mathds{1}_A)$
+            \end{proof}
+        }
+        \item {
+            $\mathbb{E} (\mathbb{E} (\xi | \mathcal{A})) = \mathbb{E} \xi$ - из $4$ и $5$
+        }
+        \item {
+            Если $\xi$ измерима относительно $\mathcal{A}$, о $\mathbb{E} (\xi | \mathcal{A}) = \xi$
+        }
+    \end{enumerate}
+\end{properties}
+
+\begin{example}
+    % дизъюнктно
+    Пусть $\Omega = \bigcup A_k$  не более чем счётное объединение
+
+    $\mathcal{A}$ - натянутая на $A_1, A_2, \ldots$ $\sigma-$алгебра
+
+    $\mathbb{E} (\xi | \mathcal{A}) = ?$
+
+    Если $\eta$ измерима относительно $\mathcal{A} \implies \eta = \sum c_k \mathds{1}_{A_k}$
+
+    Нужно чтобы $\mathbb{E} (\xi \mathds{1}_{A_n}) = \mathbb{E} (\underbrace{\eta \mathds{1}_{A_n}}_{c_n \mathds{1}_{A_n}}) = c_n P(A_n)$
+
+    То есть $c_n = \frac{\mathbb{E} (\xi \mathds{1}_{A_n})}{P(A_n)}$
+
+    \begin{remark}
+        Из свойства 6: $\mathbb{E} \xi = \mathbb{E} \eta = \sum \frac{\mathbb{E} (\xi \mathds{1}_{A_k})}{P(A_k)} \cdot P(A_k)$
+    \end{remark}
+\end{example}
+
+\begin{definition}
+    Условная вероятность относительно $\sigma$-алгебры
+
+    $P(B | \mathcal{A}) = \mathbb{E} (\mathds{1}_B | \mathcal{A})$
+\end{definition}
+
+\begin{example}
+    $\xi_1, \xi_2, \ldots$ - независимые, одинаково распределённые случайные величины, $N$ - случайная величина с неотрицательными целыми значениями, не зависящая от $\xi_1, \ldots$
+
+    $S = \xi_1 + \ldots + \xi_{N}$
+
+    Пусть $A_n = \{ N = n \}$
+
+    $\mathbb{E} S = \sum\limits_{n = 0}^{+\infty} \frac{\mathbb{E} (S \mathds{1}_{A_n})}{P(A_n)} \cdot P(A_n) = \sum\limits_{n = 0}^\infty na P(N = n) = \mathbb{E} \xi_1 \cdot \mathbb{E} N$
+
+    $\frac{\mathbb{E} (S \mathds{1}_{A_n})}{P(A_n)} = \mathbb{E} (S | N = n) = \mathbb{E} (S_n | N = n) = \mathbb{E} (\xi_1 + \ldots + \xi_n | N = n) \overset{\text{незаисимость}}{=} = \mathbb{E} (\xi_1 + \ldots + \xi_n) = na$, где $a = \mathbb{E} \xi_1$
+\end{example}
+
+\begin{example}
+    Пусть $\xi_k$ тоже принимают неотрицательные целые значения
+
+    Тогда $G_{\xi_1} (t) = G(t)$ - производящая функция $\xi_k$
+
+    $G_S (t) = \mathbb{E} t^S = \sum_{n = 0}^\infty \frac{\mathbb{E} (t^S \mathds{1}_{A_n})}{P(A_n)} \cdot P(A_n) = \sum\limits_{n = 0}^\infty G^n (t) P(N = n) = G_n (G_{\xi} (t))$
+
+    $\frac{\mathbb{E} (t^S \mathds{1}_{A_n})}{P(A_n)} = \mathbb{E} (t^S | N = n) = \mathbb{E} (t^{S_n} | N = n) = \mathbb{E} (t^{\xi_1} \cdot \ldots \cdot t^{\xi_n} | N = n) = \mathbb{E} (t^{\xi_1} \cdot \ldots \cdot e^{\xi_n}) = (\mathbb{E} t^{\xi_1})^n = (G(t))^n$
+\end{example}
