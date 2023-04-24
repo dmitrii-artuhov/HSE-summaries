@@ -337,7 +337,7 @@
         \item $\left <x, x \right > \geqslant 0$ и$\left <x, x \right > = 0 \Leftrightarrow x = \bar{0}$
         \item $\left <x, y \right > = \overline{\left <y, x \right >}$
         \item $\left <x + y, z \right > = \left <x, z \right > + \left <y, z \right >$
-        \item $\left <\alpha x, y \right > = \alpha \left <x, y \right > \forall \, x \, \in \mathbb{R} (\mathbb{C})$
+        \item $\left <\alpha x, y \right > = \alpha \left <x, y \right > \forall \, x \, \in \mathbb{R} (\mathbb{C}) \ \ $  (заметим, что $\left<x, \alpha y\right> = \overline{\alpha} \left<x, y\right>$)
     \end{enumerate}
 \end{remark}
 
@@ -348,7 +348,7 @@
 \begin{example}
     \begin{enumerate}
         \item {
-            $l^2$, в нём $<x, y> = \sum_{k = 1}^{\infty} x_k \overline{y_k}$
+            $l^2$, в нём $\left<x, y\right> = \sum_{k = 1}^{\infty} x_k \overline{y_k}$
         }
         \item {
             $L^2 (E, \mu)$, в нём $\left < f, g \right > = \int_{E} f \overline{g} d\mu$
@@ -360,15 +360,15 @@
 \end{example}
 
 \begin{lemma}
-    Если $\sum_{n = 1}^{\infty} x_n$ сходится, то $\left < \sum_{n = 1}^\infty, y \right > = \sum_{n = 1}^{\infty} \left < x_n, y \right >$
+    Если $\sum_{n = 1}^{\infty} x_n$ сходится, то $\left < \sum_{n = 1}^\infty x_n, y \right > = \sum_{n = 1}^{\infty} \left < x_n, y \right >$
 \end{lemma}
 
 \begin{proof}
-    $S_n = \sum_{k = 1}^n x_n \rightarrow S = \sum_{k = 1}^{\infty} x_n \implies \underbrace{\left < S_n, y \right >}_{=\left < \sum_{k = 1}^n x_k y \right > = \sum_{k=1}^{n} \left < x_k , y \right >} \rightarrow \left < S, y \right >$
+    $S_n = \sum_{k = 1}^n x_n \rightarrow S = \sum_{k = 1}^{\infty} x_n \implies \underbrace{\left < S_n, y \right >}_{=\left < \sum_{k = 1}^n x_k, y \right > = \sum_{k=1}^{n} \left < x_k , y \right >} \rightarrow \left < S, y \right >$
 \end{proof}
 
 \begin{definition}
-    $x \bot y$ ортогональный, если $\left < x, y \right > = 0 $
+    $x \bot y$ ортогональны, если $\left< x, y \right> = 0$
 \end{definition}
 
 \begin{definition}
@@ -385,7 +385,7 @@
 \end{remark}
 
 \begin{theorem}
-    Пусть $H$ - гильбертово пространство, $\sum_{n = 1}^{\infty} x_n$ - ортогональный ряд.
+    Пусть $H$ - гильбертово пространство, $\sum_{n = 1}^{\infty} x_n$ - ортогональный ряд, где $x_n \in H$.
 
     Тогда $\sum_{n = 1}^\infty x_n $ - сходится $\Longleftrightarrow \sum_{n = 1}^\infty || x_n ||^2 < +\infty$
 \end{theorem}
@@ -395,10 +395,17 @@
 
     Пространство полно, есть критерий Коши.
 
-    $\forall \varepsilon > 0 \exists N \, : \, \forall \, n, m \geqslant N \, ||S_n - S_m|| < \varepsilon$.
+    $S_n$ -- сх-ся $\Leftrightarrow$ $\forall \varepsilon > 0  \ \exists N \, : \, \forall \, n, m \geqslant N \, : ||S_n - S_m|| < \varepsilon$.
 
-    $||S_n - S_m||^2 = || \sum_{k = n + 1}^m x_k ||^2 = \left < \sum_{k = n + 1}^m x_k, \sum_{k = n + 1}^m x_k \right > = \sum_{k = m + 1}^n \left < x_k , x_k \right > = \sum_{k = n + 1}^m ||x_k||^2 = C_m - C_n 
-    \Longleftrightarrow C_n$ - фундаментальная последовательность $\Longleftrightarrow \sum_{n = 1}^\infty ||x_n||^2 < +\infty$
+    $C_n$ -- сх-ся $\Leftrightarrow$ $\forall \varepsilon > 0 \ \exists N \, : \, \forall \, n, m \geqslant N \, : C_m - C_n < \varepsilon$ (будем считать, что $m > n$).
+
+    \bigskip
+
+    $||S_n - S_m||^2 = || \sum_{k = n + 1}^m x_k ||^2 = \left < \sum_{k = n + 1}^m x_k, \sum_{k = n + 1}^m x_k \right > =$
+    
+    $= \sum_{k=n+1}^{m} \sum_{j=n+1}^{m} \left< x_k, x_j \right> \underbrace{=}_{\text{пользуемся ортогональностью ряда}} \sum_{k = m + 1}^n \left < x_k , x_k \right > =$
+    
+    $= \sum_{k = n + 1}^m ||x_k||^2 = C_m - C_n \Longleftrightarrow C_n$ - фундаментальная последовательность $\Longleftrightarrow \sum_{n = 1}^\infty ||x_n||^2 < +\infty$
 \end{proof}
 
 \begin{consequence}
@@ -408,11 +415,42 @@
 \end{consequence}
 
 \begin{proof}
-    $S = \sum x_n$ - сходится $\Longleftrightarrow \sum ||x_n||^2$ - сходится $\Longleftrightarrow \sum ||x_{\varphi(n)}||^2$ - сходится $\Longleftrightarrow \sum x_{\varphi(n)} = \tilde{S}$ - сходится.
+    \begin{enumerate}
+        \item {
+        \textbf{Сходимость}:
 
-    Посмотрим на $||S - \tilde{S}||^2 = \left <  S - \tilde{S}, S - \tilde{S} \right > = \left < S, S \right > + \left < \tilde{S}, \tilde{S} \right > - \left < S, \tilde{S} \right > - \left < \tilde{S}, S \right > = 
-    \sum_{n = 1}^\infty \sum_{k = 1}^\infty \left < x_n, x_k \right > + \sum_{n = 1}^\infty \sum_{k = 1}^\infty \left < x_{\varphi(n)}, x_{\varphi(k)} \right > - \sum_{n = 1}^\infty \sum_{k = 1}^\infty \left < x_n, x_{\varphi(k)} \right > - \sum_{n = 1}^\infty \sum_{k = 1}^\infty \left < x_{\varphi(n)}, x_k \right > = 
-    \sum_{n = 1}^\infty \left < x_n , x_n \right > + \sum_{n = 1}^\infty \left < x_{\varphi(n), x_{\varphi(n)}} \right > - \sum_{n = 1}^\infty \left < x_n, x_n \right > - \sum_{n = 1}^\infty \left < x_{\varphi(n), x_{\varphi(n)}} \right > = 0 $
+        $S = \sum x_n$ - сходится $\Longleftrightarrow \sum ||x_n||^2$ - сходится $\Longleftrightarrow \sum ||x_{\varphi(n)}||^2$ - сходится $\Longleftrightarrow \sum x_{\varphi(n)} = \tilde{S}$ - сходится.
+        }
+        \item {
+        \textbf{Сумма сохраняется}:
+
+        
+        Посмотрим на $||S - \tilde{S}||^2 = \left <  S - \tilde{S}, S - \tilde{S} \right > = \left < S, S \right > + \left < \tilde{S}, \tilde{S} \right > - \left < S, \tilde{S} \right > - \left < \tilde{S}, S \right > = $
+        
+        $= \sum_{n = 1}^\infty \sum_{k = 1}^\infty \left < x_n, x_k \right > + \sum_{n = 1}^\infty \sum_{k = 1}^\infty \left < x_{\varphi(n)}, x_{\varphi(k)} \right > - \sum_{n = 1}^\infty \sum_{k = 1}^\infty \left < x_n, x_{\varphi(k)} \right > - \sum_{n = 1}^\infty \sum_{k = 1}^\infty \left < x_{\varphi(n)}, x_k \right > = (*)$
+
+        Воспользуемся ортогональностью:
+
+        \begin{enumerate}
+            \item {
+                $\left< x_n, x_k \right> \neq 0 \Leftrightarrow n = k$
+            }
+            \item {
+                $\left< x_{\phi(n)}, x_{\phi(k)} \right> \neq 0 \Leftrightarrow n = k$
+            }
+            \item {
+                $\left< x_n, x_{\phi(k)} \right> \neq 0 \Leftrightarrow n = \phi(k)$
+            }
+            \item {
+                $\left< x_{\phi(n)}, x_k \right> \neq 0 \Leftrightarrow \phi(n) = k$
+            }
+        \end{enumerate}
+
+        Тогда можем переписать как:
+        
+        $(*) = \sum_{n = 1}^\infty \left < x_n , x_n \right > + \sum_{n = 1}^\infty \left < x_{\varphi(n)}, x_{\varphi(n)} \right > - \sum_{n = 1}^\infty \left < x_n, x_n \right > - \sum_{n = 1}^\infty \left < x_{\varphi(n)}, x_{\varphi(n)} \right > = 0 $
+        }
+    \end{enumerate}
 \end{proof}
 
 \begin{definition}
@@ -430,10 +468,10 @@
 \begin{example}
     \begin{enumerate}
         \item {
-            $l^2, e_n = (0, 0, \ldots , 0, 1, 0, \ldots, 0)$ - ортонормированная система.
+            $l^2, e_n = (0, 0, \ldots , 0, \underbrace{1}_{n \text{-ое место}}, 0, \ldots, 0)$ - ортонормированная система.
         }
         \item {
-            $L^2 [0, 2\pi]$, ортогональная система $1, \cos t, \sin t, \cos 2t, \sin 2t$
+            $L^2 [0, 2\pi]$, ортогональная система $1, \cos t, \sin t, \cos 2t, \sin 2t, \ldots$
         }
         \item {
             $L^2 [0, 2\pi]$, ортогональная система $e^{int}, n \in \mathbb{Z}$
@@ -452,7 +490,7 @@
 \begin{theorem}
     Пусть $e_1, e_2, \ldots$ ортогональная система в $H$ и $x = \sum_{k = 1}^\infty c_k e_k \in H$.
 
-    Тогда $c_k = \frac{\left < x, e_k  \right >}{\left < e_k, e_k \right >}$
+    Тогда $c_k = \frac{\left < x, e_k  \right >}{\left < e_k, e_k \right >} \left(= \frac{\left < x, e_k  \right >}{||e_k||^2} \right)$
 \end{theorem}
 
 \begin{proof}
@@ -473,7 +511,11 @@
         \item {
             $k$-ое слагаемое ряда Фурье - это проекция вектора $x$ на прямую, идущую в направлении $e_k$
 
-            То есть $x = c_k e_k + z$, где $z \bot e_k$
+            То есть $x = c_k(x) e_k + z$, где $z \bot e_k$
+
+            \begin{center}
+                \includegraphics[width=7cm]{./assets/05-fourierreihe/projection-of-x.png}
+            \end{center}
         }
     \end{enumerate}
 \end{remark}
@@ -486,7 +528,7 @@
 
     Тогда:
     \begin{enumerate}
-        \item $S_n$ - проекция $x$ на $L_n$, то есть $x = S_n + z$, где $z \bot L_n$
+        \item $S_n$ - ортогональная проекция $x$ на $L_n$, то есть $x = S_n + z$, где $z \bot L_n$
         \item $S_n$ - наилучшее приближение к $x$ в $L_n$, т.е. $||x - S_n|| = \min_{y \in L_n} ||x - y||$
         \item $||S_n|| \leqslant ||x||$
     \end{enumerate}
@@ -504,12 +546,12 @@
         \item {
             $x - \underbrace{y}_{\in L_n} = \underbrace{S_n + z - y}_{z \bot L_n} = z + (S_n - y)$
             
-            Тогда $||x - y||^2 = ||z||^2 + ||S_n - y||^2 \geqslant ||z||^2 = ||x - S_n||^2$ и равенство $\Longleftrightarrow y = S_n$
+            Тогда $||x - y||^2 = || \underbrace{S_n - y}_{\in L_n} + \underbrace{z}_{\bot L_n} ||^2 = ||z||^2 + ||S_n - y||^2 \geqslant ||z||^2 = ||x - S_n||^2$ и равенство $\Longleftrightarrow y = S_n$
         }
         \item {
-            $x = S_n + z$ и $z \bot S_n$
+            $x = S_n + z$ и $z \bot S_n = (*)$
 
-            Тогда $||x||^2 = ||S_n||^2 + ||z||^2 \geqslant ||S_n||^2$
+            Тогда $||x||^2 = || S_n + z ||^2 \underbrace{=}_{\text{т.к. } (*)} ||S_n||^2 + ||z||^2 \geqslant ||S_n||^2$
         }
     \end{enumerate}
 \end{proof}
@@ -546,7 +588,7 @@
 \begin{proof}
     \begin{enumerate}
         \item {
-            $\sum_{n = 1}^\infty c_n (x) e_n$ - сходится $\Longleftrightarrow \underbrace{\sum_{n = 1}^\infty ||c_n (x) e_n||^2}_{= \sum_{n = 1}^\infty |c_n (x)| ||e_n||^2 \leqslant ||x||^2} < +\infty$
+            $\sum_{n = 1}^\infty c_n (x) e_n$ - сходится $\Longleftrightarrow \underbrace{\sum_{n = 1}^\infty ||c_n (x) e_n||^2}_{= \sum_{n = 1}^\infty |c_n (x)|^2 ||e_n||^2 \leqslant ||x||^2 < +\infty} < +\infty$
         }
         \item {
             $z = x - \sum_{k = 1}^\infty c_k(x)e_k$
@@ -556,13 +598,13 @@
         \item {
             $x = \sum_{k = 1}^\infty c_k (x) e_k + z$, где $z \bot e_n \forall n$
 
-            Тогда $||x||^2 = ||z||^2 + \sum_{k = 1}^\infty |c_k (x)| ||e_k||^2$, то есть $z = 0 \Longleftrightarrow ||x||^2 = \sum_{k = 1}^\infty |c_k(x)|^2 ||e_k||^2$
+            Тогда $||x||^2 = ||z||^2 + \sum_{k = 1}^\infty |c_k (x)|^2 ||e_k||^2$, то есть $z = 0 \Longleftrightarrow ||x||^2 = \sum_{k = 1}^\infty |c_k(x)|^2 ||e_k||^2$
         }
     \end{enumerate}
 \end{proof}
 
 \begin{remark}
-    $\sum_{n = 1}^\infty c_n (x) e_n$ - это ортогональная проекция на $Cl \, Lin \, \{ e_n \}$
+    $\sum_{n = 1}^\infty c_n (x) e_n$ - это ортогональная проекция на $Cl \left( Lin \, \{ e_n \} \right)$, где $Lin \{ \ldots \}$ -- линейная оболочка векторов.
 \end{remark}
 
 \begin{remark}
@@ -618,12 +660,14 @@
         \item {
             $2 \implies 1$
 
-            Рисс-Фишер $\implies x = z + \sum_{k = 1}^\infty c_k (x) e_k$ и $z \bot e_n \, \forall \, n$
+            Рисс-Фишер $\implies x = z + \sum_{k = 1}^\infty c_k (x) e_k$ и $z \bot e_n \, \forall \, n$, то есть по пункту $z=0$.
         }
         \item {
             $1 \implies 5$
 
-            $x = \sum_{k = 1}^\infty c_k (x) e_k = \lim_{n \to +\infty} \sum_{k = 1}^n c_k (x) e_k \in Lin \, \{ e_n \} \implies \lim \in Cl \, Lin \, \{ e_n \} \implies Cl \, Lin \, \{ e_n \} \supset H$
+            $x = \sum_{k = 1}^\infty c_k (x) e_k = \lim_{n \to +\infty} \underbrace{\sum_{k = 1}^n c_k (x) e_k}_{\in Lin \, \{ e_n \}} \implies$
+            
+            $\implies \lim \in Cl \, Lin \, \{ e_n \} \implies x \in Cl \, Lin \, \{ e_n \} \implies H \subset Cl \, Lin \, \{ e_n \}$ -- так как $x$ произвольный вектор из $H$.
         }
         \item {
             $5 \implies 2$
@@ -706,7 +750,7 @@
 
     $\{ x_1, x_2, \ldots \}$ линейно независимые вектора.
 
-    Тогда существуют $\{ e_1, e_2, \ldots  \}$ - ортонормированная система, такая, что:
+    Тогда существуют $\{ e_1, e_2, \ldots  \}$ - ортонормированная система, т.ч.:
     $Lin \, \{ e_1, \ldots \} = Lin \, \{ x_1, x_2, \ldots \}$
 
     Если $f_1, f_2, \ldots$ тоже ортонормированная система с тем же свойством, то 
@@ -726,14 +770,19 @@
         Получившиеся многочлены называют ортогональными многочленами с весом $w$.
 
         \begin{example}
+            Ортогональные многочлены.
+
             \begin{enumerate}
                 \item {
                     Многочлены Лежандра. Пространство $L^2 (-1, 1)$
 
-                    $P_n (t) = \frac{1}{2^n \cdot n!} ((t^2 - 1)^n)^{(n)}$
+                    $P_n (t) = \frac{1}{2^n \cdot n!} ((t^2 - 1)^n)^{(n)}$, считаем, что $n > k$:
 
-                    $\left < P_k, P_n \right > = \frac{1}{2^n \cdot n!} \cdot \frac{1}{2^k \cdot k!} \int_{-1}^1 ((t^2 - 1)^k)^{(k)} ((t^2 - 1)^n)^{(n)} \, dt = C (((t^2 - 1)^k)^{(k)} \cdot ((t^2 - 1)^n)^{(n - 1)}) \bigg |_{-1}^1 - 
-                    \int_{-1}^1 ((t^2 - 1)^k)^{(k + 1)} ((t^2 - 1)^n)^{(n - 1)} \, dt = \pm C \int_{-1}^1 ((t^2 - 1)^k)^{(k + n)} (t^2 - 1)^n \, dt = 0$
+                    $\left < P_k, P_n \right > = \underbrace{\frac{1}{2^n \cdot n!} \cdot \frac{1}{2^k \cdot k!}}_{=C} \int_{-1}^1 ((t^2 - 1)^k)^{(k)} ((t^2 - 1)^n)^{(n)} \, dt =$
+                    
+                    $= C \left( ((t^2 - 1)^k)^{(k)} \cdot ((t^2 - 1)^n)^{(n - 1)} \bigg |_{-1}^1 - \int_{-1}^1 ((t^2 - 1)^k)^{(k + 1)} ((t^2 - 1)^n)^{(n - 1)} \, dt \right) = \ldots$
+                    
+                    $= \pm C \int_{-1}^1 \underbrace{((t^2 - 1)^k)^{(2k + 1)}}_{=0} ((t^2 - 1)^n)^{(n - k - 1)} \, dt = 0$
                 }
                 \item {
                     Многочлены Чебышёва первого рода. Пространство $L^2 ((-1, 1), w(t) = \frac{1}{\sqrt{1 - t^2}})$
@@ -795,16 +844,32 @@
 \end{lemma}
 
 \begin{proof}
-    Пусть $d = d(x, A)$ - оно конечно. Возьмём $y, z \in A$, тогда $\frac{y + z}{2} \in A$ из выпуклости.
+    Теоремы.
+
+    Пусть $d = d(x, A)$ -- оно конечно. Возьмём $y, z \in A$, тогда $\frac{y + z}{2} \in A$ из выпуклости.
+
+    \begin{center}
+        \includegraphics[width=8cm]{assets/05-fourierreihe/existance-of-the-best-approximation.png}
+    \end{center}
     
-    $\underbrace{|| 2 (x - \frac{y + z}{2})||^2}_{= 4 || x - \frac{y + z}{2} || \geqslant 4d^2} + ||y - z||^2 = 2 ||x - y||^2 + 2||x - z||^2 \geqslant 4d^2$ - подставили в лемму $x - y$ и $x - z$
+    $\underbrace{|| 2 \left(x - \frac{y + z}{2}\right) ||^2}_{= 4 || x - \frac{y + z}{2} || \geqslant 4d^2} + ||y - z||^2 = 2 ||x - y||^2 + 2||x - z||^2 \geqslant 4d^2$ -- подставили в лемму $x - y$ и $x - z$.
 
     Отсюда $||y-z||^2 = 2 ||x - y||^2 + 2 ||x - z||^2 - 4 || x - \frac{y + z}{2}|| \leqslant 2 ||x - y||^2 + 2||x - z||^2 - 4d^2$
 
-    Единственность. Если $||x - y|| = d$ и $||x - z|| = d$, то $||y - z||^2 \leqslant 0 \implies y = z$
+    \begin{enumerate}
+        \item {
+            \textbf{Единственность}:
 
-    Существование. Возьмём $y_n$, т.ч. $||x - y_n|| \rightarrow d$. Тогда
-    $||y_n - y_m||^2 \leqslant 2 ||x - y_n||^2 + 2||x - y_m||^2 - 4d^2 < 4\varepsilon$, значит это фундаментальная последовательность и есть предел $y^*$
+            Если $||x - y||^2 = d$ и $||x - z||^2 = d$, то $||y - z||^2 \leqslant 0 \implies y = z$
+        }
+        \item {
+            \textbf{Существование}:
 
-    $||x - y*|| = \lim ||x - y_n|| = d$
+            Возьмём $y_n$, т.ч. $||x - y_n|| \rightarrow d$, то есть $|| x - y_n ||^2 < d^2 + \varepsilon$.
+            
+            Тогда $||y_n - y_m||^2 \leqslant 2 ||x - y_n||^2 + 2||x - y_m||^2 - 4d^2 < 4\varepsilon$, значит это фундаментальная последовательность и у нее есть предел $y^* \in A$, поскольку $A$ -- замкнуто.
+            
+            $||x - y^*|| = \lim_{n \to \infty} ||x - y_n|| = d$.
+        }
+    \end{enumerate}
 \end{proof}
