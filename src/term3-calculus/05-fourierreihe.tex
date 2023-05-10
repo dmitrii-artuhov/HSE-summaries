@@ -894,7 +894,7 @@
 
     $z = x - y, l \in L, \lambda \in \mathbb{C}$
 
-    Мы знаем, что $\underbrace{|| x - y ||^2}_{= |||z||^2} \leqslant \underbrace{|| x - (y - \lambda l) ||^2}_{||z + \lambda l||^2} = \left < z, z \right > \leqslant \left < z, z \right > + \left < z, \lambda l \right > + \left < \lambda l, z \right > + \left < \lambda l, \lambda l \right >$
+    Мы знаем, что $\underbrace{|| x - y ||^2}_{= |||z||^2} \leqslant \underbrace{|| x - (y - \lambda l) ||^2}_{||z + \lambda l||^2} \implies \left < z, z \right > \leqslant \left < z, z \right > + \left < z, \lambda l \right > + \left < \lambda l, z \right > + \left < \lambda l, \lambda l \right >$
 
     $|\lambda|^2 \left < l, l \right > + \lambda \left < l, z \right > + \overline{\lambda} \left < z, l \right > \geqslant 0$
 
@@ -902,7 +902,7 @@
 
     Возьмём $\lambda = -\frac{\left < z, l \right >}{||l||^2}$
 
-    Подставляем: $\frac{|\left < z, l \right >|^2}{||l||^2} - 2\Re \left( \frac{|\left < z, l \right >|^2}{||l||^2} \right) = - \frac{|\left <z, l \right >|^2}{||l||^2} \implies z \bot l$
+    Подставляем: $\frac{|\left < z, l \right >|^2}{||l||^2} - 2\Re \left( \frac{|\left < z, l \right >|^2}{||l||^2} \right) \geq 0 \implies \frac{|\left < z, l \right >|^2}{||l||^2} \geq 2 \cdot \frac{|\left < z, l \right >|^2}{||l||^2} \implies - \frac{|\left <z, l \right >|^2}{||l||^2} \geq 0 \implies z \bot l$
 \end{proof}
 
 \begin{definition}
@@ -970,7 +970,7 @@
         \item {
             $p < +\infty$, $L^p (\mathbb{R}^d, \lambda_d)$
 
-            $A = \{ \text{линейные комбинации с $\mathbb{Q}$ коэффициентами $\mathds{1}_B$, где $B$ - ячейка с $\mathbb{Q}$ координатами вершин} \} $
+            $A = \{ \text{линейные комбинации с $\mathbb{Q}$ коэффициентами $\mathds{1}_B$, где $B$ - ячейка с $\mathbb{Q}$ коорд. вершин} \} $
 
             Для $p = +\infty$, здесь $L^\infty (\mathbb{R}^d, \lambda_d)$ не сепарабельно
         }
@@ -1001,7 +1001,11 @@
 \end{theorem}
 
 \begin{proof}
-    Возьмём базис $e_1, e_2, \ldots$, он счётный и отнормируем. Тогда $x \rightarrow (\left < x, e_1 \right >, \left < x, e_2 \right >, \ldots)$. Хотим показать, что это то, что надо.
+    Возьмём базис $e_1, e_2, \ldots$, он счётный и отнормируем.
+    
+    Тогда $x \rightarrow (\left < x, e_1 \right >, \left < x, e_2 \right >, \ldots)$.
+    
+    Хотим показать, что это то, что надо.
 
     \begin{enumerate}
         \item {
@@ -1046,17 +1050,26 @@ $\sum_{k = -n}^n c_k e^{ikx} \rightarrow \sum_{k = -\infty}^{+\infty} c_k e^{ikx
 \end{theorem}
 
 \begin{proof}
-    $T_n (x) = \frac{a_0}{2} + \sum_{k = 1}^n (a_k \cos (kx) + b_k \sin (kx))$
 
-    $||T_n - f ||_{L^1 [-\pi, \pi]} = \int_{-\pi}^\pi |T_n(x) - f(x)| \, dx \rightarrow 0$
+    $T_n (x) = \frac{a_0}{2} + \sum_{k = 1}^n (a_k \cos (kx) + b_k \sin (kx))$ -- частичная сумма ряда.
 
-    $\int_{-\pi}^\pi T_n(x) \cos (kx) \, dx = \frac{a_0}{2} \int_{-\pi}^\pi \cos (kx) \, dx + \sum_{j = 1}^n a_k \int_{-\pi}^\pi \cos (jx) \cos (kx) \, dx + \sum_{j = 1}^n b_j \int_{-\pi}^\pi \sin (jx) \cos (kx) \, dx = a_k \pi$
+    Пусть $n \geq m$:
 
-    %TODO, здесь немного пропущено
+    $|\underbrace{\int_{-\pi}^{\pi} T_n(x) \cos{(m x)} dx}_{= a_m \cdot \pi \text{, т.к. везде будут нули, кроме $m$-ого элемента}} - \int_{-\pi}^{\pi} f(x) \cos{(m x)} dx| =$
+    
+    $= |\int_{-\pi}^{\pi} \left(T_n(x) - f(x)\right) \cos{(m x)} dx | \leq \int_{-\pi}^{\pi} |T_n(x) - f(x)| dx = || T_n - f ||_1 \to_{n \to \infty} 0$
+
+    Тогда доказали, что хотели, так как $\frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cos{(mx)} dx$ стремится к $a_m$ (по аналогии для $b_m$ и $c_m$).
+
+    % $||T_n - f ||_{L^1 [-\pi, \pi]} = \int_{-\pi}^\pi |T_n(x) - f(x)| \, dx \rightarrow 0$
+
+    % $\int_{-\pi}^\pi T_n(x) \cos (kx) \, dx = \frac{a_0}{2} \int_{-\pi}^\pi \cos (kx) \, dx + \sum_{j = 1}^n a_k \int_{-\pi}^\pi \cos (jx) \cos (kx) \, dx + \sum_{j = 1}^n b_j \int_{-\pi}^\pi \sin (jx) \cos (kx) \, dx = a_k \pi$
 \end{proof}
 
 \begin{definition}
-    Пусть $f \in L^1 [-\pi, \pi]$, тогда $a_k (f) = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \cos (kx) \, dx$, $b_k (f) = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \sin (kx) \, dx$ и 
+    Пусть $f \in L^1 [-\pi, \pi]$, тогда
+    
+    $a_k (f) = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \cos (kx) \, dx$, $b_k (f) = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \sin (kx) \, dx$ и 
     $c_k(f) = \frac{1}{2\pi} \int_{-\pi}^\pi f(x) e^{-ikx} \, dx$ - коэффициенты Фурье для функции $f$, а соответствующий ряд называется рядом Фурье
 \end{definition}
 
@@ -1085,6 +1098,8 @@ $\sum_{k = -n}^n c_k e^{ikx} \rightarrow \sum_{k = -\infty}^{+\infty} c_k e^{ikx
 
     $C_{2\pi}$ - непрерывные $2\pi$ периодичные функции
 
-    $A_k (f, x) = \frac{a_0(f)}{2}$, если $k = 0$ и $a_k (f) \cos (kx) + b_k (f) \sin (kx)$ иначе
-    
+    $A_k (f, x) = \begin{cases}
+        \frac{a_0(f)}{2} \text{, если $k = 0$} \\
+        a_k (f) \cos (kx) + b_k (f) \sin (kx) \text{, иначе}
+    \end{cases}$
 \end{remark}
