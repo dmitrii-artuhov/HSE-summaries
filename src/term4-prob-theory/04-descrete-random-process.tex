@@ -116,3 +116,155 @@
 
     $\frac{\mathbb{E} (t^S \mathds{1}_{A_n})}{P(A_n)} = \mathbb{E} (t^S | N = n) = \mathbb{E} (t^{S_n} | N = n) = \mathbb{E} (t^{\xi_1} \cdot \ldots \cdot t^{\xi_n} | N = n) = \mathbb{E} (t^{\xi_1} \cdot \ldots \cdot e^{\xi_n}) = (\mathbb{E} t^{\xi_1})^n = (G(t))^n$
 \end{example}
+
+\begin{remark}
+    \textbf{Геометрическая интерпретация}
+
+    Пусть $\mathbb{E} \xi^2 < +\infty$
+
+    Тогда $\xi \in L^2 (\Omega, \mathcal{F}, P)$. $\mathcal{A} \subset \mathcal{F}$ - $\sigma$ - алгебра. Поэтому
+    $\underbrace{L^2 (\Omega, \mathcal{A}, P)}_{\text{замкнутое подпространство}} \subset L^2 (\Omega, \mathcal{F}, P)$
+
+    $\eta = \mathbb{E} (\xi | \mathcal{A})$ - тогда проекция $\xi$ на $L^2 (\Omega, \mathcal{A}, P)$
+
+    Нужно проверить, что $\xi - \eta \bot L^2 (\Omega, \mathcal{A}, P)$
+
+    В $L^2$ плотны ступенчатые, давайте проверим для них, а потом сделаем предельный переход. Достаточно даже понять только для 1 ступеньки.
+
+    Достаточно понять, что $\forall \, A \in \mathcal{A} \, : \, \xi - \eta \bot \mathds{1}_A$
+
+    $0 \overset{?}{=} \left < \xi - \eta, \mathds{1}_A \right > = \mathbb{E} ((\xi - \eta)\mathds{1}_A) = \mathbb{E}(\xi \mathds{1}_A) - \mathbb{E} (\eta \mathds{1}_A)$
+\end{remark}
+
+\begin{definition}
+    $\eta$ - случайная величина. Пусть $\sigma (\eta)$ - наименьшая $\sigma$-алгебра, относительно которой $\eta$ измерима 
+    
+    \begin{remark}
+        Чтобы её получить, нужно взять все Лебеговы множества и натянуть на них $\sigma$-алгебру
+    \end{remark} 
+\end{definition}
+
+\begin{definition}
+    $\mathbb{E} (\xi | \eta) = \mathbb{E} (\xi | \sigma (\eta))$ - условное матожидание $\xi$ относительно $\eta$
+\end{definition}
+
+\begin{example}
+    $\eta$ - дискретная, $\{ y_1, y_2, \ldots \}$ - множество её значений
+
+    Все $ \{ \eta = y_k \}$ - измеримы, $\Omega = \bigcup \{ \eta = y_k \} $, $\sigma (\eta)$ - всевозможные объединения $\{ \eta = y_k \}$ 
+\end{example}
+
+\begin{theorem}
+    \begin{enumerate}
+        \item Если $\xi$ и $\eta$ независимы, то $\mathbb{E}(\xi | \eta) = \mathbb{E} \xi$
+        \item Если $\eta$ измерима относительно $\mathcal{A}$, то $\mathbb{E} (\xi \eta | \mathcal{A}) = \eta \mathbb{E} (\xi | \mathcal{A})$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item {
+            Надо доказать, что $\forall \, A \in \sigma(\eta) \, : \, \mathbb{E} (\xi \mathds{1}_A) \overset{?}{=} \mathbb{E} (\mathbb{E} \xi \cdot \mathds{1}_A) =
+            \mathbb{E} \xi \mathbb{E} \mathds{1}_A$
+
+            То есть достаоточно проверить, что $\xi$ и $\mathds{1}_A$ независимы
+
+            Пусть $A = \{ \eta \leqslant a \}$. $P(\xi \in B, \mathds{1}_A \in C) = P(\xi \in B) \cdot P(\mathds{1}_A \in C)$
+
+            Достаточно рассмотреть только $C = \{ 0 \}$ и $C = \{ 1 \}$
+
+            $P (\xi \in B, \mathds{1}_A = 1) = P(\xi \in B, \eta \leqslant a) \overset{\text{независимость $\xi$ и $\eta$}}{=} P(\xi \in B) P(\eta \leqslant a) = P(\xi \in B) P(\mathds{1}_A = 1)$. Для $\mathds{1}_A = 0$ аналогично
+
+            Для Лебеговых множеств мы это получили, поэтому есть и для любых праобразов ячеек
+        }
+        \item {
+            Проверяем для $\eta = \mathds{1}_A$, где $A \in \mathcal{A}$
+
+            $\mathds{1}_A \mathbb{E} (\xi | \mathcal{A})$ - условное матожидание $\mathbb{E} (\xi \mathds{1}_A | \mathcal{A})$
+
+            Измеримость есть, поэтому достаточно проверить только второе условие
+
+            $\forall \, B \in \mathcal{A} \, : \, \underbrace{\mathbb{E} (\xi \mathds{1}_A \cdot \mathds{1}_B)}_{=\mathbb{E} (\xi \mathds{1}_{A \cap B})} \overset{?}{=} \underbrace{\mathbb{E} (\mathds{1}_A \mathbb{E} (\xi | \mathcal{A}) \mathds{1}_B)}_{=\mathbb{E} (\mathds{1}_{A \cap B} \mathbb{E} (\xi | \mathcal{A}))}$
+
+            Тогда по линейности верно для простых $\eta$, по теореме Леви предельный переход $\eta_n \rightarrow \eta$ поточечно. 
+
+            Мы знаем, что есть равенство $\underbrace{\mathbb{E} (\xi \eta_n \mathds{1}_B)}_{=\int_{\Omega} \xi \eta_n \mathds{1}_B \, dP} = \underbrace{\mathbb{E} (\eta_n \mathbb{E} (\xi | \mathcal{A}) \mathds{1}_B)}_{=\int_{\Omega} \eta_n \mathbb{E} (\xi | \mathcal{A} \mathds{1}_B \, dP)}$
+
+            Предельный переход можно делать для $\eta_+$ и $\eta_-$, сделаем, потом перейдём к $\eta$
+        }
+    \end{enumerate}
+\end{proof}
+
+\Subsection{Ветвящиеся процессы}
+
+$\xi_{nk}$ - независимые случаные величины с неотрицательными целыми значениями
+
+Интерпретация - есть много частиц, которые размножаются/умирают. Тогда $n$ - момент времени, $k$ - номер частицы, $\xi_{nk}$ - количество её потомков
+
+$\eta_n = \xi_{n1} + \xi_{n2} + \ldots + \xi_{n\eta_{n-1}}$ - количество частиц в момент $n$
+
+$\eta_0 = 1$ - изначально у нас есть только 1 частица
+
+Считаем, что все $\xi_{nk}$ одинаково распределены и $P(\xi_{nk} = m) = f_m$. 
+
+$F(t) = \sum\limits_{m=0}^\infty f_m t^m$ - производящая функция
+
+Пусть $G_n (t)$ - производящая функция для $\eta_n$. Тогда $G_n (t) = G_{n-1} (F (t)) = F \circ F \circ F \ldots \circ F (t)$ - результат был получен в примере выше.
+
+$\mathbb{E} \eta_n = G_n' (1) = G_{n-1}' (\underbrace{F(1)}_{=1}) \cdot \underbrace{F' (1)}_{= \mathbb{E} \xi} = \mathbb{E} \xi \cdot \mathbb{E} \eta_{n-1} = (\mathbb{E} \xi)^n$
+
+\begin{theorem}
+    Вероятность вырождения процесса - наименьший неотрицательный корень уравнения $F(x) = x$
+\end{theorem}
+
+\begin{proof}
+    $A_n = \{ \eta_n = 0 \}$ - на $n$-ном шаге не осталось частиц
+
+    $P(A_n) = G_n (0) \leqslant 1$, а ещё $A_1 \subset A_2 \subset \ldots$ - если процесс выродился, то он и останется вырожденным.
+
+    Поэтому у нас существует предел $q = \lim P(A_n) \leqslant 1$
+
+    $\underbrace{G_{n + 1} (0)}_{\rightarrow q} = \underbrace{F(G_n (0))}_{F(q)}$, а $F$ непрерывная, поэтому $q = F(q)$, поэтому веротяность - корень уравнения. Осталось понять, что это
+    наименьший корень
+
+    Пусть $r$ другой корень уравнения $r = F(r)$. Ещё мы знаем, что $F$ монотонна, потому что производная неотрицательная (просто коэффициенты неотрицательны).
+
+    $P(A_1) = G_1 (0) = F(0) \overset{\text{монотонность}}{\leqslant} F(r) = r$ - верно в стартовый момент времени.
+
+    Пусть $P(A_n) \leqslant r$, тогда $P(A_{n + 1}) = G_{n + 1} (0) = F(G_n (0))  = F(P(A_n)) \leqslant F(r) = r$
+
+    Переходим к пределу и получаем, что $q \leqslant r$
+\end{proof}
+
+\begin{remark}
+    $F$ непрерывная, монотонная, выпуклая на $[0, 1]$, а ещё $F(1) = 1$ и $F(0) \geqslant 0$
+
+    %TODO, картинка
+
+    Если $m = \mathbb{E} \xi = F' (1) > 1$, то есть вероятность вырождения $< 1$, если же $m \leqslant 1$, то вероятность вырождения $= 1$
+\end{remark}
+
+\begin{theorem}
+    Пусть $m = \mathbb{E} \xi = 1$, $b = \mathbb{D} \xi > 0$, $q_n$ - вероятность вырождения к $n$-ному шагу, $\gamma_n = q_n - q_{n-1}$ - вероятность вырождения ровно на $n$-ном шаге.
+
+    Тогда
+    \begin{enumerate}
+        \item $\gamma_n \sim \frac{2}{bn^2}$
+        \item $1 - q_n \sim \frac{2}{bn}$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Пусть $p_n = 1 - q_n$ и $H(x) = 1 - F(1 - x)$
+
+    Тогда $H(p_n) = 1 - F(q_n) = 1 - q_{n+1} = p_{n+1}$, $H(0) = 1 - F(1) = 0$, $H'(0) = F'(1) = 1$, $H''(x) = F''(1 - x)$ и тогда $H''(0) = -F''(1) = -b$
+
+    В итоге $H(x) = x - \frac{bx^2}{2} + o(x^2)$
+
+    Пусть $a_n = \frac{1}{p_n}$, $a_n - a_{n-1} = \frac{1}{p_n} - \frac{1}{p_{n-1}} = \frac{p_{n-1} - p_n}{p_np_{n-1}} = \frac{p_{n-1} - H(p_{n-1})}{p_{n-1}H(p_{n-1})} = 
+    \frac{\frac{bp_{n-1}^2}{2} + o(p_{n-1}^2)}{p_{n-1}(p_{n-1} + o(p_{n-1}))} = \frac{b}{2} + o(1) \implies a_n \sim \frac{bn}{2}$
+
+    Тогда $p_n \sim \frac{2}{bn}$
+
+    $\gamma_n = q_{n} - q_{n- 1} = p_{n-1} - p_n = p_{n-1} - H(p_{n-1}) = \frac{bp_{n-1}^2}{2} + o(p_{n-1}^2) \sim \frac{bp_{n-1}^2}{2} \sim \frac{b}{2} \left( \frac{2}{bn} \right)^2 = \frac{2}{bn^2}$
+\end{proof}

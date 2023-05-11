@@ -1103,3 +1103,176 @@ $\sum_{k = -n}^n c_k e^{ikx} \rightarrow \sum_{k = -\infty}^{+\infty} c_k e^{ikx
         a_k (f) \cos (kx) + b_k (f) \sin (kx) \text{, иначе}
     \end{cases}$
 \end{remark}
+
+\textbf{Дискретное преобразование Фурье}
+
+$x_0, x_1, \ldots, x_{N - 1} \rightarrow a_0, a_1, \ldots, a_{N - 1}$
+
+$a_k = \sum\limits_{n = 0}^{N - 1} x_n e^{-\frac{2\pi i}{N} kn}$
+
+$x_n = \frac{1}{n} \sum\limits_{k = 0}^{N - 1} a_k e^{\frac{2\pi i}{N} kn}$
+
+% TODO, Картинка
+
+$f(t) = x_n$ при $\frac{2\pi}{N}n < t \leqslant \frac{2\pi}{N} (n + 1)$. Тогда $c_k (f) = \frac{1}{\pi} \int_0^{2\pi} f(t) e^{-itk}\, dt = \\
+\frac{1}{2\pi} \sum\limits_{n = 0}^{N - 1} x_n \underbrace{\int_{\frac{2\pi}{N} n}^{\frac{2\pi}{n} (n + 1)} e^{-itk} \, dt}_{=\frac{e^{-itk}}{-ik} \bigg |_{\frac{2\pi}{n} n}^{\frac{2\pi}{n} (n + 1)} = \frac{i}{k} e^{-\frac{2\pi}{N}kn} (1 - e^{-ik\frac{2\pi}{N}})} = 
+\frac{i}{2\pi} \frac{1 - e^{-ik\frac{2\pi}{N}}}{k} \underbrace{\sum_{n = 0}^{N - 1} x_n e^{-\frac{2\pi}{N} kn}}_{= a_k}$ 
+
+\begin{lemma}
+    \textbf{Римана-Лебега}
+
+    Пусть $f \in L^1 (E)$, тогда $\int_E f(t) e^{-i t \lambda} \, dt$, $\int_E f(t) \cos (\lambda t) \, dt$, $\int_E f(t) \sin (\lambda t) \, dt \rightarrow 0$
+\end{lemma}
+
+\begin{proof}
+    Продолжим нулём фукнцию на $\mathbb{R} \implies f \in L^1 (\mathbb{R})$
+
+    $\int_{\mathbb{R}} f(t) e^{-i t \lambda} \, dt = \int_{\mathbb{R}} f(u + h) e^{iu\lambda} \, du \cdot  e^{ih\lambda} = \overset{h = \frac{\pi}{\lambda}}{=} - \int_{\mathbb{R}} f(u + \frac{\pi}{\lambda}) e^{iu\lambda} \, du$
+
+    Посмотрим на 2 таких интеграла: $2 \int_{\mathbb{R}} f(t) e^{-i \lambda t} \, dt = \int_{\mathbb{R}} f(t) e^{-i \lambda t} \, dt - \int_{\mathbb{R}} f(u + \frac{\pi}{\lambda}) e^{-i\lambda u} \, du = \int_{\mathbb{R}} (f(t) - f(t + \frac{\pi}{\lambda})) e^{-i \lambda t} \, dt $
+
+    $2 \left | \int_{\mathbb{R}} f(t) e^{-i \lambda t} \, dt \right | \leqslant \int_{\mathbb{R}} \left | f(t) - f(t + \frac{\pi}{\lambda}) \right | \, dt = || f - f_h ||_1 \rightarrow 0$, по теореме о непрерывности сдвига
+
+    Для синуса и косинуса всё аналогично
+\end{proof}
+
+\begin{consequence}
+    Если $f \in L^1 (-\pi, \pi)$, то $a_k (f), b_k (f), c_k (f) \overset{|k| \to \infty}{\rightarrow} 0$
+\end{consequence}
+
+\begin{definition}
+    Модуль непрерывности $w_f (\delta) = \sup\limits_{|x - y| \leqslant \delta} |f(x) - f(y)|$
+
+    \begin{remark}
+        $f$ равномерно непрерывна $\Longleftrightarrow \lim\limits_{\delta \to 0+} w_f (\delta) = 0$
+    \end{remark}
+\end{definition}
+
+\begin{definition}
+    Липшицева функция порядка $\alpha$ с константой $M$. Обозначение $Lip_\alpha M$
+
+    $\forall \, x, y, \, : \, |f(x) - f(y)| \leqslant M \cdot |x - y|^\alpha$, $\alpha \in (0, 1]$
+\end{definition}
+
+\begin{definition}
+    $Lip_\alpha = \bigcup\limits_{M > 0} Lip_\alpha M$
+\end{definition}
+
+\begin{remark}
+    Если $f \in Lip_\alpha M$, то $w_f (\delta) \leqslant M \delta^\alpha$
+\end{remark}
+
+$C_{2\pi}$ - непрерывные $2\pi$-периодические функции
+
+\begin{theorem}
+    Если $f \in C_{2\pi}$, то $|a_k (f)|, |b_k (f)|, 2|c_k (f)| \leqslant w_f (\frac{\pi}{|k|})$
+\end{theorem}
+
+\begin{proof}
+    $2\pi 2c_k (f) = 2 \int_{-\pi}^\pi f(t) e^{-ikt} \, dt = \int_{-\pi}^\pi f(t) e^{-ikt} \, dt + \int_{-\pi - \frac{-\pi}{k}}^{\pi - \frac{\pi}{k}} f(u + \frac{\pi}{k}) e^{-iku} \, du \cdot e^{-\pi i} = 
+    \int_{-\pi}^\pi f(t) e^{-ikt} \, dt - \int_{-\pi}^{\pi} f(u + \frac{\pi}{k}) e^{-iku} \, du = \int_{-\pi}^\pi (f(t) - f(t + \frac{\pi}{k})) e^{-ikt} \, dt$
+
+    $4\pi |c_k (f)| \leqslant \int_{-\pi}^\pi |f(t) - f(t + \frac{\pi}{k})| \, dt \leqslant 2\pi w_f (\frac{\pi}{|k|})$
+
+    Для остальных аналогично
+\end{proof}
+
+\begin{consequence}
+    Если $f \in Lip_\alpha M$ и $2\pi$ периодическая, то
+    $|a_k (f)|, |b_k(f) |, | c_k(f) | \leqslant M \left (\frac{\pi}{|k|} \right )^\alpha$
+\end{consequence}
+
+\begin{lemma}
+    Пусть $f \in C_{2\pi}^1$
+
+    Тогда $a_n (f') = n b_n (f)$, $b_n (f') = -n a_n (f)$ и $c_n (f') = in c_n (f)$
+\end{lemma}
+
+\begin{proof}
+    $c_n (f') = \frac{1}{2\pi} \int_{-\pi}^\pi f'(t) e^{-int} \, dt = \frac{1}{2\pi} f(t) e^{-int} \bigg |_{t = -\pi}^{t = \pi} = -\frac{1}{2\pi} \int_{-\pi}^\pi f (t) (-ine^{-int}) \, dt = 
+    in \frac{1}{2\pi} \int_{-\pi}^\pi f(t) e^{-int} \, dt = in c_n (f)$
+
+    Остальные аналогично
+\end{proof}
+
+\begin{consequence}
+    Если $f \in C_{2\pi}^r$ и $f^{(r)} \in Lip_{\alpha} M$, то $|a_n(f)|, |b_n (f)|, |c_n (f)| \leqslant M \frac{\pi^\alpha}{|n|^{r + 2}}$
+\end{consequence}
+
+\begin{proof}
+    $|c_n (f)| = \frac{|c_n (f^{(r)})|}{n^r}$
+\end{proof}
+
+\begin{definition}
+    Ядро Дирихле
+
+    $D_n (t) = \frac{1}{2} + \sum_{k = 1}^n \cos (kt)$
+\end{definition}
+
+\begin{properties}
+    \begin{enumerate}
+        \item $D_n$ непрерывна и $2\pi$ периодична, чётная
+        \item $D_n (0) = n + \frac{1}{2}$
+        \item {
+            $D_n (t) = \frac{\sin (n + \frac{1}{2})t}{2\sin \frac{t}{2}}$, при $t \neq 2\pi m$
+
+            \begin{proof}
+                Индукция по $n$, база $n = 0$ верна
+
+                Переход $n - 1 \to n$. $D_{n} (t) = D_{n - 1} (t) + \cos (nt) = \frac{\sin (n - \frac{1}{2})t}{2\sin \frac{t}{2}} + \cos (nt) = \frac{\sin (n - \frac{1}{2})t + 2\cos (nt) \sin \frac{t}{2}}{2\sin \frac{t}{2}} = \frac{\sin (n + \frac{1}{2})t}{2\sin \frac{t}{2}}$
+            \end{proof}
+        }
+        \item $\int_{-\pi}^\pi D_n (t) \, dt = \pi$ и $\int_0^\pi D_n (t) = \frac{\pi}{2}$
+    \end{enumerate}
+\end{properties}
+
+\begin{lemma}
+    Пусть $f \in L^1 [-\pi, \pi]$ - суммируемая, $S_n (f, x)$ - частичная сумма ряда Фурье в точке $x$
+
+    Тогда $S_n (f, x) = \frac{1}{\pi} \int_{-\pi}^\pi f(x \pm t) D_n (t) \, dt = \frac{1}{\pi} \int_0^\pi (f(x + t) + f(x - t)) D_n (t) \, dt$
+\end{lemma}
+
+\textbf{Напоминание}
+
+$A_k (f, x) = 
+\begin{cases}
+    \frac{a_0 (f)}{2}, & \text{при $k = 0$} \\
+    a_k (f) \cos (kx) + b_k (f) \sin (kx), & \text{при $k > 0$}
+\end{cases}$
+
+$A_k (f) = \frac{1}{\pi} \int_{-\pi}^\pi f(x - t) \cos (kt) \, dt$, $A_0 (f) = \frac{1}{2\pi} \int_{-\pi}^\pi f(x - t) \, dt$
+
+\begin{proof}
+    леммы
+
+    $S_n (f, x) = \sum_{k = 0}^n A_k (f, x) = \frac{1}{2\pi} \int_{-\pi}^\pi f(x - t) \, dt +  \frac{1}{\pi} \sum_{k = 1}^{n} \int_{-\pi}^\pi f(x - t) \cos kt \, dt = 
+    \frac{1}{\pi} \int_{-\pi}^\pi f(x - t) D_n (t) \, dt = \frac{1}{\pi} \int_{-\pi}^\pi f(x + u) D_n (u) (-1) \, du$
+\end{proof}
+
+\begin{consequence}
+    Пусть $f \in L^1 [-\pi, \pi]$, $S_n (f, x)$ - частичная сумма ряда Фурье
+
+    Тогда $S_n (f, x) = \frac{1}{\pi} \int_0^\delta (f(x + t) + f(x - t)) D_n (t) \, dt + o(1)$ при $n \to \infty$
+\end{consequence}
+
+\begin{proof}
+    $S_n (f, x) = \frac{1}{\pi} \int_{-\pi}^\pi (f(x + t) + f(x - t)) D_n (t) \,  dt = \frac{1}{\pi} \left( \int_{0}^\delta + \int_\delta^\pi \right)$
+
+    Надо понять, что $\int_{\delta}^\pi (f(x + t) + f(x - t)) D_n (t) \,  dt \rightarrow 0$
+
+    $\int_{\delta}^\pi (f(x + t) + f(x - t)) D_n (t) \,  dt = \int_\delta^\pi \frac{f(x + t) + f(x - t)}{2 \sin \frac{t}{2}} \sin (n + \frac{1}{2}) t \, dt \overset{\text{Риман-Лебег}}{\rightarrow} 0$, потому что суммируема на $[\delta, \pi]$
+\end{proof}
+
+\begin{consequence}
+    Принцип локализации
+
+    $f, g \in L^1 [-\pi, \pi]$, $2\pi$ периодические
+
+    $x \in [-\pi, \pi]$ и $f = g$ на $(x - \delta, x + \delta)$, тогда ряды Фурье для $f$ и $g$, выписанные в точке $x$ ведут себя одинаково (либо оба сходятся, либо оба расходятся)
+
+    И если они сходящиеся, то у них одинаковая сумма, более того $S_n (f, x) - S_n (g, x) \overset{n \to +\infty}{\rightarrow} 0$
+\end{consequence}
+
+\begin{proof}
+    $S_n (f, x) - S_n (g, x) = \frac{1}{\pi} \int_0^\delta (f(x + t) + f(x - t)) D_n (t) \, dt - \frac{1}{\pi} \int_0^\delta (g(x + t) + g(x - t)) D_n (t) \, dt + o(1)$, подынтегральные функции в окрестности совпадают, значит останется только $o(1)$
+\end{proof}
