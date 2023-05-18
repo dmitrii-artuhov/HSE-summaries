@@ -1276,3 +1276,131 @@ $A_k (f) = \frac{1}{\pi} \int_{-\pi}^\pi f(x - t) \cos (kt) \, dt$, $A_0 (f) = \
 \begin{proof}
     $S_n (f, x) - S_n (g, x) = \frac{1}{\pi} \int_0^\delta (f(x + t) + f(x - t)) D_n (t) \, dt - \frac{1}{\pi} \int_0^\delta (g(x + t) + g(x - t)) D_n (t) \, dt + o(1)$, подынтегральные функции в окрестности совпадают, значит останется только $o(1)$
 \end{proof}
+
+\textbf{Обозначение. } $f(a \pm 0) = \lim\limits_{x \to a\pm} f(x)$
+
+$f_+' (a) = \lim\limits_{h \to 0+} \frac{f(a + h) - f(a + 0)}{h}$. Если функция непрерывна в точке $a$, то такое определение совпадает с тем, что было раньше
+
+$f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
+
+\begin{definition}
+    $a$ - регулярная точка для $f$, если $f(a) = \frac{f(a + 0) + f(a - 0)}{2}$
+\end{definition}
+
+\begin{lemma}
+    $f \in L^1 [-\pi, \pi]$, тогда $\int_0^\delta \frac{|f(t)|}{t} \, dt$ и $\int_0^\pi \frac{|f(t)|}{2\sin \frac{t}{2}} \, dt$ ведут себя одинаково, 
+    если $0 < \delta < \pi$
+\end{lemma}
+
+\begin{proof}
+    $\int_0^\pi \frac{|f(t)|}{2\sin \frac{t}{2}} \, dt = \int_0^\delta + \underbrace{\int_\delta^\pi}_{\leqslant \frac{1}{2\sin \frac{\delta}{2}} \int_\delta^\pi |f(t)| \, dt < +\infty } $
+
+    Смотрим на $[0, \delta]$. $\frac{|f(t)|}{t} \leqslant \frac{|f(t)|}{2 \sin \frac{t}{2}} \leqslant \frac{|f(t)|}{t \cdot \frac{2}{\pi}}$ (из $u \frac{2}{\pi} \leqslant \sin u \leqslant i$)
+\end{proof}
+
+\textbf{Обозначение. }  $f_x^* (t) = f(x + t) + f(x - t) - f(x + 0) - f(x - 0) \overset{\text{Если $x$ - точка регулярности}}{=} f(x + t) + f(x - t) - 2f(x)$
+
+\begin{theorem}
+    \textbf{Признак Дини}
+
+    $f \in L^{1} [-\pi, \pi], x \in [-\pi, \pi]$ - точка непрерывности или разрыва первого рода. $0 < \delta < \pi$. Если $\int\limits_0^\delta \frac{|f_x^* (t)|}{t} \, dt < +\infty$, то ряд Фурье 
+    функции $f$ в точке $x$ сходится к $\frac{f(x + 0) + f(x - 0)}{2}$
+\end{theorem}
+
+\begin{proof}
+    $S_n (x) = \int\limits_0^\pi (f(x + t) + f(x - t)) D_n (t) \, dt$. Ещё мы знаем, что $\int\limits_0^\pi D_n (t) \, dt = \frac{1}{2}$
+
+    $S_n(x) - \frac{f(x + 0) + f(x - 0)}{2} = \frac{1}{\pi} \int_0^\pi f_x^* (t) D_n (t) \, dt $
+
+    Нужно доказать, что $\int_0^\pi f_x^* (t) D_n (t) \, dt \rightarrow 0$
+
+    $f_x^* (t) \in L^1 [-\pi, \pi]$, т.к. $|f_x^* (t)| \leqslant |f(x + t)| + |f(x - t)| + |f(x + 0)| + |f(x - 0)|$
+
+    $D_n(t) = \frac{\sin ((n + \frac{1}{2})t)}{2\sin \frac{t}{2}}$. Значит нужно понять про $\int_0^\pi \frac{|f_x^* (t)|}{2 \sin \frac{t}{2}} \sin ((n + \frac{1}{2})t) \, dt \overset{\text{Риман-Лебег, если (*)}}{\rightarrow} 0$
+
+    $(*) \, : \, \int_0^\pi \frac{|f_x^* (t)|}{2 \sin \frac{t}{2}} \, dt < +\infty \overset{\text{лемма}}{\Longleftrightarrow} \int_0^\delta \frac{|f_x^* (t)|}{t} \, dt < +\infty$ - а это верно из условия 
+\end{proof}
+
+\begin{consequence}
+    \begin{enumerate}
+        \item {
+            Если $x$ - регулярная точка (или точка непрерывности), то в условиях теоремы ряд Фурье сходится к значения функции в точке.
+        }
+        \item {
+            Если $x$ точка непрерывности для разрыва первого рода и в этой точке существуют конечные $f'_{\pm} (x)$
+
+            Тогда ряд Фурье в точке $x$ сходится к $\frac{f(x + 0) + f(x - 0)}{2}$ 
+
+            \begin{proof}
+                $\frac{|f_x^* (t)|}{t} \leqslant \underbrace{\frac{|f(x + t) - f(x + 0)|}{t}}_{\rightarrow f_+'(x)} + \underbrace{\frac{|f(x - t) - f(x - 0)|}{t}}_{\rightarrow -f_-' (x)}$. Функции локально ограничены, значит всё выполняется.
+            \end{proof}
+        }
+        \item {
+            Если $x$ - регулярная точка (или точка непрерывности) и в точке $x$ существуют конечные $f'_{\pm} (x)$
+
+            Тогда ряд Фурье в точке $x$ сходится к $f(x)$
+        }
+        \item {
+            Если $f$ непрерывна и кусочно дифференцируема
+
+            Тогда ряд Фурье функции $f$ сходится к значению функции во всех точках
+        }
+    \end{enumerate}
+\end{consequence}
+
+\begin{example}
+    \begin{enumerate}
+        \item {
+            $f(x) = \frac{\pi - x}{2}$ при $0 \leqslant x \leqslant 2\pi$
+
+            % Тут рисовали график функции, можно добавить
+
+            На $[-\pi, \pi]$ - нечётная функция. Поэтому нас интересуют только коэффициенты $\sin$
+
+            $b_n = \frac{1}{\pi} \int_0^{2\pi} f(x) \sin (nx) \, dx = \frac{1}{\pi} \int_0^{2\pi} \frac{\pi - x}{2} \sin (nx) \, dx = -\frac{1}{2\pi} \int_0^{2\pi} x \sin (nx) \, dx = \\
+            - \frac{1}{2\pi} \left ( \underbrace{x \cdot \frac{-\cos (nx)}{n} \bigg |_{0}^{2\pi}}_{2n \cdot \frac{-1}{n}} + \underbrace{\int_0^{2\pi} \frac{\cos (nx)}{n} \, dx}_{= 0} \right ) = \frac{1}{n}$
+
+            То есть ряд Фурье $\sum\limits_{n = 1}^\infty \frac{\sin (nx)}{n} = 
+            \begin{cases}
+                f(x), & \text{при $x \neq 2\pi k$} \\
+                0, & \text{при $x = 2\pi k$}
+            \end{cases}$
+
+            $\sum\limits_{n = 1}^\infty = \frac{\pi - x}{2}$ при $x \in (0, 2\pi)$
+
+            $\sum\limits_{n =1}^\infty \frac{\sin (2 n x)}{2n} = \frac{\pi - 2x}{2 \cdot 2}$ при $x \in (0, \pi)$
+
+            И давайте вычтем, тогда получим сумму по всем нечётным
+
+            $\sum\limits_{n = 1}^\infty \frac{\sin ((2n - 1)x)}{2n - 1} = \frac{\pi}{4}$ при $x \in (0, \pi)$
+        }
+        \item {
+            $f(x) = 
+            \begin{cases}
+                1, & x \in (0, \pi) \\
+                0, & x = 0 \text{ и } x = \pi \\
+                -1, & x \in (-\pi, 0)    
+            \end{cases}$
+
+            $a_n = 0, b_n = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \sin (nx) \, dx = \frac{2}{\pi} \int_0^\pi \sin (nx) \, dx = 
+            \frac{2}{\pi} \cdot \frac{\cos (nx)}{n} \bigg |_{x = 0}^{x = \pi} = \\ \frac{2}{\pi} \frac{(1 - (-1)^n)}{n} = 
+            \begin{cases}
+                0, & \text{при чётных $n$} \\
+                \frac{4}{\pi n}, & \text{при нечётных $n$}
+            \end{cases}$
+
+            То есть Ряд Фурье $\frac{4}{\pi} \sum\limits_{n = 1}^\infty \frac{\sin ((2n - 1)x)}{2n - 1} = f(x)$
+
+            Теперь давайте посмотрим на частичные суммы: $S_n (x) = \frac{4}{\pi} \sum\limits_{n = 1}^\infty \frac{\sin ((2n - 1)x)}{2k - 1}$
+
+            $S_n' (x) = \frac{4}{\pi} \sum\limits_{k = 1}^n \cos ((2k - 1)x) = \frac{2}{\pi} \frac{\sin (2 n x)}{\sin x}$
+
+            $S_n' (x) = 0$ при $x = \frac{\pi k}{2n}$. Ближайший к нулю корень $\frac{\pi}{2n}$
+
+            $S_n (\frac{\pi}{2n}) = \int_0^{\frac{\pi}{2n}} S_n'(x) \, dx = \frac{2}{\pi} \int_0^{\frac{\pi}{2n}} \frac{\sin (2 n x)}{\sin x} \, dx \overset{t = 2nx}{=} \frac{2}{\pi} \int_0^{\pi} \frac{\sin t}{\sin \frac{t}{2n}} \frac{dt}{2n}
+            \overset{*}{=} \frac{2}{\pi} \int_0^\pi \frac{\sin t}{t + \mathcal{O}(\frac{1}{n^2})} \, dt = \frac{2}{\pi} \int_0^\pi \frac{\sin t}{t} \, dt (1 + \mathcal{O} (1 + \mathcal{O} (\frac{1}{n^2})))$
+
+            $(*) \, : \, \frac{\sin t}{2n} = \frac{t}{2n} + \mathcal{O}(\frac{t^3}{n^3})$ и $\frac{1}{t + \mathcal{O} (\frac{t^3}{n^3})} = \frac{1}{t} \frac{1}{1 + \mathcal{O} (\frac{1}{n^2})} = \frac{1}{t} (1 + \mathcal{O} (\frac{1}{n^2}))$
+        }
+    \end{enumerate}
+\end{example}

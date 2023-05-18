@@ -268,3 +268,209 @@ $\mathbb{E} \eta_n = G_n' (1) = G_{n-1}' (\underbrace{F(1)}_{=1}) \cdot \underbr
 
     $\gamma_n = q_{n} - q_{n- 1} = p_{n-1} - p_n = p_{n-1} - H(p_{n-1}) = \frac{bp_{n-1}^2}{2} + o(p_{n-1}^2) \sim \frac{bp_{n-1}^2}{2} \sim \frac{b}{2} \left( \frac{2}{bn} \right)^2 = \frac{2}{bn^2}$
 \end{proof}
+
+\Subsection{Цепи Маркова}
+
+\begin{definition}
+    $Y$, не более чем счётное множество - фазовое пространство
+
+    $(\Omega, \mathcal{F}, P)$ - вероятностное пространство, $\xi_n \, : \, \Omega \to Y$ - случайная величина, такая, что
+    $P(\xi_n = a_n | \xi_{n - 1} = a_{n - 1}, \ldots, \xi_0 = a_0) = P(\xi_n = a_n | \xi_{n - 1} = a_{n-1}) \, \forall a_0, a_1, \ldots, a_n \in Y$
+
+    Такая последовательность $\xi_n$ - цепь Маркова
+
+    \begin{remark}
+        То есть $\xi_n$ зависит только от $\xi_{n-1}$
+    \end{remark}
+\end{definition}
+
+\begin{example}
+    \begin{enumerate}
+        \item {
+            Случайное блуждание по $\mathbb{Z}$
+
+            $P(\xi_n = \xi_{n-1} + 1) = p$
+            
+            $P(\xi_n = \xi_{n-1} - 1) = 1 - p$
+        }
+        \item {
+            Прибор, который бывает в двух состояниях - работает и не работает.
+
+            % Тут нужна картинка
+        }
+    \end{enumerate}
+    \begin{remark}
+        $\pi_0 = P_{\xi_0}$ - начальное распределение
+
+        $p_n (a, b) = P(\xi_n = b | \xi_{n - 1} = a)$ - вероятностости переходов. Этот набор данных однозначно определяет все распределения
+    \end{remark}
+\end{example}
+
+\begin{definition}
+    Цепь Маркова называется однородной, если $p_n (a, b)$ не зависят от $n$. 
+
+    То есть вероятности переходов не зависят от времени
+
+    \textit{Обозначение.} $p_n (a, b) = p_{ab}$
+\end{definition}
+
+\begin{remark}
+    Интерпретация: есть частица, которая бегает по фазовому пространству. И мы в каждый момент фиксируем место, где находится частица.
+\end{remark}
+
+\begin{definition}
+    Траектория: $\xi_0 = a_0, \xi_1 = a_1, \ldots, \xi_n = a_n$
+\end{definition}
+
+\begin{theorem}
+    $P(\xi_0 = a_0, \ldots, \xi_n = a_n) = \pi_0(a_0)p_{a_0a_1}p_{a_1a_2}\ldots p_{a_{n-1}a_n}$
+\end{theorem}
+
+\begin{proof}
+    Индукция по $n$
+
+    \begin{enumerate}
+        \item База индукция - определение $\pi_0$
+        \item {
+            Переход: $n - 1 \to n$
+
+            $P(\xi_0 = a_0, \ldots, \xi_n = a_n) = P(\xi_n = a_n | \xi_{n - 1} = a_{n-1}, \ldots, \xi_0 = a_0) \cdot P(\xi_{n - 1} = a_{n-1}, \ldots, \xi_0 = a_0) 
+            = \underbrace{P(\xi_n = a_n | \xi_{n - 1} = a_{n-1})}_{=p_{a_{n-1}a_n}} \cdot \pi_0 (a_0) p_{a_0a_1} \ldots p_{a_{n-2}a_{n-1}}$
+        }
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}
+    Пусть $\pi_0 \, : \, Y \to [0, 1]$, т.ч. $\sum\limits_{y \in Y} \pi_0 (y) = 1$, $p \, : \, Y \times Y \to [0, 1]$, т.ч.
+    $\sum\limits_{y \in Y} p_{ay} = 1 \, \forall \, a \in Y$
+
+    Тогда существует такое пространство $(\Omega, \mathcal{F}, P)$ и последовательность $\xi_n \, : \, \Omega \to Y$, такая, что
+    $\xi_n$ цепь Маркова с начальным распределением $\pi_0$ и вероятностью перехода $p_{ab}$
+\end{theorem}
+
+\textit{Обозначение. } $\pi_n = P_{\xi_n}$ и $P$ - матрица $(p_{ab})_{a, b \in Y}$
+
+\begin{theorem}
+    $\pi_n = \pi_0 P^n$
+\end{theorem}
+
+\begin{proof}
+    Индукция по $n$. Переход $n-1 \to n$
+
+    $\pi_n (b) = P(\xi_n = b) = \sum\limits_{y \in Y} P(\xi_n = b | \xi_{n-1} = y) \cdot P(\xi_{n-1} = y) = \sum\limits_{y \in Y}p_{yb} \pi_{n-1}(y)$
+
+    То есть $\pi_n = \pi_{n-1} P$
+\end{proof}
+
+\textit{Обозначение. } $p_{ab} (n) = P(\xi_{n + k} = b | \xi_k = a)$ - вероятность перехода за $n$ шагов
+
+\begin{definition}
+    $\pi \, : \, Y \to [0, 1]$ - распределение на $Y$, если $\sum\limits_{y \in Y} \pi (y) = 1$
+\end{definition}
+
+\begin{definition}
+    $\pi$ - стационарное распределение для цепи Маркова, если $\pi = \pi P$
+\end{definition}
+
+\begin{example}
+    Симметричное случайное блуждание на $\mathbb{Z}$, то есть $p = \frac{1}{2}$
+
+    Пусть $\pi$ - стационарное распределение для этого блуждания
+
+    Тогда $\frac{1}{2} \pi (n - 1) + \frac{1}{2} \pi (n + 1) = \pi (n) \Longleftrightarrow \pi (n) - \pi (n - 1) = \pi (n + 1) - \pi (n)$, то есть разность $\alpha = \pi (n) - \pi (n - 1)$ не зависит от $n$
+
+    \begin{enumerate}
+        \item $\alpha > 0$, то $\pi (n) = n\alpha + \pi (0) \rightarrow +\infty$, так не бывает
+        \item $\alpha < 0$, то $\pi (n) = n\alpha + \pi (0) \rightarrow -\infty$, так тоже не бывает
+        \item $\alpha = 0$ и $\pi = const$, но так тоже не бывает 
+    \end{enumerate}
+\end{example}
+
+\begin{theorem}
+    \textbf{Эргодическая теорема Маркова}
+
+    $\xi_n$ - конечная цепь Маркова и $p_{ab} > 0 \, \forall \, a, b \in Y$
+
+    Тогда существует единственное стационарное распределение и $\pi (b) = \lim_{n \to \infty} p_{ab} (n)$
+
+    Более того, $|\pi (b) - p_{ab} (n) | \leqslant cq^n $, где $q \in (0, 1)$
+\end{theorem}
+
+\begin{proof}
+    Доказательство с использованием теоремы Банаха о сжатии из матанализа
+
+    $d$ - количество элементов в $Y$. Рассмотрим $\mathbb{R}^d$ с нормой $||x|| = |x_1| + \ldots + |x_d|$ - полное пространство
+
+    $S = \{ x \in \mathbb{R}^d \, : \, ||x|| = 1, x_1, x_2, \ldots, x_d \geqslant 0 \}$ - замкнутое подмножество $\mathbb{R}^d$ - полное
+
+    $T \, : \, S \to S$ и $T(x) = x^{T} P$, $\delta = \min\limits_{a, b \in Y} p_{ab} > 0$
+
+    Проверяем, что $T$ - сжатие с $\lambda = 1 - d\delta$
+
+    $||T_x - T_y|| \overset{z = x - y}{=} ||T_z|| = \sum\limits_{j = 1}^d |(T_z)_j| = \sum\limits_{j = 1}^d \left | \sum\limits_{k = 1}^d z_k p_{kj} \right | = 
+    \sum\limits_{j = 1}^d \left | \sum\limits_{k = 1}^d z_k (p_{kj} - \delta) + \delta \underbrace{\sum\limits_{k = 1}^d z_k}_{= 0} \right | \leqslant \sum\limits_{j = 1}^d \sum\limits_{k = 1}^d |z_k| (p_{kj} - \delta) = 
+    \sum\limits_{k = 1}^d |z_k| \sum\limits_{j = 1}^d \underbrace{(p_{kj} - \delta)}_{=1 - \delta d = \lambda} = \lambda \sum\limits_{k = 1}^d |z_k| = \lambda ||x - y|| $
+\end{proof}
+
+\begin{remark}
+    Пусть $\xi_n$ - конечная цепь Маркова, $m \in \mathbb{N}$, т.ч. $p_{ab} (m) > 0 \, \forall a, b \in Y$
+
+    Тогда существует единственное стационарное распределение
+\end{remark}
+
+\begin{definition}
+    Состояние $b$ достижимо из $a$, если $\exists \, n \in \mathbb{N}$, т.ч. $p_{ab} (n) > 0$
+\end{definition}
+
+\begin{definition}
+    Состояния $a$ и $b$ сообщающиеся, если $a$ достижимо из $b$, а $b$ достижимо из $a$
+\end{definition}
+
+\begin{definition}
+    Состояние $a$ существенное, если $\forall \, b$, достижимого из $a$ - состояния $a$ и $b$ сообщающиеся
+\end{definition}
+
+\textit{Обозначение. } $f_{a} (n) = P(\xi_n = a | x_{n - 1} \neq a, \xi_{n - 2} \neq a, \ldots, \xi_1 \neq a, \xi_0 = a)$ - вероятность, стартовав из $a$, впервые вернуться назад на $n$-ном шаге.
+
+$F_a = \sum\limits_{n = 1}^\infty f_{a} (n)$ - вероятность возврата назад в $a$
+
+\begin{definition}
+    $a$ - возвратное состояние, если $F_a = 1$
+\end{definition}
+
+\begin{definition}
+    $a$ - нулевое состояние, если $p_{aa} (n) \rightarrow 0$
+\end{definition}
+
+\begin{theorem}
+    \textbf{Критерий возвратности}
+
+    $a$ - возвратное $\Longleftrightarrow$ $\mathcal{P} (a) = \sum\limits_{n = 1}^\infty p_{aa} (n)$ расходится
+
+    И если $a$ не возвратное, то $F_a = \frac{\mathcal{P} (a)}{1 + \mathcal{P} (a)}$
+\end{theorem}
+
+\begin{consequence}
+    Если $a$ не возвратное $\implies$ $a$ - нулевое
+\end{consequence}
+
+\begin{theorem}
+    \textbf{Теорема солидарности}
+
+    $a$ и $b$ сообщающиеся состояния
+
+    Тогда они возвратны/не возвратны (нулевые/не нулевые) одновременно
+\end{theorem}
+
+\begin{proof}
+    $a$ и $b$ сообщающиеся, значит $\exists \,  j, k \in \mathbb{N} \, : \, p_{ab} (j) > 0$ и $p_{ba} (k) > 0$
+
+    $p_{aa} (n + j + k) \geqslant p_{ab} (j) p_{bb} (n) p_{ba} (k)$ и $\sum\limits_{n = 1}^\infty p_{aa} (n + j + k) \geqslant p_{ab} (j) p_{ba} (k) \sum\limits_{n = 1}^\infty p_{bb} (n)$
+
+    Отсюда всё следует, потому что:
+
+    Если $p_{aa} (n + j + k) \rightarrow 0$, то $p_{bb} (n) \rightarrow 0$
+    
+\end{proof}
+
+
