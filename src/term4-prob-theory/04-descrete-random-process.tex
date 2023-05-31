@@ -445,10 +445,40 @@ $F_a = \sum\limits_{n = 1}^\infty f_{a} (n)$ - вероятность возвр
 \begin{theorem}
     \textbf{Критерий возвратности}
 
-    $a$ - возвратное $\Longleftrightarrow$ $\mathcal{P} (a) = \sum\limits_{n = 1}^\infty p_{aa} (n)$ расходится
+    $a$ - возвратное $\Longleftrightarrow$ $(*) = P_a = \sum\limits_{n = 1}^\infty p_{aa} (n)$ расходится
 
-    И если $a$ не возвратное, то $F_a = \frac{\mathcal{P} (a)}{1 + \mathcal{P} (a)}$
+    И если $a$ не возвратное, то $F_a = \frac{P_a}{1 + P_a}$
 \end{theorem}
+
+\begin{lemma}
+    $c_n \geqslant 0$ и $\sum_{n=0}^{\infty} c_n = +\infty$. 
+
+    Тогда $\lim\limits_{x\to 1-} \sum_{n=0}^{\infty} c_nx^n = +\infty$
+\end{lemma}
+
+\begin{proof}
+    Берём $n$, т.ч. $\sum_{k=0}^{n} c_k > A$, а $\sum_{k=1}^{n} \rightarrow_{x\to 1-} \sum_{n=0}^{n}c_k$. Тогда
+    $\underbrace{\sum_{k=0}^{n} c_kx^k}_{\leqslant \sum_{n=0}^{\infty} c_nx^n} > A - 1$ при $x$ близких к 1
+\end{proof}
+
+\begin{proof}
+    Теоремы
+
+    Давайте считать, что $p_{aa} (0) = 1$ и $f_a (0) = 0$
+
+    $\mathcal{F} (z) = \sum_{n=0}^{\infty} f_a (n) z^n$, сходится при $|z| \leqslant 1$
+
+    $\mathcal{P} (z) = \sum_{n=0}^{\infty} p_{aa} (n)z^n$, сходится при $|z| < 1$
+
+    $p_{aa} (n) = \sum_{k = 0}^{n} f_a (k) p_{aa} (n - k)$ - верно при $n \geqslant 1$
+
+    Тогда $\mathcal{P} (z) = \mathcal{F} (z) \mathcal{P} (z)$ - почти верное равенство, надо ещё подкорректировать при $z^0$.
+    Получим $\mathcal{P} (z) = \mathcal{F} (z) \mathcal{P} (z) + 1 \implies \mathcal{F} (z) = \frac{\mathcal{P} (z) - 1}{\mathcal{P} (z)}$. Давайте устремим $z \to 1$
+    
+    $\underbrace{\lim\limits_{z \to 1-} \mathcal{F} (z)}_{=F_a} = \lim\limits_{z \to 1-} \frac{\mathcal{P} (z) - 1}{\mathcal{P} (z)} \overset{\text{если $(*)$ сходится}}{=} \frac{P_a}{P_a + 1}$.
+
+    А если расходится, то смотрим на $\underbrace{(1 - \mathcal{F} (z))}_{\to 1 - F_a} \underbrace{\mathcal{P} (z)}_{\to 1 + P_a} = 1$. Отсюда получаем, что $F_a = 1$
+\end{proof}
 
 \begin{consequence}
     Если $a$ не возвратное $\implies$ $a$ - нулевое
@@ -473,4 +503,121 @@ $F_a = \sum\limits_{n = 1}^\infty f_{a} (n)$ - вероятность возвр
     
 \end{proof}
 
+\begin{theorem}
+    \textbf{ЗБЧ для цепей Маркова}
 
+    $\varepsilon > 0$ и цепь удовлетворяет условию теоремы Маркова, $\pi$ - стационарное распределение  
+    
+    Тогда 
+    \begin{enumerate}
+        \item $P\left( \left| \frac{\nu_a (n)}{n} - \pi (a) \right| \geqslant \varepsilon \right) \rightarrow 0$
+        \item $P\left( \left| \frac{\nu_{ab} (n)}{n} - \pi (a) p_{ab} \right| \geqslant \varepsilon \right) \rightarrow 0$
+    \end{enumerate}
+
+    Здесь $\nu_a (n)$ - количество значений $\xi_1, \ldots, \xi_n$, равных $a$
+    
+    $\nu_{ab} (n)$ - количество пар $ab$ на соседних позициях
+\end{theorem}
+
+\begin{proof}
+    Пусть $\eta_k = 
+    \begin{cases}
+        1, & \text{если $\xi_k = a$}\\
+        0, & \text{иначе}    
+    \end{cases}$
+
+    $\tilde{\eta_k} = 
+    \begin{cases}
+        1, & \text{если $\xi_k = a$ и $\xi_{k + 1} = b$}\\
+        0, & \text{иначе}    
+    \end{cases}$
+
+    Тогда $\nu_a (n) = \eta_1 + \ldots + \eta_n$ и $\nu_{ab} (n) = \tilde{\eta_1} + \ldots + \tilde{\eta_n}$
+
+    Посмотрим на $\mathbb{E} \eta_k = P(\xi_k = a) = \sum\limits_{y \in Y} \pi_0(y) \underbrace{p_{ya} (k)}_{\rightarrow \pi (a)} \rightarrow \pi (a)$
+
+    Значит $\mathbb{E} \frac{\nu_a (n)}{n} = \frac{1}{n} \sum\limits_{n=1}^{n} \mathbb{E} \eta_k \rightarrow \pi (a)$
+
+    По аналогии считаем для второй ситуации:
+
+    $\mathbb{E} \tilde{\eta_k} = P(\xi_k = a, \xi_{k + 1} = b) = \sum\limits_{y \in Y} \pi_0 (y) \underbrace{p_{ya}}_{\rightarrow \pi (a)} (k) p_{ab}  \rightarrow \pi (a) p_{ab}$
+
+    $\mathbb{E} \frac{\eta_{ab} (n)}{n} = \frac{1}{n} \sum\limits_{k=1}^{n} \mathbb{E} \tilde{\eta_k}$
+
+    Пишем Чебышёва: $P \left( \left| \frac{\nu_a (n)}{n} - \mathbb{E} \frac{\nu_a (n)}{n} \right| \geqslant \varepsilon \right) \leqslant \frac{\mathbb{D} \left( \frac{\nu_a (n)}{n} \right)}{\varepsilon^2} = \frac{\mathbb{D} \nu_a (n)}{\varepsilon^2 n^2}$
+
+    $\mathbb{D} \nu_a (n) = \mathbb{D} (\sum_{k=1}^{n} \eta_k) = \underbrace{\sum_{k = 1}^{n} \mathbb{D} \eta_k}_{\leqslant n} + 2\sum\limits_{i < j} cov (\eta_i, \eta_j)$
+
+    Давайте как-то оценим ковариацию:
+
+    $cov (\xi_i, \xi_j) = \mathbb{E} (\eta_i, \eta_j) - \mathbb{E} \eta_i \mathbb{E} \eta_j$
+
+    Здесь $\mathbb{E} (\eta_i \eta_j) = P(\xi_i = a, \xi_j = a) = \sum\limits_{y \in Y} \pi_0 (y) \underbrace{p_{ya} (i)}_{= \pi (a) + \mathcal{O}(\lambda^i)} \underbrace{p_{aa} (j - i)}_{\pi (a) + \mathcal{O} (\lambda^{j - i})} = \pi^2 (a) + \mathcal{O} (\lambda^i) + \mathcal{O} (\lambda^{j - i}) + \mathcal{O} (\lambda^i)$
+
+    $\mathbb{E} \eta_i = P(\xi_i = a) = \sum\limits_{y \in Y} \pi_0 (y) \underbrace{p_{ya} (i)}_{\pi (a) + \mathcal{O} (\lambda^i)} = \pi (a) + \mathcal{O} (\lambda^i)$ 
+
+    Мы поняли, что $cov (\eta_i, \eta_j) = \mathcal{O} (\lambda^i) + \mathcal{O} (\lambda^{j - i})$ и эти ковариации надо просуммировать
+
+    $\sum\limits_{i < j} cov (\eta_i, \eta_j) = \sum\limits_{i < j} \left(\mathcal{O} (\lambda^i) + \mathcal{O} (\lambda^{j - i})\right) = \mathcal{O} (n)$
+
+    Осталось заметить, что $\{ \left| \frac{\nu_a (n)}{n} - \pi (a) \right| \geqslant \varepsilon \} \subset \{ \left| \frac{\nu_a (n)}{n} - \mathbb{E} \frac{\nu_a (n)}{n} \right| \geqslant \frac{\varepsilon}{2} \}$.
+
+    Мы поностью доказали первый пункт, во втором аналогично оценивается дисперсия
+\end{proof}
+
+\Subsection{Случайные блуждания}
+
+\begin{theorem}
+    Рассмотрим блуждание по прямой
+
+    Блуждание возвратно $\Longleftrightarrow p = \frac{1}{2}$
+\end{theorem}
+
+\begin{proof}
+    Возвратность $\Longleftrightarrow$ $\sum\limits_{n=1}^\infty p_{00} (n) = +\infty$
+
+    $p_{00} (2n - 1) = 0$
+
+    $p_{00} (2n) = p^n (1-p)^n \binom{2n}{n} \sim \frac{4^n}{\sqrt{\pi n}} (p(1-p))^n $
+
+    Если $p \neq \frac{1}{2}$, то $4p (1 - 1p) < 1$ и $p_{00} (2n) \leqslant C (4p(1-p))^n $ - сходящаяся геометрическая прогрессия
+
+    Если $p = \frac{1}{2}$, то $p_{00} (n) \sim \frac{1}{\sqrt{\pi n}} \implies$ ряд расходится
+\end{proof}
+
+\begin{remark}
+    
+Симметричное блуждание по $\mathbb{Z}$. Возьмём $\eta_k$ независимые одинаково распределённые случайные величины, т.ч. $P(\eta_k = a) = P(\eta_k = -a)$ и $\xi_n = \eta_1 + \ldots + \eta_n$
+
+\end{remark}
+
+\begin{proof}
+    Если $\eta_1$ имеет матожидание, то блуждание возвратно
+\end{proof}
+
+\begin{proof}
+    $G$ - производящая функция для $\eta_1$. То есть $G(z) = \sum\limits_{k \in \mathbb{Z}} P(\eta_1 = k) z^k$
+
+    $G_{\xi_n} (z) = (G(z))^n$. Нас интересует $p_{00} (n) = P(\xi_n = 0)$ - коэффициент при $z^0$ в $G_{\xi_n}$ - подставить 0 в ряд Лорана не можем. Зато умеем считать вычет:
+
+    $p_{00} (n) = \frac{1}{2\pi i} \int\limits_{|z| = 1} \frac{G^n (z)}{z} \, dz$
+
+    $\sum\limits_{n=0}^\infty p_{00} (n)x^n = \sum\limits_{n = 0}^\infty \frac{1}{2\pi i} \int\limits_{|z| = 1} \frac{G^n (z) x^n}{z} \, dz \overset{?}{=} \frac{1}{2\pi i} \int\limits_{|z| = 1} \frac{1}{z} \underbrace{\sum\limits_{n = 0}^\infty x^n G^n (z)}_{= \frac{1}{1 - xG(z)}} \, dz = 
+    \frac{1}{2\pi} \int_{-\pi}^\pi \frac{dt}{1 - xG(e^{it})} = \frac{1}{\pi} \int_0^\pi \frac{dt}{1 - xG(e^{it})} \overset{{*}}{=} \frac{1}{\pi} \int_0^\pi \frac{dt}{1 - x + o(xt)} \geqslant \frac{1}{\pi} \int_0^\pi \frac{dt}{1 - x + xt} = \frac{1}{\pi} \frac{\ln (1 - x + xt)}{x} \bigg |_{t=0}^{t = \pi} \rightarrow +\infty$
+
+    $(*) \, : \, G(1 + s) = G(1) + G' (1) \cdot s + o(s) = 1 + o(s)$. Тогда $G(e^{it}) = 1 + o(e^{it} - 1) = 1 + o(t)$
+\end{proof}
+
+\begin{remark}
+    Все состояния нулевые
+
+    $\underbrace{p_{00} (n)}_{? \, : \, \rightarrow 0} = \frac{1}{2\pi i} \int\limits_{|z| = 1} \frac{G^n (z)}{z} \, dz \rightarrow \frac{1}{2\pi i} \int\limits_{|z| = 1} \frac{\lim_{n\to \infty} G^n (z)}{z} \, dz$
+
+    $\left| G(z) \right| = \left| \sum\limits_{n \in \mathbb{Z}} P(\eta = n) z^n \right| \leqslant \sum\limits_{n \in \mathbb{Z}} P(\eta = n) |z|^n = \sum\limits_{n \in \mathbb{Z}} P(\eta = n) = 1$
+
+    $\left| \sum P(\eta = n) e^{int} \right| = \sum P(\eta = n)$
+
+    Если $P(\eta = n) > 0$ и $P(\eta = k) > 0$, то $\arg e^{int} = \arg e^{ikt}$. То есть $nt = kt + 2\pi m \implies t = 2\pi \frac{m}{n - k} \in \pi \mathbb{Q}$ - счётное множество. Значит множество точек, в которых знак нестрогий - счётно.
+
+    Значит $G^n (z) \rightarrow 0$ почти везде
+\end{remark}

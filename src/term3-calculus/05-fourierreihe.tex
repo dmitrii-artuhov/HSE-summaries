@@ -1404,3 +1404,187 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
         }
     \end{enumerate}
 \end{example}
+
+\begin{remark}
+    Формат JPEG.
+
+    %Тут нужны картинки
+\end{remark}
+
+\Subsection{Суммирование рядов Фурье}
+
+\begin{definition}
+    $\sum\limits_{n = 0}^\infty a_n$. Пусть $A_n = a_0 + a_1 + \ldots + a_n$
+
+    $\alpha_n = \frac{A_0 + \ldots + A_n}{n}$, если $S = \lim \alpha_n$, то $S$ - сумма ряда по Чезаро
+
+    \textbf{Обозначение: } $(c) \sum\limits_{n = 0}^\infty a_n = S$
+\end{definition}
+
+\begin{example}
+    $a_n = (-1)^n$. Тогда $A_{2n-1} = 0$, $A_{2n} = 1$
+
+    Тогда $\alpha_{2n - 1} = \frac{1}{2}$ и $\alpha_{2n} = \frac{n + 1}{2n + 1} \implies \lim \alpha_n = \frac{1}{2}$
+\end{example}
+
+\begin{properties}
+    \begin{enumerate}
+        \item {
+            Если ряд сходится, то его сумма ро Чезаро совпадает с его суммой
+
+            \begin{proof}
+                Если $A_n \rightarrow S$, то $\frac{A_0 + \ldots + A_n}{n + 1} \rightarrow S$
+            \end{proof}
+        }
+        \item {
+            Линейность
+        }
+        \item {
+            Если ряд суммируем по Чезаро, то $a_n = o(n)$
+            
+            \begin{proof}
+                Мы знаем, что $A_n = (n + 1)\alpha_n - n\alpha_{n-1} = (n + 1)(s + o(1)) - n(s + o(1)) = S + o(n)$
+
+                Тогда $a_n = A_n - A_{n - 1} = (S + o(n)) - (S + o(n)) = o(n)$
+            \end{proof}
+        }
+    \end{enumerate}
+\end{properties}
+
+\begin{remark}
+    \begin{enumerate}
+        \item {
+            Рассмотрим ряд $1 - 1 + 0 + 1 - 1 + 0$
+
+            $A_{3n - 2} = 1$, $A_{3n - 1} = A_{3n} = 0$
+
+            Тогда $(c) \sum = \frac{1}{3}$. То есть мы добавили нули и испортили сумму. 
+        }
+        \item {
+            \textbf{Теорема Харди}
+
+            Если ряд сходится по Чезаро и $a_n = \mathcal{O} \left(\frac{1}{n} \right)$ (и даже $a_n \geqslant -\frac{c}{n}$)
+
+            Тогда ряд сходится в обычном смысле к той же сумме
+        }
+    \end{enumerate}
+\end{remark}
+
+\begin{definition}
+    $\sum\limits_{n=0}^\infty a_n$. Рассмотрим $\sum\limits_{n=0}^\infty a_nx^n$ при $x \in [0, 1)$
+
+    Если существует $\lim\limits_{x \to 1-} f(x)$, то он называется суммой ряда по Абелю-Пуассону
+
+    \textbf{Обозначение:} $(AP) \sum\limits_{n=0}^\infty a_n$
+\end{definition}
+
+\begin{example}
+    $(AP) \sum\limits_{n=0}^\infty (-1)^n = \lim\limits_{x \to 1-} \sum\limits_{n=0}^\infty (-1)^n x^n = \lim\limits_{x\to 1-} \frac{1}{1 + x} = \frac{1}{2}$
+\end{example}
+
+\begin{properties}
+    \begin{enumerate}
+        \item {
+            Если ряд сходится, то он суммируем по Абелю-Пуассону и его сумма совпадает по Абелю-Пуассону совпадает с его суммой
+
+            \begin{proof}
+                Теорема Абеля
+            \end{proof}
+        }
+        \item {
+            Линейность
+        }
+    \end{enumerate}
+\end{properties}
+
+\begin{example}
+    $\frac{1}{2} + \sum\limits_{n=1}^\infty \cos (nx)$
+
+    Частичные сумма $\frac{1}{2} + \sum\limits_{k=1}^n \cos (kx) = D_k (x) = \frac{\sin (n + \frac{1}{2})x}{2\sin \frac{x}{2}}$
+
+    $\Phi_n (x) = \frac{D_0 (x) + D_1 (x) + \ldots + D_n (x)}{n + 1}$ - ядро Фейера
+
+    \begin{properties}
+        \begin{enumerate}
+            \item {
+                $\Phi_n (0) = \frac{n + 1}{2}$
+            }
+            \item {
+                При $x \neq 2\pi m \, : \, \Phi_n (x) = \frac{\sin^2 \frac{n + 1}{2} x}{2(n + 1)\sin^2 \frac{x}{2}}$
+
+                \begin{proof}
+                    $\sum\limits_{k=0}^n \frac{\sin (n + \frac{1}{2})x}{2\sin \frac{x}{2}} = \frac{\sin^2 \frac{n+1}{2}}{2\sin^2 \frac{x}{2}}$
+
+                    $\sum\limits_{k=0}^n \underbrace{\sin \frac{x}{2} \sin (k + \frac{1}{2})x}_{=\frac{1}{2} (\cos (kx) - \cos (k + 1)x)} = \sin^2 \frac{n+1}{2}x = \frac{1 - \cos (n + 1)x}{2}$
+                \end{proof}
+            }
+            \item {
+                $\frac{1}{\pi} \int\limits_{-\pi}^\pi \Phi_n (x) \, dx = \frac{2}{\pi} \int\limits_0^\pi \Phi_n (x) \, dx = 1$
+
+                \begin{proof}
+                    Знаем чему равен интеграл от ядра Дирихле
+                \end{proof}
+            }
+            \item {
+                $\Phi_n (x) \geqslant 0$
+            }
+            \item {
+                $\lim\limits_{n \to \infty} \max\limits_{\delta \leqslant |x| \leqslant \pi} \Phi_n (x) = 0$
+
+                \begin{proof}
+                    $\max\limits_{\delta \leqslant |x| \leqslant \pi} \frac{\sin^2 \frac{n + 1}{2}}{2 (n+1) \sin^2 \frac{x}{2}} \leqslant \frac{1}{2(n+1)\sin^2 \frac{\delta}{2}} \rightarrow 0$
+                \end{proof}
+            }
+        \end{enumerate}
+    \end{properties}
+
+    Таким образом сумма ряда по Чезаро $= +\infty$ при $x = 2\pi m$ и $0$ иначе
+\end{example}
+
+\begin{example}
+    $\frac{1}{2} + \sum\limits_{n=1}^\infty \cos (nx)$
+
+    $f(r) = \frac{1}{2} + \sum\limits_{n=1}^\infty r^n \cos (nt) = \frac{1}{2} + \Re \sum\limits_{n=1}^\infty (re^{it})^n = -\frac{1}{2} + \Re \sum\limits_{n=1}^\infty z^n = - \frac{1}{2} + \Re \frac{1}{1 - z} = - \frac{1}{2} + \Re \frac{1 - \bar{z}}{(1 - z)(1 - \bar{z})} = -\frac{1}{2} + \frac{1 - \Re z}{1 + |z|^2 - 2\Re z} = 
+    - \frac{1}{2} + \frac{1 - r\cos t}{1 - 2r \cos t + r^2} = \frac{1 - r^2}{2(1 - 2r \cos t + r^2)}$
+\end{example}
+
+\begin{definition}
+    $P_r (t) = \frac{1}{2} \frac{1 - r^2}{1 - 2r \cos t + r^2}$ - ядро Пуассона, $0 \leqslant r < 1$
+\end{definition}
+
+\begin{properties}
+    \begin{enumerate}
+        \item Непрерывная, чётная, $2\pi$ периодическая
+        \item {
+            $P_r (t) \geqslant 0$
+        }
+        \item {
+            $\int\limits_{-\pi}^\pi P_r (t) \, dt = 1$
+        }
+        \item {
+            $\lim\limits_{r \to 1-} \max\limits_{\delta \leqslant |t| \leqslant \pi} P_r (t) = 0$
+        }
+    \end{enumerate}
+    
+\end{properties}
+
+\begin{example}
+    $\frac{a_0}{2} + \sum\limits_{k = 1}^\infty (a_k \cos (kx) + b_k \sin (kx))$
+
+    $S_n (x) = \frac{1}{\pi} \int_{-\pi}^\pi D_n (t) f(x - t) \, dt$
+
+    $\sigma_n (x) = \frac{S_0 (x) + \ldots + S_n (x)}{n + 1} = \frac{1}{\pi} \frac{1}{n+1} \sum\limits_{k = 0}^n \int_{-\pi}^\pi D_k (t) f(x - t) \, dt = \frac{1}{\pi} \int_{-\pi}^\pi \underbrace{\frac{D_0 (t) + \ldots + D_n (t)}{n + 1}}_{=\Phi_n (t)} f(x - t) \, dt $
+\end{example}
+
+\begin{example}
+    $\frac{a_0}{2} + \sum\limits_{k = 1}^\infty (a_k \cos (kx) + b_k \sin (kx)) = \sum\limits_{k = 0}^\infty A_k (x)$
+
+    $f(r) = \sum\limits_{k = 0}^\infty r^k A_k (x) = \frac{1}{\pi} \int_{-\pi}^\pi \frac{1}{2} f(x - t) \, dt + \frac{1}{\pi} \sum\limits_{k=1}^\infty r^k \int_{-\pi}^\pi f(x - t) \cos (kt) \, dt = 
+    \frac{1}{\pi} \int_{-\pi}^\pi f(x - t) \underbrace{\left( \frac{1}{2} + \sum\limits_{k = 1}^\infty r^k \cos (kt) \right)}_{= P_r (t)} \, dt$
+\end{example}
+
+\begin{definition}
+    $f, g \in L^1 [-\pi, \pi]$ продолжим по периоду
+
+    $h(x) = \int_{-\pi}^\pi f(x - t) g(t) \, dt$ - свёртка функций $f$ и $g$
+\end{definition}
