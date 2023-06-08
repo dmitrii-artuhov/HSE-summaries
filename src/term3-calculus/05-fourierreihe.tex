@@ -1588,3 +1588,148 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
 
     $h(x) = \int_{-\pi}^\pi f(x - t) g(t) \, dt$ - свёртка функций $f$ и $g$
 \end{definition}
+
+\begin{remark}
+    \textbf{Обозначение}
+
+    $L_{2\pi}^p$ - это $2\pi$ периодические функции и $||f|| = \left| \int\limits_0^{2\pi} |f|^p \, d \mu \right|^{\frac{1}{p}}$
+\end{remark}
+
+\begin{properties}
+    Свёртки
+    \begin{enumerate}
+        \item {
+            Если $f, g \in L_{2\pi}^1$, то $f * g \in L_{2\pi}^1$
+
+            \begin{proof}
+                $F(x, t) = f(x - t)g(t)$ - измеримая функция. Потому что $f(y)g(t)$ - измеримая, а из этих Лебеговых множеств можем получить исходные линейным преобразованием.
+
+                $\int\limits_{-\pi}^\pi |h(x)| \, dx = \int\limits_{-\pi}^\pi |\int\limits_{-\pi}^\pi f(x -t)g(t) \, dt | \, dx \leqslant \int\limits_{-\pi}^\pi \int\limits_{-\pi}^\pi |f(x -t)||g(t)| \, dt \, dx = 
+                \int\limits_{-\pi}^\pi \int\limits_{-\pi}^\pi |f(x -t)||g(t)| \, dt \, dx = ||f||_1 \cdot ||g||_1$
+            \end{proof}
+        } 
+        \item {
+            $f * g = g * f$
+
+            \begin{proof}
+                $f * g (x) = \int\limits_{-\pi}^\pi f(x - t)g(t) \, dt = -\int\limits_{x+\pi}^{x-\pi} f(s) g(x - s) \, ds = \int\limits_{x-\pi}^{x+\pi} f(s) g(x - s) \, ds$ - написан интеграл по периоду, неважно по какому из-за $2\pi$ периодичности
+            \end{proof}
+        }
+        \item {
+            $c_k (f * g) = 2\pi c_k (f) c_k (g)$
+
+            \begin{proof}
+                $c_k (f * g) = \frac{1}{2\pi} \int\limits_{-\pi}^\pi e^{ikx} f*g (x) \, dx = \frac{1}{2\pi} \int\limits_{-\pi}^\pi e^{ikx} \int\limits_{-\pi}^\pi f(x - t) g(t) \, dt \, dx = \\ 
+                = \frac{1}{2\pi} \int\limits_{-\pi}^\pi \int\limits_{-\pi}^\pi e^{ik(x - t)}e^{ikt} f(x - t) g(t) \, dt \, dx = 
+                \frac{1}{2\pi} \int\limits_{-\pi}^\pi e^{ikt} g(t) \int\limits_{-\pi}^\pi e^{ik(x - t)} f(\underbrace{x - t}_{=s}) \, dx \, dt = \\
+                = \frac{1}{2\pi} \int\limits_{-\pi}^\pi e^{ikt} g(t) \int\limits_{x-\pi}^{x+\pi} e^{iks} f(s) \, ds \, dt  = c_k (f) \int\limits_{-\pi}^\pi e^{ikt} g(t) \, dt$
+            \end{proof}
+        }
+        \item {
+            $f \in L_{2\pi}^p$ и $g \in L_{2\pi}^q$, где $\frac{1}{p} + \frac{1}{q} = 1$
+
+            Тогда $f * g \in C_{2\pi}$ и $||f * g||_{\infty} \leqslant ||f||_p \cdot ||g||_q$
+
+            \begin{proof}
+                $|f*g (x)| = \left|\int\limits_{-\pi}^\pi f(x - t) g(t) \, dt \right| \leqslant \int\limits_{-\pi}^\pi |f(x-t)||g(t)| \, dt \overset{\text{Гёльдер}}{\leqslant}
+                \left( \int\limits_{-\pi}^\pi |f(x - t)|^p \, dt \right)^{\frac{1}{p}} \cdot \left( \int\limits_{-\pi}^\pi |g(t)|^q \, dt \right)^{\frac{1}{q}} = ||f||_p \cdot ||g||_q$
+
+                $|f * g(x + h) - f * g (x)| = \left| \int\limits_{-\pi}^\pi f(x + h -t)g(t) \, dt - \int\limits_{-\pi}^\pi f(x - t)g(t) \, dt \right| \leqslant \int\limits_{-\pi}^\pi |f(x + h - t) - f(x - t)||g(t)| \, dt \leqslant 
+                \left( \int\limits_{-\pi}^\pi|f(x + h - t - f(x - t))|^p \, dt \right)^{\frac{1}{p}} ||g||_q = \left( \int\limits_{-\pi}^\pi |f(s + h) - f(s)|^p \, ds \right)^{\frac{1}{p}} \cdot ||g||_q = \underbrace{||f_h - f||_p}_{\rightarrow 0} ||g||_q$. При $p < +\infty$ из теоремы о непрерывности сдвига.
+            \end{proof}
+        }
+        \item {
+            Если $f \in L_{2\pi}^p$ и $g \in L_{2\pi}^1$
+
+            Тогда $f * g \in L_{2\pi}^p$ и $||f * g||_p \leqslant ||f||_p \cdot ||g||_1$
+
+            \begin{proof}
+                Для $p = +\infty$ - это свойство 4, поэтому считаем, что $1 \leqslant p < +\infty$
+
+                Тогда $||f * g||_p = \left( \int\limits_{-\pi}^\pi |f*g (x)|^p \, dx \right)^{\frac{1}{p}}$
+
+                $||f*g||_p^p = \int\limits_{-\pi}^\pi \left| \int\limits_{-\pi}^\pi f(x - t) g(t) \, dt \right|^p \, dx \leqslant \int\limits_{-\pi}^\pi \left( \int\limits_{-\pi}^\pi |f(x - t)| |g(t)| \, dt \right)^p \, dx = \\
+                = \int\limits_{-\pi}^\pi \left( \int\limits_{-\pi}^\pi |f(x - t)| |g(t)|^{\frac{1}{p}} |g(t)|^{\frac{1}{q}} \, dt \right)^p \, dx \overset{\text{Гёльдер}}{\leqslant} \ldots$
+
+                %Тут нужно немного дописать
+            \end{proof}
+        }
+    \end{enumerate}
+\end{properties}
+
+\begin{definition}
+    $D$ - множество параметров, $h_0$ его предельная точка.
+
+    Пусть $K_h$ - аппроксимативная единица, если:
+
+    \begin{enumerate}
+        \item $K_h \in L_{2\pi}^1$
+        \item $\int\limits_{-\pi}^\pi K_h = 1$
+        \item $||K_h||_1 \leqslant M \, \forall h$
+        \item $\int\limits_{\delta \leqslant |x| \leqslant \pi} |K_h (x)| \, dx \rightarrow_{h \to h_0} 0 \, \forall \delta > 0$
+    \end{enumerate}
+
+    $K_h$ - усиленная аппроксимативная единица, если есть условия $1, 2, 3$ и $esssup \, |K_h (x)| \rightarrow_{h \to h_0} 0$ при $\delta \leqslant |x| \leqslant \pi$
+\end{definition}
+
+\begin{example}
+    \begin{enumerate}
+        \item $\frac{1}{\pi} \Phi_n$ - усиленная аппроксимативная единица
+        \item $\frac{1}{\pi} P_r$ - усиленная аппроксимативная единица
+        \item Если $K_h$ - аппроксимативная единица, то $\tilde{K_h} = \frac{|K_h|}{||K_h||_1}$ - аппроксимативная единица
+    \end{enumerate}
+\end{example}
+
+\begin{theorem}
+    \textbf{Об аппроксимативной единице}
+
+    Пусть $K_h$ - аппроксимативная единица. Тогда:
+
+    \begin{enumerate}
+        \item Если $f \in C_{2\pi}$, то $K_h * f \rightrightarrows_{h \to h_0} f $
+        \item Если $f \in L_{2\pi}^p$ при $1 \leqslant p < +\infty$, то $||K_h * f - f||_p \rightarrow_{h \to h_0} 0 $
+        \item Если $K_h$ усиленная аппроксимативная единица, $f \in L_{2\pi}^1$ и непрерывна в точке $x_0$, то $K_h * f (x_0) \rightarrow_{h \to h_0} f(x_0)$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item {
+            $|f * K_h (x) - f(x)| = |\int\limits_{-\pi}^\pi f(x - t) K_h (t) \, dt - \int\limits_{-\pi}^\pi K_h (t) f(x) \, dt| = |\int\limits_{-\pi}^\pi K_h (t) (f(x - t) - f(x)) \, dt | \leqslant \int\limits_{-\pi}^\pi |K_h (t)| |f(x - t) - f(x)| \, dt = \int\limits_{-\delta}^\delta + \int\limits_{\delta \leqslant |t| \leqslant \pi}$
+
+            $f \in C_{2\pi} \implies$ $f$ равномерно непрерывна. Берём $\varepsilon > 0, \delta > 0$ из определения равномерной непрерывности
+
+            $\int\limits_{-\pi}^\pi |K_h (t)| |f(x - t) - f(x)| \, dt \leqslant \varepsilon \int\limits_{-\delta}^\delta |K_h (t)| \, dt \leqslant \varepsilon M$
+
+            $\int\limits_{\delta \leqslant |t| \leqslant \pi} |K_h (t)||f(x - t) - f(t)| \, dt \leqslant 2L \int\limits_{\delta \leqslant |t| \leqslant \pi} |K_h (t)|$, т.к. $f \in C_{2\pi} \implies |f| \leqslant L$
+        }
+        \item {
+            % Нужно дописать доказательство
+        }
+        \item {
+            $\int\limits_{-\delta}^\delta |K_h (t)| |f(x_0 - t) - f(x_0)| \, dt \leqslant \varepsilon M$, где $\delta > 0$ из определения непрерывности в точке $x_0$
+
+            $\int\limits_{\delta \leqslant |t| \leqslant \pi} |K_h (t)||f(x - t) - f(t)| \, dt \leqslant esssup \, |K_h (t)| \cdot \int\limits_{-\pi}^\pi |f(x_0 - t) - f(x_0)| \, dt$ одна стремится к нулю, а вторая ограничена
+
+
+        }
+    \end{enumerate}
+\end{proof}
+
+\begin{consequence}
+    \textbf{Теорема Фейера}
+
+    \begin{enumerate}
+        \item Если $f \in C_{2\pi}$, то $\sigma_n (f) \rightrightarrows f$
+        \item Если $f \in F_{2\pi}^p$ при $1 \leqslant p < +\infty$, то $||\sigma_n (f) - f||_p \rightarrow 0$
+        \item Если $f \in L_{2\pi}^1$ и непрерывна в точке $x_0$, то $\sigma_n (f, x_0) \rightarrow f(x_0)$
+    \end{enumerate}
+\end{consequence}
+
+\begin{theorem}
+    \begin{enumerate}
+        \item Если $f \in C_{2\pi}$, то $\Pi_r (f) \rightrightarrows f$
+        \item Если $f \in L_{2\pi}^p$ при $1 \leqslant p < +\infty$, то $||\Pi_r (f) - f||_p \rightarrow 0$
+    \end{enumerate}
+\end{theorem}
+

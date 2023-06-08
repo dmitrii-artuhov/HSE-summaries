@@ -621,3 +621,146 @@ $F_a = \sum\limits_{n = 1}^\infty f_{a} (n)$ - вероятность возвр
 
     Значит $G^n (z) \rightarrow 0$ почти везде
 \end{remark}
+
+\begin{theorem}
+    \textbf{Теорема Пойя о возвращении}
+
+    Рассматриваем решётку $\mathbb{Z}^d$, вероятность перейти в соседние узлы $\frac{1}{2d}$, то есть аналог случайного блуждания на прямой
+
+    Такое блуждание возвратно $\Longleftrightarrow$ $d \leqslant 2$
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item $d = 1$ обсуждали
+        \item {
+            $d = 2$. По критерию возвратности, нам достаточно доказать, что $\sum\limits_{n=1}^\infty p_{00} (n) = +\infty$
+
+            $p_{00} (n) = 0$, если $n$ нечётное. 
+            
+            Повёрнем оси на $45^{\circ}$. Исходные оси $(x, y)$, а повёрнутые $(x', y')$
+
+            То есть $P(x' = x' + 1, y' = y' + 1) = P(x = x + 1) = \frac{1}{4} = P(x' = x' + 1) \cdot P(y' = y' + 1)$
+
+            $P(x' = x' + 1) = P(x = x + 1) + P(y = y - 1) = \frac{1}{2}$
+
+            $P(y' = y + 1) = \frac{1}{2}$
+
+            То есть блуждание проекций на оси $x'$ и $y'$ независимы. Значит $p_{00}(n) =
+            \left( \binom{2n}{n} \cdot \frac{1}{2^{2n}} \right)^2 \sim \left( \frac{1}{\sqrt{\pi n}} \right)^2 = \frac{1}{\pi n}$ - а такой ряд сходится
+        }
+        \item {
+            $d = 3$
+
+            Если $n$ нечётно, то всё ещё $p_{00} (n) = 0$
+
+            По каждой координате мы делаем одинаковое число шагов в обоих направлениях: 
+            
+            $p_{00} (2n) = \sum\limits_{i + j \leqslant n} \binom{2n}{i, i, j, j, n - i -j, n - i - j} \cdot \frac{1}{6^{2n}} = \sum\limits_{i + j \leqslant n} \frac{(2n)!}{(i!j!(n-i-j)!)^2} \cdot \frac{1}{6^{2n}} = 
+            \binom{2n}{n} \sum\limits_{i + j \leqslant n} \left( \frac{n!}{i!j!(n - i - j)!} \right)^2 \cdot \frac{1}{6^{2n}} = \overset{*}{\leqslant} \underbrace{\frac{\binom{2n}{n}}{6^{2n}} \cdot 3^n}_{\sim \frac{1}{\sqrt{\pi n} \cdot \frac{1}{3^n}}} \cdot \max \binom{n}{i, j, n - i - j} $
+
+            При этом $\sum\limits_{i + j \leqslant n} \left( \frac{n!}{i!j!(n - i - j)!} \right) = (1 + 1 + 1)^n = 3^n \implies \sum\limits_{i + j \leqslant n} \left( \frac{n!}{i!j!(n - i - j)!} \right)^2 \leqslant \max \binom{n}{i, j, n - i - j} \cdot \sum\limits_{i + j \leqslant n} \left( \frac{n!}{i!j!(n - i - j)!} \right) \sim (*)$
+
+            Осталось разобраться с максимумом: $\max \sim 3^n \cdot \frac{3\sqrt{3}}{2 \pi n}$ - упражнение
+
+            $(*) \sim \frac{3\sqrt{3}}{2 (\pi n)^{\frac{3}{2}}} \implies $ ряд сходится
+        }
+        \item {
+            Что делать с размерностью $\geqslant 4$. Выберем первые 3 координаты и будем следить что происодит с проекцией на эти координаты. 
+            Если мы двигаемся по ним - происходит смещение. Если по другим, то мы стоим на месте. Эти остановки не бывают бесконечно долгими, то есть получили блуждание по 6 направлениям.
+
+            То есть проекция возвращается назад с вероятностью $< 1$, а значит и глобальное тоже не возвратное
+        }
+    \end{enumerate}
+\end{proof}
+
+\begin{remark}
+    \textbf{Случайное блуждание с отталкивающим экраном}
+
+    Есть блуждание по прямой и где-то стоит отталкивающий экран. То есть если мы врезались в стенку, то отскочили от неё с вероятностью 1
+\end{remark}
+
+\begin{remark}
+    \textbf{Случайное блуждание с поглащающим экраном}
+    
+    Есть блуждание по прямой, где-то стоит экран, попав в него, мы попадаем в петлю, из которой не выбираемся
+\end{remark}
+
+\begin{example}
+    \textbf{Задача о разорении}
+
+    $A$ монет у первого, $B$ монет в второго
+
+    Это случайное блуждание с поглащающими экранами. Блуждание по прямой, поглащающие экраны в точках $-A$ и $B$.
+    Между ними мы смещаемся с вероятностями $p$ и $q = 1 - p$
+
+    $\beta_k (x)$ - вероятность оказаться в $B$ через $k$ шагов, если сейчас наша фишка находится в $x$
+
+    Переходы: $x \overset{p}{\rightarrow} x + 1$, $x \overset{q}{\leftarrow} x - 1$
+
+    То есть $\beta_k (x) = p \beta_{k - 1} (x + 1) + q \beta_{k - 1} (x - 1)$
+
+    А ещё $\beta_k (x) \leqslant \beta_{k + 1} (x) \leqslant 1$
+
+    Пусть $\beta (x) = \lim\limits_{k \to \infty} \beta_k (x)$
+
+    Тогда $\beta (x) = p \beta (x + 1) + q \beta (x - 1)$ - рекуррента. А ещё $\beta (B) = 1$ и $\beta (-A) = 0$
+
+    Общее решение $pt^2 - t + q = 0$, здесь корни $1$ и $\frac{q}{p}$
+
+    Тогда $\beta (x) = a + b \cdot \left( \frac{q}{p} \right)^x$
+    
+    $\beta (-A) = a + b \left( \frac{q}{p} \right)^{-A} \implies a = -b \left( \frac{q}{p}\right)^{-A}$
+
+    $\beta (B) = a + b \left( \frac{q}{p} \right)^B = b \left( \frac{q}{p} \right)^B - b \left( \frac{q}{p} \right)^{-A}$, откуда $a$ и $b$ выражаются
+\end{example}
+
+\Subsection{Процесс восстановления}
+
+\begin{definition}
+    $\xi_1, \xi_2, \ldots$ - нетрицательные, одинаково распределённые независимые случайные величины
+
+    $S_0 = 0, S_n = \xi_1 + \xi_2 + \ldots + \xi_n$
+
+    $\xi_i$ - время работы прибора $i$, после его поломки, его мнгновенно меняют на следующий
+
+    $\Phi (t) = P(S_n \leqslant t)$ - функция распределения для $S_n$
+
+    $\nu (t)$ - количество приборов, использованных на момент времени $t$. То есть $\nu (t) = n$, если $S_{n-1} \leqslant t < S_n$
+
+    $P(\nu (t) = n) = P(S_{n - 1} \leqslant t < S_n) = \Phi_{n-1} (t) - \Phi_n (t)$
+
+    Функция восстановления $\mathcal{N} (t) = \mathbb{E} \nu (t)$
+\end{definition}
+
+\begin{theorem}
+    $\mathcal{N} (t) = \sum\limits_{n = 1}^{\infty} \Phi_n (t)$, если ряд в правой части сходится
+\end{theorem}
+
+\begin{proof}
+    $\mathcal{N} (t) = \mathbb{E} \nu (t) = \sum\limits_{n = 1}^\infty n P(\nu (t) = n) = \sum\limits_{n = 1}^\infty n (\Phi_{n - 1} (t) - \Phi_n (t))$ - нужно понять, что это правая часть в утвеждении теоремы
+
+    Смотрим на частичную сумму: $\sum\limits_{n = 1}^m n (\Phi_{n - 1} - \Phi_n) = (\Phi_0 - \Phi_1) + 2 (\Phi_1 - \Phi_2) + \ldots + m (\Phi_{m - 1} - \Phi_m) = \Phi_0 + \Phi_1 + \ldots + \Phi_{m-1} + \underbrace{m\Phi_m}_{\overset{?}{\rightarrow} 0}$
+
+    Если ряд $\sum\limits_{n = 1}^\infty \Phi_n (t)$ сходится, тогда $\underbrace{\Phi_n + \Phi_{n+1} + \ldots + \Phi_{2n}}_{\geqslant n \Phi_{2n}} \rightarrow 0$, а ещё $\Phi_{n + 1} \leqslant \Phi_n$. А значит $\Phi_n = o \left( \frac{1}{n} \right)$
+\end{proof}
+
+\textbf{Дальше все $\xi_n$ будут целозначные}
+
+\begin{remark}
+    $\Phi_n (t) = \sum\limits_{k \leqslant t} P(S_n = k)$
+
+    $\mathcal{N} (t) = \sum\limits_{n=1}^\infty \Phi_n (t) = \sum\limits_{n = 1}^\infty \sum\limits_{k \leqslant t} P(S_n = k) = \sum\limits_{k \leqslant t} \underbrace{\sum\limits_{n = 1}^\infty P(S_n = k)}_{=q_k}$
+\end{remark}
+
+\begin{example}
+    Прибор либо работает единицу времени с вероятностью $p$, либо мнгновенно ломается с вероятностью $q = 1 - p$. Считаем, что $0 < p \leqslant 1$
+
+    $P(S_n = k) = \underbrace{\binom{n}{k}}_{\leqslant n^k} p^k q^{n - k} \leqslant q^n \left( \frac{np}{q} \right)^k$
+
+    Тогда $q_k = \sum\limits_{n = 1}^\infty P(S_n = k) \leqslant \sum\limits_{n=1}^\infty q^n \left( \frac{np}{q} \right)^k = \frac{q}{1 - q} \left( \frac{np}{q} \right)^k = n^k \left(\frac{p}{q}\right)^{k - 1} < +\infty$
+\end{example}
+
+\begin{theorem}
+    Пусть $P(\xi_n = 0) < 1$. Тогда $\mathcal{N} (t)$ конечна при всех $t$
+\end{theorem}
