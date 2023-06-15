@@ -718,7 +718,7 @@ $F_a = \sum\limits_{n = 1}^\infty f_{a} (n)$ - вероятность возвр
 \Subsection{Процесс восстановления}
 
 \begin{definition}
-    $\xi_1, \xi_2, \ldots$ - нетрицательные, одинаково распределённые независимые случайные величины
+    $\xi_1, \xi_2, \ldots$ - неотрицательные, одинаково распределённые независимые случайные величины
 
     $S_0 = 0, S_n = \xi_1 + \xi_2 + \ldots + \xi_n$
 
@@ -762,5 +762,125 @@ $F_a = \sum\limits_{n = 1}^\infty f_{a} (n)$ - вероятность возвр
 \end{example}
 
 \begin{theorem}
-    Пусть $P(\xi_n = 0) < 1$. Тогда $\mathcal{N} (t)$ конечна при всех $t$
+    Если $P(\xi_1 = 0) < 1$, то $\mathcal{N} (t)$ конечно
 \end{theorem}
+
+\begin{proof}
+    $\{ \xi_1 = 0 \} = \bigcap\limits_{m=1}^\infty \{ \xi_1 \leqslant \frac{1}{m} \} \implies P(\xi_1 = 0) = \lim\limits_{m \to \infty} P(\xi_1 \leqslant \frac{1}{m}) \implies \exists \, m \, : \, q = P(\xi_1 \leqslant \frac{1}{m}) < 1$ - потому что предел $< 1$
+
+    $\tilde{\xi_k} = 
+    \begin{cases}
+        0, & \text{если $\xi_k \leqslant \frac{1}{m}$ - это с вероятностью $q$} \\
+        1, & \text{если $\xi_k > \frac{1}{m}$}    
+    \end{cases}$
+
+    Поэтому из примера $\tilde{\mathcal{N}} (t)$ конечно
+
+    $\tilde{\xi_k} \leqslant m \xi_k \implies \tilde{S_n} \leqslant mS_n \implies P(\tilde{S_n} \leqslant t) \geqslant P(S_n \leqslant \frac{t}{m}) \implies \tilde{\Phi_n} (t) \geqslant \Phi_n \left(\frac{t}{m}\right) $
+
+    Значит $\mathcal{N} \left( \frac{t}{m} \right) = \sum\limits_{n=1}^\infty \Phi_n \left( \frac{t}{m} \right) \leqslant \sum\limits_{n=1}^\infty \tilde{\Phi_n} (t) = \tilde{\mathcal{N}} (t) < +\infty \implies \mathcal{N} (t)$ конечна при всех $t$
+\end{proof}
+
+\begin{definition}
+    $\xi$ имеет решётчатое распределение с шагом $h \geqslant 0$, если $\xi (\Omega) \subset a + h\mathbb{Z}$ для некоторого $a \in \mathbb{R}$, а для больших $h$ это неверно
+
+    \begin{remark}
+        Рассмотрим целочисленную случайную величину с шагом решётки 1.
+
+        Тогда $ \left| G_{\xi} (z) \right| < 1$, если $|z| \leqslant 1$ и $z \neq 1$
+
+        $\left| G_{\xi} (z) \right| = \left| \sum\limits_{n=0}^\infty P(\xi = n) z^n \right| \leqslant \sum\limits_{n=0}^\infty P(\xi = n) |z^n| \leqslant \sum\limits_{n=0}^\infty P(\xi = n) = 1$
+
+        Правое неравенство обращается в равенство, если $|z| = 1$
+
+        Левое неравенство обращается в равенство, если модуль суммы равен сумме модулей, то есть все $z$ имеют один и тот же аргумент $\implies z = e^{it}$ и $z^n = z^{int}$. Тогда 
+        $nt - mt = 2\pi k \implies n - m = \frac{2\pi}{t} \cdot k < \frac{2\pi}{t} \mathbb{Z}$, а так как $0 < t < 2\pi$, то мы получили решётку с $h > 1$
+    \end{remark}
+\end{definition}
+
+\begin{theorem}
+    \textbf{Теорема восстановления}
+
+    $\mathcal{N} (t + s) - \mathcal{N} (t) \rightarrow_{t \to \infty} \frac{S}{\mathbb{E} \xi_1}$
+
+    Если:
+    \begin{enumerate}
+        \item $\xi$ имеет нерешетчатое распределение
+        \item $\xi$ имеет решетчатое распределение с шагом $h$ и $S = kh$, где $k \in \mathbb{N}$ 
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Доказываем лишь для целозначных случайных величин $\xi_k$, тогда можем считать, то $h = 1$
+
+    Тогда достаточно доказать, что $\underbrace{\mathcal{N} (t + 1)}_{=\sum\limits_{k \leqslant t + 1} q_k} - \underbrace{\mathcal{N} (t)}_{=\sum\limits_{k \leqslant t} q_k} \rightarrow \frac{1}{\mathbb{E} \xi_1}$
+
+    То есть нам надо доказать, что $q_k \rightarrow_{k \to \infty} \frac{1}{\mathbb{E} \xi_1}$
+
+    $Q(z) = \sum\limits_{k = 0}^\infty q_k z^k$. Поймём, что $Q(z) = \frac{1}{1 - G(z)}$, где $G(z)$ - производящая функция для $\xi_1$
+
+    $Q(z) = \sum\limits_{k = 0}^\infty q_k z^k = \sum\limits_{k=0}^\infty \sum\limits_{n = 0}^\infty P(S_n = k) z^k = \sum\limits_{n=0}^\infty \underbrace{\sum\limits_{k = 0}^\infty P(S_n = k) z^k}_{\text{производящая функция для $S_n$}}
+    = \sum\limits_{n = 0}^\infty G^n (z) = \frac{1}{1 - G(z)}$ - верно при $|z| \leqslant 1$ и $z \neq 1$
+
+    \begin{lemma}
+        $q_n - q_{n-1} \rightarrow 0$
+    \end{lemma}
+    
+    \begin{proof}
+        Производящая функция для $q_n - q_{n-1} = (1-z) Q (z) = \frac{1-z}{1 - G(z)}$
+
+        Значит $q_n - q_{n-1} = \frac{1}{2\pi i} \int\limits_{|z| = r} \underbrace{\frac{1 - z}{1 - G(z)}}_{\text{непрерывна в $|z| \leqslant 1$}} \frac{dz}{z^{n+1}} = \frac{1}{2\pi i} \int\limits_{|z| = 1} \frac{1 - z}{1 - G(z)} \frac{dz}{z^{n + 1}} =
+        \frac{1}{2\pi} \int\limits_0^{2\pi} \underbrace{\frac{1 - e^{it}}{1 - G(e^{it})}}_{\text{непрерывна, ограничена}} e^{-int} \, dt \\
+        \overset{\text{лемма Римана-Лебега}}{\rightarrow} 0$
+    \end{proof}
+
+    \begin{lemma}
+        $\sum\limits_{k = 0}^n q_{n - k}r_k = 1$, где $r_k = \sum\limits_{j = k + 1}^\infty P(\xi_1 = j)$
+    \end{lemma}
+
+    \begin{proof}
+        $Q(z) \frac{1 - G(z)}{1 - z} = \frac{1}{1 - z}$
+
+        Посмотрим на коэффициенты при $z^n$ в левой части равенства - это свёртка. То есть достаточно понять, что $r_k$ появляются из $\frac{1 - G(z)}{1 - z}$
+
+        $\frac{1 - G(z)}{1 - z} = \frac{G(1) - G(z)}{1 - z} = \sum\limits_{n = 0}^\infty \frac{P(\xi_1 = n) (1 - z^n)}{1 - z} = \sum\limits_{n = 1}^\infty P(\xi_1 = n) \cdot (1 + z + z^2 + \ldots + z^{n - 1}) = \sum\limits_{k = 0}^\infty r_k z^k$
+    \end{proof}
+
+    \begin{consequence}
+        $q_n \leqslant \frac{1}{r_0}$
+    \end{consequence}
+
+    Выберем сходящуюся подпоследовательность $q_{k_m} \rightarrow_{m \to \infty} s \implies q_{k_{m} \pm l} \rightarrow_{m \to \infty} s$
+
+    Мы знаем, что $1 = \sum\limits_{k = 0}^n q_{n - k}r_k \geqslant \sum\limits_{k = 0}^N q_{n - k}r_k \rightarrow s \sum\limits_{k = 0}^N r_k \implies 1 \geqslant s \sum\limits_{k = 0}^N r_k \rightarrow s \mathbb{E} \xi_1 \implies \frac{1}{\mathbb{E} \xi_1} \geqslant s$
+
+    \begin{enumerate}
+        \item {
+            Если $\mathbb{E} \xi_1 = +\infty$, то $\sum\limits_{k = 1}^\infty r_k = \mathbb{E} \xi_1 = +\infty \implies \sum\limits_{k = 0}^N r_k$ сколь угодно большая, тогда $s = 0$
+
+            Можно считать, что $s = \overline{\lim} q_k$, а ещё $q_k \geqslant 0 \implies \underline{\lim} q_k \geqslant 0 \implies \lim = 0$
+        }
+        \item {
+            Если $\mathbb{E} \xi_1 < +\infty$, тогда $\sum\limits_{k = 1}^\infty r_k = \mathbb{E} \xi_1 < +\infty \implies r_k \rightarrow 0 \implies r_k$ ограничены, $r_k \leqslant M$
+
+            $1 = \sum\limits_{k = 0}^n q_{n - k} r_k = \sum\limits_{k = 0}^N q_{n - k} r_k + \underbrace{\sum\limits_{k = N + 1}^n q_{n - k}r_k}_{M \sum\limits_{k = N + 1}^n r_k < \varepsilon M} < \varepsilon M + \sum\limits_{k = 0}^N q_{n - k}r_k 
+            \rightarrow_{n = k_m} \varepsilon M + s\sum\limits_{k = 0}^N r_k \leqslant \varepsilon M + s\mathbb{E} \xi_1 \implies 1 \leqslant s \mathbb{E} \xi_1 \implies \underline{\lim} \geqslant \frac{1}{\mathbb{E} \xi_1}$ 
+
+            А ещё $\sum\limits_{k = 0}^N q_{n - k}r_k \rightarrow s \sum\limits_{k = 0}^N r_k \implies 1 \geqslant s \sum\limits_{k = 0}^N r_k \rightarrow s \mathbb{E} \xi_1 \implies \frac{1}{\mathbb{E} \xi_1} \geqslant s$ - получили неравенство и на верхрний предел
+        }
+    \end{enumerate}
+\end{proof}
+
+\begin{consequence}
+    $\frac{\mathcal{N} (t)}{t} \rightarrow \frac{1}{\mathbb{E} \xi_1}$
+\end{consequence}
+
+\begin{proof}
+    Теорема Штольца
+\end{proof}
+
+\begin{remark}
+    Парадокс времени восстановления
+
+    $P(\xi_{\nu (t)} > x) \geqslant P(\xi_1 > x)$
+\end{remark}

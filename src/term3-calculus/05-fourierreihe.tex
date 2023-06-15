@@ -1717,19 +1717,199 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
 \end{proof}
 
 \begin{consequence}
-    \textbf{Теорема Фейера}
+    \begin{enumerate}
+        \item Если $f \in C_{2\pi}$, то $\Pi_r (f) \rightrightarrows f$
+        \item Если $f \in L_{2\pi}^p$ при $1 \leqslant p < +\infty$, то $||\Pi_r (f) - f||_p \rightarrow 0$
+    \end{enumerate}
+\end{consequence}
+
+\begin{theorem}
+\textbf{Теорема Фейера}
 
     \begin{enumerate}
         \item Если $f \in C_{2\pi}$, то $\sigma_n (f) \rightrightarrows f$
         \item Если $f \in F_{2\pi}^p$ при $1 \leqslant p < +\infty$, то $||\sigma_n (f) - f||_p \rightarrow 0$
         \item Если $f \in L_{2\pi}^1$ и непрерывна в точке $x_0$, то $\sigma_n (f, x_0) \rightarrow f(x_0)$
     \end{enumerate}
+\end{theorem}
+
+\begin{consequence}
+    из теоремы Фейера
+    \begin{enumerate}
+        \item {
+            Если $f \in L_{2\pi}^1$, непрерывна в точке $x$ и $S_n (f, x)$ сходится, то $S_n (f, x) \rightarrow f(x)$
+        }
+        \item {
+            Если $f \in C_{2\pi}$ и $S_n (f) \rightrightarrows g$, то $g = f$ 
+        }
+        \item {
+            \textbf{Теорема единственности}. Если $f$ и $g$ суммируемые, и у них совпадают коэффициенты Фурье, то $f = g$ почти везде
+
+            \begin{proof}
+                Достаточно показать, что если $f \in L_{2\pi}^1$ и все её коэффициенты Фурье равны 0, то $f = 0$ почти везде
+
+                $S_n (f) = 0 \implies \sigma_n (f) \equiv 0$, но $|| \sigma_n (f) - f ||_1 \rightarrow 0 \implies ||f||_1 = 0 \implies f = 0$ почти везде
+            \end{proof}
+        }
+        \item {
+            Тригонометрическая система - базис в $L_{2\pi}^2$
+
+            \begin{proof}
+                Базис $\Leftrightarrow Cl \, Lin \, = L_{2\pi}^2$
+
+                Возьмём $f \in L_{2\pi}^2$. Мы знаем, что $|| \underbrace{\sigma_n (f)}_{\in Lin} - f ||_2 \rightarrow 0 \implies f \in Cl \, Lin $
+            \end{proof}
+        }
+        \item {
+            В $L_{2\pi}^2$ ряд Фурье сходится к функции
+        }
+        \item {
+            \textbf{Тождество Парсеваля}. $f, g \in L_{2\pi}^2 \implies \int\limits_{-1}^1 f \bar{g} = 2\pi \sum\limits_{k \in \mathbb{Z}} c_k (f) \overline{c_k (g)}$ 
+        }
+    \end{enumerate}
 \end{consequence}
 
 \begin{theorem}
+    \textbf{Теорема Вейерштрасса (о приближении тригонометрическими многочленами)}
+
     \begin{enumerate}
-        \item Если $f \in C_{2\pi}$, то $\Pi_r (f) \rightrightarrows f$
-        \item Если $f \in L_{2\pi}^p$ при $1 \leqslant p < +\infty$, то $||\Pi_r (f) - f||_p \rightarrow 0$
+        \item {
+            Если $f \in C_{2\pi}, \varepsilon > 0$, то существует тригонометрический многочлен $T$, такой, что $|f(x) - T(x)| < \varepsilon \, \forall \, x \in \mathbb{R}$
+        }
+        \item {
+            $1 \leqslant p < +\infty, f \in L_{2\pi}^p, \varepsilon > 0$, то существует тригонометрический многочлен, т.ч. $||f - T||_p < \varepsilon$
+        }
     \end{enumerate}
 \end{theorem}
+
+\begin{proof}
+    $\sigma_n (f)$ - тригонометрический многочлен
+\end{proof}
+
+\Subsection{Преобразование Фурье}
+
+\begin{definition}
+    $f \in L^1 (\mathbb{R})$
+
+    $\overset{\wedge}{f} (x) = \frac{1}{\sqrt{2\pi}} \int\limits_{\mathbb{R}} f(t) e^{-itx} \, dt$ - прямое преобразование Фурье
+    
+    $\overset{\vee}{f} (x) = \frac{1}{\sqrt{2\pi}} \int\limits_{\mathbb{R}} f(t) e^{itx} \, dt$ - обратное преобразование Фурье
+
+\end{definition}
+
+\begin{remark}
+    $\xi$ - случайная величина с плотностью распределения $f \geqslant 0$, тогда $\varphi_\xi (x) = \sqrt{2\pi} \overset{\wedge}{f} (x) $
+\end{remark}
+
+\begin{properties}
+    \begin{enumerate}
+        \item {
+            $\overset{\wedge}{f} \in C (\mathbb{R})$ и $|f(x)| \leqslant \frac{1}{\sqrt{2\pi}} ||f||_1$
+
+            \begin{proof}
+                $|\overset{\wedge}{f}(x)| = \frac{1}{\sqrt{2\pi}} \left| \int\limits_{\mathbb{R}} e^{-itx} f(x) \, dt \right| \leqslant \frac{1}{\sqrt{2\pi}} \int\limits_{\mathbb{R}} |f(x)| \, dt$
+
+                $\left| \overset{\wedge}{f} (x + h) - \overset{\wedge}{f} (x) \right| = \frac{1}{\sqrt{2\pi}} \left| \int\limits_{\mathbb{R}} f(t) (e^{-it(x + h) - e^{-itx}}) \, dt \right| \leqslant \frac{1}{\sqrt{2\pi}} \int_{\mathbb{R}} |f(t)| |e^{-iht} - 1| \, dt$
+            \end{proof}
+
+        }
+        \item {
+            $\overset{\wedge}{f} (x) \rightarrow_{x \to \pm \infty} 0$
+
+            \begin{proof}
+                Лемма Римана-Лебега
+            \end{proof}
+        }
+        \item {
+            Если $t^k f(t)$ суммируемая, то $\overset{\wedge}{f}^{(k)} (x) = \frac{(-i)^k}{\sqrt{2\pi}} \int\limits_{\mathbb{R}} t^k f(t) e^{-itx} \, dt$
+
+            \begin{proof}
+                Индукция по $k$
+
+                \begin{enumerate}
+                    \item $k = 0$ - определение
+                    \item {
+                        $k - 1 \rightarrow k$
+
+                        $\overset{\wedge}{f}^{(k)} (x) = \left( \overset{\wedge}{f}^{(k - 1)} (x) \right)' = \frac{(-i)^{k - 1}}{\sqrt{2\pi}} \left( \int\limits_{\mathbb{R}} t^{k -1} f(t) e^{-itx} \, dt \right)_x' = \frac{(-i)^{k - 1}}{\sqrt{2\pi}} \int\limits_{\mathbb{R}} \left( t^{k-1} f(t) e^{-itx} \, dt \right)_x' \, dt$
+
+                        Чтобы дифференцировать под знаком интеграла - нужна равномерная сходимость $t^{k-1} f(t) e^{-itx}$
+
+                        $\left| t^{k-1} f(t) e^{-itx} \right| = |t|^k |f(t)|$ - суммируемая по условию
+                    }
+                \end{enumerate}
+            \end{proof}
+        }
+        \item {
+            Если $f \in C^r (\mathbb{R})$ и $f^{(k)} \in L^1 (\mathbb{R})$ при  $k = 0, 1, \ldots, r$
+
+            Тогда $\overset{\wedge}{f}^{(k)} (x) = (ix)^k \overset{\wedge}{f} (x)$
+
+            \begin{proof}
+                Надо доказать, что $\overset{\wedge}{f'} (x) = ix \cdot \overset{\wedge}{f} (x)$
+
+                $\overset{\wedge}{f'} (x) = \frac{1}{\sqrt{2\pi}} \int\limits_{\mathbb{R}} f'(t) e^{-itx} \, dt = \frac{1}{\sqrt{2\pi}} f(t) e^{-itx} \bigg |_{t = -\infty}^{t = +\infty} + ix \cdot \underbrace{\frac{1}{\sqrt{2\pi}} \int\limits_{\mathbb{R}} f(t) e^{-itx} \, dt}_{=\overset{\wedge}{f} (x)}$
+
+                $f(t) = \int\limits_0^t f' (s) \, ds \rightarrow_{t \to +\infty} \int\limits_0^\infty f' (s) \, ds \implies \lim\limits_{t \to \pm \infty} f(t)$ существует
+                
+                Если $a = \lim\limits_{t \to + \infty} f(t) \neq 0 \implies |f(t)| > \frac{|a|}{2}$ при больших $t$, а тогда нет суммируемости. Значит пределы нули и неинтегрального слагаемого у нас нет
+            \end{proof}
+        }
+        \item {
+            $f(a + xh)^{\wedge} = \frac{1}{h} e^{\frac{ixa}{h}} \overset{\wedge}{f} (\frac{x}{h})$
+
+            \begin{proof}
+                $f(a + xh)^{\wedge} = \frac{1}{\sqrt{2\pi}} \int\limits_{\mathbb{R}} f(a + th) e^{-itx} \, dt = \frac{1}{\sqrt{2\pi}} \int\limits_{\mathbb{R}} f(s) e^{-ix \frac{s - a}{h}} \frac{ds}{h} = \frac{1}{\sqrt{2\pi}} \cdot \frac{1}{h} \cdot \int\limits_{\mathbb{R}} f(s) e^{-i \frac{x}{h} s} \, ds \cdot e^{\frac{ixa}{h}}$
+            \end{proof}
+        }
+        \item {
+            $\overset{\wedge}{f * g} (x) = \overset{\wedge}{f} (x) * \overset{\wedge}{g} (x) \cdot \sqrt{2\pi}$
+
+            \begin{proof}
+                Пусть $f, g \geqslant 0$ и их интегралы равны 1.
+
+                $\xi$ и $\eta$ - независимые случайные величины с плотностью распределения $f$ и $g$ и $\underbrace{\varphi_{\xi + \eta}}_{\sqrt{2\pi} \overset{\wedge}{h} (x)} = \varphi_{\xi} (-x) \cdot \varphi_{\eta} (-x)$
+            \end{proof}
+        }
+        \item {
+            Единственность. Если $\overset{\wedge}{f} (x) = \overset{\wedge}{g} (x)$, то $f = g$ почти везде
+        }
+        \item {
+            Формула обращения. Пусть $f \in L^1 (\mathbb{R}), f \in C(\mathbb{R})$ и $\overset{\wedge}{f} (x) \in L^1 (\mathbb{R})$
+
+            Тогда $f(t) = \frac{1}{\sqrt{2\pi}} \int\limits_{\mathbb{R}} \overset{\wedge}{f} (x) e^{itx} \, dx$, То есть $\overset{\vee}{\overset{\wedge}{f}} (x)$
+
+            \begin{proof}
+                Пусть $\overset{\wedge}{f} (x) \geqslant 0$ и $\int = 1$. Возьмём $\xi$ - случайную величину с плотностью распределения $\overset{\wedge}{f} (x)$
+
+                Тогда умеем восстанавливать $\underbrace{P(a < \xi \leqslant b)}_{=\int\limits_a^b f(x) \, dx = (*)} = \frac{1}{2\pi} \lim\limits_{T \to +\infty} \int\limits_{-T}^T \underbrace{\varphi_{\xi} (t)}_{=\sqrt{2\pi} \overset{\wedge}{f} (-t)} \frac{e^{-ita} - e^{-itb}}{it} \, dt = \sqrt{2\pi} \int\limits_{\mathbb{R}} \overset{\wedge}{f} (-t) \frac{e^{-ita} - e^{-itb}}{it} \, dt$
+
+                Давайте продифференцируем $(*)$ по $b \, : \, f(b) = \sqrt{2\pi} \int\limits_{\mathbb{R}} \overset{\wedge}{f} (-t) e^{-itb} \, dt = \sqrt{2\pi} \int\limits_{\mathbb{R}} \overset{\wedge}{f} (s) e^{isb}\, ds$
+            \end{proof}
+        }
+    \end{enumerate}
+\end{properties}
+
+\begin{example}
+    Кодирование звука
+
+    $f(t) = \sum\limits_{n = 1}^\infty a_n e^{i\lambda_n t}$ на $[-A, A]$. Ряд $\sum\limits_{n = 1}^\infty |a_n|$ сходится. $f(t) = 0$ вне $[-A, A]$
+
+    $\overset{\wedge}{f} (x) = \frac{1}{\sqrt{2\pi}} \int\limits_{\mathbb{R}} \sum\limits_{n = 1}^\infty a_n e^{i\lambda_n t} e^{-itx} \, dt = \frac{1}{\sqrt{2\pi}} \sum\limits_{n = 1}^\infty a_n \int\limits_{-A}^A e^{i\lambda_n t} e^{-itx} \, dt$
+
+    \begin{enumerate}
+        \item {
+            Если $x = \lambda_n$, то $\int\limits_{-A}^A = 2A$
+        }
+        \item {
+            Если $x \neq \lambda_n$, то $\int\limits_{-A}^A e^{i(\lambda_n - x)t} \, dt = 2 \frac{\sin (\lambda_n - x)A}{\lambda_n - x}$
+
+            $\left| 2 \frac{\sin (\lambda_n - x)A}{\lambda_n - x} \right| \leqslant \frac{1}{\lambda_n - x}$
+
+            Если $x$ далеко от всех $\lambda_n$, то все $\int$ маленькие
+        }
+    \end{enumerate}
+\end{example}
+
+
 
