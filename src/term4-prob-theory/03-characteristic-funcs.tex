@@ -27,7 +27,7 @@
         \item {
             $|\mathbb{E} \xi | \leqslant \mathbb{E} |\xi|$
 
-            \textit{Доказательство: } Возьмём $c \in \mathbb{C}, |c| = 1$, такой, что $\mathbb{E} (c \xi) = |\mathbb{E} \xi|$, то есть $c = \frac{\overline{\mathbb{E} \xi}}{|\mathbb{E} \xi|}$
+            \textit{Доказательство: } Возьмём $c \in \mathbb{C}, |c| = 1$, такой, что $\mathbb{E} (c \xi) = |\mathbb{E} \xi|$, то есть $c = \frac{|\mathbb{E} \xi|}{\overline{\mathbb{E} \xi}}$
 
             Тогда $|\mathbb{E} \xi| = \mathbb{E} (c \xi) = \mathbb{E} (\Re (c \xi)) \leqslant \mathbb{E} |\Re (c \xi)| \leqslant \mathbb{E} |c \xi | = \mathbb{E} |\xi|$
         }
@@ -101,7 +101,7 @@
     
     $\phi_{\eta}(t) = \mathbb{E} e^{i \eta t} = \frac{1}{\sqrt{2 \pi}} \int_{\mathbb{R}} e^{i t x} e^{-\frac{x^2}{2}} dx = \frac{1}{\sqrt{2 \pi}} e^{-\frac{t^2}{2}} \int_{\mathbb{R}} e^{- \frac{(x - it)^2}{2}} dx$.
 
-    Посчитаем $I := \int_{\mathbb{R}} e^{-\frac{(x - it)^2}{2}} dx = \int_{-it + \mathbb{R}} e^{-\frac{z^2}{2}} dz = \int_{\Gamma_R} e^{-\frac{z^2}{2}} dz = 0$.
+    Посчитаем $I := \int_{\mathbb{R}} e^{-\frac{(x - it)^2}{2}} dx = \int_{-it + \mathbb{R}} e^{-\frac{z^2}{2}} dz = \int_{\Gamma_R} e^{-\frac{z^2}{2}} dz = 0$ (т.к. особых точек внутри контура нет).
 
     С другой стороны это также равно: $\int_{\Gamma_R} e^{-\frac{z^2}{2}} dz = \underbrace{-\int_{-R}^{R}}_{\to \sqrt{2 \pi}} + \underbrace{\int_{-R - it}^{R - it}}_{\to I} + \underbrace{\int_{R - it}^{R}}_{(*): \to 0} + \underbrace{\int_{-R}^{-R - it}}_{(*): \to 0}$
 
@@ -144,7 +144,7 @@
     
     $\varphi^{(k + 1)}(t) = \lim_{h \to 0} \frac{\varphi^{(k)}(t + h) - \varphi^{(k)}(t)}{h} = $
 
-    $= \lim_{h \to 0} \frac{\mathbb{E} (i \xi)^k e^{i\xi(t + h)} - \mathbb{E} (i \xi)^k e^{i\xi(t)}}{h} = 
+    $= \lim_{h \to 0} \frac{\mathbb{E} (i \xi)^k e^{i\xi(t + h)} - \mathbb{E} (i \xi)^k e^{it\xi}}{h} = 
     \lim_{h \to 0} \mathbb{E} ((i \xi)^k e^{i t \xi} \cdot \frac{e^{ih\xi} - 1}{h}) = \mathbb{E} ((i\xi)^k e^{i t \xi} \cdot \lim_{h \to 0} \frac{e^{i h \xi} - 1}{h})$, а предел -- это $i \xi$.
 
     Почему можно было запихать предел под матожидание?
@@ -181,13 +181,15 @@
     Тогда:
 
     $(*) = \int_{\mathbb{R}} \lim_{t \to 0} \frac{\sin^2 (tx)}{t^2} dP_{\xi}(x) \leqslant
-    \underline{\lim}_{t \to 0} \int_{\mathbb{R}} -\frac{e^{2itx} + e^{-2itx} - 2}{4t^2} dP_{\xi} (x) = (*)$ -- лемма Фату и расписали синус.
+    \underline{\lim}_{t \to 0} \int_{\mathbb{R}} -\frac{e^{2itx} + e^{-2itx} - 2}{4t^2} dP_{\xi} (x) = (*)$ -- лемма Фату и расписали синус как $\sin{a} = \frac{e^{ia} - e^{-ia}}{2 i}$.
 
     $(*) = \underline{\lim}_{t \to 0} -\frac{\varphi_{\xi}(2t) - \varphi_{\xi}(-2t) - 2}{4t^2} = (*)$.
     
     Причём $\varphi_{\xi} (u) = \varphi_{\xi}(0) + \varphi_{\xi}'(0) \cdot u + \frac{\varphi_{\xi}''(0) u^2}{2} + o(u^2)$.
 
-    Тогда $\varphi_{\xi}(2t) + \varphi_{\xi}(-2t) = 2 + \frac{\varphi_{\xi}''(0) \left((2t)^2 + (-2t)^2 \right)}{2} + o(t^2)$, а тогда $(*) = \underline{\lim}_{t \to 0} (-\varphi_{\xi}''(0) + o(1))$
+    Тогда $\varphi_{\xi}(2t) + \varphi_{\xi}(-2t) = 2 + \frac{\varphi_{\xi}''(0) \left((2t)^2 + (-2t)^2 \right)}{2} + o(t^2)$, а тогда $(*) = \underline{\lim}_{t \to 0} (-\varphi_{\xi}''(0) + o(1))$.
+
+    То есть оценили сверху каким-то число, тогда интеграл конечен.
 \end{proof}
 
 \begin{theorem}
@@ -195,36 +197,94 @@
 
     Пусть $a < b$ и $P(\xi = a) = P(\xi = b) = 0$.
 
-    Тогда $P(\xi \in [a, b]) = \lim_{T \to +\infty} \frac{1}{2\pi} \int_{-T}^{T} \frac{e^{-iat} - e^{ibt}}{it} \varphi_{\xi}(t) \, dt $
+    Тогда $P(\xi \in [a, b]) = \lim_{T \to +\infty} \frac{1}{2\pi} \int_{-T}^{T} \frac{e^{-iat} - e^{-ibt}}{it} \varphi_{\xi}(t) \, dt $
 
-    То есть $v.p. \frac{1}{2\pi} \int_{-T}^{T} \frac{e^{-iat} - e^{ibt}}{it} \varphi_{\xi}(t) \, dt$
+    То есть $v.p. \frac{1}{2\pi} \int_{\mathbb{R}} \frac{e^{-iat} - e^{-ibt}}{it} \varphi_{\xi}(t) \, dt$
 \end{theorem}
 
 \begin{proof}
-    % TODO: тут я выпал из жизни, пока пытался внести исправления. Надо убедиться, что все ок.
 
-    $\xi = \frac{a + b}{2} + \frac{b - a}{2}\eta$, тогда $P(\xi \in [a, b]) = P(\eta \in [-1, 1])$, в частности $P_{\eta}(\{ \pm 1 \}) = 0$.
+    Будем доказывать в несколько шагов:
 
-    $\varphi_{\xi}(t) = e^{i \frac{a + b}{2} t} \varphi_{\eta}(\frac{b - a}{2}t)$ - подставим в наш интеграл.
+    \begin{enumerate}
+        \item {
+            Пусть $\xi = \frac{b - a}{2} \eta + \frac{a +  b}{2}$, $\xi \in [a, b] \Leftrightarrow \eta \in [-1, 1]$, тогда $P(\xi \in [a, b]) = P(\eta \in [-1, 1]) = (')$.
 
-    $ \int_{-T}^{T} \frac{e^{-iat} - e^{-ibt}}{it} \varphi_{\xi} (t) \, dt = \int_{-T}^{T} \frac{e^{-iat} - e^{-ibt}}{it} e^{i \frac{a + b}{2} t} \varphi_{\eta} (\frac{b - a}{2} t) \, dt = $
+            Допустим, что мы уже доказали эту формулу для $\eta \in [-1, 1]$, тогда 
 
-    $ = \int_{-T}^{T} \frac{e^{-i\frac{a - b}{2}t} - e^{-i\frac{b - a}{2}t}}{it} \varphi_{\eta} (\frac{b - a}{2}) \, dt = \int_{-\frac{b - a}{2}T}^{\frac{b - a}{2}T} \frac{e^{is} - e^{-is}}{is} \varphi_{\eta} (s) \, ds$, здесь замена $s = \frac{b - a}{2} t$
+            $P(\eta \in [-1, 1]) = \lim_{T \to +\infty} \frac{1}{2\pi} \int_{-T}^{T} \frac{e^{-it} - e^{i t}}{it} \phi_{\eta}(t) dt = (*)$
 
-    Можно считать, что $a = -1$, а $b = 1$
+            Пересчитаем левую часть формулы $(')$:
 
-    $\int_{-T}^T \frac{e^{it} - e^{-it}}{it} \varphi_{\xi}(t) \, dt = \int_{-T}^T \int_{\mathbb{R}} \frac{e^{it} - e^{-it}}{it} e^{itx} dP_{\xi}(x) \, dt = (*)$ - давайте переставим местами интегралы.
+            $P(\xi \in [a, b]) = \lim_{T \to +\infty} \frac{1}{2\pi} \int_{-T}^{T} \frac{e^{i a t} - e^{i b t}}{i t} \phi_{\eta} (\frac{b - a}{2} t) e^{i \frac{a + b}{2} t} dt =_{s := \frac{b - a}{2} t}$
+            
+            $= \lim_{T \to +\infty} \frac{1}{2 \pi} \int_{-T \frac{b - a}{2}}^{T \frac{b - a}{2}} \frac{e^{i s} - e^{-i s}}{is} \phi_{\eta}(s) ds = (**)$
+
+            То есть если мы получили, что $(*) = (**)$.
+
+            Тогда если мы докажем формулу при $\eta \in [-1, 1]$, то решим задачу.
+        }
+        \item {
+            Пусть $a = -1, b = 1$:
+
+            $P(\xi \in [-1, 1]) \overset{?}{=} \lim_{T \to +\infty} \frac{1}{2\pi} \int_{-T}^{T} \frac{e^{it} - e^{-it}}{it} \phi_{\xi}(t) dt$.
+            
+            Посчитаем интеграл:
+            
+            $\int_{-T}^{T} \frac{e^{it} - e^{-it}}{it} \phi_{\xi}(t) dt = \int_{-T}^{T} \frac{e^{it} - e^{-it}}{it} \int_{\mathbb{R}} e^{itx} dP_{\xi}(x) dt =_{\text{т. Фубини}} \int_{\mathbb{R}} \int_{-T}^{T} \frac{e^{it} - e^{-it}}{it} e^{i t x} dt dP_{\xi}(x)$ -- теорему Фубини можно применять, если подъинтегральная функция суммируема: $|e^{i t x}| < 1$ и $|\frac{e^{it} - e^{-it}}{it}|$ -- ограничена (при больших $t$ значение меньше $2$, при $t \in [-1, 1]$ это непрерывная функция, а значит ограничена на этом отрезке).
+
+            Давайте посмотрим на внутренний интеграл: $\Phi_{T}(x) = \int_{-T}^{T} \frac{e^{it} - e^{-it}}{it} e^{it x} dt$.
+            
+            Заметим, что $\frac{e^{it} - e^{-it}}{it} = \int_{-1}^{1} e^{i t u} du$.
+
+            Тогда $\Phi_{T}(x) = \int_{-T}^{T} \int_{-1}^{1} e^{i t u} e^{i t x} du dt = \int_{-1}^{1} \int_{-T}^{T} e^{i t (u + x)} dt du$ -- т. Фубини, т.к. подъинтегральная ф-я по модулю равна $1$.
+
+
+        }
+    \end{enumerate}
+
+
+
+    % $\xi = \frac{a + b}{2} + \frac{b - a}{2}\eta$, тогда $P(\xi \in [a, b]) = P(\eta \in [-1, 1])$, в частности $P_{\eta}(\{ \pm 1 \}) = 0$.
+
+    % $\varphi_{\xi}(t) = e^{i \frac{a + b}{2} t} \varphi_{\eta}(\frac{b - a}{2}t)$ - подставим в наш интеграл.
+
+    % $ \int_{-T}^{T} \frac{e^{-iat} - e^{-ibt}}{it} \varphi_{\xi} (t) \, dt = \int_{-T}^{T} \frac{e^{-iat} - e^{-ibt}}{it} e^{i \frac{a + b}{2} t} \varphi_{\eta} (\frac{b - a}{2} t) \, dt = $
+
+    % $ = \int_{-T}^{T} \frac{e^{-i\frac{a - b}{2}t} - e^{-i\frac{b - a}{2}t}}{it} \varphi_{\eta} (\frac{b - a}{2}) \, dt = \int_{-\frac{b - a}{2}T}^{\frac{b - a}{2}T} \frac{e^{is} - e^{-is}}{is} \varphi_{\eta} (s) \, ds$, здесь замена $s = \frac{b - a}{2} t$
+
+    % Можно считать, что $a = -1$, а $b = 1$
+
+    % $\int_{-T}^T \frac{e^{it} - e^{-it}}{it} \varphi_{\xi}(t) \, dt = \int_{-T}^T \int_{\mathbb{R}} \frac{e^{it} - e^{-it}}{it} e^{itx} dP_{\xi}(x) \, dt = (*)$ - давайте переставим местами интегралы.
     
-    Нужна суммируемость того, что под интегралом, а она есть, всё ограничено какой-то суммируемой константой.
+    % Нужна суммируемость того, что под интегралом, а она есть, всё ограничено какой-то суммируемой константой.
     
-    $(*) = \int_{\mathbb{R}} \int_{-T}^T \frac{e^{it} - e^{-it}}{it} e^{itx} \, dt \, dP_{\xi}(x)$.  Пусть $\Phi_T (x) = \int_{-T}^{T} \frac{e^{it} - e^{-it}}{it} e^{itx} \, dt$
+    % $(*) = \int_{\mathbb{R}} \int_{-T}^T \frac{e^{it} - e^{-it}}{it} e^{itx} \, dt \, dP_{\xi}(x)$.  Пусть $\Phi_T (x) = \int_{-T}^{T} \frac{e^{it} - e^{-it}}{it} e^{itx} \, dt$
 
-    $\lim_{T \to +\infty} \int_{-T}^T \frac{e^{it} - e^{-it}}{it} \varphi_{\xi} (t) \, dt = \lim_{T \to +\infty} \int_{\mathbb{R}} \Phi_T(x) dP_{\xi} (x) = \int_{\mathbb{R}} \lim_{T \to +\infty} \Phi_T (x) \, dP_{\xi} (x) $ - хотим понять, почему 
-    можно внести предел под интеграл, но разберемся с этим позже.
+    % $\lim_{T \to +\infty} \int_{-T}^T \frac{e^{it} - e^{-it}}{it} \varphi_{\xi} (t) \, dt = \lim_{T \to +\infty} \int_{\mathbb{R}} \Phi_T(x) dP_{\xi} (x) = \int_{\mathbb{R}} \lim_{T \to +\infty} \Phi_T (x) \, dP_{\xi} (x) $ - хотим понять, почему 
+    % можно внести предел под интеграл, но разберемся с этим позже.
 
-    $\lim_{T \to +\infty} \Phi_T (x) = \lim_{T \to +\infty} \int_{-T}^{T} \int_{-1}^1 e^{iut} \, du \, e^{itx} \, dt = \lim_{T \to +\infty} \int_{-1}^1 \int_{-T}^T e^{it(u + x)} \, dt \, du = (*)$.
+    % $\lim_{T \to +\infty} \Phi_T (x) = \lim_{T \to +\infty} \int_{-1}^1 \int_{-T}^T e^{it(u + x)} \, dt \, du = (*)$.
 
-    Заметим, что $\frac{e^{it(u + x)}}{i(u + x)} \bigg |_{t = -T}^{t = +T} = \frac{2\sin ((u + x)T)}{u + x}$
+    % Заметим, что $\frac{e^{it(u + x)}}{i(u + x)} \bigg |_{t = -T}^{t = +T} = \frac{2\sin ((u + x)T)}{u + x}$ -- первообразная для внутреннего интергала $(*)$.
+
+    % Тогда $(*) = \lim_{T \to +\infty} \int_{-1}^1 \frac{2\sin ((u + x)T)}{u + x} \, du = (*)$. Сделаем замену $y = (u + x)T$, тогда $dy = T \cdot du$.
+
+    % Тогда $(*) = \lim_{T \to +\infty} \int_{(-1 + x)T}^{(1 + x)T} \frac{2 \sin y}{y} \, dy = \begin{cases}
+    %     0, & \text{при $x > 1$} \\
+    %     0, & \text{при x < -1} \\
+    %     \int_{\mathbb{R}} \frac{2 \sin y}{y} \, dy = 2\pi, & \text{иначе}
+    % \end{cases}$
+
+    % Получили $2\pi \int_{\mathbb{R}} \mathds{1}_{[-1, 1]} (x) \, dP_{\xi} (x) = 2\pi P_{\xi}([-1, 1])$.
+
+    % Вспомним, что мы не доказали по дороге один переход. Нужно понять, почему $\int_{a}^b \frac{\sin y}{y} \, dy$ ограничен - интеграл по лучу сходится, значит первообразная 
+    % в бесконечностях имеет предел, значит в середине тоже ограничена, потому что непрервность - обоснование примерно такое. 
+
+
+    $\lim_{T \to +\infty} \Phi_T (x) = \lim_{T \to +\infty} \int_{-1}^1 \int_{-T}^T e^{it(u + x)} \, dt \, du = (*)$.
+
+    Заметим, что $\frac{e^{it(u + x)}}{i(u + x)} \bigg |_{t = -T}^{t = +T} = \frac{2\sin ((u + x)T)}{u + x}$ -- первообразная для внутреннего интергала $(*)$.
 
     Тогда $(*) = \lim_{T \to +\infty} \int_{-1}^1 \frac{2\sin ((u + x)T)}{u + x} \, du = (*)$. Сделаем замену $y = (u + x)T$, тогда $dy = T \cdot du$.
 
@@ -234,10 +294,11 @@
         \int_{\mathbb{R}} \frac{2 \sin y}{y} \, dy = 2\pi, & \text{иначе}
     \end{cases}$
 
-    Получили $2\pi \int_{\mathbb{R}} \mathds{1}_{[-1, 1]} (x) \, dP_{\xi} (x) = 2\pi P_{\xi}([-1, 1])$.
+    Получили, что $\lim_{T \to \infty} \Phi_T(x) = 2 \pi \cdot \mathds{1}_{[-1, 1]} (x)$. 
+    
+    Если докажем, что $\int_{\mathbb{R}} \Phi_{T} (x) d P_{\xi}(x) \underbrace{\to_{\text{почти везде}}}_{\text{пользуемся } P(\xi = a) = P(\xi = b) = 0 } \int_{\mathbb{R}} 2 \pi \cdot \mathds{1}_{[-1, 1]} (x) d P_{\xi}(x)$, то решим задачу, т.к. правая часть это как раз $2 \pi P(\xi \in [-1, 1])$.
 
-    Вспомним, что мы не доказали по дороге один переход. Нужно понять, почему $\int_{a}^b \frac{\sin y}{y} \, dy$ ограничен - интеграл по лучу сходится, значит первообразная 
-    в бесконечностях имеет предел, значит в середине тоже ограничена, потому что непрервность - обоснование примерно такое. 
+    То есть нужно понять, почему $\int_{a}^b \frac{\sin y}{y} \, dy$ ограничен -- интеграл по лучу сходится, значит первообразная в бесконечностях имеет предел, значит в середине тоже ограничена, потому что непрервность -- обоснование примерно такое. 
 
 \end{proof}
 
