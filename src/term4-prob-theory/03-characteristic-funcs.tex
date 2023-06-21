@@ -557,7 +557,7 @@
 \end{proof}
 
 \begin{theorem}
-    $F_n, F \, \mathbb{R} \to [0, 1]$ монотонные, $F \in C(\mathbb{R})$ и
+    $F_n, F: \, \mathbb{R} \to [0, 1]$ монотонные, $F \in C(\mathbb{R})$ и
     $F_n \to F$ поточечно.
 
     Тогда $F_n \rightrightarrows F$
@@ -583,21 +583,22 @@
 \begin{theorem}
     \textbf{ЦПТ в форме Леви}
 
-    $\xi_1, \xi_2, \ldots $ независимые, одинаково распределённые случайные величины. $a = \mathbb{E} \xi_1,
-    \sigma^2 = \mathbb{D} \xi_1, S_n = \xi_1 + \xi_2 + \ldots + \xi_n$.
+    $\xi_1, \xi_2, \ldots $ независимые, одинаково распределённые случайные величины.
+    
+    $a = \mathbb{E} \xi_1, \sigma^2 = \mathbb{D} \xi_1, S_n = \xi_1 + \xi_2 + \ldots + \xi_n$.
 
-    Тогда $P \left ( \frac{S_n - nq}{\sigma \sqrt{n}} \leqslant x \right ) = P\left ( \frac{S_n - \mathbb{E} S_n}{\sqrt{\mathbb{D} S_n}} \leqslant x \right ) \rightrightarrows \Phi (x) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^x e^{-\frac{t^2}{2}} \, dt$
+    Тогда $P \left ( \frac{S_n - n a}{\sigma \sqrt{n}} \leqslant x \right ) = P\left ( \frac{S_n - \mathbb{E} S_n}{\sqrt{\mathbb{D} S_n}} \leqslant x \right ) \rightrightarrows \Phi (x) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^x e^{-\frac{t^2}{2}} \, dt$
 \end{theorem}
 
 \begin{proof}
     Достаточно проверять поточечную сходимость характеристических функций.
 
     $\varphi_{\xi_k - a} (t) = 1 - \frac{\sigma^2 t^2}{2} + o(t^2)$, потому что
-    мы знаем, что $\mathbb{E} (\xi_k - a) = 0$ и $\mathbb{D} (\xi_k - a) \sigma^2$
+    мы знаем, что $\mathbb{E} (\xi_k - a) = 0$ и $\mathbb{D} (\xi_k - a)^2 = \sigma^2$
 
     Тогда $\varphi_{S_n - na} (t) = \prod\limits_{k = 1}^n \varphi_{\xi_k - a} (t) = \left ( 1 - \frac{\sigma^2t^2}{2} + o(t^2) \right )^n$
 
-    $\varphi_{\frac{S_n - na}{\sigma \sqrt{n}}} = \varphi_{S_n - na} \left ( \frac{t}{\sqrt{n}\sigma} \right ) = \left( 1 - \frac{t^2}{2n} + o(\frac{t^2}{n}) \right) \rightarrow e^{-\frac{t^2}{2}}$.
+    $\varphi_{\frac{S_n - na}{\sigma \sqrt{n}}} = \varphi_{S_n - na} \left ( \frac{t}{\sqrt{n}\sigma} \right ) = \left( 1 - \frac{t^2}{2n} + o \left(\frac{t^2}{n \sigma^2}\right) \right)^n \rightarrow e^{-\frac{t^2}{2}}$.
 
     Чтобы получить последний переход - логарифмируем.
 
@@ -607,7 +608,7 @@
 \begin{consequence}
     \textbf{Интегральная теорема Муавра-Лапласа}
 
-    $S_n$ - количество успехов в схеме Бернулли с вероятностью успеха $p \in (0, 1)$.
+    $S_n = \sum_{k=1}^{n} \xi_k$ -- количество успехов в схеме Бернулли с вероятностью успеха $p \in (0, 1)$, где $\xi_k \sim Bern(p)$ и независимы.
 
     Тогда $P \left( \frac{S_n - np}{\sqrt{npq}} \leqslant \right) \rightrightarrows \Phi (x)$
 \end{consequence}
@@ -623,7 +624,7 @@
 \end{example}
 
 \begin{theorem}
-    $P(\xi_{nk} = 1) = p_{nk}$ и $P(\xi_{nk} = 0) = 1 - p_{nk}$ и пусть $S_n = \xi_{n1} + \ldots + \xi_{nn}$.
+    $P(\xi_{nk} = 1) = p_{nk} \in (0, 1)$ и $P(\xi_{nk} = 0) = 1 - p_{nk}$ и пусть $S_n = \xi_{n1} + \ldots + \xi_{nn}$ -- независимые.
 
     $\max \{ p_{n1}, \ldots, p_{nn} \} \rightarrow 0$ и $p_{n1} + \ldots p_{nn} \rightarrow \lambda$.
 
@@ -632,8 +633,13 @@
 
 \begin{proof}
     $\varphi_{\xi_{nk}} (t) = \mathbb{E} e^{it\xi_{nk}} = 1 - p_{nk} + p_{nk}e^{it} = 1 + p_{nk} (e^{it} - 1)$
+    
+    Мат. ожидание выше именно такое, т.к. $e^{i t \xi_{nk}} = \begin{cases}
+        1, \text{ с вероятностью } (1 - p_{nk}) \\
+        e^{it}, \text{ с вероятностью } p_{nk}
+    \end{cases}$
 
-    Тогда $\varphi_{S_n} = \prod_{k = 1}^n (1 + p_{nk} (e^{it} - 1)) \overset{?}{\rightarrow} exp (\lambda (e^{it} - 1)) $.
+    Тогда $\varphi_{S_n}(t) = \prod_{k = 1}^n (1 + p_{nk} (e^{it} - 1)) \overset{?}{\rightarrow} \underbrace{exp (\lambda (e^{it} - 1))}_{\text{хар. функция Пуассона}} $ -- докажем для характеристических функций, тогда будет верно и для распределений.
 
     Пусть $z = e^{it} - 1$
 
@@ -647,9 +653,9 @@
 \begin{theorem}
     \textbf{ЦПТ в форме Линденберга}
 
-    $\xi_1, \ldots$ - независимые случайные величины, $a_k = \mathbb{E} \xi_k, \sigma_k^2 = \mathbb{D} \xi_k > 0, S_n = \xi_1 + \ldots + \xi_n, \mathbb{D}_n^2 = \sum_{k = 1}^n \sigma_k^2$
+    $\xi_1, \ldots$ - независимые случайные величины, $a_k = \mathbb{E} \xi_k, \sigma_k^2 = \mathbb{D} \xi_k > 0, S_n = \xi_1 + \ldots + \xi_n$, $\mathbb{D}_n^2 = \sum_{k = 1}^n \sigma_k^2 = \mathbb{D} S_n$
 
-    $f(x) = x^2 \mathds{1}_{\{ |x| \geqslant \varepsilon \mathbb{D}_n \} } (x) \, \forall \, \varepsilon > 0$ и $Lind (\varepsilon, n) = \frac{1}{\mathbb{D}_n^2} \sum_{k = 1}^n \mathbb{E} f (\xi_k - a_k) \rightarrow 0$
+    $f(x) = x^2 \mathds{1}_{\{ |x| \geqslant \varepsilon \mathbb{D}_n \} } (x)$ и $Lind (\varepsilon, n) = \frac{1}{\mathbb{D}_n^2} \sum_{k = 1}^n \mathbb{E} f (\xi_k - a_k) \rightarrow 0: \ \forall \, \varepsilon > 0$.
 
     Тогда $P \left( \frac{S_n - \mathbb{E} S_n}{\sqrt{\mathbb{D} S_n}} \leqslant x \right) \rightrightarrows \Phi (x)$
 \end{theorem}
@@ -657,17 +663,37 @@
 \begin{theorem}
     \textbf{ЦПТ в форме Ляпунова}
 
-    $\xi_1, \ldots$ независимые случайные величины
+    % $\xi_1, \ldots$ независимые случайные величины
 
-    $L(\delta, n) = \frac{1}{\mathbb{D}_n^{2 + \delta}} \sum_{k = 1}^n \mathbb{E} | \xi_k - a_k |^{2 + \delta} \rightarrow 0$ при некотором $\delta$
+    % $L(\delta, n) = \frac{1}{\mathbb{D}_n^{2 + \delta}} \sum_{k = 1}^n \mathbb{E} | \xi_k - a_k |^{2 + \delta} \rightarrow 0$ при некотором $\delta$
 
-    Тогда $P\left( \frac{S_n - \mathbb{E} S_n}{\sqrt{\mathbb{D} S_n}} \leqslant x \right) \rightrightarrows \Phi (x)$
+    % Тогда $P\left( \frac{S_n - \mathbb{E} S_n}{\sqrt{\mathbb{D} S_n}} \leqslant x \right) \rightrightarrows \Phi (x)$
+
+    $\xi_1, \xi_2, \ldots$ -- независимые случ. величины,
+    
+    $a_n := \mathbb{E} \xi_n$, $\sigma_n^2 := \mathbb{D} \xi_n$,
+    
+    $\mathbb{D}^2_n := \sum_{k = 1}^{n} \sigma_k^2$,
+    
+    $S_n := \xi_1 + \ldots + \xi_n$,
+    
+    $L(\delta) := \frac{1}{\mathbb{D}_n^{2 + \delta}} \cdot \sum_{k=1}^n \mathbb{E} |\xi_k - a_k|^{2 + \delta} \to 0$ для некоторого $\delta > 0$
+
+    Тогда $P\left( \frac{S_n - \mathbb{E} S_n}{\sqrt{ \mathbb{D} S_n }} \leq x \right) \rightrightarrows \Phi(x)$.
+
 \end{theorem}
 
 \begin{proof}
     %Ляпунов из Линденберга:
     % TODO
     %$Lind (\varepsilon, n) = \frac{1}{\mathbb{D}_n^2} \sum_{k = 1}^n \mathbb{E} (|\xi_k - a_k|^2 \cdot \mathds{1}_{|x| \geqslant \varepsilon \mathbb{D}_n} (\xi_k - a_k) ) \leqslant \frac{1}{\mathbb{D}_n^2} \sum_{k = 1}^n \mathbb{E} \left( \frac{|\xi_k - a_k|^{2 + \delta}}{} \right)$
+
+    Линденберг $\implies$ Ляпунов:
+
+    $Lind(\varepsilon, n) = \frac{1}{\mathbb{D}^2_n} \sum_{k=1}^{n} \mathbb{E} \left( |\xi_k - a_k|^2 \cdot \underbrace{\mathds{1}_{\{ |\xi_k - a_k| \geq \varepsilon \mathbb{D}_n \}}}_{\leq \left( \frac{|\xi_k - a_k|}{\varepsilon \mathbb{D}_n} \right)^{\delta}} \right) \leq \frac{1}{\mathbb{D}^2_n} \sum_{k=1}^{n} \mathbb{E} \left( \frac{| \xi_k - a_k |^{2 + \delta}}{\varepsilon^{\delta} \mathbb{D}_n^{\delta}} \right) =$
+    
+    $= \frac{1}{\varepsilon^{\delta}} \frac{1}{\mathbb{D}_n^{2 + \delta}} \sum_{k=1}^{n} \mathbb{E} \left( \xi_k - a_k \right)^{2 + \delta} = \frac{L(\delta)}{\varepsilon^{\delta}} \to 0$
+
 \end{proof}
 
 \begin{theorem}
