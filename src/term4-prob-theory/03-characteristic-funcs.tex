@@ -1,7 +1,7 @@
 \Subsection{Характеристические функции случайных величин}
 
 \begin{definition}
-    Комплекснозначная случайная величина $\xi = \Re \xi + i \Im \xi$, где $\Re \xi$ и $\Im \xi$ 
+    Комплекснозначная случайная величина $\xi = \Re \xi + i \Im \xi$, где $\Re \xi$ и $\Im \xi$
     вещественнозначные случайные величины.
 \end{definition}
 
@@ -76,13 +76,13 @@
             $\phi_{\xi}$ равномерно непрерывна на $\mathbb{R}$
 
             \textit{Доказательство: } $|\phi_{\xi}(t + h) - \phi_{\xi}(t)| = | \mathbb{E} e^{i (t + h) \xi} - \mathbb{E} e^{i t \xi} | = | \mathbb{E} \left( e^{it \xi} (e^{i h \xi} - 1) \right) | \leq $
-            
+
             $\leq \mathbb{E} \left| e^{it \xi} (e^{i h \xi} - 1) \right| = \mathbb{E} | e^{i h \xi} - 1 | = \int_{\mathbb{R}} | e^{i h x} - 1 | d P_{\xi}(x) \rightarrow_{(*)} 0$.
 
-            $(*)$: Знаем, что $e^{i h x} \rightarrow_{h \to 0} 1$, хотим понять, что можно вносить предел под знак интеграла. Это сделать можно по теорема Лебега, где суммируемая мажоранта будет $2$.
-            
-            
-            %$|\phi_{\xi} (t + h) - \phi_{\xi}(t)| = |\mathbb{E} (e^{i \xi (t + h) - \mathbb{E} e^{i \xi t}}) | = |\mathbb{E} (e^{i\xi t} \cdot e^{i \xi h}) - \mathbb{E} e^{i \xi t}| = 
+            $(*)$: Знаем, что $e^{i h x} \rightarrow_{h \to 0} 1$, хотим понять, что можно вносить предел под знак интеграла. Это сделать можно по теорема Лебега, где суммируемая мажоранта будет $2$, так как мера вероятностная.
+
+
+            %$|\phi_{\xi} (t + h) - \phi_{\xi}(t)| = |\mathbb{E} (e^{i \xi (t + h) - \mathbb{E} e^{i \xi t}}) | = |\mathbb{E} (e^{i\xi t} \cdot e^{i \xi h}) - \mathbb{E} e^{i \xi t}| =
             %|\mathbb{E} (e^{i \xi t}(e^{i \xi h} - 1))| \leqslant \mathbb{E} |e^{i \xi t}| \cdot |e^{i \xi h} - 1| $
 
             %$\lim_{h \to 0} \int_{\Omega} |e^{}|$
@@ -98,7 +98,7 @@
     $\phi_{\sigma \eta + a}(t) = e^{ita} \phi_{\eta} (\sigma t)$
 
     Считаем для $\eta$:
-    
+
     $\phi_{\eta}(t) = \mathbb{E} e^{i \eta t} = \frac{1}{\sqrt{2 \pi}} \int_{\mathbb{R}} e^{i t x} e^{-\frac{x^2}{2}} dx = \frac{1}{\sqrt{2 \pi}} e^{-\frac{t^2}{2}} \int_{\mathbb{R}} e^{- \frac{(x - it)^2}{2}} dx$.
 
     Посчитаем $I := \int_{\mathbb{R}} e^{-\frac{(x - it)^2}{2}} dx = \int_{-it + \mathbb{R}} e^{-\frac{z^2}{2}} dz = \int_{\Gamma_R} e^{-\frac{z^2}{2}} dz = 0$ (т.к. особых точек внутри контура нет).
@@ -121,9 +121,9 @@
 
 \begin{theorem}
     Пусть $\mathbb{E} |\xi|^n < +\infty$.
-    
+
     Тогда при $k \leqslant n$ верно, что $\varphi^{(k)} (t) = \mathbb{E} ((i\xi)^k e^{i\xi t}) $.
-    
+
     В частности, $\varphi^{(k)} (0) = i^k \mathbb{E} \xi^k$.
 
     \textit{Тут имеется в виду $k$-ая производная.}
@@ -141,10 +141,10 @@
     База $k = 0$: определение $\varphi$.
 
     Переход $k \to k + 1$:
-    
+
     $\varphi^{(k + 1)}(t) = \lim_{h \to 0} \frac{\varphi^{(k)}(t + h) - \varphi^{(k)}(t)}{h} = $
 
-    $= \lim_{h \to 0} \frac{\mathbb{E} (i \xi)^k e^{i\xi(t + h)} - \mathbb{E} (i \xi)^k e^{it\xi}}{h} = 
+    $= \lim_{h \to 0} \frac{\mathbb{E} (i \xi)^k e^{i\xi(t + h)} - \mathbb{E} (i \xi)^k e^{it\xi}}{h} =
     \lim_{h \to 0} \mathbb{E} ((i \xi)^k e^{i t \xi} \cdot \frac{e^{ih\xi} - 1}{h}) = \mathbb{E} ((i\xi)^k e^{i t \xi} \cdot \lim_{h \to 0} \frac{e^{i h \xi} - 1}{h})$, а предел -- это $i \xi$.
 
     Почему можно было запихать предел под матожидание?
@@ -177,14 +177,14 @@
     $\mathbb{E} \xi^2 = \int_{\mathbb{R}} x^2 dP_{\xi} (x) = (*)$ -- хотим доказать, что этот интеграл конечен.
 
     Заметим, что $x = \lim_{t \to 0} \frac{\sin (tx)}{t}$ и подставим вместо $x$.
-    
+
     Тогда:
 
     $(*) = \int_{\mathbb{R}} \lim_{t \to 0} \frac{\sin^2 (tx)}{t^2} dP_{\xi}(x) \leqslant
     \underline{\lim}_{t \to 0} \int_{\mathbb{R}} -\frac{e^{2itx} + e^{-2itx} - 2}{4t^2} dP_{\xi} (x) = (*)$ -- лемма Фату и расписали синус как $\sin{a} = \frac{e^{ia} - e^{-ia}}{2 i}$.
 
     $(*) = \underline{\lim}_{t \to 0} -\frac{\varphi_{\xi}(2t) - \varphi_{\xi}(-2t) - 2}{4t^2} = (*)$.
-    
+
     Причём $\varphi_{\xi} (u) = \varphi_{\xi}(0) + \varphi_{\xi}'(0) \cdot u + \frac{\varphi_{\xi}''(0) u^2}{2} + o(u^2)$.
 
     Тогда $\varphi_{\xi}(2t) + \varphi_{\xi}(-2t) = 2 + \frac{\varphi_{\xi}''(0) \left((2t)^2 + (-2t)^2 \right)}{2} + o(t^2)$, а тогда $(*) = \underline{\lim}_{t \to 0} (-\varphi_{\xi}''(0) + o(1))$.
@@ -210,14 +210,14 @@
         \item {
             Пусть $\xi = \frac{b - a}{2} \eta + \frac{a +  b}{2}$, $\xi \in [a, b] \Leftrightarrow \eta \in [-1, 1]$, тогда $P(\xi \in [a, b]) = P(\eta \in [-1, 1]) = (')$.
 
-            Допустим, что мы уже доказали эту формулу для $\eta \in [-1, 1]$, тогда 
+            Допустим, что мы уже доказали эту формулу для $\eta \in [-1, 1]$, тогда
 
             $P(\eta \in [-1, 1]) = \lim_{T \to +\infty} \frac{1}{2\pi} \int_{-T}^{T} \frac{e^{-it} - e^{i t}}{it} \phi_{\eta}(t) dt = (*)$
 
             Пересчитаем левую часть формулы $(')$:
 
             $P(\xi \in [a, b]) = \lim_{T \to +\infty} \frac{1}{2\pi} \int_{-T}^{T} \frac{e^{i a t} - e^{i b t}}{i t} \phi_{\eta} (\frac{b - a}{2} t) e^{i \frac{a + b}{2} t} dt =_{s := \frac{b - a}{2} t}$
-            
+
             $= \lim_{T \to +\infty} \frac{1}{2 \pi} \int_{-T \frac{b - a}{2}}^{T \frac{b - a}{2}} \frac{e^{i s} - e^{-i s}}{is} \phi_{\eta}(s) ds = (**)$
 
             То есть если мы получили, что $(*) = (**)$.
@@ -228,13 +228,13 @@
             Пусть $a = -1, b = 1$:
 
             $P(\xi \in [-1, 1]) \overset{?}{=} \lim_{T \to +\infty} \frac{1}{2\pi} \int_{-T}^{T} \frac{e^{it} - e^{-it}}{it} \phi_{\xi}(t) dt$.
-            
+
             Посчитаем интеграл:
-            
+
             $\int_{-T}^{T} \frac{e^{it} - e^{-it}}{it} \phi_{\xi}(t) dt = \int_{-T}^{T} \frac{e^{it} - e^{-it}}{it} \int_{\mathbb{R}} e^{itx} dP_{\xi}(x) dt =_{\text{т. Фубини}} \int_{\mathbb{R}} \int_{-T}^{T} \frac{e^{it} - e^{-it}}{it} e^{i t x} dt dP_{\xi}(x)$ -- теорему Фубини можно применять, если подъинтегральная функция суммируема: $|e^{i t x}| < 1$ и $|\frac{e^{it} - e^{-it}}{it}|$ -- ограничена (при больших $t$ значение меньше $2$, при $t \in [-1, 1]$ это непрерывная функция, а значит ограничена на этом отрезке).
 
             Давайте посмотрим на внутренний интеграл: $\Phi_{T}(x) = \int_{-T}^{T} \frac{e^{it} - e^{-it}}{it} e^{it x} dt$.
-            
+
             Заметим, что $\frac{e^{it} - e^{-it}}{it} = \int_{-1}^{1} e^{i t u} du$.
 
             Тогда $\Phi_{T}(x) = \int_{-T}^{T} \int_{-1}^{1} e^{i t u} e^{i t x} du dt = \int_{-1}^{1} \int_{-T}^{T} e^{i t (u + x)} dt du$ -- т. Фубини, т.к. подъинтегральная ф-я по модулю равна $1$.
@@ -256,12 +256,12 @@
     % Можно считать, что $a = -1$, а $b = 1$
 
     % $\int_{-T}^T \frac{e^{it} - e^{-it}}{it} \varphi_{\xi}(t) \, dt = \int_{-T}^T \int_{\mathbb{R}} \frac{e^{it} - e^{-it}}{it} e^{itx} dP_{\xi}(x) \, dt = (*)$ - давайте переставим местами интегралы.
-    
+
     % Нужна суммируемость того, что под интегралом, а она есть, всё ограничено какой-то суммируемой константой.
-    
+
     % $(*) = \int_{\mathbb{R}} \int_{-T}^T \frac{e^{it} - e^{-it}}{it} e^{itx} \, dt \, dP_{\xi}(x)$.  Пусть $\Phi_T (x) = \int_{-T}^{T} \frac{e^{it} - e^{-it}}{it} e^{itx} \, dt$
 
-    % $\lim_{T \to +\infty} \int_{-T}^T \frac{e^{it} - e^{-it}}{it} \varphi_{\xi} (t) \, dt = \lim_{T \to +\infty} \int_{\mathbb{R}} \Phi_T(x) dP_{\xi} (x) = \int_{\mathbb{R}} \lim_{T \to +\infty} \Phi_T (x) \, dP_{\xi} (x) $ - хотим понять, почему 
+    % $\lim_{T \to +\infty} \int_{-T}^T \frac{e^{it} - e^{-it}}{it} \varphi_{\xi} (t) \, dt = \lim_{T \to +\infty} \int_{\mathbb{R}} \Phi_T(x) dP_{\xi} (x) = \int_{\mathbb{R}} \lim_{T \to +\infty} \Phi_T (x) \, dP_{\xi} (x) $ - хотим понять, почему
     % можно внести предел под интеграл, но разберемся с этим позже.
 
     % $\lim_{T \to +\infty} \Phi_T (x) = \lim_{T \to +\infty} \int_{-1}^1 \int_{-T}^T e^{it(u + x)} \, dt \, du = (*)$.
@@ -278,8 +278,8 @@
 
     % Получили $2\pi \int_{\mathbb{R}} \mathds{1}_{[-1, 1]} (x) \, dP_{\xi} (x) = 2\pi P_{\xi}([-1, 1])$.
 
-    % Вспомним, что мы не доказали по дороге один переход. Нужно понять, почему $\int_{a}^b \frac{\sin y}{y} \, dy$ ограничен - интеграл по лучу сходится, значит первообразная 
-    % в бесконечностях имеет предел, значит в середине тоже ограничена, потому что непрервность - обоснование примерно такое. 
+    % Вспомним, что мы не доказали по дороге один переход. Нужно понять, почему $\int_{a}^b \frac{\sin y}{y} \, dy$ ограничен - интеграл по лучу сходится, значит первообразная
+    % в бесконечностях имеет предел, значит в середине тоже ограничена, потому что непрервность - обоснование примерно такое.
 
 
     $\lim_{T \to +\infty} \Phi_T (x) = \lim_{T \to +\infty} \int_{-1}^1 \int_{-T}^T e^{it(u + x)} \, dt \, du = (*)$.
@@ -294,11 +294,11 @@
         \int_{\mathbb{R}} \frac{2 \sin y}{y} \, dy = 2\pi, & \text{иначе}
     \end{cases}$
 
-    Получили, что $\lim_{T \to \infty} \Phi_T(x) = 2 \pi \cdot \mathds{1}_{[-1, 1]} (x)$. 
-    
+    Получили, что $\lim_{T \to \infty} \Phi_T(x) = 2 \pi \cdot \mathds{1}_{[-1, 1]} (x)$.
+
     Если докажем, что $\int_{\mathbb{R}} \Phi_{T} (x) d P_{\xi}(x) \underbrace{\to_{\text{почти везде}}}_{\text{пользуемся } P(\xi = a) = P(\xi = b) = 0 } \int_{\mathbb{R}} 2 \pi \cdot \mathds{1}_{[-1, 1]} (x) d P_{\xi}(x)$, то решим задачу, т.к. правая часть это как раз $2 \pi P(\xi \in [-1, 1])$.
 
-    То есть нужно понять, почему $\int_{a}^b \frac{\sin y}{y} \, dy$ ограничен -- интеграл по лучу сходится, значит первообразная в бесконечностях имеет предел, значит в середине тоже ограничена, потому что непрервность -- обоснование примерно такое. 
+    То есть нужно понять, почему $\int_{a}^b \frac{\sin y}{y} \, dy$ ограничен -- интеграл по лучу сходится, значит первообразная в бесконечностях имеет предел, значит в середине тоже ограничена, потому что непрервность -- обоснование примерно такое.
 
 \end{proof}
 
@@ -307,23 +307,23 @@
         \item {
             Если $\varphi_{\xi}(t) = \varphi_{\eta}(t)$, то $P_{\xi} = P_\eta$
 
-            \textit{Доказательство: } Рассмотрим $A = \{ a \in \mathbb{R} \, : \, \text{$a$ - точка непрервности функции распределения} \}$. 
-            
-            Тогда $\mathbb{R} \setminus A$ - не более чем счётное. 
+            \textit{Доказательство: } Рассмотрим $A = \{ a \in \mathbb{R} \, : \, \text{$a$ - точка непрервности функции распределения} \}$.
+
+            Тогда $\mathbb{R} \setminus A$ - не более чем счётное.
             Если $a < b$ и $a, b \in A$, то $P_{\xi} ([a, b]) = P_\eta ([a, b])$
 
             \begin{enumerate}
                 \item {
                     Пусть $a \in \mathbb{R}, b \in A$:
-            
+
                     Рассмотрим $a_n \in A$, такие, что $a_n \to a$ и убывают.
 
                     $P_{\xi} ((a, b]) = \lim_{n \to \infty} P_{\xi} ([a_n, b_n]) = \lim P_{\eta} ([a_n, b_n]) = P_\eta ((a, b])$.
                 }
                 \item {
                     Пусть $a < b$ произвольные:
-                    
-                    Возьмём $b_n \in A$, такие, что $b_n \to b$ и убывают. Тогда $P_{\xi} ((a, b]) = \lim_{n \to \infty} P_{\xi} (a, b_n] = \lim P_\eta (a, b_n] = P_\eta (a, b] \Rightarrow 
+
+                    Возьмём $b_n \in A$, такие, что $b_n \to b$ и убывают. Тогда $P_{\xi} ((a, b]) = \lim_{n \to \infty} P_{\xi} (a, b_n] = \lim P_\eta (a, b_n] = P_\eta (a, b] \Rightarrow
                     P_\xi = P_\eta$ на ячейках, а тогда по единственности продолжения везде совпадают.
                 }
             \end{enumerate}
@@ -333,7 +333,7 @@
             Если $\int_{\mathbb{R}} |\varphi_\xi (t) | \, dt < +\infty$, то $\xi$ имеет плотность распределения
             $p_{\xi} (x) = \frac{1}{2\pi} \int_{\mathbb{R}} e^{-itx} \varphi_{\xi} (t) \, dt$ - преобразование Фурье.
 
-            \textit{Доказательство: } Из суммируемости $\varphi_\xi (t) \Rightarrow P_{\xi} ((a, b]) = \frac{1}{2\pi} \int_{-\infty}^{+\infty} \frac{e^{-iat} - e^{-ibt}}{it} \varphi_{\xi} (t) \, dt$. 
+            \textit{Доказательство: } Из суммируемости $\varphi_\xi (t) \Rightarrow P_{\xi} ((a, b]) = \frac{1}{2\pi} \int_{-\infty}^{+\infty} \frac{e^{-iat} - e^{-ibt}}{it} \varphi_{\xi} (t) \, dt$.
 
             Проверим, что $P_{\xi} (a, b] = \int_a^b p_{\xi} (x) \, dx$.
 
@@ -354,7 +354,7 @@
 \begin{proof}
     $\varphi_{\xi} (t) = \varphi_{a_0} (t) \varphi_{c_1\xi_1} (t) \ldots \varphi_{c_n\xi_n} (t) = $
 
-    $=  e^{ita_0} (t) \varphi_{\xi_1} (c_1t) \ldots \varphi_{\xi_n} (c_nt) = 
+    $=  e^{ita_0} (t) \varphi_{\xi_1} (c_1t) \ldots \varphi_{\xi_n} (c_nt) =
     e^{ita_0} e^{ia_1c_1 t} e^{- \frac{(c_1 \sigma_1 t)^2}{2}} \ldots e^{ia_nc_n t} e^{- \frac{(c_n \sigma_n t)^2}{2}} =
     e^{ita} e^{- \frac{\sigma^2t^2}{2}} $
 \end{proof}
@@ -367,19 +367,19 @@
             Точек, где нет непрерывности $F_{\xi}$ не более чем счётное множество
 
             %\begin{proof}
-            %    $P(\xi = x) > 0$ - эти точки, а мера вероятностная. 
+            %    $P(\xi = x) > 0$ - эти точки, а мера вероятностная.
             %\end{proof}
         }
         \item {
             Если $F_{\xi_n}(b) - F_{\xi_n} (a) \rightarrow F_{\xi}(b) - F_{\xi}(a)$ для всех $a, b$, за исключением счётного множества.
-            
+
             Тогда $F_{\xi_n}(b) \rightarrow F_{\xi} (b)$ за исключением счётного множества.
 
             \begin{proof}
-                Рассмотрим $F(x)$, функцию распределения. Возьмём хорошие $a$, т.ч. $F(a) < \varepsilon$ и 
+                Рассмотрим $F(x)$, функцию распределения. Возьмём хорошие $a$, т.ч. $F(a) < \varepsilon$ и
                 $b$, т.ч. $F(b) > 1 - \varepsilon$.
-                
-                Тогда $(F_n(b) - F_n (a)) - (F(b) - F(a)) \rightarrow 0 \implies 
+
+                Тогда $(F_n(b) - F_n (a)) - (F(b) - F(a)) \rightarrow 0 \implies
                 |(F_n(b) - F_n(a)) - \underbrace{(F(b) - F(a))}_{> 1 - 2\varepsilon}| < \varepsilon \implies F_n(b) - F_n(a) > 1 - 3\varepsilon \implies F_n(a) < 3\varepsilon$ при больших $n$.
 
                 Возьмём хорошее $x$, $|F_n(x) - F(x)| \leqslant |(F_n(x) - F_n(a)) - (F(x) - F(a))| + \underbrace{F_n(a)}_{<3\varepsilon} + \underbrace{F(a)}_{<\varepsilon} < 5\varepsilon$ при больших $n$
@@ -409,7 +409,7 @@
 \end{remark}
 
 \begin{definition}
-    Множество $B \subset \mathbb{R}$ - регулярное, относительно $P_{\xi}$, если $P_{\xi} (Cl \, B \setminus Int \, B) = 0$, 
+    Множество $B \subset \mathbb{R}$ - регулярное, относительно $P_{\xi}$, если $P_{\xi} (Cl \, B \setminus Int \, B) = 0$,
     то есть $P(\xi \in Cl \, B \setminus Int \, B) = 0$
 \end{definition}
 
@@ -432,14 +432,14 @@
     \begin{enumerate}
         \item {
             $2 \Longleftrightarrow 3$
-            
+
             Если $A = \mathbb{R} \setminus U$, тогда $P(\xi_n \in A) = 1 - P(\xi_n \in U)$.
 
             $P(\xi \in A) > \overline{\lim} P(\xi_n \in A) = 1 - \underline{\lim} P(\xi_n \in U) \leqslant 1 - P(\xi \in U) = P(\xi \in A)$
         }
         \item {
             $2 \cup 3 \implies 4$
-            
+
             Мы знаем, что $U = \{ \xi_n \in Int \, B \} \{ \xi_n \in B \} \subset \{ \xi_n \in Cl \, B \} = A$
 
             Тогда $P(\xi_n \in U) \leqslant P(\xi_n \in B) \leqslant P(\xi_n \in A) \implies \underbrace{\overline{\lim} P(\xi_n \in B)}_{\geqslant \underline{\lim} P(\xi_n \in B) \geqslant \underline{\lim} P(\xi_n \in U) \geqslant P(\xi \in U) = P(\xi \in B)} \leqslant \overline{\lim} P(\xi_n \in A) \leqslant P(\xi \in A) = P(\xi \in B)$
@@ -447,7 +447,7 @@
         \item {
             $4 \Longleftrightarrow 5$
 
-            $\mathbb{E} \mathds{1}_B (\xi_n) = P(\mathds{1}_B (\xi_n) = 1) = P(\xi_n \in B)$ 
+            $\mathbb{E} \mathds{1}_B (\xi_n) = P(\mathds{1}_B (\xi_n) = 1) = P(\xi_n \in B)$
         }
         \item {
             $6 \implies 7$
@@ -459,7 +459,7 @@
         \item {
             $1 \implies 2$
 
-            Берём открытое $U$, по замечанию $U =  \bigcup\limits_{k = 1}^{\infty} (a_k, b_k]$, где $a_k, b_k$ - точки непрерывности $F$. 
+            Берём открытое $U$, по замечанию $U =  \bigcup\limits_{k = 1}^{\infty} (a_k, b_k]$, где $a_k, b_k$ - точки непрерывности $F$.
 
             $\{ \xi_n \in U \} \supset \{ \xi_n \in \bigcup\limits_{k = 1}^{m} (a_k, b_k] \} \implies P(\xi_n \in U) \geqslant \sum_{k = 1}^m P(\xi_n \in (a_k, b_k])$
 
@@ -472,7 +472,7 @@
         \item {
             $5 \implies 6$
 
-            Пусть $|f| \leqslant M$ и $D = \{ x \in \mathbb{R} \, : \, P(f(\xi) = x) > 0 \} = \{ x \, : \, P_{\xi} (f^{-1} (x) > 0) \}$. Это не более чем счётное множество. Потому что для разных $x$ - это дизъюнктные. 
+            Пусть $|f| \leqslant M$ и $D = \{ x \in \mathbb{R} \, : \, P(f(\xi) = x) > 0 \} = \{ x \, : \, P_{\xi} (f^{-1} (x) > 0) \}$. Это не более чем счётное множество. Потому что для разных $x$ - это дизъюнктные.
             Множеств с вероятностью $\frac{1}{2}$ - не больше двух, с вероятностью $\frac{1}{3}$ не больше трёх и так далее.
 
             Пусть $-M = t_0 < t_1 < \ldots < t_m = M$, так, что $t_y \not \in D$ и мелкость $< \varepsilon$.
@@ -521,7 +521,7 @@
 \end{proof}
 
 \begin{theorem}
-    $F_n, F \, \mathbb{R} \to [0, 1]$ монотонные, $F \in C(\mathbb{R})$ и 
+    $F_n, F \, \mathbb{R} \to [0, 1]$ монотонные, $F \in C(\mathbb{R})$ и
     $F_n \to F$ поточечно.
 
     Тогда $F_n \rightrightarrows F$
@@ -533,7 +533,7 @@
 
     Знаем, что $F_n(t_j) \rightarrow F(t_j)$. Берём $N \, : \, \forall \, n \geqslant N \, |F_n(t_j) - F(t_j)| < \varepsilon$.
 
-    Теперь смотрим на произвольную точку: $t_j < t < t_{j + 1}$. Тогда 
+    Теперь смотрим на произвольную точку: $t_j < t < t_{j + 1}$. Тогда
     $F_n(t) \leqslant F_n(t_{j + 1}) < F(t_{j + 1}) + \varepsilon = \frac{j + 1}{m} + \varepsilon = F(t_j) + \frac{1}{m} + \varepsilon \leqslant F(t) + \frac{1}{m} + \varepsilon < F(t) + 2\varepsilon$.
 
     Аналогично в другую сторону:
@@ -547,7 +547,7 @@
 \begin{theorem}
     \textbf{ЦПТ в форме Леви}
 
-    $\xi_1, \xi_2, \ldots $ независимые, одинаково распределённые случайные величины. $a = \mathbb{E} \xi_1, 
+    $\xi_1, \xi_2, \ldots $ независимые, одинаково распределённые случайные величины. $a = \mathbb{E} \xi_1,
     \sigma^2 = \mathbb{D} \xi_1, S_n = \xi_1 + \xi_2 + \ldots + \xi_n$.
 
     Тогда $P \left ( \frac{S_n - nq}{\sigma \sqrt{n}} \leqslant x \right ) = P\left ( \frac{S_n - \mathbb{E} S_n}{\sqrt{\mathbb{D} S_n}} \leqslant x \right ) \rightrightarrows \Phi (x) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^x e^{-\frac{t^2}{2}} \, dt$
@@ -556,7 +556,7 @@
 \begin{proof}
     Достаточно проверять поточечную сходимость характеристических функций.
 
-    $\varphi_{\xi_k - a} (t) = 1 - \frac{\sigma^2 t^2}{2} + o(t^2)$, потому что 
+    $\varphi_{\xi_k - a} (t) = 1 - \frac{\sigma^2 t^2}{2} + o(t^2)$, потому что
     мы знаем, что $\mathbb{E} (\xi_k - a) = 0$ и $\mathbb{D} (\xi_k - a) \sigma^2$
 
     Тогда $\varphi_{S_n - na} (t) = \prod\limits_{k = 1}^n \varphi_{\xi_k - a} (t) = \left ( 1 - \frac{\sigma^2t^2}{2} + o(t^2) \right )^n$
@@ -613,8 +613,8 @@
 
     $\xi_1, \ldots$ - независимые случайные величины, $a_k = \mathbb{E} \xi_k, \sigma_k^2 = \mathbb{D} \xi_k > 0, S_n = \xi_1 + \ldots + \xi_n, \mathbb{D}_n^2 = \sum_{k = 1}^n \sigma_k^2$
 
-    $f(x) = x^2 \mathds{1}_{\{ |x| \geqslant \varepsilon \mathbb{D}_n \} } (x) \, \forall \, \varepsilon > 0$ и $Lind (\varepsilon, n) = \frac{1}{\mathbb{D}_n^2} \sum_{k = 1}^n \mathbb{E} f (\xi_k - a_k) \rightarrow 0$   
-    
+    $f(x) = x^2 \mathds{1}_{\{ |x| \geqslant \varepsilon \mathbb{D}_n \} } (x) \, \forall \, \varepsilon > 0$ и $Lind (\varepsilon, n) = \frac{1}{\mathbb{D}_n^2} \sum_{k = 1}^n \mathbb{E} f (\xi_k - a_k) \rightarrow 0$
+
     Тогда $P \left( \frac{S_n - \mathbb{E} S_n}{\sqrt{\mathbb{D} S_n}} \leqslant x \right) \rightrightarrows \Phi (x)$
 \end{theorem}
 
@@ -624,7 +624,7 @@
     $\xi_1, \ldots$ независимые случайные величины
 
     $L(\delta, n) = \frac{1}{\mathbb{D}_n^{2 + \delta}} \sum_{k = 1}^n \mathbb{E} | \xi_k - a_k |^{2 + \delta} \rightarrow 0$ при некотором $\delta$
-    
+
     Тогда $P\left( \frac{S_n - \mathbb{E} S_n}{\sqrt{\mathbb{D} S_n}} \leqslant x \right) \rightrightarrows \Phi (x)$
 \end{theorem}
 
@@ -643,7 +643,7 @@
 \begin{theorem}
     \textbf{Берри-Эссенна}
 
-    $\xi_1, \ldots$ независимые, одинаково распределённые случаные величины.    
+    $\xi_1, \ldots$ независимые, одинаково распределённые случаные величины.
 
     Тогда$\left | P \left( \frac{S_n - na}{\sqrt{\sqrt{n} \sigma}} \leqslant x \right) - \Phi (x) \right | \leqslant C_{\delta} \cdot \frac{\mathbb{E} |\xi_1 - a|^{2 + \delta}}{n^{\frac{\delta}{2}} \sigma^{2 + \delta}}$
 \end{theorem}
@@ -685,7 +685,7 @@
 \end{theorem}
 
 \begin{theorem}
-    \textbf{Штрассена} 
+    \textbf{Штрассена}
 
     $\xi_1, \xi_2 \ldots$ независимые одинаково распределённые, $\mathbb{E} \xi_1 = 0$ и $\mathbb{D} \xi_1 = \sigma^2 > 0$
 
@@ -708,11 +708,11 @@
  \end{definition}
 
  \begin{theorem}
-    
+
     \textbf{Оценка Чернова}
 
     $\xi_1, \xi_2, \ldots$ - независимые, одинаково распределённые, удовлетворяющие условию Крамера и $r > a = \mathbb{E}\xi_1$
-    
+
     Хотим оценить $P\left( \frac{S_n}{n} \geqslant r \right) = P\left( S_n \geqslant nr \right) = P\left( \lambda S_n \geqslant \lambda nr \right) = P\left( e^{ \lambda S_n} \geqslant e^{\lambda nr} \right) \overset{\text{Марков}}{\leqslant} \frac{\mathbb{E} e^{\lambda S_n}}{e^{\lambda n r}}
     \overset{*}{=} \left( \frac{\mathbb{E} e^{\lambda \xi_1}}{e^{\lambda r}}  \right)^n$
 
@@ -730,9 +730,9 @@
         \item {
             $\xi \sim \mathcal{N} (0, 1)$
 
-            $\mathbb{E} e^{\lambda \xi} = \frac{1}{\sqrt{2\pi}} \int_{\mathbb{R}} e^{\lambda x} e^{\frac{x^2}{2}} \, dx = 
+            $\mathbb{E} e^{\lambda \xi} = \frac{1}{\sqrt{2\pi}} \int_{\mathbb{R}} e^{\lambda x} e^{\frac{x^2}{2}} \, dx =
             \frac{1}{\sqrt{2\pi}} \int_{\mathbb{R}} e^{-\frac{(x - \lambda)^2}{2}} \, dx \cdot e^{\frac{\lambda^2}{2}} = e^{\frac{\lambda^2}{2}}$
-            
+
             $\lambda r - \frac{\lambda^2}{2} \rightarrow \max\limits_{\lambda > 0}$, максимум при $\lambda = r$. И тогда $I(r) = \frac{r^2}{2}$
 
             Значит $P \left( \frac{S_n}{n} \geqslant r \right) \leqslant e^{-\frac{nr^2}{2}}$ при $r > 0$
