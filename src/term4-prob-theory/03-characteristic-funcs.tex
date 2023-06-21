@@ -157,7 +157,9 @@
     $\varphi^{(k + 1)}(t) = \lim_{h \to 0} \frac{\varphi^{(k)}(t + h) - \varphi^{(k)}(t)}{h} = $
 
     $= \lim_{h \to 0} \frac{\mathbb{E} (i \xi)^k e^{i\xi(t + h)} - \mathbb{E} (i \xi)^k e^{it\xi}}{h} =
-    \lim_{h \to 0} \mathbb{E} ((i \xi)^k e^{i t \xi} \cdot \frac{e^{ih\xi} - 1}{h}) = \mathbb{E} ((i\xi)^k e^{i t \xi} \cdot \lim_{h \to 0} \frac{e^{i h \xi} - 1}{h})$, а предел -- это $i \xi$.
+    \lim_{h \to 0} \mathbb{E} ((i \xi)^k e^{i t \xi} \cdot \frac{e^{ih\xi} - 1}{h}) = \mathbb{E} ((i\xi)^k e^{i t \xi} \cdot \lim_{h \to 0} \frac{e^{i h \xi} - 1}{h})$, а предел -- это $i \xi$:
+
+    $\lim_{h \to 0} \frac{e^{ih\xi} - 1}{h} = \lim_{h \to 0} \frac{1 + ih\xi + \mathbf{O}(h^2\cdot \xi^2) - 1}{h} = i\xi + \underbrace{\lim_{h \to 0} \mathbf{O}(h \cdot \xi^2)}_{\cdot=0} = i\xi$
 
     Почему можно было запихать предел под матожидание?
 
@@ -167,10 +169,10 @@
 
     \begin{enumerate}
         \item {
-            Если $|xh| \geqslant 1$, то $\left | \frac{e^{ihx} - 1}{h} \right | \leqslant \frac{2}{|h|} \leqslant 2|x| $ и тогда $(*) \leq 2|x|^{k + 1}$.
+            Если $|xh| \geqslant 1$, то $\frac{1}{|h|} \leq |x|$ и $\left | \frac{e^{ihx} - 1}{h} \right | \leqslant \frac{2}{|h|} \leqslant 2|x| $ и тогда $(*) \leq 2|x|^{k + 1}$.
         }
         \item {
-            Если $|xh| < 1$, то $e^{ihx} = 1 + \mathcal{O}(1 + ihx) \Rightarrow \left | \frac{e^{ihx} - 1}{h}  \right | = \left | \frac{\mathcal{O}(hx)}{h}  \right | = \mathcal{O}(x)$ и тогда $(*) = \mathcal{O}(|x|^{k + 1})$.
+            Если $|xh| < 1$, то $e^{ihx} = 1 + \mathcal{O}(ihx) \Rightarrow \left | \frac{e^{ihx} - 1}{h}  \right | = \left | \frac{1 + \mathcal{O}(ihx) - 1}{h}  \right | = \mathcal{O}(x)$ и тогда $(*) = \mathcal{O}(|x|^{k + 1})$.
         }
     \end{enumerate}
 
