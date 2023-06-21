@@ -106,16 +106,23 @@
 
     $\phi_{\eta}(t) = \mathbb{E} e^{i \eta t} = \frac{1}{\sqrt{2 \pi}} \int_{\mathbb{R}} e^{i t x} e^{-\frac{x^2}{2}} dx = \frac{1}{\sqrt{2 \pi}} e^{-\frac{t^2}{2}} \int_{\mathbb{R}} e^{- \frac{(x - it)^2}{2}} dx$.
 
-    Посчитаем $I := \int_{\mathbb{R}} e^{-\frac{(x - it)^2}{2}} dx = \int_{-it + \mathbb{R}} e^{-\frac{z^2}{2}} dz = \int_{\Gamma_R} e^{-\frac{z^2}{2}} dz = 0$ (т.к. особых точек внутри контура нет).
+    Посчитаем $I := \int_{\mathbb{R}} e^{-\frac{(x - it)^2}{2}} dx = \int_{-it + \mathbb{R}} e^{-\frac{z^2}{2}} dz$
+
+    Чтобы найти $I$, посчитаем интеграл по контуру $\Gamma_R$:
+
+    $\int_{\Gamma_R} e^{-\frac{z^2}{2}} dz = 0$ (т.к. особых точек внутри контура нет).
 
     С другой стороны это также равно: $\int_{\Gamma_R} e^{-\frac{z^2}{2}} dz = \underbrace{-\int_{-R}^{R}}_{\to \sqrt{2 \pi}} + \underbrace{\int_{-R - it}^{R - it}}_{\to I} + \underbrace{\int_{R - it}^{R}}_{(*): \to 0} + \underbrace{\int_{-R}^{-R - it}}_{(*): \to 0}$
 
+    $-\int_{-R}^{R} \to \sqrt{2 \pi}$ -- верно, так как $-\frac{1}{\sqrt{2 \pi}} \cdot \int_{-R}^{R} \to 1$ -- т.к. это вероятность всего (если есть более понятное объяснение, то PR/объяснение в лс приветствуется).
 
     \begin{center}
         \includegraphics[width=8cm]{./assets/03-characteristic-funcs/complex-arbitrary-value-example-1.png}
     \end{center}
 
-    $(*): \left| \int_{R - it}^{R} e^{-\frac{z^2}{2}} dz \right| =_{z = R + i y} \left| i \int_{-t}^{0} e^{- \frac{(R + iy)^2}{2}} dy \right| \leq \int_{-t}^{0} |\ldots|dy = \int_{-t}^{0} e^{\frac{-R^2 + y^2}{2}} dy \leq t e^{\frac{t^2}{2}} e^{\frac{-R^2}{2}} \rightarrow_{R \to \infty} 0$.
+    $(*): \left| \int_{R - it}^{R} e^{-\frac{z^2}{2}} dz \right| =_{z = R + i y} \left| i \int_{-t}^{0} e^{- \frac{(R + iy)^2}{2}} dy \right| \leq \int_{-t}^{0} |\ldots|dy = \int_{-t}^{0} \left|e^{\frac{-R^2 + y^2}{2}}\right| \cdot \underbrace{\left|e^{-2 \cdot i \cdot R \cdot y}\right|}_{\cdot = 1} dy =$
+
+    $= \int_{-t}^{0} e^{\frac{-R^2 + y^2}{2}} dy \leq \underbrace{t e^{\frac{t^2}{2}}}_{const} e^{\frac{-R^2}{2}} \rightarrow_{R \to \infty} 0$.
 
 
     Тогда получаем, что $I = \sqrt{2 \pi}$, и $\phi_{\eta}(t) = e^{-\frac{t^2}{2}}$.
