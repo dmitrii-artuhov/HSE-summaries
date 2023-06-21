@@ -197,9 +197,17 @@
     $(*) = \int_{\mathbb{R}} \lim_{t \to 0} \frac{\sin^2 (tx)}{t^2} dP_{\xi}(x) \leqslant
     \underline{\lim}_{t \to 0} \int_{\mathbb{R}} -\frac{e^{2itx} + e^{-2itx} - 2}{4t^2} dP_{\xi} (x) = (*)$ -- лемма Фату и расписали синус как $\sin{a} = \frac{e^{ia} - e^{-ia}}{2 i}$.
 
+    \textbf{Напоминание (лемма Фату):}
+
+    \begin{center}
+        \includegraphics[scale=0.7]{./assets/03-characteristic-funcs/lemma-phatu.PNG}
+    \end{center}
+
+    Заметим, что $\int_{\mathbb{R}} e^{2itx} dP_{\xi} (x) = \mathbb{E}e^{2it\xi} = \varphi_{\xi}(2t)$ (аналогично для $\varphi_{\xi}(-2t)$)
+
     $(*) = \underline{\lim}_{t \to 0} -\frac{\varphi_{\xi}(2t) - \varphi_{\xi}(-2t) - 2}{4t^2} = (*)$.
 
-    Причём $\varphi_{\xi} (u) = \varphi_{\xi}(0) + \varphi_{\xi}'(0) \cdot u + \frac{\varphi_{\xi}''(0) u^2}{2} + o(u^2)$.
+    Причём $\varphi_{\xi} (u) = \varphi_{\xi}(0) + \varphi_{\xi}'(0) \cdot u + \frac{\varphi_{\xi}''(0) u^2}{2} + o(u^2)$ (Тэйлор).
 
     Тогда $\varphi_{\xi}(2t) + \varphi_{\xi}(-2t) = 2 + \frac{\varphi_{\xi}''(0) \left((2t)^2 + (-2t)^2 \right)}{2} + o(t^2)$, а тогда $(*) = \underline{\lim}_{t \to 0} (-\varphi_{\xi}''(0) + o(1))$.
 
