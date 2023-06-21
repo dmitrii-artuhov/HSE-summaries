@@ -442,12 +442,12 @@
     $\varphi, \varphi_1, \varphi_2, \ldots$ - их характеристичечкие функции. Следующие условия равносильны:
 
     \begin{enumerate}
-        \item $\xi_n$ сходится к $\xi$ по распределению
+        \item $\xi_n$ сходится к $\xi$ по распределению (т.е. $F_n \to F$ в точках непрерывности $F$)
         \item Для любого $U$ открытого $\underline{\lim} P(\xi_n \in U) \geqslant P(\xi \in U)$
         \item Для любого $A$ замкнутого $\overline{\lim} P(\xi_n \in A) \leqslant P(\xi \in A)$
         \item Для любого $B$ регулярного борелевского $\lim P(\xi_n \in B) = P(\xi \in B)$
         \item Для любого $B$ регулярного борелевского $\lim \mathbb{E} \mathds{1}_{B}(\xi_n) = \mathbb{E} \mathds{1}_B (\xi)$
-        \item Для любой $f$ непрерывной на прямой и ограниченной $\lim \mathbb{E} f(\xi_n) = \mathbb{E} f(\xi)$
+        \item Для любой $f$ непрерывной на $\mathbb{R}$ и ограниченной $\lim \mathbb{E} f(\xi_n) = \mathbb{E} f(\xi)$
         \item $\varphi_n$ сходится к $\varphi$ поточечно
     \end{enumerate}
 \end{theorem}
@@ -464,9 +464,18 @@
         \item {
             $2 \cup 3 \implies 4$
 
-            Мы знаем, что $U = \{ \xi_n \in Int \, B \} \{ \xi_n \in B \} \subset \{ \xi_n \in Cl \, B \} = A$
+            % Мы знаем, что $U = \{ \xi_n \in Int \, B \}, \{ \xi_n \in B \} \subset \{ \xi_n \in Cl \, B \} = A$
 
-            Тогда $P(\xi_n \in U) \leqslant P(\xi_n \in B) \leqslant P(\xi_n \in A) \implies \underbrace{\overline{\lim} P(\xi_n \in B)}_{\geqslant \underline{\lim} P(\xi_n \in B) \geqslant \underline{\lim} P(\xi_n \in U) \geqslant P(\xi \in U) = P(\xi \in B)} \leqslant \overline{\lim} P(\xi_n \in A) \leqslant P(\xi \in A) = P(\xi \in B)$
+            % Тогда $P(\xi_n \in U) \leqslant P(\xi_n \in B) \leqslant P(\xi_n \in A) \implies \underbrace{\overline{\lim} P(\xi_n \in B)}_{\geqslant \underline{\lim} P(\xi_n \in B) \geqslant \underline{\lim} P(\xi_n \in U) \geqslant P(\xi \in U) = P(\xi \in B)} \leqslant \overline{\lim} P(\xi_n \in A) \leqslant P(\xi \in A) = P(\xi \in B)$
+
+
+            Пусть $U = Int \ B, A = Cl \ B$, тогда 
+
+            $\overline{\lim} P(\xi_n \in B) \leq \overline{\lim} P(\xi_n \in A) \underbrace{\leq}_{\text{по пункту (3)}} P(\xi \in A) \leq P(\xi \in B) + \underbrace{P(\xi \in A \setminus U)}_{\text{$=0$, т.к. $B$ регулярное}}$
+
+            $\overline{\lim} P(\xi_n \in B) \geq \underline{\lim} P(\xi_n \in B) \leq \underline{\lim} P(\xi_n \in U) \geq P(\xi \in U) \geq P(\xi \in B) - \underbrace{P(\xi \in A \setminus U)}_{=0}$.
+
+            Получили равенство.
         }
         \item {
             $4 \Longleftrightarrow 5$
@@ -483,15 +492,17 @@
         \item {
             $1 \implies 2$
 
-            Берём открытое $U$, по замечанию $U =  \bigcup\limits_{k = 1}^{\infty} (a_k, b_k]$, где $a_k, b_k$ - точки непрерывности $F$.
+            Берём открытое $U$, по замечанию 3 из начала параграфа: $U =  \bigcup\limits_{k = 1}^{\infty} (a_k, b_k]$, где $a_k, b_k$ - точки непрерывности $F$.
 
             $\{ \xi_n \in U \} \supset \{ \xi_n \in \bigcup\limits_{k = 1}^{m} (a_k, b_k] \} \implies P(\xi_n \in U) \geqslant \sum_{k = 1}^m P(\xi_n \in (a_k, b_k])$
 
-            $\underline{\lim} P(\xi_n \in U) \geqslant \underline{\lim} \sum_{k  = 1}^m \geqslant \sum_{k = 1}^m \underline{\lim} P(\xi_n \in (a_k, b_k]) \overset{*}{=} \sum_{k = 1}^m P(\xi \in (a_k b_k]) \overset{m \to \infty}{\rightarrow} \sum_{k = 1}^{\infty} P(\xi \in (a_k, b_k]) = P(\xi \in U)$
+            $\underline{\lim} P(\xi_n \in U) \geqslant \underline{\lim} \sum_{k = 1}^m P(\xi_n \in (a_k, b_k]) \geqslant$
+            
+            $\geqslant \sum_{k = 1}^m \underline{\lim} P(\xi_n \in (a_k, b_k]) \overset{(*)}{=} \sum_{k = 1}^m P(\xi \in (a_k, b_k]) \overset{m \to \infty}{\rightarrow} \sum_{k = 1}^{\infty} P(\xi \in (a_k, b_k]) = P(\xi \in U)$
 
-            А значит $\underline{\lim} P(\xi_n \in U) \geqslant P(\xi \in U)$
-
-            $(*) P(\xi_n \in (a_k, b_k]) = F_n (b_k) - F_n (a_k) \rightarrow F(b_k) - F(a_k) = P(\xi \in (a_k, b_k])$
+            Пояснение перехода $(*): \ P(\xi_n \in (a_k, b_k]) = F_n (b_k) - F_n (a_k) \rightarrow F(b_k) - F(a_k) = P(\xi \in (a_k, b_k])$.
+            
+            А значит $\underline{\lim} P(\xi_n \in U) \geqslant P(\xi \in U)$ -- доказали.
         }
         \item {
             $5 \implies 6$
@@ -524,28 +535,39 @@
 
             $P(\xi_n + \eta \in (a, b]) = \frac{1}{2\pi} \int_{\mathbb{R}} \frac{e^{-iat} - e^{-ibt}}{it} \varphi_{\xi_n + \eta} (t) \, dt \overset{*}{\rightarrow} \frac{1}{2\pi} \int_{\mathbb{R}} \frac{e^{-iat} - e^{-ibt}}{it} \varphi_{\xi + \eta} \, dt = P(\xi + \eta \in (a, b])$.
 
-            $(*)$ Нужна суммируемая мажоранта $\left | \frac{e^{-iat} - e^{-ibt}}{it} \varphi_{\xi_n + \eta} (t) \right | \leqslant e^{-\frac{\sigma^2t^2}{2}}$ - суммируемая мажоранта.
+            $(*)$: Использовали теорему Лебега, но нужна суммируемая мажоранта, посчитаем ее $\left | \frac{e^{-iat} - e^{-ibt}}{it} \varphi_{\xi_n + \eta} (t) \right | \leqslant e^{-\frac{\sigma^2t^2}{2}}$ - суммируемая мажоранта.
 
             То есть $\underbrace{P(\xi_n + \eta \in (a, b])}_{G_n (b) - G_n(a)} \rightarrow \underbrace{P(\xi + \eta \in (a, b])}_{G(b) - G(a)}$, где $G_n (x) = F_{\xi_n + \eta}(x)$ и $G(x) = F_{\xi + \eta} (x)$
 
-            Тогда из замечания $G_n(x) \rightarrow G(x)$
+            Тогда из замечания 2 с начала конспекта имеем: $G_n(x) \rightarrow G(x)$.
 
             Возьмём $x$ - точка непрерывности $F$ и выберем $\delta > 0$, так, что $|F(x \pm \delta) - F(x)| < \varepsilon$ - есть из непрерывности.
 
-            $ \{ \xi_n + \eta \leqslant x - \delta \} \setminus \{ |\eta| > \delta \} \subset  \{ \xi_n \leqslant x \} \subset \{ \xi_n + \eta \leqslant x + \delta \} \cup \{ |\eta| > \delta \}$.
+            $ \left( \{ \xi_n + \eta \leqslant x - \delta \} \setminus \{ |\eta| > \delta \} \right) \subset  \{ \xi_n \leqslant x \} \subset \{ \xi_n + \eta \leqslant x + \delta \} \cup \{ |\eta| > \delta \}$.
 
-            Тогда $\underbrace{G_{n} (x - \delta) - P(|\eta| > \delta)}_{G_n (x - \delta - \frac{\sigma^2}{\delta^2}) > G_n (x - \delta) - \varepsilon > G(x - \delta) - 2\varepsilon > F(x - 2\delta) - 3\varepsilon > F(x) - 4\varepsilon} \leqslant F_n (x) \leqslant
-            \underbrace{G_{n} (x + \delta) + P(|\eta| > \delta)}_{G_n (x + \delta) + \frac{\sigma^2}{\delta^2} < G_n (x + \delta) + \varepsilon < G(x + \delta) + 2\varepsilon < F(x + 2\delta) + 3\varepsilon < F(x) + 4\varepsilon}$
+            Сделаем оценки:
 
-            Оценим вероятность: $P(|\eta| > \delta) \leqslant \frac{\mathbb{D} \eta}{\delta^2} = \frac{\sigma^2}{\delta^2}$
+            \begin{enumerate}
+                \item {
+                    $P(|\eta| > \delta) \leqslant \frac{\mathbb{D} \eta}{\delta^2} = \frac{\sigma^2}{\delta^2}$ -- нер-во Чебышева.
+                }
+                \item {
+                    $G_{n} (x - \delta) - P(|\eta| > \delta) \geq G_n (x - \delta) - \frac{\sigma^2}{\delta^2} > G_n (x - \delta) - \varepsilon > G(x - \delta) - 2\varepsilon > F(x - 2\delta) - 3\varepsilon > F(x) - 4\varepsilon$
+                }
+                \item {
+                    $G_{n} (x + \delta) + P(|\eta| > \delta) \leq G_n (x + \delta) + \frac{\sigma^2}{\delta^2} < G_n (x + \delta) + \varepsilon < G(x + \delta) + 2\varepsilon < F(x + 2\delta) + 3\varepsilon < F(x) + 4\varepsilon$
+                }
+            \end{enumerate}
 
+            Тогда $G_{n} (x - \delta) - P(|\eta| > \delta) \leqslant F_n (x) \leqslant G_{n} (x + \delta) + P(|\eta| > \delta)$.
 
+            По теореме о двух миллиционерах (устремив $\varepsilon \to 0$) получаем, что $F_n \to F$.
         }
     \end{enumerate}
 \end{proof}
 
 \begin{theorem}
-    $F_n, F \, \mathbb{R} \to [0, 1]$ монотонные, $F \in C(\mathbb{R})$ и
+    $F_n, F: \, \mathbb{R} \to [0, 1]$ монотонные, $F \in C(\mathbb{R})$ и
     $F_n \to F$ поточечно.
 
     Тогда $F_n \rightrightarrows F$
@@ -571,21 +593,22 @@
 \begin{theorem}
     \textbf{ЦПТ в форме Леви}
 
-    $\xi_1, \xi_2, \ldots $ независимые, одинаково распределённые случайные величины. $a = \mathbb{E} \xi_1,
-    \sigma^2 = \mathbb{D} \xi_1, S_n = \xi_1 + \xi_2 + \ldots + \xi_n$.
+    $\xi_1, \xi_2, \ldots $ независимые, одинаково распределённые случайные величины.
+    
+    $a = \mathbb{E} \xi_1, \sigma^2 = \mathbb{D} \xi_1, S_n = \xi_1 + \xi_2 + \ldots + \xi_n$.
 
-    Тогда $P \left ( \frac{S_n - nq}{\sigma \sqrt{n}} \leqslant x \right ) = P\left ( \frac{S_n - \mathbb{E} S_n}{\sqrt{\mathbb{D} S_n}} \leqslant x \right ) \rightrightarrows \Phi (x) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^x e^{-\frac{t^2}{2}} \, dt$
+    Тогда $P \left ( \frac{S_n - n a}{\sigma \sqrt{n}} \leqslant x \right ) = P\left ( \frac{S_n - \mathbb{E} S_n}{\sqrt{\mathbb{D} S_n}} \leqslant x \right ) \rightrightarrows \Phi (x) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^x e^{-\frac{t^2}{2}} \, dt$
 \end{theorem}
 
 \begin{proof}
     Достаточно проверять поточечную сходимость характеристических функций.
 
     $\varphi_{\xi_k - a} (t) = 1 - \frac{\sigma^2 t^2}{2} + o(t^2)$, потому что
-    мы знаем, что $\mathbb{E} (\xi_k - a) = 0$ и $\mathbb{D} (\xi_k - a) \sigma^2$
+    мы знаем, что $\mathbb{E} (\xi_k - a) = 0$ и $\mathbb{D} (\xi_k - a)^2 = \sigma^2$
 
     Тогда $\varphi_{S_n - na} (t) = \prod\limits_{k = 1}^n \varphi_{\xi_k - a} (t) = \left ( 1 - \frac{\sigma^2t^2}{2} + o(t^2) \right )^n$
 
-    $\varphi_{\frac{S_n - na}{\sigma \sqrt{n}}} = \varphi_{S_n - na} \left ( \frac{t}{\sqrt{n}\sigma} \right ) = \left( 1 - \frac{t^2}{2n} + o(\frac{t^2}{n}) \right) \rightarrow e^{-\frac{t^2}{2}}$.
+    $\varphi_{\frac{S_n - na}{\sigma \sqrt{n}}} = \varphi_{S_n - na} \left ( \frac{t}{\sqrt{n}\sigma} \right ) = \left( 1 - \frac{t^2}{2n} + o \left(\frac{t^2}{n \sigma^2}\right) \right)^n \rightarrow e^{-\frac{t^2}{2}}$.
 
     Чтобы получить последний переход - логарифмируем.
 
@@ -595,7 +618,7 @@
 \begin{consequence}
     \textbf{Интегральная теорема Муавра-Лапласа}
 
-    $S_n$ - количество успехов в схеме Бернулли с вероятностью успеха $p \in (0, 1)$.
+    $S_n = \sum_{k=1}^{n} \xi_k$ -- количество успехов в схеме Бернулли с вероятностью успеха $p \in (0, 1)$, где $\xi_k \sim Bern(p)$ и независимы.
 
     Тогда $P \left( \frac{S_n - np}{\sqrt{npq}} \leqslant \right) \rightrightarrows \Phi (x)$
 \end{consequence}
@@ -611,7 +634,7 @@
 \end{example}
 
 \begin{theorem}
-    $P(\xi_{nk} = 1) = p_{nk}$ и $P(\xi_{nk} = 0) = 1 - p_{nk}$ и пусть $S_n = \xi_{n1} + \ldots + \xi_{nn}$.
+    $P(\xi_{nk} = 1) = p_{nk} \in (0, 1)$ и $P(\xi_{nk} = 0) = 1 - p_{nk}$ и пусть $S_n = \xi_{n1} + \ldots + \xi_{nn}$ -- независимые.
 
     $\max \{ p_{n1}, \ldots, p_{nn} \} \rightarrow 0$ и $p_{n1} + \ldots p_{nn} \rightarrow \lambda$.
 
@@ -620,8 +643,13 @@
 
 \begin{proof}
     $\varphi_{\xi_{nk}} (t) = \mathbb{E} e^{it\xi_{nk}} = 1 - p_{nk} + p_{nk}e^{it} = 1 + p_{nk} (e^{it} - 1)$
+    
+    Мат. ожидание выше именно такое, т.к. $e^{i t \xi_{nk}} = \begin{cases}
+        1, \text{ с вероятностью } (1 - p_{nk}) \\
+        e^{it}, \text{ с вероятностью } p_{nk}
+    \end{cases}$
 
-    Тогда $\varphi_{S_n} = \prod_{k = 1}^n (1 + p_{nk} (e^{it} - 1)) \overset{?}{\rightarrow} exp (\lambda (e^{it} - 1)) $.
+    Тогда $\varphi_{S_n}(t) = \prod_{k = 1}^n (1 + p_{nk} (e^{it} - 1)) \overset{?}{\rightarrow} \underbrace{exp (\lambda (e^{it} - 1))}_{\text{хар. функция Пуассона}} $ -- докажем для характеристических функций, тогда будет верно и для распределений.
 
     Пусть $z = e^{it} - 1$
 
@@ -635,9 +663,9 @@
 \begin{theorem}
     \textbf{ЦПТ в форме Линденберга}
 
-    $\xi_1, \ldots$ - независимые случайные величины, $a_k = \mathbb{E} \xi_k, \sigma_k^2 = \mathbb{D} \xi_k > 0, S_n = \xi_1 + \ldots + \xi_n, \mathbb{D}_n^2 = \sum_{k = 1}^n \sigma_k^2$
+    $\xi_1, \ldots$ - независимые случайные величины, $a_k = \mathbb{E} \xi_k, \sigma_k^2 = \mathbb{D} \xi_k > 0, S_n = \xi_1 + \ldots + \xi_n$, $\mathbb{D}_n^2 = \sum_{k = 1}^n \sigma_k^2 = \mathbb{D} S_n$
 
-    $f(x) = x^2 \mathds{1}_{\{ |x| \geqslant \varepsilon \mathbb{D}_n \} } (x) \, \forall \, \varepsilon > 0$ и $Lind (\varepsilon, n) = \frac{1}{\mathbb{D}_n^2} \sum_{k = 1}^n \mathbb{E} f (\xi_k - a_k) \rightarrow 0$
+    $f(x) = x^2 \mathds{1}_{\{ |x| \geqslant \varepsilon \mathbb{D}_n \} } (x)$ и $Lind (\varepsilon, n) = \frac{1}{\mathbb{D}_n^2} \sum_{k = 1}^n \mathbb{E} f (\xi_k - a_k) \rightarrow 0: \ \forall \, \varepsilon > 0$.
 
     Тогда $P \left( \frac{S_n - \mathbb{E} S_n}{\sqrt{\mathbb{D} S_n}} \leqslant x \right) \rightrightarrows \Phi (x)$
 \end{theorem}
@@ -645,17 +673,37 @@
 \begin{theorem}
     \textbf{ЦПТ в форме Ляпунова}
 
-    $\xi_1, \ldots$ независимые случайные величины
+    % $\xi_1, \ldots$ независимые случайные величины
 
-    $L(\delta, n) = \frac{1}{\mathbb{D}_n^{2 + \delta}} \sum_{k = 1}^n \mathbb{E} | \xi_k - a_k |^{2 + \delta} \rightarrow 0$ при некотором $\delta$
+    % $L(\delta, n) = \frac{1}{\mathbb{D}_n^{2 + \delta}} \sum_{k = 1}^n \mathbb{E} | \xi_k - a_k |^{2 + \delta} \rightarrow 0$ при некотором $\delta$
 
-    Тогда $P\left( \frac{S_n - \mathbb{E} S_n}{\sqrt{\mathbb{D} S_n}} \leqslant x \right) \rightrightarrows \Phi (x)$
+    % Тогда $P\left( \frac{S_n - \mathbb{E} S_n}{\sqrt{\mathbb{D} S_n}} \leqslant x \right) \rightrightarrows \Phi (x)$
+
+    $\xi_1, \xi_2, \ldots$ -- независимые случ. величины,
+    
+    $a_n := \mathbb{E} \xi_n$, $\sigma_n^2 := \mathbb{D} \xi_n$,
+    
+    $\mathbb{D}^2_n := \sum_{k = 1}^{n} \sigma_k^2$,
+    
+    $S_n := \xi_1 + \ldots + \xi_n$,
+    
+    $L(\delta) := \frac{1}{\mathbb{D}_n^{2 + \delta}} \cdot \sum_{k=1}^n \mathbb{E} |\xi_k - a_k|^{2 + \delta} \to 0$ для некоторого $\delta > 0$
+
+    Тогда $P\left( \frac{S_n - \mathbb{E} S_n}{\sqrt{ \mathbb{D} S_n }} \leq x \right) \rightrightarrows \Phi(x)$.
+
 \end{theorem}
 
 \begin{proof}
     %Ляпунов из Линденберга:
     % TODO
     %$Lind (\varepsilon, n) = \frac{1}{\mathbb{D}_n^2} \sum_{k = 1}^n \mathbb{E} (|\xi_k - a_k|^2 \cdot \mathds{1}_{|x| \geqslant \varepsilon \mathbb{D}_n} (\xi_k - a_k) ) \leqslant \frac{1}{\mathbb{D}_n^2} \sum_{k = 1}^n \mathbb{E} \left( \frac{|\xi_k - a_k|^{2 + \delta}}{} \right)$
+
+    Линденберг $\implies$ Ляпунов:
+
+    $Lind(\varepsilon, n) = \frac{1}{\mathbb{D}^2_n} \sum_{k=1}^{n} \mathbb{E} \left( |\xi_k - a_k|^2 \cdot \underbrace{\mathds{1}_{\{ |\xi_k - a_k| \geq \varepsilon \mathbb{D}_n \}}}_{\leq \left( \frac{|\xi_k - a_k|}{\varepsilon \mathbb{D}_n} \right)^{\delta}} \right) \leq \frac{1}{\mathbb{D}^2_n} \sum_{k=1}^{n} \mathbb{E} \left( \frac{| \xi_k - a_k |^{2 + \delta}}{\varepsilon^{\delta} \mathbb{D}_n^{\delta}} \right) =$
+    
+    $= \frac{1}{\varepsilon^{\delta}} \frac{1}{\mathbb{D}_n^{2 + \delta}} \sum_{k=1}^{n} \mathbb{E} \left( \xi_k - a_k \right)^{2 + \delta} = \frac{L(\delta)}{\varepsilon^{\delta}} \to 0$
+
 \end{proof}
 
 \begin{theorem}
