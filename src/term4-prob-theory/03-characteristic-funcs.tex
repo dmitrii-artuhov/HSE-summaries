@@ -423,12 +423,12 @@
     $\varphi, \varphi_1, \varphi_2, \ldots$ - их характеристичечкие функции. Следующие условия равносильны:
 
     \begin{enumerate}
-        \item $\xi_n$ сходится к $\xi$ по распределению
+        \item $\xi_n$ сходится к $\xi$ по распределению (т.е. $F_n \to F$ в точках непрерывности $F$)
         \item Для любого $U$ открытого $\underline{\lim} P(\xi_n \in U) \geqslant P(\xi \in U)$
         \item Для любого $A$ замкнутого $\overline{\lim} P(\xi_n \in A) \leqslant P(\xi \in A)$
         \item Для любого $B$ регулярного борелевского $\lim P(\xi_n \in B) = P(\xi \in B)$
         \item Для любого $B$ регулярного борелевского $\lim \mathbb{E} \mathds{1}_{B}(\xi_n) = \mathbb{E} \mathds{1}_B (\xi)$
-        \item Для любой $f$ непрерывной на прямой и ограниченной $\lim \mathbb{E} f(\xi_n) = \mathbb{E} f(\xi)$
+        \item Для любой $f$ непрерывной на $\mathbb{R}$ и ограниченной $\lim \mathbb{E} f(\xi_n) = \mathbb{E} f(\xi)$
         \item $\varphi_n$ сходится к $\varphi$ поточечно
     \end{enumerate}
 \end{theorem}
@@ -445,9 +445,18 @@
         \item {
             $2 \cup 3 \implies 4$
 
-            Мы знаем, что $U = \{ \xi_n \in Int \, B \} \{ \xi_n \in B \} \subset \{ \xi_n \in Cl \, B \} = A$
+            % Мы знаем, что $U = \{ \xi_n \in Int \, B \}, \{ \xi_n \in B \} \subset \{ \xi_n \in Cl \, B \} = A$
 
-            Тогда $P(\xi_n \in U) \leqslant P(\xi_n \in B) \leqslant P(\xi_n \in A) \implies \underbrace{\overline{\lim} P(\xi_n \in B)}_{\geqslant \underline{\lim} P(\xi_n \in B) \geqslant \underline{\lim} P(\xi_n \in U) \geqslant P(\xi \in U) = P(\xi \in B)} \leqslant \overline{\lim} P(\xi_n \in A) \leqslant P(\xi \in A) = P(\xi \in B)$
+            % Тогда $P(\xi_n \in U) \leqslant P(\xi_n \in B) \leqslant P(\xi_n \in A) \implies \underbrace{\overline{\lim} P(\xi_n \in B)}_{\geqslant \underline{\lim} P(\xi_n \in B) \geqslant \underline{\lim} P(\xi_n \in U) \geqslant P(\xi \in U) = P(\xi \in B)} \leqslant \overline{\lim} P(\xi_n \in A) \leqslant P(\xi \in A) = P(\xi \in B)$
+
+
+            Пусть $U = Int \ B, A = Cl \ B$, тогда 
+
+            $\overline{\lim} P(\xi_n \in B) \leq \overline{\lim} P(\xi_n \in A) \underbrace{\leq}_{\text{по пункту (3)}} P(\xi \in A) \leq P(\xi \in B) + \underbrace{P(\xi \in A \setminus U)}_{\text{$=0$, т.к. $B$ регулярное}}$
+
+            $\overline{\lim} P(\xi_n \in B) \geq \underline{\lim} P(\xi_n \in B) \leq \underline{\lim} P(\xi_n \in U) \geq P(\xi \in U) \geq P(\xi \in B) - \underbrace{P(\xi \in A \setminus U)}_{=0}$.
+
+            Получили равенство.
         }
         \item {
             $4 \Longleftrightarrow 5$
@@ -464,15 +473,17 @@
         \item {
             $1 \implies 2$
 
-            Берём открытое $U$, по замечанию $U =  \bigcup\limits_{k = 1}^{\infty} (a_k, b_k]$, где $a_k, b_k$ - точки непрерывности $F$.
+            Берём открытое $U$, по замечанию 3 из начала параграфа: $U =  \bigcup\limits_{k = 1}^{\infty} (a_k, b_k]$, где $a_k, b_k$ - точки непрерывности $F$.
 
             $\{ \xi_n \in U \} \supset \{ \xi_n \in \bigcup\limits_{k = 1}^{m} (a_k, b_k] \} \implies P(\xi_n \in U) \geqslant \sum_{k = 1}^m P(\xi_n \in (a_k, b_k])$
 
-            $\underline{\lim} P(\xi_n \in U) \geqslant \underline{\lim} \sum_{k  = 1}^m \geqslant \sum_{k = 1}^m \underline{\lim} P(\xi_n \in (a_k, b_k]) \overset{*}{=} \sum_{k = 1}^m P(\xi \in (a_k b_k]) \overset{m \to \infty}{\rightarrow} \sum_{k = 1}^{\infty} P(\xi \in (a_k, b_k]) = P(\xi \in U)$
+            $\underline{\lim} P(\xi_n \in U) \geqslant \underline{\lim} \sum_{k = 1}^m P(\xi_n \in (a_k, b_k]) \geqslant$
+            
+            $\geqslant \sum_{k = 1}^m \underline{\lim} P(\xi_n \in (a_k, b_k]) \overset{(*)}{=} \sum_{k = 1}^m P(\xi \in (a_k, b_k]) \overset{m \to \infty}{\rightarrow} \sum_{k = 1}^{\infty} P(\xi \in (a_k, b_k]) = P(\xi \in U)$
 
-            А значит $\underline{\lim} P(\xi_n \in U) \geqslant P(\xi \in U)$
-
-            $(*) P(\xi_n \in (a_k, b_k]) = F_n (b_k) - F_n (a_k) \rightarrow F(b_k) - F(a_k) = P(\xi \in (a_k, b_k])$
+            Пояснение перехода $(*): \ P(\xi_n \in (a_k, b_k]) = F_n (b_k) - F_n (a_k) \rightarrow F(b_k) - F(a_k) = P(\xi \in (a_k, b_k])$.
+            
+            А значит $\underline{\lim} P(\xi_n \in U) \geqslant P(\xi \in U)$ -- доказали.
         }
         \item {
             $5 \implies 6$
@@ -505,22 +516,33 @@
 
             $P(\xi_n + \eta \in (a, b]) = \frac{1}{2\pi} \int_{\mathbb{R}} \frac{e^{-iat} - e^{-ibt}}{it} \varphi_{\xi_n + \eta} (t) \, dt \overset{*}{\rightarrow} \frac{1}{2\pi} \int_{\mathbb{R}} \frac{e^{-iat} - e^{-ibt}}{it} \varphi_{\xi + \eta} \, dt = P(\xi + \eta \in (a, b])$.
 
-            $(*)$ Нужна суммируемая мажоранта $\left | \frac{e^{-iat} - e^{-ibt}}{it} \varphi_{\xi_n + \eta} (t) \right | \leqslant e^{-\frac{\sigma^2t^2}{2}}$ - суммируемая мажоранта.
+            $(*)$: Использовали теорему Лебега, но нужна суммируемая мажоранта, посчитаем ее $\left | \frac{e^{-iat} - e^{-ibt}}{it} \varphi_{\xi_n + \eta} (t) \right | \leqslant e^{-\frac{\sigma^2t^2}{2}}$ - суммируемая мажоранта.
 
             То есть $\underbrace{P(\xi_n + \eta \in (a, b])}_{G_n (b) - G_n(a)} \rightarrow \underbrace{P(\xi + \eta \in (a, b])}_{G(b) - G(a)}$, где $G_n (x) = F_{\xi_n + \eta}(x)$ и $G(x) = F_{\xi + \eta} (x)$
 
-            Тогда из замечания $G_n(x) \rightarrow G(x)$
+            Тогда из замечания 2 с начала конспекта имеем: $G_n(x) \rightarrow G(x)$.
 
             Возьмём $x$ - точка непрерывности $F$ и выберем $\delta > 0$, так, что $|F(x \pm \delta) - F(x)| < \varepsilon$ - есть из непрерывности.
 
-            $ \{ \xi_n + \eta \leqslant x - \delta \} \setminus \{ |\eta| > \delta \} \subset  \{ \xi_n \leqslant x \} \subset \{ \xi_n + \eta \leqslant x + \delta \} \cup \{ |\eta| > \delta \}$.
+            $ \left( \{ \xi_n + \eta \leqslant x - \delta \} \setminus \{ |\eta| > \delta \} \right) \subset  \{ \xi_n \leqslant x \} \subset \{ \xi_n + \eta \leqslant x + \delta \} \cup \{ |\eta| > \delta \}$.
 
-            Тогда $\underbrace{G_{n} (x - \delta) - P(|\eta| > \delta)}_{G_n (x - \delta - \frac{\sigma^2}{\delta^2}) > G_n (x - \delta) - \varepsilon > G(x - \delta) - 2\varepsilon > F(x - 2\delta) - 3\varepsilon > F(x) - 4\varepsilon} \leqslant F_n (x) \leqslant
-            \underbrace{G_{n} (x + \delta) + P(|\eta| > \delta)}_{G_n (x + \delta) + \frac{\sigma^2}{\delta^2} < G_n (x + \delta) + \varepsilon < G(x + \delta) + 2\varepsilon < F(x + 2\delta) + 3\varepsilon < F(x) + 4\varepsilon}$
+            Сделаем оценки:
 
-            Оценим вероятность: $P(|\eta| > \delta) \leqslant \frac{\mathbb{D} \eta}{\delta^2} = \frac{\sigma^2}{\delta^2}$
+            \begin{enumerate}
+                \item {
+                    $P(|\eta| > \delta) \leqslant \frac{\mathbb{D} \eta}{\delta^2} = \frac{\sigma^2}{\delta^2}$ -- нер-во Чебышева.
+                }
+                \item {
+                    $G_{n} (x - \delta) - P(|\eta| > \delta) \geq G_n (x - \delta) - \frac{\sigma^2}{\delta^2} > G_n (x - \delta) - \varepsilon > G(x - \delta) - 2\varepsilon > F(x - 2\delta) - 3\varepsilon > F(x) - 4\varepsilon$
+                }
+                \item {
+                    $G_{n} (x + \delta) + P(|\eta| > \delta) \leq G_n (x + \delta) + \frac{\sigma^2}{\delta^2} < G_n (x + \delta) + \varepsilon < G(x + \delta) + 2\varepsilon < F(x + 2\delta) + 3\varepsilon < F(x) + 4\varepsilon$
+                }
+            \end{enumerate}
 
+            Тогда $G_{n} (x - \delta) - P(|\eta| > \delta) \leqslant F_n (x) \leqslant G_{n} (x + \delta) + P(|\eta| > \delta)$.
 
+            По теореме о двух миллиционерах (устремив $\varepsilon \to 0$) получаем, что $F_n \to F$.
         }
     \end{enumerate}
 \end{proof}
