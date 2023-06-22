@@ -7,7 +7,7 @@
 
     \begin{enumerate}
         \item измерима относительно $\mathcal{A}$
-        \item $\forall \, A \in \mathbb{A} \, : \, \mathbb{E} (\xi \mathds{1}_A) = \mathbb{E} (\eta \mathds{1}_A)$
+        \item $\forall \, A \in \mathcal{A} \, : \, \mathbb{E} (\xi \mathds{1}_A) = \mathbb{E} (\eta \mathds{1}_A)$
     \end{enumerate}
 \end{definition}
 
@@ -16,7 +16,7 @@
 \end{theorem}
 
 \begin{proof}
-    Существование:
+    \textbf{Существование}:
 
     $\xi = \xi_+ - \xi_-$. Пусть $A \in \mathcal{A}$, определим $\mu_{\pm} A = \int_A \xi_{\pm} \, dP$ - это конечные меры на $\mathcal{A}$, так как интеграл от измеримой неотрицательной функции.
     А ещё эти меры абсолютно непрерывны относительно $P \overset{\text{т. Радона-Никодима}}{\implies} \exists \, \eta_{\pm} > 0$ измеримые относительно $\mathcal{A}$, т.ч. $\mu_{\pm} A = \int_A \eta_{\pm} \, dP$
@@ -25,7 +25,7 @@
 
     А ещё $\mathbb{E}(\xi_+ \mathds{1}_A) = \mu_+ A = \int_A \xi_+ \, dP$ и для остальных точно также
 
-    Единственность:
+    \textbf{Единственность}:
 
     Пусть $\eta_1$ и $\eta_2$ - условные матожидания. Тогда $\{ \eta_1 > \eta_2 \} \in \mathcal{A}$
 
@@ -65,14 +65,13 @@
             $\mathbb{E} (\mathbb{E} (\xi | \mathcal{A})) = \mathbb{E} \xi$ - из $4$ и $5$
         }
         \item {
-            Если $\xi$ измерима относительно $\mathcal{A}$, о $\mathbb{E} (\xi | \mathcal{A}) = \xi$
+            Если $\xi$ измерима относительно $\mathcal{A}$, то $\mathbb{E} (\xi | \mathcal{A}) = \xi$
         }
     \end{enumerate}
 \end{properties}
 
 \begin{example}
-    % дизъюнктно
-    Пусть $\Omega = \bigcup A_k$  не более чем счётное объединение
+    Пусть $\Omega = \bigsqcup A_k$  не более чем счётное объединение
 
     $\mathcal{A}$ - натянутая на $A_1, A_2, \ldots$ $\sigma-$алгебра
 
@@ -104,17 +103,15 @@
 
     $\mathbb{E} S = \sum\limits_{n = 0}^{+\infty} \frac{\mathbb{E} (S \mathds{1}_{A_n})}{P(A_n)} \cdot P(A_n) = \sum\limits_{n = 0}^\infty na P(N = n) = \mathbb{E} \xi_1 \cdot \mathbb{E} N$
 
-    $\frac{\mathbb{E} (S \mathds{1}_{A_n})}{P(A_n)} = \mathbb{E} (S | N = n) = \mathbb{E} (S_n | N = n) = \mathbb{E} (\xi_1 + \ldots + \xi_n | N = n) \overset{\text{незаисимость}}{=} = \mathbb{E} (\xi_1 + \ldots + \xi_n) = na$, где $a = \mathbb{E} \xi_1$
+    Пояснение: $\frac{\mathbb{E} (S \mathds{1}_{A_n})}{P(A_n)} = \mathbb{E} (S | N = n) = \mathbb{E} (S_n | N = n) = \mathbb{E} (\xi_1 + \ldots + \xi_n | N = n) \overset{\text{незаисимость}}{=} \mathbb{E} (\xi_1 + \ldots + \xi_n) = na$, где $a = \mathbb{E} \xi_1$
 \end{example}
 
 \begin{example}
-    Пусть $\xi_k$ тоже принимают неотрицательные целые значения
+    Пусть $\xi_k$ тоже принимают неотрицательные целые значения, тогда $G_{\xi_1} (t) = G_{\xi_k} (t) = G(t)$ - производящая функция для $\xi_k$, $F(t)$ -- производящая функция для $N$.
 
-    Тогда $G_{\xi_1} (t) = G(t)$ - производящая функция $\xi_k$
+    $G_S (t) = \mathbb{E} t^S = \sum_{n = 0}^\infty \frac{\mathbb{E} (t^S \mathds{1}_{A_n})}{P(A_n)} \cdot P(A_n) = \sum\limits_{n = 0}^\infty G^n (t) P(N = n) = F (G (t))$
 
-    $G_S (t) = \mathbb{E} t^S = \sum_{n = 0}^\infty \frac{\mathbb{E} (t^S \mathds{1}_{A_n})}{P(A_n)} \cdot P(A_n) = \sum\limits_{n = 0}^\infty G^n (t) P(N = n) = G_n (G_{\xi} (t))$
-
-    $\frac{\mathbb{E} (t^S \mathds{1}_{A_n})}{P(A_n)} = \mathbb{E} (t^S | N = n) = \mathbb{E} (t^{S_n} | N = n) = \mathbb{E} (t^{\xi_1} \cdot \ldots \cdot t^{\xi_n} | N = n) = \mathbb{E} (t^{\xi_1} \cdot \ldots \cdot e^{\xi_n}) = (\mathbb{E} t^{\xi_1})^n = (G(t))^n$
+    Пояснение: $\frac{\mathbb{E} (t^S \mathds{1}_{A_n})}{P(A_n)} = \mathbb{E} (t^S | N = n) = \mathbb{E} (t^{S_n} | N = n) = \mathbb{E} (t^{\xi_1} \cdot \ldots \cdot t^{\xi_n} | N = n) = \mathbb{E} (t^{\xi_1} \cdot \ldots \cdot t^{\xi_n}) = (\mathbb{E} t^{\xi_1})^n = (G(t))^n$
 \end{example}
 
 \begin{remark}
@@ -138,10 +135,10 @@
 
 \begin{definition}
     $\eta$ - случайная величина. Пусть $\sigma (\eta)$ - наименьшая $\sigma$-алгебра, относительно которой $\eta$ измерима 
-    
+
     \begin{remark}
         Чтобы её получить, нужно взять все Лебеговы множества и натянуть на них $\sigma$-алгебру
-    \end{remark} 
+    \end{remark}
 \end{definition}
 
 \begin{definition}
@@ -151,7 +148,7 @@
 \begin{example}
     $\eta$ - дискретная, $\{ y_1, y_2, \ldots \}$ - множество её значений
 
-    Все $ \{ \eta = y_k \}$ - измеримы, $\Omega = \bigcup \{ \eta = y_k \} $, $\sigma (\eta)$ - всевозможные объединения $\{ \eta = y_k \}$ 
+    Все $ \{ \eta = y_k \}$ - измеримы, $\Omega = \bigsqcup \{ \eta = y_k \} $, $\sigma (\eta)$ - всевозможные объединения $\{ \eta = y_k \}$ 
 \end{example}
 
 \begin{theorem}
@@ -294,9 +291,13 @@ $\mathbb{E} \eta_n = G_n' (1) = G_{n-1}' (\underbrace{F(1)}_{=1}) \cdot \underbr
             $P(\xi_n = \xi_{n-1} - 1) = 1 - p$
         }
         \item {
-            Прибор, который бывает в двух состояниях - работает и не работает.
+            Прибор, который бывает в двух состояниях -- работает и не работает. Есть переходы между состояниями: смотрите картинку.
 
-            % Тут нужна картинка
+            \begin{center}
+                \includegraphics[width=7cm]{assets/04-descrete-random-process/probability-example-work-not-work.png}
+            \end{center}
+
+
         }
     \end{enumerate}
     \begin{remark}
@@ -348,7 +349,7 @@ $\mathbb{E} \eta_n = G_n' (1) = G_{n-1}' (\underbrace{F(1)}_{=1}) \cdot \underbr
     $\xi_n$ цепь Маркова с начальным распределением $\pi_0$ и вероятностью перехода $p_{ab}$
 \end{theorem}
 
-\textit{Обозначение. } $\pi_n = P_{\xi_n}$ и $P$ - матрица $(p_{ab})_{a, b \in Y}$
+\textit{Обозначение. } $\pi_n = P_{\xi_n}$ и $P$ -- матрица $(p_{ab})_{a, b \in Y}$ -- это распределение системы в момент времени $n$.
 
 \begin{theorem}
     $\pi_n = \pi_0 P^n$
@@ -397,9 +398,17 @@ $\mathbb{E} \eta_n = G_n' (1) = G_{n-1}' (\underbrace{F(1)}_{=1}) \cdot \underbr
 \end{theorem}
 
 \begin{proof}
-    Доказательство с использованием теоремы Банаха о сжатии из матанализа
+    Доказательство будет с использованием теоремы Банаха о сжатии из матанализа.
 
-    $d$ - количество элементов в $Y$. Рассмотрим $\mathbb{R}^d$ с нормой $||x|| = |x_1| + \ldots + |x_d|$ - полное пространство
+    \begin{remark}
+        \textit{Теормеа Банаха о сжатии}: $(X, \rho)$ -- полное метрическое пр-во, $T : X \rightarrow X$ -- сжатие с коэфф. $q \in (0, 1)$ (сжатие это $\rho(T(x), T(y)) \leq q \cdot \rho(x, y): \ \forall \ x, y \in X$).
+        
+        Тогда существует единственный $x^* \in X$, т.ч. $T(x^*) = x^*$ и если $x_0 \in X$ и $x_{n + 1} = T(x_n)$, то $\rho(x_n, x^*) \leq C q^n$.
+    \end{remark}
+
+    Теперь доказываем теорему:
+
+    пусть $d$ - количество элементов в $Y$. Рассмотрим $\mathbb{R}^d$ с нормой $||x|| = |x_1| + \ldots + |x_d|$ - полное пространство
 
     $S = \{ x \in \mathbb{R}^d \, : \, ||x|| = 1, x_1, x_2, \ldots, x_d \geqslant 0 \}$ - замкнутое подмножество $\mathbb{R}^d$ - полное
 
@@ -408,7 +417,9 @@ $\mathbb{E} \eta_n = G_n' (1) = G_{n-1}' (\underbrace{F(1)}_{=1}) \cdot \underbr
     Проверяем, что $T$ - сжатие с $\lambda = 1 - d\delta$
 
     $||T_x - T_y|| \overset{z = x - y}{=} ||T_z|| = \sum\limits_{j = 1}^d |(T_z)_j| = \sum\limits_{j = 1}^d \left | \sum\limits_{k = 1}^d z_k p_{kj} \right | = 
-    \sum\limits_{j = 1}^d \left | \sum\limits_{k = 1}^d z_k (p_{kj} - \delta) + \delta \underbrace{\sum\limits_{k = 1}^d z_k}_{= 0} \right | \leqslant \sum\limits_{j = 1}^d \sum\limits_{k = 1}^d |z_k| (p_{kj} - \delta) = 
+    \sum\limits_{j = 1}^d \left | \sum\limits_{k = 1}^d z_k (p_{kj} - \delta) + \delta \underbrace{\sum\limits_{k = 1}^d z_k}_{= 0} \right | \leqslant$
+    
+    $\leqslant \sum\limits_{j = 1}^d \sum\limits_{k = 1}^d |z_k| (p_{kj} - \delta) = 
     \sum\limits_{k = 1}^d |z_k| \sum\limits_{j = 1}^d \underbrace{(p_{kj} - \delta)}_{=1 - \delta d = \lambda} = \lambda \sum\limits_{k = 1}^d |z_k| = \lambda ||x - y|| $
 \end{proof}
 
@@ -456,13 +467,15 @@ $F_a = \sum\limits_{n = 1}^\infty f_{a} (n)$ - вероятность возвр
     Тогда $\lim\limits_{x\to 1-} \sum_{n=0}^{\infty} c_nx^n = +\infty$
 \end{lemma}
 
-\begin{proof}
+\begin{proof} Леммы.
+
+
     Берём $n$, т.ч. $\sum_{k=0}^{n} c_k > A$, а $\sum_{k=1}^{n} \rightarrow_{x\to 1-} \sum_{n=0}^{n}c_k$. Тогда
     $\underbrace{\sum_{k=0}^{n} c_kx^k}_{\leqslant \sum_{n=0}^{\infty} c_nx^n} > A - 1$ при $x$ близких к 1
 \end{proof}
 
 \begin{proof}
-    Теоремы
+    Теоремы.
 
     Давайте считать, что $p_{aa} (0) = 1$ и $f_a (0) = 0$
 
@@ -647,7 +660,7 @@ $F_a = \sum\limits_{n = 1}^\infty f_{a} (n)$ - вероятность возвр
             $P(y' = y + 1) = \frac{1}{2}$
 
             То есть блуждание проекций на оси $x'$ и $y'$ независимы. Значит $p_{00}(n) =
-            \left( \binom{2n}{n} \cdot \frac{1}{2^{2n}} \right)^2 \sim \left( \frac{1}{\sqrt{\pi n}} \right)^2 = \frac{1}{\pi n}$ - а такой ряд сходится
+            \left( \binom{2n}{n} \cdot \frac{1}{2^{2n}} \right)^2 \sim \left( \frac{1}{\sqrt{\pi n}} \right)^2 = \frac{1}{\pi n}$ - а такой ряд расходится
         }
         \item {
             $d = 3$
