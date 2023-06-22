@@ -712,18 +712,24 @@
     Тогда $\left | P \left( \frac{S_n - \mathbb{E} S_n}{\sqrt{\mathbb{D} S_n}} \leqslant x \right) - \Phi (x) \right | \leqslant C_{\delta} L (\delta, n)$
 \end{theorem}
 
+\begin{remark}
+    Для одинаково распределенных случ. величин:
+
+    $\mathbb{D}_n^2 = n \cdot \sigma^2$, $a = \mathbb{E} \xi_1$
+    
+    $L(\delta, n) = \frac{1}{\left( n \sigma^2 \right)^{1 + \frac{\delta}{2}}} n \mathbb{E} | \xi_1 - a |^{2 + \delta} = C_{\delta} \cdot \frac{\mathbb{E} |\xi_1 - a|^{2 + \delta}}{n^{\frac{\delta}{2}} \sigma^{2 + \delta}}$
+\end{remark}
+
 \begin{theorem}
     \textbf{Берри-Эссенна}
 
-    $\xi_1, \ldots$ независимые, одинаково распределённые случаные величины.
+    $\xi_1, \xi_2 \ldots$ -- независимые, одинаково распределённые случаные величины.
 
-    Тогда$\left | P \left( \frac{S_n - na}{\sqrt{\sqrt{n} \sigma}} \leqslant x \right) - \Phi (x) \right | \leqslant C_{\delta} \cdot \frac{\mathbb{E} |\xi_1 - a|^{2 + \delta}}{n^{\frac{\delta}{2}} \sigma^{2 + \delta}}$
+    Тогда $\left | P \left( \frac{S_n - \mathbb{E} S_n}{\sqrt{ \mathbb{D} S_n }} \leqslant x \right) - \Phi (x) \right | \leqslant C \frac{\mathbb{E} | \xi_1 - a |^3}{\sigma^3 \sqrt{n}}$
 \end{theorem}
 
 \begin{proof}
-    $\mathbb{D}_n^2 = n \sigma^2$ и $L (\delta, n) = \frac{1}{n^{1 + \frac{\delta}{2} \cdot \sigma^{2 + \delta}}} \cdot n \mathbb{E} |\xi_1 - a|^{2 + \delta}$
-
-    В частности при $\delta = 1 \, |P - \Phi| \leqslant C \frac{\mathbb{E} |\xi_1 - a|^3}{\sqrt{n} \sigma^3}$
+    Подставляем $\delta = 1$ в замечание выше.
 \end{proof}
 
 \begin{remark}
