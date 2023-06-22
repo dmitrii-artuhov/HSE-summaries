@@ -737,19 +737,19 @@
 
     \begin{enumerate}
         \item {
-            Эссен (1956) $C \geqslant \frac{3 + \sqrt{10}}{6 \sqrt{2 \pi}} \approx 0,4097$
+            Эссен (1956): $C \geqslant \frac{3 + \sqrt{10}}{6 \sqrt{2 \pi}} \approx 0,4097$
         }
         \item {
-            Шевцова (2014) $C \leqslant 0,469$
+            Шевцова (2014): $C \leqslant 0,469$
         }
         \item {
             Для общего случая: $C_1 \leqslant 0,5583$
         }
         \item {
-            Для схемы Бернулли (2018) $C_1 \leqslant 0,4099$
+            Для схемы Бернулли (2018): $C_1 \leqslant 0,4099$
         }
         \item {
-            Для схемы Бернулли с $p = \frac{1}{2}$ $C = \frac{1}{\sqrt{2\pi}}$
+            Для схемы Бернулли с $p = \frac{1}{2}$: $C = \frac{1}{\sqrt{2\pi}}$
         }
     \end{enumerate}
 \end{remark}
@@ -792,13 +792,13 @@
     $\xi_1, \xi_2, \ldots$ - независимые, одинаково распределённые, удовлетворяющие условию Крамера и $r > a = \mathbb{E}\xi_1$
 
     Хотим оценить $P\left( \frac{S_n}{n} \geqslant r \right) = P\left( S_n \geqslant nr \right) = P\left( \lambda S_n \geqslant \lambda nr \right) = P\left( e^{ \lambda S_n} \geqslant e^{\lambda nr} \right) \overset{\text{Марков}}{\leqslant} \frac{\mathbb{E} e^{\lambda S_n}}{e^{\lambda n r}}
-    \overset{*}{=} \left( \frac{\mathbb{E} e^{\lambda \xi_1}}{e^{\lambda r}}  \right)^n$
+    \overset{*}{=} \left( \frac{\mathbb{E} e^{\lambda \xi_1}}{e^{\lambda r}}  \right)^n = \exp \left( n (\ln \left( \mathbb{E} e^{\lambda \xi_1} \right) - \lambda r) \right)$
 
-    $(*) \mathbb{E} e^{\lambda S_n} = \mathbb{E} (\prod_{k = 1}^n e^{\lambda \xi_k}) = (\mathbb{E} e^{\lambda \xi_1})^n$
+    $(*):$ $\mathbb{E} e^{\lambda S_n} = \mathbb{E} (\prod_{k = 1}^n e^{\lambda \xi_k}) = (\mathbb{E} e^{\lambda \xi_1})^n$
 
     А теперь, то что получилось - будем минимизировать по $\lambda$
 
-    $\varphi (\lambda) = \ln \mathbb{E} e^{\lambda \xi_1} - \lambda r \rightarrow \inf$, где $\lambda$ допустимое
+    $\varphi (\lambda) = \ln \mathbb{E} e^{\lambda \xi_1} - \lambda r \rightarrow \infty$, где $\lambda$ допустимое
 
     $I(r) = \sup_{\lambda} \{ \lambda r - \ln (\mathbb{E} e^{\lambda \xi_1}) \} \implies P \left( \frac{S_n}{n} \geqslant r \right) \leqslant e^{-n I(r)}$
  \end{theorem}
@@ -808,7 +808,7 @@
         \item {
             $\xi \sim \mathcal{N} (0, 1)$
 
-            $\mathbb{E} e^{\lambda \xi} = \frac{1}{\sqrt{2\pi}} \int_{\mathbb{R}} e^{\lambda x} e^{\frac{x^2}{2}} \, dx =
+            $\mathbb{E} e^{\lambda \xi} = \frac{1}{\sqrt{2\pi}} \int_{\mathbb{R}} e^{\lambda x} e^{-\frac{x^2}{2}} \, dx =
             \frac{1}{\sqrt{2\pi}} \int_{\mathbb{R}} e^{-\frac{(x - \lambda)^2}{2}} \, dx \cdot e^{\frac{\lambda^2}{2}} = e^{\frac{\lambda^2}{2}}$
 
             $\lambda r - \frac{\lambda^2}{2} \rightarrow \max\limits_{\lambda > 0}$, максимум при $\lambda = r$. И тогда $I(r) = \frac{r^2}{2}$
@@ -820,7 +820,7 @@
 
             $\mathbb{E} e^{\lambda \xi} = \int_0^{+\infty} e^{\lambda x} e^{-x} \, dx = \frac{e^{(\lambda - 1)x}}{\lambda - 1} \bigg |_0^{+\infty} = \frac{1}{1 - \lambda}$ сходимость есть при $\lambda \in (0, 1)$
 
-            $\lambda r - \ln \frac{1}{1 - \lambda} = \lambda r + \ln (1 - \lambda)$ - считаем производную по $\lambda$
+            $\lambda r - \ln \frac{1}{1 - \lambda} = \lambda r + \ln (1 - \lambda)$ -- считаем производную по $\lambda$, ищем точку, где достигается максимум.
 
             $(\lambda r + \ln (1 - \lambda))_\lambda' = r - \frac{1}{1 - \lambda} \implies 1 - \lambda = \frac{1}{r} \implies \lambda = 1 - \frac{1}{r}, r > 1$
 
