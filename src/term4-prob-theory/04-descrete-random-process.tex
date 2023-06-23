@@ -581,7 +581,7 @@ $F_a = \sum\limits_{n = 1}^\infty f_{a} (n)$ - вероятность возвр
 \Subsection{Случайные блуждания}
 
 \begin{theorem}
-    Рассмотрим блуждание по прямой
+    Рассмотрим блуждание по целочисленной прямой
 
     Блуждание возвратно $\Longleftrightarrow p = \frac{1}{2}$
 \end{theorem}
@@ -593,9 +593,9 @@ $F_a = \sum\limits_{n = 1}^\infty f_{a} (n)$ - вероятность возвр
 
     $p_{00} (2n) = p^n (1-p)^n \binom{2n}{n} \sim \frac{4^n}{\sqrt{\pi n}} (p(1-p))^n $
 
-    Если $p \neq \frac{1}{2}$, то $4p (1 - 1p) < 1$ и $p_{00} (2n) \leqslant C (4p(1-p))^n $ - сходящаяся геометрическая прогрессия
+    Если $p \neq \frac{1}{2}$, то $4p (1 - 1p) < 1$ и $p_{00} (2n) \leqslant C (4p(1-p))^n $ - сходящаяся геометрическая прогрессия $implies$ невозвратность.
 
-    Если $p = \frac{1}{2}$, то $p_{00} (n) \sim \frac{1}{\sqrt{\pi n}} \implies$ ряд расходится
+    Если $p = \frac{1}{2}$, то $p_{00} (n) \sim \frac{1}{\sqrt{\pi n}} \implies$ ряд расходится $\implies$ возвратность.
 \end{proof}
 
 \begin{remark}
@@ -604,9 +604,11 @@ $F_a = \sum\limits_{n = 1}^\infty f_{a} (n)$ - вероятность возвр
 
 \end{remark}
 
-\begin{proof}
-    Если $\eta_1$ имеет матожидание, то блуждание возвратно
-\end{proof}
+\begin{theorem} Условия берутся из замечания выше.
+
+
+    Если $\eta_1$ имеет матожидание, то блуждание возвратно.
+\end{theorem}
 
 \begin{proof}
     $G$ - производящая функция для $\eta_1$. То есть $G(z) = \sum\limits_{k \in \mathbb{Z}} P(\eta_1 = k) z^k$
@@ -615,18 +617,29 @@ $F_a = \sum\limits_{n = 1}^\infty f_{a} (n)$ - вероятность возвр
 
     $p_{00} (n) = \frac{1}{2\pi i} \int\limits_{|z| = 1} \frac{G^n (z)}{z} \, dz$
 
-    $\sum\limits_{n=0}^\infty p_{00} (n)x^n = \sum\limits_{n = 0}^\infty \frac{1}{2\pi i} \int\limits_{|z| = 1} \frac{G^n (z) x^n}{z} \, dz \overset{?}{=} \frac{1}{2\pi i} \int\limits_{|z| = 1} \frac{1}{z} \underbrace{\sum\limits_{n = 0}^\infty x^n G^n (z)}_{= \frac{1}{1 - xG(z)}} \, dz = 
-    \frac{1}{2\pi} \int_{-\pi}^\pi \frac{dt}{1 - xG(e^{it})} = \frac{1}{\pi} \int_0^\pi \frac{dt}{1 - xG(e^{it})} \overset{{*}}{=} \frac{1}{\pi} \int_0^\pi \frac{dt}{1 - x + o(xt)} \geqslant \frac{1}{\pi} \int_0^\pi \frac{dt}{1 - x + xt} = \frac{1}{\pi} \frac{\ln (1 - x + xt)}{x} \bigg |_{t=0}^{t = \pi} \rightarrow +\infty$
+    $\sum\limits_{n=0}^\infty p_{00} (n)x^n = \sum\limits_{n = 0}^\infty \frac{1}{2\pi i} \int\limits_{|z| = 1} \frac{G^n (z) x^n}{z} \, dz \overset{?}{=} \frac{1}{2\pi i} \int\limits_{|z| = 1} \frac{1}{z} \underbrace{\sum\limits_{n = 0}^\infty x^n G^n (z)}_{= \frac{1}{1 - xG(z)}} \, dz =_{z = e^{it}} $
+    
+    $= \frac{1}{2\pi} \int_{-\pi}^\pi \frac{dt}{1 - xG(e^{it})} dt = \frac{1}{\pi} \int_0^\pi \frac{dt}{1 - xG(e^{it})}dt \overset{{*}}{=} \frac{1}{\pi} \int_0^\pi \frac{dt}{1 - x + o(xt)}dt \geqslant \frac{1}{\pi} \int_0^\pi \frac{dt}{1 - x + xt}dt =$
+    
+    $= \frac{1}{\pi} \frac{\ln (1 - x + xt)}{x} \bigg |_{t=0}^{t = \pi} \rightarrow_{x \to 1-} +\infty$ $\implies$ ряд расходится, тогда блуждание возвратно.
 
-    $(*) \, : \, G(1 + s) = G(1) + G' (1) \cdot s + o(s) = 1 + o(s)$. Тогда $G(e^{it}) = 1 + o(e^{it} - 1) = 1 + o(t)$
+    $(?): $ по теореме Фубини, если ряд из подинтегрального выражения сходится, то можно переставлять.
+
+    $(*) \, : \, G(1 + s) = G(1) + \underbrace{G' (1)}_{\mathbb{E} \eta_1} \cdot s + o(s) = 1 + o(s)$. Тогда $G(e^{it}) = 1 + o(e^{it} - 1) = 1 + o(t)$
 \end{proof}
 
 \begin{remark}
-    Все состояния нулевые
+    На самом деле все состояния нулевые.
 
     $\underbrace{p_{00} (n)}_{? \, : \, \rightarrow 0} = \frac{1}{2\pi i} \int\limits_{|z| = 1} \frac{G^n (z)}{z} \, dz \rightarrow \frac{1}{2\pi i} \int\limits_{|z| = 1} \frac{\lim_{n\to \infty} G^n (z)}{z} \, dz$
 
     $\left| G(z) \right| = \left| \sum\limits_{n \in \mathbb{Z}} P(\eta = n) z^n \right| \leqslant \sum\limits_{n \in \mathbb{Z}} P(\eta = n) |z|^n = \sum\limits_{n \in \mathbb{Z}} P(\eta = n) = 1$
+
+    Надо показать, что при почти всех $t$: $|G(e^{it})| < 1$:
+
+    При $|G(e^{it})| < 1$, то $\lim_{n \to \infty} G^n(z) = 0$
+
+    При $|G(e^{it})| \leq 1$, то надо показать, что такое случается для счетного кол-ва $t$-шек. 
 
     $\left| \sum P(\eta = n) e^{int} \right| = \sum P(\eta = n)$
 
@@ -653,6 +666,11 @@ $F_a = \sum\limits_{n = 1}^\infty f_{a} (n)$ - вероятность возвр
             
             Повёрнем оси на $45^{\circ}$. Исходные оси $(x, y)$, а повёрнутые $(x', y')$
 
+
+            \begin{center}
+                \includegraphics[width=7cm]{assets/04-descrete-random-process/poya-theorem-coordinates.png}
+            \end{center}
+
             То есть $P(x' = x' + 1, y' = y' + 1) = P(x = x + 1) = \frac{1}{4} = P(x' = x' + 1) \cdot P(y' = y' + 1)$
 
             $P(x' = x' + 1) = P(x = x + 1) + P(y = y - 1) = \frac{1}{2}$
@@ -670,16 +688,18 @@ $F_a = \sum\limits_{n = 1}^\infty f_{a} (n)$ - вероятность возвр
             По каждой координате мы делаем одинаковое число шагов в обоих направлениях: 
             
             $p_{00} (2n) = \sum\limits_{i + j \leqslant n} \binom{2n}{i, i, j, j, n - i -j, n - i - j} \cdot \frac{1}{6^{2n}} = \sum\limits_{i + j \leqslant n} \frac{(2n)!}{(i!j!(n-i-j)!)^2} \cdot \frac{1}{6^{2n}} = 
-            \binom{2n}{n} \sum\limits_{i + j \leqslant n} \left( \frac{n!}{i!j!(n - i - j)!} \right)^2 \cdot \frac{1}{6^{2n}} = \overset{*}{\leqslant} \underbrace{\frac{\binom{2n}{n}}{6^{2n}} \cdot 3^n}_{\sim \frac{1}{\sqrt{\pi n} \cdot \frac{1}{3^n}}} \cdot \max \binom{n}{i, j, n - i - j} $
+            \binom{2n}{n} \sum\limits_{i + j \leqslant n} \left( \frac{n!}{i!j!(n - i - j)!} \right)^2 \cdot \frac{1}{6^{2n}} \overset{*}{\leqslant} \underbrace{\frac{\binom{2n}{n}}{6^{2n}} \cdot 3^n}_{\sim \frac{1}{\sqrt{\pi n} \cdot \frac{1}{3^n}}} \cdot \max \binom{n}{i, j, n - i - j}$
 
             При этом $\sum\limits_{i + j \leqslant n} \left( \frac{n!}{i!j!(n - i - j)!} \right) = (1 + 1 + 1)^n = 3^n \implies \sum\limits_{i + j \leqslant n} \left( \frac{n!}{i!j!(n - i - j)!} \right)^2 \leqslant \max \binom{n}{i, j, n - i - j} \cdot \sum\limits_{i + j \leqslant n} \left( \frac{n!}{i!j!(n - i - j)!} \right) \sim (*)$
 
-            Осталось разобраться с максимумом: $\max \sim 3^n \cdot \frac{3\sqrt{3}}{2 \pi n}$ - упражнение
+            Осталось разобраться с максимумом: $\max \sim 3^n \cdot \frac{3\sqrt{3}}{2 \pi n}$ -- достигается, когда $i, \ j, \ (n - i - j)$ равны, либо отличаются на 1 (если $n$ не делится на 3), и остается записать формулу Стирлинга.
 
-            $(*) \sim \frac{3\sqrt{3}}{2 (\pi n)^{\frac{3}{2}}} \implies $ ряд сходится
+            $(*) \sim \frac{3\sqrt{3}}{2 (\pi n)^{\frac{3}{2}}} \implies $ ряд сходится, то есть нет возвратности.
         }
         \item {
-            Что делать с размерностью $\geqslant 4$. Выберем первые 3 координаты и будем следить что происодит с проекцией на эти координаты. 
+            Что делать с размерностью $\geqslant 4$.
+            
+            Выберем первые 3 координаты и будем следить что происодит с проекцией на эти координаты. 
             Если мы двигаемся по ним - происходит смещение. Если по другим, то мы стоим на месте. Эти остановки не бывают бесконечно долгими, то есть получили блуждание по 6 направлениям.
 
             То есть проекция возвращается назад с вероятностью $< 1$, а значит и глобальное тоже не возвратное
