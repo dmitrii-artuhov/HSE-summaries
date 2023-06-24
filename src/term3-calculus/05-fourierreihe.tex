@@ -761,11 +761,13 @@
     
     \begin{remark}
         Пусть $w \, : \, \mathbb{R} \rightarrow [0, +\infty)$ измеримая,
-        т.ч. $t^n w(t)$ - суммируемая на $\mathbb{R} \, \forall \, n$. Определим меру $\mu A = \int_A w \, d\lambda$ и пространство будет $L^2 (\mathbb{R}, \mu)$
+        т.ч. $t^n w(t)$ - суммируемая на $\mathbb{R} \, \forall \, n \in \mathbb{N} \cup \{0\}$. Определим меру $\mu A = \int_A w \, d\lambda$ и пространство будет $L^2 (\mathbb{R}, \mu)$.
 
-        Если $f \bot g$ в таком пространстве, то они ортогональны с весом $w$
+        Если $f \bot g$ в таком пространстве, то они ортогональны с весом $w$.
 
-        Рассмотрим последовательность мономов $1, t, t^2, \ldots \in L^2 (\mathbb{R}, \mu)$, они линейно независимы.
+        Скалярное произведение имеет вид: $\left< f, g \right> = \int_{\mathbb{R}} f \overline{g} d \mu = \int_{\mathbb{R}} f \overline{g} w d \lambda$.
+
+        Рассмотрим последовательность мономов $1, t, t^2, \ldots \in L^2 (\mathbb{R}, \mu)$, они линейно независимы и все попали в пространство за счет того, что мы сказали, что $t^n w(t)$ -- суммируемы.
 
         Тогда мы можем прокрутить ортогонализацию Грамма-Шмидта на этой последовательности мономов. Получим последовательность многочленов $p_0, p_1, \ldots$.
         Мы понимаем, что $\left < p_i, p_j \right > = 0 \, \forall \, i \neq j$. А ещё $\deg p_n = n$ - по индукции.
@@ -783,7 +785,7 @@
 
                     $\left < P_k, P_n \right > = \underbrace{\frac{1}{2^n \cdot n!} \cdot \frac{1}{2^k \cdot k!}}_{=C} \int_{-1}^1 ((t^2 - 1)^k)^{(k)} ((t^2 - 1)^n)^{(n)} \, dt =$
                     
-                    $= C \left( ((t^2 - 1)^k)^{(k)} \cdot ((t^2 - 1)^n)^{(n - 1)} \bigg |_{-1}^1 - \int_{-1}^1 ((t^2 - 1)^k)^{(k + 1)} ((t^2 - 1)^n)^{(n - 1)} \, dt \right) = \ldots$
+                    $= C \left( ((t^2 - 1)^k)^{(k)} \cdot ((t^2 - 1)^n)^{(n - 1)} \bigg |_{-1}^1 - \int_{-1}^1 ((t^2 - 1)^k)^{(k + 1)} \underbrace{((t^2 - 1)^n)^{(n - 1)}}_{=0 \text{ при } t = \pm 1} \, dt \right) = \ldots$
                     
                     $= \pm C \int_{-1}^1 \underbrace{((t^2 - 1)^k)^{(2k + 1)}}_{=0} ((t^2 - 1)^n)^{(n - k - 1)} \, dt = 0$
                 }
@@ -794,7 +796,7 @@
 
                     $\left < T_k, T_n \right > = \int_{-1}^1 \cos (k \arccos t) \cdot \cos (n \arccos t) \cdot \frac{dt}{\sqrt{1 - t^2}} = (*)$
 
-                    Пусть $x = \arccos t$. Тогда $dx = \frac{1}{\sqrt{1 - t^2}}$
+                    Пусть $x = \arccos t$. Тогда $dx = \frac{dt}{\sqrt{1 - t^2}}$
 
                     $(*) = \int_0^\pi \cos (kx) \cos (nx) \, dx = 0$
                 }
