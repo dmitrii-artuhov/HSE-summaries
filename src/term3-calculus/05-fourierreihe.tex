@@ -1283,12 +1283,16 @@ $\sum_{k = -n}^n c_k e^{ikx} \rightarrow \sum_{k = -\infty}^{+\infty} c_k e^{ikx
         \item $D_n$ непрерывна и $2\pi$ периодична, чётная
         \item $D_n (0) = n + \frac{1}{2}$
         \item {
-            $D_n (t) = \frac{\sin (n + \frac{1}{2})t}{2\sin \frac{t}{2}}$, при $t \neq 2\pi m$
+            $D_n (t) = \frac{\sin ((n + \frac{1}{2})t)}{2\sin \frac{t}{2}}$, при $t \neq 2\pi m$
 
             \begin{proof}
                 Индукция по $n$, база $n = 0$ верна
 
-                Переход $n - 1 \to n$. $D_{n} (t) = D_{n - 1} (t) + \cos (nt) = \frac{\sin (n - \frac{1}{2})t}{2\sin \frac{t}{2}} + \cos (nt) = \frac{\sin (n - \frac{1}{2})t + 2\cos (nt) \sin \frac{t}{2}}{2\sin \frac{t}{2}} = \frac{\sin (n + \frac{1}{2})t}{2\sin \frac{t}{2}}$
+                Переход $n - 1 \to n$:
+                
+                $D_{n} (t) = D_{n - 1} (t) + \cos (nt) = \frac{\sin ((n - \frac{1}{2})t)}{2\sin \frac{t}{2}} + \cos (nt) = \frac{\sin ((n - \frac{1}{2})t) + 2\cos (nt) \sin \frac{t}{2}}{2\sin \frac{t}{2}} = \frac{\sin ((n + \frac{1}{2})t)}{2\sin \frac{t}{2}}$
+
+                Использовали формулу: $2 \cdot \sin(a) \cdot \cos(b) = \sin(a - b) + \sin(a + b)$.
             \end{proof}
         }
         \item $\int_{-\pi}^\pi D_n (t) \, dt = \pi$ и $\int_0^\pi D_n (t) = \frac{\pi}{2}$
@@ -1356,15 +1360,6 @@ $A_0 (f) = \frac{1}{2\pi} \int_{-\pi}^\pi f(x - t) \, dt$
     $S_n (f, x) - S_n (g, x) = \frac{1}{\pi} \int_0^\delta (f(x + t) + f(x - t)) D_n (t) \, dt - \frac{1}{\pi} \int_0^\delta (g(x + t) + g(x - t)) D_n (t) \, dt + o(1)$, подынтегральные функции в окрестности совпадают, значит останется только $o(1)$
 \end{proof}
 
-\textbf{Обозначение. } $f(a \pm 0) = \lim\limits_{x \to a\pm} f(x)$
-
-$f_+' (a) = \lim\limits_{h \to 0+} \frac{f(a + h) - f(a + 0)}{h}$. Если функция непрерывна в точке $a$, то такое определение совпадает с тем, что было раньше
-
-$f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
-
-\begin{definition}
-    $a$ - регулярная точка для $f$, если $f(a) = \frac{f(a + 0) + f(a - 0)}{2}$
-\end{definition}
 
 \begin{lemma}
     $f \in L^1 [-\pi, \pi]$, тогда $\int_0^\delta \frac{|f(t)|}{t} \, dt$ и $\int_0^\pi \frac{|f(t)|}{2\sin \frac{t}{2}} \, dt$ ведут себя одинаково, 
@@ -1379,17 +1374,43 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
     $\frac{|f(t)|}{t} \leqslant \frac{|f(t)|}{2 \sin \frac{t}{2}} \leqslant \frac{|f(t)|}{t \cdot \frac{2}{\pi}}$ (из $u \frac{2}{\pi} \leqslant \sin u \leqslant u$)
 \end{proof}
 
-\textbf{Обозначение. }  $f_x^* (t) = f(x + t) + f(x - t) - f(x + 0) - f(x - 0) \overset{\text{Если $x$ - точка регулярности}}{=} f(x + t) + f(x - t) - 2f(x)$
+
+\begin{definition}
+    $a$ - регулярная точка для $f$, если $f(a) = \frac{f(a + 0) + f(a - 0)}{2}$,
+    
+    где $f(a \pm 0) = \lim\limits_{x \to a\pm} f(x)$
+\end{definition}
+
+\begin{definition}
+    Пусть $a$ -- точка разрыва $f$ \textbf{первого рода}, то есть такая что в ней существуют левый и правый предел, тогда
+
+    $f_+' (a) = \lim\limits_{h \to 0+} \frac{f(a + h) - f(a + 0)}{h}$
+
+    $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
+
+    Если функция непрерывна в точке $a$, то такое определение совпадает определением производной.
+\end{definition}
+
+
+\begin{definition}
+    $f_x^* (t) = f(x + t) + f(x - t) - f(x + 0) - f(x - 0) \overset{\text{если $x$ -- регулярная точка}}{=} f(x + t) + f(x - t) - 2f(x)$    
+\end{definition}
 
 \begin{theorem}
     \textbf{Признак Дини}
 
-    $f \in L^{1} [-\pi, \pi], x \in [-\pi, \pi]$ - точка непрерывности или разрыва первого рода. $0 < \delta < \pi$. Если $\int\limits_0^\delta \frac{|f_x^* (t)|}{t} \, dt < +\infty$, то ряд Фурье 
+    $f \in L^{1} [-\pi, \pi], x \in [-\pi, \pi]$ - точка непрерывности или разрыва первого рода, $0 < \delta < \pi$.
+    
+    Если $\int\limits_0^\delta \frac{|f_x^* (t)|}{t} \, dt < +\infty$, то ряд Фурье 
     функции $f$ в точке $x$ сходится к $\frac{f(x + 0) + f(x - 0)}{2}$
 \end{theorem}
 
 \begin{proof}
-    $S_n (x) = \int\limits_0^\pi (f(x + t) + f(x - t)) D_n (t) \, dt$. Ещё мы знаем, что $\int\limits_0^\pi D_n (t) \, dt = \frac{1}{2}$
+    $S_n (x) = \int\limits_0^\pi (f(x + t) + f(x - t)) D_n (t) \, dt$.
+    
+    Ещё мы знаем, что $\int\limits_0^\pi D_n (t) \, dt = \frac{\pi}{2}$, тогда можно домножить этот интеграл на константу: $(f(x + 0) + f(x - 0))$, тогда получим:
+
+    $S_n(x) - \frac{f(x + 0) + f(x - 0)}{2} = \underbrace{\frac{1}{\pi} \int_{0}^{\pi} D_n(t) (f(x + t) + f(x - t)) dt}_{=S_n(x)} - \underbrace{\frac{1}{\pi} \int_{0}^{\pi} D_n(t) (f(x + 0) + f(x - 0)) dt}_{=\frac{1}{2} \cdot (f(x + 0) + f(x - 0))}$
 
     $S_n(x) - \frac{f(x + 0) + f(x - 0)}{2} = \frac{1}{\pi} \int_0^\pi f_x^* (t) D_n (t) \, dt $
 
@@ -1397,9 +1418,11 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
 
     $f_x^* (t) \in L^1 [-\pi, \pi]$, т.к. $|f_x^* (t)| \leqslant |f(x + t)| + |f(x - t)| + |f(x + 0)| + |f(x - 0)|$
 
-    $D_n(t) = \frac{\sin ((n + \frac{1}{2})t)}{2\sin \frac{t}{2}}$. Значит нужно понять про $\int_0^\pi \frac{|f_x^* (t)|}{2 \sin \frac{t}{2}} \sin ((n + \frac{1}{2})t) \, dt \overset{\text{Риман-Лебег, если (*)}}{\rightarrow} 0$
+    $D_n(t) = \frac{\sin ((n + \frac{1}{2})t)}{2\sin \frac{t}{2}}$.
+    
+    Значит нужно понять, что $\int_0^\pi \frac{|f_x^* (t)|}{2 \sin \frac{t}{2}} \sin ((n + \frac{1}{2})t) \, dt \rightarrow 0$ -- а это верно по Риману-Лебегу, если выполняется условие $(*)$.
 
-    $(*) \, : \, \int_0^\pi \frac{|f_x^* (t)|}{2 \sin \frac{t}{2}} \, dt < +\infty \overset{\text{лемма}}{\Longleftrightarrow} \int_0^\delta \frac{|f_x^* (t)|}{t} \, dt < +\infty$ - а это верно из условия 
+    $(*) \, : \, \int_0^\pi \frac{|f_x^* (t)|}{2 \sin \frac{t}{2}} \, dt < +\infty \overset{\text{прошлая лемма}}{\Longleftrightarrow} \int_0^\delta \frac{|f_x^* (t)|}{t} \, dt < +\infty$ - а это верно из условия 
 \end{proof}
 
 \begin{consequence}
@@ -1408,23 +1431,29 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
             Если $x$ - регулярная точка (или точка непрерывности), то в условиях теоремы ряд Фурье сходится к значения функции в точке.
         }
         \item {
-            Если $x$ точка непрерывности для разрыва первого рода и в этой точке существуют конечные $f'_{\pm} (x)$
+            % Если $x$ точка непрерывности для разрыва первого рода и в этой точке существуют конечные $f'_{\pm} (x)$
 
-            Тогда ряд Фурье в точке $x$ сходится к $\frac{f(x + 0) + f(x - 0)}{2}$ 
+            Если $f \in L^1[-\pi, \pi]$ и в точке $x$ существуют конечные $f'_{\pm} (x)$, тогда ряд Фурье в точке $x$ сходится к $\frac{f(x + 0) + f(x - 0)}{2}$.
 
             \begin{proof}
-                $\frac{|f_x^* (t)|}{t} \leqslant \underbrace{\frac{|f(x + t) - f(x + 0)|}{t}}_{\rightarrow f_+'(x)} + \underbrace{\frac{|f(x - t) - f(x - 0)|}{t}}_{\rightarrow -f_-' (x)}$. Функции локально ограничены, значит всё выполняется.
+                Надо проверить, что $\int_{0}^{\delta} \frac{|f_x^*(t)|}{t} dt < +\infty$, то есть что $\frac{|f_x^*(t)|}{t}$ -- суммируема.
+
+                $\frac{|f_x^* (t)|}{t} \leqslant \underbrace{\frac{|f(x + t) - f(x + 0)|}{t}}_{\rightarrow f_+'(x)} + \underbrace{\frac{|f(x - t) - f(x - 0)|}{t}}_{\rightarrow -f_-' (x)}$.
+                
+                Функции локально ограничены, значит всё выполняется.
             \end{proof}
         }
         \item {
-            Если $x$ - регулярная точка (или точка непрерывности) и в точке $x$ существуют конечные $f'_{\pm} (x)$
+            % Если $x$ - регулярная точка (или точка непрерывности) и в точке $x$ существуют конечные $f'_{\pm} (x)$
 
-            Тогда ряд Фурье в точке $x$ сходится к $f(x)$
+            % Тогда ряд Фурье в точке $x$ сходится к $f(x)$
+
+            Если $f$ кусочно-дифференцируема, тогда ряд Фурье сходится к $\frac{f(x+0) + f(x-0)}{2}$.
         }
         \item {
-            Если $f$ непрерывна и кусочно дифференцируема
+            % Если $f$ непрерывна и кусочно дифференцируема, тогда ряд Фурье функции $f$ сходится к значению функции во всех точках
 
-            Тогда ряд Фурье функции $f$ сходится к значению функции во всех точках
+            Если $f$ непрерывная и кусочно-дифференцируема, тогда ряд Фурье в точке $x$ сходится к $f(x)$.
         }
     \end{enumerate}
 \end{consequence}
