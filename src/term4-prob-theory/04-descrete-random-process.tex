@@ -7,7 +7,7 @@
 
     \begin{enumerate}
         \item измерима относительно $\mathcal{A}$
-        \item $\forall \, A \in \mathbb{A} \, : \, \mathbb{E} (\xi \mathds{1}_A) = \mathbb{E} (\eta \mathds{1}_A)$
+        \item $\forall \, A \in \mathcal{A} \, : \, \mathbb{E} (\xi \mathds{1}_A) = \mathbb{E} (\eta \mathds{1}_A)$
     \end{enumerate}
 \end{definition}
 
@@ -16,7 +16,7 @@
 \end{theorem}
 
 \begin{proof}
-    Существование:
+    \textbf{Существование}:
 
     $\xi = \xi_+ - \xi_-$. Пусть $A \in \mathcal{A}$, определим $\mu_{\pm} A = \int_A \xi_{\pm} \, dP$ - это конечные меры на $\mathcal{A}$, так как интеграл от измеримой неотрицательной функции.
     А ещё эти меры абсолютно непрерывны относительно $P \overset{\text{т. Радона-Никодима}}{\implies} \exists \, \eta_{\pm} > 0$ измеримые относительно $\mathcal{A}$, т.ч. $\mu_{\pm} A = \int_A \eta_{\pm} \, dP$
@@ -25,7 +25,7 @@
 
     А ещё $\mathbb{E}(\xi_+ \mathds{1}_A) = \mu_+ A = \int_A \xi_+ \, dP$ и для остальных точно также
 
-    Единственность:
+    \textbf{Единственность}:
 
     Пусть $\eta_1$ и $\eta_2$ - условные матожидания. Тогда $\{ \eta_1 > \eta_2 \} \in \mathcal{A}$
 
@@ -65,14 +65,13 @@
             $\mathbb{E} (\mathbb{E} (\xi | \mathcal{A})) = \mathbb{E} \xi$ - из $4$ и $5$
         }
         \item {
-            Если $\xi$ измерима относительно $\mathcal{A}$, о $\mathbb{E} (\xi | \mathcal{A}) = \xi$
+            Если $\xi$ измерима относительно $\mathcal{A}$, то $\mathbb{E} (\xi | \mathcal{A}) = \xi$
         }
     \end{enumerate}
 \end{properties}
 
 \begin{example}
-    % дизъюнктно
-    Пусть $\Omega = \bigcup A_k$  не более чем счётное объединение
+    Пусть $\Omega = \bigsqcup A_k$  не более чем счётное объединение
 
     $\mathcal{A}$ - натянутая на $A_1, A_2, \ldots$ $\sigma-$алгебра
 
@@ -104,17 +103,15 @@
 
     $\mathbb{E} S = \sum\limits_{n = 0}^{+\infty} \frac{\mathbb{E} (S \mathds{1}_{A_n})}{P(A_n)} \cdot P(A_n) = \sum\limits_{n = 0}^\infty na P(N = n) = \mathbb{E} \xi_1 \cdot \mathbb{E} N$
 
-    $\frac{\mathbb{E} (S \mathds{1}_{A_n})}{P(A_n)} = \mathbb{E} (S | N = n) = \mathbb{E} (S_n | N = n) = \mathbb{E} (\xi_1 + \ldots + \xi_n | N = n) \overset{\text{незаисимость}}{=} = \mathbb{E} (\xi_1 + \ldots + \xi_n) = na$, где $a = \mathbb{E} \xi_1$
+    Пояснение: $\frac{\mathbb{E} (S \mathds{1}_{A_n})}{P(A_n)} = \mathbb{E} (S | N = n) = \mathbb{E} (S_n | N = n) = \mathbb{E} (\xi_1 + \ldots + \xi_n | N = n) \overset{\text{незаисимость}}{=} \mathbb{E} (\xi_1 + \ldots + \xi_n) = na$, где $a = \mathbb{E} \xi_1$
 \end{example}
 
 \begin{example}
-    Пусть $\xi_k$ тоже принимают неотрицательные целые значения
+    Пусть $\xi_k$ тоже принимают неотрицательные целые значения, тогда $G_{\xi_1} (t) = G_{\xi_k} (t) = G(t)$ - производящая функция для $\xi_k$, $F(t)$ -- производящая функция для $N$.
 
-    Тогда $G_{\xi_1} (t) = G(t)$ - производящая функция $\xi_k$
+    $G_S (t) = \mathbb{E} t^S = \sum_{n = 0}^\infty \frac{\mathbb{E} (t^S \mathds{1}_{A_n})}{P(A_n)} \cdot P(A_n) = \sum\limits_{n = 0}^\infty G^n (t) P(N = n) = F (G (t))$
 
-    $G_S (t) = \mathbb{E} t^S = \sum_{n = 0}^\infty \frac{\mathbb{E} (t^S \mathds{1}_{A_n})}{P(A_n)} \cdot P(A_n) = \sum\limits_{n = 0}^\infty G^n (t) P(N = n) = G_n (G_{\xi} (t))$
-
-    $\frac{\mathbb{E} (t^S \mathds{1}_{A_n})}{P(A_n)} = \mathbb{E} (t^S | N = n) = \mathbb{E} (t^{S_n} | N = n) = \mathbb{E} (t^{\xi_1} \cdot \ldots \cdot t^{\xi_n} | N = n) = \mathbb{E} (t^{\xi_1} \cdot \ldots \cdot e^{\xi_n}) = (\mathbb{E} t^{\xi_1})^n = (G(t))^n$
+    Пояснение: $\frac{\mathbb{E} (t^S \mathds{1}_{A_n})}{P(A_n)} = \mathbb{E} (t^S | N = n) = \mathbb{E} (t^{S_n} | N = n) = \mathbb{E} (t^{\xi_1} \cdot \ldots \cdot t^{\xi_n} | N = n) = \mathbb{E} (t^{\xi_1} \cdot \ldots \cdot t^{\xi_n}) = (\mathbb{E} t^{\xi_1})^n = (G(t))^n$
 \end{example}
 
 \begin{remark}
@@ -138,10 +135,10 @@
 
 \begin{definition}
     $\eta$ - случайная величина. Пусть $\sigma (\eta)$ - наименьшая $\sigma$-алгебра, относительно которой $\eta$ измерима 
-    
+
     \begin{remark}
         Чтобы её получить, нужно взять все Лебеговы множества и натянуть на них $\sigma$-алгебру
-    \end{remark} 
+    \end{remark}
 \end{definition}
 
 \begin{definition}
@@ -151,7 +148,7 @@
 \begin{example}
     $\eta$ - дискретная, $\{ y_1, y_2, \ldots \}$ - множество её значений
 
-    Все $ \{ \eta = y_k \}$ - измеримы, $\Omega = \bigcup \{ \eta = y_k \} $, $\sigma (\eta)$ - всевозможные объединения $\{ \eta = y_k \}$ 
+    Все $ \{ \eta = y_k \}$ - измеримы, $\Omega = \bigsqcup \{ \eta = y_k \} $, $\sigma (\eta)$ - всевозможные объединения $\{ \eta = y_k \}$ 
 \end{example}
 
 \begin{theorem}
@@ -294,9 +291,13 @@ $\mathbb{E} \eta_n = G_n' (1) = G_{n-1}' (\underbrace{F(1)}_{=1}) \cdot \underbr
             $P(\xi_n = \xi_{n-1} - 1) = 1 - p$
         }
         \item {
-            Прибор, который бывает в двух состояниях - работает и не работает.
+            Прибор, который бывает в двух состояниях -- работает и не работает. Есть переходы между состояниями: смотрите картинку.
 
-            % Тут нужна картинка
+            \begin{center}
+                \includegraphics[width=7cm]{assets/04-descrete-random-process/probability-example-work-not-work.png}
+            \end{center}
+
+
         }
     \end{enumerate}
     \begin{remark}
@@ -348,7 +349,7 @@ $\mathbb{E} \eta_n = G_n' (1) = G_{n-1}' (\underbrace{F(1)}_{=1}) \cdot \underbr
     $\xi_n$ цепь Маркова с начальным распределением $\pi_0$ и вероятностью перехода $p_{ab}$
 \end{theorem}
 
-\textit{Обозначение. } $\pi_n = P_{\xi_n}$ и $P$ - матрица $(p_{ab})_{a, b \in Y}$
+\textit{Обозначение. } $\pi_n = P_{\xi_n}$ и $P$ -- матрица $(p_{ab})_{a, b \in Y}$ -- это распределение системы в момент времени $n$.
 
 \begin{theorem}
     $\pi_n = \pi_0 P^n$
@@ -397,9 +398,17 @@ $\mathbb{E} \eta_n = G_n' (1) = G_{n-1}' (\underbrace{F(1)}_{=1}) \cdot \underbr
 \end{theorem}
 
 \begin{proof}
-    Доказательство с использованием теоремы Банаха о сжатии из матанализа
+    Доказательство будет с использованием теоремы Банаха о сжатии из матанализа.
 
-    $d$ - количество элементов в $Y$. Рассмотрим $\mathbb{R}^d$ с нормой $||x|| = |x_1| + \ldots + |x_d|$ - полное пространство
+    \begin{remark}
+        \textit{Теормеа Банаха о сжатии}: $(X, \rho)$ -- полное метрическое пр-во, $T : X \rightarrow X$ -- сжатие с коэфф. $q \in (0, 1)$ (сжатие это $\rho(T(x), T(y)) \leq q \cdot \rho(x, y): \ \forall \ x, y \in X$).
+        
+        Тогда существует единственный $x^* \in X$, т.ч. $T(x^*) = x^*$ и если $x_0 \in X$ и $x_{n + 1} = T(x_n)$, то $\rho(x_n, x^*) \leq C q^n$.
+    \end{remark}
+
+    Теперь доказываем теорему:
+
+    пусть $d$ - количество элементов в $Y$. Рассмотрим $\mathbb{R}^d$ с нормой $||x|| = |x_1| + \ldots + |x_d|$ - полное пространство
 
     $S = \{ x \in \mathbb{R}^d \, : \, ||x|| = 1, x_1, x_2, \ldots, x_d \geqslant 0 \}$ - замкнутое подмножество $\mathbb{R}^d$ - полное
 
@@ -408,7 +417,9 @@ $\mathbb{E} \eta_n = G_n' (1) = G_{n-1}' (\underbrace{F(1)}_{=1}) \cdot \underbr
     Проверяем, что $T$ - сжатие с $\lambda = 1 - d\delta$
 
     $||T_x - T_y|| \overset{z = x - y}{=} ||T_z|| = \sum\limits_{j = 1}^d |(T_z)_j| = \sum\limits_{j = 1}^d \left | \sum\limits_{k = 1}^d z_k p_{kj} \right | = 
-    \sum\limits_{j = 1}^d \left | \sum\limits_{k = 1}^d z_k (p_{kj} - \delta) + \delta \underbrace{\sum\limits_{k = 1}^d z_k}_{= 0} \right | \leqslant \sum\limits_{j = 1}^d \sum\limits_{k = 1}^d |z_k| (p_{kj} - \delta) = 
+    \sum\limits_{j = 1}^d \left | \sum\limits_{k = 1}^d z_k (p_{kj} - \delta) + \delta \underbrace{\sum\limits_{k = 1}^d z_k}_{= 0} \right | \leqslant$
+    
+    $\leqslant \sum\limits_{j = 1}^d \sum\limits_{k = 1}^d |z_k| (p_{kj} - \delta) = 
     \sum\limits_{k = 1}^d |z_k| \sum\limits_{j = 1}^d \underbrace{(p_{kj} - \delta)}_{=1 - \delta d = \lambda} = \lambda \sum\limits_{k = 1}^d |z_k| = \lambda ||x - y|| $
 \end{proof}
 
@@ -456,13 +467,15 @@ $F_a = \sum\limits_{n = 1}^\infty f_{a} (n)$ - вероятность возвр
     Тогда $\lim\limits_{x\to 1-} \sum_{n=0}^{\infty} c_nx^n = +\infty$
 \end{lemma}
 
-\begin{proof}
+\begin{proof} Леммы.
+
+
     Берём $n$, т.ч. $\sum_{k=0}^{n} c_k > A$, а $\sum_{k=1}^{n} \rightarrow_{x\to 1-} \sum_{n=0}^{n}c_k$. Тогда
     $\underbrace{\sum_{k=0}^{n} c_kx^k}_{\leqslant \sum_{n=0}^{\infty} c_nx^n} > A - 1$ при $x$ близких к 1
 \end{proof}
 
 \begin{proof}
-    Теоремы
+    Теоремы.
 
     Давайте считать, что $p_{aa} (0) = 1$ и $f_a (0) = 0$
 
@@ -568,7 +581,7 @@ $F_a = \sum\limits_{n = 1}^\infty f_{a} (n)$ - вероятность возвр
 \Subsection{Случайные блуждания}
 
 \begin{theorem}
-    Рассмотрим блуждание по прямой
+    Рассмотрим блуждание по целочисленной прямой
 
     Блуждание возвратно $\Longleftrightarrow p = \frac{1}{2}$
 \end{theorem}
@@ -580,9 +593,9 @@ $F_a = \sum\limits_{n = 1}^\infty f_{a} (n)$ - вероятность возвр
 
     $p_{00} (2n) = p^n (1-p)^n \binom{2n}{n} \sim \frac{4^n}{\sqrt{\pi n}} (p(1-p))^n $
 
-    Если $p \neq \frac{1}{2}$, то $4p (1 - 1p) < 1$ и $p_{00} (2n) \leqslant C (4p(1-p))^n $ - сходящаяся геометрическая прогрессия
+    Если $p \neq \frac{1}{2}$, то $4p (1 - 1p) < 1$ и $p_{00} (2n) \leqslant C (4p(1-p))^n $ - сходящаяся геометрическая прогрессия $implies$ невозвратность.
 
-    Если $p = \frac{1}{2}$, то $p_{00} (n) \sim \frac{1}{\sqrt{\pi n}} \implies$ ряд расходится
+    Если $p = \frac{1}{2}$, то $p_{00} (n) \sim \frac{1}{\sqrt{\pi n}} \implies$ ряд расходится $\implies$ возвратность.
 \end{proof}
 
 \begin{remark}
@@ -591,9 +604,11 @@ $F_a = \sum\limits_{n = 1}^\infty f_{a} (n)$ - вероятность возвр
 
 \end{remark}
 
-\begin{proof}
-    Если $\eta_1$ имеет матожидание, то блуждание возвратно
-\end{proof}
+\begin{theorem} Условия берутся из замечания выше.
+
+
+    Если $\eta_1$ имеет матожидание, то блуждание возвратно.
+\end{theorem}
 
 \begin{proof}
     $G$ - производящая функция для $\eta_1$. То есть $G(z) = \sum\limits_{k \in \mathbb{Z}} P(\eta_1 = k) z^k$
@@ -602,18 +617,29 @@ $F_a = \sum\limits_{n = 1}^\infty f_{a} (n)$ - вероятность возвр
 
     $p_{00} (n) = \frac{1}{2\pi i} \int\limits_{|z| = 1} \frac{G^n (z)}{z} \, dz$
 
-    $\sum\limits_{n=0}^\infty p_{00} (n)x^n = \sum\limits_{n = 0}^\infty \frac{1}{2\pi i} \int\limits_{|z| = 1} \frac{G^n (z) x^n}{z} \, dz \overset{?}{=} \frac{1}{2\pi i} \int\limits_{|z| = 1} \frac{1}{z} \underbrace{\sum\limits_{n = 0}^\infty x^n G^n (z)}_{= \frac{1}{1 - xG(z)}} \, dz = 
-    \frac{1}{2\pi} \int_{-\pi}^\pi \frac{dt}{1 - xG(e^{it})} = \frac{1}{\pi} \int_0^\pi \frac{dt}{1 - xG(e^{it})} \overset{{*}}{=} \frac{1}{\pi} \int_0^\pi \frac{dt}{1 - x + o(xt)} \geqslant \frac{1}{\pi} \int_0^\pi \frac{dt}{1 - x + xt} = \frac{1}{\pi} \frac{\ln (1 - x + xt)}{x} \bigg |_{t=0}^{t = \pi} \rightarrow +\infty$
+    $\sum\limits_{n=0}^\infty p_{00} (n)x^n = \sum\limits_{n = 0}^\infty \frac{1}{2\pi i} \int\limits_{|z| = 1} \frac{G^n (z) x^n}{z} \, dz \overset{?}{=} \frac{1}{2\pi i} \int\limits_{|z| = 1} \frac{1}{z} \underbrace{\sum\limits_{n = 0}^\infty x^n G^n (z)}_{= \frac{1}{1 - xG(z)}} \, dz =_{z = e^{it}} $
+    
+    $= \frac{1}{2\pi} \int_{-\pi}^\pi \frac{dt}{1 - xG(e^{it})} dt = \frac{1}{\pi} \int_0^\pi \frac{dt}{1 - xG(e^{it})}dt \overset{{*}}{=} \frac{1}{\pi} \int_0^\pi \frac{dt}{1 - x + o(xt)}dt \geqslant \frac{1}{\pi} \int_0^\pi \frac{dt}{1 - x + xt}dt =$
+    
+    $= \frac{1}{\pi} \frac{\ln (1 - x + xt)}{x} \bigg |_{t=0}^{t = \pi} \rightarrow_{x \to 1-} +\infty$ $\implies$ ряд расходится, тогда блуждание возвратно.
 
-    $(*) \, : \, G(1 + s) = G(1) + G' (1) \cdot s + o(s) = 1 + o(s)$. Тогда $G(e^{it}) = 1 + o(e^{it} - 1) = 1 + o(t)$
+    $(?): $ по теореме Фубини, если ряд из подинтегрального выражения сходится, то можно переставлять.
+
+    $(*) \, : \, G(1 + s) = G(1) + \underbrace{G' (1)}_{\mathbb{E} \eta_1} \cdot s + o(s) = 1 + o(s)$. Тогда $G(e^{it}) = 1 + o(e^{it} - 1) = 1 + o(t)$
 \end{proof}
 
 \begin{remark}
-    Все состояния нулевые
+    На самом деле все состояния нулевые.
 
     $\underbrace{p_{00} (n)}_{? \, : \, \rightarrow 0} = \frac{1}{2\pi i} \int\limits_{|z| = 1} \frac{G^n (z)}{z} \, dz \rightarrow \frac{1}{2\pi i} \int\limits_{|z| = 1} \frac{\lim_{n\to \infty} G^n (z)}{z} \, dz$
 
     $\left| G(z) \right| = \left| \sum\limits_{n \in \mathbb{Z}} P(\eta = n) z^n \right| \leqslant \sum\limits_{n \in \mathbb{Z}} P(\eta = n) |z|^n = \sum\limits_{n \in \mathbb{Z}} P(\eta = n) = 1$
+
+    Надо показать, что при почти всех $t$: $|G(e^{it})| < 1$:
+
+    При $|G(e^{it})| < 1$, то $\lim_{n \to \infty} G^n(z) = 0$
+
+    При $|G(e^{it})| \leq 1$, то надо показать, что такое случается для счетного кол-ва $t$-шек. 
 
     $\left| \sum P(\eta = n) e^{int} \right| = \sum P(\eta = n)$
 
@@ -640,6 +666,11 @@ $F_a = \sum\limits_{n = 1}^\infty f_{a} (n)$ - вероятность возвр
             
             Повёрнем оси на $45^{\circ}$. Исходные оси $(x, y)$, а повёрнутые $(x', y')$
 
+
+            \begin{center}
+                \includegraphics[width=7cm]{assets/04-descrete-random-process/poya-theorem-coordinates.png}
+            \end{center}
+
             То есть $P(x' = x' + 1, y' = y' + 1) = P(x = x + 1) = \frac{1}{4} = P(x' = x' + 1) \cdot P(y' = y' + 1)$
 
             $P(x' = x' + 1) = P(x = x + 1) + P(y = y - 1) = \frac{1}{2}$
@@ -647,7 +678,7 @@ $F_a = \sum\limits_{n = 1}^\infty f_{a} (n)$ - вероятность возвр
             $P(y' = y + 1) = \frac{1}{2}$
 
             То есть блуждание проекций на оси $x'$ и $y'$ независимы. Значит $p_{00}(n) =
-            \left( \binom{2n}{n} \cdot \frac{1}{2^{2n}} \right)^2 \sim \left( \frac{1}{\sqrt{\pi n}} \right)^2 = \frac{1}{\pi n}$ - а такой ряд сходится
+            \left( \binom{2n}{n} \cdot \frac{1}{2^{2n}} \right)^2 \sim \left( \frac{1}{\sqrt{\pi n}} \right)^2 = \frac{1}{\pi n}$ - а такой ряд расходится
         }
         \item {
             $d = 3$
@@ -657,16 +688,18 @@ $F_a = \sum\limits_{n = 1}^\infty f_{a} (n)$ - вероятность возвр
             По каждой координате мы делаем одинаковое число шагов в обоих направлениях: 
             
             $p_{00} (2n) = \sum\limits_{i + j \leqslant n} \binom{2n}{i, i, j, j, n - i -j, n - i - j} \cdot \frac{1}{6^{2n}} = \sum\limits_{i + j \leqslant n} \frac{(2n)!}{(i!j!(n-i-j)!)^2} \cdot \frac{1}{6^{2n}} = 
-            \binom{2n}{n} \sum\limits_{i + j \leqslant n} \left( \frac{n!}{i!j!(n - i - j)!} \right)^2 \cdot \frac{1}{6^{2n}} = \overset{*}{\leqslant} \underbrace{\frac{\binom{2n}{n}}{6^{2n}} \cdot 3^n}_{\sim \frac{1}{\sqrt{\pi n} \cdot \frac{1}{3^n}}} \cdot \max \binom{n}{i, j, n - i - j} $
+            \binom{2n}{n} \sum\limits_{i + j \leqslant n} \left( \frac{n!}{i!j!(n - i - j)!} \right)^2 \cdot \frac{1}{6^{2n}} \overset{*}{\leqslant} \underbrace{\frac{\binom{2n}{n}}{6^{2n}} \cdot 3^n}_{\sim \frac{1}{\sqrt{\pi n} \cdot \frac{1}{3^n}}} \cdot \max \binom{n}{i, j, n - i - j}$
 
             При этом $\sum\limits_{i + j \leqslant n} \left( \frac{n!}{i!j!(n - i - j)!} \right) = (1 + 1 + 1)^n = 3^n \implies \sum\limits_{i + j \leqslant n} \left( \frac{n!}{i!j!(n - i - j)!} \right)^2 \leqslant \max \binom{n}{i, j, n - i - j} \cdot \sum\limits_{i + j \leqslant n} \left( \frac{n!}{i!j!(n - i - j)!} \right) \sim (*)$
 
-            Осталось разобраться с максимумом: $\max \sim 3^n \cdot \frac{3\sqrt{3}}{2 \pi n}$ - упражнение
+            Осталось разобраться с максимумом: $\max \sim 3^n \cdot \frac{3\sqrt{3}}{2 \pi n}$ -- достигается, когда $i, \ j, \ (n - i - j)$ равны, либо отличаются на 1 (если $n$ не делится на 3), и остается записать формулу Стирлинга.
 
-            $(*) \sim \frac{3\sqrt{3}}{2 (\pi n)^{\frac{3}{2}}} \implies $ ряд сходится
+            $(*) \sim \frac{3\sqrt{3}}{2 (\pi n)^{\frac{3}{2}}} \implies $ ряд сходится, то есть нет возвратности.
         }
         \item {
-            Что делать с размерностью $\geqslant 4$. Выберем первые 3 координаты и будем следить что происодит с проекцией на эти координаты. 
+            Что делать с размерностью $\geqslant 4$.
+            
+            Выберем первые 3 координаты и будем следить что происодит с проекцией на эти координаты. 
             Если мы двигаемся по ним - происходит смещение. Если по другим, то мы стоим на месте. Эти остановки не бывают бесконечно долгими, то есть получили блуждание по 6 направлениям.
 
             То есть проекция возвращается назад с вероятностью $< 1$, а значит и глобальное тоже не возвратное
