@@ -427,7 +427,9 @@
         
         Посмотрим на $||S - \tilde{S}||^2 = \left <  S - \tilde{S}, S - \tilde{S} \right > = \left < S, S \right > + \left < \tilde{S}, \tilde{S} \right > - \left < S, \tilde{S} \right > - \left < \tilde{S}, S \right > = $
         
-        $= \sum_{n = 1}^\infty \sum_{k = 1}^\infty \left < x_n, x_k \right > + \sum_{n = 1}^\infty \sum_{k = 1}^\infty \left < x_{\varphi(n)}, x_{\varphi(k)} \right > - \sum_{n = 1}^\infty \sum_{k = 1}^\infty \left < x_n, x_{\varphi(k)} \right > - \sum_{n = 1}^\infty \sum_{k = 1}^\infty \left < x_{\varphi(n)}, x_k \right > = (*)$
+        $= \sum_{n = 1}^\infty \sum_{k = 1}^\infty \left < x_n, x_k \right > + \sum_{n = 1}^\infty \sum_{k = 1}^\infty \left < x_{\varphi(n)}, x_{\varphi(k)} \right > -$
+        
+        $- \sum_{n = 1}^\infty \sum_{k = 1}^\infty \left < x_n, x_{\varphi(k)} \right > - \sum_{n = 1}^\infty \sum_{k = 1}^\infty \left < x_{\varphi(n)}, x_k \right > = (*)$
 
         Воспользуемся ортогональностью:
 
@@ -1307,19 +1309,23 @@ $A_k (f, x) =
     a_k (f) \cos (kx) + b_k (f) \sin (kx), & \text{при $k > 0$}
 \end{cases}$
 
-$A_k (f) = \frac{1}{\pi} \int_{-\pi}^\pi f(x - t) \cos (kt) \, dt$, $A_0 (f) = \frac{1}{2\pi} \int_{-\pi}^\pi f(x - t) \, dt$
+% TODO: why are these formulas correct? 
+$A_k (f) = \frac{1}{\pi} \int_{-\pi}^\pi f(x - t) \cos (kt) \, dt$,
+
+$A_0 (f) = \frac{1}{2\pi} \int_{-\pi}^\pi f(x - t) \, dt$
 
 \begin{proof}
     леммы
 
-    $S_n (f, x) = \sum_{k = 0}^n A_k (f, x) = \frac{1}{2\pi} \int_{-\pi}^\pi f(x - t) \, dt +  \frac{1}{\pi} \sum_{k = 1}^{n} \int_{-\pi}^\pi f(x - t) \cos kt \, dt = 
-    \frac{1}{\pi} \int_{-\pi}^\pi f(x - t) D_n (t) \, dt = \frac{1}{\pi} \int_{-\pi}^\pi f(x + u) D_n (u) (-1) \, du$
+    $S_n (f, x) = \sum_{k = 0}^n A_k (f, x) = \frac{1}{2\pi} \int_{-\pi}^\pi f(x - t) \, dt +  \frac{1}{\pi} \sum_{k = 1}^{n} \int_{-\pi}^\pi f(x - t) \cos kt \, dt = $
+    
+    $=\frac{1}{\pi} \int_{-\pi}^\pi f(x - t) D_n (t) \, dt = \frac{1}{\pi} \int_{-\pi}^\pi f(x + u) D_n (u) \, du$ -- сделали $u = -t$, поменяли местами пределы интегрирования и вынесли $-1$ из-под $dt = -du$. 
 \end{proof}
 
 \begin{consequence}
     Пусть $f \in L^1 [-\pi, \pi]$, $S_n (f, x)$ - частичная сумма ряда Фурье
 
-    Тогда $S_n (f, x) = \frac{1}{\pi} \int_0^\delta (f(x + t) + f(x - t)) D_n (t) \, dt + o(1)$ при $n \to \infty$
+    Тогда $S_n (f, x) = \frac{1}{\pi} \int_0^\delta (f(x + t) + f(x - t)) D_n (t) \, dt + o(1)$ при $n \to \infty$, где $0 < \delta < \pi$
 \end{consequence}
 
 \begin{proof}
@@ -1328,10 +1334,16 @@ $A_k (f) = \frac{1}{\pi} \int_{-\pi}^\pi f(x - t) \cos (kt) \, dt$, $A_0 (f) = \
     Надо понять, что $\int_{\delta}^\pi (f(x + t) + f(x - t)) D_n (t) \,  dt \rightarrow 0$
 
     $\int_{\delta}^\pi (f(x + t) + f(x - t)) D_n (t) \,  dt = \int_\delta^\pi \frac{f(x + t) + f(x - t)}{2 \sin \frac{t}{2}} \sin (n + \frac{1}{2}) t \, dt \overset{\text{Риман-Лебег}}{\rightarrow} 0$, потому что суммируема на $[\delta, \pi]$
+
+    Напоминание \textit{леммы Римана-Лебега}:
+
+    \begin{center}
+        \includegraphics[width=10cm]{assets/05-fourierreihe/notice-riman-lebegue.png}
+    \end{center}
 \end{proof}
 
 \begin{consequence}
-    Принцип локализации
+    \textbf{Принцип локализации}.
 
     $f, g \in L^1 [-\pi, \pi]$, $2\pi$ периодические
 
@@ -1362,7 +1374,9 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
 \begin{proof}
     $\int_0^\pi \frac{|f(t)|}{2\sin \frac{t}{2}} \, dt = \int_0^\delta + \underbrace{\int_\delta^\pi}_{\leqslant \frac{1}{2\sin \frac{\delta}{2}} \int_\delta^\pi |f(t)| \, dt < +\infty } $
 
-    Смотрим на $[0, \delta]$. $\frac{|f(t)|}{t} \leqslant \frac{|f(t)|}{2 \sin \frac{t}{2}} \leqslant \frac{|f(t)|}{t \cdot \frac{2}{\pi}}$ (из $u \frac{2}{\pi} \leqslant \sin u \leqslant i$)
+    Смотрим на $[0, \delta]$.
+    
+    $\frac{|f(t)|}{t} \leqslant \frac{|f(t)|}{2 \sin \frac{t}{2}} \leqslant \frac{|f(t)|}{t \cdot \frac{2}{\pi}}$ (из $u \frac{2}{\pi} \leqslant \sin u \leqslant u$)
 \end{proof}
 
 \textbf{Обозначение. }  $f_x^* (t) = f(x + t) + f(x - t) - f(x + 0) - f(x - 0) \overset{\text{Если $x$ - точка регулярности}}{=} f(x + t) + f(x - t) - 2f(x)$
