@@ -1203,24 +1203,42 @@ $\sum_{k = -n}^n c_k e^{ikx} \rightarrow \sum_{k = -\infty}^{+\infty} c_k e^{ikx
     Если $f \in Lip_\alpha M$, то $w_f (\delta) \leqslant M \delta^\alpha$
 \end{remark}
 
-$C_{2\pi}$ - непрерывные $2\pi$-периодические функции
+
+\begin{definition}
+    $f \in C_{2\pi}$ -- $f$ непрерывная $2\pi$-периодическая функция.
+\end{definition}
 
 \begin{theorem}
     Если $f \in C_{2\pi}$, то $|a_k (f)|, |b_k (f)|, 2|c_k (f)| \leqslant w_f (\frac{\pi}{|k|})$
 \end{theorem}
 
 \begin{proof}
-    $2\pi 2c_k (f) = 2 \int_{-\pi}^\pi f(t) e^{-ikt} \, dt = \int_{-\pi}^\pi f(t) e^{-ikt} \, dt + \int_{-\pi - \frac{-\pi}{k}}^{\pi - \frac{\pi}{k}} f(u + \frac{\pi}{k}) e^{-iku} \, du \cdot e^{-\pi i} = 
-    \int_{-\pi}^\pi f(t) e^{-ikt} \, dt - \int_{-\pi}^{\pi} f(u + \frac{\pi}{k}) e^{-iku} \, du = \int_{-\pi}^\pi (f(t) - f(t + \frac{\pi}{k})) e^{-ikt} \, dt$
 
-    $4\pi |c_k (f)| \leqslant \int_{-\pi}^\pi |f(t) - f(t + \frac{\pi}{k})| \, dt \leqslant 2\pi w_f (\frac{\pi}{|k|})$
+    Докажем для $a_n(f)$.
 
-    Для остальных аналогично
+    Можно смотреть на отрезок $[0, 2\pi]$, т.к. $f$ имеет период $2\pi$:
+
+    $a_n(f) = \frac{1}{\pi} \int_{0}^{2\pi} f(t) \cos(nt) dt = \frac{1}{\pi} \int_{-\frac{\pi}{n}}^{2\pi - \frac{\pi}{n}} f(t) \cos(nt) dt =_{t = u - \frac{\pi}{n}} = $
+
+    $= \frac{1}{\pi} \int_{0}^{2\pi} f(u - \frac{\pi}{n}) \cos(nu - \pi) du = -\frac{1}{\pi} \int_{0}^{2\pi} f(u - \frac{\pi}{n}) \cos(n u) du$
+
+    Запишем $a_n(f)$ как полусумму полученного интеграла и интеграла из определения этих коеффициентов:
+
+    $|a_n(f)| = \frac{1}{2\pi} \left| \int_{0}^{2\pi} (f(t) - f(t - \frac{\pi}{n})) \cos(nt) dt \right| \leq \frac{1}{2 \pi} \int_{0}^{2\pi} | f(t) - f(t - \frac{\pi}{n}) | dt \overset{(*)}{\leq} w_{f}(\frac{\pi}{n})$
+
+    $(*)$: $\int_{a}^{b} |f(t)| dt \leq (b - a) \cdot \max_{t \in [a, b]} |f(t)|$
+
+    % $2\pi 2c_k (f) = 2 \int_{-\pi}^\pi f(t) e^{-ikt} \, dt = \int_{-\pi}^\pi f(t) e^{-ikt} \, dt + \int_{-\pi - \frac{-\pi}{k}}^{\pi - \frac{\pi}{k}} f(u + \frac{\pi}{k}) e^{-iku} \, du \cdot e^{-\pi i} = 
+    % \int_{-\pi}^\pi f(t) e^{-ikt} \, dt - \int_{-\pi}^{\pi} f(u + \frac{\pi}{k}) e^{-iku} \, du = \int_{-\pi}^\pi (f(t) - f(t + \frac{\pi}{k})) e^{-ikt} \, dt$
+
+    % $4\pi |c_k (f)| \leqslant \int_{-\pi}^\pi |f(t) - f(t + \frac{\pi}{k})| \, dt \leqslant 2\pi w_f (\frac{\pi}{|k|})$
+
+    Для остальных аналогично.
 \end{proof}
 
 \begin{consequence}
     Если $f \in Lip_\alpha M$ и $2\pi$ периодическая, то
-    $|a_k (f)|, |b_k(f) |, | c_k(f) | \leqslant M \left (\frac{\pi}{|k|} \right )^\alpha$
+    $|a_k (f)|, |b_k(f) |, 2| c_k(f) | \leqslant M \left (\frac{\pi}{|k|} \right )^\alpha$
 \end{consequence}
 
 \begin{lemma}
@@ -1230,18 +1248,26 @@ $C_{2\pi}$ - непрерывные $2\pi$-периодические функц
 \end{lemma}
 
 \begin{proof}
-    $c_n (f') = \frac{1}{2\pi} \int_{-\pi}^\pi f'(t) e^{-int} \, dt = \frac{1}{2\pi} f(t) e^{-int} \bigg |_{t = -\pi}^{t = \pi} = -\frac{1}{2\pi} \int_{-\pi}^\pi f (t) (-ine^{-int}) \, dt = 
-    in \frac{1}{2\pi} \int_{-\pi}^\pi f(t) e^{-int} \, dt = in c_n (f)$
+    $c_n (f') = \frac{1}{2\pi} \int_{-\pi}^\pi f'(t) e^{-int} \, dt = \frac{1}{2\pi} f(t) e^{-int} \bigg |_{t = -\pi}^{t = \pi} - \frac{1}{2\pi} \int_{-\pi}^\pi f (t) (-ine^{-int}) \, dt = $
+    
+    $=i \cdot n \frac{1}{2\pi} \int_{-\pi}^\pi f(t) e^{-int} \, dt = in c_n (f)$
 
     Остальные аналогично
 \end{proof}
 
 \begin{consequence}
-    Если $f \in C_{2\pi}^r$ и $f^{(r)} \in Lip_{\alpha} M$, то $|a_n(f)|, |b_n (f)|, |c_n (f)| \leqslant M \frac{\pi^\alpha}{|n|^{r + 2}}$
+    Если $f \in C_{2\pi}^r$ и $f^{(r)} \in Lip_{\alpha} M$, то $|a_n(f)|, |b_n (f)|, 2|c_n (f)| \leqslant M \frac{\pi^\alpha}{|n|^{r + \alpha}}$
 \end{consequence}
 
 \begin{proof}
-    $|c_n (f)| = \frac{|c_n (f^{(r)})|}{n^r}$
+    Индукция по $r$.
+
+    Переход $r \to r + 1$:
+
+    $| a_n(f) | = \frac{1}{n} |b_n(f')| \underbrace{\leq}_{\text{индукц. предположение для } b_n} \frac{1}{n} \cdot M \frac{\pi^{\alpha}}{n^{r + \alpha}}$
+    % $|c_n (f)| = \frac{|c_n (f^{(r)})|}{n^r}$
+
+    База: вывод соответствующей теоремы.
 \end{proof}
 
 \begin{definition}
