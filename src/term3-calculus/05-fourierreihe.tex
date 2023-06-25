@@ -1518,7 +1518,6 @@ $A_0 (f) = \frac{1}{2\pi} \int_{-\pi}^\pi f(x - t) \, dt$
 \begin{remark}
     Формат JPEG.
 
-    %Тут нужны картинки
 
     Хотим как-то за легко + за дешево передавать и хранить информацию о цвете картинки, при условии, что умеем то же самое, но для черно белой картинки.
 
@@ -1574,7 +1573,7 @@ $A_0 (f) = \frac{1}{2\pi} \int_{-\pi}^\pi f(x - t) \, dt$
 \begin{definition}
     $\sum\limits_{n = 0}^\infty a_n$. Пусть $A_n = a_0 + a_1 + \ldots + a_n$
 
-    $\alpha_n = \frac{A_0 + \ldots + A_n}{n}$, если $S = \lim \alpha_n$, то $S$ - сумма ряда по Чезаро
+    $\alpha_n = \frac{A_0 + \ldots + A_n}{n+1}$, если $S = \lim \alpha_n$, то $S$ - сумма ряда по \textbf{Чезаро}.
 
     \textbf{Обозначение: } $(c) \sum\limits_{n = 0}^\infty a_n = S$
 \end{definition}
@@ -1588,7 +1587,7 @@ $A_0 (f) = \frac{1}{2\pi} \int_{-\pi}^\pi f(x - t) \, dt$
 \begin{properties}
     \begin{enumerate}
         \item {
-            Если ряд сходится, то его сумма ро Чезаро совпадает с его суммой
+            Если ряд сходится, то его сумма по Чезаро совпадает с его суммой
 
             \begin{proof}
                 Если $A_n \rightarrow S$, то $\frac{A_0 + \ldots + A_n}{n + 1} \rightarrow S$
@@ -1598,12 +1597,22 @@ $A_0 (f) = \frac{1}{2\pi} \int_{-\pi}^\pi f(x - t) \, dt$
             Линейность
         }
         \item {
-            Если ряд суммируем по Чезаро, то $a_n = o(n)$
+            Если ряд сх-ся по Чезаро, то $a_n = o(n)$
             
-            \begin{proof}
-                Мы знаем, что $A_n = (n + 1)\alpha_n - n\alpha_{n-1} = (n + 1)(s + o(1)) - n(s + o(1)) = S + o(n)$
+            % \begin{proof}
+            %     Мы знаем, что $A_n = (n + 1)\alpha_n - n\alpha_{n-1} = (n + 1)(s + o(1)) - n(s + o(1)) = S + o(n)$
 
-                Тогда $a_n = A_n - A_{n - 1} = (S + o(n)) - (S + o(n)) = o(n)$
+            %     Тогда $a_n = A_n - A_{n - 1} = (S + o(n)) - (S + o(n)) = o(n)$
+            % \end{proof}
+
+            \begin{proof}
+                $\alpha_n \to S \implies \frac{n+1}{n} \alpha_n \to S \implies \frac{n + 1}{n} \alpha_n  - \alpha_{n - 1} \to 0$
+
+                Но $\frac{n + 1}{n} \alpha_n  - \alpha_{n - 1} = \frac{(n+1) \alpha_n - n \alpha_{n- 1}}{n} = \frac{A_n}{n}$, то есть $\frac{A_n}{n} \to 0$.
+
+                Поймем теперь про $a_n = A_n - A_{n - 1} = n \frac{A_n}{n} - (n - 1) \frac{A_{n - 1}}{n - 1} = n \left( \underbrace{\frac{A_n}{n}}_{\to 0} - \underbrace{\frac{n - 1}{n} \frac{A_{n - 1}}{n}}_{\to 0} \right) \implies$
+                
+                $\implies a_n = o(n)$.
             \end{proof}
         }
     \end{enumerate}
@@ -1612,11 +1621,14 @@ $A_0 (f) = \frac{1}{2\pi} \int_{-\pi}^\pi f(x - t) \, dt$
 \begin{remark}
     \begin{enumerate}
         \item {
-            Рассмотрим ряд $1 - 1 + 0 + 1 - 1 + 0$
+            % Рассмотрим ряд $1 - 1 + 0 + 1 - 1 + 0$
 
-            $A_{3n - 2} = 1$, $A_{3n - 1} = A_{3n} = 0$
+            % $A_{3n - 2} = 1$, $A_{3n - 1} = A_{3n} = 0$
 
-            Тогда $(c) \sum = \frac{1}{3}$. То есть мы добавили нули и испортили сумму. 
+            % Тогда $(c) \sum = \frac{1}{3}$. То есть мы добавили нули и испортили сумму. 
+
+
+            $\alpha_n = \sum\limits_{k=0}^{n} \left( 1 - \frac{k}{n + 1} \right) a_k$ -- формула пересчета $\alpha_n$ без использования $A_n$.
         }
         \item {
             \textbf{Теорема Харди}
@@ -1629,11 +1641,11 @@ $A_0 (f) = \frac{1}{2\pi} \int_{-\pi}^\pi f(x - t) \, dt$
 \end{remark}
 
 \begin{definition}
-    $\sum\limits_{n=0}^\infty a_n$. Рассмотрим $\sum\limits_{n=0}^\infty a_nx^n$ при $x \in [0, 1)$
+    Имеем обычный ряд $\sum\limits_{n=0}^\infty a_n$. 
+    
+    Рассмотрим $f(x) = \sum\limits_{n=0}^\infty a_n x^n$ при $x \in [0, 1)$, если существует $\lim\limits_{x \to 1-} f(x)$, то этот предел называется суммой ряда $\sum\limits_{n=0}^\infty a_n$ по Абелю-Пуассону.
 
-    Если существует $\lim\limits_{x \to 1-} f(x)$, то он называется суммой ряда по Абелю-Пуассону
-
-    \textbf{Обозначение:} $(AP) \sum\limits_{n=0}^\infty a_n$
+    \textbf{Обозначение:} $(AP) \sum\limits_{n=0}^\infty a_n$.
 \end{definition}
 
 \begin{example}
@@ -1643,10 +1655,18 @@ $A_0 (f) = \frac{1}{2\pi} \int_{-\pi}^\pi f(x - t) \, dt$
 \begin{properties}
     \begin{enumerate}
         \item {
-            Если ряд сходится, то он суммируем по Абелю-Пуассону и его сумма совпадает по Абелю-Пуассону совпадает с его суммой
+            % Если ряд сходится, то он суммируем по Абелю-Пуассону и его сумма совпадает по Абелю-Пуассону совпадает с его суммой
+
+            Если обычный ряд сходится к какой-то сумме, то сумма этого ряда по Абелю-Пуассону сходится к той же сумме. 
 
             \begin{proof}
-                Теорема Абеля
+                Теорема Абеля.
+
+                Напоминание:
+
+                \begin{center}
+                    \includegraphics[width=10cm]{assets/05-fourierreihe/abele-theorem-note.png}
+                \end{center}
             \end{proof}
         }
         \item {
@@ -1658,9 +1678,11 @@ $A_0 (f) = \frac{1}{2\pi} \int_{-\pi}^\pi f(x - t) \, dt$
 \begin{example}
     $\frac{1}{2} + \sum\limits_{n=1}^\infty \cos (nx)$
 
-    Частичные сумма $\frac{1}{2} + \sum\limits_{k=1}^n \cos (kx) = D_k (x) = \frac{\sin (n + \frac{1}{2})x}{2\sin \frac{x}{2}}$
+    Частичные сумма $\frac{1}{2} + \sum\limits_{k=1}^n \cos (kx) = D_n (x) = \frac{\sin ((n + \frac{1}{2})x)}{2\sin \frac{x}{2}}$
 
-    $\Phi_n (x) = \frac{D_0 (x) + D_1 (x) + \ldots + D_n (x)}{n + 1}$ - ядро Фейера
+    \begin{definition}
+        $\Phi_n (x) = \frac{D_0 (x) + D_1 (x) + \ldots + D_n (x)}{n + 1}$ -- ядро Фейера.
+    \end{definition}
 
     \begin{properties}
         \begin{enumerate}
@@ -1668,12 +1690,18 @@ $A_0 (f) = \frac{1}{2\pi} \int_{-\pi}^\pi f(x - t) \, dt$
                 $\Phi_n (0) = \frac{n + 1}{2}$
             }
             \item {
-                При $x \neq 2\pi m \, : \, \Phi_n (x) = \frac{\sin^2 \frac{n + 1}{2} x}{2(n + 1)\sin^2 \frac{x}{2}}$
+                При $x \neq 2\pi m \, : \, \Phi_n (x) = \frac{\sin^2 \left(\frac{n + 1}{2} x\right)}{2(n + 1)\sin^2 \frac{x}{2}}$
 
                 \begin{proof}
-                    $\sum\limits_{k=0}^n \frac{\sin (n + \frac{1}{2})x}{2\sin \frac{x}{2}} = \frac{\sin^2 \frac{n+1}{2}}{2\sin^2 \frac{x}{2}}$
+                    % $\sum\limits_{k=0}^n \frac{\sin (n + \frac{1}{2})x}{2\sin \frac{x}{2}} = \frac{\sin^2 \frac{n+1}{2}}{2\sin^2 \frac{x}{2}}$
 
-                    $\sum\limits_{k=0}^n \underbrace{\sin \frac{x}{2} \sin (k + \frac{1}{2})x}_{=\frac{1}{2} (\cos (kx) - \cos (k + 1)x)} = \sin^2 \frac{n+1}{2}x = \frac{1 - \cos (n + 1)x}{2}$
+                    % $\sum\limits_{k=0}^n \underbrace{\sin \frac{x}{2} \sin (k + \frac{1}{2})x}_{=\frac{1}{2} (\cos (kx) - \cos (k + 1)x)} = \sin^2 \frac{n+1}{2}x = \frac{1 - \cos (n + 1)x}{2}$
+
+                    Считаем:
+                    
+                    $2 \sin^2(\frac{x}{2}) \sum_{k=0}^{n} D_k(x) = \sum_{k=0}^{n} \sin(\frac{x}{2}) \sin((k + \frac{1}{2}) x) =$
+                    
+                    $= \frac{1}{2} \sum_{k=0}^{n} \cos(kx) - \cos((k + 1) x) = \frac{1 - \cos((n+1) x)}{2} = \sin^2(\frac{n+1}{2} t)$.
                 \end{proof}
             }
             \item {
@@ -1696,7 +1724,7 @@ $A_0 (f) = \frac{1}{2\pi} \int_{-\pi}^\pi f(x - t) \, dt$
         \end{enumerate}
     \end{properties}
 
-    Таким образом сумма ряда по Чезаро $= +\infty$ при $x = 2\pi m$ и $0$ иначе
+    Продолжение примера: таким образом сумма ряда по Чезаро $= +\infty$ при $x = 2\pi m$ и $0$ иначе.
 \end{example}
 
 \begin{example}
@@ -1737,14 +1765,15 @@ $A_0 (f) = \frac{1}{2\pi} \int_{-\pi}^\pi f(x - t) \, dt$
 \begin{example}
     $\frac{a_0}{2} + \sum\limits_{k = 1}^\infty (a_k \cos (kx) + b_k \sin (kx)) = \sum\limits_{k = 0}^\infty A_k (x)$
 
-    $f(r) = \sum\limits_{k = 0}^\infty r^k A_k (x) = \frac{1}{\pi} \int_{-\pi}^\pi \frac{1}{2} f(x - t) \, dt + \frac{1}{\pi} \sum\limits_{k=1}^\infty r^k \int_{-\pi}^\pi f(x - t) \cos (kt) \, dt = 
-    \frac{1}{\pi} \int_{-\pi}^\pi f(x - t) \underbrace{\left( \frac{1}{2} + \sum\limits_{k = 1}^\infty r^k \cos (kt) \right)}_{= P_r (t)} \, dt$
+    $f(r) = \sum\limits_{k = 0}^\infty r^k A_k (x) = \frac{1}{\pi} \int_{-\pi}^\pi \frac{1}{2} f(x - t) \, dt + \frac{1}{\pi} \sum\limits_{k=1}^\infty r^k \int_{-\pi}^\pi f(x - t) \cos (kt) \, dt = $
+    
+    $= \frac{1}{\pi} \int_{-\pi}^\pi f(x - t) \underbrace{\left( \frac{1}{2} + \sum\limits_{k = 1}^\infty r^k \cos (kt) \right)}_{= P_r (t)} \, dt$
 \end{example}
 
 \begin{definition}
     $f, g \in L^1 [-\pi, \pi]$ продолжим по периоду
 
-    $h(x) = \int_{-\pi}^\pi f(x - t) g(t) \, dt$ - свёртка функций $f$ и $g$
+    $f * g = h(x) = \int_{-\pi}^\pi f(x - t) g(t) \, dt$ - свёртка функций $f$ и $g$
 \end{definition}
 
 \begin{remark}
@@ -1789,8 +1818,9 @@ $A_0 (f) = \frac{1}{2\pi} \int_{-\pi}^\pi f(x - t) \, dt$
             Тогда $f * g \in C_{2\pi}$ и $||f * g||_{\infty} \leqslant ||f||_p \cdot ||g||_q$
 
             \begin{proof}
-                $|f*g (x)| = \left|\int\limits_{-\pi}^\pi f(x - t) g(t) \, dt \right| \leqslant \int\limits_{-\pi}^\pi |f(x-t)||g(t)| \, dt \overset{\text{Гёльдер}}{\leqslant}
-                \left( \int\limits_{-\pi}^\pi |f(x - t)|^p \, dt \right)^{\frac{1}{p}} \cdot \left( \int\limits_{-\pi}^\pi |g(t)|^q \, dt \right)^{\frac{1}{q}} = ||f||_p \cdot ||g||_q$
+                $|f*g (x)| = \left|\int\limits_{-\pi}^\pi f(x - t) g(t) \, dt \right| \leqslant \int\limits_{-\pi}^\pi |f(x-t)||g(t)| \, dt \overset{\text{Гёльдер}}{\leqslant}$
+                
+                $\leqslant \left( \int\limits_{-\pi}^\pi |f(x - t)|^p \, dt \right)^{\frac{1}{p}} \cdot \left( \int\limits_{-\pi}^\pi |g(t)|^q \, dt \right)^{\frac{1}{q}} = ||f||_p \cdot ||g||_q$
 
                 $|f * g(x + h) - f * g (x)| = \left| \int\limits_{-\pi}^\pi f(x + h -t)g(t) \, dt - \int\limits_{-\pi}^\pi f(x - t)g(t) \, dt \right| \leqslant \int\limits_{-\pi}^\pi |f(x + h - t) - f(x - t)||g(t)| \, dt \leqslant 
                 \left( \int\limits_{-\pi}^\pi|f(x + h - t - f(x - t))|^p \, dt \right)^{\frac{1}{p}} ||g||_q = \left( \int\limits_{-\pi}^\pi |f(s + h) - f(s)|^p \, ds \right)^{\frac{1}{p}} \cdot ||g||_q = \underbrace{||f_h - f||_p}_{\rightarrow 0} ||g||_q$. При $p < +\infty$ из теоремы о непрерывности сдвига.
