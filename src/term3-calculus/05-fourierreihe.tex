@@ -1151,19 +1151,34 @@ $\sum_{k = -n}^n c_k e^{ikx} \rightarrow \sum_{k = -\infty}^{+\infty} c_k e^{ikx
     Если $f \in L^1 (-\pi, \pi)$, то $a_k (f), b_k (f), c_k (f) \overset{|k| \to \infty}{\rightarrow} 0$
 \end{consequence}
 
-\textbf{Дискретное преобразование Фурье}
+\begin{theorem}
+    \textbf{Дискретное преобразование Фурье}
 
-$x_0, x_1, \ldots, x_{N - 1} \rightarrow a_0, a_1, \ldots, a_{N - 1}$
+    Есть какое-то большое натуральное число $N \in \mathbb{N}$. Также есть два набора коеффициентов и есть для них соотношение:
 
-$a_k = \sum\limits_{n = 0}^{N - 1} x_n e^{-\frac{2\pi i}{N} kn}$
+    $x_0, x_1, \ldots, x_{N - 1} \rightarrow a_0, a_1, \ldots, a_{N - 1}$
 
-$x_n = \frac{1}{n} \sum\limits_{k = 0}^{N - 1} a_k e^{\frac{2\pi i}{N} kn}$
+    $a_k = \sum\limits_{n = 0}^{N - 1} x_n e^{-\frac{2\pi i}{N} kn}$
 
-% TODO, Картинка
+    $x_n = \frac{1}{N} \sum\limits_{k = 0}^{N - 1} a_k e^{\frac{2\pi i}{N} kn}$ 
 
-$f(t) = x_n$ при $\frac{2\pi}{N}n < t \leqslant \frac{2\pi}{N} (n + 1)$. Тогда $c_k (f) = \frac{1}{\pi} \int_0^{2\pi} f(t) e^{-itk}\, dt = \\
-\frac{1}{2\pi} \sum\limits_{n = 0}^{N - 1} x_n \underbrace{\int_{\frac{2\pi}{N} n}^{\frac{2\pi}{n} (n + 1)} e^{-itk} \, dt}_{=\frac{e^{-itk}}{-ik} \bigg |_{\frac{2\pi}{n} n}^{\frac{2\pi}{n} (n + 1)} = \frac{i}{k} e^{-\frac{2\pi}{N}kn} (1 - e^{-ik\frac{2\pi}{N}})} = 
-\frac{i}{2\pi} \frac{1 - e^{-ik\frac{2\pi}{N}}}{k} \underbrace{\sum_{n = 0}^{N - 1} x_n e^{-\frac{2\pi}{N} kn}}_{= a_k}$ 
+    \begin{center}
+        \includegraphics[width=8cm]{assets/05-fourierreihe/dft.png}
+    \end{center}
+
+    Пусть есть функция $f(t) = x_n$ при $\frac{2\pi}{N}n < t \leqslant \frac{2\pi}{N} (n + 1)$, тогда
+
+    $c_k (f) = \frac{1}{2\pi} \int_0^{2\pi} f(t) e^{-itk}\, dt =
+    \frac{1}{2\pi} \sum\limits_{n = 0}^{N - 1} x_n \underbrace{\int_{\frac{2\pi}{N} n}^{\frac{2\pi}{N} (n + 1)} e^{-itk} \, dt}_{=(*)} = 
+    \frac{i}{2 \pi k} \cdot \left( e^{- \frac{2 \pi i}{N} k} - 1 \right) \cdot \underbrace{\sum\limits_{n=0}^{N - 1} x_n e^{- \frac{2 \pi i}{N} kn}}_{=a_k} =$
+    
+    $= \frac{i}{2 \pi k} \cdot \left( e^{- \frac{2 \pi i}{N} k} - 1 \right) \cdot a_k$ 
+ 
+
+    где
+
+    $(*) = \frac{e^{-itk}}{-ik} \bigg |_{t=\frac{2\pi}{N} n}^{t=\frac{2\pi}{N} (n + 1)} = \frac{i}{k} e^{- \frac{2\pi i}{N} kn} (e^{- \frac{2 \pi i}{N} k} - 1)$
+\end{theorem}
 
 
 \begin{definition}
