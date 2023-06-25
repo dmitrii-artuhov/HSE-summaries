@@ -402,16 +402,16 @@
     \bigskip
 
     $||S_n - S_m||^2 = || \sum_{k = n + 1}^m x_k ||^2 = \left < \sum_{k = n + 1}^m x_k, \sum_{k = n + 1}^m x_k \right > =$
-    
+
     $= \sum_{k=n+1}^{m} \sum_{j=n+1}^{m} \left< x_k, x_j \right> \underbrace{=}_{\text{пользуемся ортогональностью ряда}} \sum_{k = m + 1}^n \left < x_k , x_k \right > =$
-    
+
     $= \sum_{k = n + 1}^m ||x_k||^2 = C_m - C_n \Longleftrightarrow C_n$ - фундаментальная последовательность $\Longleftrightarrow \sum_{n = 1}^\infty ||x_n||^2 < +\infty$
 \end{proof}
 
 \begin{consequence}
     Пусть $\sum_{n = 1}^{\infty} x_n$ сходящийся ортогональный ряд в гильбертовом пространстве $H$, а $\varphi \, : \, \mathbb{N} \to \mathbb{N}$ - перестановка.
-    
-    Тогда $\sum_{n = 1}^\infty x_{\varphi(n)} $ сходится к той же сумме 
+
+    Тогда $\sum_{n = 1}^\infty x_{\varphi(n)} $ сходится к той же сумме
 \end{consequence}
 
 \begin{proof}
@@ -424,9 +424,9 @@
         \item {
         \textbf{Сумма сохраняется}:
 
-        
+
         Посмотрим на $||S - \tilde{S}||^2 = \left <  S - \tilde{S}, S - \tilde{S} \right > = \left < S, S \right > + \left < \tilde{S}, \tilde{S} \right > - \left < S, \tilde{S} \right > - \left < \tilde{S}, S \right > = $
-        
+
         $= \sum_{n = 1}^\infty \sum_{k = 1}^\infty \left < x_n, x_k \right > + \sum_{n = 1}^\infty \sum_{k = 1}^\infty \left < x_{\varphi(n)}, x_{\varphi(k)} \right > - \sum_{n = 1}^\infty \sum_{k = 1}^\infty \left < x_n, x_{\varphi(k)} \right > - \sum_{n = 1}^\infty \sum_{k = 1}^\infty \left < x_{\varphi(n)}, x_k \right > = (*)$
 
         Воспользуемся ортогональностью:
@@ -447,7 +447,7 @@
         \end{enumerate}
 
         Тогда можем переписать как:
-        
+
         $(*) = \sum_{n = 1}^\infty \left < x_n , x_n \right > + \sum_{n = 1}^\infty \left < x_{\varphi(n)}, x_{\varphi(n)} \right > - \sum_{n = 1}^\infty \left < x_n, x_n \right > - \sum_{n = 1}^\infty \left < x_{\varphi(n)}, x_{\varphi(n)} \right > = 0 $
         }
     \end{enumerate}
@@ -532,7 +532,7 @@
         \item $S_n$ - наилучшее приближение к $x$ в $L_n$, т.е. $||x - S_n|| = \min_{y \in L_n} ||x - y||$
         \item $||S_n|| \leqslant ||x||$
     \end{enumerate}
-    
+
 \end{theorem}
 
 \begin{proof}
@@ -540,12 +540,12 @@
         \item {
             $z = x - S_n$, надо доказать, что $z \bot L_n$, то есть $z \bot e_j$ при $j = 1, \ldots, n$
 
-            $\left < z, e_j \right > = \left < x, e_j \right > - \left < S_n, e_j \right > = \left < x, e_j \right > - \left < \sum_{k = 1}^n c_k (x) e_k, e_j \right > = 
+            $\left < z, e_j \right > = \left < x, e_j \right > - \left < S_n, e_j \right > = \left < x, e_j \right > - \left < \sum_{k = 1}^n c_k (x) e_k, e_j \right > =
             \left < x, e_j \right > - c_j (x) \left < e_j, e_j \right > = 0$
         }
         \item {
             $x - \underbrace{y}_{\in L_n} = \underbrace{S_n + z - y}_{z \bot L_n} = z + (S_n - y)$
-            
+
             Тогда $||x - y||^2 = || \underbrace{S_n - y}_{\in L_n} + \underbrace{z}_{\bot L_n} ||^2 = ||z||^2 + ||S_n - y||^2 \geqslant ||z||^2 = ||x - S_n||^2$ и равенство $\Longleftrightarrow y = S_n$
         }
         \item {
@@ -634,7 +634,7 @@
     \begin{enumerate}
         \item $\{ e_n \}$ - базис
         \item $\{ e_n \}$ - полная
-        \item $\{ e_n \}$ - замкнутая 
+        \item $\{ e_n \}$ - замкнутая
         \item $\forall \, x, y \in H \, : \, \left < x, y \right > = \sum_{n = 1}^\infty c_n (x) \overline{c_n (y)} ||e_n||^2$
         \item $Cl \; Lin \; \{ e_n \} = H$
     \end{enumerate}
@@ -666,7 +666,7 @@
             $1 \implies 5$
 
             $x = \sum_{k = 1}^\infty c_k (x) e_k = \lim_{n \to +\infty} \underbrace{\sum_{k = 1}^n c_k (x) e_k}_{\in Lin \, \{ e_n \}} \implies$
-            
+
             $\implies \lim \in Cl \, Lin \, \{ e_n \} \implies x \in Cl \, Lin \, \{ e_n \} \implies H \subset Cl \, Lin \, \{ e_n \}$ -- так как $x$ произвольный вектор из $H$.
         }
         \item {
@@ -700,12 +700,12 @@
 
             Это ортонормированная система:
 
-            $\left < w_A, w_B \right > = \left < w_{A \setminus B} , w_{B \setminus A} \right > = 
+            $\left < w_A, w_B \right > = \left < w_{A \setminus B} , w_{B \setminus A} \right > =
             \int_0^1 \prod_{i \in } r_i (t) \, dt = 0$
 
             Это полная система $Cl \, Lin \, w_A = L^2 [0, 1]$
 
-            $Lin_{A \subset \{ 0, 1, \ldots, n \}} \,  w_A = Lin_{j = 0, 1, \ldots, 2^n - 1} \, \mathds{1}_{[\frac{j}{2^n}, \frac{j + 1}{2^n}]}$. 
+            $Lin_{A \subset \{ 0, 1, \ldots, n \}} \,  w_A = Lin_{j = 0, 1, \ldots, 2^n - 1} \, \mathds{1}_{[\frac{j}{2^n}, \frac{j + 1}{2^n}]}$.
             Тогда $Lin \, w_A = Lin \, \mathds{1}_{(\frac{j}{2^n}, \frac{j + 1}{2^n}]}$
         }
         \item {
@@ -734,7 +734,7 @@
                     \end{cases}$
                 }
                 \item {
-                    $\ldots$    
+                    $\ldots$
                 }
             \end{enumerate}
         }
@@ -753,9 +753,9 @@
     Тогда существуют $\{ e_1, e_2, \ldots  \}$ - ортонормированная система, т.ч.:
     $Lin \, \{ e_1, \ldots \} = Lin \, \{ x_1, x_2, \ldots \}$
 
-    Если $f_1, f_2, \ldots$ тоже ортонормированная система с тем же свойством, то 
+    Если $f_1, f_2, \ldots$ тоже ортонормированная система с тем же свойством, то
     $f_k = \lambda_k e_k$, где $|\lambda_k| = 1$
-    
+
     \begin{remark}
         Пусть $w \, : \, \mathbb{R} \rightarrow [0, +\infty)$ измеримая,
         т.ч. $t^n w(t)$ - суммируемая на $\mathbb{R} \, \forall \, n$. Определим меру $\mu A = \int_A w \, d\lambda$ и пространство будет $L^2 (\mathbb{R}, \mu)$
@@ -779,9 +779,9 @@
                     $P_n (t) = \frac{1}{2^n \cdot n!} ((t^2 - 1)^n)^{(n)}$, считаем, что $n > k$:
 
                     $\left < P_k, P_n \right > = \underbrace{\frac{1}{2^n \cdot n!} \cdot \frac{1}{2^k \cdot k!}}_{=C} \int_{-1}^1 ((t^2 - 1)^k)^{(k)} ((t^2 - 1)^n)^{(n)} \, dt =$
-                    
+
                     $= C \left( ((t^2 - 1)^k)^{(k)} \cdot ((t^2 - 1)^n)^{(n - 1)} \bigg |_{-1}^1 - \int_{-1}^1 ((t^2 - 1)^k)^{(k + 1)} ((t^2 - 1)^n)^{(n - 1)} \, dt \right) = \ldots$
-                    
+
                     $= \pm C \int_{-1}^1 \underbrace{((t^2 - 1)^k)^{(2k + 1)}}_{=0} ((t^2 - 1)^n)^{(n - k - 1)} \, dt = 0$
                 }
                 \item {
@@ -823,8 +823,8 @@
 
 \begin{definition}
     $(X, \rho)$ - метрическое пространство, $A \subset X$, и есть точка $x \in X$. Назовём расстоянием от $x$ до $A$ (или наилучшим приближением к $x$ в множестве $A$):
-    
-    $d(x, A) = \inf_{y \in A} \rho (x, y)$ 
+
+    $d(x, A) = \inf_{y \in A} \rho (x, y)$
 \end{definition}
 
 \begin{definition}
@@ -851,7 +851,7 @@
     \begin{center}
         \includegraphics[width=8cm]{assets/05-fourierreihe/existance-of-the-best-approximation.png}
     \end{center}
-    
+
     $\underbrace{|| 2 \left(x - \frac{y + z}{2}\right) ||^2}_{= 4 || x - \frac{y + z}{2} || \geqslant 4d^2} + ||y - z||^2 = 2 ||x - y||^2 + 2||x - z||^2 \geqslant 4d^2$ -- подставили в лемму $x - y$ и $x - z$.
 
     Отсюда $||y-z||^2 = 2 ||x - y||^2 + 2 ||x - z||^2 - 4 || x - \frac{y + z}{2}|| \leqslant 2 ||x - y||^2 + 2||x - z||^2 - 4d^2$
@@ -866,9 +866,9 @@
             \textbf{Существование}:
 
             Возьмём $y_n$, т.ч. $||x - y_n|| \rightarrow d$, то есть $|| x - y_n ||^2 < d^2 + \varepsilon$.
-            
+
             Тогда $||y_n - y_m||^2 \leqslant 2 ||x - y_n||^2 + 2||x - y_m||^2 - 4d^2 < 4\varepsilon$, значит это фундаментальная последовательность и у нее есть предел $y^* \in A$, поскольку $A$ -- замкнуто.
-            
+
             $||x - y^*|| = \lim_{n \to \infty} ||x - y_n|| = d$.
         }
     \end{enumerate}
@@ -879,7 +879,7 @@
 
     $H$ - гильбертово пространство, $L$ - замкнутое подпространство $H$
 
-    Тогда $\forall \, x \in H \, : \, \exists \, y \in L \, : \, \underbrace{x - y}_{=z} \bot L$ и 
+    Тогда $\forall \, x \in H \, : \, \exists \, y \in L \, : \, \underbrace{x - y}_{=z} \bot L$ и
     такой $y$ единственный.
 \end{theorem}
 
@@ -907,7 +907,7 @@
 
 \begin{definition}
     Этот $y$ называется ортогональной проекцией $x$ на $L$
-    
+
     То есть получилось отображение $P_L \, : \, H \to L$ - оператор ортогонального проецирования
 \end{definition}
 
@@ -916,6 +916,9 @@
 \end{definition}
 
 \begin{properties}
+
+    Далее везде $L$ -- замкнутое подпр-во $H$.
+
     \begin{enumerate}
         \item { $P_L$ - линейный оператор
             \begin{proof}
@@ -945,7 +948,7 @@
             \end{proof}
         }
         \item {
-            $(L^\bot)^\bot = L$  
+            $(L^\bot)^\bot = L$
 
             \begin{proof}
                 $P_{(L^\bot)^\bot} = Id - P_{L^\bot} = Id - (Id - P_L) = P_L$
@@ -1002,9 +1005,9 @@
 
 \begin{proof}
     Возьмём базис $e_1, e_2, \ldots$, он счётный и отнормируем.
-    
+
     Тогда $x \rightarrow (\left < x, e_1 \right >, \left < x, e_2 \right >, \ldots)$.
-    
+
     Хотим показать, что это то, что надо.
 
     \begin{enumerate}
@@ -1045,7 +1048,7 @@ $\sum_{k = -n}^n c_k e^{ikx} \rightarrow \sum_{k = -\infty}^{+\infty} c_k e^{ikx
 
 \begin{theorem}
     Если тригонометрический ряд сходится в пространстве $L^1 [-\pi, \pi]$ к функции $f$, то
-    $a_k = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \cos (kx) \, dx$, $b_k = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \sin (kx) \, dx$ и 
+    $a_k = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \cos (kx) \, dx$, $b_k = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \sin (kx) \, dx$ и
     $c_k = \frac{1}{2\pi} \int_{-\pi}^\pi f(x) e^{-ikx} \, dx$
 \end{theorem}
 
@@ -1056,7 +1059,7 @@ $\sum_{k = -n}^n c_k e^{ikx} \rightarrow \sum_{k = -\infty}^{+\infty} c_k e^{ikx
     Пусть $n \geq m$:
 
     $|\underbrace{\int_{-\pi}^{\pi} T_n(x) \cos{(m x)} dx}_{= a_m \cdot \pi \text{, т.к. везде будут нули, кроме $m$-ого элемента}} - \int_{-\pi}^{\pi} f(x) \cos{(m x)} dx| =$
-    
+
     $= |\int_{-\pi}^{\pi} \left(T_n(x) - f(x)\right) \cos{(m x)} dx | \leq \int_{-\pi}^{\pi} |T_n(x) - f(x)| dx = || T_n - f ||_1 \to_{n \to \infty} 0$
 
     Тогда доказали, что хотели, так как $\frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cos{(mx)} dx$ стремится к $a_m$ (по аналогии для $b_m$ и $c_m$).
@@ -1068,8 +1071,8 @@ $\sum_{k = -n}^n c_k e^{ikx} \rightarrow \sum_{k = -\infty}^{+\infty} c_k e^{ikx
 
 \begin{definition}
     Пусть $f \in L^1 [-\pi, \pi]$, тогда
-    
-    $a_k (f) = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \cos (kx) \, dx$, $b_k (f) = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \sin (kx) \, dx$ и 
+
+    $a_k (f) = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \cos (kx) \, dx$, $b_k (f) = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \sin (kx) \, dx$ и
     $c_k(f) = \frac{1}{2\pi} \int_{-\pi}^\pi f(x) e^{-ikx} \, dx$ - коэффициенты Фурье для функции $f$, а соответствующий ряд называется рядом Фурье
 \end{definition}
 
@@ -1115,8 +1118,8 @@ $x_n = \frac{1}{n} \sum\limits_{k = 0}^{N - 1} a_k e^{\frac{2\pi i}{N} kn}$
 % TODO, Картинка
 
 $f(t) = x_n$ при $\frac{2\pi}{N}n < t \leqslant \frac{2\pi}{N} (n + 1)$. Тогда $c_k (f) = \frac{1}{\pi} \int_0^{2\pi} f(t) e^{-itk}\, dt = \\
-\frac{1}{2\pi} \sum\limits_{n = 0}^{N - 1} x_n \underbrace{\int_{\frac{2\pi}{N} n}^{\frac{2\pi}{n} (n + 1)} e^{-itk} \, dt}_{=\frac{e^{-itk}}{-ik} \bigg |_{\frac{2\pi}{n} n}^{\frac{2\pi}{n} (n + 1)} = \frac{i}{k} e^{-\frac{2\pi}{N}kn} (1 - e^{-ik\frac{2\pi}{N}})} = 
-\frac{i}{2\pi} \frac{1 - e^{-ik\frac{2\pi}{N}}}{k} \underbrace{\sum_{n = 0}^{N - 1} x_n e^{-\frac{2\pi}{N} kn}}_{= a_k}$ 
+\frac{1}{2\pi} \sum\limits_{n = 0}^{N - 1} x_n \underbrace{\int_{\frac{2\pi}{N} n}^{\frac{2\pi}{n} (n + 1)} e^{-itk} \, dt}_{=\frac{e^{-itk}}{-ik} \bigg |_{\frac{2\pi}{n} n}^{\frac{2\pi}{n} (n + 1)} = \frac{i}{k} e^{-\frac{2\pi}{N}kn} (1 - e^{-ik\frac{2\pi}{N}})} =
+\frac{i}{2\pi} \frac{1 - e^{-ik\frac{2\pi}{N}}}{k} \underbrace{\sum_{n = 0}^{N - 1} x_n e^{-\frac{2\pi}{N} kn}}_{= a_k}$
 
 \begin{lemma}
     \textbf{Римана-Лебега}
@@ -1169,7 +1172,7 @@ $C_{2\pi}$ - непрерывные $2\pi$-периодические функц
 \end{theorem}
 
 \begin{proof}
-    $2\pi 2c_k (f) = 2 \int_{-\pi}^\pi f(t) e^{-ikt} \, dt = \int_{-\pi}^\pi f(t) e^{-ikt} \, dt + \int_{-\pi - \frac{-\pi}{k}}^{\pi - \frac{\pi}{k}} f(u + \frac{\pi}{k}) e^{-iku} \, du \cdot e^{-\pi i} = 
+    $2\pi 2c_k (f) = 2 \int_{-\pi}^\pi f(t) e^{-ikt} \, dt = \int_{-\pi}^\pi f(t) e^{-ikt} \, dt + \int_{-\pi - \frac{-\pi}{k}}^{\pi - \frac{\pi}{k}} f(u + \frac{\pi}{k}) e^{-iku} \, du \cdot e^{-\pi i} =
     \int_{-\pi}^\pi f(t) e^{-ikt} \, dt - \int_{-\pi}^{\pi} f(u + \frac{\pi}{k}) e^{-iku} \, du = \int_{-\pi}^\pi (f(t) - f(t + \frac{\pi}{k})) e^{-ikt} \, dt$
 
     $4\pi |c_k (f)| \leqslant \int_{-\pi}^\pi |f(t) - f(t + \frac{\pi}{k})| \, dt \leqslant 2\pi w_f (\frac{\pi}{|k|})$
@@ -1189,7 +1192,7 @@ $C_{2\pi}$ - непрерывные $2\pi$-периодические функц
 \end{lemma}
 
 \begin{proof}
-    $c_n (f') = \frac{1}{2\pi} \int_{-\pi}^\pi f'(t) e^{-int} \, dt = \frac{1}{2\pi} f(t) e^{-int} \bigg |_{t = -\pi}^{t = \pi} = -\frac{1}{2\pi} \int_{-\pi}^\pi f (t) (-ine^{-int}) \, dt = 
+    $c_n (f') = \frac{1}{2\pi} \int_{-\pi}^\pi f'(t) e^{-int} \, dt = \frac{1}{2\pi} f(t) e^{-int} \bigg |_{t = -\pi}^{t = \pi} = -\frac{1}{2\pi} \int_{-\pi}^\pi f (t) (-ine^{-int}) \, dt =
     in \frac{1}{2\pi} \int_{-\pi}^\pi f(t) e^{-int} \, dt = in c_n (f)$
 
     Остальные аналогично
@@ -1234,7 +1237,7 @@ $C_{2\pi}$ - непрерывные $2\pi$-периодические функц
 
 \textbf{Напоминание}
 
-$A_k (f, x) = 
+$A_k (f, x) =
 \begin{cases}
     \frac{a_0 (f)}{2}, & \text{при $k = 0$} \\
     a_k (f) \cos (kx) + b_k (f) \sin (kx), & \text{при $k > 0$}
@@ -1245,7 +1248,7 @@ $A_k (f) = \frac{1}{\pi} \int_{-\pi}^\pi f(x - t) \cos (kt) \, dt$, $A_0 (f) = \
 \begin{proof}
     леммы
 
-    $S_n (f, x) = \sum_{k = 0}^n A_k (f, x) = \frac{1}{2\pi} \int_{-\pi}^\pi f(x - t) \, dt +  \frac{1}{\pi} \sum_{k = 1}^{n} \int_{-\pi}^\pi f(x - t) \cos kt \, dt = 
+    $S_n (f, x) = \sum_{k = 0}^n A_k (f, x) = \frac{1}{2\pi} \int_{-\pi}^\pi f(x - t) \, dt +  \frac{1}{\pi} \sum_{k = 1}^{n} \int_{-\pi}^\pi f(x - t) \cos kt \, dt =
     \frac{1}{\pi} \int_{-\pi}^\pi f(x - t) D_n (t) \, dt = \frac{1}{\pi} \int_{-\pi}^\pi f(x + u) D_n (u) (-1) \, du$
 \end{proof}
 
@@ -1288,7 +1291,7 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
 \end{definition}
 
 \begin{lemma}
-    $f \in L^1 [-\pi, \pi]$, тогда $\int_0^\delta \frac{|f(t)|}{t} \, dt$ и $\int_0^\pi \frac{|f(t)|}{2\sin \frac{t}{2}} \, dt$ ведут себя одинаково, 
+    $f \in L^1 [-\pi, \pi]$, тогда $\int_0^\delta \frac{|f(t)|}{t} \, dt$ и $\int_0^\pi \frac{|f(t)|}{2\sin \frac{t}{2}} \, dt$ ведут себя одинаково,
     если $0 < \delta < \pi$
 \end{lemma}
 
@@ -1303,7 +1306,7 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
 \begin{theorem}
     \textbf{Признак Дини}
 
-    $f \in L^{1} [-\pi, \pi], x \in [-\pi, \pi]$ - точка непрерывности или разрыва первого рода. $0 < \delta < \pi$. Если $\int\limits_0^\delta \frac{|f_x^* (t)|}{t} \, dt < +\infty$, то ряд Фурье 
+    $f \in L^{1} [-\pi, \pi], x \in [-\pi, \pi]$ - точка непрерывности или разрыва первого рода. $0 < \delta < \pi$. Если $\int\limits_0^\delta \frac{|f_x^* (t)|}{t} \, dt < +\infty$, то ряд Фурье
     функции $f$ в точке $x$ сходится к $\frac{f(x + 0) + f(x - 0)}{2}$
 \end{theorem}
 
@@ -1318,7 +1321,7 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
 
     $D_n(t) = \frac{\sin ((n + \frac{1}{2})t)}{2\sin \frac{t}{2}}$. Значит нужно понять про $\int_0^\pi \frac{|f_x^* (t)|}{2 \sin \frac{t}{2}} \sin ((n + \frac{1}{2})t) \, dt \overset{\text{Риман-Лебег, если (*)}}{\rightarrow} 0$
 
-    $(*) \, : \, \int_0^\pi \frac{|f_x^* (t)|}{2 \sin \frac{t}{2}} \, dt < +\infty \overset{\text{лемма}}{\Longleftrightarrow} \int_0^\delta \frac{|f_x^* (t)|}{t} \, dt < +\infty$ - а это верно из условия 
+    $(*) \, : \, \int_0^\pi \frac{|f_x^* (t)|}{2 \sin \frac{t}{2}} \, dt < +\infty \overset{\text{лемма}}{\Longleftrightarrow} \int_0^\delta \frac{|f_x^* (t)|}{t} \, dt < +\infty$ - а это верно из условия
 \end{proof}
 
 \begin{consequence}
@@ -1329,7 +1332,7 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
         \item {
             Если $x$ точка непрерывности для разрыва первого рода и в этой точке существуют конечные $f'_{\pm} (x)$
 
-            Тогда ряд Фурье в точке $x$ сходится к $\frac{f(x + 0) + f(x - 0)}{2}$ 
+            Тогда ряд Фурье в точке $x$ сходится к $\frac{f(x + 0) + f(x - 0)}{2}$
 
             \begin{proof}
                 $\frac{|f_x^* (t)|}{t} \leqslant \underbrace{\frac{|f(x + t) - f(x + 0)|}{t}}_{\rightarrow f_+'(x)} + \underbrace{\frac{|f(x - t) - f(x - 0)|}{t}}_{\rightarrow -f_-' (x)}$. Функции локально ограничены, значит всё выполняется.
@@ -1360,7 +1363,7 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
             $b_n = \frac{1}{\pi} \int_0^{2\pi} f(x) \sin (nx) \, dx = \frac{1}{\pi} \int_0^{2\pi} \frac{\pi - x}{2} \sin (nx) \, dx = -\frac{1}{2\pi} \int_0^{2\pi} x \sin (nx) \, dx = \\
             - \frac{1}{2\pi} \left ( \underbrace{x \cdot \frac{-\cos (nx)}{n} \bigg |_{0}^{2\pi}}_{2n \cdot \frac{-1}{n}} + \underbrace{\int_0^{2\pi} \frac{\cos (nx)}{n} \, dx}_{= 0} \right ) = \frac{1}{n}$
 
-            То есть ряд Фурье $\sum\limits_{n = 1}^\infty \frac{\sin (nx)}{n} = 
+            То есть ряд Фурье $\sum\limits_{n = 1}^\infty \frac{\sin (nx)}{n} =
             \begin{cases}
                 f(x), & \text{при $x \neq 2\pi k$} \\
                 0, & \text{при $x = 2\pi k$}
@@ -1375,15 +1378,15 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
             $\sum\limits_{n = 1}^\infty \frac{\sin ((2n - 1)x)}{2n - 1} = \frac{\pi}{4}$ при $x \in (0, \pi)$
         }
         \item {
-            $f(x) = 
+            $f(x) =
             \begin{cases}
                 1, & x \in (0, \pi) \\
                 0, & x = 0 \text{ и } x = \pi \\
-                -1, & x \in (-\pi, 0)    
+                -1, & x \in (-\pi, 0)
             \end{cases}$
 
-            $a_n = 0, b_n = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \sin (nx) \, dx = \frac{2}{\pi} \int_0^\pi \sin (nx) \, dx = 
-            \frac{2}{\pi} \cdot \frac{\cos (nx)}{n} \bigg |_{x = 0}^{x = \pi} = \\ \frac{2}{\pi} \frac{(1 - (-1)^n)}{n} = 
+            $a_n = 0, b_n = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \sin (nx) \, dx = \frac{2}{\pi} \int_0^\pi \sin (nx) \, dx =
+            \frac{2}{\pi} \cdot \frac{\cos (nx)}{n} \bigg |_{x = 0}^{x = \pi} = \\ \frac{2}{\pi} \frac{(1 - (-1)^n)}{n} =
             \begin{cases}
                 0, & \text{при чётных $n$} \\
                 \frac{4}{\pi n}, & \text{при нечётных $n$}
@@ -1441,7 +1444,7 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
         }
         \item {
             Если ряд суммируем по Чезаро, то $a_n = o(n)$
-            
+
             \begin{proof}
                 Мы знаем, что $A_n = (n + 1)\alpha_n - n\alpha_{n-1} = (n + 1)(s + o(1)) - n(s + o(1)) = S + o(n)$
 
@@ -1458,7 +1461,7 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
 
             $A_{3n - 2} = 1$, $A_{3n - 1} = A_{3n} = 0$
 
-            Тогда $(c) \sum = \frac{1}{3}$. То есть мы добавили нули и испортили сумму. 
+            Тогда $(c) \sum = \frac{1}{3}$. То есть мы добавили нули и испортили сумму.
         }
         \item {
             \textbf{Теорема Харди}
@@ -1544,7 +1547,7 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
 \begin{example}
     $\frac{1}{2} + \sum\limits_{n=1}^\infty \cos (nx)$
 
-    $f(r) = \frac{1}{2} + \sum\limits_{n=1}^\infty r^n \cos (nt) = \frac{1}{2} + \Re \sum\limits_{n=1}^\infty (re^{it})^n = -\frac{1}{2} + \Re \sum\limits_{n=1}^\infty z^n = - \frac{1}{2} + \Re \frac{1}{1 - z} = - \frac{1}{2} + \Re \frac{1 - \bar{z}}{(1 - z)(1 - \bar{z})} = -\frac{1}{2} + \frac{1 - \Re z}{1 + |z|^2 - 2\Re z} = 
+    $f(r) = \frac{1}{2} + \sum\limits_{n=1}^\infty r^n \cos (nt) = \frac{1}{2} + \Re \sum\limits_{n=1}^\infty (re^{it})^n = -\frac{1}{2} + \Re \sum\limits_{n=1}^\infty z^n = - \frac{1}{2} + \Re \frac{1}{1 - z} = - \frac{1}{2} + \Re \frac{1 - \bar{z}}{(1 - z)(1 - \bar{z})} = -\frac{1}{2} + \frac{1 - \Re z}{1 + |z|^2 - 2\Re z} =
     - \frac{1}{2} + \frac{1 - r\cos t}{1 - 2r \cos t + r^2} = \frac{1 - r^2}{2(1 - 2r \cos t + r^2)}$
 \end{example}
 
@@ -1565,7 +1568,7 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
             $\lim\limits_{r \to 1-} \max\limits_{\delta \leqslant |t| \leqslant \pi} P_r (t) = 0$
         }
     \end{enumerate}
-    
+
 \end{properties}
 
 \begin{example}
@@ -1579,7 +1582,7 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
 \begin{example}
     $\frac{a_0}{2} + \sum\limits_{k = 1}^\infty (a_k \cos (kx) + b_k \sin (kx)) = \sum\limits_{k = 0}^\infty A_k (x)$
 
-    $f(r) = \sum\limits_{k = 0}^\infty r^k A_k (x) = \frac{1}{\pi} \int_{-\pi}^\pi \frac{1}{2} f(x - t) \, dt + \frac{1}{\pi} \sum\limits_{k=1}^\infty r^k \int_{-\pi}^\pi f(x - t) \cos (kt) \, dt = 
+    $f(r) = \sum\limits_{k = 0}^\infty r^k A_k (x) = \frac{1}{\pi} \int_{-\pi}^\pi \frac{1}{2} f(x - t) \, dt + \frac{1}{\pi} \sum\limits_{k=1}^\infty r^k \int_{-\pi}^\pi f(x - t) \cos (kt) \, dt =
     \frac{1}{\pi} \int_{-\pi}^\pi f(x - t) \underbrace{\left( \frac{1}{2} + \sum\limits_{k = 1}^\infty r^k \cos (kt) \right)}_{= P_r (t)} \, dt$
 \end{example}
 
@@ -1604,10 +1607,10 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
             \begin{proof}
                 $F(x, t) = f(x - t)g(t)$ - измеримая функция. Потому что $f(y)g(t)$ - измеримая, а из этих Лебеговых множеств можем получить исходные линейным преобразованием.
 
-                $\int\limits_{-\pi}^\pi |h(x)| \, dx = \int\limits_{-\pi}^\pi |\int\limits_{-\pi}^\pi f(x -t)g(t) \, dt | \, dx \leqslant \int\limits_{-\pi}^\pi \int\limits_{-\pi}^\pi |f(x -t)||g(t)| \, dt \, dx = 
+                $\int\limits_{-\pi}^\pi |h(x)| \, dx = \int\limits_{-\pi}^\pi |\int\limits_{-\pi}^\pi f(x -t)g(t) \, dt | \, dx \leqslant \int\limits_{-\pi}^\pi \int\limits_{-\pi}^\pi |f(x -t)||g(t)| \, dt \, dx =
                 \int\limits_{-\pi}^\pi \int\limits_{-\pi}^\pi |f(x -t)||g(t)| \, dt \, dx = ||f||_1 \cdot ||g||_1$
             \end{proof}
-        } 
+        }
         \item {
             $f * g = g * f$
 
@@ -1619,8 +1622,8 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
             $c_k (f * g) = 2\pi c_k (f) c_k (g)$
 
             \begin{proof}
-                $c_k (f * g) = \frac{1}{2\pi} \int\limits_{-\pi}^\pi e^{ikx} f*g (x) \, dx = \frac{1}{2\pi} \int\limits_{-\pi}^\pi e^{ikx} \int\limits_{-\pi}^\pi f(x - t) g(t) \, dt \, dx = \\ 
-                = \frac{1}{2\pi} \int\limits_{-\pi}^\pi \int\limits_{-\pi}^\pi e^{ik(x - t)}e^{ikt} f(x - t) g(t) \, dt \, dx = 
+                $c_k (f * g) = \frac{1}{2\pi} \int\limits_{-\pi}^\pi e^{ikx} f*g (x) \, dx = \frac{1}{2\pi} \int\limits_{-\pi}^\pi e^{ikx} \int\limits_{-\pi}^\pi f(x - t) g(t) \, dt \, dx = \\
+                = \frac{1}{2\pi} \int\limits_{-\pi}^\pi \int\limits_{-\pi}^\pi e^{ik(x - t)}e^{ikt} f(x - t) g(t) \, dt \, dx =
                 \frac{1}{2\pi} \int\limits_{-\pi}^\pi e^{ikt} g(t) \int\limits_{-\pi}^\pi e^{ik(x - t)} f(\underbrace{x - t}_{=s}) \, dx \, dt = \\
                 = \frac{1}{2\pi} \int\limits_{-\pi}^\pi e^{ikt} g(t) \int\limits_{x-\pi}^{x+\pi} e^{iks} f(s) \, ds \, dt  = c_k (f) \int\limits_{-\pi}^\pi e^{ikt} g(t) \, dt$
             \end{proof}
@@ -1634,7 +1637,7 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
                 $|f*g (x)| = \left|\int\limits_{-\pi}^\pi f(x - t) g(t) \, dt \right| \leqslant \int\limits_{-\pi}^\pi |f(x-t)||g(t)| \, dt \overset{\text{Гёльдер}}{\leqslant}
                 \left( \int\limits_{-\pi}^\pi |f(x - t)|^p \, dt \right)^{\frac{1}{p}} \cdot \left( \int\limits_{-\pi}^\pi |g(t)|^q \, dt \right)^{\frac{1}{q}} = ||f||_p \cdot ||g||_q$
 
-                $|f * g(x + h) - f * g (x)| = \left| \int\limits_{-\pi}^\pi f(x + h -t)g(t) \, dt - \int\limits_{-\pi}^\pi f(x - t)g(t) \, dt \right| \leqslant \int\limits_{-\pi}^\pi |f(x + h - t) - f(x - t)||g(t)| \, dt \leqslant 
+                $|f * g(x + h) - f * g (x)| = \left| \int\limits_{-\pi}^\pi f(x + h -t)g(t) \, dt - \int\limits_{-\pi}^\pi f(x - t)g(t) \, dt \right| \leqslant \int\limits_{-\pi}^\pi |f(x + h - t) - f(x - t)||g(t)| \, dt \leqslant
                 \left( \int\limits_{-\pi}^\pi|f(x + h - t - f(x - t))|^p \, dt \right)^{\frac{1}{p}} ||g||_q = \left( \int\limits_{-\pi}^\pi |f(s + h) - f(s)|^p \, ds \right)^{\frac{1}{p}} \cdot ||g||_q = \underbrace{||f_h - f||_p}_{\rightarrow 0} ||g||_q$. При $p < +\infty$ из теоремы о непрерывности сдвига.
             \end{proof}
         }
@@ -1740,7 +1743,7 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
             Если $f \in L_{2\pi}^1$, непрерывна в точке $x$ и $S_n (f, x)$ сходится, то $S_n (f, x) \rightarrow f(x)$
         }
         \item {
-            Если $f \in C_{2\pi}$ и $S_n (f) \rightrightarrows g$, то $g = f$ 
+            Если $f \in C_{2\pi}$ и $S_n (f) \rightrightarrows g$, то $g = f$
         }
         \item {
             \textbf{Теорема единственности}. Если $f$ и $g$ суммируемые, и у них совпадают коэффициенты Фурье, то $f = g$ почти везде
@@ -1764,7 +1767,7 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
             В $L_{2\pi}^2$ ряд Фурье сходится к функции
         }
         \item {
-            \textbf{Тождество Парсеваля}. $f, g \in L_{2\pi}^2 \implies \int\limits_{-1}^1 f \bar{g} = 2\pi \sum\limits_{k \in \mathbb{Z}} c_k (f) \overline{c_k (g)}$ 
+            \textbf{Тождество Парсеваля}. $f, g \in L_{2\pi}^2 \implies \int\limits_{-1}^1 f \bar{g} = 2\pi \sum\limits_{k \in \mathbb{Z}} c_k (f) \overline{c_k (g)}$
         }
     \end{enumerate}
 \end{consequence}
@@ -1792,7 +1795,7 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
     $f \in L^1 (\mathbb{R})$
 
     $\overset{\wedge}{f} (x) = \frac{1}{\sqrt{2\pi}} \int\limits_{\mathbb{R}} f(t) e^{-itx} \, dt$ - прямое преобразование Фурье
-    
+
     $\overset{\vee}{f} (x) = \frac{1}{\sqrt{2\pi}} \int\limits_{\mathbb{R}} f(t) e^{itx} \, dt$ - обратное преобразование Фурье
 
 \end{definition}
@@ -1851,7 +1854,7 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
                 $\overset{\wedge}{f'} (x) = \frac{1}{\sqrt{2\pi}} \int\limits_{\mathbb{R}} f'(t) e^{-itx} \, dt = \frac{1}{\sqrt{2\pi}} f(t) e^{-itx} \bigg |_{t = -\infty}^{t = +\infty} + ix \cdot \underbrace{\frac{1}{\sqrt{2\pi}} \int\limits_{\mathbb{R}} f(t) e^{-itx} \, dt}_{=\overset{\wedge}{f} (x)}$
 
                 $f(t) = \int\limits_0^t f' (s) \, ds \rightarrow_{t \to +\infty} \int\limits_0^\infty f' (s) \, ds \implies \lim\limits_{t \to \pm \infty} f(t)$ существует
-                
+
                 Если $a = \lim\limits_{t \to + \infty} f(t) \neq 0 \implies |f(t)| > \frac{|a|}{2}$ при больших $t$, а тогда нет суммируемости. Значит пределы нули и неинтегрального слагаемого у нас нет
             \end{proof}
         }
