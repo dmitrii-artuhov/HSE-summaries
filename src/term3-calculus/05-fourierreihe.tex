@@ -1113,8 +1113,12 @@ $\sum_{k = -n}^n c_k e^{ikx} \rightarrow \sum_{k = -\infty}^{+\infty} c_k e^{ikx
             Рисс показал, что $1 < p < +\infty \, \forall \, f \in L^p [-\pi, \pi]$ ряд сходится к $f$ в $L^p$
         }
     \end{enumerate}
+\end{remark}
 
-    $C_{2\pi}$ - непрерывные $2\pi$ периодичные функции
+\begin{remark}
+    \textbf{Обозначение}:
+
+    $C_{2\pi}$ - непрерывные $2\pi$ периодичные функции.
 
     $A_k (f, x) = \begin{cases}
         \frac{a_0(f)}{2} \text{, если $k = 0$} \\
@@ -1896,16 +1900,22 @@ $A_0 (f) = \frac{1}{2\pi} \int_{-\pi}^\pi f(x - t) \, dt$
 \begin{definition}
     $D$ - множество параметров, $h_0$ его предельная точка.
 
-    Пусть $K_h$ - аппроксимативная единица, если:
+    Пусть $K_h: [-\pi, \pi] \to \mathbb{R}$, продолжаем функцию по периоду $2\pi$ -- \textbf{аппроксимативная единица}, если:
 
     \begin{enumerate}
-        \item $K_h \in L_{2\pi}^1$
-        \item $\int\limits_{-\pi}^\pi K_h = 1$
-        \item $||K_h||_1 \leqslant M \, \forall h$
-        \item $\int\limits_{\delta \leqslant |x| \leqslant \pi} |K_h (x)| \, dx \rightarrow_{h \to h_0} 0 \, \forall \delta > 0$
+        \item $K_h \in L_{2\pi}^1 \ : \ \forall h \in D$
+        \item $\int\limits_{-\pi}^\pi K_h(t) dt = 1 \ : \ \forall h \in D$
+        \item $||K_h||_1 \leqslant M \ : \ \forall h \in D$
+        \item $\forall \delta > 0 : \ \int\limits_{\delta \leqslant |x| \leqslant \pi} |K_h (x)| \, dx \rightarrow_{h \to h_0} 0$
     \end{enumerate}
 
-    $K_h$ - усиленная аппроксимативная единица, если есть условия $1, 2, 3$ и $esssup \, |K_h (x)| \rightarrow_{h \to h_0} 0$ при $\delta \leqslant |x| \leqslant \pi$
+    $K_h$ -- \textbf{усиленная аппроксимативная единица}, если есть условия $1, 2, 3$ и
+    
+    $esssup_{\delta \leqslant |x| \leqslant \pi} \, |K_h (x)| \rightarrow_{h \to h_0} 0$.
+
+    \begin{center}
+        \includegraphics[width=10cm]{assets/05-fourierreihe/esssup-notice.png}
+    \end{center}
 \end{definition}
 
 \begin{example}
@@ -1931,28 +1941,74 @@ $A_0 (f) = \frac{1}{2\pi} \int_{-\pi}^\pi f(x - t) \, dt$
 \begin{proof}
     \begin{enumerate}
         \item {
-            $|f * K_h (x) - f(x)| = |\int\limits_{-\pi}^\pi f(x - t) K_h (t) \, dt - \int\limits_{-\pi}^\pi K_h (t) f(x) \, dt| = |\int\limits_{-\pi}^\pi K_h (t) (f(x - t) - f(x)) \, dt | \leqslant \int\limits_{-\pi}^\pi |K_h (t)| |f(x - t) - f(x)| \, dt = \int\limits_{-\delta}^\delta + \int\limits_{\delta \leqslant |t| \leqslant \pi}$
+            $|f * K_h (x) - f(x)| = |\int\limits_{-\pi}^\pi f(x - t) K_h (t) \, dt - \int\limits_{-\pi}^\pi K_h (t) f(x) \, dt| = |\int\limits_{-\pi}^\pi K_h (t) (f(x - t) - f(x)) \, dt | \leqslant \int\limits_{-\pi}^\pi |K_h (t)| |f(x - t) - f(x)| \, dt = \int\limits_{-\delta}^\delta + \int\limits_{\delta \leqslant |t| \leqslant \pi} = I_1 + I_2$.
 
-            $f \in C_{2\pi} \implies$ $f$ равномерно непрерывна. Берём $\varepsilon > 0, \delta > 0$ из определения равномерной непрерывности
+            Так как $f \in C_{2\pi}$ -- равномерно непрерывна, то оцениваем через модуль непрерывности.
+            
+            $I_1 = \int_{-\delta}^{\delta} |K_h(t)| \underbrace{|f(x-t) - f(x)|}_{\leq w_f(t) \leq_{|t| \leq \delta} w_f(\delta)} \leq w_f(\delta) \int_{-\delta}^{\delta} |K_h(t)| dt \leq w_f(\delta) \cdot M < \varepsilon_{\text{при малых } \delta}$ -- т.к. $K_h(t)$ -- аппроксимативная единица.
 
-            $\int\limits_{-\pi}^\pi |K_h (t)| |f(x - t) - f(x)| \, dt \leqslant \varepsilon \int\limits_{-\delta}^\delta |K_h (t)| \, dt \leqslant \varepsilon M$
+            Оценим второй интеграл: $f$ -- огранична, т.к. непрерывна и периодична, тогда $|f| \leq L$
 
-            $\int\limits_{\delta \leqslant |t| \leqslant \pi} |K_h (t)||f(x - t) - f(t)| \, dt \leqslant 2L \int\limits_{\delta \leqslant |t| \leqslant \pi} |K_h (t)|$, т.к. $f \in C_{2\pi} \implies |f| \leqslant L$
+            $I_2 = \int\limits_{\delta \leqslant |t| \leqslant \pi} |K_h (t)| |f(x - t) - f(x)| \, dt \leq 2 L \cdot \int\limits_{\delta \leqslant |t| \leqslant \pi} |K_h(t)| dt \to_{h \to h_0} 0$.
+
+            % $f \in C_{2\pi} \implies$ $f$ равномерно непрерывна. Берём $\varepsilon > 0, \delta > 0$ из определения равномерной непрерывности
+
+            % $\int\limits_{-\pi}^\pi |K_h (t)| |f(x - t) - f(x)| \, dt \leqslant \varepsilon \int\limits_{-\delta}^\delta |K_h (t)| \, dt \leqslant \varepsilon M$
+
+            % $\int\limits_{\delta \leqslant |t| \leqslant \pi} |K_h (t)||f(x - t) - f(t)| \, dt \leqslant 2L \int\limits_{\delta \leqslant |t| \leqslant \pi} |K_h (t)|$, т.к. $f \in C_{2\pi} \implies |f| \leqslant L$
         }
         \item {
-            % Нужно дописать доказательство
+            $|| K_h * f - f ||_p^p = \int_{-\pi}^{\pi} \left| \int_{-\pi}^{\pi} \left( f(x-t) - f(x) \right) \cdot K_h(t) dt \right|^p dx \leq$
+            
+            $\leq \int_{-\pi}^{\pi} \left( \int_{-\pi}^{\pi} \left| f(x-t) - f(x) \right| \cdot |K_h(t)|^{\frac{1}{p} + \frac{1}{q}} dt \right)^p dx \leq_{\text{Гельдер для внутреннего интеграла}}$
+
+            $\leq \int_{-\pi}^{\pi} \left( \left( \int_{-\pi}^{\pi} |f(x-t) - f(x)|^p |K_h(t)|^{\frac{p}{p}} dt \right)^{\frac{1}{p}} \underbrace{\left( \int_{-\pi}^{\pi} |K_h(t)|^{\frac{q}{q}} dt \right)^{\frac{1}{q}}}_{= || K_h ||_1^{\frac{1}{q}}} \right)^p dx = $
+
+            $= \int_{-\pi}^{\pi} \int_{-\pi}^{\pi} |f(x-t)-f(x)|^p \frac{|K_h(t)|}{|| K_h ||_1} dt dx \cdot ||K_h||_1^p = (*)$ -- т.к. $||K_h||_1^{\frac{p}{q}} = \frac{||K_h||_1^{p}}{||K_h||_1}$.
+
+            $(*) \leq M^p \int_{-\pi}^{\pi} \underbrace{\int_{-\pi}^{\pi} |f(x-t)-f(x)|^p dx}_{:= g(-t)} \cdot \frac{|K_h(t)|}{||K_h||_1} dt = M^p \cdot \left( g * \frac{|K_h|}{||K_h||_1} (0) \right) \overset{?}{\to} 0$
+
+            Достаточно понять, что $\left( g * \frac{|K_h|}{||K_h||_1} (0) \right) \to \underbrace{g(0)}_{=0}$.
+
+            Чтобы это сделать надо понять:
+            
+            \begin{enumerate}
+                \item $\frac{|K_h|}{||K_h||_1}$ -- апроксимативная единица, это действительно так по замечанию $(3)$ выше.
+                \item {
+                    $g$ -- непрерывная, т.к. она устроена следующим образом:
+
+                    $g(u) = || \underbrace{f_u}_{\text{сдвиг}} - f ||_p^p$
+
+                    $|g(u)^{\frac{1}{p}} - g(v)^{\frac{1}{p}}| = \left| ||f_u - f||_p - ||f_v - f||_p \right| \leq ||f_u - f_v||_p \to_{u \to v} 0$, по непрерывности сдвига, где $v$ -- фиксировано.
+
+                    Это доказывает непрерывность $g$.
+                }
+            \end{enumerate}
+
+            Тогда по пункту $(1)$ получаем нужное стремление к нулю.
         }
         \item {
-            $\int\limits_{-\delta}^\delta |K_h (t)| |f(x_0 - t) - f(x_0)| \, dt \leqslant \varepsilon M$, где $\delta > 0$ из определения непрерывности в точке $x_0$
+            % $\int\limits_{-\delta}^\delta |K_h (t)| |f(x_0 - t) - f(x_0)| \, dt \leqslant \varepsilon M$, где $\delta > 0$ из определения непрерывности в точке $x_0$
 
-            $\int\limits_{\delta \leqslant |t| \leqslant \pi} |K_h (t)||f(x - t) - f(t)| \, dt \leqslant esssup \, |K_h (t)| \cdot \int\limits_{-\pi}^\pi |f(x_0 - t) - f(x_0)| \, dt$ одна стремится к нулю, а вторая ограничена
+            % $\int\limits_{\delta \leqslant |t| \leqslant \pi} |K_h (t)||f(x - t) - f(t)| \, dt \leqslant esssup \, |K_h (t)| \cdot \int\limits_{-\pi}^\pi |f(x_0 - t) - f(x_0)| \, dt$ одна стремится к нулю, а вторая ограничена
 
+            Возьмем те же интегралы, что и в пункте $(1)$:
 
+            $I_1 \leq \varepsilon \int_{-\delta}^{\delta} |K_h(t)| dt \leq \varepsilon M$ -- берем такое $\delta > 0$, что из непрерывности $f$ будем иметь $|f(x + t) - f(x)| < \varepsilon$ при $|t| < \delta$.
+
+            Теперь разбираемся со вторым: оцениваем сумму под модулем, как модуль суммы, а аппроксимативную единицу через существенный супремум.
+            
+            $I_2 \leq \int\limits_{\delta \leqslant |t| \leqslant \pi} |f(x)| + |f(x - t)| dt \cdot esssup_{\delta \leqslant |t| \leqslant \pi} |K_h(t)| \leq$
+            
+            $\leq \left( ||f||_1 + 2\pi |f(x)| \right) \cdot esssup_{\delta \leqslant |t| \leqslant \pi} |K_h(t)| \to_{h \to h_0} 0$ -- т.к. $K_h(t)$ -- существенная аппроксимативная единица.
         }
     \end{enumerate}
 \end{proof}
 
 \begin{consequence}
+    \textit{Обозначение:} $\Pi_r(f, x) = \sum_{n=0}^{\infty} r^n A_n(f, x)$
+
+
     \begin{enumerate}
         \item Если $f \in C_{2\pi}$, то $\Pi_r (f) \rightrightarrows f$
         \item Если $f \in L_{2\pi}^p$ при $1 \leqslant p < +\infty$, то $||\Pi_r (f) - f||_p \rightarrow 0$
@@ -1963,8 +2019,8 @@ $A_0 (f) = \frac{1}{2\pi} \int_{-\pi}^\pi f(x - t) \, dt$
 \textbf{Теорема Фейера}
 
     \begin{enumerate}
-        \item Если $f \in C_{2\pi}$, то $\sigma_n (f) \rightrightarrows f$
-        \item Если $f \in F_{2\pi}^p$ при $1 \leqslant p < +\infty$, то $||\sigma_n (f) - f||_p \rightarrow 0$
+        \item Если $f \in C_{2\pi}$, то $\sigma_n (f) \rightrightarrows f$, где $\sigma_n(f)$ -- среднее арифметическое частичных сумма ряду Фурье для $f$.
+        \item Если $f \in L_{2\pi}^p$ при $1 \leqslant p < +\infty$, то $||\sigma_n (f) - f||_p \rightarrow 0$
         \item Если $f \in L_{2\pi}^1$ и непрерывна в точке $x_0$, то $\sigma_n (f, x_0) \rightarrow f(x_0)$
     \end{enumerate}
 \end{theorem}
@@ -1973,10 +2029,16 @@ $A_0 (f) = \frac{1}{2\pi} \int_{-\pi}^\pi f(x - t) \, dt$
     из теоремы Фейера
     \begin{enumerate}
         \item {
-            Если $f \in L_{2\pi}^1$, непрерывна в точке $x$ и $S_n (f, x)$ сходится, то $S_n (f, x) \rightarrow f(x)$
+            % Если $f \in L_{2\pi}^1$, непрерывна в точке $x$ и $S_n (f, x)$ сходится, то $S_n (f, x) \rightarrow f(x)$
+
+            Если $f \in L_{2\pi}^1$, непрерывна в точке $x$ и ряд Фурье в точке $x$ сх-ся, то он сх-ся к $f(x)$.
         }
         \item {
-            Если $f \in C_{2\pi}$ и $S_n (f) \rightrightarrows g$, то $g = f$
+            % Если $f \in C_{2\pi}$ и $S_n (f) \rightrightarrows g$, то $g = f$ 
+            
+            Если $f \in C_{2\pi}$ и ряд Фурье сх-ся равномерно, то он сх-ся к $f$.
+
+            
         }
         \item {
             \textbf{Теорема единственности}. Если $f$ и $g$ суммируемые, и у них совпадают коэффициенты Фурье, то $f = g$ почти везде
