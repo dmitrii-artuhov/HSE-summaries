@@ -1479,13 +1479,25 @@ $A_0 (f) = \frac{1}{2\pi} \int_{-\pi}^\pi f(x - t) \, dt$
                 0, & \text{при $x = 2\pi k$}
             \end{cases}$
 
-            $\sum\limits_{n = 1}^\infty = \frac{\pi - x}{2}$ при $x \in (0, 2\pi)$
+            % $\sum\limits_{n = 1}^\infty = \frac{\pi - x}{2}$ при $x \in (0, 2\pi)$
+
+            Здесь слагаемые только для четных $n$:
 
             $\sum\limits_{n =1}^\infty \frac{\sin (2 n x)}{2n} = \frac{\pi - 2x}{2 \cdot 2}$ при $x \in (0, \pi)$
 
-            И давайте вычтем, тогда получим сумму по всем нечётным
 
-            $\sum\limits_{n = 1}^\infty \frac{\sin ((2n - 1)x)}{2n - 1} = \frac{\pi}{4}$ при $x \in (0, \pi)$
+            И давайте вычтем, тогда получим сумму по всем нечётным:
+
+            $\sum\limits_{n = 1}^\infty \frac{\sin ((2n - 1)x)}{2n - 1} = \frac{\pi - x}{2} - \frac{\pi - 2x}{4} = \frac{\pi}{4}$ при $x \in (0, \pi)$
+
+            Теперь хотим из ряда для $\frac{\pi-x}{2}$ вычесть ряд для $2 \cdot \frac{\pi}{4}$:
+
+            $ \sum\limits_{n =1}^\infty \frac{\sin{nx}}{n} - 2\cdot \sum\limits_{n =1}^\infty \frac{\sin{((2n-1)\cdot x)}}{2n-1} = \frac{\pi-x}{2} - 2\cdot \frac{\pi}{4} = -\frac{x}{2} $
+
+            $ \sum\limits_{n =1}^\infty \frac{(-1)^n \cdot \sin{(nx)}}{n} = -\frac{x}{2} $
+
+            $ \sum\limits_{n =1}^\infty \frac{(-1)^{n-1} \cdot \sin{(nx)}}{n} = \frac{x}{2} $, при $x\in (0, \pi)$.
+
         }
         \item {
             $f(x) =
@@ -1493,7 +1505,11 @@ $A_0 (f) = \frac{1}{2\pi} \int_{-\pi}^\pi f(x - t) \, dt$
                 1, & x \in (0, \pi) \\
                 0, & x = 0 \text{ и } x = \pi \\
                 -1, & x \in (-\pi, 0)
-            \end{cases}$
+            \end{cases} \quad \text{и продолжим по периоду}$
+
+            \begin{center}
+                \includegraphics[scale=0.5]{./assets/05-fourierreihe/ticket-16-function-graphic.PNG}
+            \end{center}
 
             $a_n = 0, b_n = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \sin (nx) \, dx = \frac{2}{\pi} \int_0^\pi \sin (nx) \, dx =
             \frac{2}{\pi} \cdot \frac{\cos (nx)}{n} \bigg |_{x = 0}^{x = \pi} = \\ \frac{2}{\pi} \frac{(1 - (-1)^n)}{n} =
@@ -1504,16 +1520,29 @@ $A_0 (f) = \frac{1}{2\pi} \int_{-\pi}^\pi f(x - t) \, dt$
 
             То есть Ряд Фурье $\frac{4}{\pi} \sum\limits_{n = 1}^\infty \frac{\sin ((2n - 1)x)}{2n - 1} = f(x)$
 
+
             Теперь давайте посмотрим на частичные суммы: $S_n (x) = \frac{4}{\pi} \sum\limits_{n = 1}^\infty \frac{\sin ((2n - 1)x)}{2k - 1}$
 
+            Ищем ближайшую к $0$ точку max:
+
             $S_n' (x) = \frac{4}{\pi} \sum\limits_{k = 1}^n \cos ((2k - 1)x) = \frac{2}{\pi} \frac{\sin (2 n x)}{\sin x}$
+
+            % (*) -- получили через свертку exp:
+
+            % $Re \sum\limits_{k=1}^{n} e^{i\cdot (2k-1)\pi} = Re e^{i\cdot \pi} \cdot \sum\limits_{k=0}$
 
             $S_n' (x) = 0$ при $x = \frac{\pi k}{2n}$. Ближайший к нулю корень $\frac{\pi}{2n}$
 
             $S_n (\frac{\pi}{2n}) = \int_0^{\frac{\pi}{2n}} S_n'(x) \, dx = \frac{2}{\pi} \int_0^{\frac{\pi}{2n}} \frac{\sin (2 n x)}{\sin x} \, dx \overset{t = 2nx}{=} \frac{2}{\pi} \int_0^{\pi} \frac{\sin t}{\sin \frac{t}{2n}} \frac{dt}{2n}
-            \overset{*}{=} \frac{2}{\pi} \int_0^\pi \frac{\sin t}{t + \mathcal{O}(\frac{1}{n^2})} \, dt = \frac{2}{\pi} \int_0^\pi \frac{\sin t}{t} \, dt (1 + \mathcal{O} (1 + \mathcal{O} (\frac{1}{n^2})))$
+            \overset{*}{=} \frac{2}{\pi} \int_0^\pi \frac{\sin t}{t + \mathcal{O}(\frac{1}{n^2})} \, dt = \frac{2}{\pi} \int_0^\pi \frac{\sin t}{t} \, dt (1 + \mathcal{O} (\frac{1}{n^2}))$
+
+            При этом $\frac{2}{\pi} \int_0^\pi \frac{\sin t}{t} \, dt \approx 1.17898$.
 
             $(*) \, : \, \sin \frac{t}{2n} = \frac{t}{2n} + \mathcal{O}(\frac{t^3}{n^3})$ и $\frac{1}{t + \mathcal{O} (\frac{t^3}{n^3})} = \frac{1}{t} \frac{1}{1 + \mathcal{O} (\frac{1}{n^2})} = \frac{1}{t} (1 + \mathcal{O} (\frac{1}{n^2}))$
+
+            Следовательно, величина всплеска $17.8\%$ -- эффект Гиббса.
+
+            Явление Гиббса — некоторое особое поведение частичных сумм ряда Фурье в окрестности точки разрыва разлагаемой функции.
         }
     \end{enumerate}
 \end{example}
