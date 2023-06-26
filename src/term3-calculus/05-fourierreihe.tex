@@ -1791,8 +1791,14 @@ $A_0 (f) = \frac{1}{2\pi} \int_{-\pi}^\pi f(x - t) \, dt$
             \begin{proof}
                 $F(x, t) = f(x - t)g(t)$ - измеримая функция. Потому что $f(y)g(t)$ - измеримая, а из этих Лебеговых множеств можем получить исходные линейным преобразованием.
 
-                $\int\limits_{-\pi}^\pi |h(x)| \, dx = \int\limits_{-\pi}^\pi |\int\limits_{-\pi}^\pi f(x -t)g(t) \, dt | \, dx \leqslant \int\limits_{-\pi}^\pi \int\limits_{-\pi}^\pi |f(x -t)||g(t)| \, dt \, dx = 
-                \int\limits_{-\pi}^\pi \int\limits_{-\pi}^\pi |f(x -t)||g(t)| \, dt \, dx = ||f||_1 \cdot ||g||_1$
+                $\int_{[-\pi, \pi]^2} |F(x, t)| dx dt = \int_{-\pi}^{\pi} \int_{-\pi}^{\pi} | f(x - t) | |g(t)| dx dt =_{y = x - t} \int_{-\pi}^{\pi} |g(t)| \int_{-\pi - t}^{\pi - t} |f(y)| dy dt = ||f||_1 \cdot ||g||_1$.
+
+                Теперь запишем свертку: $h(x) = f*g$.
+
+                $\int_{-\pi}^{\pi} |h(x)| dx = \int_{-\pi}^{\pi} \left| \int_{-\pi}^{\pi} f(x-t) g(t) dt \right| dx \leq \int_{-\pi}^{\pi} \int_{-\pi}^{\pi} |F(x, t)| dt dx = ||f||_1 \cdot ||g||_1 \implies f * g \in L_{2\pi}^1$.
+
+                % $\int\limits_{-\pi}^\pi |h(x)| \, dx = \int\limits_{-\pi}^\pi |\int\limits_{-\pi}^\pi f(x -t)g(t) \, dt | \, dx \leqslant \int\limits_{-\pi}^\pi \int\limits_{-\pi}^\pi |f(x -t)||g(t)| \, dt \, dx = 
+                % \int\limits_{-\pi}^\pi \int\limits_{-\pi}^\pi |f(x -t)||g(t)| \, dt \, dx = ||f||_1 \cdot ||g||_1$
             \end{proof}
         } 
         \item {
@@ -1806,40 +1812,50 @@ $A_0 (f) = \frac{1}{2\pi} \int_{-\pi}^\pi f(x - t) \, dt$
             $c_k (f * g) = 2\pi c_k (f) c_k (g)$
 
             \begin{proof}
-                $c_k (f * g) = \frac{1}{2\pi} \int\limits_{-\pi}^\pi e^{ikx} f*g (x) \, dx = \frac{1}{2\pi} \int\limits_{-\pi}^\pi e^{ikx} \int\limits_{-\pi}^\pi f(x - t) g(t) \, dt \, dx = \\ 
-                = \frac{1}{2\pi} \int\limits_{-\pi}^\pi \int\limits_{-\pi}^\pi e^{ik(x - t)}e^{ikt} f(x - t) g(t) \, dt \, dx = 
-                \frac{1}{2\pi} \int\limits_{-\pi}^\pi e^{ikt} g(t) \int\limits_{-\pi}^\pi e^{ik(x - t)} f(\underbrace{x - t}_{=s}) \, dx \, dt = \\
-                = \frac{1}{2\pi} \int\limits_{-\pi}^\pi e^{ikt} g(t) \int\limits_{x-\pi}^{x+\pi} e^{iks} f(s) \, ds \, dt  = c_k (f) \int\limits_{-\pi}^\pi e^{ikt} g(t) \, dt$
+                $c_k (f * g) = \frac{1}{2\pi} \int\limits_{-\pi}^\pi e^{-ikx} f*g (x) \, dx = \frac{1}{2\pi} \int\limits_{-\pi}^\pi e^{-ikx} \int\limits_{-\pi}^\pi f(x - t) g(t) \, dt \, dx = \\ 
+                = \frac{1}{2\pi} \int\limits_{-\pi}^\pi \int\limits_{-\pi}^\pi e^{-ik(x - t)}e^{-ikt} f(x - t) g(t) \, dt \, dx = 
+                \frac{1}{2\pi} \int\limits_{-\pi}^\pi e^{-ikt} g(t) \int\limits_{-\pi}^\pi e^{-ik(x - t)} f(\underbrace{x - t}_{=s}) \, dx \, dt = \\
+                = \frac{1}{2\pi} \int\limits_{-\pi}^\pi e^{-ikt} g(t) \int\limits_{x-\pi}^{x+\pi} e^{-iks} f(s) \, ds \, dt  = c_k (f) \int\limits_{-\pi}^\pi e^{-ikt} g(t) \, dt = 2\pi \cdot c_k(f) \cdot c_k(g)$
             \end{proof}
         }
         \item {
-            $f \in L_{2\pi}^p$ и $g \in L_{2\pi}^q$, где $\frac{1}{p} + \frac{1}{q} = 1$
+            $f \in L_{2\pi}^p$ и $g \in L_{2\pi}^q$, где $\frac{1}{p} + \frac{1}{q} = 1$ и $1 \leq p < +\infty$,
 
-            Тогда $f * g \in C_{2\pi}$ и $||f * g||_{\infty} \leqslant ||f||_p \cdot ||g||_q$
+            тогда $f * g \in C_{2\pi}$ и $||f * g||_{\infty} \leqslant ||f||_p \cdot ||g||_q$
 
             \begin{proof}
                 $|f*g (x)| = \left|\int\limits_{-\pi}^\pi f(x - t) g(t) \, dt \right| \leqslant \int\limits_{-\pi}^\pi |f(x-t)||g(t)| \, dt \overset{\text{Гёльдер}}{\leqslant}$
                 
-                $\leqslant \left( \int\limits_{-\pi}^\pi |f(x - t)|^p \, dt \right)^{\frac{1}{p}} \cdot \left( \int\limits_{-\pi}^\pi |g(t)|^q \, dt \right)^{\frac{1}{q}} = ||f||_p \cdot ||g||_q$
+                $\leqslant \left( \int\limits_{-\pi}^\pi |f(x - t)|^p \, dt \right)^{\frac{1}{p}} \cdot \left( \int\limits_{-\pi}^\pi |g(t)|^q \, dt \right)^{\frac{1}{q}} = ||f||_p \cdot ||g||_q$ -- оценку получили.
 
+                Теперь хотим понять непрерывность (периодичность и так очевидна):
+                
                 $|f * g(x + h) - f * g (x)| = \left| \int\limits_{-\pi}^\pi f(x + h -t)g(t) \, dt - \int\limits_{-\pi}^\pi f(x - t)g(t) \, dt \right| \leqslant \int\limits_{-\pi}^\pi |f(x + h - t) - f(x - t)||g(t)| \, dt \leqslant 
-                \left( \int\limits_{-\pi}^\pi|f(x + h - t - f(x - t))|^p \, dt \right)^{\frac{1}{p}} ||g||_q = \left( \int\limits_{-\pi}^\pi |f(s + h) - f(s)|^p \, ds \right)^{\frac{1}{p}} \cdot ||g||_q = \underbrace{||f_h - f||_p}_{\rightarrow 0} ||g||_q$. При $p < +\infty$ из теоремы о непрерывности сдвига.
+                \left( \int\limits_{-\pi}^\pi|f(x + h - t - f(x - t))|^p \, dt \right)^{\frac{1}{p}} ||g||_q = \left( \int\limits_{-\pi}^\pi |f(s + h) - f(s)|^p \, ds \right)^{\frac{1}{p}} \cdot ||g||_q = \underbrace{||f_h - f||_p}_{\rightarrow 0} ||g||_q$ -- т.к. $p < +\infty$, то имеем стремление к нулю по теореме о непрерывности сдвига.
             \end{proof}
         }
         \item {
-            Если $f \in L_{2\pi}^p$ и $g \in L_{2\pi}^1$
+            Если $f \in L_{2\pi}^p$ и $g \in L_{2\pi}^1$ и $1 \leq p \leq +\infty$,
 
-            Тогда $f * g \in L_{2\pi}^p$ и $||f * g||_p \leqslant ||f||_p \cdot ||g||_1$
+            тогда $f * g \in L_{2\pi}^p$ и $||f * g||_p \leqslant ||f||_p \cdot ||g||_1$
 
             \begin{proof}
-                Для $p = +\infty$ - это свойство 4, поэтому считаем, что $1 \leqslant p < +\infty$
+                Для $p = +\infty$ все просто:
+                
+                $|f*g(x)| \leq \int_{-\pi}^{\pi} \underbrace{|f(x-t)|}_{\leq ||f||_{\infty} \text{ -- выносим за интеграл}} \cdot |g(t)| dt \leq ||f||_{\infty} \cdot ||g||_1$.
+
+                Дальше считаем, что $1 \leqslant p < +\infty$.
 
                 Тогда $||f * g||_p = \left( \int\limits_{-\pi}^\pi |f*g (x)|^p \, dx \right)^{\frac{1}{p}}$
 
                 $||f*g||_p^p = \int\limits_{-\pi}^\pi \left| \int\limits_{-\pi}^\pi f(x - t) g(t) \, dt \right|^p \, dx \leqslant \int\limits_{-\pi}^\pi \left( \int\limits_{-\pi}^\pi |f(x - t)| |g(t)| \, dt \right)^p \, dx = \\
-                = \int\limits_{-\pi}^\pi \left( \int\limits_{-\pi}^\pi |f(x - t)| |g(t)|^{\frac{1}{p}} |g(t)|^{\frac{1}{q}} \, dt \right)^p \, dx \overset{\text{Гёльдер}}{\leqslant} \ldots$
+                =_{\frac{1}{p} + \frac{1}{q} = 1} \int\limits_{-\pi}^\pi \left( \int\limits_{-\pi}^\pi |f(x - t)| |g(t)|^{\frac{1}{p}} |g(t)|^{\frac{1}{q}} \, dt \right)^p \, dx \overset{\text{Гёльдер для внутреннего интеграла}}{\leqslant}$
 
-                %Тут нужно немного дописать
+                $\leq \int_{-\pi}^{\pi} \left( \left( \int_{-\pi}^{\pi} |f(x-t)|^p |g(t)| dt \right)^{\frac{1}{p}} \cdot \left( \int_{-\pi}^{\pi} |g(t)| dt \right)^{\frac{1}{q}} \right)^{p} dx =$
+                
+                $= \int_{-\pi}^{\pi} \left( \int_{-\pi}^{\pi} |f(x-t)|^p |g(t)| dt \right) \cdot ||g||_1^{\frac{p}{q}} dx = $
+
+                $= ||g||_1^{\frac{p}{q}} \cdot \int_{-\pi}^{\pi} |g(t)| \underbrace{\int_{-\pi}^{\pi} |f(x-t)|^p dx}_{=||f||_p^p \text{ -- сдвиг по периоду не меняет ничего}} dt = ||f||_p^p \cdot ||g||_1^{1 + \frac{p}{q}} = ||f||_p^p \cdot ||g||_1^p$ -- извлекаем корень $p$-ой степени из левой и правой частей и получает то, что нужно.
             \end{proof}
         }
     \end{enumerate}
