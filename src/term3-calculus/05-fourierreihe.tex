@@ -427,7 +427,9 @@
 
         Посмотрим на $||S - \tilde{S}||^2 = \left <  S - \tilde{S}, S - \tilde{S} \right > = \left < S, S \right > + \left < \tilde{S}, \tilde{S} \right > - \left < S, \tilde{S} \right > - \left < \tilde{S}, S \right > = $
 
-        $= \sum_{n = 1}^\infty \sum_{k = 1}^\infty \left < x_n, x_k \right > + \sum_{n = 1}^\infty \sum_{k = 1}^\infty \left < x_{\varphi(n)}, x_{\varphi(k)} \right > - \sum_{n = 1}^\infty \sum_{k = 1}^\infty \left < x_n, x_{\varphi(k)} \right > - \sum_{n = 1}^\infty \sum_{k = 1}^\infty \left < x_{\varphi(n)}, x_k \right > = (*)$
+        $= \sum_{n = 1}^\infty \sum_{k = 1}^\infty \left < x_n, x_k \right > + \sum_{n = 1}^\infty \sum_{k = 1}^\infty \left < x_{\varphi(n)}, x_{\varphi(k)} \right > -$
+
+        $- \sum_{n = 1}^\infty \sum_{k = 1}^\infty \left < x_n, x_{\varphi(k)} \right > - \sum_{n = 1}^\infty \sum_{k = 1}^\infty \left < x_{\varphi(n)}, x_k \right > = (*)$
 
         Воспользуемся ортогональностью:
 
@@ -1284,12 +1286,16 @@ $\sum_{k = -n}^n c_k e^{ikx} \rightarrow \sum_{k = -\infty}^{+\infty} c_k e^{ikx
         \item $D_n$ непрерывна и $2\pi$ периодична, чётная
         \item $D_n (0) = n + \frac{1}{2}$
         \item {
-            $D_n (t) = \frac{\sin (n + \frac{1}{2})t}{2\sin \frac{t}{2}}$, при $t \neq 2\pi m$
+            $D_n (t) = \frac{\sin ((n + \frac{1}{2})t)}{2\sin \frac{t}{2}}$, при $t \neq 2\pi m$
 
             \begin{proof}
                 Индукция по $n$, база $n = 0$ верна
 
-                Переход $n - 1 \to n$. $D_{n} (t) = D_{n - 1} (t) + \cos (nt) = \frac{\sin (n - \frac{1}{2})t}{2\sin \frac{t}{2}} + \cos (nt) = \frac{\sin (n - \frac{1}{2})t + 2\cos (nt) \sin \frac{t}{2}}{2\sin \frac{t}{2}} = \frac{\sin (n + \frac{1}{2})t}{2\sin \frac{t}{2}}$
+                Переход $n - 1 \to n$:
+
+                $D_{n} (t) = D_{n - 1} (t) + \cos (nt) = \frac{\sin ((n - \frac{1}{2})t)}{2\sin \frac{t}{2}} + \cos (nt) = \frac{\sin ((n - \frac{1}{2})t) + 2\cos (nt) \sin \frac{t}{2}}{2\sin \frac{t}{2}} = \frac{\sin ((n + \frac{1}{2})t)}{2\sin \frac{t}{2}}$
+
+                Использовали формулу: $2 \cdot \sin(a) \cdot \cos(b) = \sin(a - b) + \sin(a + b)$.
             \end{proof}
         }
         \item $\int_{-\pi}^\pi D_n (t) \, dt = \pi$ и $\int_0^\pi D_n (t) = \frac{\pi}{2}$
@@ -1310,19 +1316,23 @@ $A_k (f, x) =
     a_k (f) \cos (kx) + b_k (f) \sin (kx), & \text{при $k > 0$}
 \end{cases}$
 
-$A_k (f) = \frac{1}{\pi} \int_{-\pi}^\pi f(x - t) \cos (kt) \, dt$, $A_0 (f) = \frac{1}{2\pi} \int_{-\pi}^\pi f(x - t) \, dt$
+% TODO: why are these formulas correct?
+$A_k (f) = \frac{1}{\pi} \int_{-\pi}^\pi f(x - t) \cos (kt) \, dt$,
+
+$A_0 (f) = \frac{1}{2\pi} \int_{-\pi}^\pi f(x - t) \, dt$
 
 \begin{proof}
     леммы
 
-    $S_n (f, x) = \sum_{k = 0}^n A_k (f, x) = \frac{1}{2\pi} \int_{-\pi}^\pi f(x - t) \, dt +  \frac{1}{\pi} \sum_{k = 1}^{n} \int_{-\pi}^\pi f(x - t) \cos kt \, dt =
-    \frac{1}{\pi} \int_{-\pi}^\pi f(x - t) D_n (t) \, dt = \frac{1}{\pi} \int_{-\pi}^\pi f(x + u) D_n (u) (-1) \, du$
+    $S_n (f, x) = \sum_{k = 0}^n A_k (f, x) = \frac{1}{2\pi} \int_{-\pi}^\pi f(x - t) \, dt +  \frac{1}{\pi} \sum_{k = 1}^{n} \int_{-\pi}^\pi f(x - t) \cos kt \, dt = $
+
+    $=\frac{1}{\pi} \int_{-\pi}^\pi f(x - t) D_n (t) \, dt = \frac{1}{\pi} \int_{-\pi}^\pi f(x + u) D_n (u) \, du$ -- сделали $u = -t$, поменяли местами пределы интегрирования и вынесли $-1$ из-под $dt = -du$.
 \end{proof}
 
 \begin{consequence}
     Пусть $f \in L^1 [-\pi, \pi]$, $S_n (f, x)$ - частичная сумма ряда Фурье
 
-    Тогда $S_n (f, x) = \frac{1}{\pi} \int_0^\delta (f(x + t) + f(x - t)) D_n (t) \, dt + o(1)$ при $n \to \infty$
+    Тогда $S_n (f, x) = \frac{1}{\pi} \int_0^\delta (f(x + t) + f(x - t)) D_n (t) \, dt + o(1)$ при $n \to \infty$, где $0 < \delta < \pi$
 \end{consequence}
 
 \begin{proof}
@@ -1331,10 +1341,16 @@ $A_k (f) = \frac{1}{\pi} \int_{-\pi}^\pi f(x - t) \cos (kt) \, dt$, $A_0 (f) = \
     Надо понять, что $\int_{\delta}^\pi (f(x + t) + f(x - t)) D_n (t) \,  dt \rightarrow 0$
 
     $\int_{\delta}^\pi (f(x + t) + f(x - t)) D_n (t) \,  dt = \int_\delta^\pi \frac{f(x + t) + f(x - t)}{2 \sin \frac{t}{2}} \sin (n + \frac{1}{2}) t \, dt \overset{\text{Риман-Лебег}}{\rightarrow} 0$, потому что суммируема на $[\delta, \pi]$
+
+    Напоминание \textit{леммы Римана-Лебега}:
+
+    \begin{center}
+        \includegraphics[width=10cm]{assets/05-fourierreihe/notice-riman-lebegue.png}
+    \end{center}
 \end{proof}
 
 \begin{consequence}
-    Принцип локализации
+    \textbf{Принцип локализации}.
 
     $f, g \in L^1 [-\pi, \pi]$, $2\pi$ периодические
 
@@ -1347,15 +1363,6 @@ $A_k (f) = \frac{1}{\pi} \int_{-\pi}^\pi f(x - t) \cos (kt) \, dt$, $A_0 (f) = \
     $S_n (f, x) - S_n (g, x) = \frac{1}{\pi} \int_0^\delta (f(x + t) + f(x - t)) D_n (t) \, dt - \frac{1}{\pi} \int_0^\delta (g(x + t) + g(x - t)) D_n (t) \, dt + o(1)$, подынтегральные функции в окрестности совпадают, значит останется только $o(1)$
 \end{proof}
 
-\textbf{Обозначение. } $f(a \pm 0) = \lim\limits_{x \to a\pm} f(x)$
-
-$f_+' (a) = \lim\limits_{h \to 0+} \frac{f(a + h) - f(a + 0)}{h}$. Если функция непрерывна в точке $a$, то такое определение совпадает с тем, что было раньше
-
-$f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
-
-\begin{definition}
-    $a$ - регулярная точка для $f$, если $f(a) = \frac{f(a + 0) + f(a - 0)}{2}$
-\end{definition}
 
 \begin{lemma}
     $f \in L^1 [-\pi, \pi]$, тогда $\int_0^\delta \frac{|f(t)|}{t} \, dt$ и $\int_0^\pi \frac{|f(t)|}{2\sin \frac{t}{2}} \, dt$ ведут себя одинаково,
@@ -1365,20 +1372,48 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
 \begin{proof}
     $\int_0^\pi \frac{|f(t)|}{2\sin \frac{t}{2}} \, dt = \int_0^\delta + \underbrace{\int_\delta^\pi}_{\leqslant \frac{1}{2\sin \frac{\delta}{2}} \int_\delta^\pi |f(t)| \, dt < +\infty } $
 
-    Смотрим на $[0, \delta]$. $\frac{|f(t)|}{t} \leqslant \frac{|f(t)|}{2 \sin \frac{t}{2}} \leqslant \frac{|f(t)|}{t \cdot \frac{2}{\pi}}$ (из $u \frac{2}{\pi} \leqslant \sin u \leqslant i$)
+    Смотрим на $[0, \delta]$.
+
+    $\frac{|f(t)|}{t} \leqslant \frac{|f(t)|}{2 \sin \frac{t}{2}} \leqslant \frac{|f(t)|}{t \cdot \frac{2}{\pi}}$ (из $u \frac{2}{\pi} \leqslant \sin u \leqslant u$)
 \end{proof}
 
-\textbf{Обозначение. }  $f_x^* (t) = f(x + t) + f(x - t) - f(x + 0) - f(x - 0) \overset{\text{Если $x$ - точка регулярности}}{=} f(x + t) + f(x - t) - 2f(x)$
+
+\begin{definition}
+    $a$ - регулярная точка для $f$, если $f(a) = \frac{f(a + 0) + f(a - 0)}{2}$,
+
+    где $f(a \pm 0) = \lim\limits_{x \to a\pm} f(x)$
+\end{definition}
+
+\begin{definition}
+    Пусть $a$ -- точка разрыва $f$ \textbf{первого рода}, то есть такая что в ней существуют левый и правый предел, тогда
+
+    $f_+' (a) = \lim\limits_{h \to 0+} \frac{f(a + h) - f(a + 0)}{h}$
+
+    $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
+
+    Если функция непрерывна в точке $a$, то такое определение совпадает определением производной.
+\end{definition}
+
+
+\begin{definition}
+    $f_x^* (t) = f(x + t) + f(x - t) - f(x + 0) - f(x - 0) \overset{\text{если $x$ -- регулярная точка}}{=} f(x + t) + f(x - t) - 2f(x)$
+\end{definition}
 
 \begin{theorem}
     \textbf{Признак Дини}
 
-    $f \in L^{1} [-\pi, \pi], x \in [-\pi, \pi]$ - точка непрерывности или разрыва первого рода. $0 < \delta < \pi$. Если $\int\limits_0^\delta \frac{|f_x^* (t)|}{t} \, dt < +\infty$, то ряд Фурье
+    $f \in L^{1} [-\pi, \pi], x \in [-\pi, \pi]$ - точка непрерывности или разрыва первого рода, $0 < \delta < \pi$.
+
+    Если $\int\limits_0^\delta \frac{|f_x^* (t)|}{t} \, dt < +\infty$, то ряд Фурье
     функции $f$ в точке $x$ сходится к $\frac{f(x + 0) + f(x - 0)}{2}$
 \end{theorem}
 
 \begin{proof}
-    $S_n (x) = \int\limits_0^\pi (f(x + t) + f(x - t)) D_n (t) \, dt$. Ещё мы знаем, что $\int\limits_0^\pi D_n (t) \, dt = \frac{1}{2}$
+    $S_n (x) = \int\limits_0^\pi (f(x + t) + f(x - t)) D_n (t) \, dt$.
+
+    Ещё мы знаем, что $\int\limits_0^\pi D_n (t) \, dt = \frac{\pi}{2}$, тогда можно домножить этот интеграл на константу: $(f(x + 0) + f(x - 0))$, тогда получим:
+
+    $S_n(x) - \frac{f(x + 0) + f(x - 0)}{2} = \underbrace{\frac{1}{\pi} \int_{0}^{\pi} D_n(t) (f(x + t) + f(x - t)) dt}_{=S_n(x)} - \underbrace{\frac{1}{\pi} \int_{0}^{\pi} D_n(t) (f(x + 0) + f(x - 0)) dt}_{=\frac{1}{2} \cdot (f(x + 0) + f(x - 0))}$
 
     $S_n(x) - \frac{f(x + 0) + f(x - 0)}{2} = \frac{1}{\pi} \int_0^\pi f_x^* (t) D_n (t) \, dt $
 
@@ -1386,9 +1421,11 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
 
     $f_x^* (t) \in L^1 [-\pi, \pi]$, т.к. $|f_x^* (t)| \leqslant |f(x + t)| + |f(x - t)| + |f(x + 0)| + |f(x - 0)|$
 
-    $D_n(t) = \frac{\sin ((n + \frac{1}{2})t)}{2\sin \frac{t}{2}}$. Значит нужно понять про $\int_0^\pi \frac{|f_x^* (t)|}{2 \sin \frac{t}{2}} \sin ((n + \frac{1}{2})t) \, dt \overset{\text{Риман-Лебег, если (*)}}{\rightarrow} 0$
+    $D_n(t) = \frac{\sin ((n + \frac{1}{2})t)}{2\sin \frac{t}{2}}$.
 
-    $(*) \, : \, \int_0^\pi \frac{|f_x^* (t)|}{2 \sin \frac{t}{2}} \, dt < +\infty \overset{\text{лемма}}{\Longleftrightarrow} \int_0^\delta \frac{|f_x^* (t)|}{t} \, dt < +\infty$ - а это верно из условия
+    Значит нужно понять, что $\int_0^\pi \frac{|f_x^* (t)|}{2 \sin \frac{t}{2}} \sin ((n + \frac{1}{2})t) \, dt \rightarrow 0$ -- а это верно по Риману-Лебегу, если выполняется условие $(*)$.
+
+    $(*) \, : \, \int_0^\pi \frac{|f_x^* (t)|}{2 \sin \frac{t}{2}} \, dt < +\infty \overset{\text{прошлая лемма}}{\Longleftrightarrow} \int_0^\delta \frac{|f_x^* (t)|}{t} \, dt < +\infty$ - а это верно из условия
 \end{proof}
 
 \begin{consequence}
@@ -1397,23 +1434,29 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
             Если $x$ - регулярная точка (или точка непрерывности), то в условиях теоремы ряд Фурье сходится к значения функции в точке.
         }
         \item {
-            Если $x$ точка непрерывности для разрыва первого рода и в этой точке существуют конечные $f'_{\pm} (x)$
+            % Если $x$ точка непрерывности для разрыва первого рода и в этой точке существуют конечные $f'_{\pm} (x)$
 
-            Тогда ряд Фурье в точке $x$ сходится к $\frac{f(x + 0) + f(x - 0)}{2}$
+            Если $f \in L^1[-\pi, \pi]$ и в точке $x$ существуют конечные $f'_{\pm} (x)$, тогда ряд Фурье в точке $x$ сходится к $\frac{f(x + 0) + f(x - 0)}{2}$.
 
             \begin{proof}
-                $\frac{|f_x^* (t)|}{t} \leqslant \underbrace{\frac{|f(x + t) - f(x + 0)|}{t}}_{\rightarrow f_+'(x)} + \underbrace{\frac{|f(x - t) - f(x - 0)|}{t}}_{\rightarrow -f_-' (x)}$. Функции локально ограничены, значит всё выполняется.
+                Надо проверить, что $\int_{0}^{\delta} \frac{|f_x^*(t)|}{t} dt < +\infty$, то есть что $\frac{|f_x^*(t)|}{t}$ -- суммируема.
+
+                $\frac{|f_x^* (t)|}{t} \leqslant \underbrace{\frac{|f(x + t) - f(x + 0)|}{t}}_{\rightarrow f_+'(x)} + \underbrace{\frac{|f(x - t) - f(x - 0)|}{t}}_{\rightarrow -f_-' (x)}$.
+
+                Функции локально ограничены, значит всё выполняется.
             \end{proof}
         }
         \item {
-            Если $x$ - регулярная точка (или точка непрерывности) и в точке $x$ существуют конечные $f'_{\pm} (x)$
+            % Если $x$ - регулярная точка (или точка непрерывности) и в точке $x$ существуют конечные $f'_{\pm} (x)$
 
-            Тогда ряд Фурье в точке $x$ сходится к $f(x)$
+            % Тогда ряд Фурье в точке $x$ сходится к $f(x)$
+
+            Если $f$ кусочно-дифференцируема, тогда ряд Фурье сходится к $\frac{f(x+0) + f(x-0)}{2}$.
         }
         \item {
-            Если $f$ непрерывна и кусочно дифференцируема
+            % Если $f$ непрерывна и кусочно дифференцируема, тогда ряд Фурье функции $f$ сходится к значению функции во всех точках
 
-            Тогда ряд Фурье функции $f$ сходится к значению функции во всех точках
+            Если $f$ непрерывная и кусочно-дифференцируема, тогда ряд Фурье в точке $x$ сходится к $f(x)$.
         }
     \end{enumerate}
 \end{consequence}
@@ -1470,7 +1513,7 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
             $S_n (\frac{\pi}{2n}) = \int_0^{\frac{\pi}{2n}} S_n'(x) \, dx = \frac{2}{\pi} \int_0^{\frac{\pi}{2n}} \frac{\sin (2 n x)}{\sin x} \, dx \overset{t = 2nx}{=} \frac{2}{\pi} \int_0^{\pi} \frac{\sin t}{\sin \frac{t}{2n}} \frac{dt}{2n}
             \overset{*}{=} \frac{2}{\pi} \int_0^\pi \frac{\sin t}{t + \mathcal{O}(\frac{1}{n^2})} \, dt = \frac{2}{\pi} \int_0^\pi \frac{\sin t}{t} \, dt (1 + \mathcal{O} (1 + \mathcal{O} (\frac{1}{n^2})))$
 
-            $(*) \, : \, \frac{\sin t}{2n} = \frac{t}{2n} + \mathcal{O}(\frac{t^3}{n^3})$ и $\frac{1}{t + \mathcal{O} (\frac{t^3}{n^3})} = \frac{1}{t} \frac{1}{1 + \mathcal{O} (\frac{1}{n^2})} = \frac{1}{t} (1 + \mathcal{O} (\frac{1}{n^2}))$
+            $(*) \, : \, \sin \frac{t}{2n} = \frac{t}{2n} + \mathcal{O}(\frac{t^3}{n^3})$ и $\frac{1}{t + \mathcal{O} (\frac{t^3}{n^3})} = \frac{1}{t} \frac{1}{1 + \mathcal{O} (\frac{1}{n^2})} = \frac{1}{t} (1 + \mathcal{O} (\frac{1}{n^2}))$
         }
     \end{enumerate}
 \end{example}
@@ -1478,7 +1521,54 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
 \begin{remark}
     Формат JPEG.
 
-    %Тут нужны картинки
+
+    Хотим как-то за легко + за дешево передавать и хранить информацию о цвете картинки, при условии, что умеем то же самое, но для черно белой картинки.
+
+    У нас есть RBG каналы, но как по ним восстанавливать черно-белое изображение не очевидно (а мы хотим обспечить совместимость с черно-белым оборудованием). Давайте тогда хранить канады: фиолетовый-зеленый, синий-желтый и яркость. Причем яркость храним для всех пикселей, а эти доп. каналы для $4$-ех пикселей сразу (то есть квадрат 2x2).
+
+    Теперь черно-белое оборудование все еще может обрабатывать такие данные (просто читает только поток яркости), а также мы можем восстановить из этих данных RBG значения каждого пикселя (это просто умножение на матрицу).
+
+    В самом JPEG еще есть оптимизация, в которой квадраты для сине-желтого канала смещены на $(1, 1)$ от левой верхней границы.
+
+    \begin{center}
+        \includegraphics[width=7cm]{assets/05-fourierreihe/jpeg.png}
+    \end{center}
+
+    То есть мы получили 3 различных слоя с данными. Для каждого из них данные разбиваются на таблички размеров 8x8 и вводится функция $f$:
+
+    $$\begin{pmatrix}
+        x_{11} & \ldots & x_{18} \\
+        & \ldots \\
+        x_{81} & \ldots & x_{88}
+    \end{pmatrix}$$
+
+    $f(x, y): [0, 8]^2 \to \{ 0, 1, \ldots, 255 \}$
+
+    Теперь мы хотим сжать еще сильнее эти данные, чтобы хранить меньше памяти, запускаем дискретное преобразование Фурье на каждой таблице и получаем новую таблицу:
+
+    $y^{uv} = \sum_{l=1}^{8} \sum_{k=1}^{8} x_{lk} e^{- \frac{2 \pi i}{8} \cdot kn} \cdot e^{- \frac{2 \pi i}{8} l v}$
+
+    $$\begin{pmatrix}
+    y_{11} & \ldots & y_{18} \\
+    & \ldots \\
+    y_{81} & \ldots & y_{88}
+    \end{pmatrix}$$
+
+    Теперь используя вспомогательную таблицу (она просто фиксированная)
+
+    $$\begin{pmatrix}
+    a_{11} & \ldots & a_{18} \\
+    & \ldots \\
+    a_{81} & \ldots & a_{88}
+    \end{pmatrix}$$
+
+    мы округляем каждое $y_{ij}$ до ближайшего целого, которое делится на $a_{ij}$, причем сокращение кол-ва данных происходит за счет того, что таблица с $a_{ij}$-ыми имеет следующую структуру:
+
+    \begin{center}
+        \includegraphics[width=7cm]{assets/05-fourierreihe/aij.png}
+    \end{center}
+
+    То есть в зависимости от степени сжатия изображения коеффициенты $a_{ij}$ возрастают от левого верхнего угла к правому нижнему (если сжатие не применяется, то все $a_{ij} = 1$).
 \end{remark}
 
 \Subsection{Суммирование рядов Фурье}
@@ -1486,7 +1576,7 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
 \begin{definition}
     $\sum\limits_{n = 0}^\infty a_n$. Пусть $A_n = a_0 + a_1 + \ldots + a_n$
 
-    $\alpha_n = \frac{A_0 + \ldots + A_n}{n}$, если $S = \lim \alpha_n$, то $S$ - сумма ряда по Чезаро
+    $\alpha_n = \frac{A_0 + \ldots + A_n}{n+1}$, если $S = \lim \alpha_n$, то $S$ - сумма ряда по \textbf{Чезаро}.
 
     \textbf{Обозначение: } $(c) \sum\limits_{n = 0}^\infty a_n = S$
 \end{definition}
@@ -1500,7 +1590,7 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
 \begin{properties}
     \begin{enumerate}
         \item {
-            Если ряд сходится, то его сумма ро Чезаро совпадает с его суммой
+            Если ряд сходится, то его сумма по Чезаро совпадает с его суммой
 
             \begin{proof}
                 Если $A_n \rightarrow S$, то $\frac{A_0 + \ldots + A_n}{n + 1} \rightarrow S$
@@ -1510,12 +1600,22 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
             Линейность
         }
         \item {
-            Если ряд суммируем по Чезаро, то $a_n = o(n)$
+            Если ряд сх-ся по Чезаро, то $a_n = o(n)$
+
+            % \begin{proof}
+            %     Мы знаем, что $A_n = (n + 1)\alpha_n - n\alpha_{n-1} = (n + 1)(s + o(1)) - n(s + o(1)) = S + o(n)$
+
+            %     Тогда $a_n = A_n - A_{n - 1} = (S + o(n)) - (S + o(n)) = o(n)$
+            % \end{proof}
 
             \begin{proof}
-                Мы знаем, что $A_n = (n + 1)\alpha_n - n\alpha_{n-1} = (n + 1)(s + o(1)) - n(s + o(1)) = S + o(n)$
+                $\alpha_n \to S \implies \frac{n+1}{n} \alpha_n \to S \implies \frac{n + 1}{n} \alpha_n  - \alpha_{n - 1} \to 0$
 
-                Тогда $a_n = A_n - A_{n - 1} = (S + o(n)) - (S + o(n)) = o(n)$
+                Но $\frac{n + 1}{n} \alpha_n  - \alpha_{n - 1} = \frac{(n+1) \alpha_n - n \alpha_{n- 1}}{n} = \frac{A_n}{n}$, то есть $\frac{A_n}{n} \to 0$.
+
+                Поймем теперь про $a_n = A_n - A_{n - 1} = n \frac{A_n}{n} - (n - 1) \frac{A_{n - 1}}{n - 1} = n \left( \underbrace{\frac{A_n}{n}}_{\to 0} - \underbrace{\frac{n - 1}{n} \frac{A_{n - 1}}{n}}_{\to 0} \right) \implies$
+
+                $\implies a_n = o(n)$.
             \end{proof}
         }
     \end{enumerate}
@@ -1524,11 +1624,14 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
 \begin{remark}
     \begin{enumerate}
         \item {
-            Рассмотрим ряд $1 - 1 + 0 + 1 - 1 + 0$
+            % Рассмотрим ряд $1 - 1 + 0 + 1 - 1 + 0$
 
-            $A_{3n - 2} = 1$, $A_{3n - 1} = A_{3n} = 0$
+            % $A_{3n - 2} = 1$, $A_{3n - 1} = A_{3n} = 0$
 
-            Тогда $(c) \sum = \frac{1}{3}$. То есть мы добавили нули и испортили сумму.
+            % Тогда $(c) \sum = \frac{1}{3}$. То есть мы добавили нули и испортили сумму.
+
+
+            $\alpha_n = \sum\limits_{k=0}^{n} \left( 1 - \frac{k}{n + 1} \right) a_k$ -- формула пересчета $\alpha_n$ без использования $A_n$.
         }
         \item {
             \textbf{Теорема Харди}
@@ -1541,11 +1644,11 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
 \end{remark}
 
 \begin{definition}
-    $\sum\limits_{n=0}^\infty a_n$. Рассмотрим $\sum\limits_{n=0}^\infty a_nx^n$ при $x \in [0, 1)$
+    Имеем обычный ряд $\sum\limits_{n=0}^\infty a_n$.
 
-    Если существует $\lim\limits_{x \to 1-} f(x)$, то он называется суммой ряда по Абелю-Пуассону
+    Рассмотрим $f(x) = \sum\limits_{n=0}^\infty a_n x^n$ при $x \in [0, 1)$, если существует $\lim\limits_{x \to 1-} f(x)$, то этот предел называется суммой ряда $\sum\limits_{n=0}^\infty a_n$ по Абелю-Пуассону.
 
-    \textbf{Обозначение:} $(AP) \sum\limits_{n=0}^\infty a_n$
+    \textbf{Обозначение:} $(AP) \sum\limits_{n=0}^\infty a_n$.
 \end{definition}
 
 \begin{example}
@@ -1555,10 +1658,18 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
 \begin{properties}
     \begin{enumerate}
         \item {
-            Если ряд сходится, то он суммируем по Абелю-Пуассону и его сумма совпадает по Абелю-Пуассону совпадает с его суммой
+            % Если ряд сходится, то он суммируем по Абелю-Пуассону и его сумма совпадает по Абелю-Пуассону совпадает с его суммой
+
+            Если обычный ряд сходится к какой-то сумме, то сумма этого ряда по Абелю-Пуассону сходится к той же сумме.
 
             \begin{proof}
-                Теорема Абеля
+                Теорема Абеля.
+
+                Напоминание:
+
+                \begin{center}
+                    \includegraphics[width=10cm]{assets/05-fourierreihe/abele-theorem-note.png}
+                \end{center}
             \end{proof}
         }
         \item {
@@ -1570,9 +1681,11 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
 \begin{example}
     $\frac{1}{2} + \sum\limits_{n=1}^\infty \cos (nx)$
 
-    Частичные сумма $\frac{1}{2} + \sum\limits_{k=1}^n \cos (kx) = D_k (x) = \frac{\sin (n + \frac{1}{2})x}{2\sin \frac{x}{2}}$
+    Частичные сумма $\frac{1}{2} + \sum\limits_{k=1}^n \cos (kx) = D_n (x) = \frac{\sin ((n + \frac{1}{2})x)}{2\sin \frac{x}{2}}$
 
-    $\Phi_n (x) = \frac{D_0 (x) + D_1 (x) + \ldots + D_n (x)}{n + 1}$ - ядро Фейера
+    \begin{definition}
+        $\Phi_n (x) = \frac{D_0 (x) + D_1 (x) + \ldots + D_n (x)}{n + 1}$ -- ядро Фейера.
+    \end{definition}
 
     \begin{properties}
         \begin{enumerate}
@@ -1580,12 +1693,18 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
                 $\Phi_n (0) = \frac{n + 1}{2}$
             }
             \item {
-                При $x \neq 2\pi m \, : \, \Phi_n (x) = \frac{\sin^2 \frac{n + 1}{2} x}{2(n + 1)\sin^2 \frac{x}{2}}$
+                При $x \neq 2\pi m \, : \, \Phi_n (x) = \frac{\sin^2 \left(\frac{n + 1}{2} x\right)}{2(n + 1)\sin^2 \frac{x}{2}}$
 
                 \begin{proof}
-                    $\sum\limits_{k=0}^n \frac{\sin (n + \frac{1}{2})x}{2\sin \frac{x}{2}} = \frac{\sin^2 \frac{n+1}{2}}{2\sin^2 \frac{x}{2}}$
+                    % $\sum\limits_{k=0}^n \frac{\sin (n + \frac{1}{2})x}{2\sin \frac{x}{2}} = \frac{\sin^2 \frac{n+1}{2}}{2\sin^2 \frac{x}{2}}$
 
-                    $\sum\limits_{k=0}^n \underbrace{\sin \frac{x}{2} \sin (k + \frac{1}{2})x}_{=\frac{1}{2} (\cos (kx) - \cos (k + 1)x)} = \sin^2 \frac{n+1}{2}x = \frac{1 - \cos (n + 1)x}{2}$
+                    % $\sum\limits_{k=0}^n \underbrace{\sin \frac{x}{2} \sin (k + \frac{1}{2})x}_{=\frac{1}{2} (\cos (kx) - \cos (k + 1)x)} = \sin^2 \frac{n+1}{2}x = \frac{1 - \cos (n + 1)x}{2}$
+
+                    Считаем:
+
+                    $2 \sin^2(\frac{x}{2}) \sum_{k=0}^{n} D_k(x) = \sum_{k=0}^{n} \sin(\frac{x}{2}) \sin((k + \frac{1}{2}) x) =$
+
+                    $= \frac{1}{2} \sum_{k=0}^{n} \cos(kx) - \cos((k + 1) x) = \frac{1 - \cos((n+1) x)}{2} = \sin^2(\frac{n+1}{2} t)$.
                 \end{proof}
             }
             \item {
@@ -1608,7 +1727,7 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
         \end{enumerate}
     \end{properties}
 
-    Таким образом сумма ряда по Чезаро $= +\infty$ при $x = 2\pi m$ и $0$ иначе
+    Продолжение примера: таким образом сумма ряда по Чезаро $= +\infty$ при $x = 2\pi m$ и $0$ иначе.
 \end{example}
 
 \begin{example}
@@ -1649,14 +1768,15 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
 \begin{example}
     $\frac{a_0}{2} + \sum\limits_{k = 1}^\infty (a_k \cos (kx) + b_k \sin (kx)) = \sum\limits_{k = 0}^\infty A_k (x)$
 
-    $f(r) = \sum\limits_{k = 0}^\infty r^k A_k (x) = \frac{1}{\pi} \int_{-\pi}^\pi \frac{1}{2} f(x - t) \, dt + \frac{1}{\pi} \sum\limits_{k=1}^\infty r^k \int_{-\pi}^\pi f(x - t) \cos (kt) \, dt =
-    \frac{1}{\pi} \int_{-\pi}^\pi f(x - t) \underbrace{\left( \frac{1}{2} + \sum\limits_{k = 1}^\infty r^k \cos (kt) \right)}_{= P_r (t)} \, dt$
+    $f(r) = \sum\limits_{k = 0}^\infty r^k A_k (x) = \frac{1}{\pi} \int_{-\pi}^\pi \frac{1}{2} f(x - t) \, dt + \frac{1}{\pi} \sum\limits_{k=1}^\infty r^k \int_{-\pi}^\pi f(x - t) \cos (kt) \, dt = $
+
+    $= \frac{1}{\pi} \int_{-\pi}^\pi f(x - t) \underbrace{\left( \frac{1}{2} + \sum\limits_{k = 1}^\infty r^k \cos (kt) \right)}_{= P_r (t)} \, dt$
 \end{example}
 
 \begin{definition}
     $f, g \in L^1 [-\pi, \pi]$ продолжим по периоду
 
-    $h(x) = \int_{-\pi}^\pi f(x - t) g(t) \, dt$ - свёртка функций $f$ и $g$
+    $f * g = h(x) = \int_{-\pi}^\pi f(x - t) g(t) \, dt$ - свёртка функций $f$ и $g$
 \end{definition}
 
 \begin{remark}
@@ -1674,8 +1794,14 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
             \begin{proof}
                 $F(x, t) = f(x - t)g(t)$ - измеримая функция. Потому что $f(y)g(t)$ - измеримая, а из этих Лебеговых множеств можем получить исходные линейным преобразованием.
 
-                $\int\limits_{-\pi}^\pi |h(x)| \, dx = \int\limits_{-\pi}^\pi |\int\limits_{-\pi}^\pi f(x -t)g(t) \, dt | \, dx \leqslant \int\limits_{-\pi}^\pi \int\limits_{-\pi}^\pi |f(x -t)||g(t)| \, dt \, dx =
-                \int\limits_{-\pi}^\pi \int\limits_{-\pi}^\pi |f(x -t)||g(t)| \, dt \, dx = ||f||_1 \cdot ||g||_1$
+                $\int_{[-\pi, \pi]^2} |F(x, t)| dx dt = \int_{-\pi}^{\pi} \int_{-\pi}^{\pi} | f(x - t) | |g(t)| dx dt =_{y = x - t} \int_{-\pi}^{\pi} |g(t)| \int_{-\pi - t}^{\pi - t} |f(y)| dy dt = ||f||_1 \cdot ||g||_1$.
+
+                Теперь запишем свертку: $h(x) = f*g$.
+
+                $\int_{-\pi}^{\pi} |h(x)| dx = \int_{-\pi}^{\pi} \left| \int_{-\pi}^{\pi} f(x-t) g(t) dt \right| dx \leq \int_{-\pi}^{\pi} \int_{-\pi}^{\pi} |F(x, t)| dt dx = ||f||_1 \cdot ||g||_1 \implies f * g \in L_{2\pi}^1$.
+
+                % $\int\limits_{-\pi}^\pi |h(x)| \, dx = \int\limits_{-\pi}^\pi |\int\limits_{-\pi}^\pi f(x -t)g(t) \, dt | \, dx \leqslant \int\limits_{-\pi}^\pi \int\limits_{-\pi}^\pi |f(x -t)||g(t)| \, dt \, dx =
+                % \int\limits_{-\pi}^\pi \int\limits_{-\pi}^\pi |f(x -t)||g(t)| \, dt \, dx = ||f||_1 \cdot ||g||_1$
             \end{proof}
         }
         \item {
@@ -1689,39 +1815,50 @@ $f_-' (a) = \lim\limits_{h \to 0+} \frac{f(a - h) - f(a - 0)}{-h}$
             $c_k (f * g) = 2\pi c_k (f) c_k (g)$
 
             \begin{proof}
-                $c_k (f * g) = \frac{1}{2\pi} \int\limits_{-\pi}^\pi e^{ikx} f*g (x) \, dx = \frac{1}{2\pi} \int\limits_{-\pi}^\pi e^{ikx} \int\limits_{-\pi}^\pi f(x - t) g(t) \, dt \, dx = \\
-                = \frac{1}{2\pi} \int\limits_{-\pi}^\pi \int\limits_{-\pi}^\pi e^{ik(x - t)}e^{ikt} f(x - t) g(t) \, dt \, dx =
-                \frac{1}{2\pi} \int\limits_{-\pi}^\pi e^{ikt} g(t) \int\limits_{-\pi}^\pi e^{ik(x - t)} f(\underbrace{x - t}_{=s}) \, dx \, dt = \\
-                = \frac{1}{2\pi} \int\limits_{-\pi}^\pi e^{ikt} g(t) \int\limits_{x-\pi}^{x+\pi} e^{iks} f(s) \, ds \, dt  = c_k (f) \int\limits_{-\pi}^\pi e^{ikt} g(t) \, dt$
+                $c_k (f * g) = \frac{1}{2\pi} \int\limits_{-\pi}^\pi e^{-ikx} f*g (x) \, dx = \frac{1}{2\pi} \int\limits_{-\pi}^\pi e^{-ikx} \int\limits_{-\pi}^\pi f(x - t) g(t) \, dt \, dx = \\
+                = \frac{1}{2\pi} \int\limits_{-\pi}^\pi \int\limits_{-\pi}^\pi e^{-ik(x - t)}e^{-ikt} f(x - t) g(t) \, dt \, dx =
+                \frac{1}{2\pi} \int\limits_{-\pi}^\pi e^{-ikt} g(t) \int\limits_{-\pi}^\pi e^{-ik(x - t)} f(\underbrace{x - t}_{=s}) \, dx \, dt = \\
+                = \frac{1}{2\pi} \int\limits_{-\pi}^\pi e^{-ikt} g(t) \int\limits_{x-\pi}^{x+\pi} e^{-iks} f(s) \, ds \, dt  = c_k (f) \int\limits_{-\pi}^\pi e^{-ikt} g(t) \, dt = 2\pi \cdot c_k(f) \cdot c_k(g)$
             \end{proof}
         }
         \item {
-            $f \in L_{2\pi}^p$ и $g \in L_{2\pi}^q$, где $\frac{1}{p} + \frac{1}{q} = 1$
+            $f \in L_{2\pi}^p$ и $g \in L_{2\pi}^q$, где $\frac{1}{p} + \frac{1}{q} = 1$ и $1 \leq p < +\infty$,
 
-            Тогда $f * g \in C_{2\pi}$ и $||f * g||_{\infty} \leqslant ||f||_p \cdot ||g||_q$
+            тогда $f * g \in C_{2\pi}$ и $||f * g||_{\infty} \leqslant ||f||_p \cdot ||g||_q$
 
             \begin{proof}
-                $|f*g (x)| = \left|\int\limits_{-\pi}^\pi f(x - t) g(t) \, dt \right| \leqslant \int\limits_{-\pi}^\pi |f(x-t)||g(t)| \, dt \overset{\text{Гёльдер}}{\leqslant}
-                \left( \int\limits_{-\pi}^\pi |f(x - t)|^p \, dt \right)^{\frac{1}{p}} \cdot \left( \int\limits_{-\pi}^\pi |g(t)|^q \, dt \right)^{\frac{1}{q}} = ||f||_p \cdot ||g||_q$
+                $|f*g (x)| = \left|\int\limits_{-\pi}^\pi f(x - t) g(t) \, dt \right| \leqslant \int\limits_{-\pi}^\pi |f(x-t)||g(t)| \, dt \overset{\text{Гёльдер}}{\leqslant}$
+
+                $\leqslant \left( \int\limits_{-\pi}^\pi |f(x - t)|^p \, dt \right)^{\frac{1}{p}} \cdot \left( \int\limits_{-\pi}^\pi |g(t)|^q \, dt \right)^{\frac{1}{q}} = ||f||_p \cdot ||g||_q$ -- оценку получили.
+
+                Теперь хотим понять непрерывность (периодичность и так очевидна):
 
                 $|f * g(x + h) - f * g (x)| = \left| \int\limits_{-\pi}^\pi f(x + h -t)g(t) \, dt - \int\limits_{-\pi}^\pi f(x - t)g(t) \, dt \right| \leqslant \int\limits_{-\pi}^\pi |f(x + h - t) - f(x - t)||g(t)| \, dt \leqslant
-                \left( \int\limits_{-\pi}^\pi|f(x + h - t - f(x - t))|^p \, dt \right)^{\frac{1}{p}} ||g||_q = \left( \int\limits_{-\pi}^\pi |f(s + h) - f(s)|^p \, ds \right)^{\frac{1}{p}} \cdot ||g||_q = \underbrace{||f_h - f||_p}_{\rightarrow 0} ||g||_q$. При $p < +\infty$ из теоремы о непрерывности сдвига.
+                \left( \int\limits_{-\pi}^\pi|f(x + h - t - f(x - t))|^p \, dt \right)^{\frac{1}{p}} ||g||_q = \left( \int\limits_{-\pi}^\pi |f(s + h) - f(s)|^p \, ds \right)^{\frac{1}{p}} \cdot ||g||_q = \underbrace{||f_h - f||_p}_{\rightarrow 0} ||g||_q$ -- т.к. $p < +\infty$, то имеем стремление к нулю по теореме о непрерывности сдвига.
             \end{proof}
         }
         \item {
-            Если $f \in L_{2\pi}^p$ и $g \in L_{2\pi}^1$
+            Если $f \in L_{2\pi}^p$ и $g \in L_{2\pi}^1$ и $1 \leq p \leq +\infty$,
 
-            Тогда $f * g \in L_{2\pi}^p$ и $||f * g||_p \leqslant ||f||_p \cdot ||g||_1$
+            тогда $f * g \in L_{2\pi}^p$ и $||f * g||_p \leqslant ||f||_p \cdot ||g||_1$
 
             \begin{proof}
-                Для $p = +\infty$ - это свойство 4, поэтому считаем, что $1 \leqslant p < +\infty$
+                Для $p = +\infty$ все просто:
+
+                $|f*g(x)| \leq \int_{-\pi}^{\pi} \underbrace{|f(x-t)|}_{\leq ||f||_{\infty} \text{ -- выносим за интеграл}} \cdot |g(t)| dt \leq ||f||_{\infty} \cdot ||g||_1$.
+
+                Дальше считаем, что $1 \leqslant p < +\infty$.
 
                 Тогда $||f * g||_p = \left( \int\limits_{-\pi}^\pi |f*g (x)|^p \, dx \right)^{\frac{1}{p}}$
 
                 $||f*g||_p^p = \int\limits_{-\pi}^\pi \left| \int\limits_{-\pi}^\pi f(x - t) g(t) \, dt \right|^p \, dx \leqslant \int\limits_{-\pi}^\pi \left( \int\limits_{-\pi}^\pi |f(x - t)| |g(t)| \, dt \right)^p \, dx = \\
-                = \int\limits_{-\pi}^\pi \left( \int\limits_{-\pi}^\pi |f(x - t)| |g(t)|^{\frac{1}{p}} |g(t)|^{\frac{1}{q}} \, dt \right)^p \, dx \overset{\text{Гёльдер}}{\leqslant} \ldots$
+                =_{\frac{1}{p} + \frac{1}{q} = 1} \int\limits_{-\pi}^\pi \left( \int\limits_{-\pi}^\pi |f(x - t)| |g(t)|^{\frac{1}{p}} |g(t)|^{\frac{1}{q}} \, dt \right)^p \, dx \overset{\text{Гёльдер для внутреннего интеграла}}{\leqslant}$
 
-                %Тут нужно немного дописать
+                $\leq \int_{-\pi}^{\pi} \left( \left( \int_{-\pi}^{\pi} |f(x-t)|^p |g(t)| dt \right)^{\frac{1}{p}} \cdot \left( \int_{-\pi}^{\pi} |g(t)| dt \right)^{\frac{1}{q}} \right)^{p} dx =$
+
+                $= \int_{-\pi}^{\pi} \left( \int_{-\pi}^{\pi} |f(x-t)|^p |g(t)| dt \right) \cdot ||g||_1^{\frac{p}{q}} dx = $
+
+                $= ||g||_1^{\frac{p}{q}} \cdot \int_{-\pi}^{\pi} |g(t)| \underbrace{\int_{-\pi}^{\pi} |f(x-t)|^p dx}_{=||f||_p^p \text{ -- сдвиг по периоду не меняет ничего}} dt = ||f||_p^p \cdot ||g||_1^{1 + \frac{p}{q}} = ||f||_p^p \cdot ||g||_1^p$ -- извлекаем корень $p$-ой степени из левой и правой частей и получает то, что нужно.
             \end{proof}
         }
     \end{enumerate}
